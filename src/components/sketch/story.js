@@ -1,30 +1,49 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { renderWithKnobs } from '../../../.storybook/report'
-import SyncColorField from '../../../.storybook/SyncColorField'
 
 import Sketch from './Sketch'
+import { renderPickerStory } from '../../../.storybook/renderPickerStory'
 
-storiesOf('Pickers', module)
-  .add('SketchPicker', () => (
-    <SyncColorField component={ Sketch }>
-      { renderWithKnobs(Sketch, {}, null, {
-        width: { range: true, min: 140, max: 500, step: 1 },
-      }) }
-    </SyncColorField>
-  ))
-  .add('SketchPicker Custom Styles', () => (
-    <SyncColorField component={ Sketch }>
-      { renderWithKnobs(Sketch, {
-        styles: {
-          default: {
-            picker: {
-              boxShadow: 'none',
-            },
-          }
-        }
-      }, null, {
-        width: { range: true, min: 140, max: 500, step: 1 },
-      }) }
-    </SyncColorField>
-  ))
+export default {
+  title: 'Pickers',
+  component: Sketch,
+  render: renderPickerStory(Sketch),
+  argTypes: {
+    width: {
+      control: { type: 'range', min: 140, max: 500, step: 1 },
+    },
+    disableAlpha: {
+      control: 'boolean',
+    },
+    presetColors: {
+      control: 'object',
+    },
+    styles: {
+      control: 'object',
+    },
+  },
+}
+
+export const SketchPicker = {
+  args: {
+    width: 200,
+    disableAlpha: false,
+    presetColors: ['#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', '#417505',
+      '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', '#B8E986', '#000000',
+      '#4A4A4A', '#9B9B9B', '#FFFFFF'],
+    styles: {},
+  },
+}
+
+export const SketchPickerCustomStyles = {
+  name: 'SketchPicker Custom Styles',
+  args: {
+    ...SketchPicker.args,
+    styles: {
+      default: {
+        picker: {
+          boxShadow: 'none',
+        },
+      },
+    },
+  },
+}

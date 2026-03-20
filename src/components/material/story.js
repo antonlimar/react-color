@@ -1,13 +1,21 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { renderWithKnobs } from '../../../.storybook/report'
-import SyncColorField from '../../../.storybook/SyncColorField'
 
 import Material from './Material'
+import { renderPickerStory } from '../../../.storybook/renderPickerStory'
 
-storiesOf('Pickers', module)
-  .add('MaterialPicker', () => (
-    <SyncColorField component={ Material }>
-      { renderWithKnobs(Material) }
-    </SyncColorField>
-  ))
+export default {
+  title: 'Pickers',
+  component: Material,
+  render: renderPickerStory(Material),
+  argTypes: {
+    styles: {
+      control: 'object',
+    },
+  },
+}
+
+export const MaterialPicker = {
+  args: {
+    styles: {},
+  },
+}

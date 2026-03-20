@@ -66,7 +66,7 @@ flowchart LR
 | Типы | `typescript`, в [`package.json`](package.json) добавить поле **`types`**; поле **`exports`** — опционально и только если не ломает drop-in (старые резолверы / deep-imports). |
 | Линт | ESLint **flat config** + `@typescript-eslint` + `eslint-plugin-react-hooks`; удалить зависимость от `@case/eslint-config`, если она не поддерживается. |
 | Тесты | **Vitest** + **jsdom** + **@testing-library/react** (замена Enzyme 2 / старых утилит); перенести `spec.js` → `*.spec.tsx` по мере миграции. |
-| Storybook | Обновить до **10.x** (или актуальной LTS), переписать [`.storybook/config.js`](.storybook/config.js) под новый формат; истории из `story.js` — постепенно. |
+| Storybook | Обновить до **10.x** (или актуальной LTS), переписать [`.storybook/config.js`](.storybook/config.js) под новый формат; истории из `story.js` — постепенно. После миграции вернуть `reactDocgen`, если он был временно отключён из-за legacy Babel-конфига. |
 | Доки | Заменить Webpack 1 на **Vite** (или аналог) для dev-сервера документации; пересмотреть [`scripts/docs-server.js`](scripts/docs-server.js) / [`docs-dist`](scripts/docs-dist.js). |
 
 ---
@@ -103,6 +103,7 @@ flowchart LR
 3. Тестовый стек (Vitest + Testing Library) и миграция одного модуля как эталон.
 4. Постепенная конвертация `src/**/*.js` → `.ts`/`.tsx`.
 5. Storybook и docs на современном bundler.
+   На Storybook держать отдельный хвост: если для совместимости временно отключён `reactDocgen`, включить его обратно после удаления legacy Babel 6-конфига.
 6. Чистка legacy, жёсткий ESLint/TS, документация breaking changes.
 
 ---
@@ -114,5 +115,5 @@ flowchart LR
 - [x] Заменить Babel 6 на пофайловую сборку через `tsc` (два `tsconfig` для `lib/` и `es/`); обновить package.json (`types`; `exports` — опционально для drop-in)
 - [ ] Ввести Vitest/Jest 29 + Testing Library + ESLint flat + typescript-eslint
 - [ ] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
-- [ ] Обновить Storybook и пайплайн docs (убрать Webpack 1)
+- [ ] Обновить Storybook и пайплайн docs (убрать Webpack 1); после удаления legacy Babel вернуть `reactDocgen`, если он был временно отключён
 - [ ] Обновить peer deps, почистить devDependencies, примеры, CI
