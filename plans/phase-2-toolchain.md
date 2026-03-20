@@ -1,6 +1,6 @@
 ---
 name: Фаза 2 toolchain
-overview: Пошаговая замена Babel 6 / Jest 20 / Webpack 1 / Storybook 3 на современный стек (сборка с сохранением дерева lib/es, TypeScript для деклараций, ESLint flat, Vitest + Testing Library, Storybook 8+, Vite для доков) с целью drop-in замены апстриму react-color.
+overview: Пошаговая замена Babel 6 / Jest 20 / Webpack 1 / Storybook 3 на современный стек (сборка с сохранением дерева lib/es, TypeScript для деклараций, ESLint flat, Vitest + Testing Library, Storybook 10+, Vite для доков) с целью drop-in замены апстриму react-color.
 todos:
   - id: build-dual-emit
     content: "Пофайловая сборка lib/ и es/ через tsc (два tsconfig), lodash/lodash-es для ESM как сейчас; убрать Babel 6 и scripts/use-module-babelrc"
@@ -15,7 +15,7 @@ todos:
     content: Заменить Jest+Enzyme на Vitest+jsdom+Testing Library; мигрировать spec.js и снапшоты
     status: pending
   - id: storybook-8
-    content: Обновить Storybook до 8.x, новый main/preview; поднять dev React при необходимости
+    content: Обновить Storybook до 10.x, новый main/preview; поднять dev React при необходимости
     status: pending
   - id: docs-vite
     content: Перевести docs на Vite (dev + build), синхронизировать пути с payload/docs-dist
@@ -62,7 +62,7 @@ flowchart TD
   pkg[package.json main module types exports files]
   lint[ESLint flat typescript-eslint]
   test[Vitest jsdom RTL миграция spec]
-  sb[Storybook 8 конфиг]
+  sb[Storybook 10 конфиг]
   docs[Vite docs-server docs-dist]
   build --> pkg
   build --> lint
@@ -132,11 +132,11 @@ flowchart TD
 
 ---
 
-## 5. Storybook: обновление до 8.x
+## 5. Storybook: обновление до 10.x
 
 **Цель:** новый формат конфигурации вместо [`.storybook/config.js`](../.storybook/config.js) (`configure`, `require.context`, старые addons).
 
-- **Важно:** Storybook 8 обычно ожидает **современный React в dev** (часто 18+). Сейчас в [package.json](../package.json) **React 15** в `devDependencies`. Для **разработки** Storybook/тестов разумно поднять `react`, `react-dom`, `react-test-renderer` в dev до поддерживаемой версии, **не меняя** без отдельного решения `peerDependencies` для библиотеки ([AGENTS.md](../AGENTS.md) — фаза 4 для peer).
+- **Важно:** Storybook 10 обычно ожидает **современный React в dev** (часто 18+). Сейчас в [package.json](../package.json) **React 15** в `devDependencies`. Для **разработки** Storybook/тестов разумно поднять `react`, `react-dom`, `react-test-renderer` в dev до поддерживаемой версии, **не меняя** без отдельного решения `peerDependencies` для библиотеки ([AGENTS.md](../AGENTS.md) — фаза 4 для peer).
 - Миграция: `main.ts`/`preview.ts`, `stories` glob, замена **addon-knobs** (deprecated) на **Controls** где возможно; сохранить загрузку `*.story.js` постепенно или переименовать в `.stories.tsx` позже.
 - Обновить скрипты `storybook` / `build-storybook` и путь вывода (сейчас [`.out`](../package.json)).
 
