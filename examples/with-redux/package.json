@@ -1,16 +1,20 @@
 {
-  "name": "react-color-example-basic",
+  "name": "react-color-example-with-redux",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^15.6.1",
-    "react-color": "latest",
-    "react-dom": "^15.6.1",
-    "react-redux": "^5.0.6",
-    "react-scripts": "1.0.12",
-    "redux": "^3.7.2"
+    "react": "16.14.0",
+    "react-color": "file:../..",
+    "react-dom": "16.14.0",
+    "react-redux": "^5.1.2",
+    "redux": "^4.2.1"
   },
   "scripts": {
-    "start": "react-scripts start"
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.1"
   }
 }

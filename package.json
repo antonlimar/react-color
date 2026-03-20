@@ -19,6 +19,7 @@
     "test": "npm run test:unit && npm run eslint",
     "test:unit": "vitest run",
     "test:watch": "vitest",
+    "examples:check": "node ./scripts/examples-check.mjs",
     "eslint": "eslint src",
     "lib": "npm run clean-lib && tsc -p tsconfig.lib.json",
     "es": "npm run clean-es && tsc -p tsconfig.es.json && node scripts/rewrite-lodash-es-imports.js es",

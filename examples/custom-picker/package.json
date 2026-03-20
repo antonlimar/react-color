@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^15.6.1",
-    "react-color": "latest",
-    "react-dom": "^15.6.1",
-    "react-scripts": "1.0.12"
+    "react": "16.14.0",
+    "react-color": "file:../..",
+    "react-dom": "16.14.0"
   },
   "scripts": {
-    "start": "react-scripts start"
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.1"
   }
 }

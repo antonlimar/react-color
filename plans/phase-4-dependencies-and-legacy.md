@@ -6,8 +6,8 @@ todos:
     content: Обновить peerDependencies React и зафиксировать границы совместимости библиотеки и dev-окружения
     status: done
   - id: examples-modernization
-    content: Перевести примеры на единый baseline React 16.14 и современный локальный dev/build pipeline без react-scripts
-    status: pending
+    content: Перевести примеры на единый baseline React 16.14 и современный локальный dev/build pipeline без react-scripts; выполнено: Vite, local file dependency и examples:check
+    status: done
   - id: legacy-devdeps-cleanup
     content: Удалить неиспользуемые legacy devDependencies и обновить lockfile после чистки
     status: pending
@@ -87,6 +87,6 @@ todos:
 ## Todo
 
 - [x] **peer-react-range** — Обновить `peerDependencies` React и зафиксировать границы совместимости библиотеки и dev-окружения
-- [ ] **examples-modernization** — Перевести примеры на единый baseline React 16.14 и современный локальный dev/build pipeline без `react-scripts`
+- [x] **examples-modernization** — Перевести примеры на единый baseline React 16.14 и современный локальный dev/build pipeline без `react-scripts`; выполнено: Vite, local file dependency и `examples:check`
 - [ ] **legacy-devdeps-cleanup** — Удалить неиспользуемые legacy `devDependencies` и обновить `package-lock.json` после чистки
 - [ ] **ci-baseline** — Добавить GitHub Actions CI с обязательными проверками `build`, `test`, `docs`, `storybook` и `examples`
