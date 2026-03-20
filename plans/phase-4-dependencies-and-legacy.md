@@ -4,7 +4,7 @@ overview: Ужесточение peer-метаданных React, обновле
 todos:
   - id: peer-react-range
     content: Обновить peerDependencies React и зафиксировать границы совместимости библиотеки и dev-окружения
-    status: pending
+    status: done
   - id: examples-modernization
     content: Перевести примеры на единый baseline React 16.14 и современный локальный dev/build pipeline без react-scripts
     status: pending
@@ -86,7 +86,7 @@ todos:
 
 ## Todo
 
-- [ ] **peer-react-range** — Обновить `peerDependencies` React и зафиксировать границы совместимости библиотеки и dev-окружения
+- [x] **peer-react-range** — Обновить `peerDependencies` React и зафиксировать границы совместимости библиотеки и dev-окружения
 - [ ] **examples-modernization** — Перевести примеры на единый baseline React 16.14 и современный локальный dev/build pipeline без `react-scripts`
 - [ ] **legacy-devdeps-cleanup** — Удалить неиспользуемые legacy `devDependencies` и обновить `package-lock.json` после чистки
 - [ ] **ci-baseline** — Добавить GitHub Actions CI с обязательными проверками `build`, `test`, `docs`, `storybook` и `examples`

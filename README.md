@@ -13,7 +13,9 @@
 
 This tree is maintained as a modernization fork. Source layout, npm export names, and agent-oriented conventions are documented in [`AGENTS.md`](AGENTS.md). Roadmap (TypeScript, toolchain, tests): [`PLAN.md`](PLAN.md). Do not edit generated `lib/` or `es/` by hand—use the build scripts from `package.json`.
 
-**Target minimum React for the modernization track:** 16.8+ (documented in AGENTS.md). The published `peerDependencies` range will be tightened in a later phase when dev tooling and examples are updated.
+**Library compatibility baseline:** published `peerDependencies.react` is `>=16.8.0`, matching the modernization track minimum documented in `AGENTS.md`.
+
+**Local development baseline:** docs and Storybook continue to run on the newer root `devDependencies.react` / `react-dom`, because the docs app already uses `react-dom/client` and `createRoot`. Minimum React compatibility for the library itself is validated separately from the root dev environment.
 
 ### Development workflow
 
