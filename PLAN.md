@@ -49,10 +49,10 @@ flowchart LR
 
 ## Фаза 1 — Минимальные исправления и базовая гигиена
 
-- Исправить barrel в [`src/index.js`](src/index.js) (строка 4) и убедиться, что default + named экспорты совпадают с ожидаемым API npm-пакета.
-- Зафиксировать решения (в AGENTS.md или README):
-  - **Минимальная версия React** (реалистично: 16.8+ для хуков в примерах или сразу 18 — влияет на типы и тесты).
-  - Публиковать ли пакет под **новым именем/scope** (если да — semver и breaking changes проще).
+- [x] Исправить barrel в [`src/index.js`](src/index.js): отдельные `export { default as ChromePicker }` и `export { default }` из `./components/chrome/Chrome`.
+- [x] Зафиксировать решения в [`AGENTS.md`](AGENTS.md) и кратко в [`README.md`](README.md):
+  - **Минимальная версия React (цель модернизации):** 16.8+; peer в `package.json` — в фазе 4.
+  - **Имя пакета:** пока `react-color`; смена scope/имени — только с major и CHANGELOG.
 
 ---
 
@@ -108,7 +108,7 @@ flowchart LR
 ## Чеклист задач (дорожная карта)
 
 - [x] Добавить AGENTS.md и `.cursor/rules/*.mdc` (контекст форка, структура, API, соглашения)
-- [ ] Исправить невалидный экспорт в `src/index.js` (Chrome default + ChromePicker)
+- [x] Исправить невалидный экспорт в `src/index.js` (Chrome default + ChromePicker)
 - [ ] Заменить Babel 6 на TS + tsup/unbuild/tsc; обновить package.json (`types`, `exports`)
 - [ ] Ввести Vitest/Jest 29 + Testing Library + ESLint flat + typescript-eslint
 - [ ] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации

@@ -13,6 +13,8 @@
 
 This tree is maintained as a modernization fork. Source layout, npm export names, and agent-oriented conventions are documented in [`AGENTS.md`](AGENTS.md). Roadmap (TypeScript, toolchain, tests): [`PLAN.md`](PLAN.md). Do not edit generated `lib/` or `es/` by hand—use the build scripts from `package.json`.
 
+**Target minimum React for the modernization track:** 16.8+ (documented in AGENTS.md). The published `peerDependencies` range will be tightened in a later phase when dev tooling and examples are updated.
+
 ## Demo
 
 ![Demo](https://media.giphy.com/media/26FfggT53qE304CwE/giphy.gif)
