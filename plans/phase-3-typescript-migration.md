@@ -4,7 +4,7 @@ overview: Поэтапная миграция src на TypeScript с сохра�
 todos:
   - id: types-foundation
     content: "Создать внутренний слой типов цвета и общих пропсов picker-компонентов в src"
-    status: pending
+    status: completed
   - id: helpers-ts
     content: Перевести src/helpers на .ts и зафиксировать типы преобразований цвета и interaction-хелперов
     status: pending
@@ -358,7 +358,7 @@ flowchart TD
 
 ## Todo
 
-- [ ] **types-foundation** — Создать внутренний слой типов цвета и общих пропсов picker-компонентов в `src`
+- [x] **types-foundation** — Создать внутренний слой типов цвета и общих пропсов picker-компонентов в `src`
 - [ ] **helpers-ts** — Перевести `src/helpers` на `.ts` и зафиксировать типы преобразований цвета и interaction-хелперов
 - [ ] **common-ts** — Перевести `src/components/common` на `.ts/.tsx`, кроме `ColorWrap`, и типизировать low-level control props
 - [ ] **colorwrap-ts** — Перевести `ColorWrap` в typed HOC без изменения debounce/defaultProps/runtime API

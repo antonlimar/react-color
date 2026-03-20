@@ -9,7 +9,7 @@ module.exports = defineConfig([
     ignores: ["docs/build/**", "es/**", "lib/**", "node_modules/**"],
   },
   {
-    files: ["src/**/*.{js,jsx}", "docs/**/*.{js,jsx}"],
+    files: ["src/**/*.{js,jsx,ts,tsx}", "docs/**/*.{js,jsx}"],
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     plugins: {
       "react-hooks": reactHooks,
@@ -38,7 +38,7 @@ module.exports = defineConfig([
     },
   },
   {
-    files: ["src/**/*.spec.{js,jsx}", "src/**/spec.{js,jsx}", "src/**/story.js"],
+    files: ["src/**/*.spec.{js,jsx,ts,tsx}", "src/**/spec.{js,jsx,ts,tsx}", "src/**/story.{js,jsx,ts,tsx}"],
     languageOptions: {
       globals: {
         ...globals.jest,

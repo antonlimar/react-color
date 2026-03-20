@@ -1,0 +1,217 @@
+import type { ComponentType, CSSProperties, KeyboardEvent, MouseEvent, ReactNode, TouchEvent, ChangeEvent } from 'react'
+
+export type ColorSource = string
+
+export interface RGBColor {
+  r: number
+  g: number
+  b: number
+}
+
+export interface RGBAColor extends RGBColor {
+  a: number
+}
+
+export interface HSLColor {
+  h: number
+  s: number
+  l: number
+}
+
+export interface HSLAColor extends HSLColor {
+  a: number
+}
+
+export interface HSVColor {
+  h: number
+  s: number
+  v: number
+}
+
+export interface HSVAColor extends HSVColor {
+  a: number
+}
+
+export type Color = string | RGBColor | RGBAColor | HSLColor | HSLAColor | HSVColor | HSVAColor
+
+export interface ColorChangeValue {
+  hex?: string
+  r?: number
+  g?: number
+  b?: number
+  a?: number
+  h?: number
+  s?: number | string
+  l?: number | string
+  v?: number
+  source?: ColorSource
+}
+
+export interface ColorResult {
+  hex: string
+  rgb: RGBAColor
+  hsl: HSLAColor
+  hsv: HSVAColor
+  oldHue: number
+  source?: ColorSource
+}
+
+export type ColorPickerChangeEvent = unknown
+
+export type InternalColorChangeEvent =
+  | MouseEvent<HTMLElement>
+  | TouchEvent<HTMLElement>
+  | globalThis.MouseEvent
+  | globalThis.TouchEvent
+
+export type SwatchHoverEvent =
+  | MouseEvent<HTMLElement>
+  | KeyboardEvent<HTMLElement>
+  | ColorPickerChangeEvent
+
+export type ColorChangeHandler = (color: ColorResult, event: ColorPickerChangeEvent) => void
+
+export type ColorInputChangeHandler = (
+  color: Color | ColorChangeValue,
+  event?: ColorPickerChangeEvent,
+) => void
+
+export type SwatchHoverHandler = (color: ColorResult, event: ColorPickerChangeEvent) => void
+
+export type PickerStyle = CSSProperties & Record<string, unknown>
+export type PickerStyles = Record<string, PickerStyle | undefined>
+export type ClassName = string
+export type Radius = number | string
+export type PointerComponent<Props> = ComponentType<Props>
+
+export interface ColorPickerProps {
+  color?: Color
+  className?: ClassName
+  styles?: Record<string, unknown>
+  onChange?: ColorChangeHandler
+  onChangeComplete?: ColorChangeHandler
+  onSwatchHover?: SwatchHoverHandler
+  [key: string]: unknown
+}
+
+export interface ColorPickerInjectedProps extends ColorResult {
+  onChange: ColorInputChangeHandler
+  onSwatchHover?: ColorInputChangeHandler
+}
+
+export interface AlphaChange extends HSLAColor {
+  source: ColorSource
+}
+
+export interface HueChange extends HSLAColor {
+  source: ColorSource
+}
+
+export interface SaturationChange extends HSVAColor {
+  source: ColorSource
+}
+
+export interface CheckboardRenderers {
+  canvas?: unknown
+  [key: string]: unknown
+}
+
+export interface CheckboardProps {
+  white?: string
+  grey?: string
+  size?: number
+  renderers?: CheckboardRenderers
+  borderRadius?: Radius
+  boxShadow?: string
+  children?: ReactNode
+}
+
+export interface RaisedProps {
+  background?: string
+  zDepth?: 0 | 1 | 2 | 3 | 4 | 5
+  radius?: number
+  styles?: PickerStyles
+  children?: ReactNode
+}
+
+export interface SwatchProps {
+  color: string
+  style?: PickerStyle
+  onClick?: (
+    color: string,
+    event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>,
+  ) => void
+  onHover?: (color: string, event: MouseEvent<HTMLDivElement>) => void
+  title?: string
+  children?: ReactNode
+  focus?: boolean
+  focusStyle?: PickerStyle
+}
+
+export interface EditableInputStyle {
+  wrap?: PickerStyle
+  input?: PickerStyle
+  label?: PickerStyle
+}
+
+export type EditableInputValue = string | number
+export type EditableInputChangeValue =
+  | EditableInputValue
+  | Record<string, EditableInputValue>
+
+export type EditableInputChangeEvent =
+  | ChangeEvent<HTMLInputElement>
+  | KeyboardEvent<HTMLInputElement>
+  | globalThis.MouseEvent
+
+export interface EditableInputProps {
+  label?: string
+  value?: EditableInputValue
+  placeholder?: string
+  arrowOffset?: number
+  dragLabel?: boolean
+  dragMax?: number
+  style?: EditableInputStyle
+  hideLabel?: boolean
+  onChange?: (value: EditableInputChangeValue, event: EditableInputChangeEvent) => void
+}
+
+export interface AlphaProps {
+  rgb: RGBAColor
+  hsl: HSLAColor
+  a?: number
+  direction?: 'horizontal' | 'vertical'
+  pointer?: PointerComponent<AlphaProps>
+  renderers?: CheckboardRenderers
+  style?: PickerStyle
+  radius?: Radius
+  shadow?: string
+  onChange?: (color: AlphaChange, event: InternalColorChangeEvent) => void
+}
+
+export interface HueProps {
+  hsl: HSLAColor
+  direction?: 'horizontal' | 'vertical'
+  pointer?: PointerComponent<HueProps>
+  radius?: Radius
+  shadow?: string
+  onChange?: (color: HueChange, event: InternalColorChangeEvent) => void
+}
+
+export interface SaturationStyle {
+  color?: PickerStyle
+  white?: PickerStyle
+  black?: PickerStyle
+  pointer?: PickerStyle
+  circle?: PickerStyle
+}
+
+export interface SaturationProps {
+  hsl: HSLAColor
+  hsv: HSVAColor
+  pointer?: PointerComponent<SaturationProps>
+  style?: SaturationStyle
+  radius?: Radius
+  shadow?: string
+  onChange?: (color: SaturationChange, event: InternalColorChangeEvent) => void
+}
