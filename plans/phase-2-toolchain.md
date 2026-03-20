@@ -22,7 +22,7 @@ todos:
     status: completed
   - id: docs-agents
     content: Обновить AGENTS.md/README с новыми командами и артефактами сборки
-    status: pending
+    status: completed
 ---
 
 # План реализации фазы 2 ([PLAN.md](../PLAN.md))
@@ -186,4 +186,4 @@ flowchart TD
 - [x] **vitest-rtl** — Заменить Jest+Enzyme на Vitest+jsdom+Testing Library; мигрировать spec.js и снапшоты
 - [x] **storybook-10** — Обновить Storybook до 10.x, новый main/preview; поднять dev React при необходимости
 - [x] **docs-vite** — Перевести docs на Vite (dev + build), синхронизировать пути с payload/docs-dist
-- [ ] **docs-agents** — Обновить AGENTS.md/README с новыми командами и артефактами сборки
+- [x] **docs-agents** — Обновить AGENTS.md/README с новыми командами и артефактами сборки
