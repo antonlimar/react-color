@@ -24,7 +24,7 @@ module.exports = defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    include: ['src/**/spec.{js,jsx}', 'src/helpers/spec.js'],
+    include: ['src/**/spec.{ts,tsx}'],
     setupFiles: ['./test/vitest.setup.mjs'],
     clearMocks: true,
     restoreMocks: true,

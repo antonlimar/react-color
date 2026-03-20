@@ -2,9 +2,10 @@
 
 ## Текущее состояние (кратко)
 
-- Библиотека на **ES5/React-классах**, сборка через **Babel 6** ([`.babelrc`](.babelrc)) в `lib/` (CJS) и `es/` (ESM), см. [`package.json`](package.json).
-- Доки на **Webpack 1** ([`webpack.config.js`](webpack.config.js)), Storybook **3.x**, Jest **20** + Enzyme **2**, React **15** в devDependencies.
-- Barrel [`src/index.js`](src/index.js) **исправлен в фазе 1:** отдельные `export { default as ChromePicker }` и `export { default }` из [`Chrome.js`](src/components/chrome/Chrome.js) (через `ColorWrap`).
+- Сборка пакета уже переведена на **`tsc`** с пофайловым выводом в `lib/` (CJS) и `es/` (ESM), см. [`package.json`](package.json), [`tsconfig.lib.json`](tsconfig.lib.json), [`tsconfig.es.json`](tsconfig.es.json).
+- Тестовый стек уже обновлён до **Vitest + Testing Library + jsdom**, линтинг работает через **ESLint flat config**, а docs и Storybook переведены на современный пайплайн.
+- Код библиотеки, истории Storybook и тестовые файлы под [`src/`](src/) уже переведены на актуальные TypeScript-совместимые расширения.
+- Публичный barrel уже синхронизирован с drop-in API: default export и именованные экспорты идут из [`src/index.ts`](src/index.ts).
 
 ```mermaid
 flowchart LR
@@ -65,9 +66,11 @@ flowchart LR
 | Сборка | Приоритет: **`tsc`** (два `tsconfig` для CJS/ESM), пофайловый выход как у Babel. **tsdown** — только если подтверждён режим без единого бандла на весь пакет и сохраняется дерево путей. **tsup** не использовать (не поддерживается; **tsdown** — преемник в экосистеме). Цель — убрать Babel 6 и ручные скрипты [`scripts/use-module-babelrc.js`](scripts/use-module-babelrc.js) / [`restore-original-babelrc.js`](scripts/restore-original-babelrc.js). |
 | Типы | `typescript`, в [`package.json`](package.json) добавить поле **`types`**; поле **`exports`** — опционально и только если не ломает drop-in (старые резолверы / deep-imports). |
 | Линт | ESLint **flat config** + `@typescript-eslint` + `eslint-plugin-react-hooks`; удалить зависимость от `@case/eslint-config`, если она не поддерживается. |
-| Тесты | **Vitest** + **jsdom** + **@testing-library/react** (замена Enzyme 2 / старых утилит); перенести `spec.js` → `*.spec.tsx` по мере миграции. |
-| Storybook | Обновить до **10.x** (или актуальной LTS), переписать [`.storybook/config.js`](.storybook/config.js) под новый формат; истории из `story.js` — постепенно. После миграции вернуть `reactDocgen`, если он был временно отключён из-за legacy Babel-конфига. |
+| Тесты | **Vitest** + **jsdom** + **@testing-library/react** (замена Enzyme 2 / старых утилит); тестовые файлы уже живут на TS-совместимых расширениях. |
+| Storybook | Обновить до **10.x** (или актуальной LTS), переписать [`.storybook/config.js`](.storybook/config.js) под новый формат; истории уже переведены на `story.tsx`. После миграции вернуть `reactDocgen`, если он был временно отключён из-за legacy Babel-конфига. |
 | Доки | Заменить Webpack 1 на **Vite** (или аналог) для dev-сервера документации; пересмотреть [`scripts/docs-server.js`](scripts/docs-server.js) / [`docs-dist`](scripts/docs-dist.js). |
+
+Статус: фаза по сути завершена. Дальше остаются только follow-up задачи по legacy dependencies и cleanup, а не незавершённый toolchain-блок.
 
 ---
 
@@ -77,6 +80,8 @@ flowchart LR
 - Типизация пропсов: заменить/дополнить **PropTypes** типами TS для публичных компонентов; runtime PropTypes можно убрать после стабилизации типов (уменьшит размер бандла).
 - **Строгость**: начать с умеренного `strict` или `strict: false` + включение `strictNullChecks`/`noImplicitAny` поэтапно — иначе единый огромный PR.
 - Зависимости: `@types/react`, `@types/react-dom`, типы для `tinycolor2` (или обёртка), по необходимости типизация `reactcss` (локальные `.d.ts` если пакет без типов).
+
+Статус: основная цель фазы завершена. Helper-ы, common-компоненты, `ColorWrap`, picker-ы, entrypoints, истории и тесты уже на актуальных TS-совместимых расширениях, сборка и тесты зелёные.
 
 ---
 
@@ -113,7 +118,8 @@ flowchart LR
 - [x] Добавить AGENTS.md и `.cursor/rules/*.mdc` (контекст форка, структура, API, соглашения)
 - [x] Исправить невалидный экспорт в `src/index.js` (Chrome default + ChromePicker)
 - [x] Заменить Babel 6 на пофайловую сборку через `tsc` (два `tsconfig` для `lib/` и `es/`); обновить package.json (`types`; `exports` — опционально для drop-in)
-- [ ] Ввести Vitest/Jest 29 + Testing Library + ESLint flat + typescript-eslint
-- [ ] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
-- [ ] Обновить Storybook и пайплайн docs (убрать Webpack 1); после удаления legacy Babel вернуть `reactDocgen`, если он был временно отключён
+- [x] Ввести Vitest/Jest 29 + Testing Library + ESLint flat + typescript-eslint
+- [x] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
+- [x] Обновить Storybook и пайплайн docs (убрать Webpack 1); после удаления legacy Babel вернуть `reactDocgen`, если он был временно отключён
 - [ ] Обновить peer deps, почистить devDependencies, примеры, CI
+- [ ] Усилить TS-строгость и cleanup legacy devDependencies

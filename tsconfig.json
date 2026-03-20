@@ -25,6 +25,8 @@
   "exclude": [
     "node_modules",
     "lib",
-    "es"
+    "es",
+    "src/**/spec.*",
+    "src/**/story.*"
   ]
 }
