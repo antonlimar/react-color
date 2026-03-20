@@ -4,7 +4,7 @@ overview: Пошаговая замена Babel 6 / Jest 20 / Webpack 1 / Storyb
 todos:
   - id: build-dual-emit
     content: "Пофайловая сборка lib/ и es/ через tsc (два tsconfig), lodash/lodash-es для ESM как сейчас; убрать Babel 6 и scripts/use-module-babelrc"
-    status: pending
+    status: completed
   - id: pkg-types-exports
     content: "Обновить package.json: scripts, main/module/files, types; exports — только если не ломает drop-in"
     status: pending
@@ -180,7 +180,7 @@ flowchart TD
 
 ## Todo
 
-- [ ] **build-dual-emit** — Пофайловая сборка lib/ и es/ через tsc (два tsconfig), lodash/lodash-es как сейчас; убрать Babel 6 и scripts/use-module-babelrc
+- [x] **build-dual-emit** — Пофайловая сборка lib/ и es/ через tsc (два tsconfig), lodash/lodash-es как сейчас; убрать Babel 6 и scripts/use-module-babelrc
 - [ ] **pkg-types-exports** — Обновить package.json: scripts, main/module/files, types; exports — только если не ломает drop-in
 - [ ] **eslint-flat** — Перейти на ESLint flat + @typescript-eslint + react-hooks; обновить npm run eslint
 - [ ] **vitest-rtl** — Заменить Jest+Enzyme на Vitest+jsdom+Testing Library; мигрировать spec.js и снапшоты

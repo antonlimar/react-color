@@ -1,1 +1,3 @@
-export default from './components/photoshop/Photoshop'
+import Photoshop from './components/photoshop/Photoshop'
+
+export default Photoshop

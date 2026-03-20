@@ -1,1 +1,3 @@
-export default from './components/sketch/Sketch'
+import Sketch from './components/sketch/Sketch'
+
+export default Sketch

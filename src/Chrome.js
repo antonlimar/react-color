@@ -1,1 +1,3 @@
-export default from './components/chrome/Chrome'
+import Chrome from './components/chrome/Chrome'
+
+export default Chrome

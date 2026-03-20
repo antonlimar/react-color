@@ -1,1 +1,3 @@
-export default from './components/common/ColorWrap'
+import Custom from './components/common/ColorWrap'
+
+export default Custom

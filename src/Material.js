@@ -1,1 +1,3 @@
-export default from './components/material/Material'
+import Material from './components/material/Material'
+
+export default Material

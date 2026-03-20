@@ -1,1 +1,3 @@
-export default from './components/compact/Compact'
+import Compact from './components/compact/Compact'
+
+export default Compact

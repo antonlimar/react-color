@@ -1,1 +1,3 @@
-export default from './components/block/Block'
+import Block from './components/block/Block'
+
+export default Block

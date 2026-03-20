@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": false,
+    "declaration": false,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "noResolve": true,
+    "noEmit": false,
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "target": "ES5",
+    "useDefineForClassFields": false
+  },
+  "include": [
+    "src/**/*.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "es"
+  ]
+}

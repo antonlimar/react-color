@@ -1,1 +1,3 @@
-export default from './components/swatches/Swatches'
+import Swatches from './components/swatches/Swatches'
+
+export default Swatches

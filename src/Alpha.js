@@ -1,1 +1,3 @@
-export default from './components/alpha/Alpha'
+import Alpha from './components/alpha/Alpha'
+
+export default Alpha

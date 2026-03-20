@@ -1,1 +1,3 @@
-export default from './components/twitter/Twitter'
+import Twitter from './components/twitter/Twitter'
+
+export default Twitter
