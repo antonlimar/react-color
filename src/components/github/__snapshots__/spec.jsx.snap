@@ -1,0 +1,691 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Github \`triangle="hide"\` 1`] = `
+<DocumentFragment>
+  <div
+    class="github-picker "
+    style="width: 200px; background: rgb(255, 255, 255); border: 1px solid rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0 3px 12px rgba(0,0,0,0.15); box-shadow: 0 3px 12px rgba(0,0,0,0.15); -webkit-border-radius: 4px; border-radius: 4px; position: relative; padding: 5px; display: flex; flex-wrap: wrap;"
+  >
+    <div
+      style="position: absolute; border-width: 8px; border-style: solid; border-color: transparent transparent rgba(0, 0, 0, 0.15); border-image: none; display: none;"
+    />
+    <div
+      style="position: absolute; border-width: 7px; border-style: solid; border-color: transparent transparent rgb(255, 255, 255); border-image: none; display: none;"
+    />
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(184, 0, 0); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#B80000"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(219, 62, 0); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#DB3E00"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(252, 203, 0); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#FCCB00"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(0, 139, 2); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#008B02"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(0, 107, 118); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#006B76"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(18, 115, 222); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#1273DE"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(0, 77, 207); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#004DCF"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(83, 0, 235); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#5300EB"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(235, 150, 148); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#EB9694"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(250, 208, 195); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#FAD0C3"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(254, 243, 189); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#FEF3BD"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(193, 225, 197); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#C1E1C5"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(190, 218, 220); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#BEDADC"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(196, 222, 246); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#C4DEF6"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(190, 211, 243); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#BED3F3"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(212, 196, 251); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#D4C4FB"
+          />
+        </span>
+      </div>
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Github \`triangle="top-right"\` 1`] = `
+<DocumentFragment>
+  <div
+    class="github-picker "
+    style="width: 200px; background: rgb(255, 255, 255); border: 1px solid rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0 3px 12px rgba(0,0,0,0.15); box-shadow: 0 3px 12px rgba(0,0,0,0.15); -webkit-border-radius: 4px; border-radius: 4px; position: relative; padding: 5px; display: flex; flex-wrap: wrap;"
+  >
+    <div
+      style="position: absolute; border-width: 8px; border-style: solid; border-color: transparent transparent rgba(0, 0, 0, 0.15); border-image: none; top: -16px; right: 9px;"
+    />
+    <div
+      style="position: absolute; border-width: 7px; border-style: solid; border-color: transparent transparent rgb(255, 255, 255); border-image: none; top: -14px; right: 10px;"
+    />
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(184, 0, 0); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#B80000"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(219, 62, 0); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#DB3E00"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(252, 203, 0); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#FCCB00"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(0, 139, 2); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#008B02"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(0, 107, 118); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#006B76"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(18, 115, 222); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#1273DE"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(0, 77, 207); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#004DCF"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(83, 0, 235); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#5300EB"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(235, 150, 148); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#EB9694"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(250, 208, 195); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#FAD0C3"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(254, 243, 189); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#FEF3BD"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(193, 225, 197); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#C1E1C5"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(190, 218, 220); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#BEDADC"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(196, 222, 246); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#C4DEF6"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(190, 211, 243); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#BED3F3"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(212, 196, 251); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#D4C4FB"
+          />
+        </span>
+      </div>
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Github renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="github-picker "
+    style="width: 200px; background: rgb(255, 255, 255); border: 1px solid rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0 3px 12px rgba(0,0,0,0.15); box-shadow: 0 3px 12px rgba(0,0,0,0.15); -webkit-border-radius: 4px; border-radius: 4px; position: relative; padding: 5px; display: flex; flex-wrap: wrap;"
+  >
+    <div
+      style="position: absolute; border-width: 8px; border-style: solid; border-color: transparent transparent rgba(0, 0, 0, 0.15); border-image: none; top: -16px; left: 9px;"
+    />
+    <div
+      style="position: absolute; border-width: 7px; border-style: solid; border-color: transparent transparent rgb(255, 255, 255); border-image: none; top: -14px; left: 10px;"
+    />
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(184, 0, 0); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#B80000"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(219, 62, 0); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#DB3E00"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(252, 203, 0); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#FCCB00"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(0, 139, 2); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#008B02"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(0, 107, 118); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#006B76"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(18, 115, 222); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#1273DE"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(0, 77, 207); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#004DCF"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(83, 0, 235); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#5300EB"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(235, 150, 148); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#EB9694"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(250, 208, 195); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#FAD0C3"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(254, 243, 189); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#FEF3BD"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(193, 225, 197); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#C1E1C5"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(190, 218, 220); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#BEDADC"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(196, 222, 246); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#C4DEF6"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(190, 211, 243); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#BED3F3"
+          />
+        </span>
+      </div>
+    </span>
+    <span>
+      <div
+        style="width: 25px; height: 25px; font-size: 0px;"
+      >
+        <span>
+          <div
+            style="background: rgb(212, 196, 251); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+            tabindex="0"
+            title="#D4C4FB"
+          />
+        </span>
+      </div>
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`GithubSwatch renders correctly 1`] = `
+<DocumentFragment>
+  <span>
+    <div
+      style="width: 25px; height: 25px; font-size: 0px;"
+    >
+      <span>
+        <div
+          style="background: rgb(51, 51, 51); height: 100%; width: 100%; cursor: pointer; position: relative; outline: none;"
+          tabindex="0"
+          title="#333"
+        />
+      </span>
+    </div>
+  </span>
+</DocumentFragment>
+`;

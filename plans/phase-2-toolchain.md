@@ -13,8 +13,8 @@ todos:
     status: completed
   - id: vitest-rtl
     content: Заменить Jest+Enzyme на Vitest+jsdom+Testing Library; мигрировать spec.js и снапшоты
-    status: pending
-  - id: storybook-8
+    status: completed
+  - id: storybook-10
     content: Обновить Storybook до 10.x, новый main/preview; поднять dev React при необходимости
     status: pending
   - id: docs-vite
@@ -183,7 +183,7 @@ flowchart TD
 - [x] **build-dual-emit** — Пофайловая сборка lib/ и es/ через tsc (два tsconfig), lodash/lodash-es как сейчас; убрать Babel 6 и scripts/use-module-babelrc
 - [x] **pkg-types-exports** — Обновить package.json: scripts, main/module/files, types; exports — только если не ломает drop-in
 - [x] **eslint-flat** — Перейти на ESLint flat + @typescript-eslint + react-hooks; обновить npm run eslint
-- [ ] **vitest-rtl** — Заменить Jest+Enzyme на Vitest+jsdom+Testing Library; мигрировать spec.js и снапшоты
-- [ ] **storybook-8** — Обновить Storybook до 10.x, новый main/preview; поднять dev React при необходимости
+- [x] **vitest-rtl** — Заменить Jest+Enzyme на Vitest+jsdom+Testing Library; мигрировать spec.js и снапшоты
+- [ ] **storybook-10** — Обновить Storybook до 10.x, новый main/preview; поднять dev React при необходимости
 - [ ] **docs-vite** — Перевести docs на Vite (dev + build), синхронизировать пути с payload/docs-dist
 - [ ] **docs-agents** — Обновить AGENTS.md/README с новыми командами и артефактами сборки
