@@ -33,6 +33,7 @@ declare module 'lodash/throttle' {
 
 declare module 'reactcss' {
   function reactCSS(...args: unknown[]): Record<string, Record<string, unknown>>
+  export function handleHover<T>(component: T): T
 
   export default reactCSS
 }

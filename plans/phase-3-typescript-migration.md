@@ -16,7 +16,7 @@ todos:
     status: completed
   - id: pickers-ts
     content: Перевести picker-компоненты пакетами, сохраняя публичные пропсы и поведение
-    status: pending
+    status: completed
   - id: entry-types-sync
     content: Синхронизировать src entrypoints и index.d.ts с реальными TS-типами после миграции
     status: pending

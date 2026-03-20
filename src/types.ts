@@ -36,6 +36,10 @@ export type Color = string | RGBColor | RGBAColor | HSLColor | HSLAColor | HSVCo
 
 export interface ColorChangeValue {
   hex?: string
+  '#'?: string
+  rgb?: string | RGBAColor
+  hsl?: string | HSLAColor
+  hsv?: string | HSVAColor
   r?: number
   g?: number
   b?: number
@@ -139,7 +143,8 @@ export interface RaisedProps {
   background?: string
   zDepth?: 0 | 1 | 2 | 3 | 4 | 5
   radius?: number
-  styles?: Record<string, PickerStyles>
+  style?: PickerStyle
+  styles?: Record<string, unknown>
   children?: ReactNode
 }
 
@@ -174,7 +179,7 @@ export type EditableInputChangeEvent =
   | globalThis.MouseEvent
 
 export interface EditableInputProps {
-  label?: string
+  label?: string | null
   value?: EditableInputValue
   placeholder?: string
   arrowOffset?: number
@@ -202,6 +207,7 @@ export interface HueProps {
   hsl: HSLAColor
   direction?: 'horizontal' | 'vertical'
   pointer?: PointerComponent<HueProps>
+  style?: PickerStyle
   radius?: Radius
   shadow?: string
   onChange?: (color: HueChange, event: InternalColorChangeEvent) => void
