@@ -10,7 +10,7 @@ todos:
     status: done
   - id: legacy-devdeps-cleanup
     content: Удалить неиспользуемые legacy devDependencies и обновить lockfile после чистки
-    status: pending
+    status: done
   - id: ci-baseline
     content: Добавить GitHub Actions CI с обязательными проверками build test docs storybook и examples
     status: pending
@@ -88,5 +88,5 @@ todos:
 
 - [x] **peer-react-range** — Обновить `peerDependencies` React и зафиксировать границы совместимости библиотеки и dev-окружения
 - [x] **examples-modernization** — Перевести примеры на единый baseline React 16.14 и современный локальный dev/build pipeline без `react-scripts`; выполнено: Vite, local file dependency и `examples:check`
-- [ ] **legacy-devdeps-cleanup** — Удалить неиспользуемые legacy `devDependencies` и обновить `package-lock.json` после чистки
+- [x] **legacy-devdeps-cleanup** — Удалить неиспользуемые legacy `devDependencies` и обновить `package-lock.json` после чистки
 - [ ] **ci-baseline** — Добавить GitHub Actions CI с обязательными проверками `build`, `test`, `docs`, `storybook` и `examples`
