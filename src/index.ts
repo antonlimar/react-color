@@ -22,3 +22,17 @@ export { default as Hue } from './components/common/Hue'
 export { default as Raised } from './components/common/Raised'
 export { default as Saturation } from './components/common/Saturation'
 export { default as Swatch } from './components/common/Swatch'
+
+export type {
+  Color,
+  RGBColor,
+  RGBAColor,
+  HSLColor,
+  HSLAColor,
+  HSVColor,
+  HSVAColor,
+  ColorResult,
+  ColorPickerProps,
+  ColorPickerComponent,
+  CustomPickerInjectedProps,
+} from './types'

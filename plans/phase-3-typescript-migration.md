@@ -19,7 +19,7 @@ todos:
     status: completed
   - id: entry-types-sync
     content: Синхронизировать src entrypoints и index.d.ts с реальными TS-типами после миграции
-    status: pending
+    status: completed
 ---
 
 # План реализации фазы 3 ([PLAN.md](../PLAN.md))
@@ -362,5 +362,5 @@ flowchart TD
 - [x] **helpers-ts** — Перевести `src/helpers` на `.ts` и зафиксировать типы преобразований цвета и interaction-хелперов
 - [x] **common-ts** — Перевести `src/components/common` на `.ts/.tsx`, кроме `ColorWrap`, и типизировать low-level control props
 - [x] **colorwrap-ts** — Перевести `ColorWrap` в typed HOC без изменения debounce/defaultProps/runtime API
-- [ ] **pickers-ts** — Перевести picker-компоненты пакетами, сохраняя публичные пропсы и поведение
-- [ ] **entry-types-sync** — Синхронизировать `src` entrypoints и `index.d.ts` с реальными TS-типами после миграции
+- [x] **pickers-ts** — Перевести picker-компоненты пакетами, сохраняя публичные пропсы и поведение
+- [x] **entry-types-sync** — Синхронизировать `src` entrypoints и `index.d.ts` с реальными TS-типами после миграции

@@ -23,6 +23,9 @@ type WrappedColorPickerProps<PickerProps extends ColorPickerInjectedProps> =
 type PickerComponent<PickerProps extends ColorPickerInjectedProps> =
   React.ComponentType<PickerProps> & PickerStatics
 
+type WrappedColorPickerComponent<PickerProps extends ColorPickerInjectedProps> =
+  React.ComponentType<WrappedColorPickerProps<PickerProps>> & PickerStatics
+
 const defaultColor: Color = {
   h: 250,
   s: 0.5,
@@ -40,7 +43,7 @@ const getOldHue = (data: Color | ColorChangeValue, oldHue: number): number => {
 
 export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
   Picker: PickerComponent<PickerProps>,
-) => {
+): WrappedColorPickerComponent<PickerProps> => {
   class ColorPicker extends PureComponent<WrappedColorPickerProps<PickerProps>, ColorResult> {
     private debounce: (fn: ColorChangeHandler, data: ColorResult, event: ColorPickerChangeEvent) => void
 
@@ -113,7 +116,7 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
     color: defaultColor,
   }
 
-  return ColorPicker
+  return ColorPicker as WrappedColorPickerComponent<PickerProps>
 }
 
 export default ColorWrap

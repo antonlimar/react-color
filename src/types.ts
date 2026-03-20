@@ -33,6 +33,7 @@ export interface HSVAColor extends HSVColor {
 }
 
 export type Color = string | RGBColor | RGBAColor | HSLColor | HSLAColor | HSVColor | HSVAColor
+export type ColorPickerComponent<Props = ColorPickerProps> = ComponentType<Props>
 
 export interface ColorChangeValue {
   hex?: string
@@ -102,6 +103,8 @@ export interface ColorPickerInjectedProps extends ColorResult {
   onChange: ColorInputChangeHandler
   onSwatchHover?: ColorInputChangeHandler
 }
+
+export type CustomPickerInjectedProps = ColorPickerInjectedProps
 
 export interface AlphaChange extends HSLAColor {
   source: ColorSource
