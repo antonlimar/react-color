@@ -1,21 +1,38 @@
 import React, { Component, PureComponent } from 'react'
 import reactCSS from 'reactcss'
 import * as alpha from '../../helpers/alpha'
-
+import type { AlphaProps, InternalColorChangeEvent } from '../../types'
 import Checkboard from './Checkboard'
 
-export class Alpha extends (PureComponent || Component) {
+const BaseAlpha = (PureComponent || Component) as new (props: AlphaProps) => React.Component<AlphaProps>
+
+export class Alpha extends BaseAlpha {
+  container: HTMLDivElement | null = null
+
   componentWillUnmount() {
     this.unbindEventListeners()
   }
 
-  handleChange = (e) => {
-    const change = alpha.calculateChange(e, this.props.hsl, this.props.direction, this.props.a, this.container)
-    change && typeof this.props.onChange === 'function' && this.props.onChange(change, e)
+  handleChange = (event: InternalColorChangeEvent) => {
+    if (!this.container) {
+      return
+    }
+
+    const change = alpha.calculateChange(
+      event,
+      this.props.hsl,
+      this.props.direction,
+      this.props.a,
+      this.container,
+    )
+
+    if (change && typeof this.props.onChange === 'function') {
+      this.props.onChange(change, event)
+    }
   }
 
-  handleMouseDown = (e) => {
-    this.handleChange(e)
+  handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    this.handleChange(event)
     window.addEventListener('mousemove', this.handleChange)
     window.addEventListener('mouseup', this.handleMouseUp)
   }
@@ -32,7 +49,7 @@ export class Alpha extends (PureComponent || Component) {
   render() {
     const rgb = this.props.rgb
     const styles = reactCSS({
-      'default': {
+      default: {
         alpha: {
           absolute: '0px 0px 0px 0px',
           borderRadius: this.props.radius,
@@ -44,8 +61,8 @@ export class Alpha extends (PureComponent || Component) {
         },
         gradient: {
           absolute: '0px 0px 0px 0px',
-          background: `linear-gradient(to right, rgba(${ rgb.r },${ rgb.g },${ rgb.b }, 0) 0%,
-           rgba(${ rgb.r },${ rgb.g },${ rgb.b }, 1) 100%)`,
+          background: `linear-gradient(to right, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 0%,
+           rgba(${rgb.r},${rgb.g},${rgb.b}, 1) 100%)`,
           boxShadow: this.props.shadow,
           borderRadius: this.props.radius,
         },
@@ -56,7 +73,7 @@ export class Alpha extends (PureComponent || Component) {
         },
         pointer: {
           position: 'absolute',
-          left: `${ rgb.a * 100 }%`,
+          left: `${rgb.a * 100}%`,
         },
         slider: {
           width: '4px',
@@ -68,23 +85,25 @@ export class Alpha extends (PureComponent || Component) {
           transform: 'translateX(-2px)',
         },
       },
-      'vertical': {
+      vertical: {
         gradient: {
-          background: `linear-gradient(to bottom, rgba(${ rgb.r },${ rgb.g },${ rgb.b }, 0) 0%,
-           rgba(${ rgb.r },${ rgb.g },${ rgb.b }, 1) 100%)`,
+          background: `linear-gradient(to bottom, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 0%,
+           rgba(${rgb.r},${rgb.g},${rgb.b}, 1) 100%)`,
         },
         pointer: {
           left: 0,
-          top: `${ rgb.a * 100 }%`,
+          top: `${rgb.a * 100}%`,
         },
       },
-      'overwrite': {
+      overwrite: {
         ...this.props.style,
       },
     }, {
       vertical: this.props.direction === 'vertical',
       overwrite: true,
     })
+
+    const Pointer = this.props.pointer
 
     return (
       <div style={ styles.alpha }>
@@ -94,14 +113,16 @@ export class Alpha extends (PureComponent || Component) {
         <div style={ styles.gradient } />
         <div
           style={ styles.container }
-          ref={ container => this.container = container }
+          ref={ (container) => {
+            this.container = container
+          } }
           onMouseDown={ this.handleMouseDown }
           onTouchMove={ this.handleChange }
           onTouchStart={ this.handleChange }
         >
           <div style={ styles.pointer }>
-            { this.props.pointer ? (
-              <this.props.pointer { ...this.props } />
+            { Pointer ? (
+              <Pointer { ...this.props } />
             ) : (
               <div style={ styles.slider } />
             ) }

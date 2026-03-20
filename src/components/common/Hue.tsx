@@ -1,19 +1,31 @@
 import React, { Component, PureComponent } from 'react'
 import reactCSS from 'reactcss'
 import * as hue from '../../helpers/hue'
+import type { HueProps, InternalColorChangeEvent } from '../../types'
 
-export class Hue extends (PureComponent || Component) {
+const BaseHue = (PureComponent || Component) as new (props: HueProps) => React.Component<HueProps>
+
+export class Hue extends BaseHue {
+  container: HTMLDivElement | null = null
+
   componentWillUnmount() {
     this.unbindEventListeners()
   }
 
-  handleChange = (e) => {
-    const change = hue.calculateChange(e, this.props.direction, this.props.hsl, this.container)
-    change && typeof this.props.onChange === 'function' && this.props.onChange(change, e)
+  handleChange = (event: InternalColorChangeEvent) => {
+    if (!this.container) {
+      return
+    }
+
+    const change = hue.calculateChange(event, this.props.direction, this.props.hsl, this.container)
+
+    if (change && typeof this.props.onChange === 'function') {
+      this.props.onChange(change, event)
+    }
   }
 
-  handleMouseDown = (e) => {
-    this.handleChange(e)
+  handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    this.handleChange(event)
     window.addEventListener('mousemove', this.handleChange)
     window.addEventListener('mouseup', this.handleMouseUp)
   }
@@ -29,9 +41,8 @@ export class Hue extends (PureComponent || Component) {
 
   render() {
     const { direction = 'horizontal' } = this.props
-
     const styles = reactCSS({
-      'default': {
+      default: {
         hue: {
           absolute: '0px 0px 0px 0px',
           borderRadius: this.props.radius,
@@ -45,7 +56,7 @@ export class Hue extends (PureComponent || Component) {
         },
         pointer: {
           position: 'absolute',
-          left: `${ (this.props.hsl.h * 100) / 360 }%`,
+          left: `${(this.props.hsl.h * 100) / 360}%`,
         },
         slider: {
           marginTop: '1px',
@@ -57,20 +68,24 @@ export class Hue extends (PureComponent || Component) {
           transform: 'translateX(-2px)',
         },
       },
-      'vertical': {
+      vertical: {
         pointer: {
           left: '0px',
-          top: `${ -((this.props.hsl.h * 100) / 360) + 100 }%`,
+          top: `${-((this.props.hsl.h * 100) / 360) + 100}%`,
         },
       },
     }, { vertical: direction === 'vertical' })
 
+    const Pointer = this.props.pointer
+
     return (
       <div style={ styles.hue }>
         <div
-          className={ `hue-${ direction }` }
+          className={ `hue-${direction}` }
           style={ styles.container }
-          ref={ container => this.container = container }
+          ref={ (container) => {
+            this.container = container
+          } }
           onMouseDown={ this.handleMouseDown }
           onTouchMove={ this.handleChange }
           onTouchStart={ this.handleChange }
@@ -91,8 +106,8 @@ export class Hue extends (PureComponent || Component) {
             }
           ` }</style>
           <div style={ styles.pointer }>
-            { this.props.pointer ? (
-              <this.props.pointer { ...this.props } />
+            { Pointer ? (
+              <Pointer { ...this.props } />
             ) : (
               <div style={ styles.slider } />
             ) }

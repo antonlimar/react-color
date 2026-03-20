@@ -112,7 +112,16 @@ export interface SaturationChange extends HSVAColor {
 }
 
 export interface CheckboardRenderers {
-  canvas?: unknown
+  canvas?: new () => {
+    width: number
+    height: number
+    getContext(contextId: '2d'): {
+      fillStyle: string
+      fillRect(x: number, y: number, width: number, height: number): void
+      translate(x: number, y: number): void
+    } | null
+    toDataURL(): string
+  }
   [key: string]: unknown
 }
 
@@ -130,7 +139,7 @@ export interface RaisedProps {
   background?: string
   zDepth?: 0 | 1 | 2 | 3 | 4 | 5
   radius?: number
-  styles?: PickerStyles
+  styles?: Record<string, PickerStyles>
   children?: ReactNode
 }
 

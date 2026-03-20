@@ -7,6 +7,36 @@ declare module 'lodash/each' {
   export default each
 }
 
+declare module 'lodash/merge' {
+  function merge<TObject, TSource>(
+    object: TObject,
+    source: TSource,
+  ): TObject & TSource
+
+  export default merge
+}
+
+declare module 'lodash/throttle' {
+  type UnknownFunction = (...args: unknown[]) => unknown
+
+  type Throttled<T extends UnknownFunction> = T & {
+    cancel(): void
+  }
+
+  function throttle<T extends UnknownFunction>(
+    func: T,
+    wait?: number,
+  ): Throttled<T>
+
+  export default throttle
+}
+
+declare module 'reactcss' {
+  function reactCSS(...args: unknown[]): Record<string, Record<string, unknown>>
+
+  export default reactCSS
+}
+
 declare module 'tinycolor2' {
   interface HSLColor {
     h: number

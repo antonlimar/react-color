@@ -10,10 +10,10 @@ todos:
     status: completed
   - id: common-ts
     content: Перевести src/components/common на .ts/.tsx, кроме ColorWrap, и типизировать low-level control props
-    status: pending
+    status: completed
   - id: colorwrap-ts
     content: Перевести ColorWrap в typed HOC без изменения debounce/defaultProps/runtime API
-    status: pending
+    status: completed
   - id: pickers-ts
     content: Перевести picker-компоненты пакетами, сохраняя публичные пропсы и поведение
     status: pending
@@ -360,7 +360,7 @@ flowchart TD
 
 - [x] **types-foundation** — Создать внутренний слой типов цвета и общих пропсов picker-компонентов в `src`
 - [x] **helpers-ts** — Перевести `src/helpers` на `.ts` и зафиксировать типы преобразований цвета и interaction-хелперов
-- [ ] **common-ts** — Перевести `src/components/common` на `.ts/.tsx`, кроме `ColorWrap`, и типизировать low-level control props
-- [ ] **colorwrap-ts** — Перевести `ColorWrap` в typed HOC без изменения debounce/defaultProps/runtime API
+- [x] **common-ts** — Перевести `src/components/common` на `.ts/.tsx`, кроме `ColorWrap`, и типизировать low-level control props
+- [x] **colorwrap-ts** — Перевести `ColorWrap` в typed HOC без изменения debounce/defaultProps/runtime API
 - [ ] **pickers-ts** — Перевести picker-компоненты пакетами, сохраняя публичные пропсы и поведение
 - [ ] **entry-types-sync** — Синхронизировать `src` entrypoints и `index.d.ts` с реальными TS-типами после миграции
