@@ -4,7 +4,7 @@
 
 - Библиотека на **ES5/React-классах**, сборка через **Babel 6** ([`.babelrc`](.babelrc)) в `lib/` (CJS) и `es/` (ESM), см. [`package.json`](package.json).
 - Доки на **Webpack 1** ([`webpack.config.js`](webpack.config.js)), Storybook **3.x**, Jest **20** + Enzyme **2**, React **15** в devDependencies.
-- В [`src/index.js`](src/index.js) **строка 4 синтаксически неверна** (`export default, { default as ChromePicker } ...`) — при этом [`Chrome.js`](src/components/chrome/Chrome.js) экспортирует `default` через `ColorWrap(Chrome)`. Нужно разделить на корректные `export { default as ChromePicker } ...` и `export { default } ...` (или явный реэкспорт default), иначе ни TS, ни современный bundler не примут entry.
+- Barrel [`src/index.js`](src/index.js) **исправлен в фазе 1:** отдельные `export { default as ChromePicker }` и `export { default }` из [`Chrome.js`](src/components/chrome/Chrome.js) (через `ColorWrap`).
 
 ```mermaid
 flowchart LR
@@ -15,9 +15,9 @@ flowchart LR
     J20[Jest 20]
   end
   subgraph target [Цель]
-    TS[tsc или tsup]
+    TS[tsc или dual emit]
     Vite[Vite docs или аналог]
-    SB[Storybook 8+]
+    SB[Storybook 10+]
     Test[Vitest или Jest 29]
   end
   now --> target
@@ -58,13 +58,15 @@ flowchart LR
 
 ## Фаза 2 — Современный toolchain (до или параллельно с TS)
 
+**Ограничение:** по возможности сохранить **drop-in замену** апстриму `react-color` — те же `main`/`module`/`files`, **пофайловый** вывод в `lib/` и `es/` (как у Babel), без перехода на «один бандл вместо дерева» без осознанного breaking-релиза.
+
 | Область | Направление |
 |--------|-------------|
-| Сборка | **tsup** или **unbuild** (dual CJS+ESM + `d.ts`) либо чистый `tsc` с двумя `tsconfig`; цель — убрать Babel 6 и ручные скрипты [`scripts/use-module-babelrc.js`](scripts/use-module-babelrc.js) / [`restore-original-babelrc.js`](scripts/restore-original-babelrc.js). |
-| Типы | `typescript`, в [`package.json`](package.json) добавить поле **`types`** (и при необходимости `exports` для условных экспортов). |
+| Сборка | Приоритет: **`tsc`** (два `tsconfig` для CJS/ESM), пофайловый выход как у Babel. **tsdown** — только если подтверждён режим без единого бандла на весь пакет и сохраняется дерево путей. **tsup** не использовать (не поддерживается; **tsdown** — преемник в экосистеме). Цель — убрать Babel 6 и ручные скрипты [`scripts/use-module-babelrc.js`](scripts/use-module-babelrc.js) / [`restore-original-babelrc.js`](scripts/restore-original-babelrc.js). |
+| Типы | `typescript`, в [`package.json`](package.json) добавить поле **`types`**; поле **`exports`** — опционально и только если не ломает drop-in (старые резолверы / deep-imports). |
 | Линт | ESLint **flat config** + `@typescript-eslint` + `eslint-plugin-react-hooks`; удалить зависимость от `@case/eslint-config`, если она не поддерживается. |
 | Тесты | **Vitest** + **jsdom** + **@testing-library/react** (замена Enzyme 2 / старых утилит); перенести `spec.js` → `*.spec.tsx` по мере миграции. |
-| Storybook | Обновить до **8.x** (или актуальной LTS), переписать [`.storybook/config.js`](.storybook/config.js) под новый формат; истории из `story.js` — постепенно. |
+| Storybook | Обновить до **10.x** (или актуальной LTS), переписать [`.storybook/config.js`](.storybook/config.js) под новый формат; истории из `story.js` — постепенно. |
 | Доки | Заменить Webpack 1 на **Vite** (или аналог) для dev-сервера документации; пересмотреть [`scripts/docs-server.js`](scripts/docs-server.js) / [`docs-dist`](scripts/docs-dist.js). |
 
 ---
@@ -109,7 +111,7 @@ flowchart LR
 
 - [x] Добавить AGENTS.md и `.cursor/rules/*.mdc` (контекст форка, структура, API, соглашения)
 - [x] Исправить невалидный экспорт в `src/index.js` (Chrome default + ChromePicker)
-- [ ] Заменить Babel 6 на TS + tsup/unbuild/tsc; обновить package.json (`types`, `exports`)
+- [ ] Заменить Babel 6 на пофайловую сборку через `tsc` (два `tsconfig` для `lib/` и `es/`); обновить package.json (`types`; `exports` — опционально для drop-in)
 - [ ] Ввести Vitest/Jest 29 + Testing Library + ESLint flat + typescript-eslint
 - [ ] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
 - [ ] Обновить Storybook и пайплайн docs (убрать Webpack 1)
