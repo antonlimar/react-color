@@ -111,7 +111,7 @@ flowchart LR
 
 - [x] Добавить AGENTS.md и `.cursor/rules/*.mdc` (контекст форка, структура, API, соглашения)
 - [x] Исправить невалидный экспорт в `src/index.js` (Chrome default + ChromePicker)
-- [ ] Заменить Babel 6 на пофайловую сборку через `tsc` (два `tsconfig` для `lib/` и `es/`); обновить package.json (`types`; `exports` — опционально для drop-in)
+- [x] Заменить Babel 6 на пофайловую сборку через `tsc` (два `tsconfig` для `lib/` и `es/`); обновить package.json (`types`; `exports` — опционально для drop-in)
 - [ ] Ввести Vitest/Jest 29 + Testing Library + ESLint flat + typescript-eslint
 - [ ] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
 - [ ] Обновить Storybook и пайплайн docs (убрать Webpack 1)

@@ -7,7 +7,7 @@ todos:
     status: completed
   - id: pkg-types-exports
     content: "Обновить package.json: scripts, main/module/files, types; exports — только если не ломает drop-in"
-    status: pending
+    status: completed
   - id: eslint-flat
     content: Перейти на ESLint flat + @typescript-eslint + react-hooks; обновить npm run eslint
     status: pending
@@ -181,7 +181,7 @@ flowchart TD
 ## Todo
 
 - [x] **build-dual-emit** — Пофайловая сборка lib/ и es/ через tsc (два tsconfig), lodash/lodash-es как сейчас; убрать Babel 6 и scripts/use-module-babelrc
-- [ ] **pkg-types-exports** — Обновить package.json: scripts, main/module/files, types; exports — только если не ломает drop-in
+- [x] **pkg-types-exports** — Обновить package.json: scripts, main/module/files, types; exports — только если не ломает drop-in
 - [ ] **eslint-flat** — Перейти на ESLint flat + @typescript-eslint + react-hooks; обновить npm run eslint
 - [ ] **vitest-rtl** — Заменить Jest+Enzyme на Vitest+jsdom+Testing Library; мигрировать spec.js и снапшоты
 - [ ] **storybook-8** — Обновить Storybook до 10.x, новый main/preview; поднять dev React при необходимости

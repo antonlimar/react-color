@@ -4,6 +4,7 @@
   "description": "A Collection of Color Pickers from Sketch, Photoshop, Chrome & more",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/casesandberg/react-color.git"
@@ -14,6 +15,7 @@
     "url": "https://github.com/casesandberg/react-color/issues"
   },
   "scripts": {
+    "build": "npm run lib && npm run es",
     "test": "npm run jest && npm run eslint",
     "jest": "jest",
     "eslint": "eslint src/**/*.js",
@@ -21,7 +23,7 @@
     "es": "npm run clean-es && tsc -p tsconfig.es.json && node scripts/rewrite-lodash-es-imports.js es",
     "clean-lib": "rm -rf lib && mkdir lib",
     "clean-es": "rm -rf es && mkdir es",
-    "prepublish": "npm run lib && npm run es",
+    "prepack": "npm run build",
     "docs": "npm run docs-server",
     "docs-server": "node ./scripts/docs-server",
     "docs-dist": "node ./scripts/docs-dist",
@@ -103,7 +105,8 @@
   },
   "files": [
     "lib",
-    "es"
+    "es",
+    "index.d.ts"
   ],
   "jest": {
     "rootDir": "src",
