@@ -87,10 +87,15 @@ flowchart LR
 
 ## Фаза 4 — Обновление зависимостей и «legacy»
 
-- **React**: поднять peer и dev до выбранного минимума; обновить примеры в [`examples/`](examples/).
-- **lodash / lodash-es**: сузить до нужных функций или заменить на лёгкие утилиты (меньше поверхность для CVE и размер).
-- **Удалить мёртвые/странные devDependencies** (например `npm` как devDependency, дубли тест-раннеров), почистить неиспользуемые скрипты после миграции сборки.
-- **CI**: добавить GitHub Actions (lint + test + build) если ещё нет — зафиксировать как обязательный шаг после появления зелёной сборки.
+Статус: основная цель фазы завершена.
+
+- **React**: `peerDependencies.react` зафиксирован на `>=16.8.0`; корневые `devDependencies.react` / `react-dom` остаются на современном major для docs и Storybook. Примеры в [`examples/`](examples/) синхронизированы на `react@16.14.0` / `react-dom@16.14.0` и используют локальную зависимость `react-color: "file:../.."`.
+- **Примеры**: все example-проекты переведены на Vite, используют единые `dev` / `build` скрипты и проверяются агрегирующим `npm run examples:check`. Нижняя граница совместимости валидируется через `ReactDOM.render`, а не `createRoot`.
+- **lodash / lodash-es**: зафиксирована промежуточная стратегия без лишнего рефакторинга: path-imports в исходниках и post-build rewrite импортов на `lodash-es` для ESM-сборки.
+- **Cleanup**: прямые legacy `devDependencies` и старые toolchain-хвосты убраны из корня репозитория; в docs-части оставлены только реально используемые пакеты вроде `highlight.js` и `remarkable`.
+- **CI**: добавлен GitHub Actions workflow в [`.github/workflows/ci.yml`](.github/workflows/ci.yml) с матрицей Node `20.x` / `24.x` и обязательными шагами `npm test`, `npm run build`, `npm run build-storybook`, `npm run docs-dist`, `npm run examples:check`, `npm run ci:artifacts`, `npm pack --dry-run`.
+
+Проверено локально `2026-03-20`: `npm test`, `npm run build` и `npm run examples:check` проходят на текущем состоянии репозитория.
 
 ---
 
@@ -109,7 +114,7 @@ flowchart LR
 4. Постепенная конвертация `src/**/*.js` → `.ts`/`.tsx`.
 5. Storybook и docs на современном bundler.
    На Storybook держать отдельный хвост: если для совместимости временно отключён `reactDocgen`, включить его обратно после удаления legacy Babel 6-конфига.
-6. Чистка legacy, жёсткий ESLint/TS, документация breaking changes.
+6. Follow-up после phase 4: усиление TS-строгости, точечный cleanup remaining legacy в docs и документация breaking changes, если они появятся.
 
 ---
 
@@ -121,5 +126,5 @@ flowchart LR
 - [x] Ввести Vitest/Jest 29 + Testing Library + ESLint flat + typescript-eslint
 - [x] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
 - [x] Обновить Storybook и пайплайн docs (убрать Webpack 1); после удаления legacy Babel вернуть `reactDocgen`, если он был временно отключён
-- [ ] Обновить peer deps, почистить devDependencies, примеры, CI
-- [ ] Усилить TS-строгость и cleanup legacy devDependencies
+- [x] Обновить peer deps, почистить devDependencies, примеры, CI
+- [ ] Усилить TS-строгость и follow-up cleanup legacy в docs/dev tooling
