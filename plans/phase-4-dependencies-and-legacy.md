@@ -12,8 +12,8 @@ todos:
     content: Удалить неиспользуемые legacy devDependencies и обновить lockfile после чистки
     status: done
   - id: ci-baseline
-    content: Добавить GitHub Actions CI с обязательными проверками build test docs storybook и examples
-    status: pending
+    content: Добавить GitHub Actions CI с обязательными проверками build test docs storybook и examples; выполнено: .github/workflows/ci.yml, Node 20.x/24.x, npm pack --dry-run и verify-generated-artifacts
+    status: done
 ---
 
 # Фаза 4: зависимости, примеры и cleanup legacy
@@ -89,4 +89,4 @@ todos:
 - [x] **peer-react-range** — Обновить `peerDependencies` React и зафиксировать границы совместимости библиотеки и dev-окружения
 - [x] **examples-modernization** — Перевести примеры на единый baseline React 16.14 и современный локальный dev/build pipeline без `react-scripts`; выполнено: Vite, local file dependency и `examples:check`
 - [x] **legacy-devdeps-cleanup** — Удалить неиспользуемые legacy `devDependencies` и обновить `package-lock.json` после чистки
-- [ ] **ci-baseline** — Добавить GitHub Actions CI с обязательными проверками `build`, `test`, `docs`, `storybook` и `examples`
+- [x] **ci-baseline** — Добавить GitHub Actions CI с обязательными проверками `build`, `test`, `docs`, `storybook` и `examples`; выполнено: `.github/workflows/ci.yml`, матрица Node `20.x`/`24.x`, `npm pack --dry-run` и `ci:artifacts`

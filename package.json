@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "npm run lib && npm run es",
+    "ci:artifacts": "node ./scripts/verify-generated-artifacts.mjs",
     "test": "npm run test:unit && npm run eslint",
     "test:unit": "vitest run",
     "test:watch": "vitest",
