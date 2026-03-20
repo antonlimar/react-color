@@ -1,4 +1,3 @@
-/* eslint-disable no-invalid-this */
 import React from 'react'
 
 export const handleFocus = (Component, Span = 'span') =>

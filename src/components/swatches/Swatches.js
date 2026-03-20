@@ -60,7 +60,6 @@ Swatches.propTypes = {
   styles: PropTypes.object,
 }
 
-/* eslint-disable max-len */
 Swatches.defaultProps = {
   width: 320,
   height: 240,

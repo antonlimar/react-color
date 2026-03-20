@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import React from 'react'
 import reactCSS from 'reactcss'
 import * as color from '../../helpers/color'

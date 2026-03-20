@@ -18,7 +18,7 @@
     "build": "npm run lib && npm run es",
     "test": "npm run jest && npm run eslint",
     "jest": "jest",
-    "eslint": "eslint src/**/*.js",
+    "eslint": "eslint src",
     "lib": "npm run clean-lib && tsc -p tsconfig.lib.json",
     "es": "npm run clean-es && tsc -p tsconfig.es.json && node scripts/rewrite-lodash-es-imports.js es",
     "clean-lib": "rm -rf lib && mkdir lib",
@@ -58,7 +58,7 @@
     "react": "*"
   },
   "devDependencies": {
-    "@case/eslint-config": "^0.3.1",
+    "@eslint/js": "^9.37.0",
     "@storybook/addon-centered": "^3.2.0",
     "@storybook/addon-knobs": "^3.2.0",
     "@storybook/addon-options": "^3.2.4",
@@ -74,8 +74,11 @@
     "chai-spies": "^0.7.1",
     "css-loader": "^0.24.0",
     "enzyme": "2.8.2",
+    "eslint": "^9.37.0",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "event-stream": "^3.3.1",
     "fbjs": "^0.8.6",
+    "globals": "^17.4.0",
     "highlight.js": "^9.3.0",
     "html-loader": "^0.3.0",
     "html-webpack-plugin": "^3.2.0",
@@ -100,6 +103,7 @@
     "style-loader": "^0.13.0",
     "testdom": "^2.0.0",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.1",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1"
   },
@@ -111,12 +115,6 @@
   "jest": {
     "rootDir": "src",
     "testRegex": "spec.js$"
-  },
-  "eslintConfig": {
-    "extends": "@case",
-    "rules": {
-      "no-magic-numbers": 0
-    }
   },
   "payload": {
     "builds": [
