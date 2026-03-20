@@ -9,6 +9,10 @@
 
 * **Make Your Own** - Use the building block components to make your own
 
+## Fork development
+
+This tree is maintained as a modernization fork. Source layout, npm export names, and agent-oriented conventions are documented in [`AGENTS.md`](AGENTS.md). Roadmap (TypeScript, toolchain, tests): [`PLAN.md`](PLAN.md). Do not edit generated `lib/` or `es/` by hand—use the build scripts from `package.json`.
+
 ## Demo
 
 ![Demo](https://media.giphy.com/media/26FfggT53qE304CwE/giphy.gif)
