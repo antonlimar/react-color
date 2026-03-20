@@ -6,10 +6,10 @@ const tseslint = require("typescript-eslint");
 
 module.exports = defineConfig([
   {
-    ignores: ["es/**", "lib/**", "node_modules/**"],
+    ignores: ["docs/build/**", "es/**", "lib/**", "node_modules/**"],
   },
   {
-    files: ["src/**/*.{js,jsx}"],
+    files: ["src/**/*.{js,jsx}", "docs/**/*.{js,jsx}"],
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     plugins: {
       "react-hooks": reactHooks,

@@ -1,17 +1,12 @@
 'use strict'
 
-var webpack = require('webpack')
-var webpackConfig = require('../webpack.config.js')
+const { build } = require('vite')
+const viteConfig = require('../vite.docs.config')
 
-let build = Object.create(webpackConfig)
-build.plugins = [
-  new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: JSON.stringify('production'),
-    },
-  }),
-  new webpack.optimize.DedupePlugin(),
-]
-webpack(build, (err, stats) => {
-  if (err) throw new Error('webpack-dev-server', err)
+build({
+  ...viteConfig,
+  configFile: false,
+}).catch(error => {
+  console.error(error)
+  process.exitCode = 1
 })

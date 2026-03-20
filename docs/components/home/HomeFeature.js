@@ -1,344 +1,316 @@
-'use strict' /* eslint import/no-unresolved: 0 */
+'use strict'
 
 import React from 'react'
 import reactCSS from 'reactcss'
 
-import { ChromePicker, CompactPicker, MaterialPicker, PhotoshopPicker,
-         SketchPicker, SliderPicker, SwatchesPicker, BlockPicker,
-         GithubPicker, TwitterPicker, HuePicker, AlphaPicker, CirclePicker } from 'react-color'
-
-import { Container, Grid } from 'react-basic-layout'
-import Move from 'react-move'
+import {
+  AlphaPicker,
+  BlockPicker,
+  ChromePicker,
+  CirclePicker,
+  CompactPicker,
+  GithubPicker,
+  HuePicker,
+  MaterialPicker,
+  PhotoshopPicker,
+  SketchPicker,
+  SliderPicker,
+  SwatchesPicker,
+  TwitterPicker,
+} from 'react-color'
 
 class HomeFeature extends React.Component {
-
   constructor() {
     super()
 
     this.state = {
       h: 150,
-      s: 0.50,
-      l: 0.20,
+      s: 0.5,
+      l: 0.2,
       a: 1,
     }
 
     this.handleChangeComplete = this.handleChangeComplete.bind(this)
   }
 
-  componentDidMount() {
-    const container = this.refs.container
-    const over = this.refs.over
-    const under = this.refs.under
-    const containerHeight = container.getBoundingClientRect().top + container.clientHeight
-    const overHeight = over.getBoundingClientRect().top + over.clientHeight
-
-    under.style.paddingTop = `${ overHeight - containerHeight + 50 }px`
-  }
-
   handleChangeComplete(data) {
-    // console.log(data);
     if (data.hsl !== this.state) {
       this.setState(data.hsl)
     }
 
-    this.props.onChange && this.props.onChange(data.hex)
+    if (this.props.onChange) {
+      this.props.onChange(data.hex)
+    }
+  }
+
+  renderCard(label, element, tone = 'default') {
+    const styles = reactCSS({
+      default: {
+        card: {
+          position: 'relative',
+          padding: '20px',
+          borderRadius: '18px',
+          minHeight: '100%',
+          background: tone === 'dark' ? 'rgba(17,24,39,.82)' : 'rgba(255,255,255,.9)',
+          boxShadow: '0 22px 44px rgba(15,23,42,.12)',
+          backdropFilter: 'blur(10px)',
+        },
+        label: {
+          marginTop: '14px',
+          fontSize: '12px',
+          lineHeight: '16px',
+          letterSpacing: '.08em',
+          textTransform: 'uppercase',
+          color: tone === 'dark' ? 'rgba(255,255,255,.7)' : 'rgba(0,0,0,.45)',
+        },
+      },
+    })
+
+    return (
+      <div style={ styles.card }>
+        { element }
+        <div style={ styles.label }>{ label }</div>
+      </div>
+    )
   }
 
   render() {
     const styles = reactCSS({
-      'default': {
-        graphic: {
-          height: '580px',
+      default: {
+        feature: {
           position: 'relative',
+          overflow: 'hidden',
+          background: `linear-gradient(135deg, ${ this.props.primaryColor } 0%, rgba(255,255,255,.72) 100%)`,
         },
-        cover: {
-          absolute: '0 0 0 0',
-          backgroundColor: this.props.primaryColor,
-          transition: '100ms linear background-color',
-          opacity: '0.5',
+        backdrop: {
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(circle at top left, rgba(255,255,255,.55), transparent 45%)',
         },
-        logo: {
-          paddingTop: '40px',
+        container: {
+          position: 'relative',
+          maxWidth: '1120px',
+          margin: '0 auto',
+          padding: '56px 24px 72px',
         },
-        square: {
-          width: '24px',
-          height: '24px',
-          background: 'url("images/react-color.svg")',
+        hero: {
+          display: 'grid',
+          gridTemplateColumns: 'minmax(0, 1.2fr) minmax(320px, .9fr)',
+          gap: '32px',
+          alignItems: 'start',
         },
         title: {
-          paddingTop: '70px',
-          fontSize: '52px',
-          color: 'rgba(0,0,0,0.65)',
+          margin: 0,
+          fontSize: '56px',
+          lineHeight: '58px',
+          color: 'rgba(0,0,0,.72)',
         },
         subtitle: {
+          marginTop: '20px',
           fontSize: '20px',
-          lineHeight: '27px',
-          color: 'rgba(0,0,0,0.4)',
-          paddingTop: '15px',
-          fontWeight: '300',
-          maxWidth: '320px',
+          lineHeight: '30px',
+          color: 'rgba(0,0,0,.5)',
+          maxWidth: '520px',
         },
         star: {
-          paddingTop: '25px',
-          paddingBottom: '20px',
+          marginTop: '28px',
         },
-
-        chrome: {
-          paddingTop: '50px',
-          position: 'relative',
+        logo: {
+          width: '24px',
+          height: '24px',
+          borderRadius: '6px',
+          background: 'url("images/react-color.svg") center / cover no-repeat',
+          marginBottom: '24px',
         },
-        sketch: {
-          position: 'relative',
+        heroPicker: {
+          justifySelf: 'end',
         },
-        photoshop: {
-          position: 'relative',
+        grid: {
+          marginTop: '36px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(12, minmax(0, 1fr))',
+          gap: '20px',
         },
-        compact: {
-          position: 'relative',
+        wide: {
+          gridColumn: 'span 6',
         },
-        material: {
-          position: 'relative',
+        medium: {
+          gridColumn: 'span 4',
         },
-        swatches: {
-          position: 'relative',
+        small: {
+          gridColumn: 'span 3',
         },
-        over: {
-          position: 'absolute',
-          width: '100%',
-          marginTop: '40px',
+        twoColumn: {
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '20px',
         },
-
-        under: {
-          paddingTop: '133px',
+      },
+      '@media (max-width: 980px)': {
+        hero: {
+          gridTemplateColumns: '1fr',
         },
-
-        slider: {
-          paddingTop: '10px',
-          position: 'relative',
+        heroPicker: {
+          justifySelf: 'start',
         },
-
-        split: {
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          position: 'absolute',
-          bottom: '0px',
-          width: '100%',
+        wide: {
+          gridColumn: 'span 12',
         },
-
-        label: {
-          textAlign: 'center',
-          position: 'absolute',
-          width: '100%',
-          color: 'rgba(0,0,0,.4)',
-          fontSize: '12px',
-          marginTop: '10px',
+        medium: {
+          gridColumn: 'span 6',
         },
-        whiteLabel: {
-          textAlign: 'center',
-          position: 'absolute',
-          width: '100%',
-          fontSize: '12px',
-          marginTop: '10px',
-          color: 'rgba(255,255,255,.7)',
+        small: {
+          gridColumn: 'span 6',
         },
-        second: {
-          marginTop: '50px',
+      },
+      '@media (max-width: 720px)': {
+        container: {
+          padding: '40px 16px 56px',
         },
-
-        github: {
-          float: 'left',
-          position: 'relative',
+        title: {
+          fontSize: '42px',
+          lineHeight: '44px',
         },
-        huealpha: {
-          float: 'right',
-          position: 'relative',
+        subtitle: {
+          fontSize: '18px',
+          lineHeight: '28px',
         },
-        clear: {
-          clear: 'both',
+        medium: {
+          gridColumn: 'span 12',
         },
-        spacer: {
-          height: '32px',
+        small: {
+          gridColumn: 'span 12',
         },
-        bottom: {
-          marginTop: '40px',
-        },
-        twitter: {
-          float: 'left',
-          position: 'relative',
-          marginTop: '16px',
-        },
-        circle: {
-          float: 'right',
-          position: 'relative',
+        twoColumn: {
+          gridTemplateColumns: '1fr',
         },
       },
     })
 
     return (
       <div style={ styles.feature }>
-
-        <div style={ styles.graphic } ref="container">
-          <div style={ styles.cover } />
-          <Container width={ 780 }>
-            <Grid preset="one">
-              <div>
-                <div style={ styles.title }>React Color</div>
-                <div style={ styles.subtitle }>
-                  A Collection of Color Pickers from Sketch, Photoshop, Chrome, Github,
-                  Twitter, Material Design & more
-                </div>
-                <div style={ styles.star }>
-                  <iframe src="https://ghbtns.com/github-btn.html?user=casesandberg&repo=react-color&type=star&count=true&size=large" scrolling="0" width="160px" height="30px" frameBorder="0"></iframe>
-                </div>
+        <div style={ styles.backdrop } />
+        <div style={ styles.container }>
+          <div style={ styles.hero }>
+            <div>
+              <div style={ styles.logo } />
+              <h1 style={ styles.title }>React Color</h1>
+              <div style={ styles.subtitle }>
+                A collection of color pickers from Sketch, Photoshop, Chrome, Github,
+                Twitter, Material Design, and more.
               </div>
-              <div style={ styles.chrome }>
-                <Move
-                  inDelay={ 200 }
-                  inStartTransform="translateY(10px)"
-                  inEndTransform="translateY(0)"
-                >
-                  <ChromePicker
-                    color={ this.state }
-                    onChangeComplete={ this.handleChangeComplete }
-                  />
-                  <div style={ styles.whiteLabel }>Chrome</div>
-                </Move>
+              <div style={ styles.star }>
+                <iframe
+                  src="https://ghbtns.com/github-btn.html?user=casesandberg&repo=react-color&type=star&count=true&size=large"
+                  scrolling="0"
+                  width="160px"
+                  height="30px"
+                  frameBorder="0"
+                />
               </div>
-            </Grid>
-            <div style={ styles.over } ref="over">
-              <Move
-                inDelay={ 400 }
-                inStartTransform="translateY(10px)"
-                inEndTransform="translateY(0)"
-              >
-                <Grid preset="two">
-                  <div style={ styles.sketch }>
-                    <SketchPicker
-                      color={ this.state }
-                      onChangeComplete={ this.handleChangeComplete }
-                    />
-                    <div style={ styles.label }>Sketch</div>
-                  </div>
-                  <div style={ styles.photoshop }>
-                    <PhotoshopPicker
-                      color={ this.state }
-                      onChangeComplete={ this.handleChangeComplete }
-                    />
-                    <div style={ styles.label }>Photoshop</div>
-                  </div>
-                </Grid>
-              </Move>
             </div>
-          </Container>
-        </div>
 
-        <div style={ styles.under } ref="under">
-          <Container width={ 780 }>
-            <Move
-              inDelay={ 600 }
-              inStartTransform="translateY(10px)"
-              inEndTransform="translateY(0)"
-            >
+            <div style={ styles.heroPicker }>
+              { this.renderCard(
+                'Chrome',
+                <ChromePicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
+              ) }
+            </div>
+          </div>
 
-              <Grid preset="four">
-                <div style={ styles.block }>
-                  <BlockPicker
-                    color={ this.state }
-                    onChangeComplete={ this.handleChangeComplete }
-                  />
-                  <div style={ styles.label }>Block</div>
-                </div>
-                <div style={ styles.secondGroup }>
-                  <div style={ styles.top }>
-                    <div style={ styles.github }>
-                      <GithubPicker
-                        color={ this.state }
-                        onChangeComplete={ this.handleChangeComplete }
-                        triangle="top-right"
-                      />
-                      <div style={ styles.label }>Github</div>
-                    </div>
-
-                    <div style={ styles.huealpha }>
-                      <HuePicker
-                        color={ this.state }
-                        onChangeComplete={ this.handleChangeComplete }
-                      />
-                      <div style={ styles.label }>Hue</div>
-                      <div style={ styles.spacer } />
-                      <AlphaPicker
-                        color={ this.state }
-                        onChangeComplete={ this.handleChangeComplete }
-                      />
-                      <div style={ styles.label }>Alpha</div>
-                    </div>
-                    <div style={ styles.clear } />
-                  </div>
-
-                  <div style={ styles.bottom }>
-                    <div style={ styles.twitter }>
-                      <TwitterPicker
-                        color={ this.state }
-                        onChangeComplete={ this.handleChangeComplete }
-                        triangle="top-right"
-                      />
-                      <div style={ styles.label }>Twitter</div>
-                    </div>
-                    <div style={ styles.circle }>
-                      <CirclePicker
-                        color={ this.state }
-                        onChangeComplete={ this.handleChangeComplete }
-                      />
-                      <div style={ styles.label }>Circle</div>
-                    </div>
-                    <div style={ styles.clear } />
-                  </div>
-                </div>
-              </Grid>
-
-            </Move>
-          </Container>
-        </div>
-
-        <div style={ styles.second }>
-          <Container width={ 780 }>
-            <Grid preset="three">
-              <div style={ styles.group }>
-                <div style={ styles.slider }>
-                  <SliderPicker
-                    color={ this.state }
-                    onChangeComplete={ this.handleChangeComplete }
-                  />
-                  <div style={ styles.label }>Slider</div>
-                </div>
-                <div style={ styles.split } className="flexbox-fix">
-                  <div style={ styles.compact }>
-                    <CompactPicker
-                      color={ this.state }
-                      onChangeComplete={ this.handleChangeComplete }
-                    />
-                    <div style={ styles.label }>Compact</div>
-                  </div>
-                  <div style={ styles.material }>
-                    <MaterialPicker
-                      color={ this.state }
-                      onChangeComplete={ this.handleChangeComplete }
-                    />
-                    <div style={ styles.label }>Material</div>
-                  </div>
-                </div>
+          <div style={ styles.grid }>
+            <div style={ styles.wide }>
+              <div style={ styles.twoColumn }>
+                { this.renderCard(
+                  'Sketch',
+                  <SketchPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
+                ) }
+                { this.renderCard(
+                  'Photoshop',
+                  <PhotoshopPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
+                ) }
               </div>
-              <div style={ styles.swatches }>
-                <SwatchesPicker
+            </div>
+
+            <div style={ styles.medium }>
+              { this.renderCard(
+                'Slider',
+                <SliderPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
+              ) }
+            </div>
+
+            <div style={ styles.small }>
+              { this.renderCard(
+                'Block',
+                <BlockPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
+              ) }
+            </div>
+
+            <div style={ styles.small }>
+              { this.renderCard(
+                'Github',
+                <GithubPicker
                   color={ this.state }
                   onChangeComplete={ this.handleChangeComplete }
-                />
-                <div style={ styles.label }>Swatches</div>
-              </div>
-            </Grid>
+                  triangle="top-right"
+                />,
+              ) }
+            </div>
 
-          </Container>
+            <div style={ styles.small }>
+              { this.renderCard(
+                'Twitter',
+                <TwitterPicker
+                  color={ this.state }
+                  onChangeComplete={ this.handleChangeComplete }
+                  triangle="top-right"
+                />,
+              ) }
+            </div>
+
+            <div style={ styles.small }>
+              { this.renderCard(
+                'Circle',
+                <CirclePicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
+              ) }
+            </div>
+
+            <div style={ styles.small }>
+              { this.renderCard(
+                'Hue',
+                <HuePicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
+              ) }
+            </div>
+
+            <div style={ styles.small }>
+              { this.renderCard(
+                'Alpha',
+                <AlphaPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
+              ) }
+            </div>
+
+            <div style={ styles.small }>
+              { this.renderCard(
+                'Compact',
+                <CompactPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
+              ) }
+            </div>
+
+            <div style={ styles.small }>
+              { this.renderCard(
+                'Material',
+                <MaterialPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
+              ) }
+            </div>
+
+            <div style={ styles.medium }>
+              { this.renderCard(
+                'Swatches',
+                <SwatchesPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
+                'dark',
+              ) }
+            </div>
+          </div>
         </div>
       </div>
     )
