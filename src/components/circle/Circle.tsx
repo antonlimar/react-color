@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 import map from 'lodash/map'
 import merge from 'lodash/merge'
@@ -56,13 +55,6 @@ export const Circle = ({
       )) }
     </div>
   )
-}
-
-Circle.propTypes = {
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  circleSize: PropTypes.number,
-  circleSpacing: PropTypes.number,
-  styles: PropTypes.object,
 }
 
 Circle.defaultProps = {

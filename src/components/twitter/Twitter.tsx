@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 import map from 'lodash/map'
 import merge from 'lodash/merge'
@@ -176,13 +175,6 @@ export const Twitter = ({
       </div>
     </div>
   )
-}
-
-Twitter.propTypes = {
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  triangle: PropTypes.oneOf(['hide', 'top-left', 'top-right']),
-  colors: PropTypes.arrayOf(PropTypes.string),
-  styles: PropTypes.object,
 }
 
 Twitter.defaultProps = {

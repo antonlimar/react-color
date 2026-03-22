@@ -1,28 +1,3 @@
-declare module 'prop-types' {
-  export interface Validator {
-    isRequired: Validator
-  }
-
-  export interface PropTypesShape {
-    string: Validator
-    number: Validator
-    bool: Validator
-    object: Validator
-    array: Validator
-    func: Validator
-    node: Validator
-    element: Validator
-    any: Validator
-    oneOf(values: readonly unknown[]): Validator
-    oneOfType(values: readonly Validator[]): Validator
-    arrayOf(value: Validator): Validator
-    shape(value: Record<string, Validator>): Validator
-  }
-
-  const PropTypes: PropTypesShape
-  export default PropTypes
-}
-
 declare module 'lodash/each' {
   function each<T>(
     collection: ArrayLike<T> | Record<string, T> | null | undefined,

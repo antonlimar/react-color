@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 import map from 'lodash/map'
 import merge from 'lodash/merge'
@@ -89,11 +88,6 @@ export const Compact = ({
       </div>
     </Raised>
   )
-}
-
-Compact.propTypes = {
-  colors: PropTypes.arrayOf(PropTypes.string),
-  styles: PropTypes.object,
 }
 
 Compact.defaultProps = {

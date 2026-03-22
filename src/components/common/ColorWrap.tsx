@@ -14,7 +14,6 @@ import type {
 
 type PickerStatics = {
   defaultProps?: Record<string, unknown>
-  propTypes?: Record<string, unknown>
 }
 
 type WrappedColorPickerProps<PickerProps extends ColorPickerInjectedProps> =
@@ -105,10 +104,6 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
         />
       )
     }
-  }
-
-  ;(ColorPicker as typeof ColorPicker & PickerStatics).propTypes = {
-    ...Picker.propTypes,
   }
 
   ;(ColorPicker as typeof ColorPicker & PickerStatics).defaultProps = {

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 
 import { Swatch } from '../common'
@@ -80,16 +79,6 @@ export const SketchPresetColors = ({
       }) }
     </div>
   )
-}
-
-SketchPresetColors.propTypes = {
-  colors: PropTypes.arrayOf(PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.shape({
-      color: PropTypes.string,
-      title: PropTypes.string,
-    })],
-  )).isRequired,
 }
 
 export default SketchPresetColors

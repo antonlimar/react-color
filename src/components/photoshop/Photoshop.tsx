@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 import merge from 'lodash/merge'
 
@@ -24,11 +23,6 @@ type PhotoshopState = {
 }
 
 export class Photoshop extends React.Component<PhotoshopProps, PhotoshopState> {
-  static propTypes = {
-    header: PropTypes.string,
-    styles: PropTypes.object,
-  }
-
   static defaultProps = {
     header: 'Color Picker',
     styles: {},

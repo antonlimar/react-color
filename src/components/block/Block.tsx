@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 import merge from 'lodash/merge'
 import * as color from '../../helpers/color'
@@ -128,13 +127,6 @@ export const Block = ({
       </div>
     </div>
   )
-}
-
-Block.propTypes = {
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  colors: PropTypes.arrayOf(PropTypes.string),
-  triangle: PropTypes.oneOf(['top', 'hide']),
-  styles: PropTypes.object,
 }
 
 Block.defaultProps = {

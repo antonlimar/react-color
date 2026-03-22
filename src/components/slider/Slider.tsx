@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 import merge from 'lodash/merge'
 
@@ -48,10 +47,6 @@ export const Slider = ({
       </div>
     </div>
   )
-}
-
-Slider.propTypes = {
-  styles: PropTypes.object,
 }
 
 Slider.defaultProps = {

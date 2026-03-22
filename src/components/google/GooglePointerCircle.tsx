@@ -1,6 +1,5 @@
 import React from 'react'
 import reactCSS from 'reactcss'
-import PropTypes from 'prop-types'
 import type { HSLAColor } from '../../types'
 
 type GooglePointerCircleProps = {
@@ -22,15 +21,6 @@ export const GooglePointerCircle = ({ hsl = { a: 1, h: 249.94, l: 0.2, s: 0.5 } 
   })
 
   return <div style={ styles.picker } />
-}
-
-GooglePointerCircle.propTypes = {
-  hsl: PropTypes.shape({
-    h: PropTypes.number,
-    s: PropTypes.number,
-    l: PropTypes.number,
-    a: PropTypes.number,
-  }),
 }
 
 GooglePointerCircle.defaultProps = {

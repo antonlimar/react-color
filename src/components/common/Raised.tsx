@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 import merge from 'lodash/merge'
 import type { RaisedProps } from '../../types'
@@ -83,13 +82,6 @@ export const Raised = ({
       </div>
     </div>
   )
-}
-
-Raised.propTypes = {
-  background: PropTypes.string,
-  zDepth: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
-  radius: PropTypes.number,
-  styles: PropTypes.object,
 }
 
 Raised.defaultProps = {

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 import merge from 'lodash/merge'
 
@@ -54,10 +53,6 @@ export const HuePicker = ({
       />
     </div>
   )
-}
-
-HuePicker.propTypes = {
-  styles: PropTypes.object,
 }
 
 HuePicker.defaultProps = {

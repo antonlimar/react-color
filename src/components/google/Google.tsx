@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 import merge from 'lodash/merge'
 
@@ -121,12 +120,6 @@ export const Google = ({
       </div>
     </div>
   )
-}
-
-Google.propTypes = {
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  styles: PropTypes.object,
-  header: PropTypes.string,
 }
 
 Google.defaultProps = {

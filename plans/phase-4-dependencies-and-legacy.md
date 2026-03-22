@@ -21,8 +21,8 @@ todos:
     content: Дочистить post-TypeScript хвосты после phase 3: локальные d.ts для legacy-модулей уточнены, callback/event-контракты и styles-override-типы сделаны более permissive и согласованными, компромиссы around reactcss/tinycolor2 зафиксированы без breaking changes
     status: done
   - id: proptypes-follow-up
-    content: Отдельно принять решение по дальнейшей судьбе propTypes после TS-миграции; сохранить или удалить только после оценки bundle/runtime DX и совместимости для JS-потребителей
-    status: pending
+    content: Принято решение удалить prop-types после TS-миграции; runtime propTypes убраны из src, зависимость и локальные декларации удалены, план синхронизирован
+    status: done
   - id: docs-legacy-follow-up
     content: Дочистить remaining legacy в docs/dev tooling без смены public API пакета; проверить docs runtime, storybook reactDocgen и оставшиеся CommonJS/old-docs хвосты
     status: pending
@@ -102,7 +102,7 @@ todos:
 ### 5. Первый шаг по TS strictness follow-up
 
 - В `tsconfig.json` включён `noImplicitAny` как первый безопасный шаг ужесточения, не требующий массового пересмотра nullability-контрактов.
-- В `src/vendor.d.ts` добавлены локальные декларации для `prop-types`, `lodash/map`, `lodash/debounce`, `lodash/isUndefined`, `material-colors` и используемых icon-модулей, чтобы strictness не зависела от legacy-пакетов без встроенных типов.
+- В `src/vendor.d.ts` добавлены локальные декларации для `lodash/map`, `lodash/debounce`, `lodash/isUndefined`, `material-colors` и используемых icon-модулей, чтобы strictness не зависела от legacy-пакетов без встроенных типов.
 - В компонентах, где компилятор ловил реальные `implicit any`, добавлены точечные аннотации для callback-параметров и согласованы импорты `material-colors` с локальной декларацией.
 - `strictNullChecks` сознательно не включался в этом шаге: он уже выявляет отдельные места вроде `EditableInput` и требует следующего, более узкого follow-up без смешивания двух разных классов типовых изменений.
 
@@ -150,9 +150,18 @@ todos:
   - `ColorPickerChangeEvent`, `ColorChangeHandler` и `SwatchHoverHandler` больше не держатся на `unknown` и согласованы с реальными react/native event-сценариями внутри пикеров;
   - `styles`-overrides сведены к общему alias `PickerCustomStyles` и протянуты через публичные props пикеров без сужения пользовательского API.
 - Сознательно не делалось в рамках этого пункта:
-  - удаление `propTypes`;
   - включение `strictNullChecks`;
   - агрессивное сужение helper-контрактов, которое могло бы незаметно изменить permissive DX пакета.
+
+### 1b. PropTypes follow-up после TS-миграции
+
+- Этот подпункт закрыт отдельным follow-up `2026-03-22`.
+- Принято решение полностью удалить `prop-types` как больше не нужную legacy-зависимость:
+  - runtime `propTypes` убраны из компонентов в `src/components/**`;
+  - `ColorWrap` больше не прокидывает `Picker.propTypes` в обёрнутый компонент;
+  - зависимость `prop-types` удалена из `package.json` и `package-lock.json`;
+  - локальная декларация `declare module 'prop-types'` удалена из `src/vendor.d.ts`.
+- Осознанный компромисс: JS-потребители больше не получают runtime-предупреждения через `propTypes`, но публичный API и TS-типизация библиотеки при этом не меняются.
 
 ### 2. Cleanup remaining legacy в docs и dev tooling
 
@@ -190,7 +199,7 @@ todos:
 - [x] **ci-baseline** — Добавить GitHub Actions CI с обязательными проверками `build`, `test`, `docs`, `storybook` и `examples`; выполнено: `.github/workflows/ci.yml`, матрица Node `20.x`/`24.x`, `npm pack --dry-run` и `ci:artifacts`
 - [x] **ts-strictness-follow-up** — Первый безопасный шаг выполнен: включён `noImplicitAny`, добавлены локальные декларации для legacy-модулей и убраны `implicit any`; `strictNullChecks` оставлен отдельным следующим ужесточением
 - [x] **typing-polish-follow-up** — Выполнено: локальные `.d.ts` уточнены для `reactcss` / `tinycolor2`, callback/event-типы выведены из `unknown`, `styles`-overrides объединены через `PickerCustomStyles` без изменения runtime API
-- [ ] **proptypes-follow-up** — Отдельно принять решение по дальнейшей судьбе `propTypes` после TS-миграции; сохранять или удалять только после оценки bundle/runtime DX и совместимости для JS-потребителей
+- [x] **proptypes-follow-up** — Принято решение удалить `prop-types` после TS-миграции; runtime `propTypes` убраны из `src`, зависимость и локальные декларации удалены, план синхронизирован
 - [ ] **docs-legacy-follow-up** — Дочистить remaining legacy в docs/dev tooling; проверить Storybook `reactDocgen`, `docs/components/**`, `docs/examples/**`, `scripts/docs-server.js`, `scripts/docs-dist.js` и статус зависимостей `highlight.js` / `remarkable`
 - [ ] **breaking-docs-follow-up** — Если в ходе cleanup появятся осознанные несовместимости или сужения контрактов, зафиксировать их в `CHANGELOG` и документации миграции
 
@@ -200,7 +209,7 @@ todos:
 - [ ] Оценить включение `strictNullChecks`; отдельно проверить permissive сценарии для `Color`, `styles`, callback-аргументов и legacy edge cases.
 - [x] Проверить, нужны ли локальные `.d.ts` или дополнительные типовые уточнения для `reactcss` и `tinycolor2`, чтобы следующий шаг по strictness не упирался в инфраструктурные компромиссы.
 - [x] Просмотреть внутренние callback-контракты и `styles`-типы и сузить их там, где это можно сделать без изменения runtime API.
-- [ ] Принять отдельное решение по `propTypes`: оставить как текущий runtime guard или вынести удаление в отдельную осознанную задачу с оценкой влияния на bundle/runtime DX.
+- [x] Принять отдельное решение по `propTypes`: библиотека `prop-types` больше не нужна, runtime guards удалены, зависимость снята.
 - [ ] Проверить, остались ли post-migration хвосты по lodash-утилитам или helper-типам, которые phase 3 сознательно не добивала.
 - [ ] Проверить [`.storybook/main.js`](../.storybook/main.js) и решить, можно ли безопасно вернуть `reactDocgen` вместо `false`.
 - [ ] Просмотреть [`docs/components/`](../docs/components/) и [`docs/examples/`](../docs/examples/) и отделить оправданный legacy-код от хвостов, которые уже можно убрать или переписать.
