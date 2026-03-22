@@ -3,17 +3,17 @@ import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 import map from 'lodash/map'
 import merge from 'lodash/merge'
-import * as material from 'material-colors'
+import material from 'material-colors'
 
 import { ColorWrap, Raised } from '../common'
 import SwatchesGroup from './SwatchesGroup'
-import type { ClassName, ColorPickerInjectedProps } from '../../types'
+import type { ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types'
 
 type SwatchesProps = ColorPickerInjectedProps & {
   width?: string | number
   height?: string | number
   colors?: string[][]
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   className?: ClassName
 }
 
@@ -51,7 +51,7 @@ export const Swatches = ({
       <Raised>
         <div style={ styles.overflow }>
           <div style={ styles.body }>
-            { map(colors, (group) => (
+            { map(colors, (group: string[]) => (
               <SwatchesGroup
                 key={ group.toString() }
                 group={ group }

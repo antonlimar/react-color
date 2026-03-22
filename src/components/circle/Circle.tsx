@@ -3,18 +3,18 @@ import PropTypes from 'prop-types'
 import reactCSS from 'reactcss'
 import map from 'lodash/map'
 import merge from 'lodash/merge'
-import * as material from 'material-colors'
+import material from 'material-colors'
 
 import { ColorWrap } from '../common'
 import CircleSwatch from './CircleSwatch'
-import type { ClassName, ColorPickerInjectedProps } from '../../types'
+import type { ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types'
 
 type CircleProps = ColorPickerInjectedProps & {
   width?: string | number
   circleSize?: number
   circleSpacing?: number
   colors?: string[]
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   className?: ClassName
 }
 
@@ -43,7 +43,7 @@ export const Circle = ({
 
   return (
     <div style={ styles.card } className={ `circle-picker ${className}` }>
-      { map(colors, (colorValue) => (
+      { map(colors, (colorValue: string) => (
         <CircleSwatch
           key={ colorValue }
           color={ colorValue }

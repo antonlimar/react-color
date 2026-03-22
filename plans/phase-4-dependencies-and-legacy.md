@@ -15,11 +15,11 @@ todos:
     content: Добавить GitHub Actions CI с обязательными проверками build test docs storybook и examples; выполнено: .github/workflows/ci.yml, Node 20.x/24.x, npm pack --dry-run и verify-generated-artifacts
     status: done
   - id: ts-strictness-follow-up
-    content: Поэтапно усилить TS-строгость после завершения миграции src; кандидаты первого шага: noImplicitAny и strictNullChecks с локальными правками типов без breaking changes
-    status: pending
+    content: Поэтапно усилить TS-строгость после завершения миграции src; выполнено для первого безопасного шага: включён noImplicitAny, добавлены локальные декларации legacy-модулей и убраны implicit any без breaking changes; strictNullChecks остаётся отдельным follow-up
+    status: done
   - id: typing-polish-follow-up
-    content: Дочистить post-TypeScript хвосты после phase 3: локальные d.ts при необходимости, permissive callback-типы, reactcss/tinycolor2 и связанные типовые компромиссы без breaking changes
-    status: pending
+    content: Дочистить post-TypeScript хвосты после phase 3: локальные d.ts для legacy-модулей уточнены, callback/event-контракты и styles-override-типы сделаны более permissive и согласованными, компромиссы around reactcss/tinycolor2 зафиксированы без breaking changes
+    status: done
   - id: proptypes-follow-up
     content: Отдельно принять решение по дальнейшей судьбе propTypes после TS-миграции; сохранить или удалить только после оценки bundle/runtime DX и совместимости для JS-потребителей
     status: pending
@@ -46,6 +46,8 @@ todos:
 - В корне репозитория есть агрегирующий скрипт `examples:check`, который последовательно собирает все example-проекты.
 - Прямые legacy devDependencies из старого корневого тулчейна убраны; оставлены только реально используемые пакеты, включая `highlight.js` и `remarkable` для docs и текущую стратегию с `lodash` / `lodash-es`.
 - Добавлен `.github/workflows/ci.yml` с матрицей Node `20.x` / `24.x` и обязательными шагами `npm test`, `npm run build`, `npm run build-storybook`, `npm run docs-dist`, `npm run examples:check`, `npm run ci:artifacts` и `npm pack --dry-run`.
+- Базовый `tsconfig` ужесточён до `noImplicitAny`; для этого добавлены точечные декларации в `src/vendor.d.ts` для legacy-зависимостей и убраны локальные `implicit any` в компонентах без изменения public API.
+- Закрыт `typing-polish-follow-up`: локальные декларации для `reactcss` / `tinycolor2` переведены на более полезные permissive-типы, callback/event-контракты больше не скрываются за `unknown`, а `styles`-overrides сведены к общему alias без сужения runtime API.
 
 ## Verification
 
@@ -56,6 +58,14 @@ todos:
 - `npm run examples:check`
 
 Все три команды завершились успешно на текущем состоянии репозитория.
+
+Дополнительно проверено локально `2026-03-22`:
+
+- `npx tsc -p tsconfig.lib.json --noEmit --pretty false`
+- `npm test`
+- `npm run build`
+
+Все команды завершились успешно после дочистки типового слоя и обновления локальных деклараций.
 
 ## Implementation Changes
 
@@ -88,6 +98,13 @@ todos:
 - Workflow запускается в матрице Node `20.x` и `24.x`.
 - После сборок выполняется проверка синхронности артефактов и lockfile через `npm run ci:artifacts`; проверяются `lib/`, `es/`, `docs/build/` и `package-lock.json`.
 - `npm pack --dry-run` добавлен как smoke-check публикации, чтобы убедиться, что drop-in форма пакета не сломана.
+
+### 5. Первый шаг по TS strictness follow-up
+
+- В `tsconfig.json` включён `noImplicitAny` как первый безопасный шаг ужесточения, не требующий массового пересмотра nullability-контрактов.
+- В `src/vendor.d.ts` добавлены локальные декларации для `prop-types`, `lodash/map`, `lodash/debounce`, `lodash/isUndefined`, `material-colors` и используемых icon-модулей, чтобы strictness не зависела от legacy-пакетов без встроенных типов.
+- В компонентах, где компилятор ловил реальные `implicit any`, добавлены точечные аннотации для callback-параметров и согласованы импорты `material-colors` с локальной декларацией.
+- `strictNullChecks` сознательно не включался в этом шаге: он уже выявляет отдельные места вроде `EditableInput` и требует следующего, более узкого follow-up без смешивания двух разных классов типовых изменений.
 
 ## Public API / Interface Changes
 
@@ -127,13 +144,15 @@ todos:
 
 ### 1a. Post-TypeScript polish после завершения phase 3
 
-- После завершения миграции `src` остались не только strictness-задачи, но и более мелкие типовые хвосты, которые phase 3 сознательно не пыталась добить в том же документе.
-- Отдельно стоит проверить:
-  - нужны ли локальные `.d.ts` или уточнения типов для `reactcss` и `tinycolor2`, если текущие компромиссы мешают strictness или читаемости типов;
-  - не осталось ли overly-permissive типов для callback-аргументов, `styles` и внутренних helper-контрактов, которые можно локально уточнить без смены runtime API;
-  - есть ли смысл отдельно трогать `propTypes` после стабилизации TS-типов, или текущая стратегия "types + propTypes" остаётся лучшим компромиссом для JS-потребителей;
-  - есть ли остаточные follow-up задачи по lodash-утилитам и связанным helper-типам, которые phase 3 осознанно не расширяла до инфраструктурного рефакторинга.
-- Как и в strictness-задачах, источником истины остаётся текущий runtime-контракт библиотеки, а не желание сделать типы «идеальными» ценой скрытого breaking change.
+- Этот подпункт закрыт отдельным follow-up `2026-03-22`.
+- Что было сделано:
+  - локальные `.d.ts` в `src/vendor.d.ts` уточнены для `reactcss` и `tinycolor2`, сохранив permissive-совместимость с текущим runtime;
+  - `ColorPickerChangeEvent`, `ColorChangeHandler` и `SwatchHoverHandler` больше не держатся на `unknown` и согласованы с реальными react/native event-сценариями внутри пикеров;
+  - `styles`-overrides сведены к общему alias `PickerCustomStyles` и протянуты через публичные props пикеров без сужения пользовательского API.
+- Сознательно не делалось в рамках этого пункта:
+  - удаление `propTypes`;
+  - включение `strictNullChecks`;
+  - агрессивное сужение helper-контрактов, которое могло бы незаметно изменить permissive DX пакета.
 
 ### 2. Cleanup remaining legacy в docs и dev tooling
 
@@ -169,18 +188,18 @@ todos:
 - [x] **examples-modernization** — Перевести примеры на единый baseline React 16.14 и современный локальный dev/build pipeline без `react-scripts`; выполнено: Vite, local file dependency и `examples:check`
 - [x] **legacy-devdeps-cleanup** — Удалить неиспользуемые legacy `devDependencies` и обновить `package-lock.json` после чистки
 - [x] **ci-baseline** — Добавить GitHub Actions CI с обязательными проверками `build`, `test`, `docs`, `storybook` и `examples`; выполнено: `.github/workflows/ci.yml`, матрица Node `20.x`/`24.x`, `npm pack --dry-run` и `ci:artifacts`
-- [ ] **ts-strictness-follow-up** — Поэтапно усилить TS-строгость после завершения миграции `src`; кандидаты первого шага: `noImplicitAny` и `strictNullChecks` с локальными правками типов без breaking changes
-- [ ] **typing-polish-follow-up** — Дочистить post-TypeScript хвосты после phase 3: локальные `.d.ts` при необходимости, permissive callback-типы, `reactcss` / `tinycolor2` и связанные типовые компромиссы без breaking changes
+- [x] **ts-strictness-follow-up** — Первый безопасный шаг выполнен: включён `noImplicitAny`, добавлены локальные декларации для legacy-модулей и убраны `implicit any`; `strictNullChecks` оставлен отдельным следующим ужесточением
+- [x] **typing-polish-follow-up** — Выполнено: локальные `.d.ts` уточнены для `reactcss` / `tinycolor2`, callback/event-типы выведены из `unknown`, `styles`-overrides объединены через `PickerCustomStyles` без изменения runtime API
 - [ ] **proptypes-follow-up** — Отдельно принять решение по дальнейшей судьбе `propTypes` после TS-миграции; сохранять или удалять только после оценки bundle/runtime DX и совместимости для JS-потребителей
 - [ ] **docs-legacy-follow-up** — Дочистить remaining legacy в docs/dev tooling; проверить Storybook `reactDocgen`, `docs/components/**`, `docs/examples/**`, `scripts/docs-server.js`, `scripts/docs-dist.js` и статус зависимостей `highlight.js` / `remarkable`
 - [ ] **breaking-docs-follow-up** — Если в ходе cleanup появятся осознанные несовместимости или сужения контрактов, зафиксировать их в `CHANGELOG` и документации миграции
 
 ### Concrete remaining actions
 
-- [ ] Включить и проверить `noImplicitAny`; исправить только локальные типовые ошибки без изменения публичного API.
+- [x] Включить и проверить `noImplicitAny`; исправить только локальные типовые ошибки без изменения публичного API.
 - [ ] Оценить включение `strictNullChecks`; отдельно проверить permissive сценарии для `Color`, `styles`, callback-аргументов и legacy edge cases.
-- [ ] Проверить, нужны ли локальные `.d.ts` или дополнительные типовые уточнения для `reactcss` и `tinycolor2`, чтобы следующий шаг по strictness не упирался в инфраструктурные компромиссы.
-- [ ] Просмотреть внутренние callback-контракты и `styles`-типы и сузить их там, где это можно сделать без изменения runtime API.
+- [x] Проверить, нужны ли локальные `.d.ts` или дополнительные типовые уточнения для `reactcss` и `tinycolor2`, чтобы следующий шаг по strictness не упирался в инфраструктурные компромиссы.
+- [x] Просмотреть внутренние callback-контракты и `styles`-типы и сузить их там, где это можно сделать без изменения runtime API.
 - [ ] Принять отдельное решение по `propTypes`: оставить как текущий runtime guard или вынести удаление в отдельную осознанную задачу с оценкой влияния на bundle/runtime DX.
 - [ ] Проверить, остались ли post-migration хвосты по lodash-утилитам или helper-типам, которые phase 3 сознательно не добивала.
 - [ ] Проверить [`.storybook/main.js`](../.storybook/main.js) и решить, можно ли безопасно вернуть `reactDocgen` вместо `false`.

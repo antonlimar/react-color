@@ -26,7 +26,7 @@ export const SwatchesGroup = ({ onClick, onSwatchHover, group, active }: Swatche
 
   return (
     <div style={ styles.group }>
-      { map(group, (colorValue, index) => (
+      { map(group, (colorValue: string, index: number | string) => (
         <SwatchesColor
           key={ colorValue }
           color={ colorValue }

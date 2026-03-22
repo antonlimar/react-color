@@ -11,13 +11,14 @@ import type {
   ColorInputChangeHandler,
   ColorPickerChangeEvent,
   ColorPickerInjectedProps,
+  PickerCustomStyles,
 } from '../../types'
 
 type BlockProps = ColorPickerInjectedProps & {
   colors?: string[]
   width?: string | number
   triangle?: 'top' | 'hide'
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   className?: ClassName
 }
 

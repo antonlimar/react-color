@@ -6,13 +6,13 @@ import merge from 'lodash/merge'
 
 import { ColorWrap } from '../common'
 import GithubSwatch from './GithubSwatch'
-import type { ClassName, ColorPickerInjectedProps } from '../../types'
+import type { ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types'
 
 type GithubProps = ColorPickerInjectedProps & {
   width?: string | number
   colors?: string[]
   triangle?: 'hide' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   className?: ClassName
 }
 
@@ -113,7 +113,7 @@ export const Github = ({
     <div style={ styles.card } className={ `github-picker ${className}` }>
       <div style={ styles.triangleShadow } />
       <div style={ styles.triangle } />
-      { map(colors, (colorValue) => (
+      { map(colors, (colorValue: string) => (
         <GithubSwatch
           color={ colorValue }
           key={ colorValue }

@@ -7,11 +7,11 @@ import { ColorWrap, Saturation, Hue } from '../common'
 import GooglePointerCircle from './GooglePointerCircle'
 import GooglePointer from './GooglePointer'
 import GoogleFields from './GoogleFields'
-import type { ClassName, ColorPickerInjectedProps } from '../../types'
+import type { ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types'
 
 type GoogleProps = ColorPickerInjectedProps & {
   width?: string | number
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   header?: string
   className?: ClassName
 }

@@ -7,13 +7,13 @@ import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../common'
 import ChromeFields from './ChromeFields'
 import ChromePointer from './ChromePointer'
 import ChromePointerCircle from './ChromePointerCircle'
-import type { CheckboardRenderers, ClassName, ColorPickerInjectedProps } from '../../types'
+import type { CheckboardRenderers, ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types'
 
 type ChromeProps = ColorPickerInjectedProps & {
   width?: string | number
   disableAlpha?: boolean
   renderers?: CheckboardRenderers
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   className?: ClassName
   defaultView?: 'hex' | 'rgb' | 'hsl'
 }

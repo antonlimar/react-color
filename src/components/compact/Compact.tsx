@@ -13,11 +13,12 @@ import type {
   ColorChangeValue,
   ColorPickerChangeEvent,
   ColorPickerInjectedProps,
+  PickerCustomStyles,
 } from '../../types'
 
 type CompactProps = ColorPickerInjectedProps & {
   colors?: string[]
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   className?: ClassName
 }
 
@@ -69,7 +70,7 @@ export const Compact = ({
     <Raised style={ styles.Compact } styles={ passedStyles }>
       <div style={ styles.compact } className={ `compact-picker ${className}` }>
         <div>
-          { map(colors, (colorValue) => (
+          { map(colors, (colorValue: string) => (
             <CompactColor
               key={ colorValue }
               color={ colorValue }

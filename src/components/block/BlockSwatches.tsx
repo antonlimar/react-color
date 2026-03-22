@@ -33,7 +33,7 @@ export const BlockSwatches = ({ colors, onClick, onSwatchHover }: BlockSwatchesP
 
   return (
     <div style={ styles.swatches }>
-      { map(colors, (colorValue) => (
+      { map(colors, (colorValue: string) => (
         <Swatch
           key={ colorValue }
           color={ colorValue }

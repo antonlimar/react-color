@@ -6,11 +6,11 @@ import merge from 'lodash/merge'
 import { ColorWrap, Hue } from '../common'
 import SliderSwatches from './SliderSwatches'
 import SliderPointer from './SliderPointer'
-import type { ClassName, ColorPickerInjectedProps, HueProps } from '../../types'
+import type { ClassName, ColorPickerInjectedProps, HueProps, PickerCustomStyles } from '../../types'
 
 type SliderProps = ColorPickerInjectedProps & {
   pointer?: HueProps['pointer']
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   className?: ClassName
 }
 

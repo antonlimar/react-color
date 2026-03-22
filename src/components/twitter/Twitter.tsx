@@ -11,13 +11,14 @@ import type {
   ColorInputChangeHandler,
   ColorPickerChangeEvent,
   ColorPickerInjectedProps,
+  PickerCustomStyles,
 } from '../../types'
 
 type TwitterProps = ColorPickerInjectedProps & {
   colors?: string[]
   width?: string | number
   triangle?: 'hide' | 'top-left' | 'top-right'
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   className?: ClassName
 }
 
@@ -152,7 +153,7 @@ export const Twitter = ({
       <div style={ styles.triangle } />
 
       <div style={ styles.body }>
-        { map(colors, (colorValue, index) => (
+        { map(colors, (colorValue: string, index: number | string) => (
           <Swatch
             key={ index }
             color={ colorValue }

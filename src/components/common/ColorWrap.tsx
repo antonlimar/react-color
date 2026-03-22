@@ -54,7 +54,7 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
         ...color.toState(props.color ?? defaultColor, 0),
       }
 
-      this.debounce = debounce((fn, data, event) => {
+      this.debounce = debounce((fn: ColorChangeHandler, data: ColorResult, event: ColorPickerChangeEvent) => {
         fn(data, event)
       }, 100) as (fn: ColorChangeHandler, data: ColorResult, event: ColorPickerChangeEvent) => void
     }

@@ -1,4 +1,12 @@
-import type { ComponentType, CSSProperties, KeyboardEvent, MouseEvent, ReactNode, TouchEvent, ChangeEvent } from 'react'
+import type {
+  ChangeEvent,
+  ComponentType,
+  CSSProperties,
+  KeyboardEvent,
+  MouseEvent,
+  ReactNode,
+  TouchEvent,
+} from 'react'
 
 export type ColorSource = string
 
@@ -61,7 +69,15 @@ export interface ColorResult {
   source?: ColorSource
 }
 
-export type ColorPickerChangeEvent = unknown
+export type ColorPickerChangeEvent =
+  | MouseEvent<HTMLElement>
+  | TouchEvent<HTMLElement>
+  | KeyboardEvent<HTMLElement>
+  | ChangeEvent<HTMLInputElement>
+  | globalThis.MouseEvent
+  | globalThis.TouchEvent
+  | globalThis.KeyboardEvent
+  | undefined
 
 export type InternalColorChangeEvent =
   | MouseEvent<HTMLElement>
@@ -74,17 +90,18 @@ export type SwatchHoverEvent =
   | KeyboardEvent<HTMLElement>
   | ColorPickerChangeEvent
 
-export type ColorChangeHandler = (color: ColorResult, event: ColorPickerChangeEvent) => void
+export type ColorChangeHandler = (color: ColorResult, event?: ColorPickerChangeEvent) => void
 
 export type ColorInputChangeHandler = (
   color: Color | ColorChangeValue,
   event?: ColorPickerChangeEvent,
 ) => void
 
-export type SwatchHoverHandler = (color: ColorResult, event: ColorPickerChangeEvent) => void
+export type SwatchHoverHandler = (color: ColorResult, event?: ColorPickerChangeEvent) => void
 
 export type PickerStyle = CSSProperties & Record<string, unknown>
 export type PickerStyles = Record<string, PickerStyle | undefined>
+export type PickerCustomStyles = PickerStyles
 export type ClassName = string
 export type Radius = number | string
 export type PointerComponent<Props> = ComponentType<Props>
@@ -92,7 +109,7 @@ export type PointerComponent<Props> = ComponentType<Props>
 export interface ColorPickerProps {
   color?: Color
   className?: ClassName
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   onChange?: ColorChangeHandler
   onChangeComplete?: ColorChangeHandler
   onSwatchHover?: SwatchHoverHandler
@@ -147,7 +164,7 @@ export interface RaisedProps {
   zDepth?: 0 | 1 | 2 | 3 | 4 | 5
   radius?: number
   style?: PickerStyle
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   children?: ReactNode
 }
 

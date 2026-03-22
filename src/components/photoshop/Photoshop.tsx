@@ -9,11 +9,11 @@ import PhotoshopPointerCircle from './PhotoshopPointerCircle'
 import PhotoshopPointer from './PhotoshopPointer'
 import PhotoshopButton from './PhotoshopButton'
 import PhotoshopPreviews from './PhotoshopPreviews'
-import type { ClassName, ColorPickerInjectedProps, ColorPickerProps } from '../../types'
+import type { ClassName, ColorPickerInjectedProps, ColorPickerProps, PickerCustomStyles } from '../../types'
 
 type PhotoshopProps = ColorPickerInjectedProps & {
   header?: string
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   className?: ClassName
   onAccept?: ColorPickerProps['onChange']
   onCancel?: () => void

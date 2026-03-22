@@ -6,14 +6,15 @@ import * as color from '../../helpers/color'
 import { ColorWrap, EditableInput, Raised } from '../common'
 import type {
   ClassName,
+  ColorChangeValue,
   ColorInputChangeHandler,
   ColorPickerChangeEvent,
   ColorPickerInjectedProps,
-  ColorChangeValue,
+  PickerCustomStyles,
 } from '../../types'
 
 type MaterialProps = ColorPickerInjectedProps & {
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   className?: ClassName
 }
 

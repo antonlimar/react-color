@@ -6,14 +6,14 @@ import merge from 'lodash/merge'
 import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../common'
 import SketchFields from './SketchFields'
 import SketchPresetColors from './SketchPresetColors'
-import type { CheckboardRenderers, ClassName, ColorPickerInjectedProps } from '../../types'
+import type { CheckboardRenderers, ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types'
 
 type SketchPresetColor = string | { color: string; title?: string }
 
 type SketchProps = ColorPickerInjectedProps & {
   disableAlpha?: boolean
   width?: string | number
-  styles?: Record<string, unknown>
+  styles?: PickerCustomStyles
   presetColors?: SketchPresetColor[]
   renderers?: CheckboardRenderers
   className?: ClassName
