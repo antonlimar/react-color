@@ -115,6 +115,7 @@ flowchart LR
 5. Storybook и docs на современном bundler.
    На Storybook держать отдельный хвост: если для совместимости временно отключён `reactDocgen`, включить его обратно после удаления legacy Babel 6-конфига.
 6. Follow-up после phase 4: усиление TS-строгости, точечный cleanup remaining legacy в docs и документация breaking changes, если они появятся.
+   Детализация этого хвоста ведётся в [`plans/phase-4-dependencies-and-legacy.md`](plans/phase-4-dependencies-and-legacy.md), чтобы не раздувать верхнеуровневый `PLAN.md` новой большой фазой без необходимости.
 
 ---
 
@@ -127,4 +128,4 @@ flowchart LR
 - [x] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
 - [x] Обновить Storybook и пайплайн docs (убрать Webpack 1); после удаления legacy Babel вернуть `reactDocgen`, если он был временно отключён
 - [x] Обновить peer deps, почистить devDependencies, примеры, CI
-- [ ] Усилить TS-строгость и follow-up cleanup legacy в docs/dev tooling
+- [ ] Усилить TS-строгость и follow-up cleanup legacy в docs/dev tooling (детализировано в `plans/phase-4-dependencies-and-legacy.md`)

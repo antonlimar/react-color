@@ -35,6 +35,14 @@ todos:
 - проверки `npm run build` и `npm test` проходят на текущем состоянии репозитория
 - истории и тестовые файлы под `src` тоже переведены на актуальные расширения (`story.tsx`, `spec.tsx`, `spec.ts`), а package-build больше не включает их в `lib/` и `es`
 
+Отдельные хвосты после завершения миграции больше не считаются незавершённой частью phase 3. Они вынесены в follow-up после phase 4, чтобы не смешивать завершённую миграцию `src` с последующей полировкой:
+
+- поэтапное ужесточение TS-строгости (`noImplicitAny`, `strictNullChecks`, затем более узкие strict-флаги);
+- возможный follow-up по `propTypes`, если проект захочет отдельно оценить размер бандла и runtime DX для JS-потребителей;
+- точечные типовые хвосты вокруг `reactcss`, `tinycolor2`, permissive callback-типов и возможных lodash-утилит, если они потребуют локальных `.d.ts` или дополнительной чистки.
+
+Актуальный список этих post-migration задач ведётся в [`plans/phase-4-dependencies-and-legacy.md`](./phase-4-dependencies-and-legacy.md).
+
 ## Цель: перевести код на TS без breaking changes
 
 Фаза 3 не должна менять способ потребления пакета:
@@ -277,6 +285,8 @@ flowchart TD
 
 ## 7. Стратегия строгости TypeScript
 
+Этот раздел сохраняется как историческое объяснение стратегии миграции, но практическое выполнение оставшихся шагов по strictness теперь отслеживается в [`plans/phase-4-dependencies-and-legacy.md`](./phase-4-dependencies-and-legacy.md), а не внутри phase 3.
+
 **Цель:** повысить ценность TS без одного огромного PR с тысячами ошибок.
 
 ### Стартовое состояние
@@ -298,6 +308,8 @@ flowchart TD
 ---
 
 ## 8. Политика по PropTypes
+
+Этот раздел фиксирует решение, принятое в рамках самой миграции. Если проект отдельно вернётся к вопросу удаления или осознанного сохранения `propTypes`, это уже follow-up после phase 4 и он отслеживается в [`plans/phase-4-dependencies-and-legacy.md`](./phase-4-dependencies-and-legacy.md).
 
 **Решение для этой фазы:** не удалять `propTypes`.
 
@@ -362,6 +374,8 @@ flowchart TD
 - зачистка старых devDependencies
 - CI и поддерживающая инфраструктура
 - возможные follow-up задачи по `propTypes`, lodash-утилитам и дополнительной строгости
+
+Эти follow-up задачи теперь считаются частью post-phase-4 cleanup и зафиксированы в [`plans/phase-4-dependencies-and-legacy.md`](./phase-4-dependencies-and-legacy.md), чтобы у phase 3 не оставалось скрытого незакрытого хвоста.
 
 ---
 
