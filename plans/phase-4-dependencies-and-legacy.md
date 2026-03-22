@@ -24,8 +24,8 @@ todos:
     content: Принято решение удалить prop-types после TS-миграции; runtime propTypes убраны из src, зависимость и локальные декларации удалены, план синхронизирован
     status: done
   - id: docs-legacy-follow-up
-    content: Дочистить remaining legacy в docs/dev tooling без смены public API пакета; проверить docs runtime, storybook reactDocgen и оставшиеся CommonJS/old-docs хвосты
-    status: pending
+    content: Дочистить remaining legacy в docs/dev tooling без смены public API пакета; выполнено: docs markdown runtime переведён с remarkable на markdown-it, highlight.js обновлён до актуальной ветки, Storybook reactDocgen возвращён в режим react-docgen, old-docs CommonJS helper snippets переведены на import-синтаксис, obsolete .babelrc удалён, scripts/docs-server.js и scripts/docs-dist.js подтверждены как уже минимальные для Vite
+    status: done
   - id: breaking-docs-follow-up
     content: Если в ходе cleanup появятся осознанные несовместимости или сужения контрактов, зафиксировать их в CHANGELOG и документации миграции
     status: pending
@@ -44,7 +44,7 @@ todos:
 - `package.json` зафиксировал `peerDependencies.react: >=16.8.0`, сохранив drop-in поля `main`, `module`, `types` и публикацию `lib/` + `es/`.
 - Все примеры в `examples/` переведены на Vite, используют локальную зависимость `react-color: "file:../.."`, React `16.14.0` / `react-dom` `16.14.0` и точку входа на `ReactDOM.render`.
 - В корне репозитория есть агрегирующий скрипт `examples:check`, который последовательно собирает все example-проекты.
-- Прямые legacy devDependencies из старого корневого тулчейна убраны; оставлены только реально используемые пакеты, включая `highlight.js` и `remarkable` для docs и текущую стратегию с `lodash` / `lodash-es`.
+- Прямые legacy devDependencies из старого корневого тулчейна убраны; для docs legacy-связка `remarkable` + старый `highlight.js` также заменена на `markdown-it` и актуальную ветку `highlight.js`, при сохранении текущей стратегии с `lodash` / `lodash-es`.
 - Добавлен `.github/workflows/ci.yml` с матрицей Node `20.x` / `24.x` и обязательными шагами `npm test`, `npm run build`, `npm run build-storybook`, `npm run docs-dist`, `npm run examples:check`, `npm run ci:artifacts` и `npm pack --dry-run`.
 - Базовый `tsconfig` ужесточён до `noImplicitAny`; для этого добавлены точечные декларации в `src/vendor.d.ts` для legacy-зависимостей и убраны локальные `implicit any` в компонентах без изменения public API.
 - Закрыт `typing-polish-follow-up`: локальные декларации для `reactcss` / `tinycolor2` переведены на более полезные permissive-типы, callback/event-контракты больше не скрываются за `unknown`, а `styles`-overrides сведены к общему alias без сужения runtime API.
@@ -67,6 +67,13 @@ todos:
 
 Все команды завершились успешно после дочистки типового слоя и обновления локальных деклараций.
 
+Дополнительно проверено локально `2026-03-22` для `docs-legacy-follow-up`:
+
+- `npm run build-storybook`
+- `npm run docs-dist`
+
+Обе команды завершились успешно после возврата Storybook `reactDocgen`, обновления docs markdown runtime и удаления `remarkable` из devDependencies.
+
 ## Implementation Changes
 
 ### 1. Метаданные пакета и runtime-границы
@@ -87,7 +94,7 @@ todos:
 ### 3. Cleanup зависимостей и legacy-хвостов
 
 - Из корневых `devDependencies` удалены пакеты, которые больше не участвуют в сборке/тестах/docs: `npm`, legacy Babel/Webpack-цепочки, `react-hot-loader`, `require-dir`, `event-stream`, `fbjs`, `i`, `react-context` и другие неиспользуемые зависимости.
-- Сохранены только те legacy-пакеты, которые всё ещё реально используются docs-сайтом, в частности `highlight.js` и `remarkable`.
+- Для docs оставлены только актуально используемые зависимости: `remarkable` удалён, markdown-рендеринг переведён на `markdown-it`, а подсветка кода оставлена на обновлённом `highlight.js`.
 - Для `lodash` / `lodash-es` зафиксирована текущая стратегия: библиотека остаётся на используемых path-imports и post-build rewrite на `lodash-es` для ESM-сборки.
 - `package-lock.json` синхронизирован после чистки; свежий прогон `npm test` проходит без участия старого `npm` из `devDependencies`.
 
@@ -165,21 +172,15 @@ todos:
 
 ### 2. Cleanup remaining legacy в docs и dev tooling
 
-- В корне репозитория прямые legacy-хвосты уже убраны, но docs/dev tooling всё ещё может содержать исторические компромиссы, которые не были блокером для phase 4.
-- Для этого follow-up стоит отдельно проверить:
-  - legacy-формы модулей и старые docs-компоненты под [`docs/`](../docs/), которые всё ещё живут на CommonJS-стиле или сохраняют старые соглашения без явной необходимости;
-  - необходимость сохранённых docs-зависимостей вроде `highlight.js` и `remarkable`, прежде чем трогать их или заменять;
-  - возвращение `reactDocgen` в Storybook, если он был временно ослаблен/отключён ради совместимости с legacy Babel-конфигурацией;
-  - dev-скрипты [`scripts/docs-server.js`](../scripts/docs-server.js) и [`scripts/docs-dist.js`](../scripts/docs-dist.js) на предмет оставшихся legacy-предположений, которые уже не нужны после перехода на Vite.
-- Граница задачи остаётся прежней: не менять drop-in API пакета, layout публикации и не разворачивать отдельный редизайн docs-сайта в рамках этого cleanup.
-
-### Что осталось сделать practically
-
-- Проверить Storybook-конфиг в [`../.storybook/main.js`](../.storybook/main.js) и решить, можно ли безопасно вернуть `reactDocgen` вместо текущего `false`, не ломая сборку и stories.
-- Просмотреть `docs/components/**` и `docs/examples/**` на предмет файлов, которые всё ещё держатся за старый CommonJS-стиль без реальной необходимости, и понять, что из этого стоит конвертировать, а что лучше оставить как есть.
-- Перепроверить [`scripts/docs-server.js`](../scripts/docs-server.js) и [`scripts/docs-dist.js`](../scripts/docs-dist.js): нет ли там legacy-обвязки, которую уже можно упростить после перехода на Vite.
-- Решить по `highlight.js` и `remarkable`: это ещё осознанно сохраняемые зависимости docs-части или уже кандидаты на отдельную замену/удаление.
-- После каждого из этих шагов прогонять минимум `npm run build-storybook` и `npm run docs-dist`, чтобы cleanup не остался только на уровне «код стал современнее», а реально сохранял рабочий pipeline.
+- Этот подпункт закрыт отдельным follow-up `2026-03-22`.
+- Что было сделано:
+  - Storybook-конфиг в [`../.storybook/main.js`](../.storybook/main.js) перепроверен и переведён с `reactDocgen: false` на `reactDocgen: 'react-docgen'`; это вернуло автогенерацию props metadata без перехода на более тяжёлый `react-docgen-typescript`.
+  - Удалён obsolete `.babelrc`, который больше не использовался сборкой, но ломал Storybook docgen через старые пресеты `es2015` / `stage-0`.
+  - Docs markdown runtime в [`../docs/components/common/MarkdownBlock.js`](../docs/components/common/MarkdownBlock.js) переведён с legacy-пакета `remarkable` на `markdown-it`, а `highlight.js` обновлён до ветки `11.x`.
+  - Old-docs CommonJS snippets в [`../docs/documentation/04.02-helpers.md`](../docs/documentation/04.02-helpers.md) переведены на `import`-синтаксис, при этом deep imports `react-color/lib/components/common` сохранены как часть drop-in контракта.
+  - [`../scripts/docs-server.js`](../scripts/docs-server.js) и [`../scripts/docs-dist.js`](../scripts/docs-dist.js) перепроверены: дополнительной legacy-обвязки после перехода на Vite там уже не осталось, поэтому код не менялся.
+  - Из `devDependencies` удалён `remarkable`; `markdown-it` и актуальный `highlight.js` зафиксированы в `package.json` и `package-lock.json`.
+- Граница задачи осталась прежней: drop-in API пакета, layout публикации и структура `lib/` / `es/` не менялись.
 
 ### 3. Документация возможных несовместимостей
 
@@ -200,7 +201,7 @@ todos:
 - [x] **ts-strictness-follow-up** — Первый безопасный шаг выполнен: включён `noImplicitAny`, добавлены локальные декларации для legacy-модулей и убраны `implicit any`; `strictNullChecks` оставлен отдельным следующим ужесточением
 - [x] **typing-polish-follow-up** — Выполнено: локальные `.d.ts` уточнены для `reactcss` / `tinycolor2`, callback/event-типы выведены из `unknown`, `styles`-overrides объединены через `PickerCustomStyles` без изменения runtime API
 - [x] **proptypes-follow-up** — Принято решение удалить `prop-types` после TS-миграции; runtime `propTypes` убраны из `src`, зависимость и локальные декларации удалены, план синхронизирован
-- [ ] **docs-legacy-follow-up** — Дочистить remaining legacy в docs/dev tooling; проверить Storybook `reactDocgen`, `docs/components/**`, `docs/examples/**`, `scripts/docs-server.js`, `scripts/docs-dist.js` и статус зависимостей `highlight.js` / `remarkable`
+- [x] **docs-legacy-follow-up** — Выполнено: Storybook `reactDocgen` возвращён как `react-docgen`, docs markdown runtime переведён на `markdown-it`, `highlight.js` обновлён, old-docs helper snippets переведены с `require(...)` на `import`, obsolete `.babelrc` удалён, `scripts/docs-server.js` и `scripts/docs-dist.js` подтверждены как уже минимальные
 - [ ] **breaking-docs-follow-up** — Если в ходе cleanup появятся осознанные несовместимости или сужения контрактов, зафиксировать их в `CHANGELOG` и документации миграции
 
 ### Concrete remaining actions
@@ -211,9 +212,9 @@ todos:
 - [x] Просмотреть внутренние callback-контракты и `styles`-типы и сузить их там, где это можно сделать без изменения runtime API.
 - [x] Принять отдельное решение по `propTypes`: библиотека `prop-types` больше не нужна, runtime guards удалены, зависимость снята.
 - [ ] Проверить, остались ли post-migration хвосты по lodash-утилитам или helper-типам, которые phase 3 сознательно не добивала.
-- [ ] Проверить [`.storybook/main.js`](../.storybook/main.js) и решить, можно ли безопасно вернуть `reactDocgen` вместо `false`.
-- [ ] Просмотреть [`docs/components/`](../docs/components/) и [`docs/examples/`](../docs/examples/) и отделить оправданный legacy-код от хвостов, которые уже можно убрать или переписать.
-- [ ] Пересмотреть [`scripts/docs-server.js`](../scripts/docs-server.js) и [`scripts/docs-dist.js`](../scripts/docs-dist.js) на предмет лишней legacy-обвязки после перехода на Vite.
-- [ ] Принять решение по `highlight.js` и `remarkable`: оставить как осознанные docs-зависимости или вынести в отдельную задачу на замену/удаление.
-- [ ] После каждого cleanup-шага прогонять `npm run build-storybook` и `npm run docs-dist`.
+- [x] Проверить [`.storybook/main.js`](../.storybook/main.js) и решить, можно ли безопасно вернуть `reactDocgen` вместо `false`.
+- [x] Просмотреть [`docs/components/`](../docs/components/) и [`docs/examples/`](../docs/examples/) и отделить оправданный legacy-код от хвостов, которые уже можно убрать или переписать.
+- [x] Пересмотреть [`scripts/docs-server.js`](../scripts/docs-server.js) и [`scripts/docs-dist.js`](../scripts/docs-dist.js) на предмет лишней legacy-обвязки после перехода на Vite.
+- [x] Принять решение по `highlight.js` и `remarkable`: `remarkable` удалён, docs переведены на `markdown-it`, `highlight.js` обновлён до актуальной ветки.
+- [x] После каждого cleanup-шага прогонять `npm run build-storybook` и `npm run docs-dist`.
 - [ ] Если какой-то шаг меняет DX или контракт, синхронизировать это в `CHANGELOG`, `README.md` и верхнеуровневом `PLAN.md`.

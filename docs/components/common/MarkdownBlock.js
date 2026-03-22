@@ -1,17 +1,25 @@
 import React from 'react'
 import highlightJs from 'highlight.js'
-import { Remarkable } from 'remarkable'
+import MarkdownIt from 'markdown-it'
 
-const markdown = new Remarkable({
+const markdown = new MarkdownIt({
   html: false,
   typographer: false,
   breaks: false,
   highlight(source, language) {
+    const className = language ? `hljs language-${ language }` : 'hljs'
+
     if (language && highlightJs.getLanguage(language)) {
-      return highlightJs.highlight(source, { language }).value
+      const value = highlightJs.highlight(source, {
+        language,
+        ignoreIllegals: true,
+      }).value
+
+      return `<pre><code class="${ className }">${ value }</code></pre>`
     }
 
-    return highlightJs.highlightAuto(source).value
+    const value = highlightJs.highlightAuto(source).value
+    return `<pre><code class="${ className }">${ value }</code></pre>`
   },
 })
 

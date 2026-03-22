@@ -29,7 +29,7 @@ const config = {
     options: {},
   },
   typescript: {
-    reactDocgen: false,
+    reactDocgen: 'react-docgen',
   },
   async viteFinal(baseConfig) {
     return mergeConfig(baseConfig, {
