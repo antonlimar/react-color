@@ -31,6 +31,7 @@ export const Swatch = ({
       },
     },
   })
+  const swatchStyle = styles.swatch || {}
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => onClick(color, event)
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => event.keyCode === ENTER && onClick(color, event)
@@ -40,7 +41,7 @@ export const Swatch = ({
 
   return (
     <div
-      style={ styles.swatch }
+      style={ swatchStyle }
       onClick={ handleClick }
       title={ title }
       tabIndex={ 0 }
@@ -50,7 +51,7 @@ export const Swatch = ({
       { children }
       { transparent && (
         <Checkboard
-          borderRadius={ styles.swatch.borderRadius as Radius }
+          borderRadius={ swatchStyle.borderRadius as Radius }
           boxShadow="inset 0 0 0 1px rgba(0,0,0,0.1)"
         />
       ) }

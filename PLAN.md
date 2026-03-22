@@ -94,6 +94,7 @@ flowchart LR
 - **lodash / lodash-es**: зафиксирована промежуточная стратегия без лишнего рефакторинга: path-imports в исходниках и post-build rewrite импортов на `lodash-es` для ESM-сборки.
 - **Cleanup**: прямые legacy `devDependencies` и старые toolchain-хвосты убраны из корня репозитория; в docs-части оставлены только реально используемые пакеты вроде `highlight.js` и `remarkable`.
 - **CI**: добавлен GitHub Actions workflow в [`.github/workflows/ci.yml`](.github/workflows/ci.yml) с матрицей Node `20.x` / `24.x` и обязательными шагами `npm test`, `npm run build`, `npm run build-storybook`, `npm run docs-dist`, `npm run examples:check`, `npm run ci:artifacts`, `npm pack --dry-run`.
+- **Post-phase-3 follow-up**: `noImplicitAny` и `strictNullChecks` уже включены, permissive API для `Color` / `styles` / callback-аргументов сохранён, post-migration хвосты по `lodash`-утилитам и helper-типам дочищены, а совместимые DX-изменения и migration notes синхронизированы в [`CHANGELOG.md`](CHANGELOG.md) и [`README.md`](README.md).
 
 Проверено локально `2026-03-20`: `npm test`, `npm run build` и `npm run examples:check` проходят на текущем состоянии репозитория.
 
@@ -114,8 +115,8 @@ flowchart LR
 4. Постепенная конвертация `src/**/*.js` → `.ts`/`.tsx`.
 5. Storybook и docs на современном bundler.
    На Storybook держать отдельный хвост: если для совместимости временно отключён `reactDocgen`, включить его обратно после удаления legacy Babel 6-конфига.
-6. Follow-up после phase 4: усиление TS-строгости, точечный cleanup remaining legacy в docs и документация breaking changes, если они появятся.
-   Детализация этого хвоста ведётся в [`plans/phase-4-dependencies-and-legacy.md`](plans/phase-4-dependencies-and-legacy.md), чтобы не раздувать верхнеуровневый `PLAN.md` новой большой фазой без необходимости.
+6. Follow-up после phase 4: дальнейшие ужесточения сверх `strictNullChecks` и любые новые несовместимости документировать отдельными маленькими шагами.
+   Актуальный статус этого хвоста и уже закрытых задач ведётся в [`plans/phase-4-dependencies-and-legacy.md`](plans/phase-4-dependencies-and-legacy.md).
 
 ---
 
@@ -128,4 +129,4 @@ flowchart LR
 - [x] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
 - [x] Обновить Storybook и пайплайн docs (убрать Webpack 1); после удаления legacy Babel вернуть `reactDocgen`, если он был временно отключён
 - [x] Обновить peer deps, почистить devDependencies, примеры, CI
-- [ ] Усилить TS-строгость и follow-up cleanup legacy в docs/dev tooling (детализировано в `plans/phase-4-dependencies-and-legacy.md`)
+- [x] Усилить TS-строгость и закрыть текущий follow-up cleanup legacy в docs/dev tooling; migration notes синхронизированы в `CHANGELOG.md`, `README.md` и `plans/phase-4-dependencies-and-legacy.md`

@@ -26,7 +26,7 @@ export class Saturation extends BaseSaturation {
       event: InternalColorChangeEvent,
     ) => {
       fn(data, event)
-    }, 50) as unknown as ThrottledChange
+    }, 50)
   }
 
   componentWillUnmount() {

@@ -8,6 +8,7 @@
     "jsx": "react",
     "moduleResolution": "node",
     "noImplicitAny": true,
+    "strictNullChecks": true,
     "noResolve": true,
     "noEmit": false,
     "rootDir": "./src",

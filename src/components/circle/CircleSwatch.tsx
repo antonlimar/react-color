@@ -51,15 +51,16 @@ export const CircleSwatch = ({
       },
     },
   }, { hover, active })
+  const circleStyle = styles.Swatch || {}
 
   return (
     <div style={ styles.swatch }>
       <Swatch
-        style={ styles.Swatch }
+        style={ circleStyle }
         color={ color }
         onClick={ onClick }
         onHover={ onSwatchHover as never }
-        focusStyle={{ boxShadow: `${styles.Swatch.boxShadow}, 0 0 5px ${color}` }}
+        focusStyle={{ boxShadow: `${circleStyle.boxShadow || 'none'}, 0 0 5px ${color}` }}
       />
     </div>
   )

@@ -17,6 +17,10 @@ This tree is maintained as a modernization fork. Source layout, npm export names
 
 **Local development baseline:** docs and Storybook continue to run on the newer root `devDependencies.react` / `react-dom`, because the docs app already uses `react-dom/client` and `createRoot`. Minimum React compatibility for the library itself is validated separately from the root dev environment.
 
+**Compatibility notes:** the published API stays drop-in compatible with upstream `react-color`, but repository internals have been modernized. In particular, runtime `propTypes` are no longer emitted, so JavaScript consumers should rely on docs and TypeScript typings rather than `prop-types` warnings during development.
+
+**Migration log:** notable compatibility and DX decisions for the modernization fork are tracked in [`CHANGELOG.md`](CHANGELOG.md).
+
 ### Development workflow
 
 The modernization branch now uses a TypeScript-based dual emit for package builds, Vitest for tests, Storybook 10 for component work, and Vite for docs.

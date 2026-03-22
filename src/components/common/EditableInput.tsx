@@ -45,7 +45,7 @@ export class EditableInput extends BaseEditableInput {
       } else {
         this.setState({
           value: String(this.props.value).toUpperCase(),
-          blurValue: !this.state.blurValue && String(this.props.value).toUpperCase(),
+          blurValue: this.state.blurValue ? this.state.blurValue : String(this.props.value).toUpperCase(),
         })
       }
     }
