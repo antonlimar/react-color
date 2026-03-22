@@ -29,6 +29,9 @@ todos:
   - id: breaking-docs-follow-up
     content: Если в ходе cleanup появятся осознанные несовместимости или сужения контрактов, зафиксировать их в CHANGELOG и документации миграции; выполнено: migration notes и DX-изменения синхронизированы в CHANGELOG.md, README.md и PLAN.md, при этом публичный drop-in API подтверждён как сохранённый
     status: done
+  - id: docs-reference-sync-follow-up
+    content: Проверить post-migration документацию на рассинхрон по путям и формулировкам; выполнено: ссылки на src entrypoint и TS-файлы синхронизированы между AGENTS.md, PLAN.md и phase-документами, а упоминание remarkable в актуальном состоянии cleanup заменено на markdown-it
+    status: done
 ---
 
 # Фаза 4: зависимости, примеры и cleanup legacy
@@ -44,7 +47,7 @@ todos:
 - `package.json` зафиксировал `peerDependencies.react: >=16.8.0`, сохранив drop-in поля `main`, `module`, `types` и публикацию `lib/` + `es/`.
 - Все примеры в `examples/` переведены на Vite, используют локальную зависимость `react-color: "file:../.."`, React `16.14.0` / `react-dom` `16.14.0` и точку входа на `ReactDOM.render`.
 - В корне репозитория есть агрегирующий скрипт `examples:check`, который последовательно собирает все example-проекты.
-- Прямые legacy devDependencies из старого корневого тулчейна убраны; для docs legacy-связка `remarkable` + старый `highlight.js` также заменена на `markdown-it` и актуальную ветку `highlight.js`, при сохранении текущей стратегии с `lodash` / `lodash-es`.
+- Прямые legacy devDependencies из старого корневого тулчейна убраны; для docs legacy-связка `remarkable` + старый `highlight.js` уже заменена на `markdown-it` и актуальную ветку `highlight.js`, при сохранении текущей стратегии с `lodash` / `lodash-es`.
 - Добавлен `.github/workflows/ci.yml` с матрицей Node `20.x` / `24.x` и обязательными шагами `npm test`, `npm run build`, `npm run build-storybook`, `npm run docs-dist`, `npm run examples:check`, `npm run ci:artifacts` и `npm pack --dry-run`.
 - Базовый `tsconfig` ужесточён до `noImplicitAny`; для этого добавлены точечные декларации в `src/vendor.d.ts` для legacy-зависимостей и убраны локальные `implicit any` в компонентах без изменения public API.
 - Базовый `tsconfig` дополнительно ужесточён до `strictNullChecks`; при этом permissive runtime-контракты для `Color`, `styles`, callback-аргументов и legacy edge cases сохранены, а найденные nullability-ошибки исправлены точечно в `reactcss`-style access и `EditableInput`.
@@ -76,6 +79,16 @@ todos:
 - `npm run docs-dist`
 
 Обе команды завершились успешно после возврата Storybook `reactDocgen`, обновления docs markdown runtime и удаления `remarkable` из devDependencies.
+
+Дополнительно проверено локально `2026-03-22` после синхронизации планов и phase-документов:
+
+- `npm test`
+- `npm run build`
+- `npm run build-storybook`
+- `npm run docs-dist`
+- `npm run examples:check`
+
+Все команды завершились успешно на текущем состоянии репозитория.
 
 ## Implementation Changes
 
@@ -147,11 +160,10 @@ todos:
 
 ### 1. Усиление TypeScript-строгости
 
-- Текущее состояние после phase 3 и phase 4 остаётся намеренно умеренным: библиотека уже на TS-совместимых исходниках, но корневой [`tsconfig.json`](../tsconfig.json) ещё не переведён в полный strict-профиль.
-- Следующий шаг стоит делать поэтапно, без giant PR:
-  - сначала оценить включение `noImplicitAny`, если исправления останутся локальными и не начнут раздувать публичные типы;
-  - затем рассмотреть `strictNullChecks`, если это не сломает permissive API для `Color`, `styles`, callback-аргументов и legacy edge cases;
-  - полный `strict` и более узкие флаги (`exactOptionalPropertyTypes`, `noUncheckedIndexedAccess` и аналогичные) оставлять только после стабилизации первых двух шагов.
+- Текущее состояние после phase 3 и phase 4 остаётся намеренно умеренным: библиотека уже на TS-совместимых исходниках, а в корневом [`tsconfig.json`](../tsconfig.json) уже включены `noImplicitAny` и `strictNullChecks`, но репозиторий ещё не переведён в полный strict-профиль.
+- Оставшийся follow-up, если проект к нему вернётся, стоит делать поэтапно и без giant PR:
+  - рассматривать только более узкие strict-флаги вроде `exactOptionalPropertyTypes`, `noUncheckedIndexedAccess` и аналогичных;
+  - сохранять permissive API для `Color`, `styles`, callback-аргументов и legacy edge cases, если новые флаги начнут его незаметно сужать.
 - Источником истины остаётся runtime API библиотеки: strictness должна описывать существующее поведение, а не незаметно менять контракт пакета ради более красивых типов.
 
 ### 1a. Post-TypeScript polish после завершения phase 3
@@ -163,7 +175,6 @@ todos:
   - `styles`-overrides сведены к общему alias `PickerCustomStyles` и протянуты через публичные props пикеров без сужения пользовательского API.
   - post-migration хвосты по `lodash`-утилитам и helper-типам перепроверены: локальные декларации в `src/vendor.d.ts` покрывают фактическое использование `each`, `map`, `merge`, `debounce`, `throttle`, `isUndefined`, а из runtime-кода убраны последние ручные приведения типов вокруг `debounce` в `ColorWrap` и `throttle` в `Saturation`.
 - Сознательно не делалось в рамках этого пункта:
-  - включение `strictNullChecks`;
   - агрессивное сужение helper-контрактов, которое могло бы незаметно изменить permissive DX пакета.
 
 ### 1b. PropTypes follow-up после TS-миграции
@@ -210,8 +221,9 @@ todos:
 - [x] **proptypes-follow-up** — Принято решение удалить `prop-types` после TS-миграции; runtime `propTypes` убраны из `src`, зависимость и локальные декларации удалены, план синхронизирован
 - [x] **docs-legacy-follow-up** — Выполнено: Storybook `reactDocgen` возвращён как `react-docgen`, docs markdown runtime переведён на `markdown-it`, `highlight.js` обновлён, old-docs helper snippets переведены с `require(...)` на `import`, obsolete `.babelrc` удалён, `scripts/docs-server.js` и `scripts/docs-dist.js` подтверждены как уже минимальные
 - [x] **breaking-docs-follow-up** — Выполнено: migration notes и DX-изменения синхронизированы в `CHANGELOG.md`, `README.md` и `PLAN.md`; подтверждено, что drop-in публичный API пакета сохранён
+- [x] **docs-reference-sync-follow-up** — Выполнено: phase-документы, `PLAN.md` и `AGENTS.md` синхронизированы по текущим TS-entrypoint/TSX-путям и актуальному состоянию docs cleanup
 
-### Concrete remaining actions
+### Closed follow-up actions
 
 - [x] Включить и проверить `noImplicitAny`; исправить только локальные типовые ошибки без изменения публичного API.
 - [x] Оценить включение `strictNullChecks`; выполнено: флаг включён в базовом `tsconfig`, permissive сценарии для `Color`, `styles`, callback-аргументов и legacy edge cases перепроверены, дополнительные правки потребовались только для nullable `reactcss`-слоёв и `EditableInput.blurValue`.

@@ -24,7 +24,7 @@ todos:
 
 # План реализации фазы 3 ([PLAN.md](../PLAN.md))
 
-Фаза 3 в [`PLAN.md`](../PLAN.md) начинается после завершения toolchain-миграции: сборка `lib/` и `es`, Vitest, ESLint flat config, Storybook и docs уже переведены на современный стек, а библиотечный код в [`src/`](../src/) всё ещё в основном остаётся на JavaScript. Задача этой фазы — поэтапно перевести `src` на `.ts`/`.tsx`, не ломая drop-in совместимость с апстримом и не меняя публичный API пакета.
+Фаза 3 в [`PLAN.md`](../PLAN.md) начинается после завершения toolchain-миграции: сборка `lib/` и `es`, Vitest, ESLint flat config, Storybook и docs уже переведены на современный стек. На момент старта этой фазы библиотечный код в [`src/`](../src/) ещё в основном оставался на JavaScript; задача состояла в поэтапном переводе `src` на `.ts`/`.tsx` без поломки drop-in совместимости с апстримом и без изменения публичного API пакета.
 
 ## Статус на 2026-03-20
 
@@ -48,13 +48,13 @@ todos:
 Фаза 3 не должна менять способ потребления пакета:
 
 - Сохраняются `main`, `module`, `types` и публикация полного дерева `lib/` и `es` из [`package.json`](../package.json).
-- Сохраняются default export и все именованные экспорты из [`src/index.js`](../src/index.js), перечисленные в [`AGENTS.md`](../AGENTS.md).
-- Сохраняется текущее runtime-поведение компонентов, включая `propTypes`, `defaultProps`, debounce-поведение [`ColorWrap`](../src/components/common/ColorWrap.js) и существующие callback-сигнатуры.
+- Сохраняются default export и все именованные экспорты из [`src/index.ts`](../src/index.ts), перечисленные в [`AGENTS.md`](../AGENTS.md).
+- Сохраняется текущее runtime-поведение компонентов, включая `defaultProps`, debounce-поведение [`ColorWrap`](../src/components/common/ColorWrap.tsx) и существующие callback-сигнатуры; runtime `propTypes` были удалены уже отдельным follow-up в phase 4 без изменения публичного API.
 - Миграция делится на небольшие шаги, чтобы после каждого этапа можно было держать зелёные `test`, `eslint` и `build`.
 
 Практически это означает: типы должны описывать уже существующий контракт, а не навязывать новый API ради удобства TypeScript.
 
-## Исходная точка
+## Исходная точка на момент старта фазы
 
 | Область | Текущее состояние |
 |--------|-------------------|
@@ -174,7 +174,7 @@ flowchart TD
 7. [`src/components/common/Saturation.js`](../src/components/common/Saturation.js)
 8. [`src/components/common/index.js`](../src/components/common/index.js)
 
-[`src/components/common/ColorWrap.js`](../src/components/common/ColorWrap.js) вынести в отдельный шаг, потому что это HOC и он задаёт контракт для большинства экспортируемых picker-ов.
+[`src/components/common/ColorWrap.tsx`](../src/components/common/ColorWrap.tsx) вынести в отдельный шаг, потому что это HOC и он задаёт контракт для большинства экспортируемых picker-ов.
 
 ### Что важно типизировать
 
@@ -271,7 +271,7 @@ flowchart TD
   - [`src/Block.js`](../src/Block.js)
   - [`src/Chrome.js`](../src/Chrome.js)
   - и остальные корневые файлы-реэкспорты
-- Перевести [`src/index.js`](../src/index.js) в TS-совместимый entrypoint без изменения набора экспортов.
+- Перевести entrypoint пакета (исторически [`src/index.js`](../src/index.js), теперь [`src/index.ts`](../src/index.ts)) в TS-совместимый формат без изменения набора экспортов.
 - Синхронизировать [`index.d.ts`](../index.d.ts):
   - либо оставить ручной файл, но обновить типы под фактические TS-источники
   - либо заменить его на thin re-export/генерируемый entry, если сборочный пайплайн уже это позволяет без ломки package layout

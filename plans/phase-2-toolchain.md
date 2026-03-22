@@ -40,11 +40,11 @@ todos:
 - docs переведены на Vite dev/build pipeline;
 - команды и артефакты синхронизированы в `AGENTS.md`, `README.md` и верхнеуровневом [`PLAN.md`](../PLAN.md).
 
-При этом отдельные хвосты полировки вокруг docs/dev tooling больше не считаются незавершённой частью фазы 2. Они вынесены в follow-up после phase 4, чтобы не смешивать завершённую toolchain-миграцию с последующим cleanup:
+При этом отдельные хвосты полировки вокруг docs/dev tooling больше не считаются незавершённой частью фазы 2. Они были вынесены в follow-up после phase 4 и на текущий момент уже закрыты, чтобы не смешивать завершённую toolchain-миграцию с последующим cleanup:
 
-- возвращение `reactDocgen` в Storybook, если оно остаётся допустимым после ухода от legacy Babel-конфигурации;
+- возвращение `reactDocgen` в Storybook после ухода от legacy Babel-конфигурации;
 - remaining legacy cleanup в `docs/` и dev-скриптах;
-- дополнительная документация возможных DX-изменений, если они появятся.
+- синхронизация migration notes и DX-изменений в документации.
 
 Актуальный список этих хвостов ведётся в [`plans/phase-4-dependencies-and-legacy.md`](./phase-4-dependencies-and-legacy.md).
 
@@ -57,7 +57,7 @@ todos:
 - Сохраняем **`main`**, **`module`**, публикацию **полных** каталогов **`lib/`** и **`es/`** в [`files`](../package.json) — как у оригинала после Babel.
 - Сборка остаётся **пофайловой** (дерево в `lib`/`es` повторяет `src`), а не одним бандлом на всё — иначе ломаются типичные для таких пакетов **глубокие пути** и отличается содержимое tarball.
 - **`exports`** в `package.json` — не обязателен для drop-in; при добавлении проверять старые bundler’ы и deep-imports (см. [AGENTS.md](../AGENTS.md)).
-- Публичные имена экспортов из [`src/index.js`](../src/index.js) по-прежнему не менять без major ([AGENTS.md](../AGENTS.md)).
+- Публичные имена экспортов из [`src/index.ts`](../src/index.ts) по-прежнему не менять без major ([AGENTS.md](../AGENTS.md)).
 
 ## Исходная точка (что меняем)
 
@@ -69,7 +69,7 @@ todos:
 | Storybook 3 | [`.storybook/config.js`](../.storybook/config.js), `require.context`, addons |
 | Webpack 1 для доков | [webpack.config.js](../webpack.config.js), [scripts/docs-server.js](../scripts/docs-server.js) |
 
-Публичные имена экспортов из [`src/index.js`](../src/index.js) не менять ([AGENTS.md](../AGENTS.md)); артефакты `lib/` и `es/` по-прежнему только из сборки.
+Публичные имена экспортов из [`src/index.ts`](../src/index.ts) не менять ([AGENTS.md](../AGENTS.md)); артефакты `lib/` и `es/` по-прежнему только из сборки.
 
 ---
 

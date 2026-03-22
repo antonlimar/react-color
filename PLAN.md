@@ -34,7 +34,7 @@ flowchart LR
    - Назначение репозитория (форк, цели: TS, современные deps, чистка legacy).
    - Карта каталогов: `src/` — исходники библиотеки; `examples/` — примеры; `docs/` — сайт; `.storybook/` — сторибук.
    - Команды (после миграции обновить): тесты, линт, сборка пакета, сторибук, доки.
-   - **Публичный API**: перечислить экспорты из [`src/index.js`](src/index.js) и правило «не ломать имена экспортов без major и CHANGELOG».
+   - **Публичный API**: перечислить экспорты из [`src/index.ts`](src/index.ts) и правило «не ломать имена экспортов без major и CHANGELOG».
    - Ограничения: peer `react`/`react-dom`, стиль стилизации (сейчас `reactcss` + inline — не менять весь подход в одном PR).
 
 2. **`.cursor/rules/`** — несколько узких правил (формат `.mdc` с frontmatter), по рекомендациям Cursor: одна тема — один файл, **&lt; ~50 строк** где возможно:
@@ -50,7 +50,7 @@ flowchart LR
 
 ## Фаза 1 — Минимальные исправления и базовая гигиена
 
-- [x] Исправить barrel в [`src/index.js`](src/index.js): отдельные `export { default as ChromePicker }` и `export { default }` из `./components/chrome/Chrome`.
+- [x] Исправить barrel entrypoint-а (исторически [`src/index.js`](src/index.js), теперь [`src/index.ts`](src/index.ts)): отдельные `export { default as ChromePicker }` и `export { default }` из `./components/chrome/Chrome`.
 - [x] Зафиксировать решения в [`AGENTS.md`](AGENTS.md) и кратко в [`README.md`](README.md):
   - **Минимальная версия React (цель модернизации):** 16.8+; peer в `package.json` — в фазе 4.
   - **Имя пакета:** пока `react-color`; смена scope/имени — только с major и CHANGELOG.
@@ -92,7 +92,7 @@ flowchart LR
 - **React**: `peerDependencies.react` зафиксирован на `>=16.8.0`; корневые `devDependencies.react` / `react-dom` остаются на современном major для docs и Storybook. Примеры в [`examples/`](examples/) синхронизированы на `react@16.14.0` / `react-dom@16.14.0` и используют локальную зависимость `react-color: "file:../.."`.
 - **Примеры**: все example-проекты переведены на Vite, используют единые `dev` / `build` скрипты и проверяются агрегирующим `npm run examples:check`. Нижняя граница совместимости валидируется через `ReactDOM.render`, а не `createRoot`.
 - **lodash / lodash-es**: зафиксирована промежуточная стратегия без лишнего рефакторинга: path-imports в исходниках и post-build rewrite импортов на `lodash-es` для ESM-сборки.
-- **Cleanup**: прямые legacy `devDependencies` и старые toolchain-хвосты убраны из корня репозитория; в docs-части оставлены только реально используемые пакеты вроде `highlight.js` и `remarkable`.
+- **Cleanup**: прямые legacy `devDependencies` и старые toolchain-хвосты убраны из корня репозитория; в docs-части оставлены только реально используемые пакеты вроде `highlight.js` и `markdown-it`.
 - **CI**: добавлен GitHub Actions workflow в [`.github/workflows/ci.yml`](.github/workflows/ci.yml) с матрицей Node `20.x` / `24.x` и обязательными шагами `npm test`, `npm run build`, `npm run build-storybook`, `npm run docs-dist`, `npm run examples:check`, `npm run ci:artifacts`, `npm pack --dry-run`.
 - **Post-phase-3 follow-up**: `noImplicitAny` и `strictNullChecks` уже включены, permissive API для `Color` / `styles` / callback-аргументов сохранён, post-migration хвосты по `lodash`-утилитам и helper-типам дочищены, а совместимые DX-изменения и migration notes синхронизированы в [`CHANGELOG.md`](CHANGELOG.md) и [`README.md`](README.md).
 
@@ -109,7 +109,7 @@ flowchart LR
 
 ## Рекомендуемый порядок веток/итераций
 
-1. AGENTS.md + `.cursor/rules` + фикс [`src/index.js`](src/index.js).
+1. AGENTS.md + `.cursor/rules` + фикс entrypoint-а (исторически [`src/index.js`](src/index.js), теперь [`src/index.ts`](src/index.ts)).
 2. Новый сборщик + `tsconfig` + первый компилируемый пакет с `.d.ts`.
 3. Тестовый стек (Vitest + Testing Library) и миграция одного модуля как эталон.
 4. Постепенная конвертация `src/**/*.js` → `.ts`/`.tsx`.
@@ -123,7 +123,7 @@ flowchart LR
 ## Чеклист задач (дорожная карта)
 
 - [x] Добавить AGENTS.md и `.cursor/rules/*.mdc` (контекст форка, структура, API, соглашения)
-- [x] Исправить невалидный экспорт в `src/index.js` (Chrome default + ChromePicker)
+- [x] Исправить невалидный экспорт в entrypoint-е пакета (Chrome default + ChromePicker)
 - [x] Заменить Babel 6 на пофайловую сборку через `tsc` (два `tsconfig` для `lib/` и `es/`); обновить package.json (`types`; `exports` — опционально для drop-in)
 - [x] Ввести Vitest/Jest 29 + Testing Library + ESLint flat + typescript-eslint
 - [x] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
