@@ -99,7 +99,7 @@
         "cmd": "npm run docs-dist",
         "files": [
           "docs/build/bundle.js",
-          "docs/index.js"
+          "docs/index.tsx"
         ]
       }
     ]

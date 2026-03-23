@@ -45,7 +45,7 @@ module.exports = defineConfig({
     emptyOutDir: true,
     sourcemap: false,
     lib: {
-      entry: path.resolve(__dirname, 'docs/index.js'),
+      entry: path.resolve(__dirname, 'docs/index.tsx'),
       formats: ['iife'],
       name: 'ReactColorDocs',
       fileName: () => 'bundle.js',

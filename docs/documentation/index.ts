@@ -13,7 +13,7 @@ import parent from './04.01-parent.md?raw';
 import helpers from './04.02-helpers.md?raw';
 import examples from './05-examples.md?raw';
 
-export default {
+const documentation: Record<string, string> = {
   '01-about': about,
   '02-getting-started': gettingStarted,
   '02.01-install': install,
@@ -29,3 +29,5 @@ export default {
   '04.02-helpers': helpers,
   '05-examples': examples,
 };
+
+export default documentation;
