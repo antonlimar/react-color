@@ -39,12 +39,7 @@ class HomeFeature extends React.Component<HomeFeatureProps, HomeFeatureState> {
   handleChangeComplete = (data: ColorResult) => {
     const { hsl, hex } = data;
 
-    if (
-      hsl.h !== this.state.h ||
-      hsl.s !== this.state.s ||
-      hsl.l !== this.state.l ||
-      hsl.a !== this.state.a
-    ) {
+    if (hsl.h !== this.state.h || hsl.s !== this.state.s || hsl.l !== this.state.l || hsl.a !== this.state.a) {
       this.setState(hsl);
     }
 
@@ -219,14 +214,20 @@ class HomeFeature extends React.Component<HomeFeatureProps, HomeFeatureState> {
             </div>
 
             <div style={styles.heroPicker}>
-              {this.renderCard('Chrome', <ChromePicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
+              {this.renderCard(
+                'Chrome',
+                <ChromePicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+              )}
             </div>
           </div>
 
           <div style={styles.grid}>
             <div style={styles.wide}>
               <div style={styles.twoColumn}>
-                {this.renderCard('Sketch', <SketchPicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
+                {this.renderCard(
+                  'Sketch',
+                  <SketchPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+                )}
                 {this.renderCard(
                   'Photoshop',
                   <PhotoshopPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
@@ -235,11 +236,17 @@ class HomeFeature extends React.Component<HomeFeatureProps, HomeFeatureState> {
             </div>
 
             <div style={styles.medium}>
-              {this.renderCard('Slider', <SliderPicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
+              {this.renderCard(
+                'Slider',
+                <SliderPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+              )}
             </div>
 
             <div style={styles.small}>
-              {this.renderCard('Block', <BlockPicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
+              {this.renderCard(
+                'Block',
+                <BlockPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+              )}
             </div>
 
             <div style={styles.small}>
@@ -257,7 +264,10 @@ class HomeFeature extends React.Component<HomeFeatureProps, HomeFeatureState> {
             </div>
 
             <div style={styles.small}>
-              {this.renderCard('Circle', <CirclePicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
+              {this.renderCard(
+                'Circle',
+                <CirclePicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+              )}
             </div>
 
             <div style={styles.small}>
@@ -265,7 +275,10 @@ class HomeFeature extends React.Component<HomeFeatureProps, HomeFeatureState> {
             </div>
 
             <div style={styles.small}>
-              {this.renderCard('Alpha', <AlphaPicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
+              {this.renderCard(
+                'Alpha',
+                <AlphaPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+              )}
             </div>
 
             <div style={styles.small}>

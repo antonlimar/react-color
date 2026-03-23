@@ -1,35 +1,15 @@
 const path = require('path');
-const { defineConfig, transformWithOxc } = require('vite');
+const { defineConfig } = require('vite');
 const react = require('@vitejs/plugin-react');
-
-function jsxInJsPlugin() {
-  return {
-    name: 'react-color-docs-jsx-in-js',
-    enforce: 'pre',
-    async transform(code, id) {
-      if (!/\/(docs|src)\/.*\.js$/.test(id)) {
-        return null;
-      }
-
-      return transformWithOxc(code, id, {
-        lang: 'jsx',
-        jsx: {
-          runtime: 'classic',
-          refresh: true,
-        },
-      });
-    },
-  };
-}
 
 module.exports = defineConfig({
   root: path.resolve(__dirname, 'docs'),
   base: '/',
   publicDir: false,
-  plugins: [jsxInJsPlugin(), react()],
+  plugins: [react()],
   resolve: {
     alias: {
-      'react-color': path.resolve(__dirname, 'src/index.js'),
+      'react-color': path.resolve(__dirname, 'src/index.ts'),
     },
   },
   server: {

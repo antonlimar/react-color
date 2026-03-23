@@ -16,12 +16,6 @@
     "types": ["vite/client"],
     "useDefineForClassFields": false
   },
-  "include": [
-    "docs/**/*.js",
-    "docs/**/*.jsx",
-    "docs/**/*.ts",
-    "docs/**/*.tsx",
-    "docs/**/*.d.ts"
-  ],
+  "include": ["docs/**/*.js", "docs/**/*.jsx", "docs/**/*.ts", "docs/**/*.tsx", "docs/**/*.d.ts"],
   "exclude": ["node_modules", "docs/build"]
 }

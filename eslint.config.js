@@ -42,7 +42,14 @@ module.exports = defineConfig([
       '@typescript-eslint/no-unused-expressions': 'off',
       '@typescript-eslint/no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
       'no-magic-numbers': 'off',
+      'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
+    },
+  },
+  {
+    files: ['**/*.d.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
   {

@@ -41,10 +41,11 @@
 | `npm test`                             | `vitest run` + ESLint.                                                           |
 | `npm run test:unit`                    | Только unit/UI-тесты через Vitest + jsdom + Testing Library.                     |
 | `npm run test:watch`                   | Vitest в watch-режиме.                                                           |
-| `npm run eslint`                       | Линт исходников библиотеки через ESLint flat config.                             |
+| `npm run eslint`                       | Линт `src/`, `docs/` и repo tooling через ESLint flat config.                    |
 | `npm run storybook`                    | Dev Storybook 10 на порту `6006` (framework `@storybook/react-vite`).            |
 | `npm run build-storybook`              | Статическая сборка Storybook в `.out/`.                                          |
 | `npm run docs` / `npm run docs-server` | Локальный dev-сервер документации на Vite (`http://localhost:9100/`).            |
+| `npm run docs:typecheck`               | Отдельный `tsc --noEmit` проход для `docs/` через `tsconfig.docs.json`.          |
 | `npm run docs-dist`                    | Production-сборка документации через Vite в `docs/build/`.                       |
 
 ## Артефакты сборки
