@@ -4,7 +4,7 @@ overview: Поэтапный перевод runtime-кода сайта доку
 todos:
   - id: docs-tsconfig
     content: Добавить отдельный tsconfig для docs и минимальные декларации для markdown raw imports, не затрагивая library build
-    status: pending
+    status: completed
   - id: docs-entrypoints
     content: Перевести docs entrypoints и registry-модули на .ts/.tsx с сохранением текущего Vite pipeline
     status: pending
@@ -141,7 +141,7 @@ todos:
 
 ## Todo
 
-- [ ] **docs-tsconfig** — Добавить отдельный `tsconfig` для docs и минимальные декларации для markdown raw imports, не затрагивая library build
+- [x] **docs-tsconfig** — Добавить отдельный `tsconfig` для docs и минимальные декларации для markdown raw imports, не затрагивая library build
 - [ ] **docs-entrypoints** — Перевести docs entrypoints и registry-модули на `.ts` / `.tsx` с сохранением текущего Vite pipeline
 - [ ] **docs-components** — Перевести `docs/components` и `docs/examples` на TypeScript, зафиксировать типы props и локальных state
 - [ ] **docs-tooling** — Подключить отдельный typecheck docs в scripts/CI и синхронизировать документацию по командам при необходимости
