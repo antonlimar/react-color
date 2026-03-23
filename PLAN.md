@@ -100,6 +100,20 @@ flowchart LR
 
 ---
 
+## Фаза 5 — Миграция `docs/` на TypeScript
+
+Статус: запланировано как отдельный follow-up после завершения основной модернизации `src`, toolchain и legacy cleanup.
+
+- Цель фазы: перевести runtime-код документационного сайта в [`docs/`](docs/) на TypeScript без изменения drop-in API пакета и без смешивания этой работы с library build для `lib/` / `es/`.
+- Область: [`docs/index.js`](docs/index.js), [`docs/documentation/index.js`](docs/documentation/index.js), [`docs/components/`](docs/components/), [`docs/examples/`](docs/examples/); markdown, ассеты и [`docs/build/`](docs/build/) в scope не входят.
+- Первый шаг: ввести отдельный `tsconfig` и docs-specific typecheck, потому что текущий [`tsconfig.json`](tsconfig.json) покрывает только `src/**`.
+- После этого: поэтапно перевести entrypoints, markdown registry, общий markdown runtime и home/examples-компоненты на `.ts` / `.tsx`.
+- После завершения миграции: проверить, нужен ли ещё `jsxInJsPlugin()` в [`vite.docs.config.js`](vite.docs.config.js), и при необходимости убрать его как технический долг.
+
+Подробный план ведётся в [`plans/phase-5-docs-typescript.md`](plans/phase-5-docs-typescript.md).
+
+---
+
 ## Риски и порядок работ
 
 - **Большой взрывной PR** нежелателен: лучше «зелёный main» после фазы 0–1, затем toolchain, затем TS по папкам с сохранением тестов на поведение.
@@ -115,7 +129,8 @@ flowchart LR
 4. Постепенная конвертация `src/**/*.js` → `.ts`/`.tsx`.
 5. Storybook и docs на современном bundler.
    На Storybook держать отдельный хвост: если для совместимости временно отключён `reactDocgen`, включить его обратно после удаления legacy Babel 6-конфига.
-6. Follow-up после phase 4: дальнейшие ужесточения сверх `strictNullChecks` и любые новые несовместимости документировать отдельными маленькими шагами.
+6. Фаза 5: перевести runtime-код `docs/` на TypeScript с отдельным `tsconfig` и docs typecheck, не затрагивая drop-in контракт пакета.
+7. Follow-up после phase 5: дальнейшие ужесточения сверх `strictNullChecks` и любые новые несовместимости документировать отдельными маленькими шагами.
    Актуальный статус этого хвоста и уже закрытых задач ведётся в [`plans/phase-4-dependencies-and-legacy.md`](plans/phase-4-dependencies-and-legacy.md).
 
 ---
@@ -130,3 +145,4 @@ flowchart LR
 - [x] Обновить Storybook и пайплайн docs (убрать Webpack 1); после удаления legacy Babel вернуть `reactDocgen`, если он был временно отключён
 - [x] Обновить peer deps, почистить devDependencies, примеры, CI
 - [x] Усилить TS-строгость и закрыть текущий follow-up cleanup legacy в docs/dev tooling; migration notes синхронизированы в `CHANGELOG.md`, `README.md` и `plans/phase-4-dependencies-and-legacy.md`
+- [ ] Перевести runtime-код `docs/` на `.ts`/`.tsx`, ввести отдельный docs typecheck и закрыть оставшийся JS-only хвост документационного приложения
