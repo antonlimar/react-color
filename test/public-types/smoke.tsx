@@ -60,6 +60,8 @@ void elements;
 
 // @ts-expect-error boolean is not a valid public `color` prop
 const invalidSketchProps: ComponentProps<typeof SketchPicker> = { color: false };
+void invalidSketchProps;
 
 // @ts-expect-error public wrapped picker should preserve the same `color` contract
 const invalidWrappedPicker = <WrappedPicker color={false} />;
+void invalidWrappedPicker;
