@@ -1,14 +1,14 @@
-import React from 'react'
-import reactCSS from 'reactcss'
+import React from 'react';
+import reactCSS from 'reactcss';
 
-import { EditableInput } from '../common'
-import type { ColorChangeValue, ColorPickerChangeEvent, RGBAColor } from '../../types'
+import { EditableInput } from '../common';
+import type { ColorChangeValue, ColorPickerChangeEvent, RGBAColor } from '../../types';
 
 type CompactFieldsProps = {
-  hex: string
-  rgb: RGBAColor
-  onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void
-}
+  hex: string;
+  rgb: RGBAColor;
+  onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
+};
 
 export const CompactFields = ({ hex, rgb, onChange }: CompactFieldsProps) => {
   const styles = reactCSS({
@@ -70,53 +70,59 @@ export const CompactFields = ({ hex, rgb, onChange }: CompactFieldsProps) => {
         color: '#999',
       },
     },
-  })
+  });
 
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {
     if (data.r || data.g || data.b) {
-      onChange({
-        r: data.r || rgb.r,
-        g: data.g || rgb.g,
-        b: data.b || rgb.b,
-        source: 'rgb',
-      }, event)
+      onChange(
+        {
+          r: data.r || rgb.r,
+          g: data.g || rgb.g,
+          b: data.b || rgb.b,
+          source: 'rgb',
+        },
+        event,
+      );
     } else {
-      onChange({
-        hex: data.hex,
-        source: 'hex',
-      }, event)
+      onChange(
+        {
+          hex: data.hex,
+          source: 'hex',
+        },
+        event,
+      );
     }
-  }
+  };
 
   return (
-    <div style={ styles.fields } className="flexbox-fix">
-      <div style={ styles.active } />
+    <div style={styles.fields} className="flexbox-fix">
+      <div style={styles.active} />
       <EditableInput
         style={{ wrap: styles.HEXwrap, input: styles.HEXinput, label: styles.HEXlabel }}
         label="hex"
-        value={ hex }
-        onChange={ (value, event) => handleChange(value as ColorChangeValue, event) }
+        value={hex}
+        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
       />
       <EditableInput
         style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
         label="r"
-        value={ rgb.r }
-        onChange={ (value, event) => handleChange(value as ColorChangeValue, event) }
+        value={rgb.r}
+        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
       />
       <EditableInput
         style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
         label="g"
-        value={ rgb.g }
-        onChange={ (value, event) => handleChange(value as ColorChangeValue, event) }
+        value={rgb.g}
+        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
       />
       <EditableInput
         style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
         label="b"
-        value={ rgb.b }
-        onChange={ (value, event) => handleChange(value as ColorChangeValue, event) }
+        value={rgb.b}
+        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
       />
     </div>
-  )
-}
+  );
+};
 
-export default CompactFields
+export default CompactFields;

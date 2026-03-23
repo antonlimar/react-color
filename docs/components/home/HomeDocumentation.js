@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
-import React from 'react'
-import reactCSS from 'reactcss'
+import React from 'react';
+import reactCSS from 'reactcss';
 
-import documentation from '../../documentation'
-import { MarkdownBlock, MarkdownDocument } from '../common/MarkdownBlock'
-import { Button, buttonmd, Sketch, sketchmd } from '../../examples'
+import documentation from '../../documentation';
+import { MarkdownBlock, MarkdownDocument } from '../common/MarkdownBlock';
+import { Button, buttonmd, Sketch, sketchmd } from '../../examples';
 
 class HomeDocumentation extends React.Component {
   render() {
@@ -130,94 +130,93 @@ class HomeDocumentation extends React.Component {
           position: 'static',
         },
       },
-    })
+    });
 
-    const sections = Object.entries(documentation)
+    const sections = Object.entries(documentation);
     const navItems = sections
       .map(([, document]) => {
-        const match = document.match(/^---\n([\s\S]*?)\n---/)
+        const match = document.match(/^---\n([\s\S]*?)\n---/);
 
         if (!match) {
-          return null
+          return null;
         }
 
         const frontmatter = match[1].split('\n').reduce((result, line) => {
-          const separatorIndex = line.indexOf(':')
+          const separatorIndex = line.indexOf(':');
 
           if (separatorIndex === -1) {
-            return result
+            return result;
           }
 
           return {
             ...result,
             [line.slice(0, separatorIndex).trim()]: line.slice(separatorIndex + 1).trim(),
-          }
-        }, {})
+          };
+        }, {});
 
         if (!frontmatter.id || !frontmatter.title) {
-          return null
+          return null;
         }
 
-        return frontmatter
+        return frontmatter;
       })
-      .filter(Boolean)
+      .filter(Boolean);
 
     return (
-      <div style={ styles.body }>
-        <div style={ styles.container }>
-          <div style={ styles.layout }>
-            <div style={ styles.docsPanel }>
-              { sections.map(([key, document]) => (
+      <div style={styles.body}>
+        <div style={styles.container}>
+          <div style={styles.layout}>
+            <div style={styles.docsPanel}>
+              {sections.map(([key, document]) => (
                 <MarkdownDocument
-                  key={ key }
-                  document={ document }
-                  wrapperStyle={ styles.section }
-                  headingStyle={ styles.heading }
-                  contentStyle={ styles.markdown }
+                  key={key}
+                  document={document}
+                  wrapperStyle={styles.section}
+                  headingStyle={styles.heading}
+                  contentStyle={styles.markdown}
                 />
-              )) }
+              ))}
             </div>
 
-            <div style={ styles.sidebar }>
-              <div style={ styles.card }>
-                <div style={ styles.navTitle }>Documentation</div>
-                <ul style={ styles.navList }>
-                  { navItems.map((item) => (
-                    <li key={ item.id }>
-                      <a href={ `#${ item.id }` } style={ styles.navLink }>{ item.title }</a>
+            <div style={styles.sidebar}>
+              <div style={styles.card}>
+                <div style={styles.navTitle}>Documentation</div>
+                <ul style={styles.navList}>
+                  {navItems.map((item) => (
+                    <li key={item.id}>
+                      <a href={`#${item.id}`} style={styles.navLink}>
+                        {item.title}
+                      </a>
                     </li>
-                  )) }
+                  ))}
                 </ul>
               </div>
 
-              <div style={ styles.card }>
-                <div style={ styles.example }>
-                  <h3 style={ styles.exampleTitle }>Button Example</h3>
-                  <div style={ styles.playground }>
-                    <div style={ styles.exampleButton }>
+              <div style={styles.card}>
+                <div style={styles.example}>
+                  <h3 style={styles.exampleTitle}>Button Example</h3>
+                  <div style={styles.playground}>
+                    <div style={styles.exampleButton}>
                       <Button />
                     </div>
                   </div>
-                  <MarkdownBlock style={ styles.code }>{ buttonmd }</MarkdownBlock>
+                  <MarkdownBlock style={styles.code}>{buttonmd}</MarkdownBlock>
                 </div>
 
                 <div>
-                  <h3 style={ styles.exampleTitle }>Sketch Example</h3>
-                  <div style={ styles.playground }>
-                    <div style={ styles.exampleSketch }>
+                  <h3 style={styles.exampleTitle}>Sketch Example</h3>
+                  <div style={styles.playground}>
+                    <div style={styles.exampleSketch}>
                       <Sketch />
                     </div>
                   </div>
-                  <MarkdownBlock style={ styles.code }>{ sketchmd }</MarkdownBlock>
+                  <MarkdownBlock style={styles.code}>{sketchmd}</MarkdownBlock>
                 </div>
               </div>
 
-              <div style={ styles.card }>
-                <div style={ styles.navTitle }>Repository</div>
-                <a
-                  href="https://github.com/casesandberg/react-color"
-                  style={ styles.repoLink }
-                >
+              <div style={styles.card}>
+                <div style={styles.navTitle}>Repository</div>
+                <a href="https://github.com/casesandberg/react-color" style={styles.repoLink}>
                   casesandberg/react-color
                 </a>
               </div>
@@ -225,8 +224,8 @@ class HomeDocumentation extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default HomeDocumentation
+export default HomeDocumentation;

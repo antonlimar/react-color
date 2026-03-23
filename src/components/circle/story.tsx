@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import Circle from './Circle'
-import { renderPickerStory } from '../../../.storybook/renderPickerStory'
+import Circle from './Circle';
+import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {
   title: 'Pickers',
@@ -24,16 +24,33 @@ export default {
       control: 'object',
     },
   },
-}
+};
 
 export const CirclePicker = {
   args: {
     width: 252,
     circleSize: 28,
     circleSpacing: 14,
-    colors: ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3',
-      '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39',
-      '#FFEB3B', '#FFC107', '#FF9800', '#FF5722', '#795548', '#607D8B'],
+    colors: [
+      '#F44336',
+      '#E91E63',
+      '#9C27B0',
+      '#673AB7',
+      '#3F51B5',
+      '#2196F3',
+      '#03A9F4',
+      '#00BCD4',
+      '#009688',
+      '#4CAF50',
+      '#8BC34A',
+      '#CDDC39',
+      '#FFEB3B',
+      '#FFC107',
+      '#FF9800',
+      '#FF5722',
+      '#795548',
+      '#607D8B',
+    ],
     styles: {},
   },
-}
+};

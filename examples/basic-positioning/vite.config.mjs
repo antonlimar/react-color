@@ -1,7 +1,7 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { createExampleConfig } from '../vite.shared.mjs'
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createExampleConfig } from '../vite.shared.mjs';
 
-const exampleDir = path.dirname(fileURLToPath(import.meta.url))
+const exampleDir = path.dirname(fileURLToPath(import.meta.url));
 
-export default createExampleConfig({ exampleDir })
+export default createExampleConfig({ exampleDir });

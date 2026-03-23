@@ -6,6 +6,6 @@ const preview = {
       expanded: true,
     },
   },
-}
+};
 
-module.exports = preview
+module.exports = preview;

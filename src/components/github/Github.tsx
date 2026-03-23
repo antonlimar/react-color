@@ -1,19 +1,19 @@
-import React from 'react'
-import reactCSS from 'reactcss'
-import map from 'lodash/map'
-import merge from 'lodash/merge'
+import React from 'react';
+import reactCSS from 'reactcss';
+import map from 'lodash/map';
+import merge from 'lodash/merge';
 
-import { ColorWrap } from '../common'
-import GithubSwatch from './GithubSwatch'
-import type { ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types'
+import { ColorWrap } from '../common';
+import GithubSwatch from './GithubSwatch';
+import type { ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types';
 
 type GithubProps = ColorPickerInjectedProps & {
-  width?: string | number
-  colors?: string[]
-  triangle?: 'hide' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
-  styles?: PickerCustomStyles
-  className?: ClassName
-}
+  width?: string | number;
+  colors?: string[];
+  triangle?: 'hide' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  styles?: PickerCustomStyles;
+  className?: ClassName;
+};
 
 export const Github = ({
   width,
@@ -24,112 +24,134 @@ export const Github = ({
   styles: passedStyles = {},
   className = '',
 }: GithubProps) => {
-  const styles = reactCSS(merge({
-    default: {
-      card: {
-        width,
-        background: '#fff',
-        border: '1px solid rgba(0,0,0,0.2)',
-        boxShadow: '0 3px 12px rgba(0,0,0,0.15)',
-        borderRadius: '4px',
-        position: 'relative',
-        padding: '5px',
-        display: 'flex',
-        flexWrap: 'wrap',
+  const styles = reactCSS(
+    merge(
+      {
+        default: {
+          card: {
+            width,
+            background: '#fff',
+            border: '1px solid rgba(0,0,0,0.2)',
+            boxShadow: '0 3px 12px rgba(0,0,0,0.15)',
+            borderRadius: '4px',
+            position: 'relative',
+            padding: '5px',
+            display: 'flex',
+            flexWrap: 'wrap',
+          },
+          triangle: {
+            position: 'absolute',
+            border: '7px solid transparent',
+            borderBottomColor: '#fff',
+          },
+          triangleShadow: {
+            position: 'absolute',
+            border: '8px solid transparent',
+            borderBottomColor: 'rgba(0,0,0,0.15)',
+          },
+        },
+        'hide-triangle': {
+          triangle: {
+            display: 'none',
+          },
+          triangleShadow: {
+            display: 'none',
+          },
+        },
+        'top-left-triangle': {
+          triangle: {
+            top: '-14px',
+            left: '10px',
+          },
+          triangleShadow: {
+            top: '-16px',
+            left: '9px',
+          },
+        },
+        'top-right-triangle': {
+          triangle: {
+            top: '-14px',
+            right: '10px',
+          },
+          triangleShadow: {
+            top: '-16px',
+            right: '9px',
+          },
+        },
+        'bottom-left-triangle': {
+          triangle: {
+            top: '35px',
+            left: '10px',
+            transform: 'rotate(180deg)',
+          },
+          triangleShadow: {
+            top: '37px',
+            left: '9px',
+            transform: 'rotate(180deg)',
+          },
+        },
+        'bottom-right-triangle': {
+          triangle: {
+            top: '35px',
+            right: '10px',
+            transform: 'rotate(180deg)',
+          },
+          triangleShadow: {
+            top: '37px',
+            right: '9px',
+            transform: 'rotate(180deg)',
+          },
+        },
       },
-      triangle: {
-        position: 'absolute',
-        border: '7px solid transparent',
-        borderBottomColor: '#fff',
-      },
-      triangleShadow: {
-        position: 'absolute',
-        border: '8px solid transparent',
-        borderBottomColor: 'rgba(0,0,0,0.15)',
-      },
+      passedStyles,
+    ),
+    {
+      'hide-triangle': triangle === 'hide',
+      'top-left-triangle': triangle === 'top-left',
+      'top-right-triangle': triangle === 'top-right',
+      'bottom-left-triangle': triangle === 'bottom-left',
+      'bottom-right-triangle': triangle === 'bottom-right',
     },
-    'hide-triangle': {
-      triangle: {
-        display: 'none',
-      },
-      triangleShadow: {
-        display: 'none',
-      },
-    },
-    'top-left-triangle': {
-      triangle: {
-        top: '-14px',
-        left: '10px',
-      },
-      triangleShadow: {
-        top: '-16px',
-        left: '9px',
-      },
-    },
-    'top-right-triangle': {
-      triangle: {
-        top: '-14px',
-        right: '10px',
-      },
-      triangleShadow: {
-        top: '-16px',
-        right: '9px',
-      },
-    },
-    'bottom-left-triangle': {
-      triangle: {
-        top: '35px',
-        left: '10px',
-        transform: 'rotate(180deg)',
-      },
-      triangleShadow: {
-        top: '37px',
-        left: '9px',
-        transform: 'rotate(180deg)',
-      },
-    },
-    'bottom-right-triangle': {
-      triangle: {
-        top: '35px',
-        right: '10px',
-        transform: 'rotate(180deg)',
-      },
-      triangleShadow: {
-        top: '37px',
-        right: '9px',
-        transform: 'rotate(180deg)',
-      },
-    },
-  }, passedStyles), {
-    'hide-triangle': triangle === 'hide',
-    'top-left-triangle': triangle === 'top-left',
-    'top-right-triangle': triangle === 'top-right',
-    'bottom-left-triangle': triangle === 'bottom-left',
-    'bottom-right-triangle': triangle === 'bottom-right',
-  })
+  );
 
   return (
-    <div style={ styles.card } className={ `github-picker ${className}` }>
-      <div style={ styles.triangleShadow } />
-      <div style={ styles.triangle } />
-      { map(colors, (colorValue: string) => (
+    <div style={styles.card} className={`github-picker ${className}`}>
+      <div style={styles.triangleShadow} />
+      <div style={styles.triangle} />
+      {map(colors, (colorValue: string) => (
         <GithubSwatch
-          color={ colorValue }
-          key={ colorValue }
-          onClick={ (hexCode, event) => onChange({ hex: hexCode, source: 'hex' }, event) }
-          onSwatchHover={ onSwatchHover }
+          color={colorValue}
+          key={colorValue}
+          onClick={(hexCode, event) => onChange({ hex: hexCode, source: 'hex' }, event)}
+          onSwatchHover={onSwatchHover}
         />
-      )) }
+      ))}
     </div>
-  )
-}
+  );
+};
 
 Github.defaultProps = {
   width: 200,
-  colors: ['#B80000', '#DB3E00', '#FCCB00', '#008B02', '#006B76', '#1273DE', '#004DCF', '#5300EB',
-    '#EB9694', '#FAD0C3', '#FEF3BD', '#C1E1C5', '#BEDADC', '#C4DEF6', '#BED3F3', '#D4C4FB'],
+  colors: [
+    '#B80000',
+    '#DB3E00',
+    '#FCCB00',
+    '#008B02',
+    '#006B76',
+    '#1273DE',
+    '#004DCF',
+    '#5300EB',
+    '#EB9694',
+    '#FAD0C3',
+    '#FEF3BD',
+    '#C1E1C5',
+    '#BEDADC',
+    '#C4DEF6',
+    '#BED3F3',
+    '#D4C4FB',
+  ],
   triangle: 'top-left',
   styles: {},
-}
+};
 
-export default ColorWrap(Github)
+export default ColorWrap(Github);

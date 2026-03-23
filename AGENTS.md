@@ -22,39 +22,39 @@
 
 ## Карта каталогов
 
-| Путь | Назначение |
-|------|------------|
-| `src/` | Исходники библиотеки (компоненты, хелперы, точка входа `index.ts`). |
-| `examples/` | Отдельные мини-приложения-примеры; не публикуются как часть npm-пакета. |
-| `docs/` | Сайт документации (сборка через скрипты из `package.json`). |
-| `.storybook/` | Конфигурация Storybook для визуальной разработки историй. |
+| Путь          | Назначение                                                              |
+| ------------- | ----------------------------------------------------------------------- |
+| `src/`        | Исходники библиотеки (компоненты, хелперы, точка входа `index.ts`).     |
+| `examples/`   | Отдельные мини-приложения-примеры; не публикуются как часть npm-пакета. |
+| `docs/`       | Сайт документации (сборка через скрипты из `package.json`).             |
+| `.storybook/` | Конфигурация Storybook для визуальной разработки историй.               |
 
 Сгенерированные артефакты **`lib/`** (CJS) и **`es/`** (ESM) не править вручную — только через скрипты сборки.
 
 ## Команды
 
-| Команда | Назначение |
-|---------|------------|
-| `npm run build` | Полная сборка пакета: `lib/` (CJS) + `es/` (ESM). |
-| `npm run lib` | `tsc`-сборка `src/` → `lib/` (CommonJS, пофайлово). |
-| `npm run es` | `tsc`-сборка `src/` → `es/` (ESM, пофайлово) + перепись импортов на `lodash-es`. |
-| `npm test` | `vitest run` + ESLint. |
-| `npm run test:unit` | Только unit/UI-тесты через Vitest + jsdom + Testing Library. |
-| `npm run test:watch` | Vitest в watch-режиме. |
-| `npm run eslint` | Линт исходников библиотеки через ESLint flat config. |
-| `npm run storybook` | Dev Storybook 10 на порту `6006` (framework `@storybook/react-vite`). |
-| `npm run build-storybook` | Статическая сборка Storybook в `.out/`. |
-| `npm run docs` / `npm run docs-server` | Локальный dev-сервер документации на Vite (`http://localhost:9100/`). |
-| `npm run docs-dist` | Production-сборка документации через Vite в `docs/build/`. |
+| Команда                                | Назначение                                                                       |
+| -------------------------------------- | -------------------------------------------------------------------------------- |
+| `npm run build`                        | Полная сборка пакета: `lib/` (CJS) + `es/` (ESM).                                |
+| `npm run lib`                          | `tsc`-сборка `src/` → `lib/` (CommonJS, пофайлово).                              |
+| `npm run es`                           | `tsc`-сборка `src/` → `es/` (ESM, пофайлово) + перепись импортов на `lodash-es`. |
+| `npm test`                             | `vitest run` + ESLint.                                                           |
+| `npm run test:unit`                    | Только unit/UI-тесты через Vitest + jsdom + Testing Library.                     |
+| `npm run test:watch`                   | Vitest в watch-режиме.                                                           |
+| `npm run eslint`                       | Линт исходников библиотеки через ESLint flat config.                             |
+| `npm run storybook`                    | Dev Storybook 10 на порту `6006` (framework `@storybook/react-vite`).            |
+| `npm run build-storybook`              | Статическая сборка Storybook в `.out/`.                                          |
+| `npm run docs` / `npm run docs-server` | Локальный dev-сервер документации на Vite (`http://localhost:9100/`).            |
+| `npm run docs-dist`                    | Production-сборка документации через Vite в `docs/build/`.                       |
 
 ## Артефакты сборки
 
-| Путь | Назначение |
-|------|------------|
-| `lib/` | Пофайловая CommonJS-сборка библиотеки; публикуется в npm и поддерживает deep imports. |
-| `es/` | Пофайловая ESM-сборка библиотеки; публикуется в npm и поддерживает deep imports. |
-| `index.d.ts` | Корневая точка входа для типов пакета (`types` в `package.json`). |
-| `.out/` | Статическая сборка Storybook для визуальной проверки и публикации превью. |
+| Путь          | Назначение                                                                                |
+| ------------- | ----------------------------------------------------------------------------------------- |
+| `lib/`        | Пофайловая CommonJS-сборка библиотеки; публикуется в npm и поддерживает deep imports.     |
+| `es/`         | Пофайловая ESM-сборка библиотеки; публикуется в npm и поддерживает deep imports.          |
+| `index.d.ts`  | Корневая точка входа для типов пакета (`types` в `package.json`).                         |
+| `.out/`       | Статическая сборка Storybook для визуальной проверки и публикации превью.                 |
 | `docs/build/` | Production-бандл сайта документации, включая `docs/build/bundle.js` для `payload.builds`. |
 
 ## Публичный API (имена экспортов — договор с потребителями npm)

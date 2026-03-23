@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import Swatches from './Swatches'
-import { renderPickerStory } from '../../../.storybook/renderPickerStory'
+import Swatches from './Swatches';
+import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {
   title: 'Pickers',
@@ -21,7 +21,7 @@ export default {
       control: 'object',
     },
   },
-}
+};
 
 export const SwatchesPicker = {
   args: {
@@ -50,4 +50,4 @@ export const SwatchesPicker = {
     ],
     styles: {},
   },
-}
+};

@@ -4,9 +4,9 @@
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
 
-* **13 Different Pickers** - Sketch, Photoshop, Chrome and many more
+- **13 Different Pickers** - Sketch, Photoshop, Chrome and many more
 
-* **Make Your Own** - Use the building block components to make your own
+- **Make Your Own** - Use the building block components to make your own
 
 ## Fork development
 
@@ -24,16 +24,16 @@ This tree is maintained as a modernization fork. Source layout, npm export names
 
 The modernization branch now uses a TypeScript-based dual emit for package builds, Vitest for tests, Storybook 10 for component work, and Vite for docs.
 
-| Command | Purpose |
-|---------|---------|
-| `npm run build` | Build both published outputs: `lib/` (CJS) and `es/` (ESM). |
-| `npm test` | Run Vitest test suite and ESLint. |
-| `npm run test:watch` | Start Vitest in watch mode. |
-| `npm run eslint` | Lint the library sources with the flat ESLint config. |
-| `npm run storybook` | Start Storybook on port `6006`. |
-| `npm run build-storybook` | Emit the static Storybook site to `.out/`. |
-| `npm run docs` | Start the Vite-powered docs server on `http://localhost:9100/`. |
-| `npm run docs-dist` | Build the docs bundle into `docs/build/`. |
+| Command                   | Purpose                                                         |
+| ------------------------- | --------------------------------------------------------------- |
+| `npm run build`           | Build both published outputs: `lib/` (CJS) and `es/` (ESM).     |
+| `npm test`                | Run Vitest test suite and ESLint.                               |
+| `npm run test:watch`      | Start Vitest in watch mode.                                     |
+| `npm run eslint`          | Lint the library sources with the flat ESLint config.           |
+| `npm run storybook`       | Start Storybook on port `6006`.                                 |
+| `npm run build-storybook` | Emit the static Storybook site to `.out/`.                      |
+| `npm run docs`            | Start the Vite-powered docs server on `http://localhost:9100/`. |
+| `npm run docs-dist`       | Build the docs bundle into `docs/build/`.                       |
 
 Published package artifacts stay drop-in compatible with upstream expectations: `main` points to `lib/index.js`, `module` points to `es/index.js`, full `lib/` and `es/` trees remain in the package for deep imports, and root typings are exposed via `index.d.ts`.
 
@@ -52,16 +52,16 @@ npm install react-color --save
 ### Include the Component
 
 ```js
-import React from 'react'
-import { SketchPicker } from 'react-color'
+import React from 'react';
+import { SketchPicker } from 'react-color';
 
 class Component extends React.Component {
-
   render() {
-    return <SketchPicker />
+    return <SketchPicker />;
   }
 }
 ```
+
 You can import `AlphaPicker` `BlockPicker` `ChromePicker` `CirclePicker` `CompactPicker` `GithubPicker` `HuePicker` `MaterialPicker` `PhotoshopPicker` `SketchPicker` `SliderPicker` `SwatchesPicker` `TwitterPicker` respectively.
 
 > 100% inline styles via [ReactCSS](http://reactcss.com/)

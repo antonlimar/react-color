@@ -1,9 +1,9 @@
-import React from 'react'
-import reactCSS from 'reactcss'
-import merge from 'lodash/merge'
-import * as color from '../../helpers/color'
+import React from 'react';
+import reactCSS from 'reactcss';
+import merge from 'lodash/merge';
+import * as color from '../../helpers/color';
 
-import { ColorWrap, EditableInput, Raised } from '../common'
+import { ColorWrap, EditableInput, Raised } from '../common';
 import type {
   ClassName,
   ColorChangeValue,
@@ -11,12 +11,12 @@ import type {
   ColorPickerChangeEvent,
   ColorPickerInjectedProps,
   PickerCustomStyles,
-} from '../../types'
+} from '../../types';
 
 type MaterialProps = ColorPickerInjectedProps & {
-  styles?: PickerCustomStyles
-  className?: ClassName
-}
+  styles?: PickerCustomStyles;
+  className?: ClassName;
+};
 
 const handleMaterialChange = (
   onChange: ColorInputChangeHandler,
@@ -26,133 +26,138 @@ const handleMaterialChange = (
 ) => {
   if (data.hex) {
     if (color.isValidHex(data.hex)) {
-      onChange({
-        hex: data.hex,
-        source: 'hex',
-      }, event)
+      onChange(
+        {
+          hex: data.hex,
+          source: 'hex',
+        },
+        event,
+      );
     }
   } else if (data.r || data.g || data.b) {
-    onChange({
-      r: data.r || rgb.r,
-      g: data.g || rgb.g,
-      b: data.b || rgb.b,
-      source: 'rgb',
-    }, event)
+    onChange(
+      {
+        r: data.r || rgb.r,
+        g: data.g || rgb.g,
+        b: data.b || rgb.b,
+        source: 'rgb',
+      },
+      event,
+    );
   }
-}
+};
 
-export const Material = ({
-  onChange,
-  hex,
-  rgb,
-  styles: passedStyles = {},
-  className = '',
-}: MaterialProps) => {
-  const styles = reactCSS(merge({
-    default: {
-      material: {
-        width: '98px',
-        height: '98px',
-        padding: '16px',
-        fontFamily: 'Roboto',
+export const Material = ({ onChange, hex, rgb, styles: passedStyles = {}, className = '' }: MaterialProps) => {
+  const styles = reactCSS(
+    merge(
+      {
+        default: {
+          material: {
+            width: '98px',
+            height: '98px',
+            padding: '16px',
+            fontFamily: 'Roboto',
+          },
+          HEXwrap: {
+            position: 'relative',
+          },
+          HEXinput: {
+            width: '100%',
+            marginTop: '12px',
+            fontSize: '15px',
+            color: '#333',
+            padding: '0px',
+            border: '0px',
+            borderBottom: `2px solid ${hex}`,
+            outline: 'none',
+            height: '30px',
+          },
+          HEXlabel: {
+            position: 'absolute',
+            top: '0px',
+            left: '0px',
+            fontSize: '11px',
+            color: '#999999',
+            textTransform: 'capitalize',
+          },
+          Hex: {
+            style: {},
+          },
+          RGBwrap: {
+            position: 'relative',
+          },
+          RGBinput: {
+            width: '100%',
+            marginTop: '12px',
+            fontSize: '15px',
+            color: '#333',
+            padding: '0px',
+            border: '0px',
+            borderBottom: '1px solid #eee',
+            outline: 'none',
+            height: '30px',
+          },
+          RGBlabel: {
+            position: 'absolute',
+            top: '0px',
+            left: '0px',
+            fontSize: '11px',
+            color: '#999999',
+            textTransform: 'capitalize',
+          },
+          split: {
+            display: 'flex',
+            marginRight: '-10px',
+            paddingTop: '11px',
+          },
+          third: {
+            flex: '1',
+            paddingRight: '10px',
+          },
+        },
       },
-      HEXwrap: {
-        position: 'relative',
-      },
-      HEXinput: {
-        width: '100%',
-        marginTop: '12px',
-        fontSize: '15px',
-        color: '#333',
-        padding: '0px',
-        border: '0px',
-        borderBottom: `2px solid ${hex}`,
-        outline: 'none',
-        height: '30px',
-      },
-      HEXlabel: {
-        position: 'absolute',
-        top: '0px',
-        left: '0px',
-        fontSize: '11px',
-        color: '#999999',
-        textTransform: 'capitalize',
-      },
-      Hex: {
-        style: {},
-      },
-      RGBwrap: {
-        position: 'relative',
-      },
-      RGBinput: {
-        width: '100%',
-        marginTop: '12px',
-        fontSize: '15px',
-        color: '#333',
-        padding: '0px',
-        border: '0px',
-        borderBottom: '1px solid #eee',
-        outline: 'none',
-        height: '30px',
-      },
-      RGBlabel: {
-        position: 'absolute',
-        top: '0px',
-        left: '0px',
-        fontSize: '11px',
-        color: '#999999',
-        textTransform: 'capitalize',
-      },
-      split: {
-        display: 'flex',
-        marginRight: '-10px',
-        paddingTop: '11px',
-      },
-      third: {
-        flex: '1',
-        paddingRight: '10px',
-      },
-    },
-  }, passedStyles))
+      passedStyles,
+    ),
+  );
 
   return (
-    <Raised styles={ passedStyles }>
-      <div style={ styles.material } className={ `material-picker ${className}` }>
+    <Raised styles={passedStyles}>
+      <div style={styles.material} className={`material-picker ${className}`}>
         <EditableInput
           style={{ wrap: styles.HEXwrap, input: styles.HEXinput, label: styles.HEXlabel }}
           label="hex"
-          value={ hex }
-          onChange={ (value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event) }
+          value={hex}
+          onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
         />
-        <div style={ styles.split } className="flexbox-fix">
-          <div style={ styles.third }>
+        <div style={styles.split} className="flexbox-fix">
+          <div style={styles.third}>
             <EditableInput
               style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
               label="r"
-              value={ rgb.r }
-              onChange={ (value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event) }
+              value={rgb.r}
+              onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
             />
           </div>
-          <div style={ styles.third }>
+          <div style={styles.third}>
             <EditableInput
               style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
               label="g"
-              value={ rgb.g }
-              onChange={ (value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event) }
+              value={rgb.g}
+              onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
             />
           </div>
-          <div style={ styles.third }>
+          <div style={styles.third}>
             <EditableInput
               style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
               label="b"
-              value={ rgb.b }
-              onChange={ (value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event) }
+              value={rgb.b}
+              onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
             />
           </div>
         </div>
       </div>
     </Raised>
-  )
-}
+  );
+};
 
-export default ColorWrap(Material)
+export default ColorWrap(Material);

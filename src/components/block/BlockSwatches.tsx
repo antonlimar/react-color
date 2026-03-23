@@ -1,15 +1,15 @@
-import React from 'react'
-import reactCSS from 'reactcss'
-import map from 'lodash/map'
+import React from 'react';
+import reactCSS from 'reactcss';
+import map from 'lodash/map';
 
-import { Swatch } from '../common'
-import type { SwatchHoverHandler } from '../../types'
+import { Swatch } from '../common';
+import type { SwatchHoverHandler } from '../../types';
 
 type BlockSwatchesProps = {
-  colors: string[]
-  onClick: (color: string, event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => void
-  onSwatchHover?: SwatchHoverHandler
-}
+  colors: string[];
+  onClick: (color: string, event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => void;
+  onSwatchHover?: SwatchHoverHandler;
+};
 
 export const BlockSwatches = ({ colors, onClick, onSwatchHover }: BlockSwatchesProps) => {
   const styles = reactCSS({
@@ -29,25 +29,25 @@ export const BlockSwatches = ({ colors, onClick, onSwatchHover }: BlockSwatchesP
         clear: 'both',
       },
     },
-  })
+  });
 
   return (
-    <div style={ styles.swatches }>
-      { map(colors, (colorValue: string) => (
+    <div style={styles.swatches}>
+      {map(colors, (colorValue: string) => (
         <Swatch
-          key={ colorValue }
-          color={ colorValue }
-          style={ styles.swatch }
-          onClick={ onClick }
-          onHover={ onSwatchHover as never }
+          key={colorValue}
+          color={colorValue}
+          style={styles.swatch}
+          onClick={onClick}
+          onHover={onSwatchHover as never}
           focusStyle={{
             boxShadow: `0 0 4px ${colorValue}`,
           }}
         />
-      )) }
-      <div style={ styles.clear } />
+      ))}
+      <div style={styles.clear} />
     </div>
-  )
-}
+  );
+};
 
-export default BlockSwatches
+export default BlockSwatches;

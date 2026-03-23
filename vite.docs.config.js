@@ -1,6 +1,6 @@
-const path = require('path')
-const { defineConfig, transformWithOxc } = require('vite')
-const react = require('@vitejs/plugin-react')
+const path = require('path');
+const { defineConfig, transformWithOxc } = require('vite');
+const react = require('@vitejs/plugin-react');
 
 function jsxInJsPlugin() {
   return {
@@ -8,7 +8,7 @@ function jsxInJsPlugin() {
     enforce: 'pre',
     async transform(code, id) {
       if (!/\/(docs|src)\/.*\.js$/.test(id)) {
-        return null
+        return null;
       }
 
       return transformWithOxc(code, id, {
@@ -17,9 +17,9 @@ function jsxInJsPlugin() {
           runtime: 'classic',
           refresh: true,
         },
-      })
+      });
     },
-  }
+  };
 }
 
 module.exports = defineConfig({
@@ -56,4 +56,4 @@ module.exports = defineConfig({
       },
     },
   },
-})
+});

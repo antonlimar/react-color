@@ -1,5 +1,5 @@
-import React from 'react'
-import reactCSS from 'reactcss'
+import React from 'react';
+import reactCSS from 'reactcss';
 
 export const PhotoshopPointer = () => {
   const styles = reactCSS({
@@ -38,18 +38,18 @@ export const PhotoshopPointer = () => {
         transform: 'translate(-8px, -5px)',
       },
     },
-  })
+  });
 
   return (
-    <div style={ styles.pointer }>
-      <div style={ styles.left }>
-        <div style={ styles.leftInside } />
+    <div style={styles.pointer}>
+      <div style={styles.left}>
+        <div style={styles.leftInside} />
       </div>
-      <div style={ styles.right }>
-        <div style={ styles.rightInside } />
+      <div style={styles.right}>
+        <div style={styles.rightInside} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PhotoshopPointer
+export default PhotoshopPointer;

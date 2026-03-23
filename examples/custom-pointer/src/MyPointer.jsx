@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const MyPointer = () => {
   return (
@@ -11,7 +11,7 @@ export const MyPointer = () => {
     >
       🔥
     </div>
-  )
-}
+  );
+};
 
-export default MyPointer
+export default MyPointer;

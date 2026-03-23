@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import Google from './Google'
-import { renderPickerStory } from '../../../.storybook/renderPickerStory'
+import Google from './Google';
+import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {
   title: 'Pickers',
@@ -18,7 +18,7 @@ export default {
       control: 'object',
     },
   },
-}
+};
 
 export const GooglePicker = {
   args: {
@@ -26,4 +26,4 @@ export const GooglePicker = {
     header: 'Color picker',
     styles: {},
   },
-}
+};

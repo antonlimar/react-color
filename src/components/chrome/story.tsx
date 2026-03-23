@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import Chrome from './Chrome'
-import { renderPickerStory } from '../../../.storybook/renderPickerStory'
+import Chrome from './Chrome';
+import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {
   title: 'Pickers',
@@ -22,7 +22,7 @@ export default {
       control: 'object',
     },
   },
-}
+};
 
 export const ChromePicker = {
   args: {
@@ -30,4 +30,4 @@ export const ChromePicker = {
     disableAlpha: false,
     styles: {},
   },
-}
+};

@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-import React from 'react'
-import reactCSS from 'reactcss'
+import React from 'react';
+import reactCSS from 'reactcss';
 
 import {
   AlphaPicker,
@@ -17,29 +17,29 @@ import {
   SliderPicker,
   SwatchesPicker,
   TwitterPicker,
-} from 'react-color'
+} from 'react-color';
 
 class HomeFeature extends React.Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
       h: 150,
       s: 0.5,
       l: 0.2,
       a: 1,
-    }
+    };
 
-    this.handleChangeComplete = this.handleChangeComplete.bind(this)
+    this.handleChangeComplete = this.handleChangeComplete.bind(this);
   }
 
   handleChangeComplete(data) {
     if (data.hsl !== this.state) {
-      this.setState(data.hsl)
+      this.setState(data.hsl);
     }
 
     if (this.props.onChange) {
-      this.props.onChange(data.hex)
+      this.props.onChange(data.hex);
     }
   }
 
@@ -64,14 +64,14 @@ class HomeFeature extends React.Component {
           color: tone === 'dark' ? 'rgba(255,255,255,.7)' : 'rgba(0,0,0,.45)',
         },
       },
-    })
+    });
 
     return (
-      <div style={ styles.card }>
-        { element }
-        <div style={ styles.label }>{ label }</div>
+      <div style={styles.card}>
+        {element}
+        <div style={styles.label}>{label}</div>
       </div>
-    )
+    );
   }
 
   render() {
@@ -80,7 +80,7 @@ class HomeFeature extends React.Component {
         feature: {
           position: 'relative',
           overflow: 'hidden',
-          background: `linear-gradient(135deg, ${ this.props.primaryColor } 0%, rgba(255,255,255,.72) 100%)`,
+          background: `linear-gradient(135deg, ${this.props.primaryColor} 0%, rgba(255,255,255,.72) 100%)`,
         },
         backdrop: {
           position: 'absolute',
@@ -185,21 +185,21 @@ class HomeFeature extends React.Component {
           gridTemplateColumns: '1fr',
         },
       },
-    })
+    });
 
     return (
-      <div style={ styles.feature }>
-        <div style={ styles.backdrop } />
-        <div style={ styles.container }>
-          <div style={ styles.hero }>
+      <div style={styles.feature}>
+        <div style={styles.backdrop} />
+        <div style={styles.container}>
+          <div style={styles.hero}>
             <div>
-              <div style={ styles.logo } />
-              <h1 style={ styles.title }>React Color</h1>
-              <div style={ styles.subtitle }>
-                A collection of color pickers from Sketch, Photoshop, Chrome, Github,
-                Twitter, Material Design, and more.
+              <div style={styles.logo} />
+              <h1 style={styles.title}>React Color</h1>
+              <div style={styles.subtitle}>
+                A collection of color pickers from Sketch, Photoshop, Chrome, Github, Twitter, Material Design, and
+                more.
               </div>
-              <div style={ styles.star }>
+              <div style={styles.star}>
                 <iframe
                   src="https://ghbtns.com/github-btn.html?user=casesandberg&repo=react-color&type=star&count=true&size=large"
                   scrolling="0"
@@ -210,111 +210,100 @@ class HomeFeature extends React.Component {
               </div>
             </div>
 
-            <div style={ styles.heroPicker }>
-              { this.renderCard(
+            <div style={styles.heroPicker}>
+              {this.renderCard(
                 'Chrome',
-                <ChromePicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
-              ) }
+                <ChromePicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+              )}
             </div>
           </div>
 
-          <div style={ styles.grid }>
-            <div style={ styles.wide }>
-              <div style={ styles.twoColumn }>
-                { this.renderCard(
+          <div style={styles.grid}>
+            <div style={styles.wide}>
+              <div style={styles.twoColumn}>
+                {this.renderCard(
                   'Sketch',
-                  <SketchPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
-                ) }
-                { this.renderCard(
+                  <SketchPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+                )}
+                {this.renderCard(
                   'Photoshop',
-                  <PhotoshopPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
-                ) }
+                  <PhotoshopPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+                )}
               </div>
             </div>
 
-            <div style={ styles.medium }>
-              { this.renderCard(
+            <div style={styles.medium}>
+              {this.renderCard(
                 'Slider',
-                <SliderPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
-              ) }
+                <SliderPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+              )}
             </div>
 
-            <div style={ styles.small }>
-              { this.renderCard(
+            <div style={styles.small}>
+              {this.renderCard(
                 'Block',
-                <BlockPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
-              ) }
+                <BlockPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+              )}
             </div>
 
-            <div style={ styles.small }>
-              { this.renderCard(
+            <div style={styles.small}>
+              {this.renderCard(
                 'Github',
-                <GithubPicker
-                  color={ this.state }
-                  onChangeComplete={ this.handleChangeComplete }
-                  triangle="top-right"
-                />,
-              ) }
+                <GithubPicker color={this.state} onChangeComplete={this.handleChangeComplete} triangle="top-right" />,
+              )}
             </div>
 
-            <div style={ styles.small }>
-              { this.renderCard(
+            <div style={styles.small}>
+              {this.renderCard(
                 'Twitter',
-                <TwitterPicker
-                  color={ this.state }
-                  onChangeComplete={ this.handleChangeComplete }
-                  triangle="top-right"
-                />,
-              ) }
+                <TwitterPicker color={this.state} onChangeComplete={this.handleChangeComplete} triangle="top-right" />,
+              )}
             </div>
 
-            <div style={ styles.small }>
-              { this.renderCard(
+            <div style={styles.small}>
+              {this.renderCard(
                 'Circle',
-                <CirclePicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
-              ) }
+                <CirclePicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+              )}
             </div>
 
-            <div style={ styles.small }>
-              { this.renderCard(
-                'Hue',
-                <HuePicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
-              ) }
+            <div style={styles.small}>
+              {this.renderCard('Hue', <HuePicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
             </div>
 
-            <div style={ styles.small }>
-              { this.renderCard(
+            <div style={styles.small}>
+              {this.renderCard(
                 'Alpha',
-                <AlphaPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
-              ) }
+                <AlphaPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+              )}
             </div>
 
-            <div style={ styles.small }>
-              { this.renderCard(
+            <div style={styles.small}>
+              {this.renderCard(
                 'Compact',
-                <CompactPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
-              ) }
+                <CompactPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+              )}
             </div>
 
-            <div style={ styles.small }>
-              { this.renderCard(
+            <div style={styles.small}>
+              {this.renderCard(
                 'Material',
-                <MaterialPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
-              ) }
+                <MaterialPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
+              )}
             </div>
 
-            <div style={ styles.medium }>
-              { this.renderCard(
+            <div style={styles.medium}>
+              {this.renderCard(
                 'Swatches',
-                <SwatchesPicker color={ this.state } onChangeComplete={ this.handleChangeComplete } />,
+                <SwatchesPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
                 'dark',
-              ) }
+              )}
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default HomeFeature
+export default HomeFeature;

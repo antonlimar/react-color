@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import Github from './Github'
-import { renderPickerStory } from '../../../.storybook/renderPickerStory'
+import Github from './Github';
+import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {
   title: 'Pickers',
@@ -22,14 +22,30 @@ export default {
       control: 'object',
     },
   },
-}
+};
 
 export const GithubPicker = {
   args: {
     width: 200,
     triangle: 'top-left',
-    colors: ['#B80000', '#DB3E00', '#FCCB00', '#008B02', '#006B76', '#1273DE', '#004DCF', '#5300EB',
-      '#EB9694', '#FAD0C3', '#FEF3BD', '#C1E1C5', '#BEDADC', '#C4DEF6', '#BED3F3', '#D4C4FB'],
+    colors: [
+      '#B80000',
+      '#DB3E00',
+      '#FCCB00',
+      '#008B02',
+      '#006B76',
+      '#1273DE',
+      '#004DCF',
+      '#5300EB',
+      '#EB9694',
+      '#FAD0C3',
+      '#FEF3BD',
+      '#C1E1C5',
+      '#BEDADC',
+      '#C4DEF6',
+      '#BED3F3',
+      '#D4C4FB',
+    ],
     styles: {},
   },
-}
+};

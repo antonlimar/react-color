@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import Material from './Material'
-import { renderPickerStory } from '../../../.storybook/renderPickerStory'
+import Material from './Material';
+import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {
   title: 'Pickers',
@@ -12,10 +12,10 @@ export default {
       control: 'object',
     },
   },
-}
+};
 
 export const MaterialPicker = {
   args: {
     styles: {},
   },
-}
+};

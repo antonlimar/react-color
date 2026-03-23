@@ -2,89 +2,80 @@ declare module 'lodash/each' {
   function each<T>(
     collection: ArrayLike<T> | Record<string, T> | null | undefined,
     iteratee: (value: T, key: number | string) => void,
-  ): void
+  ): void;
 
-  export default each
+  export default each;
 }
 
 declare module 'lodash/map' {
   function map<T, TResult>(
     collection: ArrayLike<T> | Record<string, T> | null | undefined,
     iteratee: (value: T, key: number | string) => TResult,
-  ): TResult[]
+  ): TResult[];
 
-  export default map
+  export default map;
 }
 
 declare module 'lodash/merge' {
-  function merge<TObject, TSource>(
-    object: TObject,
-    source: TSource,
-  ): TObject & TSource
+  function merge<TObject, TSource>(object: TObject, source: TSource): TObject & TSource;
 
-  export default merge
+  export default merge;
 }
 
 declare module 'lodash/throttle' {
-  type UnknownFunction = (...args: unknown[]) => unknown
+  type UnknownFunction = (...args: unknown[]) => unknown;
 
   type Throttled<T extends UnknownFunction> = T & {
-    cancel(): void
-  }
+    cancel(): void;
+  };
 
-  function throttle<T extends UnknownFunction>(
-    func: T,
-    wait?: number,
-  ): Throttled<T>
+  function throttle<T extends UnknownFunction>(func: T, wait?: number): Throttled<T>;
 
-  export default throttle
+  export default throttle;
 }
 
 declare module 'lodash/debounce' {
-  type UnknownFunction = (...args: unknown[]) => unknown
+  type UnknownFunction = (...args: unknown[]) => unknown;
 
   type Debounced<T extends UnknownFunction> = T & {
-    cancel(): void
-    flush(): ReturnType<T>
-  }
+    cancel(): void;
+    flush(): ReturnType<T>;
+  };
 
-  function debounce<T extends UnknownFunction>(
-    func: T,
-    wait?: number,
-  ): Debounced<T>
+  function debounce<T extends UnknownFunction>(func: T, wait?: number): Debounced<T>;
 
-  export default debounce
+  export default debounce;
 }
 
 declare module 'lodash/isUndefined' {
-  function isUndefined(value: unknown): value is undefined
-  export default isUndefined
+  function isUndefined(value: unknown): value is undefined;
+  export default isUndefined;
 }
 
 declare module 'reactcss' {
-  function reactCSS(...args: unknown[]): import('./types').PickerStyles
-  export function handleHover<T>(component: T): T
+  function reactCSS(...args: unknown[]): import('./types').PickerStyles;
+  export function handleHover<T>(component: T): T;
 
-  export default reactCSS
+  export default reactCSS;
 }
 
 declare module 'material-colors' {
-  const materialColors: Record<string, Record<string, string>>
-  export default materialColors
+  const materialColors: Record<string, Record<string, string>>;
+  export default materialColors;
 }
 
 declare module '@icons/material/CheckIcon' {
-  import type { ComponentType, SVGProps } from 'react'
+  import type { ComponentType, SVGProps } from 'react';
 
-  const CheckIcon: ComponentType<SVGProps<SVGSVGElement>>
-  export default CheckIcon
+  const CheckIcon: ComponentType<SVGProps<SVGSVGElement>>;
+  export default CheckIcon;
 }
 
 declare module '@icons/material/UnfoldMoreHorizontalIcon' {
-  import type { ComponentType, SVGProps } from 'react'
+  import type { ComponentType, SVGProps } from 'react';
 
-  const UnfoldMoreHorizontalIcon: ComponentType<SVGProps<SVGSVGElement>>
-  export default UnfoldMoreHorizontalIcon
+  const UnfoldMoreHorizontalIcon: ComponentType<SVGProps<SVGSVGElement>>;
+  export default UnfoldMoreHorizontalIcon;
 }
 
 declare module 'tinycolor2' {
@@ -94,18 +85,18 @@ declare module 'tinycolor2' {
     | import('./types').PickerStyle
     | string
     | null
-    | undefined
+    | undefined;
 
   interface TinyColorInstance {
-    _ok: boolean
-    isValid(): boolean
-    toHex(): string
-    toHsl(): import('./types').HSLAColor
-    toHsv(): import('./types').HSVAColor
-    toRgb(): import('./types').RGBAColor
+    _ok: boolean;
+    isValid(): boolean;
+    toHex(): string;
+    toHsl(): import('./types').HSLAColor;
+    toHsv(): import('./types').HSVAColor;
+    toRgb(): import('./types').RGBAColor;
   }
 
-  function tinycolor(color?: TinyColorInput): TinyColorInstance
+  function tinycolor(color?: TinyColorInput): TinyColorInstance;
 
-  export default tinycolor
+  export default tinycolor;
 }

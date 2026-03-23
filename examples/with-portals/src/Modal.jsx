@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const Modal = ({ children, onClose }) => (
   <div
@@ -14,7 +14,7 @@ export const Modal = ({ children, onClose }) => (
     }}
   >
     <div
-      onClick={ onClose }
+      onClick={onClose}
       style={{
         backgroundColor: 'rgba(0,0,0,0.2)',
         cursor: 'pointer',
@@ -23,10 +23,8 @@ export const Modal = ({ children, onClose }) => (
         height: '100%',
       }}
     />
-    <div style={{ position: 'relative' }}>
-      {children}
-    </div>
+    <div style={{ position: 'relative' }}>{children}</div>
   </div>
-)
+);
 
-export default Modal
+export default Modal;

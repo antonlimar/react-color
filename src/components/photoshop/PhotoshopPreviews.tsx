@@ -1,11 +1,11 @@
-import React from 'react'
-import reactCSS from 'reactcss'
-import type { RGBAColor } from '../../types'
+import React from 'react';
+import reactCSS from 'reactcss';
+import type { RGBAColor } from '../../types';
 
 type PhotoshopPreviewsProps = {
-  rgb: RGBAColor
-  currentColor: string
-}
+  rgb: RGBAColor;
+  currentColor: string;
+};
 
 export const PhotoshopPreviews = ({ rgb, currentColor }: PhotoshopPreviewsProps) => {
   const styles = reactCSS({
@@ -32,18 +32,18 @@ export const PhotoshopPreviews = ({ rgb, currentColor }: PhotoshopPreviewsProps)
         textAlign: 'center',
       },
     },
-  })
+  });
 
   return (
     <div>
-      <div style={ styles.label }>new</div>
-      <div style={ styles.swatches }>
-        <div style={ styles.new } />
-        <div style={ styles.current } />
+      <div style={styles.label}>new</div>
+      <div style={styles.swatches}>
+        <div style={styles.new} />
+        <div style={styles.current} />
       </div>
-      <div style={ styles.label }>current</div>
+      <div style={styles.label}>current</div>
     </div>
-  )
-}
+  );
+};
 
-export default PhotoshopPreviews
+export default PhotoshopPreviews;

@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import Twitter from './Twitter'
-import { renderPickerStory } from '../../../.storybook/renderPickerStory'
+import Twitter from './Twitter';
+import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {
   title: 'Pickers',
@@ -22,14 +22,24 @@ export default {
       control: 'object',
     },
   },
-}
+};
 
 export const TwitterPicker = {
   args: {
     width: 276,
     triangle: 'top-left',
-    colors: ['#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3',
-      '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF'],
+    colors: [
+      '#FF6900',
+      '#FCB900',
+      '#7BDCB5',
+      '#00D084',
+      '#8ED1FC',
+      '#0693E3',
+      '#ABB8C3',
+      '#EB144C',
+      '#F78DA7',
+      '#9900EF',
+    ],
     styles: {},
   },
-}
+};

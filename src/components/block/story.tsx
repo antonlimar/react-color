@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import Block from './Block'
-import { renderPickerStory } from '../../../.storybook/renderPickerStory'
+import Block from './Block';
+import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {
   title: 'Pickers',
@@ -22,14 +22,13 @@ export default {
       control: 'object',
     },
   },
-}
+};
 
 export const BlockPicker = {
   args: {
     width: 170,
     triangle: 'top',
-    colors: ['#D9E3F0', '#F47373', '#697689', '#37D67A', '#2CCCE4', '#555555',
-      '#dce775', '#ff8a65', '#ba68c8'],
+    colors: ['#D9E3F0', '#F47373', '#697689', '#37D67A', '#2CCCE4', '#555555', '#dce775', '#ff8a65', '#ba68c8'],
     styles: {},
   },
-}
+};

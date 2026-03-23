@@ -1,16 +1,16 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
-const sharedDir = path.dirname(fileURLToPath(import.meta.url))
-const repoRoot = path.resolve(sharedDir, '..')
-const commonEntry = path.resolve(repoRoot, 'src/components/common/index.ts')
-const libraryEntry = path.resolve(repoRoot, 'src/index.ts')
+const sharedDir = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(sharedDir, '..');
+const commonEntry = path.resolve(repoRoot, 'src/components/common/index.ts');
+const libraryEntry = path.resolve(repoRoot, 'src/index.ts');
 
 export function createExampleConfig({ exampleDir }) {
-  const reactEntry = path.resolve(exampleDir, 'node_modules/react')
-  const reactDomEntry = path.resolve(exampleDir, 'node_modules/react-dom')
+  const reactEntry = path.resolve(exampleDir, 'node_modules/react');
+  const reactDomEntry = path.resolve(exampleDir, 'node_modules/react-dom');
 
   return defineConfig({
     plugins: [
@@ -33,5 +33,5 @@ export function createExampleConfig({ exampleDir }) {
         allow: [repoRoot, exampleDir],
       },
     },
-  })
+  });
 }

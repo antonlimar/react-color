@@ -1,5 +1,5 @@
-const { defineConfig } = require('vitest/config')
-const { transformWithOxc } = require('vite')
+const { defineConfig } = require('vitest/config');
+const { transformWithOxc } = require('vite');
 
 module.exports = defineConfig({
   plugins: [
@@ -8,7 +8,7 @@ module.exports = defineConfig({
       enforce: 'pre',
       async transform(code, id) {
         if (!/\/(src|test)\/.*\.(js|jsx)$/.test(id)) {
-          return null
+          return null;
         }
 
         return transformWithOxc(code, id, {
@@ -17,7 +17,7 @@ module.exports = defineConfig({
             runtime: 'classic',
             refresh: false,
           },
-        })
+        });
       },
     },
   ],
@@ -29,4 +29,4 @@ module.exports = defineConfig({
     clearMocks: true,
     restoreMocks: true,
   },
-})
+});

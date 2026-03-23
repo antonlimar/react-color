@@ -1,15 +1,15 @@
-import React from 'react'
-import reactCSS, { handleHover } from 'reactcss'
+import React from 'react';
+import reactCSS, { handleHover } from 'reactcss';
 
-import { Swatch } from '../common'
-import type { SwatchHoverHandler } from '../../types'
+import { Swatch } from '../common';
+import type { SwatchHoverHandler } from '../../types';
 
 type GithubSwatchProps = {
-  hover?: boolean
-  color: string
-  onClick: (color: string, event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => void
-  onSwatchHover?: SwatchHoverHandler
-}
+  hover?: boolean;
+  color: string;
+  onClick: (color: string, event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => void;
+  onSwatchHover?: SwatchHoverHandler;
+};
 
 export const GithubSwatch = ({ hover, color, onClick, onSwatchHover }: GithubSwatchProps) => {
   const hoverSwatch = {
@@ -17,31 +17,29 @@ export const GithubSwatch = ({ hover, color, onClick, onSwatchHover }: GithubSwa
     zIndex: '2',
     outline: '2px solid #fff',
     boxShadow: '0 0 5px 2px rgba(0,0,0,0.25)',
-  }
+  };
 
-  const styles = reactCSS({
-    default: {
-      swatch: {
-        width: '25px',
-        height: '25px',
-        fontSize: '0',
+  const styles = reactCSS(
+    {
+      default: {
+        swatch: {
+          width: '25px',
+          height: '25px',
+          fontSize: '0',
+        },
+      },
+      hover: {
+        swatch: hoverSwatch,
       },
     },
-    hover: {
-      swatch: hoverSwatch,
-    },
-  }, { hover })
+    { hover },
+  );
 
   return (
-    <div style={ styles.swatch }>
-      <Swatch
-        color={ color }
-        onClick={ onClick }
-        onHover={ onSwatchHover as never }
-        focusStyle={ hoverSwatch }
-      />
+    <div style={styles.swatch}>
+      <Swatch color={color} onClick={onClick} onHover={onSwatchHover as never} focusStyle={hoverSwatch} />
     </div>
-  )
-}
+  );
+};
 
-export default handleHover(GithubSwatch)
+export default handleHover(GithubSwatch);

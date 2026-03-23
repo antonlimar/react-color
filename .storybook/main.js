@@ -1,4 +1,4 @@
-const { mergeConfig, transformWithOxc } = require('vite')
+const { mergeConfig, transformWithOxc } = require('vite');
 
 function jsxInJsPlugin() {
   return {
@@ -6,7 +6,7 @@ function jsxInJsPlugin() {
     enforce: 'pre',
     async transform(code, id) {
       if (!/\/(src|\.storybook)\/.*\.js$/.test(id)) {
-        return null
+        return null;
       }
 
       return transformWithOxc(code, id, {
@@ -15,9 +15,9 @@ function jsxInJsPlugin() {
           runtime: 'classic',
           refresh: true,
         },
-      })
+      });
     },
-  }
+  };
 }
 
 /** @type {import('@storybook/react-vite').StorybookConfig} */
@@ -34,8 +34,8 @@ const config = {
   async viteFinal(baseConfig) {
     return mergeConfig(baseConfig, {
       plugins: [jsxInJsPlugin()],
-    })
+    });
   },
-}
+};
 
-module.exports = config
+module.exports = config;

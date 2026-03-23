@@ -1,21 +1,16 @@
-import React from 'react'
-import reactCSS from 'reactcss'
-import * as color from '../../helpers/color'
+import React from 'react';
+import reactCSS from 'reactcss';
+import * as color from '../../helpers/color';
 
-import { EditableInput } from '../common'
-import type {
-  ColorChangeValue,
-  ColorPickerChangeEvent,
-  HSVAColor,
-  RGBAColor,
-} from '../../types'
+import { EditableInput } from '../common';
+import type { ColorChangeValue, ColorPickerChangeEvent, HSVAColor, RGBAColor } from '../../types';
 
 type PhotoshopFieldsProps = {
-  onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void
-  rgb: RGBAColor
-  hsv: HSVAColor
-  hex: string
-}
+  onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
+  rgb: RGBAColor;
+  hsv: HSVAColor;
+  hex: string;
+};
 
 export const PhotoshopFields = ({ onChange, rgb, hsv, hex }: PhotoshopFieldsProps) => {
   const styles = reactCSS({
@@ -88,51 +83,95 @@ export const PhotoshopFields = ({ onChange, rgb, hsv, hex }: PhotoshopFieldsProp
         paddingBottom: '7px',
       },
     },
-  })
+  });
 
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {
     if (data['#']) {
       if (color.isValidHex(data['#'])) {
-        onChange({
-          hex: data['#'],
-          source: 'hex',
-        }, event)
+        onChange(
+          {
+            hex: data['#'],
+            source: 'hex',
+          },
+          event,
+        );
       }
     } else if (data.r || data.g || data.b) {
-      onChange({
-        r: data.r || rgb.r,
-        g: data.g || rgb.g,
-        b: data.b || rgb.b,
-        source: 'rgb',
-      }, event)
+      onChange(
+        {
+          r: data.r || rgb.r,
+          g: data.g || rgb.g,
+          b: data.b || rgb.b,
+          source: 'rgb',
+        },
+        event,
+      );
     } else if (data.h || data.s || data.v) {
-      onChange({
-        h: data.h || hsv.h,
-        s: data.s || hsv.s,
-        v: data.v || hsv.v,
-        source: 'hsv',
-      }, event)
+      onChange(
+        {
+          h: data.h || hsv.h,
+          s: data.s || hsv.s,
+          v: data.v || hsv.v,
+          source: 'hsv',
+        },
+        event,
+      );
     }
-  }
+  };
 
   return (
-    <div style={ styles.fields }>
-      <EditableInput style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }} label="h" value={ Math.round(hsv.h) } onChange={ (value, event) => handleChange(value as ColorChangeValue, event) } />
-      <EditableInput style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }} label="s" value={ Math.round(hsv.s * 100) } onChange={ (value, event) => handleChange(value as ColorChangeValue, event) } />
-      <EditableInput style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }} label="v" value={ Math.round(hsv.v * 100) } onChange={ (value, event) => handleChange(value as ColorChangeValue, event) } />
-      <div style={ styles.divider } />
-      <EditableInput style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }} label="r" value={ rgb.r } onChange={ (value, event) => handleChange(value as ColorChangeValue, event) } />
-      <EditableInput style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }} label="g" value={ rgb.g } onChange={ (value, event) => handleChange(value as ColorChangeValue, event) } />
-      <EditableInput style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }} label="b" value={ rgb.b } onChange={ (value, event) => handleChange(value as ColorChangeValue, event) } />
-      <div style={ styles.divider } />
-      <EditableInput style={{ wrap: styles.HEXwrap, input: styles.HEXinput, label: styles.HEXlabel }} label="#" value={ hex.replace('#', '') } onChange={ (value, event) => handleChange(value as ColorChangeValue, event) } />
-      <div style={ styles.fieldSymbols }>
-        <div style={ styles.symbol }>°</div>
-        <div style={ styles.symbol }>%</div>
-        <div style={ styles.symbol }>%</div>
+    <div style={styles.fields}>
+      <EditableInput
+        style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
+        label="h"
+        value={Math.round(hsv.h)}
+        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
+      />
+      <EditableInput
+        style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
+        label="s"
+        value={Math.round(hsv.s * 100)}
+        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
+      />
+      <EditableInput
+        style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
+        label="v"
+        value={Math.round(hsv.v * 100)}
+        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
+      />
+      <div style={styles.divider} />
+      <EditableInput
+        style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
+        label="r"
+        value={rgb.r}
+        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
+      />
+      <EditableInput
+        style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
+        label="g"
+        value={rgb.g}
+        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
+      />
+      <EditableInput
+        style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
+        label="b"
+        value={rgb.b}
+        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
+      />
+      <div style={styles.divider} />
+      <EditableInput
+        style={{ wrap: styles.HEXwrap, input: styles.HEXinput, label: styles.HEXlabel }}
+        label="#"
+        value={hex.replace('#', '')}
+        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
+      />
+      <div style={styles.fieldSymbols}>
+        <div style={styles.symbol}>°</div>
+        <div style={styles.symbol}>%</div>
+        <div style={styles.symbol}>%</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PhotoshopFields
+export default PhotoshopFields;

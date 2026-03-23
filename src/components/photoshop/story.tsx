@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import Photoshop from './Photoshop'
-import { renderPickerStory } from '../../../.storybook/renderPickerStory'
+import Photoshop from './Photoshop';
+import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {
   title: 'Pickers',
@@ -15,11 +15,11 @@ export default {
       control: 'object',
     },
   },
-}
+};
 
 export const PhotoshopPicker = {
   args: {
     header: 'Color Picker',
     styles: {},
   },
-}
+};

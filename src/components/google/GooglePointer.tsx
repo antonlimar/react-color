@@ -1,10 +1,10 @@
-import React from 'react'
-import reactCSS from 'reactcss'
-import type { HSLAColor } from '../../types'
+import React from 'react';
+import reactCSS from 'reactcss';
+import type { HSLAColor } from '../../types';
 
 type GooglePointerProps = {
-  hsl?: HSLAColor
-}
+  hsl?: HSLAColor;
+};
 
 export const GooglePointer = ({ hsl = { a: 1, h: 249.94, l: 0.2, s: 0.5 } }: GooglePointerProps) => {
   const styles = reactCSS({
@@ -18,13 +18,13 @@ export const GooglePointer = ({ hsl = { a: 1, h: 249.94, l: 0.2, s: 0.5 } }: Goo
         border: '2px white solid',
       },
     },
-  })
+  });
 
-  return <div style={ styles.picker } />
-}
+  return <div style={styles.picker} />;
+};
 
 GooglePointer.defaultProps = {
   hsl: { a: 1, h: 249.94, l: 0.2, s: 0.5 },
-}
+};
 
-export default GooglePointer
+export default GooglePointer;

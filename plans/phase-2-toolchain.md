@@ -3,10 +3,10 @@ name: Фаза 2 toolchain
 overview: Пошаговая замена Babel 6 / Jest 20 / Webpack 1 / Storybook 3 на современный стек (сборка с сохранением дерева lib/es, TypeScript для деклараций, ESLint flat, Vitest + Testing Library, Storybook 10+, Vite для доков) с целью drop-in замены апстриму react-color.
 todos:
   - id: build-dual-emit
-    content: "Пофайловая сборка lib/ и es/ через tsc (два tsconfig), lodash/lodash-es для ESM как сейчас; убрать Babel 6 и scripts/use-module-babelrc"
+    content: 'Пофайловая сборка lib/ и es/ через tsc (два tsconfig), lodash/lodash-es для ESM как сейчас; убрать Babel 6 и scripts/use-module-babelrc'
     status: completed
   - id: pkg-types-exports
-    content: "Обновить package.json: scripts, main/module/files, types; exports — только если не ломает drop-in"
+    content: 'Обновить package.json: scripts, main/module/files, types; exports — только если не ломает drop-in'
     status: completed
   - id: eslint-flat
     content: Перейти на ESLint flat + @typescript-eslint + react-hooks; обновить npm run eslint
@@ -61,13 +61,13 @@ todos:
 
 ## Исходная точка (что меняем)
 
-| Сейчас | Файлы / артефакты |
-|--------|-------------------|
-| Babel 6, дублирование CJS/ESM через смену [`.babelrc`](../.babelrc) и [scripts/use-module-babelrc.js](../scripts/use-module-babelrc.js) | `npm run lib` / `npm run es` → `lib/`, `es/` |
-| Jest 20 + Enzyme 2 + snapshots | [`src/**/spec.js`](../src/components/chrome/spec.js), `jest` в [package.json](../package.json) |
-| ESLint через `@case/eslint-config` | `eslintConfig` в package.json |
-| Storybook 3 | [`.storybook/config.js`](../.storybook/config.js), `require.context`, addons |
-| Webpack 1 для доков | [webpack.config.js](../webpack.config.js), [scripts/docs-server.js](../scripts/docs-server.js) |
+| Сейчас                                                                                                                                  | Файлы / артефакты                                                                              |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Babel 6, дублирование CJS/ESM через смену [`.babelrc`](../.babelrc) и [scripts/use-module-babelrc.js](../scripts/use-module-babelrc.js) | `npm run lib` / `npm run es` → `lib/`, `es/`                                                   |
+| Jest 20 + Enzyme 2 + snapshots                                                                                                          | [`src/**/spec.js`](../src/components/chrome/spec.js), `jest` в [package.json](../package.json) |
+| ESLint через `@case/eslint-config`                                                                                                      | `eslintConfig` в package.json                                                                  |
+| Storybook 3                                                                                                                             | [`.storybook/config.js`](../.storybook/config.js), `require.context`, addons                   |
+| Webpack 1 для доков                                                                                                                     | [webpack.config.js](../webpack.config.js), [scripts/docs-server.js](../scripts/docs-server.js) |
 
 Публичные имена экспортов из [`src/index.ts`](../src/index.ts) не менять ([AGENTS.md](../AGENTS.md)); артефакты `lib/` и `es/` по-прежнему только из сборки.
 
@@ -180,14 +180,14 @@ flowchart TD
 
 ## Риски и как их снять
 
-| Риск | Митигация |
-|------|-----------|
-| Разный резолв `lodash` / `lodash-es` между CJS и ESM | Явные alias/externals в конфиге сборки; прогон обоих форматов |
-| Большой PR | Разбить: сборка → тесты → линт → storybook → docs; после каждого шага зелёный `test` |
-| Storybook vs React 15 | Поднять dev React для инструментов; peer оставить до фазы 4 по плану |
-| Поле `types` без полной TS-миграции | Ручной тонкий `d.ts` или отложить с фиксацией в плане |
-| Бандлер собрал один файл вместо дерева | Ломает drop-in и глубокие импорты — использовать пофайловый emit |
-| Поле `exports` без проверок | Может сломать старые tooling — сначала `types` у entry, `exports` осознанно |
+| Риск                                                 | Митигация                                                                            |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Разный резолв `lodash` / `lodash-es` между CJS и ESM | Явные alias/externals в конфиге сборки; прогон обоих форматов                        |
+| Большой PR                                           | Разбить: сборка → тесты → линт → storybook → docs; после каждого шага зелёный `test` |
+| Storybook vs React 15                                | Поднять dev React для инструментов; peer оставить до фазы 4 по плану                 |
+| Поле `types` без полной TS-миграции                  | Ручной тонкий `d.ts` или отложить с фиксацией в плане                                |
+| Бандлер собрал один файл вместо дерева               | Ломает drop-in и глубокие импорты — использовать пофайловый emit                     |
+| Поле `exports` без проверок                          | Может сломать старые tooling — сначала `types` у entry, `exports` осознанно          |
 
 ---
 

@@ -1,19 +1,19 @@
-import React from 'react'
-import reactCSS from 'reactcss'
+import React from 'react';
+import reactCSS from 'reactcss';
 
-import { ColorWrap, Alpha as AlphaControl } from '../common'
-import AlphaPointer from './AlphaPointer'
-import type { AlphaProps, CheckboardRenderers, ClassName, ColorPickerInjectedProps, PickerStyle } from '../../types'
+import { ColorWrap, Alpha as AlphaControl } from '../common';
+import AlphaPointer from './AlphaPointer';
+import type { AlphaProps, CheckboardRenderers, ClassName, ColorPickerInjectedProps, PickerStyle } from '../../types';
 
 type AlphaPickerProps = ColorPickerInjectedProps & {
-  width?: string | number
-  height?: string | number
-  direction?: AlphaProps['direction']
-  style?: PickerStyle
-  renderers?: CheckboardRenderers
-  pointer?: AlphaProps['pointer']
-  className?: ClassName
-}
+  width?: string | number;
+  height?: string | number;
+  direction?: AlphaProps['direction'];
+  style?: PickerStyle;
+  renderers?: CheckboardRenderers;
+  pointer?: AlphaProps['pointer'];
+  className?: ClassName;
+};
 
 export const AlphaPicker = ({
   rgb,
@@ -39,28 +39,28 @@ export const AlphaPicker = ({
         style,
       },
     },
-  })
+  });
 
   return (
-    <div style={ styles.picker } className={ `alpha-picker ${className}` }>
+    <div style={styles.picker} className={`alpha-picker ${className}`}>
       <AlphaControl
-        { ...styles.alpha }
-        rgb={ rgb }
-        hsl={ hsl }
-        pointer={ pointer }
-        renderers={ renderers }
-        onChange={ onChange }
-        direction={ direction }
+        {...styles.alpha}
+        rgb={rgb}
+        hsl={hsl}
+        pointer={pointer}
+        renderers={renderers}
+        onChange={onChange}
+        direction={direction}
       />
     </div>
-  )
-}
+  );
+};
 
 AlphaPicker.defaultProps = {
   width: '316px',
   height: '16px',
   direction: 'horizontal',
   pointer: AlphaPointer,
-}
+};
 
-export default ColorWrap(AlphaPicker)
+export default ColorWrap(AlphaPicker);

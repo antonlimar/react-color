@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import Sketch from './Sketch'
-import { renderPickerStory } from '../../../.storybook/renderPickerStory'
+import Sketch from './Sketch';
+import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {
   title: 'Pickers',
@@ -21,18 +21,32 @@ export default {
       control: 'object',
     },
   },
-}
+};
 
 export const SketchPicker = {
   args: {
     width: 200,
     disableAlpha: false,
-    presetColors: ['#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', '#417505',
-      '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', '#B8E986', '#000000',
-      '#4A4A4A', '#9B9B9B', '#FFFFFF'],
+    presetColors: [
+      '#D0021B',
+      '#F5A623',
+      '#F8E71C',
+      '#8B572A',
+      '#7ED321',
+      '#417505',
+      '#BD10E0',
+      '#9013FE',
+      '#4A90E2',
+      '#50E3C2',
+      '#B8E986',
+      '#000000',
+      '#4A4A4A',
+      '#9B9B9B',
+      '#FFFFFF',
+    ],
     styles: {},
   },
-}
+};
 
 export const SketchPickerCustomStyles = {
   name: 'SketchPicker Custom Styles',
@@ -46,4 +60,4 @@ export const SketchPickerCustomStyles = {
       },
     },
   },
-}
+};
