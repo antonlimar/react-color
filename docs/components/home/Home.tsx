@@ -6,12 +6,16 @@ import reactCSS from 'reactcss';
 import HomeFeature from './HomeFeature';
 import HomeDocumentation from './HomeDocumentation';
 
-class Home extends React.Component {
-  state = {
+interface HomeState {
+  primaryColor: string;
+}
+
+class Home extends React.Component<Record<string, never>, HomeState> {
+  state: HomeState = {
     primaryColor: '#194D33',
   };
 
-  handleChange = (primaryColor) => this.setState({ primaryColor });
+  handleChange = (primaryColor: string) => this.setState({ primaryColor });
 
   render() {
     const styles = reactCSS({

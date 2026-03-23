@@ -1,12 +1,38 @@
-import React from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import highlightJs from 'highlight.js';
 import MarkdownIt from 'markdown-it';
+
+interface FrontmatterFields {
+  id?: string;
+  title?: string;
+  [key: string]: string | undefined;
+}
+
+export interface ParsedFrontmatter {
+  body: string;
+  id: string | null;
+  title: string | null;
+}
+
+export interface MarkdownBlockProps {
+  children?: string | null;
+  className?: string;
+  style?: CSSProperties;
+}
+
+export interface MarkdownDocumentProps {
+  document: string;
+  headingStyle?: CSSProperties;
+  contentStyle?: CSSProperties;
+  wrapperStyle?: CSSProperties;
+  children?: ReactNode;
+}
 
 const markdown = new MarkdownIt({
   html: false,
   typographer: false,
   breaks: false,
-  highlight(source, language) {
+  highlight(source: string, language: string) {
     const className = language ? `hljs language-${language}` : 'hljs';
 
     if (language && highlightJs.getLanguage(language)) {
@@ -23,7 +49,7 @@ const markdown = new MarkdownIt({
   },
 });
 
-function parseFrontmatter(document) {
+export function parseFrontmatter(document: string): ParsedFrontmatter {
   const match = document.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
 
   if (!match) {
@@ -35,7 +61,7 @@ function parseFrontmatter(document) {
   }
 
   const [, rawFrontmatter, body] = match;
-  const fields = rawFrontmatter.split('\n').reduce((result, line) => {
+  const fields = rawFrontmatter.split('\n').reduce<FrontmatterFields>((result, line) => {
     const separatorIndex = line.indexOf(':');
 
     if (separatorIndex === -1) {
@@ -49,22 +75,22 @@ function parseFrontmatter(document) {
 
   return {
     body,
-    id: fields.id || null,
-    title: fields.title || null,
+    id: fields.id ?? null,
+    title: fields.title ?? null,
   };
 }
 
-export function MarkdownBlock({ children, className, style }) {
-  const html = markdown.render(children || '');
+export function MarkdownBlock({ children, className, style }: MarkdownBlockProps) {
+  const html = markdown.render(children ?? '');
 
   return <div className={className} style={style} dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
-export function MarkdownDocument({ document, headingStyle, contentStyle, wrapperStyle }) {
+export function MarkdownDocument({ document, headingStyle, contentStyle, wrapperStyle }: MarkdownDocumentProps) {
   const { body, id, title } = parseFrontmatter(document);
 
   return (
-    <section id={id || undefined} style={wrapperStyle}>
+    <section id={id ?? undefined} style={wrapperStyle}>
       {title ? <h2 style={headingStyle}>{title}</h2> : null}
       <MarkdownBlock style={contentStyle}>{body}</MarkdownBlock>
     </section>

@@ -4,10 +4,19 @@ import React from 'react';
 import reactCSS from 'reactcss';
 
 import documentation from '../../documentation';
-import { MarkdownBlock, MarkdownDocument } from '../common/MarkdownBlock';
 import { Button, buttonmd, Sketch, sketchmd } from '../../examples';
+import { MarkdownBlock, MarkdownDocument, parseFrontmatter } from '../common/MarkdownBlock';
 
-class HomeDocumentation extends React.Component {
+interface HomeDocumentationProps {
+  primaryColor: string;
+}
+
+interface NavigationItem {
+  id: string;
+  title: string;
+}
+
+class HomeDocumentation extends React.Component<HomeDocumentationProps> {
   render() {
     const styles = reactCSS({
       default: {
@@ -135,32 +144,18 @@ class HomeDocumentation extends React.Component {
     const sections = Object.entries(documentation);
     const navItems = sections
       .map(([, document]) => {
-        const match = document.match(/^---\n([\s\S]*?)\n---/);
-
-        if (!match) {
-          return null;
-        }
-
-        const frontmatter = match[1].split('\n').reduce((result, line) => {
-          const separatorIndex = line.indexOf(':');
-
-          if (separatorIndex === -1) {
-            return result;
-          }
-
-          return {
-            ...result,
-            [line.slice(0, separatorIndex).trim()]: line.slice(separatorIndex + 1).trim(),
-          };
-        }, {});
+        const frontmatter = parseFrontmatter(document);
 
         if (!frontmatter.id || !frontmatter.title) {
           return null;
         }
 
-        return frontmatter;
+        return {
+          id: frontmatter.id,
+          title: frontmatter.title,
+        };
       })
-      .filter(Boolean);
+      .filter((item): item is NavigationItem => item !== null);
 
     return (
       <div style={styles.body}>

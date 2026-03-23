@@ -1,27 +1,33 @@
 import React from 'react';
 import reactCSS from 'reactcss';
 import { SketchPicker } from 'react-color';
+import type { ColorResult, RGBAColor } from '../../src/types';
 
-class SketchExample extends React.Component {
-  state = {
+interface SketchExampleState {
+  displayColorPicker: boolean;
+  color: RGBAColor;
+}
+
+class SketchExample extends React.Component<Record<string, never>, SketchExampleState> {
+  state: SketchExampleState = {
     displayColorPicker: false,
     color: {
-      r: '241',
-      g: '112',
-      b: '19',
-      a: '1',
+      r: 241,
+      g: 112,
+      b: 19,
+      a: 1,
     },
   };
 
   handleClick = () => {
-    this.setState({ displayColorPicker: !this.state.displayColorPicker });
+    this.setState((state) => ({ displayColorPicker: !state.displayColorPicker }));
   };
 
   handleClose = () => {
     this.setState({ displayColorPicker: false });
   };
 
-  handleChange = (color) => {
+  handleChange = (color: ColorResult) => {
     this.setState({ color: color.rgb });
   };
 

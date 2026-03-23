@@ -1,7 +1,7 @@
 import Button from './ButtonExample';
-import buttonSource from './ButtonExample.js?raw';
+import buttonSource from './ButtonExample.tsx?raw';
 import Sketch from './SketchExample';
-import sketchSource from './SketchExample.js?raw';
+import sketchSource from './SketchExample.tsx?raw';
 
 export { Button, Sketch };
 

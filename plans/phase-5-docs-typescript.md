@@ -10,7 +10,7 @@ todos:
     status: completed
   - id: docs-components
     content: Перевести компоненты docs/components и docs/examples на TypeScript, зафиксировать типы props и локальных state
-    status: pending
+    status: completed
   - id: docs-tooling
     content: Подключить отдельный typecheck docs в scripts/CI и синхронизировать документацию по командам при необходимости
     status: pending
@@ -143,6 +143,6 @@ todos:
 
 - [x] **docs-tsconfig** — Добавить отдельный `tsconfig` для docs и минимальные декларации для markdown raw imports, не затрагивая library build
 - [x] **docs-entrypoints** — Перевести docs entrypoints и registry-модули на `.ts` / `.tsx` с сохранением текущего Vite pipeline
-- [ ] **docs-components** — Перевести `docs/components` и `docs/examples` на TypeScript, зафиксировать типы props и локальных state
+- [x] **docs-components** — Перевести `docs/components` и `docs/examples` на TypeScript, зафиксировать типы props и локальных state
 - [ ] **docs-tooling** — Подключить отдельный typecheck docs в scripts/CI и синхронизировать документацию по командам при необходимости
 - [ ] **docs-verification** — Подтвердить миграцию через `npm run docs-dist` и локальный `docs-server` без регрессий в render/markdown/examples

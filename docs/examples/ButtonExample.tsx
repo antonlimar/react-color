@@ -1,13 +1,18 @@
+import type { CSSProperties } from 'react';
 import React from 'react';
 import { ChromePicker } from 'react-color';
 
-class ButtonExample extends React.Component {
-  state = {
+interface ButtonExampleState {
+  displayColorPicker: boolean;
+}
+
+class ButtonExample extends React.Component<Record<string, never>, ButtonExampleState> {
+  state: ButtonExampleState = {
     displayColorPicker: false,
   };
 
   handleClick = () => {
-    this.setState({ displayColorPicker: !this.state.displayColorPicker });
+    this.setState((state) => ({ displayColorPicker: !state.displayColorPicker }));
   };
 
   handleClose = () => {
@@ -15,12 +20,12 @@ class ButtonExample extends React.Component {
   };
 
   render() {
-    const popover = {
+    const popover: CSSProperties = {
       position: 'absolute',
-      zIndex: '2',
+      zIndex: 2,
     };
 
-    const cover = {
+    const cover: CSSProperties = {
       position: 'fixed',
       top: '0px',
       right: '0px',

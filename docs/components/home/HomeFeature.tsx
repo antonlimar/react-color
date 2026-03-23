@@ -1,5 +1,6 @@
 'use strict';
 
+import type { ReactNode } from 'react';
 import React from 'react';
 import reactCSS from 'reactcss';
 
@@ -18,32 +19,39 @@ import {
   SwatchesPicker,
   TwitterPicker,
 } from 'react-color';
+import type { ColorResult, HSLAColor } from '../../../src/types';
 
-class HomeFeature extends React.Component {
-  constructor() {
-    super();
+interface HomeFeatureProps {
+  primaryColor: string;
+  onChange?: (primaryColor: string) => void;
+}
 
-    this.state = {
-      h: 150,
-      s: 0.5,
-      l: 0.2,
-      a: 1,
-    };
+type HomeFeatureState = HSLAColor;
 
-    this.handleChangeComplete = this.handleChangeComplete.bind(this);
-  }
+class HomeFeature extends React.Component<HomeFeatureProps, HomeFeatureState> {
+  state: HomeFeatureState = {
+    h: 150,
+    s: 0.5,
+    l: 0.2,
+    a: 1,
+  };
 
-  handleChangeComplete(data) {
-    if (data.hsl !== this.state) {
-      this.setState(data.hsl);
+  handleChangeComplete = (data: ColorResult) => {
+    const { hsl, hex } = data;
+
+    if (
+      hsl.h !== this.state.h ||
+      hsl.s !== this.state.s ||
+      hsl.l !== this.state.l ||
+      hsl.a !== this.state.a
+    ) {
+      this.setState(hsl);
     }
 
-    if (this.props.onChange) {
-      this.props.onChange(data.hex);
-    }
-  }
+    this.props.onChange?.(hex);
+  };
 
-  renderCard(label, element, tone = 'default') {
+  renderCard(label: string, element: ReactNode, tone: 'default' | 'dark' = 'default') {
     const styles = reactCSS({
       default: {
         card: {
@@ -211,20 +219,14 @@ class HomeFeature extends React.Component {
             </div>
 
             <div style={styles.heroPicker}>
-              {this.renderCard(
-                'Chrome',
-                <ChromePicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
-              )}
+              {this.renderCard('Chrome', <ChromePicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
             </div>
           </div>
 
           <div style={styles.grid}>
             <div style={styles.wide}>
               <div style={styles.twoColumn}>
-                {this.renderCard(
-                  'Sketch',
-                  <SketchPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
-                )}
+                {this.renderCard('Sketch', <SketchPicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
                 {this.renderCard(
                   'Photoshop',
                   <PhotoshopPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
@@ -233,17 +235,11 @@ class HomeFeature extends React.Component {
             </div>
 
             <div style={styles.medium}>
-              {this.renderCard(
-                'Slider',
-                <SliderPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
-              )}
+              {this.renderCard('Slider', <SliderPicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
             </div>
 
             <div style={styles.small}>
-              {this.renderCard(
-                'Block',
-                <BlockPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
-              )}
+              {this.renderCard('Block', <BlockPicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
             </div>
 
             <div style={styles.small}>
@@ -261,10 +257,7 @@ class HomeFeature extends React.Component {
             </div>
 
             <div style={styles.small}>
-              {this.renderCard(
-                'Circle',
-                <CirclePicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
-              )}
+              {this.renderCard('Circle', <CirclePicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
             </div>
 
             <div style={styles.small}>
@@ -272,10 +265,7 @@ class HomeFeature extends React.Component {
             </div>
 
             <div style={styles.small}>
-              {this.renderCard(
-                'Alpha',
-                <AlphaPicker color={this.state} onChangeComplete={this.handleChangeComplete} />,
-              )}
+              {this.renderCard('Alpha', <AlphaPicker color={this.state} onChangeComplete={this.handleChangeComplete} />)}
             </div>
 
             <div style={styles.small}>
