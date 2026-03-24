@@ -8,4 +8,4 @@ const preview = {
   },
 };
 
-module.exports = preview;
+export default preview;
