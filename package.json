@@ -54,10 +54,11 @@
   ],
   "dependencies": {
     "@icons/material": "^0.2.4",
+    "@types/reactcss": "^1.2.13",
     "lodash": "^4.17.15",
     "lodash-es": "^4.17.15",
     "material-colors": "^1.2.1",
-    "reactcss": "^1.2.0",
+    "reactcss": "^1.2.3",
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {
@@ -77,6 +78,7 @@
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-storybook": "^10.3.3",
     "globals": "^17.4.0",
     "highlight.js": "^11.11.1",
     "jsdom": "^29.0.1",
@@ -88,8 +90,7 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.1",
     "vite": "^8.0.1",
-    "vitest": "^4.1.0",
-    "eslint-plugin-storybook": "10.3.3"
+    "vitest": "^4.1.0"
   },
   "files": [
     "lib",

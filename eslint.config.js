@@ -4,12 +4,14 @@ const { defineConfig } = require('eslint/config');
 const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
 const react = require('eslint-plugin-react');
 const reactHooks = require('eslint-plugin-react-hooks');
+const storybook = require('eslint-plugin-storybook');
 const tseslint = require('typescript-eslint');
 
 module.exports = defineConfig([
   {
     ignores: ['docs/build/**', '.out/**', 'es/**', 'lib/**', 'node_modules/**', 'examples/**/dist/**'],
   },
+  ...storybook.configs['flat/recommended'],
   {
     files: ['**/*.{js,jsx,ts,tsx,mjs}'],
     extends: [
