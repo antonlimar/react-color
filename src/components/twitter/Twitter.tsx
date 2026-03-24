@@ -21,6 +21,19 @@ type TwitterProps = ColorPickerInjectedProps & {
   className?: ClassName;
 };
 
+const DEFAULT_TWITTER_COLORS = [
+  '#FF6900',
+  '#FCB900',
+  '#7BDCB5',
+  '#00D084',
+  '#8ED1FC',
+  '#0693E3',
+  '#ABB8C3',
+  '#EB144C',
+  '#F78DA7',
+  '#9900EF',
+];
+
 const handleHexChange = (onChange: ColorInputChangeHandler, hexCode: string, event?: ColorPickerChangeEvent) => {
   if (color.isValidHex(hexCode)) {
     onChange(
@@ -37,9 +50,9 @@ export const Twitter = ({
   onChange,
   onSwatchHover,
   hex,
-  colors,
-  width,
-  triangle,
+  colors = DEFAULT_TWITTER_COLORS,
+  width = 276,
+  triangle = 'top-left',
   styles: passedStyles = {},
   className = '',
 }: TwitterProps) => {
@@ -180,24 +193,6 @@ export const Twitter = ({
       </div>
     </div>
   );
-};
-
-Twitter.defaultProps = {
-  width: 276,
-  colors: [
-    '#FF6900',
-    '#FCB900',
-    '#7BDCB5',
-    '#00D084',
-    '#8ED1FC',
-    '#0693E3',
-    '#ABB8C3',
-    '#EB144C',
-    '#F78DA7',
-    '#9900EF',
-  ],
-  triangle: 'top-left',
-  styles: {},
 };
 
 export default ColorWrap(Twitter);

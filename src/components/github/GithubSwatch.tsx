@@ -2,7 +2,7 @@ import React from 'react';
 import reactCSS, { handleHover } from 'reactcss';
 
 import { Swatch } from '../common';
-import type { SwatchHoverHandler } from '../../types';
+import type { PickerStyle, SwatchHoverHandler } from '../../types';
 
 type GithubSwatchProps = {
   hover?: boolean;
@@ -12,7 +12,7 @@ type GithubSwatchProps = {
 };
 
 export const GithubSwatch = ({ hover, color, onClick, onSwatchHover }: GithubSwatchProps) => {
-  const hoverSwatch = {
+  const hoverSwatch: PickerStyle = {
     position: 'relative',
     zIndex: '2',
     outline: '2px solid #fff',

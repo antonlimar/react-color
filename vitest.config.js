@@ -14,7 +14,7 @@ module.exports = defineConfig({
         return transformWithOxc(code, id, {
           lang: 'jsx',
           jsx: {
-            runtime: 'classic',
+            runtime: 'automatic',
             refresh: false,
           },
         });

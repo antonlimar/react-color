@@ -17,15 +17,36 @@ type CircleProps = ColorPickerInjectedProps & {
   className?: ClassName;
 };
 
+const DEFAULT_CIRCLE_COLORS = [
+  material.red['500'],
+  material.pink['500'],
+  material.purple['500'],
+  material.deepPurple['500'],
+  material.indigo['500'],
+  material.blue['500'],
+  material.lightBlue['500'],
+  material.cyan['500'],
+  material.teal['500'],
+  material.green['500'],
+  material.lightGreen['500'],
+  material.lime['500'],
+  material.yellow['500'],
+  material.amber['500'],
+  material.orange['500'],
+  material.deepOrange['500'],
+  material.brown['500'],
+  material.blueGrey['500'],
+];
+
 export const Circle = ({
-  width,
+  width = 252,
   onChange,
   onSwatchHover,
-  colors,
+  colors = DEFAULT_CIRCLE_COLORS,
   hex,
-  circleSize,
+  circleSize = 28,
   styles: passedStyles = {},
-  circleSpacing,
+  circleSpacing = 14,
   className = '',
 }: CircleProps) => {
   const styles = reactCSS(
@@ -60,33 +81,6 @@ export const Circle = ({
       ))}
     </div>
   );
-};
-
-Circle.defaultProps = {
-  width: 252,
-  circleSize: 28,
-  circleSpacing: 14,
-  colors: [
-    material.red['500'],
-    material.pink['500'],
-    material.purple['500'],
-    material.deepPurple['500'],
-    material.indigo['500'],
-    material.blue['500'],
-    material.lightBlue['500'],
-    material.cyan['500'],
-    material.teal['500'],
-    material.green['500'],
-    material.lightGreen['500'],
-    material.lime['500'],
-    material.yellow['500'],
-    material.amber['500'],
-    material.orange['500'],
-    material.deepOrange['500'],
-    material.brown['500'],
-    material.blueGrey['500'],
-  ],
-  styles: {},
 };
 
 export default ColorWrap(Circle);

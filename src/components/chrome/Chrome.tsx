@@ -6,7 +6,13 @@ import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../common';
 import ChromeFields from './ChromeFields';
 import ChromePointer from './ChromePointer';
 import ChromePointerCircle from './ChromePointerCircle';
-import type { CheckboardRenderers, ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types';
+import type {
+  CheckboardRenderers,
+  ClassName,
+  ColorPickerInjectedProps,
+  PickerCustomStyles,
+  SaturationStyle,
+} from '../../types';
 
 type ChromeProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -18,9 +24,9 @@ type ChromeProps = ColorPickerInjectedProps & {
 };
 
 export const Chrome = ({
-  width,
+  width = 225,
   onChange,
-  disableAlpha,
+  disableAlpha = false,
   rgb,
   hsl,
   hsv,
@@ -120,7 +126,13 @@ export const Chrome = ({
   return (
     <div style={styles.picker} className={`chrome-picker ${className}`}>
       <div style={styles.saturation}>
-        <Saturation style={styles.Saturation} hsl={hsl} hsv={hsv} pointer={ChromePointerCircle} onChange={onChange} />
+        <Saturation
+          style={styles.Saturation as SaturationStyle}
+          hsl={hsl}
+          hsv={hsv}
+          pointer={ChromePointerCircle}
+          onChange={onChange}
+        />
       </div>
       <div style={styles.body}>
         <div style={styles.controls} className="flexbox-fix">
@@ -157,12 +169,6 @@ export const Chrome = ({
       </div>
     </div>
   );
-};
-
-Chrome.defaultProps = {
-  width: 225,
-  disableAlpha: false,
-  styles: {},
 };
 
 export default ColorWrap(Chrome);

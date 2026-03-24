@@ -12,7 +12,7 @@ function jsxInJsPlugin() {
       return transformWithOxc(code, id, {
         lang: 'jsx',
         jsx: {
-          runtime: 'classic',
+          runtime: 'automatic',
           refresh: true,
         },
       });

@@ -5,7 +5,13 @@ import merge from 'lodash/merge';
 import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../common';
 import SketchFields from './SketchFields';
 import SketchPresetColors from './SketchPresetColors';
-import type { CheckboardRenderers, ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types';
+import type {
+  CheckboardRenderers,
+  ClassName,
+  ColorPickerInjectedProps,
+  PickerCustomStyles,
+  SaturationStyle,
+} from '../../types';
 
 type SketchPresetColor = string | { color: string; title?: string };
 
@@ -18,16 +24,34 @@ type SketchProps = ColorPickerInjectedProps & {
   className?: ClassName;
 };
 
+const DEFAULT_SKETCH_PRESET_COLORS = [
+  '#D0021B',
+  '#F5A623',
+  '#F8E71C',
+  '#8B572A',
+  '#7ED321',
+  '#417505',
+  '#BD10E0',
+  '#9013FE',
+  '#4A90E2',
+  '#50E3C2',
+  '#B8E986',
+  '#000000',
+  '#4A4A4A',
+  '#9B9B9B',
+  '#FFFFFF',
+];
+
 export const Sketch = ({
-  width,
+  width = 200,
   rgb,
   hex,
   hsv,
   hsl,
   onChange,
   onSwatchHover,
-  disableAlpha,
-  presetColors,
+  disableAlpha = false,
+  presetColors = DEFAULT_SKETCH_PRESET_COLORS,
   renderers,
   styles: passedStyles = {},
   className = '',
@@ -116,7 +140,7 @@ export const Sketch = ({
   return (
     <div style={styles.picker} className={`sketch-picker ${className}`}>
       <div style={styles.saturation}>
-        <Saturation style={styles.Saturation} hsl={hsl} hsv={hsv} onChange={onChange} />
+        <Saturation style={styles.Saturation as SaturationStyle} hsl={hsl} hsv={hsv} onChange={onChange} />
       </div>
       <div style={styles.controls} className="flexbox-fix">
         <div style={styles.sliders}>
@@ -137,29 +161,6 @@ export const Sketch = ({
       <SketchPresetColors colors={presetColors!} onClick={onChange} onSwatchHover={onSwatchHover} />
     </div>
   );
-};
-
-Sketch.defaultProps = {
-  disableAlpha: false,
-  width: 200,
-  styles: {},
-  presetColors: [
-    '#D0021B',
-    '#F5A623',
-    '#F8E71C',
-    '#8B572A',
-    '#7ED321',
-    '#417505',
-    '#BD10E0',
-    '#9013FE',
-    '#4A90E2',
-    '#50E3C2',
-    '#B8E986',
-    '#000000',
-    '#4A4A4A',
-    '#9B9B9B',
-    '#FFFFFF',
-  ],
 };
 
 export default ColorWrap(Sketch);

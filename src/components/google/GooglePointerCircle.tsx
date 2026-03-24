@@ -23,8 +23,4 @@ export const GooglePointerCircle = ({ hsl = { a: 1, h: 249.94, l: 0.2, s: 0.5 } 
   return <div style={styles.picker} />;
 };
 
-GooglePointerCircle.defaultProps = {
-  hsl: { a: 1, h: 249.94, l: 0.2, s: 0.5 },
-};
-
 export default GooglePointerCircle;

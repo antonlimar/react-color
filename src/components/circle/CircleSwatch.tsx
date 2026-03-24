@@ -20,8 +20,8 @@ export const CircleSwatch = ({
   onSwatchHover,
   hover,
   active,
-  circleSize,
-  circleSpacing,
+  circleSize = 28,
+  circleSpacing = 14,
 }: CircleSwatchProps) => {
   const styles = reactCSS(
     {
@@ -67,11 +67,6 @@ export const CircleSwatch = ({
       />
     </div>
   );
-};
-
-CircleSwatch.defaultProps = {
-  circleSize: 28,
-  circleSpacing: 14,
 };
 
 export default handleHover(CircleSwatch);

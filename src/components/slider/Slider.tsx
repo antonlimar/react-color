@@ -13,7 +13,13 @@ type SliderProps = ColorPickerInjectedProps & {
   className?: ClassName;
 };
 
-export const Slider = ({ hsl, onChange, pointer, styles: passedStyles = {}, className = '' }: SliderProps) => {
+export const Slider = ({
+  hsl,
+  onChange,
+  pointer = SliderPointer,
+  styles: passedStyles = {},
+  className = '',
+}: SliderProps) => {
   const styles = reactCSS(
     merge(
       {
@@ -41,11 +47,6 @@ export const Slider = ({ hsl, onChange, pointer, styles: passedStyles = {}, clas
       </div>
     </div>
   );
-};
-
-Slider.defaultProps = {
-  pointer: SliderPointer,
-  styles: {},
 };
 
 export default ColorWrap(Slider);

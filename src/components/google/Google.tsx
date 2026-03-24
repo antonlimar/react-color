@@ -16,13 +16,13 @@ type GoogleProps = ColorPickerInjectedProps & {
 };
 
 export const Google = ({
-  width,
+  width = 652,
   onChange,
   rgb,
   hsl,
   hsv,
   hex,
-  header,
+  header = 'Color picker',
   styles: passedStyles = {},
   className = '',
 }: GoogleProps) => {
@@ -108,12 +108,6 @@ export const Google = ({
       </div>
     </div>
   );
-};
-
-Google.defaultProps = {
-  width: 652,
-  styles: {},
-  header: 'Color picker',
 };
 
 export default ColorWrap(Google);

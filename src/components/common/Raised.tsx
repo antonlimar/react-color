@@ -3,7 +3,13 @@ import reactCSS from 'reactcss';
 import merge from 'lodash/merge';
 import type { RaisedProps } from '../../types';
 
-export const Raised = ({ zDepth, radius, background, children, styles: passedStyles = {} }: RaisedProps) => {
+export const Raised = ({
+  zDepth = 1,
+  radius = 2,
+  background = '#fff',
+  children,
+  styles: passedStyles = {},
+}: RaisedProps) => {
   const styles = reactCSS(
     merge(
       {
@@ -74,13 +80,6 @@ export const Raised = ({ zDepth, radius, background, children, styles: passedSty
       <div style={styles.content}>{children}</div>
     </div>
   );
-};
-
-Raised.defaultProps = {
-  background: '#fff',
-  zDepth: 1,
-  radius: 2,
-  styles: {},
 };
 
 export default Raised;

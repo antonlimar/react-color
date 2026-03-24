@@ -16,12 +16,12 @@ type HuePickerProps = ColorPickerInjectedProps & {
 };
 
 export const HuePicker = ({
-  width,
-  height,
+  width = '316px',
+  height = '16px',
   onChange,
   hsl,
-  direction,
-  pointer,
+  direction = 'horizontal',
+  pointer = HuePointer,
   styles: passedStyles = {},
   className = '',
 }: HuePickerProps) => {
@@ -52,14 +52,6 @@ export const HuePicker = ({
       <HueControl {...styles.hue} hsl={hsl} pointer={pointer} onChange={handleChange} direction={direction} />
     </div>
   );
-};
-
-HuePicker.defaultProps = {
-  width: '316px',
-  height: '16px',
-  direction: 'horizontal',
-  pointer: HuePointer,
-  styles: {},
 };
 
 export default ColorWrap(HuePicker);

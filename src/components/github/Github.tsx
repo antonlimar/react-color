@@ -15,12 +15,31 @@ type GithubProps = ColorPickerInjectedProps & {
   className?: ClassName;
 };
 
+const DEFAULT_GITHUB_COLORS = [
+  '#B80000',
+  '#DB3E00',
+  '#FCCB00',
+  '#008B02',
+  '#006B76',
+  '#1273DE',
+  '#004DCF',
+  '#5300EB',
+  '#EB9694',
+  '#FAD0C3',
+  '#FEF3BD',
+  '#C1E1C5',
+  '#BEDADC',
+  '#C4DEF6',
+  '#BED3F3',
+  '#D4C4FB',
+];
+
 export const Github = ({
-  width,
-  colors,
+  width = 200,
+  colors = DEFAULT_GITHUB_COLORS,
   onChange,
   onSwatchHover,
-  triangle,
+  triangle = 'top-left',
   styles: passedStyles = {},
   className = '',
 }: GithubProps) => {
@@ -128,30 +147,6 @@ export const Github = ({
       ))}
     </div>
   );
-};
-
-Github.defaultProps = {
-  width: 200,
-  colors: [
-    '#B80000',
-    '#DB3E00',
-    '#FCCB00',
-    '#008B02',
-    '#006B76',
-    '#1273DE',
-    '#004DCF',
-    '#5300EB',
-    '#EB9694',
-    '#FAD0C3',
-    '#FEF3BD',
-    '#C1E1C5',
-    '#BEDADC',
-    '#C4DEF6',
-    '#BED3F3',
-    '#D4C4FB',
-  ],
-  triangle: 'top-left',
-  styles: {},
 };
 
 export default ColorWrap(Github);

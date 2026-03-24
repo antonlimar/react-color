@@ -18,13 +18,13 @@ type AlphaPickerProps = ColorPickerInjectedProps & {
 export const AlphaPicker = ({
   rgb,
   hsl,
-  width,
-  height,
+  width = '316px',
+  height = '16px',
   onChange,
-  direction,
+  direction = 'horizontal',
   style,
   renderers,
-  pointer,
+  pointer = AlphaPointer,
   className = '',
 }: AlphaPickerProps) => {
   const styles = reactCSS({
@@ -54,13 +54,6 @@ export const AlphaPicker = ({
       />
     </div>
   );
-};
-
-AlphaPicker.defaultProps = {
-  width: '316px',
-  height: '16px',
-  direction: 'horizontal',
-  pointer: AlphaPointer,
 };
 
 export default ColorWrap(AlphaPicker);

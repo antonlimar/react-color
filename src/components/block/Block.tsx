@@ -37,9 +37,9 @@ export const Block = ({
   onChange,
   onSwatchHover,
   hex,
-  colors,
-  width,
-  triangle,
+  colors = ['#D9E3F0', '#F47373', '#697689', '#37D67A', '#2CCCE4', '#555555', '#dce775', '#ff8a65', '#ba68c8'],
+  width = 170,
+  triangle = 'top',
   styles: passedStyles = {},
   className = '',
 }: BlockProps) => {
@@ -130,13 +130,6 @@ export const Block = ({
       </div>
     </div>
   );
-};
-
-Block.defaultProps = {
-  width: 170,
-  colors: ['#D9E3F0', '#F47373', '#697689', '#37D67A', '#2CCCE4', '#555555', '#dce775', '#ff8a65', '#ba68c8'],
-  triangle: 'top',
-  styles: {},
 };
 
 export default ColorWrap(Block);

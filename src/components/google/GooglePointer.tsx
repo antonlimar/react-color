@@ -23,8 +23,4 @@ export const GooglePointer = ({ hsl = { a: 1, h: 249.94, l: 0.2, s: 0.5 } }: Goo
   return <div style={styles.picker} />;
 };
 
-GooglePointer.defaultProps = {
-  hsl: { a: 1, h: 249.94, l: 0.2, s: 0.5 },
-};
-
 export default GooglePointer;
