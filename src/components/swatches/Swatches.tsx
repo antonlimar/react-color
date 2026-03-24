@@ -1,4 +1,3 @@
-import React from 'react';
 import reactCSS from 'reactcss';
 import map from 'lodash/map';
 import merge from 'lodash/merge';

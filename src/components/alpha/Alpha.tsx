@@ -1,4 +1,3 @@
-import React from 'react';
 import reactCSS from 'reactcss';
 
 import { ColorWrap, Alpha as AlphaControl } from '../common';

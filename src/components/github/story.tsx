@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Github from './Github';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 

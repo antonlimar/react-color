@@ -1,4 +1,3 @@
-import React from 'react';
 import reactCSS from 'reactcss';
 
 export const ChromePointerCircle = () => {

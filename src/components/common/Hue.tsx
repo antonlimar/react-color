@@ -1,9 +1,11 @@
-import React, { Component, PureComponent } from 'react';
+import { Component, PureComponent } from 'react';
 import reactCSS from 'reactcss';
 import * as hue from '../../helpers/hue';
+import type { MouseEvent } from 'react';
+import type { Component as ReactComponent } from 'react';
 import type { HueProps, InternalColorChangeEvent } from '../../types';
 
-const BaseHue = (PureComponent || Component) as new (props: HueProps) => React.Component<HueProps>;
+const BaseHue = (PureComponent || Component) as new (props: HueProps) => ReactComponent<HueProps>;
 
 export class Hue extends BaseHue {
   container: HTMLDivElement | null = null;
@@ -24,7 +26,7 @@ export class Hue extends BaseHue {
     }
   };
 
-  handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+  handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
     this.handleChange(event);
     window.addEventListener('mousemove', this.handleChange);
     window.addEventListener('mouseup', this.handleMouseUp);

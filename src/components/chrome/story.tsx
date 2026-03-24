@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Chrome from './Chrome';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 

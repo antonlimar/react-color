@@ -1,7 +1,9 @@
-import React, { Component, PureComponent } from 'react';
+import { Component, PureComponent } from 'react';
 import reactCSS from 'reactcss';
 import throttle from 'lodash/throttle';
 import * as saturation from '../../helpers/saturation';
+import type { MouseEvent } from 'react';
+import type { Component as ReactComponent } from 'react';
 import type { InternalColorChangeEvent, SaturationProps } from '../../types';
 
 type ThrottledChange = {
@@ -13,7 +15,7 @@ type ThrottledChange = {
   cancel(): void;
 };
 
-const BaseSaturation = (PureComponent || Component) as new (props: SaturationProps) => React.Component<SaturationProps>;
+const BaseSaturation = (PureComponent || Component) as new (props: SaturationProps) => ReactComponent<SaturationProps>;
 
 export class Saturation extends BaseSaturation {
   container: HTMLDivElement | null = null;
@@ -62,7 +64,7 @@ export class Saturation extends BaseSaturation {
     this.throttle(this.props.onChange, saturation.calculateChange(event, this.props.hsl, this.container), event);
   };
 
-  handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+  handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
     this.handleChange(event);
     const renderWindow = this.getContainerRenderWindow();
     renderWindow.addEventListener('mousemove', this.handleChange);

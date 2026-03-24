@@ -1,10 +1,10 @@
-import React from 'react';
 import reactCSS from 'reactcss';
+import type { ReactNode } from 'react';
 
 type PhotoshopButtonProps = {
   onClick?: () => void;
   label?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
   active?: boolean;
 };
 

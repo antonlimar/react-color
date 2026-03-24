@@ -1,7 +1,7 @@
-import React from 'react';
 import reactCSS from 'reactcss';
 
 import { Swatch } from '../common';
+import type { KeyboardEvent, MouseEvent } from 'react';
 import type { ColorInputChangeHandler, SwatchHoverHandler } from '../../types';
 
 type PresetColor =
@@ -50,7 +50,7 @@ export const SketchPresetColors = ({ colors, onClick = () => {}, onSwatchHover }
     },
   );
 
-  const handleClick = (hex: string, event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => {
+  const handleClick = (hex: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => {
     onClick(
       {
         hex,

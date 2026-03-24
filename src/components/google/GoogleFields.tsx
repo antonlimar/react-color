@@ -1,4 +1,3 @@
-import React from 'react';
 import reactCSS from 'reactcss';
 import * as color from '../../helpers/color';
 import { EditableInput } from '../common';

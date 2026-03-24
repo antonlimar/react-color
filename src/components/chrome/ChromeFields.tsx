@@ -1,10 +1,11 @@
-import React from 'react';
+import { Component } from 'react';
 import reactCSS from 'reactcss';
 import * as color from '../../helpers/color';
 import isUndefined from 'lodash/isUndefined';
 
 import { EditableInput } from '../common';
 import UnfoldMoreHorizontalIcon from '@icons/material/UnfoldMoreHorizontalIcon';
+import type { MouseEvent, ReactNode } from 'react';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '../../types';
 
 type ChromeFieldsProps = {
@@ -20,7 +21,7 @@ type ChromeFieldsState = {
   view: 'hex' | 'rgb' | 'hsl';
 };
 
-export class ChromeFields extends React.Component<ChromeFieldsProps, ChromeFieldsState> {
+export class ChromeFields extends Component<ChromeFieldsProps, ChromeFieldsState> {
   constructor(props: ChromeFieldsProps) {
     super(props);
 
@@ -112,11 +113,11 @@ export class ChromeFields extends React.Component<ChromeFieldsProps, ChromeField
     }
   };
 
-  showHighlight = (event: React.MouseEvent<HTMLDivElement>) => {
+  showHighlight = (event: MouseEvent<HTMLDivElement>) => {
     event.currentTarget.style.background = '#eee';
   };
 
-  hideHighlight = (event: React.MouseEvent<HTMLDivElement>) => {
+  hideHighlight = (event: MouseEvent<HTMLDivElement>) => {
     event.currentTarget.style.background = 'transparent';
   };
 
@@ -199,7 +200,7 @@ export class ChromeFields extends React.Component<ChromeFieldsProps, ChromeField
       this.state,
     );
 
-    let fields: React.ReactNode;
+    let fields: ReactNode;
     if (this.state.view === 'hex') {
       fields = (
         <div style={styles.fields} className="flexbox-fix">

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Photoshop from './Photoshop';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 

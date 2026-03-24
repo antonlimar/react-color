@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Google from './Google';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 

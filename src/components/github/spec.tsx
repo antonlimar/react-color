@@ -1,4 +1,3 @@
-import React from 'react';
 import * as color from '../../helpers/color';
 
 import Github from './Github';

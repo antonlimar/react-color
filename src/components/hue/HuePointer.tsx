@@ -1,4 +1,3 @@
-import React from 'react';
 import reactCSS from 'reactcss';
 import type { HueProps } from '../../types';
 

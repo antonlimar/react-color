@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Block from './Block';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 

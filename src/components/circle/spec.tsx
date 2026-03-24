@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Circle from './Circle';
 import CircleSwatch from './CircleSwatch';
 import * as color from '../../helpers/color';

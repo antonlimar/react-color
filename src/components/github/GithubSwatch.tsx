@@ -1,13 +1,13 @@
-import React from 'react';
 import reactCSS, { handleHover } from 'reactcss';
 
 import { Swatch } from '../common';
+import type { KeyboardEvent, MouseEvent } from 'react';
 import type { PickerStyle, SwatchHoverHandler } from '../../types';
 
 type GithubSwatchProps = {
   hover?: boolean;
   color: string;
-  onClick: (color: string, event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => void;
+  onClick: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
   onSwatchHover?: SwatchHoverHandler;
 };
 

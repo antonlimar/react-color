@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Swatches from './Swatches';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 

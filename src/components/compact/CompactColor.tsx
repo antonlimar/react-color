@@ -1,13 +1,13 @@
-import React from 'react';
 import reactCSS from 'reactcss';
 import * as colorUtils from '../../helpers/color';
 
 import { Swatch } from '../common';
+import type { KeyboardEvent, MouseEvent } from 'react';
 import type { SwatchHoverHandler } from '../../types';
 
 type CompactColorProps = {
   color: string;
-  onClick?: (color: string, event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => void;
+  onClick?: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
   onSwatchHover?: SwatchHoverHandler;
   active?: boolean;
 };

@@ -1,5 +1,7 @@
-import React, { ChangeEvent, Component, KeyboardEvent, PureComponent } from 'react';
+import { Component, PureComponent } from 'react';
 import reactCSS from 'reactcss';
+import type { ChangeEvent, KeyboardEvent, MouseEvent } from 'react';
+import type { Component as ReactComponent } from 'react';
 import type {
   EditableInputChangeEvent,
   EditableInputChangeValue,
@@ -22,7 +24,7 @@ type EditableInputState = {
 
 const BaseEditableInput = (PureComponent || Component) as new (
   props: EditableInputProps,
-) => React.Component<EditableInputProps, EditableInputState>;
+) => ReactComponent<EditableInputProps, EditableInputState>;
 
 let idCounter = 1;
 
@@ -103,7 +105,7 @@ export class EditableInput extends BaseEditableInput {
     }
   };
 
-  handleMouseDown = (event: React.MouseEvent<HTMLLabelElement>) => {
+  handleMouseDown = (event: MouseEvent<HTMLLabelElement>) => {
     if (this.props.dragLabel) {
       event.preventDefault();
       this.handleDrag(event.nativeEvent);

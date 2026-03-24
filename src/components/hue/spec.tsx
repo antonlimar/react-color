@@ -1,4 +1,3 @@
-import React from 'react';
 import { red } from '../../helpers/color';
 
 import Hue from './Hue';

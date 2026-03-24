@@ -1,12 +1,12 @@
-import React from 'react';
 import reactCSS from 'reactcss';
 import map from 'lodash/map';
 
 import SwatchesColor from './SwatchesColor';
+import type { KeyboardEvent, MouseEvent } from 'react';
 import type { SwatchHoverHandler } from '../../types';
 
 type SwatchesGroupProps = {
-  onClick: (color: string, event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => void;
+  onClick: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
   onSwatchHover?: SwatchHoverHandler;
   group: string[];
   active: string;

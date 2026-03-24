@@ -1,5 +1,3 @@
-'use strict';
-
 import type { ReactNode } from 'react';
 import React from 'react';
 import reactCSS from 'reactcss';

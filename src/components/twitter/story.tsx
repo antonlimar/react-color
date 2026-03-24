@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Twitter from './Twitter';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 

@@ -1,5 +1,5 @@
-import React from 'react';
 import reactCSS from 'reactcss';
+import type { MouseEvent } from 'react';
 import type { ColorInputChangeHandler, HSLAColor } from '../../types';
 
 type SliderSwatchProps = {
@@ -41,7 +41,7 @@ export const SliderSwatch = ({ hsl, offset, onClick = () => {}, active, first, l
     { active, first, last },
   );
 
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     onClick(
       {
         h: hsl.h,

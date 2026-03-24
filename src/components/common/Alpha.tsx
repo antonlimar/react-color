@@ -1,10 +1,12 @@
-import React, { Component, PureComponent } from 'react';
+import { Component, PureComponent } from 'react';
 import reactCSS from 'reactcss';
 import * as alpha from '../../helpers/alpha';
+import type { MouseEvent } from 'react';
+import type { Component as ReactComponent } from 'react';
 import type { AlphaProps, InternalColorChangeEvent } from '../../types';
 import Checkboard from './Checkboard';
 
-const BaseAlpha = (PureComponent || Component) as new (props: AlphaProps) => React.Component<AlphaProps>;
+const BaseAlpha = (PureComponent || Component) as new (props: AlphaProps) => ReactComponent<AlphaProps>;
 
 export class Alpha extends BaseAlpha {
   container: HTMLDivElement | null = null;
@@ -25,7 +27,7 @@ export class Alpha extends BaseAlpha {
     }
   };
 
-  handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+  handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
     this.handleChange(event);
     window.addEventListener('mousemove', this.handleChange);
     window.addEventListener('mouseup', this.handleMouseUp);

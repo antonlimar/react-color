@@ -1,4 +1,5 @@
-import React, { CSSProperties, ReactElement, isValidElement } from 'react';
+import { cloneElement, isValidElement } from 'react';
+import type { CSSProperties, ReactElement } from 'react';
 import reactCSS from 'reactcss';
 import * as checkboard from '../../helpers/checkboard';
 import type { CheckboardProps } from '../../types';
@@ -26,7 +27,7 @@ export const Checkboard = ({
   if (isValidElement(children)) {
     const child = children as ReactElement<{ style?: CSSProperties }>;
 
-    return React.cloneElement(child, {
+    return cloneElement(child, {
       ...child.props,
       style: { ...child.props.style, ...styles.grid },
     });

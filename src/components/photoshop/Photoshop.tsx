@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import reactCSS from 'reactcss';
 import merge from 'lodash/merge';
 
@@ -22,7 +22,7 @@ type PhotoshopState = {
   currentColor: string;
 };
 
-export class Photoshop extends React.Component<PhotoshopProps, PhotoshopState> {
+export class Photoshop extends Component<PhotoshopProps, PhotoshopState> {
   static defaultProps = {
     header: 'Color Picker',
     styles: {},

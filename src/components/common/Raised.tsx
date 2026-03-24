@@ -1,4 +1,3 @@
-import React from 'react';
 import reactCSS from 'reactcss';
 import merge from 'lodash/merge';
 import type { RaisedProps } from '../../types';

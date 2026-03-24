@@ -1,6 +1,6 @@
-import React from 'react';
+import { cloneElement, Component } from 'react';
 
-export default class SyncColorField extends React.Component {
+export default class SyncColorField extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +11,7 @@ export default class SyncColorField extends React.Component {
   render() {
     const handleChange = ({ hex }) => this.setState({ colorField: hex });
 
-    return React.cloneElement(this.props.children, {
+    return cloneElement(this.props.children, {
       onChange: handleChange,
       color: this.state.colorField,
     });

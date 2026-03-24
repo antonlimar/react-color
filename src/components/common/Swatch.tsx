@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, MouseEvent } from 'react';
+import type { KeyboardEvent, MouseEvent } from 'react';
 import reactCSS from 'reactcss';
 import { handleFocus } from '../../helpers/interaction';
 import type { Radius, SwatchProps } from '../../types';

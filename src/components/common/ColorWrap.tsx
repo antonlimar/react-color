@@ -1,5 +1,6 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import debounce from 'lodash/debounce';
+import type { ComponentType } from 'react';
 
 import * as color from '../../helpers/color';
 import type {
@@ -22,9 +23,9 @@ type WrappedColorPickerProps<PickerProps extends ColorPickerInjectedProps> = Omi
 > &
   ColorPickerProps;
 
-type PickerComponent<PickerProps extends ColorPickerInjectedProps> = React.ComponentType<PickerProps> & PickerStatics;
+type PickerComponent<PickerProps extends ColorPickerInjectedProps> = ComponentType<PickerProps> & PickerStatics;
 
-type WrappedColorPickerComponent<PickerProps extends ColorPickerInjectedProps> = React.ComponentType<
+type WrappedColorPickerComponent<PickerProps extends ColorPickerInjectedProps> = ComponentType<
   WrappedColorPickerProps<PickerProps>
 > &
   PickerStatics;
