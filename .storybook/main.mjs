@@ -1,4 +1,4 @@
-const { mergeConfig, transformWithOxc } = require('vite');
+import { mergeConfig, transformWithOxc } from 'vite';
 
 function jsxInJsPlugin() {
   return {
@@ -38,4 +38,4 @@ const config = {
   },
 };
 
-module.exports = config;
+export default config;
