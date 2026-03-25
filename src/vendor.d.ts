@@ -59,11 +59,6 @@ declare module 'reactcss' {
   export default reactCSS;
 }
 
-declare module 'material-colors' {
-  const materialColors: Record<string, Record<string, string>>;
-  export default materialColors;
-}
-
 declare module '@icons/material/CheckIcon' {
   import type { ComponentType, SVGProps } from 'react';
 
