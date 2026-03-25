@@ -1,5 +1,5 @@
 const { defineConfig } = require('vitest/config');
-const { transformWithOxc } = require('vite');
+const { transformWithEsbuild } = require('vite');
 
 module.exports = defineConfig({
   plugins: [
@@ -11,12 +11,10 @@ module.exports = defineConfig({
           return null;
         }
 
-        return transformWithOxc(code, id, {
-          lang: 'jsx',
-          jsx: {
-            runtime: 'automatic',
-            refresh: false,
-          },
+        return transformWithEsbuild(code, id, {
+          loader: 'jsx',
+          jsx: 'automatic',
+          jsxDev: false,
         });
       },
     },
