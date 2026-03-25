@@ -37,8 +37,8 @@ jobs:
       - name: Build Storybook
         run: npm run build-storybook
 
-      - name: Typecheck docs
-        run: npm run docs:typecheck
+      - name: Typecheck sources
+        run: npm run typecheck
 
       - name: Build docs
         run: npm run docs-dist

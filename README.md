@@ -24,17 +24,18 @@ This tree is maintained as a modernization fork. Source layout, npm export names
 
 The modernization branch now uses a TypeScript-based dual emit for package builds, Vitest for tests, Storybook 10 for component work, and Vite for docs.
 
-| Command                   | Purpose                                                         |
-| ------------------------- | --------------------------------------------------------------- |
-| `npm run build`           | Build both published outputs: `lib/` (CJS) and `es/` (ESM).     |
-| `npm test`                | Run Vitest test suite and ESLint.                               |
-| `npm run test:watch`      | Start Vitest in watch mode.                                     |
-| `npm run eslint`          | Lint library, docs, and repo tooling sources with ESLint.       |
-| `npm run storybook`       | Start Storybook on port `6006`.                                 |
-| `npm run build-storybook` | Emit the static Storybook site to `.out/`.                      |
-| `npm run docs`            | Start the Vite-powered docs server on `http://localhost:9100/`. |
-| `npm run docs:typecheck`  | Run the dedicated TypeScript check for `docs/`.                 |
-| `npm run docs-dist`       | Build the docs bundle into `docs/build/`.                       |
+| Command                   | Purpose                                                                      |
+| ------------------------- | ---------------------------------------------------------------------------- |
+| `npm run build`           | Build both published outputs: `lib/` (CJS) and `es/` (ESM).                  |
+| `npm test`                | Run Vitest test suite and ESLint.                                            |
+| `npm run test:watch`      | Start Vitest in watch mode.                                                  |
+| `npm run eslint`          | Lint `src`, `docs`, `scripts`, `test`, and repo tooling sources with ESLint. |
+| `npm run storybook`       | Start Storybook on port `6006`.                                              |
+| `npm run build-storybook` | Emit the static Storybook site to `.out/`.                                   |
+| `npm run docs`            | Start the Vite-powered docs server on `http://localhost:9100/`.              |
+| `npm run typecheck`       | Run the TypeScript check for `src`, `docs`, `scripts`, and `test`.           |
+| `npm run docs:typecheck`  | Compatibility alias for the shared TypeScript check.                         |
+| `npm run docs-dist`       | Build the docs bundle into `docs/build/`.                                    |
 
 Published package artifacts stay drop-in compatible with upstream expectations: `main` points to `lib/index.js`, `module` points to `es/index.js`, full `lib/` and `es/` trees remain in the package for deep imports, and root typings are exposed via `index.d.ts`.
 
