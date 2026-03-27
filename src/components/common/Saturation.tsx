@@ -1,4 +1,4 @@
-import { Component, PureComponent } from 'react';
+import { PureComponent } from 'react';
 import reactCSS from 'reactcss';
 import throttle from 'lodash/throttle';
 import * as saturation from '../../helpers/saturation';
@@ -15,7 +15,7 @@ type ThrottledChange = {
   cancel(): void;
 };
 
-const BaseSaturation = (PureComponent || Component) as new (props: SaturationProps) => ReactComponent<SaturationProps>;
+const BaseSaturation = PureComponent as new (props: SaturationProps) => ReactComponent<SaturationProps>;
 const SATURATION_WHITE_GRADIENT = 'linear-gradient(to right, #fff, rgba(255,255,255,0))';
 const SATURATION_BLACK_GRADIENT = 'linear-gradient(to top, #000, rgba(0,0,0,0))';
 

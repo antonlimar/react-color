@@ -1,11 +1,11 @@
-import { Component, PureComponent } from 'react';
+import { PureComponent } from 'react';
 import reactCSS from 'reactcss';
 import * as hue from '../../helpers/hue';
 import type { MouseEvent } from 'react';
 import type { Component as ReactComponent } from 'react';
 import type { HueProps, InternalColorChangeEvent } from '../../types';
 
-const BaseHue = (PureComponent || Component) as new (props: HueProps) => ReactComponent<HueProps>;
+const BaseHue = PureComponent as new (props: HueProps) => ReactComponent<HueProps>;
 const HUE_GRADIENT_HORIZONTAL =
   'linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)';
 const HUE_GRADIENT_VERTICAL =

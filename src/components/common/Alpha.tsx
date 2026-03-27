@@ -1,4 +1,4 @@
-import { Component, PureComponent } from 'react';
+import { PureComponent } from 'react';
 import reactCSS from 'reactcss';
 import * as alpha from '../../helpers/alpha';
 import type { MouseEvent } from 'react';
@@ -6,7 +6,7 @@ import type { Component as ReactComponent } from 'react';
 import type { AlphaProps, InternalColorChangeEvent } from '../../types';
 import Checkboard from './Checkboard';
 
-const BaseAlpha = (PureComponent || Component) as new (props: AlphaProps) => ReactComponent<AlphaProps>;
+const BaseAlpha = PureComponent as new (props: AlphaProps) => ReactComponent<AlphaProps>;
 
 export class Alpha extends BaseAlpha {
   container: HTMLDivElement | null = null;

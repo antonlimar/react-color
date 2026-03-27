@@ -1,4 +1,4 @@
-import { Component, PureComponent } from 'react';
+import { PureComponent } from 'react';
 import reactCSS from 'reactcss';
 import type { ChangeEvent, KeyboardEvent, MouseEvent } from 'react';
 import type { Component as ReactComponent } from 'react';
@@ -22,7 +22,7 @@ type EditableInputState = {
   blurValue: EditableInputValue | null;
 };
 
-const BaseEditableInput = (PureComponent || Component) as new (
+const BaseEditableInput = PureComponent as new (
   props: EditableInputProps,
 ) => ReactComponent<EditableInputProps, EditableInputState>;
 
