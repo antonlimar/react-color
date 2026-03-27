@@ -1,8 +1,12 @@
-const path = require('path');
-const { defineConfig } = require('vite');
-const react = require('@vitejs/plugin-react');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-module.exports = defineConfig({
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default defineConfig({
   root: path.resolve(__dirname, 'docs'),
   base: '/',
   publicDir: false,

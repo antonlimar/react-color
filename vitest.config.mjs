@@ -1,7 +1,7 @@
-const { defineConfig } = require('vitest/config');
-const { transformWithEsbuild } = require('vite');
+import { defineConfig } from 'vitest/config';
+import { transformWithEsbuild } from 'vite';
 
-module.exports = defineConfig({
+export default defineConfig({
   plugins: [
     {
       name: 'react-color-jsx-pretransform',

@@ -1,13 +1,13 @@
-const js = require('@eslint/js');
-const globals = require('globals');
-const { defineConfig } = require('eslint/config');
-const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
-const react = require('eslint-plugin-react');
-const reactHooks = require('eslint-plugin-react-hooks');
-const storybook = require('eslint-plugin-storybook');
-const tseslint = require('typescript-eslint');
+import js from '@eslint/js';
+import globals from 'globals';
+import { defineConfig } from 'eslint/config';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import storybook from 'eslint-plugin-storybook';
+import tseslint from 'typescript-eslint';
 
-module.exports = defineConfig([
+export default defineConfig([
   {
     ignores: ['docs/build/**', '.out/**', 'es/**', 'lib/**', 'node_modules/**', 'examples/**/dist/**'],
   },
@@ -69,10 +69,11 @@ module.exports = defineConfig([
   {
     files: [
       '.storybook/**/*.{js,jsx,ts,tsx}',
-      'eslint.config.js',
+      'eslint.config.mjs',
       'scripts/**/*.{js,mjs}',
-      'vite.docs.config.js',
-      'vitest.config.js',
+      'vite.docs.config.mjs',
+      'vitest.config.mjs',
+      'vitest.visual.config.mjs',
     ],
     rules: {
       '@typescript-eslint/no-require-imports': 'off',

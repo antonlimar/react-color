@@ -1,7 +1,5 @@
-'use strict';
-
-const { build } = require('vite');
-const viteConfig = require('../vite.docs.config');
+import { build } from 'vite';
+import viteConfig from '../vite.docs.config.mjs';
 
 build({
   ...viteConfig,

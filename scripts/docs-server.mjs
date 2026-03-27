@@ -1,10 +1,13 @@
-'use strict';
+import fs from 'node:fs/promises';
+import http from 'node:http';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createServer as createViteServer } from 'vite';
 
-const fs = require('fs/promises');
-const http = require('http');
-const path = require('path');
-const { createServer: createViteServer } = require('vite');
-const viteConfig = require('../vite.docs.config');
+import viteConfig from '../vite.docs.config.mjs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const port = 9100;
 const docsIndexPath = path.resolve(__dirname, '../docs/index.html');
