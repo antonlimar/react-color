@@ -4,7 +4,7 @@ import * as color from '../../helpers/color';
 import isUndefined from 'lodash/isUndefined';
 
 import { EditableInput } from '../common';
-import UnfoldMoreHorizontalIcon from '@icons/material/UnfoldMoreHorizontalIcon';
+import UnfoldMoreHorizontalIcon from '../common/icons/UnfoldMoreHorizontalIcon';
 import type { MouseEvent, ReactNode } from 'react';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '../../types';
 

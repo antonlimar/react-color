@@ -54,7 +54,6 @@
     "popup"
   ],
   "dependencies": {
-    "@icons/material": "^0.4.1",
     "lodash": "^4.17.23",
     "lodash-es": "^4.17.23",
     "material-colors": "^1.2.6",

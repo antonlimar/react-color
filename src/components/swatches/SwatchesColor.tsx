@@ -2,7 +2,7 @@ import reactCSS from 'reactcss';
 import * as colorUtils from '../../helpers/color';
 
 import { Swatch } from '../common';
-import CheckIcon from '@icons/material/CheckIcon';
+import CheckIcon from '../common/icons/CheckIcon';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { SwatchHoverHandler } from '../../types';
 

@@ -59,20 +59,6 @@ declare module 'reactcss' {
   export default reactCSS;
 }
 
-declare module '@icons/material/CheckIcon' {
-  import type { ComponentType, SVGProps } from 'react';
-
-  const CheckIcon: ComponentType<SVGProps<SVGSVGElement>>;
-  export default CheckIcon;
-}
-
-declare module '@icons/material/UnfoldMoreHorizontalIcon' {
-  import type { ComponentType, SVGProps } from 'react';
-
-  const UnfoldMoreHorizontalIcon: ComponentType<SVGProps<SVGSVGElement>>;
-  export default UnfoldMoreHorizontalIcon;
-}
-
 declare module 'tinycolor2' {
   type TinyColorInput =
     | import('./types').Color

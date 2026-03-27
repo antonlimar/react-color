@@ -10,7 +10,7 @@ todos:
     status: completed
   - id: localize-runtime-icons
     content: Убрать зависимость @icons/material из published runtime, заменить используемые иконки на локальные SVG-компоненты и проверить отсутствие импортов @icons/material в lib/ и es/
-    status: pending
+    status: completed
   - id: iframe-safe-saturation
     content: Переписать логику getContainerRenderWindow в Saturation на ownerDocument.defaultView с безопасным fallback на window без обхода parent.document
     status: pending
@@ -119,7 +119,7 @@ todos:
 
 - [x] **csp-safe-gradients** — Убрать runtime `<style>` из common-компонентов `Hue` и `Saturation`, перенести градиенты в inline style-объекты элементов и сохранить текущее визуальное поведение без нового публичного `nonce` API
 - [x] **remove-defaultprops** — Полностью убрать `defaultProps` из `ColorWrap` и `Photoshop`, сохранив те же runtime defaults и не меняя публичные TypeScript-контракты компонентов
-- [ ] **localize-runtime-icons** — Убрать зависимость `@icons/material` из published runtime, заменить используемые иконки на локальные SVG-компоненты и проверить отсутствие импортов `@icons/material` в `lib/` и `es/`
+- [x] **localize-runtime-icons** — Убрать зависимость `@icons/material` из published runtime, заменить используемые иконки на локальные SVG-компоненты и проверить отсутствие импортов `@icons/material` в `lib/` и `es/`
 - [ ] **iframe-safe-saturation** — Переписать логику `getContainerRenderWindow` в `Saturation` на `ownerDocument.defaultView` с безопасным fallback на `window` без обхода `parent.document`
 - [ ] **a11y-and-styling-hooks** — Добавить базовую keyboard accessibility и стабильные `className`/`data-атрибуты` на ключевые интерактивные внутренние узлы без большого рефакторинга `reactcss` или theming-system
 - [ ] **esm-cjs-consumption-check** — Добавить отдельную проверку потребления root entry, named imports и deep imports из `lib/es` и зафиксировать interop-ожидания в документации без введения `exports` map
