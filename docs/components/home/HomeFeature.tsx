@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
-import React, { useState } from 'react';
-import reactCSS from 'reactcss';
+import { useState } from 'react';
 
+import { createDocsStyles } from '../../createDocsStyles';
 import {
   AlphaPicker,
   BlockPicker,
@@ -32,7 +32,7 @@ const INITIAL_COLOR: HSLAColor = {
 };
 
 function renderCard(label: string, element: ReactNode, tone: 'default' | 'dark' = 'default') {
-  const styles = reactCSS({
+  const styles = createDocsStyles({
     default: {
       card: {
         position: 'relative',
@@ -75,7 +75,7 @@ function HomeFeature({ primaryColor, onChange }: HomeFeatureProps) {
     onChange?.(hex);
   };
 
-  const styles = reactCSS({
+  const styles = createDocsStyles({
     default: {
       feature: {
         position: 'relative',

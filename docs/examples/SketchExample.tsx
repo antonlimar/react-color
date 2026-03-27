@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import reactCSS from 'reactcss';
+import { useState } from 'react';
 import { SketchPicker } from 'react-color';
+
+import { createDocsStyles } from '../createDocsStyles';
 import type { ColorResult, RGBAColor } from '../../src/types';
 
 const INITIAL_COLOR: RGBAColor = {
@@ -14,7 +15,7 @@ function SketchExample() {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
   const [color, setColor] = useState<RGBAColor>(INITIAL_COLOR);
 
-  const styles = reactCSS({
+  const styles = createDocsStyles({
     default: {
       color: {
         width: '36px',

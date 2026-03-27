@@ -62,27 +62,7 @@ export default defineConfig([
       },
     },
     rules: {
-      '@typescript-eslint/no-unused-vars': 'off',
       'no-redeclare': 'off',
-    },
-  },
-  {
-    files: [
-      '.storybook/**/*.{js,jsx,ts,tsx}',
-      'eslint.config.mjs',
-      'scripts/**/*.{js,mjs}',
-      'vite.docs.config.ts',
-      'vitest.config.ts',
-      'vitest.visual.config.ts',
-    ],
-    rules: {
-      '@typescript-eslint/no-require-imports': 'off',
-    },
-  },
-  {
-    files: ['examples/**/*.{js,jsx,ts,tsx,mjs}'],
-    rules: {
-      'react/no-deprecated': 'off',
     },
   },
   {
@@ -94,9 +74,9 @@ export default defineConfig([
     },
   },
   {
-    files: ['src/components/common/ColorWrap.tsx'],
+    files: ['examples/**/*.{js,jsx,ts,tsx,mjs}'],
     rules: {
-      'react-hooks/unsupported-syntax': 'off',
+      'react/no-deprecated': 'off',
     },
   },
   eslintPluginPrettierRecommended,

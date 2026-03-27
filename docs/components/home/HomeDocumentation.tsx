@@ -1,6 +1,4 @@
-import React from 'react';
-import reactCSS from 'reactcss';
-
+import { createDocsStyles } from '../../createDocsStyles';
 import documentation from '../../documentation';
 import { Button, buttonmd, Sketch, sketchmd } from '../../examples';
 import { MarkdownBlock, MarkdownDocument, parseFrontmatter } from '../common/MarkdownBlock';
@@ -15,7 +13,7 @@ interface NavigationItem {
 }
 
 function HomeDocumentation({ primaryColor }: HomeDocumentationProps) {
-  const styles = reactCSS({
+  const styles = createDocsStyles({
     default: {
       body: {
         paddingTop: '50px',

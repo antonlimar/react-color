@@ -10,7 +10,7 @@ export default defineConfig({
   root: path.resolve(__dirname, 'docs'),
   base: '/',
   publicDir: false,
-  plugins: [react()],
+  plugins: [react({ jsxRuntime: 'automatic' })],
   resolve: {
     alias: {
       'react-color': path.resolve(__dirname, 'src/index.ts'),

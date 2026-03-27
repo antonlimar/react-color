@@ -13,7 +13,7 @@ export function createExampleConfig({ exampleDir }: { exampleDir: string }) {
   const reactDomEntry = path.resolve(exampleDir, 'node_modules/react-dom');
 
   return defineConfig({
-    plugins: [react()],
+    plugins: [react({ jsxRuntime: 'automatic' })],
     resolve: {
       alias: [
         { find: 'react', replacement: reactEntry },
