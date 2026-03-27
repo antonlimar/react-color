@@ -67,10 +67,8 @@ npm install react-color --save
 import React from 'react';
 import { SketchPicker } from 'react-color';
 
-class Component extends React.Component {
-  render() {
-    return <SketchPicker />;
-  }
+function Component() {
+  return <SketchPicker />;
 }
 ```
 

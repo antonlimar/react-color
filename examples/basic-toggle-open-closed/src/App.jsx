@@ -1,28 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { CompactPicker } from 'react-color';
 
-class App extends React.Component {
-  state = {
-    pickerVisible: false,
-  };
+function App() {
+  const [pickerVisible, setPickerVisible] = useState(false);
 
-  render() {
-    const handleColorChange = ({ hex }) => console.log(hex);
-    const onTogglePicker = () => this.setState({ pickerVisible: !this.state.pickerVisible });
+  const handleColorChange = ({ hex }) => console.log(hex);
+  const onTogglePicker = () => setPickerVisible((currentPickerVisible) => !currentPickerVisible);
 
-    return (
-      <div>
-        <button onClick={onTogglePicker}>Toggle Picker</button>
+  return (
+    <div>
+      <button onClick={onTogglePicker}>Toggle Picker</button>
 
-        {this.state.pickerVisible && (
-          <div style={{ position: 'absolute' }}>
-            <CompactPicker color="#333" onChangeComplete={handleColorChange} />
-          </div>
-        )}
-      </div>
-    );
-  }
+      {pickerVisible && (
+        <div style={{ position: 'absolute' }}>
+          <CompactPicker color="#333" onChangeComplete={handleColorChange} />
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default App;

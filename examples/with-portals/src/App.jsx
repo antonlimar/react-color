@@ -1,29 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Portal from './Portal';
 
-export class App extends React.Component {
-  state = {
-    pickerVisible: false,
+export function App() {
+  const [pickerVisible, setPickerVisible] = useState(false);
+
+  const handleToggleVisibility = () => {
+    setPickerVisible((currentPickerVisible) => !currentPickerVisible);
   };
 
-  handleToggleVisibility = () => {
-    this.setState(({ pickerVisible }) => ({
-      pickerVisible: !pickerVisible,
-    }));
-  };
+  const handleColorChange = ({ hex }) => console.log(hex);
 
-  handleColorChange = ({ hex }) => console.log(hex);
+  return (
+    <div>
+      <button onClick={handleToggleVisibility}>Pick Color</button>
 
-  render() {
-    return (
-      <div>
-        <button onClick={this.handleToggleVisibility}>Pick Color</button>
-
-        {this.state.pickerVisible && <Portal onChange={this.handleColorChange} onClose={this.handleToggleVisibility} />}
-      </div>
-    );
-  }
+      {pickerVisible && <Portal onChange={handleColorChange} onClose={handleToggleVisibility} />}
+    </div>
+  );
 }
 
 export default App;

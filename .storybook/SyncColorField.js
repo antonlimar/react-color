@@ -1,4 +1,4 @@
-import { cloneElement, Component } from 'react';
+import { cloneElement, useState } from 'react';
 
 const fallbackColor = {
   h: 250,
@@ -7,20 +7,13 @@ const fallbackColor = {
   a: 1,
 };
 
-export default class SyncColorField extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      colorField: props.children.props.color ?? fallbackColor,
-    };
-  }
+export default function SyncColorField(props) {
+  const [colorField, setColorField] = useState(props.children.props.color ?? fallbackColor);
 
-  render() {
-    const handleChange = ({ hex }) => this.setState({ colorField: hex });
+  const handleChange = ({ hex }) => setColorField(hex);
 
-    return cloneElement(this.props.children, {
-      onChange: handleChange,
-      color: this.state.colorField,
-    });
-  }
+  return cloneElement(props.children, {
+    onChange: handleChange,
+    color: colorField,
+  });
 }
