@@ -5,7 +5,7 @@ import isUndefined from 'lodash/isUndefined';
 
 import { EditableInput } from '../common';
 import UnfoldMoreHorizontalIcon from '../common/icons/UnfoldMoreHorizontalIcon';
-import type { MouseEvent, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '../../types';
 
 type ChromeFieldsProps = {
@@ -113,14 +113,6 @@ export class ChromeFields extends Component<ChromeFieldsProps, ChromeFieldsState
     }
   };
 
-  showHighlight = (event: MouseEvent<HTMLDivElement>) => {
-    event.currentTarget.style.background = '#eee';
-  };
-
-  hideHighlight = (event: MouseEvent<HTMLDivElement>) => {
-    event.currentTarget.style.background = 'transparent';
-  };
-
   render() {
     const styles = reactCSS(
       {
@@ -152,16 +144,6 @@ export class ChromeFields extends Component<ChromeFieldsProps, ChromeFieldsState
             marginTop: '12px',
             cursor: 'pointer',
             position: 'relative',
-          },
-          iconHighlight: {
-            position: 'absolute',
-            width: '24px',
-            height: '28px',
-            background: '#eee',
-            borderRadius: '4px',
-            top: '10px',
-            left: '12px',
-            display: 'none',
           },
           input: {
             fontSize: '11px',
@@ -296,13 +278,7 @@ export class ChromeFields extends Component<ChromeFieldsProps, ChromeFieldsState
       <div style={styles.wrap} className="flexbox-fix">
         {fields}
         <div style={styles.toggle}>
-          <div
-            style={styles.icon}
-            onClick={this.toggleViews}
-            onMouseOver={this.showHighlight}
-            onMouseEnter={this.showHighlight}
-            onMouseOut={this.hideHighlight}
-          >
+          <div style={styles.icon} onClick={this.toggleViews}>
             <UnfoldMoreHorizontalIcon style={styles.svg} />
           </div>
         </div>

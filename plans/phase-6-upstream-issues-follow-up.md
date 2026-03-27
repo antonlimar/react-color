@@ -1,6 +1,6 @@
 ---
 name: Фаза 6 upstream issues follow-up
-overview: Закрыть наиболее ценные открытые проблемы апстрима react-color без ломки drop-in совместимости форка: CSP, defaultProps warnings, runtime icons, iframe-safe drag behavior, accessibility hooks и проверка ESM/CJS interop.
+overview: Закрыть наиболее ценные открытые проблемы апстрима react-color без ломки drop-in совместимости форка: CSP, defaultProps warnings, runtime icons, iframe-safe drag behavior и проверка ESM/CJS interop.
 todos:
   - id: csp-safe-gradients
     content: Убрать runtime <style> из common-компонентов Hue и Saturation, перенести градиенты в inline style-объекты элементов и сохранить текущее визуальное поведение без нового публичного nonce API
@@ -14,19 +14,16 @@ todos:
   - id: iframe-safe-saturation
     content: Переписать логику getContainerRenderWindow в Saturation на ownerDocument.defaultView с безопасным fallback на window без обхода parent.document
     status: completed
-  - id: a11y-and-styling-hooks
-    content: Добавить базовую keyboard accessibility и стабильные className/data-атрибуты на ключевые интерактивные внутренние узлы без большого рефакторинга reactcss или theming-system
-    status: pending
   - id: esm-cjs-consumption-check
     content: Добавить отдельную проверку потребления root entry, named imports и deep imports из lib/es и зафиксировать interop-ожидания в документации без введения exports map
-    status: pending
+    status: completed
 ---
 
 # Фаза 6: follow-up по открытым issues апстрима
 
 ## Summary
 
-Эта фаза нацелена не на очередную модернизацию toolchain, а на закрытие пользовательских болей, которые по-прежнему видны в issues upstream `casesandberg/react-color` и частично остаются актуальными для форка. Приоритет здесь смещён в сторону runtime-совместимости и предсказуемости поведения: сначала убрать CSP-конфликтующие места и React warnings, затем снять внешнюю runtime-зависимость на иконки, после этого исправить iframe-safe drag handling и только затем расширять accessibility/hooks для кастомизации.
+Эта фаза нацелена не на очередную модернизацию toolchain, а на закрытие пользовательских болей, которые по-прежнему видны в issues upstream `casesandberg/react-color` и частично остаются актуальными для форка. Приоритет здесь смещён в сторону runtime-совместимости и предсказуемости поведения: сначала убрать CSP-конфликтующие места и React warnings, затем снять внешнюю runtime-зависимость на иконки, после этого исправить iframe-safe drag handling и завершить interop-проверки без изменения packaging contract.
 
 Ключевое ограничение остаётся тем же, что и в предыдущих фазах: не ломать drop-in контракт пакета. `main`, `module`, `files`, структура `lib/` и `es/`, root typings, deep imports и имена экспортов из `src/index.ts` должны остаться совместимыми с upstream-пакетом.
 
@@ -63,16 +60,7 @@ todos:
   - не делать цикл по `parent`.
 - Сохранить текущую модель подписки на `mousemove`/`mouseup` и не вводить новый публичный API.
 
-### 5. Accessibility и стабильные hooks для стилизации
-
-- Добавить минимально достаточные accessibility hooks для `Hue`, `Alpha`, `Saturation` и связанных интерактивных surfaces:
-  - focusability;
-  - keyboard support для базового изменения значения стрелками;
-  - role/ARIA-атрибуты там, где это можно сделать без breaking changes.
-- Добавить стабильные class hooks или data-атрибуты на ключевые внутренние DOM-узлы picker-ов, чтобы кастомизация не зависела от хрупких селекторов по вложенности.
-- Не делать в этой фазе большой redesign стилизации и не уходить от `reactcss`.
-
-### 6. Проверка ESM/CJS interop без смены packaging contract
+### 5. Проверка ESM/CJS interop без смены packaging contract
 
 - Не вводить `exports` map в этой фазе.
 - Добавить отдельную consumption-проверку для сценариев:
@@ -91,6 +79,7 @@ todos:
 - `npm run typecheck`
 - `npm run build`
 - `npm run test:public-types`
+- `npm run test:esm-cjs-consumption`
 - `npm run build-storybook`
 - `npm run docs-dist`
 - `npm run examples:check`
@@ -102,7 +91,6 @@ todos:
 - drag для hue/alpha/saturation не регрессирует.
 - `ColorWrap` сохраняет controlled-state sync и defaults для `color`.
 - `Photoshop` сохраняет defaults для `header` и `styles`.
-- keyboard interaction на интерактивных common controls меняет значение предсказуемо.
 - `Saturation` безопасно работает при контейнере внутри iframe и не обращается к `parent.document`.
 - после сборки в `lib/` и `es/` отсутствуют runtime-импорты `@icons/material`.
 - public-types smoke продолжает подтверждать root imports и deep imports без сужения API.
@@ -112,7 +100,6 @@ todos:
 - Drop-in совместимость важнее агрессивной modern packaging-оптимизации.
 - CSP-проблема закрывается удалением inline `<style>`, а не введением `nonce` в публичный API.
 - `exports` map и радикальная смена packaging не входят в scope этой фазы.
-- Accessibility улучшается инкрементально: базовая клавиатурная управляемость и стабильные hooks, без архитектурного переписывания pickers.
 - IE11 и прочие legacy browser-specific кейсы не являются целевой областью этой фазы, если исправление не получается бесплатно в рамках iframe/CSP cleanup.
 
 ## Todo
@@ -121,5 +108,4 @@ todos:
 - [x] **remove-defaultprops** — Полностью убрать `defaultProps` из `ColorWrap` и `Photoshop`, сохранив те же runtime defaults и не меняя публичные TypeScript-контракты компонентов
 - [x] **localize-runtime-icons** — Убрать зависимость `@icons/material` из published runtime, заменить используемые иконки на локальные SVG-компоненты и проверить отсутствие импортов `@icons/material` в `lib/` и `es/`
 - [x] **iframe-safe-saturation** — Переписать логику `getContainerRenderWindow` в `Saturation` на `ownerDocument.defaultView` с безопасным fallback на `window` без обхода `parent.document`
-- [ ] **a11y-and-styling-hooks** — Добавить базовую keyboard accessibility и стабильные `className`/`data-атрибуты` на ключевые интерактивные внутренние узлы без большого рефакторинга `reactcss` или theming-system
-- [ ] **esm-cjs-consumption-check** — Добавить отдельную проверку потребления root entry, named imports и deep imports из `lib/es` и зафиксировать interop-ожидания в документации без введения `exports` map
+- [x] **esm-cjs-consumption-check** — Добавить отдельную проверку потребления root entry, named imports и deep imports из `lib/es` и зафиксировать interop-ожидания в документации без введения `exports` map

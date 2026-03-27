@@ -28,6 +28,7 @@ The modernization branch now uses a TypeScript-based dual emit for package build
 | ------------------------- | ---------------------------------------------------------------------------- |
 | `npm run build`           | Build both published outputs: `lib/` (CJS) and `es/` (ESM).                  |
 | `npm test`                | Run Vitest test suite and ESLint.                                            |
+| `npm run test:esm-cjs-consumption` | Build the package and smoke-check CJS, Node ESM, and bundler consumption paths. |
 | `npm run test:watch`      | Start Vitest in watch mode.                                                  |
 | `npm run eslint`          | Lint `src`, `docs`, `scripts`, `test`, and repo tooling sources with ESLint. |
 | `npm run storybook`       | Start Storybook on port `6006`.                                              |
@@ -38,6 +39,15 @@ The modernization branch now uses a TypeScript-based dual emit for package build
 | `npm run docs-dist`       | Build the docs bundle into `docs/build/`.                                    |
 
 Published package artifacts stay drop-in compatible with upstream expectations: `main` points to `lib/index.js`, `module` points to `es/index.js`, full `lib/` and `es/` trees remain in the package for deep imports, and root typings are exposed via `index.d.ts`.
+
+### Packaging interop notes
+
+The package still ships the upstream-style `main`/`module` contract and intentionally does not publish an `exports` map in this fork.
+
+- Bundlers and TypeScript toolchains that honor `module` can use root default/named imports and extensionless deep imports such as `react-color/es/Sketch` or `react-color/lib/Hue`.
+- CommonJS consumers can keep using `require('react-color')` and `require('react-color/lib/...')`.
+- Native Node ESM resolves the package root through `main` (`lib/index.js`), so `import reactColor from 'react-color'` yields the CommonJS namespace object; access pickers from that object (`reactColor.default`, `reactColor.SketchPicker`) rather than relying on direct named imports.
+- Native Node ESM without bundler-style resolution does not guarantee extensionless deep imports from `react-color/lib/*` or `react-color/es/*` until the package adopts an explicit `exports` map, which remains out of scope for this compatibility-focused fork.
 
 ## Demo
 
