@@ -1,23 +1,17 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import type { ComponentType, ElementType } from 'react';
 
-type FocusState = {
-  focus: boolean;
-};
-
 export const handleFocus = <P extends object>(WrappedComponent: ComponentType<P>, Span: ElementType = 'span') =>
-  class Focus extends Component<P, FocusState> {
-    state: FocusState = { focus: false };
+  function Focus(props: P) {
+    const [focus, setFocus] = useState(false);
 
-    handleFocus = () => this.setState({ focus: true });
+    const handleFocus = () => setFocus(true);
 
-    handleBlur = () => this.setState({ focus: false });
+    const handleBlur = () => setFocus(false);
 
-    render() {
-      return (
-        <Span onFocus={this.handleFocus} onBlur={this.handleBlur}>
-          <WrappedComponent {...(this.props as P)} {...(this.state as unknown as Partial<P>)} />
-        </Span>
-      );
-    }
+    return (
+      <Span onFocus={handleFocus} onBlur={handleBlur}>
+        <WrappedComponent {...props} {...({ focus } as unknown as Partial<P>)} />
+      </Span>
+    );
   };
