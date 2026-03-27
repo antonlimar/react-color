@@ -2,9 +2,7 @@ import fs from 'node:fs/promises';
 import http from 'node:http';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createServer as createViteServer } from 'vite';
-
-import viteConfig from '../vite.docs.config.mjs';
+import { createServer as createViteServer, loadConfigFromFile } from 'vite';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,6 +13,16 @@ const devEntryTag = '<script type="module" src="/index.js"></script>';
 const prodEntryPattern = /<script\s+src="build\/bundle\.js"\s+type="text\/javascript"><\/script>/;
 
 async function start() {
+  const loadedConfig = await loadConfigFromFile(
+    { command: 'serve', mode: 'development' },
+    path.resolve(__dirname, '../vite.docs.config.ts'),
+  );
+
+  if (!loadedConfig) {
+    throw new Error('Failed to load Vite docs config from vite.docs.config.ts');
+  }
+
+  const viteConfig = loadedConfig.config;
   let vite;
 
   const server = http.createServer(async (req, res) => {

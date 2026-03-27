@@ -8,7 +8,7 @@ const repoRoot = path.resolve(sharedDir, '..');
 const commonEntry = path.resolve(repoRoot, 'src/components/common/index.ts');
 const libraryEntry = path.resolve(repoRoot, 'src/index.ts');
 
-export function createExampleConfig({ exampleDir }) {
+export function createExampleConfig({ exampleDir }: { exampleDir: string }) {
   const reactEntry = path.resolve(exampleDir, 'node_modules/react');
   const reactDomEntry = path.resolve(exampleDir, 'node_modules/react-dom');
 

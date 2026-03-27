@@ -71,9 +71,9 @@ export default defineConfig([
       '.storybook/**/*.{js,jsx,ts,tsx}',
       'eslint.config.mjs',
       'scripts/**/*.{js,mjs}',
-      'vite.docs.config.mjs',
-      'vitest.config.mjs',
-      'vitest.visual.config.mjs',
+      'vite.docs.config.ts',
+      'vitest.config.ts',
+      'vitest.visual.config.ts',
     ],
     rules: {
       '@typescript-eslint/no-require-imports': 'off',

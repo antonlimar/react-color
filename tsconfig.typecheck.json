@@ -23,6 +23,8 @@
     "useDefineForClassFields": false
   },
   "include": [
+    "*.ts",
+    "*.d.ts",
     "src/**/*.js",
     "src/**/*.jsx",
     "src/**/*.ts",
@@ -38,6 +40,9 @@
     "scripts/**/*.ts",
     "scripts/**/*.tsx",
     "scripts/**/*.d.ts",
+    "examples/**/*.ts",
+    "examples/**/*.tsx",
+    "examples/**/*.d.ts",
     "test/**/*.js",
     "test/**/*.jsx",
     "test/**/*.mjs",

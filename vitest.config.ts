@@ -23,7 +23,7 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     include: ['src/**/spec.{ts,tsx}'],
-    setupFiles: ['./test/vitest.setup.mjs'],
+    setupFiles: ['./test/vitest.setup.ts'],
     clearMocks: true,
     restoreMocks: true,
   },
