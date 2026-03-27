@@ -5,7 +5,7 @@
 - Сборка пакета уже переведена на **`tsc`** с пофайловым выводом в `lib/` (CJS) и `es/` (ESM), см. [`package.json`](package.json), [`tsconfig.lib.json`](tsconfig.lib.json), [`tsconfig.es.json`](tsconfig.es.json).
 - Тестовый стек уже обновлён до **Vitest + Testing Library + jsdom**, линтинг работает через **ESLint flat config**, а docs и Storybook переведены на современный пайплайн.
 - Код библиотеки, истории Storybook и тестовые файлы под [`src/`](src/) уже переведены на актуальные TypeScript-совместимые расширения.
-- Публичный barrel уже синхронизирован с drop-in API: default export и именованные экспорты идут из [`src/index.ts`](src/index.ts).
+- Публичный barrel уже синхронизирован с текущим публичным API: default export и именованные экспорты идут из [`src/index.ts`](src/index.ts).
 
 ```mermaid
 flowchart LR
@@ -59,12 +59,12 @@ flowchart LR
 
 ## Фаза 2 — Современный toolchain (до или параллельно с TS)
 
-**Ограничение:** по возможности сохранить **drop-in замену** апстриму `react-color` — те же `main`/`module`/`files`, **пофайловый** вывод в `lib/` и `es/` (как у Babel), без перехода на «один бандл вместо дерева» без осознанного breaking-релиза.
+**Ограничение:** избегать лишних breaking changes в структуре публикации пакета без осознанного решения и записи в CHANGELOG; изменения `main` / `module` / `files`, deep imports и формата сборочных артефактов рассматривать отдельно.
 
 | Область   | Направление                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Сборка    | Приоритет: **`tsc`** (два `tsconfig` для CJS/ESM), пофайловый выход как у Babel. **tsdown** — только если подтверждён режим без единого бандла на весь пакет и сохраняется дерево путей. **tsup** не использовать (не поддерживается; **tsdown** — преемник в экосистеме). Цель — убрать Babel 6 и ручные скрипты [`scripts/use-module-babelrc.js`](scripts/use-module-babelrc.js) / [`restore-original-babelrc.js`](scripts/restore-original-babelrc.js). |
-| Типы      | `typescript`, в [`package.json`](package.json) добавить поле **`types`**; поле **`exports`** — опционально и только если не ломает drop-in (старые резолверы / deep-imports).                                                                                                                                                                                                                                                                              |
+| Типы      | `typescript`, в [`package.json`](package.json) добавить поле **`types`**; поле **`exports`** — опционально и вводится только после отдельной оценки влияния на резолверы и deep imports.                                                                                                                                                                                                                                                                  |
 | Линт      | ESLint **flat config** + `@typescript-eslint` + `eslint-plugin-react-hooks`; удалить зависимость от `@case/eslint-config`, если она не поддерживается.                                                                                                                                                                                                                                                                                                     |
 | Тесты     | **Vitest** + **jsdom** + **@testing-library/react** (замена Enzyme 2 / старых утилит); тестовые файлы уже живут на TS-совместимых расширениях.                                                                                                                                                                                                                                                                                                             |
 | Storybook | Обновить до **10.x** (или актуальной LTS), переписать [`.storybook/config.js`](.storybook/config.js) под новый формат; истории уже переведены на `story.tsx`. После миграции вернуть `reactDocgen`, если он был временно отключён из-за legacy Babel-конфига.                                                                                                                                                                                              |
@@ -104,7 +104,7 @@ flowchart LR
 
 Статус: завершена как отдельный follow-up после основной модернизации `src`, toolchain и legacy cleanup.
 
-- Цель фазы выполнена: runtime-код документационного сайта в [`docs/`](docs/) переведён на TypeScript без изменения drop-in API пакета и без смешивания этой работы с library build для `lib/` / `es/`.
+- Цель фазы выполнена: runtime-код документационного сайта в [`docs/`](docs/) переведён на TypeScript без непреднамеренных изменений публичного API пакета и без смешивания этой работы с library build для `lib/` / `es/`.
 - Область фазы закрыта: переведены [`docs/index.tsx`](docs/index.tsx), [`docs/documentation/index.ts`](docs/documentation/index.ts), runtime-компоненты в [`docs/components/`](docs/components/) и примеры в [`docs/examples/`](docs/examples/); markdown, ассеты и [`docs/build/`](docs/build/) по-прежнему не входят в scope миграции.
 - Для docs добавлены отдельные `tsconfig.docs.json` и команда `npm run docs:typecheck`; docs-specific typecheck включён в CI и не смешан с library build.
 - После миграции удалён уже ненужный `jsxInJsPlugin()` из [`vite.docs.config.js`](vite.docs.config.js), а команды и документация синхронизированы в [`README.md`](README.md), [`AGENTS.md`](AGENTS.md) и [`.github/CONTRIBUTING.md`](.github/CONTRIBUTING.md).
@@ -118,7 +118,7 @@ flowchart LR
 
 Статус: завершена как отдельная волна runtime/DX follow-up после модернизационных фаз 2–5.
 
-- Цель фазы: закрыть наиболее ценные открытые боли upstream `casesandberg/react-color`, которые всё ещё могут быть актуальны для форка, без ломки drop-in совместимости пакета.
+- Цель фазы: закрыть наиболее ценные открытые боли upstream `casesandberg/react-color`, которые всё ещё могут быть актуальны для форка, без ненужных поломок публичного API пакета.
 - Реализованы и зафиксированы: CSP-safe градиенты, удаление `defaultProps` warnings, локализация runtime-иконок, iframe-safe drag behavior в `Saturation` и отдельная проверка ESM/CJS interop с документацией ожидаемого поведения без `exports` map.
 - Публичный контракт не меняется: сохраняются `main`, `module`, `files`, root `index.d.ts`, пофайловые `lib/` / `es/`, deep imports и текущие имена экспортов из [`src/index.ts`](src/index.ts).
 - В scope фазы входили только non-breaking runtime и DX-улучшения; `exports` map, смена packaging contract, redesign theming/styling-системы и отдельный accessibility rewrite оставлены вне этой волны.
@@ -155,7 +155,7 @@ flowchart LR
 
 - [x] Добавить AGENTS.md и `.cursor/rules/*.mdc` (контекст форка, структура, API, соглашения)
 - [x] Исправить невалидный экспорт в entrypoint-е пакета (Chrome default + ChromePicker)
-- [x] Заменить Babel 6 на пофайловую сборку через `tsc` (два `tsconfig` для `lib/` и `es/`); обновить package.json (`types`; `exports` — опционально для drop-in)
+- [x] Заменить Babel 6 на пофайловую сборку через `tsc` (два `tsconfig` для `lib/` и `es/`); обновить package.json (`types`; `exports` — только после отдельной оценки совместимости)
 - [x] Ввести Vitest/Jest 29 + Testing Library + ESLint flat + typescript-eslint
 - [x] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
 - [x] Обновить Storybook и пайплайн docs (убрать Webpack 1); после удаления legacy Babel вернуть `reactDocgen`, если он был временно отключён

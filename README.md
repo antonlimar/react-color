@@ -16,7 +16,7 @@ This tree is maintained as a modernization fork. Source layout, npm export names
 
 **Local development baseline:** docs and Storybook continue to run on the newer root `devDependencies.react` / `react-dom`, because the docs app already uses `react-dom/client` and `createRoot`. Minimum React compatibility for the library itself is validated separately from the root dev environment.
 
-**Compatibility notes:** the published API stays drop-in compatible with upstream `react-color`, but repository internals have been modernized. In particular, runtime `propTypes` are no longer emitted, so JavaScript consumers should rely on docs and TypeScript typings rather than `prop-types` warnings during development.
+**Compatibility notes:** the published API remains intentionally stable where practical, but repository internals have been modernized. In particular, runtime `propTypes` are no longer emitted, so JavaScript consumers should rely on docs and TypeScript typings rather than `prop-types` warnings during development.
 
 **Migration log:** notable compatibility and DX decisions for the modernization fork are tracked in [`CHANGELOG.md`](CHANGELOG.md).
 
@@ -38,7 +38,7 @@ The modernization branch now uses a TypeScript-based dual emit for package build
 | `npm run docs:typecheck`  | Compatibility alias for the shared TypeScript check.                         |
 | `npm run docs-dist`       | Build the docs bundle into `docs/build/`.                                    |
 
-Published package artifacts stay drop-in compatible with upstream expectations: `main` points to `lib/index.js`, `module` points to `es/index.js`, full `lib/` and `es/` trees remain in the package for deep imports, and root typings are exposed via `index.d.ts`.
+Published package artifacts currently expose `main` via `lib/index.js`, `module` via `es/index.js`, keep full `lib/` and `es/` trees for deep imports, and expose root typings via `index.d.ts`.
 
 ### Packaging interop notes
 
@@ -47,7 +47,7 @@ The package still ships the upstream-style `main`/`module` contract and intentio
 - Bundlers and TypeScript toolchains that honor `module` can use root default/named imports and extensionless deep imports such as `react-color/es/Sketch` or `react-color/lib/Hue`.
 - CommonJS consumers can keep using `require('react-color')` and `require('react-color/lib/...')`.
 - Native Node ESM resolves the package root through `main` (`lib/index.js`), so `import reactColor from 'react-color'` yields the CommonJS namespace object; access pickers from that object (`reactColor.default`, `reactColor.SketchPicker`) rather than relying on direct named imports.
-- Native Node ESM without bundler-style resolution does not guarantee extensionless deep imports from `react-color/lib/*` or `react-color/es/*` until the package adopts an explicit `exports` map, which remains out of scope for this compatibility-focused fork.
+- Native Node ESM without bundler-style resolution does not guarantee extensionless deep imports from `react-color/lib/*` or `react-color/es/*` until the package adopts an explicit `exports` map, which is not part of the current packaging setup.
 
 ## Demo
 
