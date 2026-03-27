@@ -114,6 +114,19 @@ flowchart LR
 
 ---
 
+## Фаза 6 — Follow-up по открытым issues апстрима
+
+Статус: запланирована как следующая волна улучшений после завершения модернизационных фаз 2–5.
+
+- Цель фазы: закрыть наиболее ценные открытые боли upstream `casesandberg/react-color`, которые всё ещё могут быть актуальны для форка, без ломки drop-in совместимости пакета.
+- Приоритет реализации: сначала CSP-safe градиенты и удаление `defaultProps` warnings, затем локализация runtime-иконок, исправление iframe-safe drag behavior в `Saturation`, после этого accessibility/hooks для кастомизации и проверка ESM/CJS interop.
+- Публичный контракт не меняется: сохраняются `main`, `module`, `files`, root `index.d.ts`, пофайловые `lib/` / `es/`, deep imports и текущие имена экспортов из [`src/index.ts`](src/index.ts).
+- В scope фазы входят только non-breaking runtime и DX-улучшения; введение `exports` map, смена packaging contract, redesign theming/styling-системы и крупный accessibility rewrite в эту фазу не входят.
+
+Подробный план ведётся в [`plans/phase-6-upstream-issues-follow-up.md`](plans/phase-6-upstream-issues-follow-up.md).
+
+---
+
 ## Риски и порядок работ
 
 - **Большой взрывной PR** нежелателен: лучше «зелёный main» после фазы 0–1, затем toolchain, затем TS по папкам с сохранением тестов на поведение.
@@ -130,7 +143,9 @@ flowchart LR
 5. Storybook и docs на современном bundler.
    На Storybook держать отдельный хвост: если для совместимости временно отключён `reactDocgen`, включить его обратно после удаления legacy Babel 6-конфига.
 6. Follow-up после phase 5: дальнейшие ужесточения сверх `strictNullChecks` и любые новые несовместимости документировать отдельными маленькими шагами.
-   Актуальный статус этого хвоста и уже закрытых задач ведётся в [`plans/phase-4-dependencies-and-legacy.md`](plans/phase-4-dependencies-and-legacy.md).
+   Актуальный статус уже закрытых post-migration задач ведётся в [`plans/phase-4-dependencies-and-legacy.md`](plans/phase-4-dependencies-and-legacy.md).
+7. Product/runtime follow-up после завершения модернизации: закрыть наиболее ценные открытые issues апстрима по CSP, `defaultProps`, runtime icons, iframe-safe drag behavior, accessibility hooks и interop.
+   Детальный план этой волны ведётся в [`plans/phase-6-upstream-issues-follow-up.md`](plans/phase-6-upstream-issues-follow-up.md).
 
 ---
 
@@ -145,3 +160,4 @@ flowchart LR
 - [x] Обновить peer deps, почистить devDependencies, примеры, CI
 - [x] Усилить TS-строгость и закрыть текущий follow-up cleanup legacy в docs/dev tooling; migration notes синхронизированы в `CHANGELOG.md`, `README.md` и `plans/phase-4-dependencies-and-legacy.md`
 - [x] Перевести runtime-код `docs/` на `.ts`/`.tsx`, ввести отдельный docs typecheck и закрыть оставшийся JS-only хвост документационного приложения; `npm run docs-dist` и локальный `npm run docs-server` повторно подтверждены после миграции
+- [ ] Закрыть следующую волну upstream/runtime follow-up задач без breaking changes: CSP-safe градиенты, удаление `defaultProps`, локальные runtime-иконки, iframe-safe `Saturation`, accessibility hooks и проверка ESM/CJS interop; подробности в `plans/phase-6-upstream-issues-follow-up.md`
