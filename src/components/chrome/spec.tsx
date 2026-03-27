@@ -1,6 +1,6 @@
 import { fireEvent, waitFor } from '@testing-library/react';
 import * as color from '../../helpers/color';
-import { vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 
 import Chrome from './Chrome';
 import ChromeFields from './ChromeFields';
@@ -21,7 +21,7 @@ test('Chrome onChange events correctly', () => {
 });
 
 test('ChromeFields renders correctly', () => {
-  renderForSnapshot(<ChromeFields {...color.red} />).expectSnapshot();
+  renderForSnapshot(<ChromeFields {...color.red} onChange={() => {}} />).expectSnapshot();
 });
 
 test('ChromePointer renders correctly', () => {
@@ -34,14 +34,18 @@ test('ChromePointerCircle renders correctly', () => {
 
 test('Chrome renders custom styles correctly', () => {
   const { container } = renderForSnapshot(<Chrome styles={{ default: { picker: { boxShadow: 'none' } } }} />);
+  const picker = container.firstChild;
 
-  expect(container.firstChild.style.boxShadow).toBe('none');
+  expect(picker).toBeInstanceOf(HTMLElement);
+  expect((picker as HTMLElement).style.boxShadow).toBe('none');
 });
 
 test('Chrome renders correctly with width', () => {
   const { container } = renderForSnapshot(<Chrome width={300} />);
+  const picker = container.firstChild;
 
-  expect(container.firstChild.style.width).toBe('300px');
+  expect(picker).toBeInstanceOf(HTMLElement);
+  expect((picker as HTMLElement).style.width).toBe('300px');
 });
 
 test('Chrome alpha updates immediately with only onChangeComplete', async () => {
@@ -50,6 +54,9 @@ test('Chrome alpha updates immediately with only onChangeComplete', async () => 
   const alphaControl = container.querySelector('[style*="margin: 0px 3px"]') as HTMLDivElement | null;
 
   expect(alphaControl).toBeTruthy();
+  if (!alphaControl) {
+    throw new Error('Expected alpha control to render');
+  }
 
   Object.defineProperty(alphaControl, 'clientWidth', {
     configurable: true,
@@ -81,9 +88,12 @@ test('Chrome alpha updates immediately with only onChangeComplete', async () => 
 
   const alphaPointer = alphaControl.querySelector('[style*="left:"]') as HTMLDivElement | null;
   expect(alphaPointer).toBeTruthy();
+  if (!alphaPointer) {
+    throw new Error('Expected alpha pointer to render');
+  }
 
   await waitFor(() => {
-    expect(alphaPointer?.style.left).toBe('25%');
+    expect(alphaPointer.style.left).toBe('25%');
   });
   await waitFor(() => {
     expect(onChangeComplete).toHaveBeenCalled();
