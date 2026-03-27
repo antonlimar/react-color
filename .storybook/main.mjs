@@ -21,7 +21,7 @@ function jsxInJsPlugin() {
 /** @type {import('@storybook/react-vite').StorybookConfig} */
 const config = {
   stories: ['../src/components/**/story.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-docs'],
+  addons: ['@storybook/addon-docs', '@storybook/addon-vitest'],
   framework: {
     name: '@storybook/react-vite',
     options: {},

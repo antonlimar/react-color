@@ -30,11 +30,21 @@ type WrappedColorPickerComponent<PickerProps extends ColorPickerInjectedProps> =
 > &
   PickerStatics;
 
+type ColorWrapState = ColorResult & {
+  colorPropKey: string;
+};
+
 const defaultColor: Color = {
   h: 250,
   s: 0.5,
   l: 0.2,
   a: 1,
+};
+
+const getColorPropKey = (colorProp?: Color): string => {
+  const value = colorProp ?? defaultColor;
+
+  return typeof value === 'string' ? value : JSON.stringify(value);
 };
 
 const getOldHue = (data: Color | ColorChangeValue, oldHue: number): number => {
@@ -48,7 +58,7 @@ const getOldHue = (data: Color | ColorChangeValue, oldHue: number): number => {
 export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
   Picker: PickerComponent<PickerProps>,
 ): WrappedColorPickerComponent<PickerProps> => {
-  class ColorPicker extends PureComponent<WrappedColorPickerProps<PickerProps>, ColorResult> {
+  class ColorPicker extends PureComponent<WrappedColorPickerProps<PickerProps>, ColorWrapState> {
     private debounce: (fn: ColorChangeHandler, data: ColorResult, event: ColorPickerChangeEvent) => void;
 
     constructor(props: WrappedColorPickerProps<PickerProps>) {
@@ -56,6 +66,7 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
 
       this.state = {
         ...color.toState(props.color ?? defaultColor, 0),
+        colorPropKey: getColorPropKey(props.color),
       };
 
       this.debounce = debounce((fn: ColorChangeHandler, data: ColorResult, event: ColorPickerChangeEvent) => {
@@ -63,9 +74,19 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
       }, 100);
     }
 
-    static getDerivedStateFromProps(nextProps: WrappedColorPickerProps<PickerProps>, state: ColorResult): ColorResult {
+    static getDerivedStateFromProps(
+      nextProps: WrappedColorPickerProps<PickerProps>,
+      state: ColorWrapState,
+    ): ColorWrapState | null {
+      const nextColorPropKey = getColorPropKey(nextProps.color);
+
+      if (nextColorPropKey === state.colorPropKey) {
+        return null;
+      }
+
       return {
         ...color.toState(nextProps.color ?? defaultColor, state.oldHue),
+        colorPropKey: nextColorPropKey,
       };
     }
 
@@ -74,7 +95,10 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
 
       if (isValidColor) {
         const colors = color.toState(data, getOldHue(data, this.state.oldHue));
-        this.setState(colors);
+        this.setState((prevState) => ({
+          ...colors,
+          colorPropKey: prevState.colorPropKey,
+        }));
         this.props.onChangeComplete && this.debounce(this.props.onChangeComplete, colors, event);
         this.props.onChange && this.props.onChange(colors, event);
       }

@@ -1,4 +1,6 @@
+import { fireEvent, waitFor } from '@testing-library/react';
 import * as color from '../../helpers/color';
+import { vi } from 'vitest';
 
 import Chrome from './Chrome';
 import ChromeFields from './ChromeFields';
@@ -40,4 +42,50 @@ test('Chrome renders correctly with width', () => {
   const { container } = renderForSnapshot(<Chrome width={300} />);
 
   expect(container.firstChild.style.width).toBe('300px');
+});
+
+test('Chrome alpha updates immediately with only onChangeComplete', async () => {
+  const onChangeComplete = vi.fn();
+  const { container } = renderForSnapshot(<Chrome color={color.red.hsl} onChangeComplete={onChangeComplete} />);
+  const alphaControl = container.querySelector('[style*="margin: 0px 3px"]') as HTMLDivElement | null;
+
+  expect(alphaControl).toBeTruthy();
+
+  Object.defineProperty(alphaControl, 'clientWidth', {
+    configurable: true,
+    value: 200,
+  });
+  Object.defineProperty(alphaControl, 'clientHeight', {
+    configurable: true,
+    value: 10,
+  });
+  alphaControl.getBoundingClientRect = () =>
+    ({
+      width: 200,
+      height: 10,
+      top: 0,
+      left: 0,
+      right: 200,
+      bottom: 10,
+      x: 0,
+      y: 0,
+      toJSON: () => '',
+    }) as DOMRect;
+
+  fireEvent.mouseDown(alphaControl, {
+    pageX: 50,
+    pageY: 5,
+    clientX: 50,
+    clientY: 5,
+  });
+
+  const alphaPointer = alphaControl.querySelector('[style*="left:"]') as HTMLDivElement | null;
+  expect(alphaPointer).toBeTruthy();
+
+  await waitFor(() => {
+    expect(alphaPointer?.style.left).toBe('25%');
+  });
+  await waitFor(() => {
+    expect(onChangeComplete).toHaveBeenCalled();
+  });
 });
