@@ -44,18 +44,7 @@ export class Saturation extends BaseSaturation {
   }
 
   getContainerRenderWindow() {
-    const { container } = this;
-    let renderWindow: Window = window;
-
-    if (!container) {
-      return renderWindow;
-    }
-
-    while (!renderWindow.document.contains(container) && renderWindow.parent !== renderWindow) {
-      renderWindow = renderWindow.parent;
-    }
-
-    return renderWindow;
+    return this.container?.ownerDocument?.defaultView ?? window;
   }
 
   handleChange = (event: InternalColorChangeEvent) => {

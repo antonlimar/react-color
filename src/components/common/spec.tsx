@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { expect, test } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { red } from '../../helpers/color';
 import * as color from '../../helpers/color';
 
@@ -11,6 +11,7 @@ import Hue from './Hue';
 import Saturation from './Saturation';
 import Swatch from './Swatch';
 import { renderForSnapshot } from '../../../test/helpers';
+import type { Color, ColorPickerInjectedProps } from '../../types';
 
 test('Alpha renders correctly', () => {
   renderForSnapshot(<Alpha {...red} />).expectSnapshot();
@@ -41,7 +42,7 @@ test('Saturation renders correctly', () => {
 });
 
 test('ColorWrap provides the same runtime default color', () => {
-  const WrappedPicker = ColorWrap(({ color: passedColor, hex }) => (
+  const WrappedPicker = ColorWrap(({ color: passedColor, hex }: ColorPickerInjectedProps & { color?: Color }) => (
     <div data-color-present={String(passedColor !== undefined)} data-hex={hex} />
   ));
   const defaultHex = color.toState({ h: 250, s: 0.5, l: 0.2, a: 1 }, 0).hex;
@@ -59,6 +60,34 @@ test('Hue and Saturation do not render runtime style tags', () => {
 
   const { container: saturationContainer } = render(<Saturation {...red} />);
   expect(saturationContainer.querySelector('style')).toBeNull();
+});
+
+test('Saturation uses ownerDocument.defaultView for drag listeners when available', () => {
+  const saturationInstance = new Saturation(red);
+  const ownerWindow = {
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+  } as unknown as Window;
+
+  saturationInstance.container = {
+    ownerDocument: {
+      defaultView: ownerWindow,
+    },
+  } as HTMLDivElement;
+
+  expect(saturationInstance.getContainerRenderWindow()).toBe(ownerWindow);
+});
+
+test('Saturation falls back to the current window when container render window is unavailable', () => {
+  const saturationInstance = new Saturation(red);
+
+  saturationInstance.container = {
+    ownerDocument: {
+      defaultView: null,
+    },
+  } as HTMLDivElement;
+
+  expect(saturationInstance.getContainerRenderWindow()).toBe(window);
 });
 
 test('Swatch renders correctly', () => {
