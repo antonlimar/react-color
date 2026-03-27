@@ -1,129 +1,133 @@
-import { PureComponent } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import reactCSS from 'reactcss';
 import * as alpha from '../../helpers/alpha';
 import type { MouseEvent } from 'react';
-import type { Component as ReactComponent } from 'react';
 import type { AlphaProps, InternalColorChangeEvent } from '../../types';
 import Checkboard from './Checkboard';
 
-const BaseAlpha = PureComponent as new (props: AlphaProps) => ReactComponent<AlphaProps>;
+export function Alpha(props: AlphaProps) {
+  const { a, direction, hsl, onChange, pointer, radius, renderers, rgb, shadow, style } = props;
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
-export class Alpha extends BaseAlpha {
-  container: HTMLDivElement | null = null;
+  const handleChange = useCallback(
+    (event: InternalColorChangeEvent) => {
+      if (!containerRef.current) {
+        return;
+      }
 
-  componentWillUnmount() {
-    this.unbindEventListeners();
-  }
+      const change = alpha.calculateChange(event, hsl, direction, a, containerRef.current);
 
-  handleChange = (event: InternalColorChangeEvent) => {
-    if (!this.container) {
+      if (change && typeof onChange === 'function') {
+        onChange(change, event);
+      }
+    },
+    [a, direction, hsl, onChange],
+  );
+
+  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    handleChange(event);
+    setIsDragging(true);
+  };
+
+  useEffect(() => {
+    if (!isDragging) {
       return;
     }
 
-    const change = alpha.calculateChange(event, this.props.hsl, this.props.direction, this.props.a, this.container);
+    const handleWindowMouseMove = (event: globalThis.MouseEvent) => {
+      handleChange(event);
+    };
+    const handleWindowMouseUp = () => {
+      setIsDragging(false);
+    };
 
-    if (change && typeof this.props.onChange === 'function') {
-      this.props.onChange(change, event);
-    }
-  };
+    window.addEventListener('mousemove', handleWindowMouseMove);
+    window.addEventListener('mouseup', handleWindowMouseUp);
 
-  handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
-    this.handleChange(event);
-    window.addEventListener('mousemove', this.handleChange);
-    window.addEventListener('mouseup', this.handleMouseUp);
-  };
+    return () => {
+      window.removeEventListener('mousemove', handleWindowMouseMove);
+      window.removeEventListener('mouseup', handleWindowMouseUp);
+    };
+  }, [handleChange, isDragging]);
 
-  handleMouseUp = () => {
-    this.unbindEventListeners();
-  };
-
-  unbindEventListeners = () => {
-    window.removeEventListener('mousemove', this.handleChange);
-    window.removeEventListener('mouseup', this.handleMouseUp);
-  };
-
-  render() {
-    const rgb = this.props.rgb;
-    const styles = reactCSS(
-      {
-        default: {
-          alpha: {
-            absolute: '0px 0px 0px 0px',
-            borderRadius: this.props.radius,
-          },
-          checkboard: {
-            absolute: '0px 0px 0px 0px',
-            overflow: 'hidden',
-            borderRadius: this.props.radius,
-          },
-          gradient: {
-            absolute: '0px 0px 0px 0px',
-            background: `linear-gradient(to right, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 0%,
-           rgba(${rgb.r},${rgb.g},${rgb.b}, 1) 100%)`,
-            boxShadow: this.props.shadow,
-            borderRadius: this.props.radius,
-          },
-          container: {
-            position: 'relative',
-            height: '100%',
-            margin: '0 3px',
-          },
-          pointer: {
-            position: 'absolute',
-            left: `${rgb.a * 100}%`,
-          },
-          slider: {
-            width: '4px',
-            borderRadius: '1px',
-            height: '8px',
-            boxShadow: '0 0 2px rgba(0, 0, 0, .6)',
-            background: '#fff',
-            marginTop: '1px',
-            transform: 'translateX(-2px)',
-          },
+  const styles = reactCSS(
+    {
+      default: {
+        alpha: {
+          absolute: '0px 0px 0px 0px',
+          borderRadius: radius,
         },
-        vertical: {
-          gradient: {
-            background: `linear-gradient(to bottom, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 0%,
-           rgba(${rgb.r},${rgb.g},${rgb.b}, 1) 100%)`,
-          },
-          pointer: {
-            left: 0,
-            top: `${rgb.a * 100}%`,
-          },
+        checkboard: {
+          absolute: '0px 0px 0px 0px',
+          overflow: 'hidden',
+          borderRadius: radius,
         },
-        overwrite: {
-          ...this.props.style,
+        gradient: {
+          absolute: '0px 0px 0px 0px',
+          background: `linear-gradient(to right, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 0%,
+           rgba(${rgb.r},${rgb.g},${rgb.b}, 1) 100%)`,
+          boxShadow: shadow,
+          borderRadius: radius,
+        },
+        container: {
+          position: 'relative',
+          height: '100%',
+          margin: '0 3px',
+        },
+        pointer: {
+          position: 'absolute',
+          left: `${rgb.a * 100}%`,
+        },
+        slider: {
+          width: '4px',
+          borderRadius: '1px',
+          height: '8px',
+          boxShadow: '0 0 2px rgba(0, 0, 0, .6)',
+          background: '#fff',
+          marginTop: '1px',
+          transform: 'translateX(-2px)',
         },
       },
-      {
-        vertical: this.props.direction === 'vertical',
-        overwrite: true,
+      vertical: {
+        gradient: {
+          background: `linear-gradient(to bottom, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 0%,
+           rgba(${rgb.r},${rgb.g},${rgb.b}, 1) 100%)`,
+        },
+        pointer: {
+          left: 0,
+          top: `${rgb.a * 100}%`,
+        },
       },
-    );
+      overwrite: {
+        ...style,
+      },
+    },
+    {
+      vertical: direction === 'vertical',
+      overwrite: true,
+    },
+  );
 
-    const Pointer = this.props.pointer;
+  const Pointer = pointer;
 
-    return (
-      <div style={styles.alpha}>
-        <div style={styles.checkboard}>
-          <Checkboard renderers={this.props.renderers} />
-        </div>
-        <div style={styles.gradient} />
-        <div
-          style={styles.container}
-          ref={(container) => {
-            this.container = container;
-          }}
-          onMouseDown={this.handleMouseDown}
-          onTouchMove={this.handleChange}
-          onTouchStart={this.handleChange}
-        >
-          <div style={styles.pointer}>{Pointer ? <Pointer {...this.props} /> : <div style={styles.slider} />}</div>
-        </div>
+  return (
+    <div style={styles.alpha}>
+      <div style={styles.checkboard}>
+        <Checkboard renderers={renderers} />
       </div>
-    );
-  }
+      <div style={styles.gradient} />
+      <div
+        style={styles.container}
+        ref={containerRef}
+        onMouseDown={handleMouseDown}
+        onTouchMove={handleChange}
+        onTouchStart={handleChange}
+      >
+        <div style={styles.pointer}>{Pointer ? <Pointer {...props} /> : <div style={styles.slider} />}</div>
+      </div>
+    </div>
+  );
 }
 
 export default Alpha;

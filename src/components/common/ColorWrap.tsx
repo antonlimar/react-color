@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import debounce from 'lodash/debounce';
 import type { ComponentType } from 'react';
 
@@ -55,79 +55,74 @@ const getOldHue = (data: Color | ColorChangeValue, oldHue: number): number => {
 export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
   Picker: PickerComponent<PickerProps>,
 ): WrappedColorPickerComponent<PickerProps> => {
-  class ColorPicker extends PureComponent<WrappedColorPickerProps<PickerProps>, ColorWrapState> {
-    private debounce: (fn: ColorChangeHandler, data: ColorResult, event: ColorPickerChangeEvent) => void;
-
-    constructor(props: WrappedColorPickerProps<PickerProps>) {
-      super(props);
-
+  const ColorPicker = (props: WrappedColorPickerProps<PickerProps>) => {
+    const { onChange, onChangeComplete, onSwatchHover } = props;
+    const [state, setState] = useState<ColorWrapState>(() => {
       const resolvedColor = getColorWithDefault(props.color);
 
-      this.state = {
+      return {
         ...color.toState(resolvedColor, 0),
         colorPropKey: getColorPropKey(resolvedColor),
       };
-
-      this.debounce = debounce((fn: ColorChangeHandler, data: ColorResult, event: ColorPickerChangeEvent) => {
+    });
+    const debounceRef = useRef(
+      debounce((fn: ColorChangeHandler, data: ColorResult, event: ColorPickerChangeEvent) => {
         fn(data, event);
-      }, 100);
-    }
+      }, 100),
+    );
 
-    static getDerivedStateFromProps(
-      nextProps: WrappedColorPickerProps<PickerProps>,
-      state: ColorWrapState,
-    ): ColorWrapState | null {
-      const nextColorPropKey = getColorPropKey(nextProps.color);
+    useEffect(() => {
+      const debouncedChange = debounceRef.current;
 
-      if (nextColorPropKey === state.colorPropKey) {
-        return null;
-      }
-
-      const resolvedColor = getColorWithDefault(nextProps.color);
-
-      return {
-        ...color.toState(resolvedColor, state.oldHue),
-        colorPropKey: getColorPropKey(resolvedColor),
+      return () => {
+        debouncedChange.cancel();
       };
-    }
+    }, []);
 
-    handleChange = (data: Color | ColorChangeValue, event?: ColorPickerChangeEvent) => {
+    const nextColorPropKey = getColorPropKey(props.color);
+    const currentState =
+      nextColorPropKey === state.colorPropKey
+        ? state
+        : {
+            ...color.toState(getColorWithDefault(props.color), state.oldHue),
+            colorPropKey: nextColorPropKey,
+          };
+
+    const handleChange = (data: Color | ColorChangeValue, event?: ColorPickerChangeEvent) => {
       const isValidColor = color.simpleCheckForValidColor(data);
 
       if (isValidColor) {
-        const colors = color.toState(data, getOldHue(data, this.state.oldHue));
-        this.setState((prevState) => ({
+        const colors = color.toState(data, getOldHue(data, currentState.oldHue));
+        setState({
           ...colors,
-          colorPropKey: prevState.colorPropKey,
-        }));
-        this.props.onChangeComplete && this.debounce(this.props.onChangeComplete, colors, event);
-        this.props.onChange && this.props.onChange(colors, event);
+          colorPropKey: currentState.colorPropKey,
+        });
+        onChangeComplete && debounceRef.current(onChangeComplete, colors, event);
+        onChange && onChange(colors, event);
       }
     };
 
-    handleSwatchHover = (data: Color | ColorChangeValue, event?: ColorPickerChangeEvent) => {
+    const handleSwatchHover = (data: Color | ColorChangeValue, event?: ColorPickerChangeEvent) => {
       const isValidColor = color.simpleCheckForValidColor(data);
 
       if (isValidColor) {
-        const colors = color.toState(data, getOldHue(data, this.state.oldHue));
-        this.props.onSwatchHover && this.props.onSwatchHover(colors, event);
+        const colors = color.toState(data, getOldHue(data, currentState.oldHue));
+        onSwatchHover && onSwatchHover(colors, event);
       }
     };
 
-    render() {
-      const optionalEvents: Partial<ColorPickerInjectedProps> = {};
-      const pickerProps = {
-        ...this.props,
-        color: getColorWithDefault(this.props.color),
-      } as unknown as PickerProps;
+    const optionalEvents: Partial<ColorPickerInjectedProps> = {};
+    const pickerProps = {
+      ...props,
+      color: getColorWithDefault(props.color),
+    } as unknown as PickerProps;
 
-      if (this.props.onSwatchHover) {
-        optionalEvents.onSwatchHover = this.handleSwatchHover;
-      }
-
-      return <Picker {...pickerProps} {...this.state} onChange={this.handleChange} {...optionalEvents} />;
+    if (onSwatchHover) {
+      optionalEvents.onSwatchHover = handleSwatchHover;
     }
-  }
+
+    return <Picker {...pickerProps} {...currentState} onChange={handleChange} {...optionalEvents} />;
+  };
 
   return ColorPicker as WrappedColorPickerComponent<PickerProps>;
 };

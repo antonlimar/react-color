@@ -8,7 +8,7 @@ import Checkboard from './Checkboard';
 import ColorWrap from './ColorWrap';
 import EditableInput from './EditableInput';
 import Hue from './Hue';
-import Saturation from './Saturation';
+import Saturation, { getSaturationRenderWindow } from './Saturation';
 import Swatch from './Swatch';
 import { renderForSnapshot } from '../../../test/helpers';
 import type { Color, ColorPickerInjectedProps } from '../../types';
@@ -63,31 +63,28 @@ test('Hue and Saturation do not render runtime style tags', () => {
 });
 
 test('Saturation uses ownerDocument.defaultView for drag listeners when available', () => {
-  const saturationInstance = new Saturation(red);
   const ownerWindow = {
     addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
   } as unknown as Window;
 
-  saturationInstance.container = {
+  const container = {
     ownerDocument: {
       defaultView: ownerWindow,
     },
   } as HTMLDivElement;
 
-  expect(saturationInstance.getContainerRenderWindow()).toBe(ownerWindow);
+  expect(getSaturationRenderWindow(container)).toBe(ownerWindow);
 });
 
 test('Saturation falls back to the current window when container render window is unavailable', () => {
-  const saturationInstance = new Saturation(red);
-
-  saturationInstance.container = {
+  const container = {
     ownerDocument: {
       defaultView: null,
     },
   } as HTMLDivElement;
 
-  expect(saturationInstance.getContainerRenderWindow()).toBe(window);
+  expect(getSaturationRenderWindow(container)).toBe(window);
 });
 
 test('Swatch renders correctly', () => {

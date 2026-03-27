@@ -1,113 +1,118 @@
-import { PureComponent } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import reactCSS from 'reactcss';
 import * as hue from '../../helpers/hue';
 import type { MouseEvent } from 'react';
-import type { Component as ReactComponent } from 'react';
 import type { HueProps, InternalColorChangeEvent } from '../../types';
 
-const BaseHue = PureComponent as new (props: HueProps) => ReactComponent<HueProps>;
 const HUE_GRADIENT_HORIZONTAL =
   'linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)';
 const HUE_GRADIENT_VERTICAL =
   'linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)';
 
-export class Hue extends BaseHue {
-  container: HTMLDivElement | null = null;
+export function Hue(props: HueProps) {
+  const { direction = 'horizontal', hsl, onChange, pointer, radius, shadow } = props;
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
-  componentWillUnmount() {
-    this.unbindEventListeners();
-  }
+  const handleChange = useCallback(
+    (event: InternalColorChangeEvent) => {
+      if (!containerRef.current) {
+        return;
+      }
 
-  handleChange = (event: InternalColorChangeEvent) => {
-    if (!this.container) {
+      const change = hue.calculateChange(event, direction, hsl, containerRef.current);
+
+      if (change && typeof onChange === 'function') {
+        onChange(change, event);
+      }
+    },
+    [direction, hsl, onChange],
+  );
+
+  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    handleChange(event);
+    setIsDragging(true);
+  };
+
+  useEffect(() => {
+    if (!isDragging) {
       return;
     }
 
-    const change = hue.calculateChange(event, this.props.direction, this.props.hsl, this.container);
+    const handleWindowMouseMove = (event: globalThis.MouseEvent) => {
+      handleChange(event);
+    };
+    const handleWindowMouseUp = () => {
+      setIsDragging(false);
+    };
 
-    if (change && typeof this.props.onChange === 'function') {
-      this.props.onChange(change, event);
-    }
-  };
+    window.addEventListener('mousemove', handleWindowMouseMove);
+    window.addEventListener('mouseup', handleWindowMouseUp);
 
-  handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
-    this.handleChange(event);
-    window.addEventListener('mousemove', this.handleChange);
-    window.addEventListener('mouseup', this.handleMouseUp);
-  };
+    return () => {
+      window.removeEventListener('mousemove', handleWindowMouseMove);
+      window.removeEventListener('mouseup', handleWindowMouseUp);
+    };
+  }, [handleChange, isDragging]);
 
-  handleMouseUp = () => {
-    this.unbindEventListeners();
-  };
-
-  unbindEventListeners() {
-    window.removeEventListener('mousemove', this.handleChange);
-    window.removeEventListener('mouseup', this.handleMouseUp);
-  }
-
-  render() {
-    const { direction = 'horizontal' } = this.props;
-    const styles = reactCSS(
-      {
-        default: {
-          hue: {
-            absolute: '0px 0px 0px 0px',
-            borderRadius: this.props.radius,
-            boxShadow: this.props.shadow,
-          },
-          container: {
-            padding: '0 2px',
-            position: 'relative',
-            height: '100%',
-            borderRadius: this.props.radius,
-            background: HUE_GRADIENT_HORIZONTAL,
-          },
-          pointer: {
-            position: 'absolute',
-            left: `${(this.props.hsl.h * 100) / 360}%`,
-          },
-          slider: {
-            marginTop: '1px',
-            width: '4px',
-            borderRadius: '1px',
-            height: '8px',
-            boxShadow: '0 0 2px rgba(0, 0, 0, .6)',
-            background: '#fff',
-            transform: 'translateX(-2px)',
-          },
+  const styles = reactCSS(
+    {
+      default: {
+        hue: {
+          absolute: '0px 0px 0px 0px',
+          borderRadius: radius,
+          boxShadow: shadow,
         },
-        vertical: {
-          container: {
-            background: HUE_GRADIENT_VERTICAL,
-          },
-          pointer: {
-            left: '0px',
-            top: `${-((this.props.hsl.h * 100) / 360) + 100}%`,
-          },
+        container: {
+          padding: '0 2px',
+          position: 'relative',
+          height: '100%',
+          borderRadius: radius,
+          background: HUE_GRADIENT_HORIZONTAL,
+        },
+        pointer: {
+          position: 'absolute',
+          left: `${(hsl.h * 100) / 360}%`,
+        },
+        slider: {
+          marginTop: '1px',
+          width: '4px',
+          borderRadius: '1px',
+          height: '8px',
+          boxShadow: '0 0 2px rgba(0, 0, 0, .6)',
+          background: '#fff',
+          transform: 'translateX(-2px)',
         },
       },
-      { vertical: direction === 'vertical' },
-    );
+      vertical: {
+        container: {
+          background: HUE_GRADIENT_VERTICAL,
+        },
+        pointer: {
+          left: '0px',
+          top: `${-((hsl.h * 100) / 360) + 100}%`,
+        },
+      },
+    },
+    { vertical: direction === 'vertical' },
+  );
 
-    const Pointer = this.props.pointer;
+  const Pointer = pointer;
 
-    return (
-      <div style={styles.hue}>
-        <div
-          className={`hue-${direction}`}
-          style={styles.container}
-          ref={(container) => {
-            this.container = container;
-          }}
-          onMouseDown={this.handleMouseDown}
-          onTouchMove={this.handleChange}
-          onTouchStart={this.handleChange}
-        >
-          <div style={styles.pointer}>{Pointer ? <Pointer {...this.props} /> : <div style={styles.slider} />}</div>
-        </div>
+  return (
+    <div style={styles.hue}>
+      <div
+        className={`hue-${direction}`}
+        style={styles.container}
+        ref={containerRef}
+        onMouseDown={handleMouseDown}
+        onTouchMove={handleChange}
+        onTouchStart={handleChange}
+      >
+        <div style={styles.pointer}>{Pointer ? <Pointer {...props} /> : <div style={styles.slider} />}</div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Hue;

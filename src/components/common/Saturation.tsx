@@ -1,9 +1,8 @@
-import { PureComponent } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import reactCSS from 'reactcss';
 import throttle from 'lodash/throttle';
 import * as saturation from '../../helpers/saturation';
 import type { MouseEvent } from 'react';
-import type { Component as ReactComponent } from 'react';
 import type { InternalColorChangeEvent, SaturationProps } from '../../types';
 
 type ThrottledChange = {
@@ -15,18 +14,17 @@ type ThrottledChange = {
   cancel(): void;
 };
 
-const BaseSaturation = PureComponent as new (props: SaturationProps) => ReactComponent<SaturationProps>;
 const SATURATION_WHITE_GRADIENT = 'linear-gradient(to right, #fff, rgba(255,255,255,0))';
 const SATURATION_BLACK_GRADIENT = 'linear-gradient(to top, #000, rgba(0,0,0,0))';
 
-export class Saturation extends BaseSaturation {
-  container: HTMLDivElement | null = null;
-  throttle: ThrottledChange;
+export const getSaturationRenderWindow = (container: HTMLDivElement | null): Window =>
+  container?.ownerDocument?.defaultView ?? window;
 
-  constructor(props: SaturationProps) {
-    super(props);
-
-    this.throttle = throttle(
+export function Saturation(props: SaturationProps) {
+  const { hsl, hsv, onChange, pointer, radius, shadow, style } = props;
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const throttledChangeRef = useRef<ThrottledChange>(
+    throttle(
       (
         fn: NonNullable<SaturationProps['onChange']>,
         data: ReturnType<typeof saturation.calculateChange>,
@@ -35,110 +33,119 @@ export class Saturation extends BaseSaturation {
         fn(data, event);
       },
       50,
-    );
-  }
+    ),
+  );
+  const [isDragging, setIsDragging] = useState(false);
 
-  componentWillUnmount() {
-    this.throttle.cancel();
-    this.unbindEventListeners();
-  }
+  const handleChange = useCallback(
+    (event: InternalColorChangeEvent) => {
+      if (!containerRef.current || typeof onChange !== 'function') {
+        return;
+      }
 
-  getContainerRenderWindow() {
-    return this.container?.ownerDocument?.defaultView ?? window;
-  }
+      throttledChangeRef.current(onChange, saturation.calculateChange(event, hsl, containerRef.current), event);
+    },
+    [hsl, onChange],
+  );
 
-  handleChange = (event: InternalColorChangeEvent) => {
-    if (!this.container || typeof this.props.onChange !== 'function') {
+  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    handleChange(event);
+    setIsDragging(true);
+  };
+
+  useEffect(() => {
+    const throttledChange = throttledChangeRef.current;
+
+    return () => {
+      throttledChange.cancel();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isDragging) {
       return;
     }
 
-    this.throttle(this.props.onChange, saturation.calculateChange(event, this.props.hsl, this.container), event);
-  };
+    const renderWindow = getSaturationRenderWindow(containerRef.current);
+    const handleWindowMouseMove = (event: globalThis.MouseEvent) => {
+      handleChange(event);
+    };
+    const handleWindowMouseUp = () => {
+      setIsDragging(false);
+    };
 
-  handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
-    this.handleChange(event);
-    const renderWindow = this.getContainerRenderWindow();
-    renderWindow.addEventListener('mousemove', this.handleChange);
-    renderWindow.addEventListener('mouseup', this.handleMouseUp);
-  };
+    renderWindow.addEventListener('mousemove', handleWindowMouseMove);
+    renderWindow.addEventListener('mouseup', handleWindowMouseUp);
 
-  handleMouseUp = () => {
-    this.unbindEventListeners();
-  };
+    return () => {
+      renderWindow.removeEventListener('mousemove', handleWindowMouseMove);
+      renderWindow.removeEventListener('mouseup', handleWindowMouseUp);
+    };
+  }, [handleChange, isDragging]);
 
-  unbindEventListeners() {
-    const renderWindow = this.getContainerRenderWindow();
-    renderWindow.removeEventListener('mousemove', this.handleChange);
-    renderWindow.removeEventListener('mouseup', this.handleMouseUp);
-  }
-
-  render() {
-    const { color, white, black, pointer, circle } = this.props.style || {};
-    const styles = reactCSS(
-      {
-        default: {
-          color: {
-            absolute: '0px 0px 0px 0px',
-            background: `hsl(${this.props.hsl.h},100%, 50%)`,
-            borderRadius: this.props.radius,
-          },
-          white: {
-            absolute: '0px 0px 0px 0px',
-            borderRadius: this.props.radius,
-            background: SATURATION_WHITE_GRADIENT,
-          },
-          black: {
-            absolute: '0px 0px 0px 0px',
-            boxShadow: this.props.shadow,
-            borderRadius: this.props.radius,
-            background: SATURATION_BLACK_GRADIENT,
-          },
-          pointer: {
-            position: 'absolute',
-            top: `${-(this.props.hsv.v * 100) + 100}%`,
-            left: `${this.props.hsv.s * 100}%`,
-            cursor: 'default',
-          },
-          circle: {
-            width: '4px',
-            height: '4px',
-            boxShadow: `0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3),
-            0 0 1px 2px rgba(0,0,0,.4)`,
-            borderRadius: '50%',
-            cursor: 'hand',
-            transform: 'translate(-2px, -2px)',
-          },
+  const { color, white, black, pointer: pointerStyle, circle } = style || {};
+  const styles = reactCSS(
+    {
+      default: {
+        color: {
+          absolute: '0px 0px 0px 0px',
+          background: `hsl(${hsl.h},100%, 50%)`,
+          borderRadius: radius,
         },
-        custom: {
-          color,
-          white,
-          black,
-          pointer,
-          circle,
+        white: {
+          absolute: '0px 0px 0px 0px',
+          borderRadius: radius,
+          background: SATURATION_WHITE_GRADIENT,
+        },
+        black: {
+          absolute: '0px 0px 0px 0px',
+          boxShadow: shadow,
+          borderRadius: radius,
+          background: SATURATION_BLACK_GRADIENT,
+        },
+        pointer: {
+          position: 'absolute',
+          top: `${-(hsv.v * 100) + 100}%`,
+          left: `${hsv.s * 100}%`,
+          cursor: 'default',
+        },
+        circle: {
+          width: '4px',
+          height: '4px',
+          boxShadow: `0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3),
+            0 0 1px 2px rgba(0,0,0,.4)`,
+          borderRadius: '50%',
+          cursor: 'hand',
+          transform: 'translate(-2px, -2px)',
         },
       },
-      { custom: !!this.props.style },
-    );
+      custom: {
+        color,
+        white,
+        black,
+        pointer: pointerStyle,
+        circle,
+      },
+    },
+    { custom: !!style },
+  );
 
-    const Pointer = this.props.pointer;
+  const Pointer = pointer;
 
-    return (
-      <div
-        style={styles.color}
-        ref={(container) => {
-          this.container = container;
-        }}
-        onMouseDown={this.handleMouseDown}
-        onTouchMove={this.handleChange}
-        onTouchStart={this.handleChange}
-      >
-        <div style={styles.white} className="saturation-white">
-          <div style={styles.black} className="saturation-black" />
-          <div style={styles.pointer}>{Pointer ? <Pointer {...this.props} /> : <div style={styles.circle} />}</div>
-        </div>
+  return (
+    <div
+      style={styles.color}
+      ref={containerRef}
+      onMouseDown={handleMouseDown}
+      onTouchMove={handleChange}
+      onTouchStart={handleChange}
+    >
+      <div style={styles.white} className="saturation-white">
+        <div style={styles.black} className="saturation-black" />
+        <div style={styles.pointer}>{Pointer ? <Pointer {...props} /> : <div style={styles.circle} />}</div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Saturation;
