@@ -37,8 +37,7 @@
     "docs-server": "node ./scripts/docs-server",
     "docs-dist": "node ./scripts/docs-dist",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o .out",
-    "chromatic": "chromatic --project-token=9z2kaxsuz"
+    "build-storybook": "storybook build -o .out"
   },
   "sideEffects": false,
   "homepage": "http://casesandberg.github.io/react-color/",
