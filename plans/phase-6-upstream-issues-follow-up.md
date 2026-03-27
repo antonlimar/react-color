@@ -4,10 +4,10 @@ overview: Закрыть наиболее ценные открытые проб
 todos:
   - id: csp-safe-gradients
     content: Убрать runtime <style> из common-компонентов Hue и Saturation, перенести градиенты в inline style-объекты элементов и сохранить текущее визуальное поведение без нового публичного nonce API
-    status: pending
+    status: completed
   - id: remove-defaultprops
     content: Полностью убрать defaultProps из ColorWrap и Photoshop, сохранив те же runtime defaults и не меняя публичные TypeScript-контракты компонентов
-    status: pending
+    status: completed
   - id: localize-runtime-icons
     content: Убрать зависимость @icons/material из published runtime, заменить используемые иконки на локальные SVG-компоненты и проверить отсутствие импортов @icons/material в lib/ и es/
     status: pending
@@ -117,8 +117,8 @@ todos:
 
 ## Todo
 
-- [ ] **csp-safe-gradients** — Убрать runtime `<style>` из common-компонентов `Hue` и `Saturation`, перенести градиенты в inline style-объекты элементов и сохранить текущее визуальное поведение без нового публичного `nonce` API
-- [ ] **remove-defaultprops** — Полностью убрать `defaultProps` из `ColorWrap` и `Photoshop`, сохранив те же runtime defaults и не меняя публичные TypeScript-контракты компонентов
+- [x] **csp-safe-gradients** — Убрать runtime `<style>` из common-компонентов `Hue` и `Saturation`, перенести градиенты в inline style-объекты элементов и сохранить текущее визуальное поведение без нового публичного `nonce` API
+- [x] **remove-defaultprops** — Полностью убрать `defaultProps` из `ColorWrap` и `Photoshop`, сохранив те же runtime defaults и не меняя публичные TypeScript-контракты компонентов
 - [ ] **localize-runtime-icons** — Убрать зависимость `@icons/material` из published runtime, заменить используемые иконки на локальные SVG-компоненты и проверить отсутствие импортов `@icons/material` в `lib/` и `es/`
 - [ ] **iframe-safe-saturation** — Переписать логику `getContainerRenderWindow` в `Saturation` на `ownerDocument.defaultView` с безопасным fallback на `window` без обхода `parent.document`
 - [ ] **a11y-and-styling-hooks** — Добавить базовую keyboard accessibility и стабильные `className`/`data-атрибуты` на ключевые интерактивные внутренние узлы без большого рефакторинга `reactcss` или theming-system

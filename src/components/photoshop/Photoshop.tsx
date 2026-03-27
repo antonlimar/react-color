@@ -22,12 +22,10 @@ type PhotoshopState = {
   currentColor: string;
 };
 
-export class Photoshop extends Component<PhotoshopProps, PhotoshopState> {
-  static defaultProps = {
-    header: 'Color Picker',
-    styles: {},
-  };
+const defaultHeader = 'Color Picker';
+const defaultStyles: PickerCustomStyles = {};
 
+export class Photoshop extends Component<PhotoshopProps, PhotoshopState> {
   constructor(props: PhotoshopProps) {
     super(props);
 
@@ -37,7 +35,12 @@ export class Photoshop extends Component<PhotoshopProps, PhotoshopState> {
   }
 
   render() {
-    const { styles: passedStyles = {}, className = '' } = this.props;
+    const resolvedProps: PhotoshopProps = {
+      ...this.props,
+      header: this.props.header ?? defaultHeader,
+      styles: this.props.styles ?? defaultStyles,
+    };
+    const { styles: passedStyles, className = '' } = resolvedProps;
 
     const styles = reactCSS(
       merge(
@@ -103,33 +106,38 @@ export class Photoshop extends Component<PhotoshopProps, PhotoshopState> {
 
     return (
       <div style={styles.picker} className={`photoshop-picker ${className}`}>
-        <div style={styles.head}>{this.props.header}</div>
+        <div style={styles.head}>{resolvedProps.header}</div>
 
         <div style={styles.body} className="flexbox-fix">
           <div style={styles.saturation}>
             <Saturation
-              hsl={this.props.hsl}
-              hsv={this.props.hsv}
+              hsl={resolvedProps.hsl}
+              hsv={resolvedProps.hsv}
               pointer={PhotoshopPointerCircle}
-              onChange={this.props.onChange}
+              onChange={resolvedProps.onChange}
             />
           </div>
           <div style={styles.hue}>
-            <Hue direction="vertical" hsl={this.props.hsl} pointer={PhotoshopPointer} onChange={this.props.onChange} />
+            <Hue
+              direction="vertical"
+              hsl={resolvedProps.hsl}
+              pointer={PhotoshopPointer}
+              onChange={resolvedProps.onChange}
+            />
           </div>
           <div style={styles.controls}>
             <div style={styles.top} className="flexbox-fix">
               <div style={styles.previews}>
-                <PhotoshopPreviews rgb={this.props.rgb} currentColor={this.state.currentColor} />
+                <PhotoshopPreviews rgb={resolvedProps.rgb} currentColor={this.state.currentColor} />
               </div>
               <div style={styles.actions}>
-                <PhotoshopButton label="OK" onClick={() => this.props.onAccept?.(this.props, undefined)} active />
-                <PhotoshopButton label="Cancel" onClick={this.props.onCancel} />
+                <PhotoshopButton label="OK" onClick={() => resolvedProps.onAccept?.(resolvedProps, undefined)} active />
+                <PhotoshopButton label="Cancel" onClick={resolvedProps.onCancel} />
                 <PhotoshopFields
-                  onChange={this.props.onChange}
-                  rgb={this.props.rgb}
-                  hsv={this.props.hsv}
-                  hex={this.props.hex}
+                  onChange={resolvedProps.onChange}
+                  rgb={resolvedProps.rgb}
+                  hsv={resolvedProps.hsv}
+                  hex={resolvedProps.hex}
                 />
               </div>
             </div>

@@ -16,6 +16,8 @@ type ThrottledChange = {
 };
 
 const BaseSaturation = (PureComponent || Component) as new (props: SaturationProps) => ReactComponent<SaturationProps>;
+const SATURATION_WHITE_GRADIENT = 'linear-gradient(to right, #fff, rgba(255,255,255,0))';
+const SATURATION_BLACK_GRADIENT = 'linear-gradient(to top, #000, rgba(0,0,0,0))';
 
 export class Saturation extends BaseSaturation {
   container: HTMLDivElement | null = null;
@@ -94,11 +96,13 @@ export class Saturation extends BaseSaturation {
           white: {
             absolute: '0px 0px 0px 0px',
             borderRadius: this.props.radius,
+            background: SATURATION_WHITE_GRADIENT,
           },
           black: {
             absolute: '0px 0px 0px 0px',
             boxShadow: this.props.shadow,
             borderRadius: this.props.radius,
+            background: SATURATION_BLACK_GRADIENT,
           },
           pointer: {
             position: 'absolute',
@@ -139,16 +143,6 @@ export class Saturation extends BaseSaturation {
         onTouchMove={this.handleChange}
         onTouchStart={this.handleChange}
       >
-        <style>{`
-          .saturation-white {
-            background: -webkit-linear-gradient(to right, #fff, rgba(255,255,255,0));
-            background: linear-gradient(to right, #fff, rgba(255,255,255,0));
-          }
-          .saturation-black {
-            background: -webkit-linear-gradient(to top, #000, rgba(0,0,0,0));
-            background: linear-gradient(to top, #000, rgba(0,0,0,0));
-          }
-        `}</style>
         <div style={styles.white} className="saturation-white">
           <div style={styles.black} className="saturation-black" />
           <div style={styles.pointer}>{Pointer ? <Pointer {...this.props} /> : <div style={styles.circle} />}</div>

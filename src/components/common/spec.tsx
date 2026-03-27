@@ -1,7 +1,11 @@
+import { render } from '@testing-library/react';
+import { expect, test } from 'vitest';
 import { red } from '../../helpers/color';
+import * as color from '../../helpers/color';
 
 import Alpha from './Alpha';
 import Checkboard from './Checkboard';
+import ColorWrap from './ColorWrap';
 import EditableInput from './EditableInput';
 import Hue from './Hue';
 import Saturation from './Saturation';
@@ -34,6 +38,27 @@ test('Hue renders correctly', () => {
 
 test('Saturation renders correctly', () => {
   renderForSnapshot(<Saturation {...red} />).expectSnapshot();
+});
+
+test('ColorWrap provides the same runtime default color', () => {
+  const WrappedPicker = ColorWrap(({ color: passedColor, hex }) => (
+    <div data-color-present={String(passedColor !== undefined)} data-hex={hex} />
+  ));
+  const defaultHex = color.toState({ h: 250, s: 0.5, l: 0.2, a: 1 }, 0).hex;
+  const { container } = render(<WrappedPicker />);
+  const wrapped = container.firstElementChild;
+
+  expect(wrapped).not.toBeNull();
+  expect(wrapped?.getAttribute('data-color-present')).toBe('true');
+  expect(wrapped?.getAttribute('data-hex')).toBe(defaultHex);
+});
+
+test('Hue and Saturation do not render runtime style tags', () => {
+  const { container: hueContainer } = render(<Hue {...red} />);
+  expect(hueContainer.querySelector('style')).toBeNull();
+
+  const { container: saturationContainer } = render(<Saturation {...red} />);
+  expect(saturationContainer.querySelector('style')).toBeNull();
 });
 
 test('Swatch renders correctly', () => {

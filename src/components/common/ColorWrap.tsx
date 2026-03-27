@@ -13,22 +13,17 @@ import type {
   ColorResult,
 } from '../../types';
 
-type PickerStatics = {
-  defaultProps?: Record<string, unknown>;
-};
-
 type WrappedColorPickerProps<PickerProps extends ColorPickerInjectedProps> = Omit<
   PickerProps,
   keyof ColorPickerInjectedProps
 > &
   ColorPickerProps;
 
-type PickerComponent<PickerProps extends ColorPickerInjectedProps> = ComponentType<PickerProps> & PickerStatics;
+type PickerComponent<PickerProps extends ColorPickerInjectedProps> = ComponentType<PickerProps>;
 
 type WrappedColorPickerComponent<PickerProps extends ColorPickerInjectedProps> = ComponentType<
   WrappedColorPickerProps<PickerProps>
-> &
-  PickerStatics;
+>;
 
 type ColorWrapState = ColorResult & {
   colorPropKey: string;
@@ -41,8 +36,10 @@ const defaultColor: Color = {
   a: 1,
 };
 
+const getColorWithDefault = (colorProp?: Color): Color => colorProp ?? defaultColor;
+
 const getColorPropKey = (colorProp?: Color): string => {
-  const value = colorProp ?? defaultColor;
+  const value = getColorWithDefault(colorProp);
 
   return typeof value === 'string' ? value : JSON.stringify(value);
 };
@@ -64,9 +61,11 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
     constructor(props: WrappedColorPickerProps<PickerProps>) {
       super(props);
 
+      const resolvedColor = getColorWithDefault(props.color);
+
       this.state = {
-        ...color.toState(props.color ?? defaultColor, 0),
-        colorPropKey: getColorPropKey(props.color),
+        ...color.toState(resolvedColor, 0),
+        colorPropKey: getColorPropKey(resolvedColor),
       };
 
       this.debounce = debounce((fn: ColorChangeHandler, data: ColorResult, event: ColorPickerChangeEvent) => {
@@ -84,9 +83,11 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
         return null;
       }
 
+      const resolvedColor = getColorWithDefault(nextProps.color);
+
       return {
-        ...color.toState(nextProps.color ?? defaultColor, state.oldHue),
-        colorPropKey: nextColorPropKey,
+        ...color.toState(resolvedColor, state.oldHue),
+        colorPropKey: getColorPropKey(resolvedColor),
       };
     }
 
@@ -115,7 +116,10 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
 
     render() {
       const optionalEvents: Partial<ColorPickerInjectedProps> = {};
-      const pickerProps = this.props as unknown as PickerProps;
+      const pickerProps = {
+        ...this.props,
+        color: getColorWithDefault(this.props.color),
+      } as unknown as PickerProps;
 
       if (this.props.onSwatchHover) {
         optionalEvents.onSwatchHover = this.handleSwatchHover;
@@ -124,11 +128,6 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
       return <Picker {...pickerProps} {...this.state} onChange={this.handleChange} {...optionalEvents} />;
     }
   }
-
-  (ColorPicker as typeof ColorPicker & PickerStatics).defaultProps = {
-    ...Picker.defaultProps,
-    color: defaultColor,
-  };
 
   return ColorPicker as WrappedColorPickerComponent<PickerProps>;
 };

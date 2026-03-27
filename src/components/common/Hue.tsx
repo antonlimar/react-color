@@ -6,6 +6,10 @@ import type { Component as ReactComponent } from 'react';
 import type { HueProps, InternalColorChangeEvent } from '../../types';
 
 const BaseHue = (PureComponent || Component) as new (props: HueProps) => ReactComponent<HueProps>;
+const HUE_GRADIENT_HORIZONTAL =
+  'linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)';
+const HUE_GRADIENT_VERTICAL =
+  'linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)';
 
 export class Hue extends BaseHue {
   container: HTMLDivElement | null = null;
@@ -56,6 +60,7 @@ export class Hue extends BaseHue {
             position: 'relative',
             height: '100%',
             borderRadius: this.props.radius,
+            background: HUE_GRADIENT_HORIZONTAL,
           },
           pointer: {
             position: 'absolute',
@@ -72,6 +77,9 @@ export class Hue extends BaseHue {
           },
         },
         vertical: {
+          container: {
+            background: HUE_GRADIENT_VERTICAL,
+          },
           pointer: {
             left: '0px',
             top: `${-((this.props.hsl.h * 100) / 360) + 100}%`,
@@ -95,21 +103,6 @@ export class Hue extends BaseHue {
           onTouchMove={this.handleChange}
           onTouchStart={this.handleChange}
         >
-          <style>{`
-            .hue-horizontal {
-              background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0
-                33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
-              background: -webkit-linear-gradient(to right, #f00 0%, #ff0
-                17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
-            }
-
-            .hue-vertical {
-              background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%,
-                #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
-              background: -webkit-linear-gradient(to top, #f00 0%, #ff0 17%,
-                #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
-            }
-          `}</style>
           <div style={styles.pointer}>{Pointer ? <Pointer {...this.props} /> : <div style={styles.slider} />}</div>
         </div>
       </div>
