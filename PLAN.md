@@ -129,10 +129,24 @@ flowchart LR
 
 ---
 
+## Фаза 7 — Styling modernization после завершения core modernization
+
+Статус: предложена как следующая отдельная волна после фаз 2–6.
+
+- Цель фазы: убрать `reactcss` и текущую систему inline-default styles, перевести пикеры и общие примитивы на co-located SCSS и глобальные BEM-классы без ненужной ломки публичного API.
+- Стили каждого компонента должны храниться рядом с самим компонентом, а не в одном общем каталоге компонентных стилей.
+- Публикация CSS должна поддерживать выборочный импорт только нужных пикеров или общих примитивов. Общий aggregate entry допустим только как optional convenience-path, а не как обязательный контракт.
+- Публичная кастомизация должна опираться на `className`, новый `classNames`, CSS custom properties и `theme`, при этом текущий `styles` остаётся как deprecated compatibility layer на переходный период.
+- Темная тема входит в scope фазы и реализуется через root BEM-модификаторы и CSS variables, без завязки на CSS Modules.
+
+Подробный план ведётся в [`plans/phase-7-styling-modernization.md`](plans/phase-7-styling-modernization.md).
+
+---
+
 ## Риски и порядок работ
 
 - **Большой взрывной PR** нежелателен: лучше «зелёный main» после фазы 0–1, затем toolchain, затем TS по папкам с сохранением тестов на поведение.
-- **Стили**: массовая замена `reactcss` на CSS-modules — отдельное решение (можно отложить после TS и тестов).
+- **Стили**: массовая замена `reactcss` вынесена в отдельную фазу 7; базовое направление зафиксировано как global BEM + co-located SCSS + granular CSS imports, а не CSS Modules.
 
 ---
 
@@ -148,6 +162,8 @@ flowchart LR
    Актуальный статус уже закрытых post-migration задач ведётся в [`plans/phase-4-dependencies-and-legacy.md`](plans/phase-4-dependencies-and-legacy.md).
 7. Product/runtime follow-up после завершения модернизации: закрыть наиболее ценные открытые issues апстрима по CSP, `defaultProps`, runtime icons, iframe-safe drag behavior и interop.
    Детальный план этой волны ведётся в [`plans/phase-6-upstream-issues-follow-up.md`](plans/phase-6-upstream-issues-follow-up.md).
+8. Styling follow-up после завершения core/runtime modernization: убрать `reactcss`, перевести пикеры на co-located SCSS и BEM-классы, добавить dark theme и granular CSS imports.
+   Детальный план этой волны ведётся в [`plans/phase-7-styling-modernization.md`](plans/phase-7-styling-modernization.md).
 
 ---
 
@@ -163,3 +179,4 @@ flowchart LR
 - [x] Усилить TS-строгость и закрыть текущий follow-up cleanup legacy в docs/dev tooling; migration notes синхронизированы в `CHANGELOG.md`, `README.md` и `plans/phase-4-dependencies-and-legacy.md`
 - [x] Перевести runtime-код `docs/` на `.ts`/`.tsx`, ввести отдельный docs typecheck и закрыть оставшийся JS-only хвост документационного приложения; `npm run docs-dist` и локальный `npm run docs-server` повторно подтверждены после миграции
 - [x] Закрыть следующую волну upstream/runtime follow-up задач без breaking changes: CSP-safe градиенты, удаление `defaultProps`, локальные runtime-иконки, iframe-safe `Saturation` и проверка ESM/CJS interop; подробности в `plans/phase-6-upstream-issues-follow-up.md`
+- [ ] Убрать `reactcss` и перевести styling-систему на co-located SCSS, BEM-классы, dark theme и granular CSS imports; подробности в `plans/phase-7-styling-modernization.md`
