@@ -1,112 +1,157 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Swatches = void 0;
-var jsx_runtime_1 = require("react/jsx-runtime");
-var reactcss_1 = __importDefault(require("reactcss"));
-var map_1 = __importDefault(require("lodash/map"));
-var merge_1 = __importDefault(require("lodash/merge"));
-var material_colors_1 = __importDefault(require("material-colors"));
-var common_1 = require("../common");
-var SwatchesGroup_1 = __importDefault(require("./SwatchesGroup"));
-var DEFAULT_SWATCH_GROUPS = [
-    [material_colors_1.default.red['900'], material_colors_1.default.red['700'], material_colors_1.default.red['500'], material_colors_1.default.red['300'], material_colors_1.default.red['100']],
-    [material_colors_1.default.pink['900'], material_colors_1.default.pink['700'], material_colors_1.default.pink['500'], material_colors_1.default.pink['300'], material_colors_1.default.pink['100']],
-    [
-        material_colors_1.default.purple['900'],
-        material_colors_1.default.purple['700'],
-        material_colors_1.default.purple['500'],
-        material_colors_1.default.purple['300'],
-        material_colors_1.default.purple['100'],
-    ],
-    [
-        material_colors_1.default.deepPurple['900'],
-        material_colors_1.default.deepPurple['700'],
-        material_colors_1.default.deepPurple['500'],
-        material_colors_1.default.deepPurple['300'],
-        material_colors_1.default.deepPurple['100'],
-    ],
-    [
-        material_colors_1.default.indigo['900'],
-        material_colors_1.default.indigo['700'],
-        material_colors_1.default.indigo['500'],
-        material_colors_1.default.indigo['300'],
-        material_colors_1.default.indigo['100'],
-    ],
-    [material_colors_1.default.blue['900'], material_colors_1.default.blue['700'], material_colors_1.default.blue['500'], material_colors_1.default.blue['300'], material_colors_1.default.blue['100']],
-    [
-        material_colors_1.default.lightBlue['900'],
-        material_colors_1.default.lightBlue['700'],
-        material_colors_1.default.lightBlue['500'],
-        material_colors_1.default.lightBlue['300'],
-        material_colors_1.default.lightBlue['100'],
-    ],
-    [material_colors_1.default.cyan['900'], material_colors_1.default.cyan['700'], material_colors_1.default.cyan['500'], material_colors_1.default.cyan['300'], material_colors_1.default.cyan['100']],
-    [material_colors_1.default.teal['900'], material_colors_1.default.teal['700'], material_colors_1.default.teal['500'], material_colors_1.default.teal['300'], material_colors_1.default.teal['100']],
-    ['#194D33', material_colors_1.default.green['700'], material_colors_1.default.green['500'], material_colors_1.default.green['300'], material_colors_1.default.green['100']],
-    [
-        material_colors_1.default.lightGreen['900'],
-        material_colors_1.default.lightGreen['700'],
-        material_colors_1.default.lightGreen['500'],
-        material_colors_1.default.lightGreen['300'],
-        material_colors_1.default.lightGreen['100'],
-    ],
-    [material_colors_1.default.lime['900'], material_colors_1.default.lime['700'], material_colors_1.default.lime['500'], material_colors_1.default.lime['300'], material_colors_1.default.lime['100']],
-    [
-        material_colors_1.default.yellow['900'],
-        material_colors_1.default.yellow['700'],
-        material_colors_1.default.yellow['500'],
-        material_colors_1.default.yellow['300'],
-        material_colors_1.default.yellow['100'],
-    ],
-    [material_colors_1.default.amber['900'], material_colors_1.default.amber['700'], material_colors_1.default.amber['500'], material_colors_1.default.amber['300'], material_colors_1.default.amber['100']],
-    [
-        material_colors_1.default.orange['900'],
-        material_colors_1.default.orange['700'],
-        material_colors_1.default.orange['500'],
-        material_colors_1.default.orange['300'],
-        material_colors_1.default.orange['100'],
-    ],
-    [
-        material_colors_1.default.deepOrange['900'],
-        material_colors_1.default.deepOrange['700'],
-        material_colors_1.default.deepOrange['500'],
-        material_colors_1.default.deepOrange['300'],
-        material_colors_1.default.deepOrange['100'],
-    ],
-    [material_colors_1.default.brown['900'], material_colors_1.default.brown['700'], material_colors_1.default.brown['500'], material_colors_1.default.brown['300'], material_colors_1.default.brown['100']],
-    [
-        material_colors_1.default.blueGrey['900'],
-        material_colors_1.default.blueGrey['700'],
-        material_colors_1.default.blueGrey['500'],
-        material_colors_1.default.blueGrey['300'],
-        material_colors_1.default.blueGrey['100'],
-    ],
-    ['#000000', '#525252', '#969696', '#D9D9D9', '#FFFFFF'],
+import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
+import reactCSS from 'reactcss';
+import map from 'lodash/map';
+import merge from 'lodash/merge';
+import material from 'material-colors';
+import { ColorWrap, Raised } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
+import SwatchesGroup from './SwatchesGroup';
+const DEFAULT_SWATCH_GROUPS = [
+  [material.red['900'], material.red['700'], material.red['500'], material.red['300'], material.red['100']],
+  [material.pink['900'], material.pink['700'], material.pink['500'], material.pink['300'], material.pink['100']],
+  [
+    material.purple['900'],
+    material.purple['700'],
+    material.purple['500'],
+    material.purple['300'],
+    material.purple['100'],
+  ],
+  [
+    material.deepPurple['900'],
+    material.deepPurple['700'],
+    material.deepPurple['500'],
+    material.deepPurple['300'],
+    material.deepPurple['100'],
+  ],
+  [
+    material.indigo['900'],
+    material.indigo['700'],
+    material.indigo['500'],
+    material.indigo['300'],
+    material.indigo['100'],
+  ],
+  [material.blue['900'], material.blue['700'], material.blue['500'], material.blue['300'], material.blue['100']],
+  [
+    material.lightBlue['900'],
+    material.lightBlue['700'],
+    material.lightBlue['500'],
+    material.lightBlue['300'],
+    material.lightBlue['100'],
+  ],
+  [material.cyan['900'], material.cyan['700'], material.cyan['500'], material.cyan['300'], material.cyan['100']],
+  [material.teal['900'], material.teal['700'], material.teal['500'], material.teal['300'], material.teal['100']],
+  ['#194D33', material.green['700'], material.green['500'], material.green['300'], material.green['100']],
+  [
+    material.lightGreen['900'],
+    material.lightGreen['700'],
+    material.lightGreen['500'],
+    material.lightGreen['300'],
+    material.lightGreen['100'],
+  ],
+  [material.lime['900'], material.lime['700'], material.lime['500'], material.lime['300'], material.lime['100']],
+  [
+    material.yellow['900'],
+    material.yellow['700'],
+    material.yellow['500'],
+    material.yellow['300'],
+    material.yellow['100'],
+  ],
+  [material.amber['900'], material.amber['700'], material.amber['500'], material.amber['300'], material.amber['100']],
+  [
+    material.orange['900'],
+    material.orange['700'],
+    material.orange['500'],
+    material.orange['300'],
+    material.orange['100'],
+  ],
+  [
+    material.deepOrange['900'],
+    material.deepOrange['700'],
+    material.deepOrange['500'],
+    material.deepOrange['300'],
+    material.deepOrange['100'],
+  ],
+  [material.brown['900'], material.brown['700'], material.brown['500'], material.brown['300'], material.brown['100']],
+  [
+    material.blueGrey['900'],
+    material.blueGrey['700'],
+    material.blueGrey['500'],
+    material.blueGrey['300'],
+    material.blueGrey['100'],
+  ],
+  ['#000000', '#525252', '#969696', '#D9D9D9', '#FFFFFF'],
 ];
-var Swatches = function (_a) {
-    var _b = _a.width, width = _b === void 0 ? 320 : _b, _c = _a.height, height = _c === void 0 ? 240 : _c, onChange = _a.onChange, onSwatchHover = _a.onSwatchHover, _d = _a.colors, colors = _d === void 0 ? DEFAULT_SWATCH_GROUPS : _d, hex = _a.hex, _e = _a.styles, passedStyles = _e === void 0 ? {} : _e, _f = _a.className, className = _f === void 0 ? '' : _f;
-    var styles = (0, reactcss_1.default)((0, merge_1.default)({
+export const Swatches = ({
+  width = 320,
+  height = 240,
+  onChange,
+  onSwatchHover,
+  colors = DEFAULT_SWATCH_GROUPS,
+  hex,
+  styles: passedStyles = {},
+  className = '',
+  classNames,
+  theme,
+}) => {
+  const styles = reactCSS(
+    merge(
+      {
         default: {
-            picker: {
-                width: width,
-                height: height,
-            },
-            overflow: {
-                height: height,
-                overflowY: 'scroll',
-            },
-            body: {
-                padding: '16px 0 6px 16px',
-            },
-            clear: {
-                clear: 'both',
-            },
+          picker: {
+            width,
+            height,
+          },
+          overflow: {
+            height,
+            overflowY: 'scroll',
+          },
+          body: {
+            padding: '16px 0 6px 16px',
+          },
+          clear: {
+            clear: 'both',
+          },
         },
-    }, passedStyles));
-    return ((0, jsx_runtime_1.jsx)("div", { style: styles.picker, className: "swatches-picker ".concat(className), children: (0, jsx_runtime_1.jsx)(common_1.Raised, { children: (0, jsx_runtime_1.jsx)("div", { style: styles.overflow, children: (0, jsx_runtime_1.jsxs)("div", { style: styles.body, children: [(0, map_1.default)(colors, function (group) { return ((0, jsx_runtime_1.jsx)(SwatchesGroup_1.default, { group: group, active: hex, onClick: function (data, event) { return onChange({ hex: data, source: 'hex' }, event); }, onSwatchHover: onSwatchHover }, group.toString())); }), (0, jsx_runtime_1.jsx)("div", { style: styles.clear })] }) }) }) }));
+      },
+      passedStyles,
+    ),
+  );
+  return _jsx(
+    'div',
+    Object.assign(
+      { style: styles.picker },
+      getPickerRootProps({
+        block: 'swatches',
+        theme,
+        className: `swatches-picker ${className}`,
+        classNames,
+      }),
+      {
+        children: _jsx(Raised, {
+          children: _jsx('div', {
+            style: styles.overflow,
+            children: _jsxs('div', {
+              style: styles.body,
+              children: [
+                map(colors, (group) =>
+                  _jsx(
+                    SwatchesGroup,
+                    {
+                      group: group,
+                      active: hex,
+                      onClick: (data, event) => onChange({ hex: data, source: 'hex' }, event),
+                      onSwatchHover: onSwatchHover,
+                    },
+                    group.toString(),
+                  ),
+                ),
+                _jsx('div', { style: styles.clear }),
+              ],
+            }),
+          }),
+        }),
+      },
+    ),
+  );
 };
-exports.Swatches = Swatches;
-exports.default = (0, common_1.ColorWrap)(exports.Swatches);
+export default ColorWrap(Swatches);

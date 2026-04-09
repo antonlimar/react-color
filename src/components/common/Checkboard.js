@@ -1,74 +1,35 @@
-"use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+import { jsx as _jsx } from 'react/jsx-runtime';
+import { cloneElement, isValidElement } from 'react';
+import reactCSS from 'reactcss';
+import * as checkboard from '../../helpers/checkboard';
+export const Checkboard = ({
+  white = 'transparent',
+  grey = 'rgba(0,0,0,.08)',
+  size = 8,
+  renderers = {},
+  borderRadius,
+  boxShadow,
+  children,
+}) => {
+  const styles = reactCSS({
+    default: {
+      grid: {
+        borderRadius,
+        boxShadow,
+        absolute: '0px 0px 0px 0px',
+        background: `url(${checkboard.get(white, grey, size, renderers === null || renderers === void 0 ? void 0 : renderers.canvas)}) center left`,
+      },
+    },
+  });
+  if (isValidElement(children)) {
+    const child = children;
+    return cloneElement(
+      child,
+      Object.assign(Object.assign({}, child.props), {
+        style: Object.assign(Object.assign({}, child.props.style), styles.grid),
+      }),
+    );
+  }
+  return _jsx('div', { style: styles.grid });
 };
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Checkboard = void 0;
-var jsx_runtime_1 = require("react/jsx-runtime");
-var react_1 = require("react");
-var reactcss_1 = __importDefault(require("reactcss"));
-var checkboard = __importStar(require("../../helpers/checkboard"));
-var Checkboard = function (_a) {
-    var _b = _a.white, white = _b === void 0 ? 'transparent' : _b, _c = _a.grey, grey = _c === void 0 ? 'rgba(0,0,0,.08)' : _c, _d = _a.size, size = _d === void 0 ? 8 : _d, _e = _a.renderers, renderers = _e === void 0 ? {} : _e, borderRadius = _a.borderRadius, boxShadow = _a.boxShadow, children = _a.children;
-    var styles = (0, reactcss_1.default)({
-        default: {
-            grid: {
-                borderRadius: borderRadius,
-                boxShadow: boxShadow,
-                absolute: '0px 0px 0px 0px',
-                background: "url(".concat(checkboard.get(white, grey, size, renderers === null || renderers === void 0 ? void 0 : renderers.canvas), ") center left"),
-            },
-        },
-    });
-    if ((0, react_1.isValidElement)(children)) {
-        var child = children;
-        return (0, react_1.cloneElement)(child, __assign(__assign({}, child.props), { style: __assign(__assign({}, child.props.style), styles.grid) }));
-    }
-    return (0, jsx_runtime_1.jsx)("div", { style: styles.grid });
-};
-exports.Checkboard = Checkboard;
-exports.default = exports.Checkboard;
+export default Checkboard;
