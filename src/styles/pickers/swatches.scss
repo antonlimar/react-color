@@ -1,0 +1,4 @@
+@use '../core/index' as core;
+@use '../../components/swatches/Swatches';
+
+@include core.rc-style-entry('picker-swatches');

@@ -1,0 +1,4 @@
+@use '../core/index' as core;
+@use '../../components/common/Raised';
+
+@include core.rc-style-entry('common-raised');

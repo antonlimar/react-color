@@ -1,0 +1,24 @@
+@use './core/index' as core;
+@use '../components/alpha/Alpha' as alphaPicker;
+@use '../components/block/Block' as blockPicker;
+@use '../components/chrome/Chrome' as chromePicker;
+@use '../components/circle/Circle' as circlePicker;
+@use '../components/compact/Compact' as compactPicker;
+@use '../components/common/Alpha' as alphaCommon;
+@use '../components/common/Checkboard' as checkboardCommon;
+@use '../components/common/EditableInput' as editableInputCommon;
+@use '../components/common/Hue' as hueCommon;
+@use '../components/common/Raised' as raisedCommon;
+@use '../components/common/Saturation' as saturationCommon;
+@use '../components/common/Swatch' as swatchCommon;
+@use '../components/github/Github' as githubPicker;
+@use '../components/google/Google' as googlePicker;
+@use '../components/hue/Hue' as huePicker;
+@use '../components/material/Material' as materialPicker;
+@use '../components/photoshop/Photoshop' as photoshopPicker;
+@use '../components/sketch/Sketch' as sketchPicker;
+@use '../components/slider/Slider' as sliderPicker;
+@use '../components/swatches/Swatches' as swatchesPicker;
+@use '../components/twitter/Twitter' as twitterPicker;
+
+@include core.rc-style-entry('aggregate');

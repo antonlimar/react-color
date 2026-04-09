@@ -1,0 +1,4 @@
+@use '../core/index' as core;
+@use '../../components/chrome/Chrome';
+
+@include core.rc-style-entry('picker-chrome');

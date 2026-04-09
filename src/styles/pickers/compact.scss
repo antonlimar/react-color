@@ -1,0 +1,4 @@
+@use '../core/index' as core;
+@use '../../components/compact/Compact';
+
+@include core.rc-style-entry('picker-compact');

@@ -8,7 +8,7 @@ todos:
     status: completed
   - id: scss-structure-and-build
     content: Добавить co-located SCSS рядом с компонентами, granular CSS entrypoints для выборочного импорта стилей и optional aggregate entry без обязательной загрузки всех пикеров сразу
-    status: pending
+    status: completed
   - id: public-styling-api
     content: Расширить публичный API через theme и classNames, сохранить className на root и оставить styles как deprecated compatibility layer
     status: pending
@@ -130,7 +130,7 @@ todos:
 ## Todo
 
 - [x] **styling-architecture** — Ввести единую BEM-архитектуру классов для всех пикеров и общих примитивов, зафиксировать namespace `rc-*` и набор основных block/element/modifier соглашений
-- [ ] **scss-structure-and-build** — Добавить co-located SCSS рядом с компонентами, granular CSS entrypoints для выборочного импорта стилей и optional aggregate entry без обязательной загрузки всех пикеров сразу
+- [x] **scss-structure-and-build** — Добавить co-located SCSS рядом с компонентами, granular CSS entrypoints для выборочного импорта стилей и optional aggregate entry без обязательной загрузки всех пикеров сразу
 - [ ] **public-styling-api** — Расширить публичный API через `theme` и `classNames`, сохранить `className` на root и оставить `styles` как deprecated compatibility layer
 - [ ] **migrate-common-primitives** — Перевести common-примитивы `Alpha`, `Hue`, `Saturation`, `EditableInput`, `Swatch`, `Checkboard`, `Raised` и общее styling-утилити на class-based markup с co-located SCSS
 - [ ] **migrate-picker-subcomponents** — Перевести pointer, fields, swatch и preview подкомпоненты внутри папок picker-компонентов на co-located SCSS и единый slot/classNames контракт

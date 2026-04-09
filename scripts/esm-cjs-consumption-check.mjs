@@ -14,6 +14,10 @@ const repoRoot = path.resolve(__dirname, '..');
 async function ensureBuildArtifacts() {
   await access(path.join(repoRoot, 'lib', 'index.js'), constants.R_OK);
   await access(path.join(repoRoot, 'es', 'index.js'), constants.R_OK);
+  await access(path.join(repoRoot, 'lib', 'styles', 'index.css'), constants.R_OK);
+  await access(path.join(repoRoot, 'es', 'styles', 'index.css'), constants.R_OK);
+  await access(path.join(repoRoot, 'lib', 'styles', 'pickers', 'chrome.css'), constants.R_OK);
+  await access(path.join(repoRoot, 'es', 'styles', 'common', 'editable-input.css'), constants.R_OK);
 }
 
 function runNode(args, cwd) {
@@ -85,7 +89,10 @@ async function runBundlerFixture(workspace) {
   await writeFixture(
     bundlerRoot,
     'main.ts',
-    `import ReactColorDefault, { SketchPicker } from 'react-color';
+    `import 'react-color/es/styles/index.css';
+import 'react-color/es/styles/pickers/chrome.css';
+import 'react-color/es/styles/common/editable-input.css';
+import ReactColorDefault, { SketchPicker } from 'react-color';
 import SketchPickerEsm from 'react-color/es/Sketch';
 import HuePickerLib from 'react-color/lib/Hue';
 import { EditableInput as EditableInputLib } from 'react-color/lib/components/common';
@@ -192,9 +199,10 @@ assert.equal(typeof reactColorCjsNamespace.SketchPicker, 'function');
       [
         'esm-cjs-consumption-check passed:',
         '- CommonJS require() consumed the root entry and lib/ deep imports.',
+        '- The published package layout exposes aggregate and granular CSS entrypoints in lib/styles and es/styles.',
         '- Native Node ESM consumed the root CommonJS entry via the default namespace object.',
         '- Native Node ESM still rejects direct named root imports and extensionless lib/es deep imports without an exports map.',
-        '- Vite consumed root default/named imports plus lib/es deep imports through the published package layout.',
+        '- Vite consumed root default/named imports, lib/es deep imports, and CSS entrypoints through the published package layout.',
       ].join('\n'),
     );
   } finally {

@@ -30,8 +30,8 @@
     "format:check": "prettier --check .",
     "examples:check": "node ./scripts/examples-check.mjs",
     "eslint": "eslint src docs scripts test .storybook vite.docs.config.ts vitest.config.ts vitest.visual.config.ts eslint.config.mjs",
-    "lib": "npm run clean-lib && tsc -p tsconfig.lib.json",
-    "es": "npm run clean-es && tsc -p tsconfig.es.json && node scripts/rewrite-lodash-es-imports.mjs es",
+    "lib": "npm run clean-lib && tsc -p tsconfig.lib.json && node scripts/build-styles.mjs lib",
+    "es": "npm run clean-es && tsc -p tsconfig.es.json && node scripts/rewrite-lodash-es-imports.mjs es && node scripts/build-styles.mjs es",
     "clean-lib": "rm -rf lib && mkdir lib",
     "clean-es": "rm -rf es && mkdir es",
     "prepack": "npm run build",
@@ -49,7 +49,9 @@
     ],
     "*.{json,md,mdx,html,css,scss,yml,yaml}": "prettier --check"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "homepage": "http://casesandberg.github.io/react-color/",
   "keywords": [
     "react",
@@ -111,6 +113,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "storybook": "^10.3.3",
+    "sass": "^1.99.0",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.57.2",
     "vite": "^7.3.1",
