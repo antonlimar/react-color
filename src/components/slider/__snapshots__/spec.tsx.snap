@@ -3,7 +3,7 @@
 exports[`Slider renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="slider-picker "
+    class="rc-slider slider-picker"
   >
     <div
       style="height: 12px; position: relative;"

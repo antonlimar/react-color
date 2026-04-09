@@ -2,16 +2,25 @@ import reactCSS from 'reactcss';
 import merge from 'lodash/merge';
 
 import { ColorWrap, Saturation, Hue } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import GooglePointerCircle from './GooglePointerCircle';
 import GooglePointer from './GooglePointer';
 import GoogleFields from './GoogleFields';
-import type { ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types';
+import type {
+  ClassName,
+  ColorPickerInjectedProps,
+  PickerClassNames,
+  PickerCustomStyles,
+  PickerTheme,
+} from '../../types';
 
 type GoogleProps = ColorPickerInjectedProps & {
   width?: string | number;
   styles?: PickerCustomStyles;
   header?: string;
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
 };
 
 export const Google = ({
@@ -24,6 +33,8 @@ export const Google = ({
   header = 'Color picker',
   styles: passedStyles = {},
   className = '',
+  classNames,
+  theme,
 }: GoogleProps) => {
   const styles = reactCSS(
     merge(
@@ -91,7 +102,15 @@ export const Google = ({
   );
 
   return (
-    <div style={styles.picker} className={`google-picker ${className}`}>
+    <div
+      style={styles.picker}
+      {...getPickerRootProps({
+        block: 'google',
+        theme,
+        className: `google-picker ${className}`,
+        classNames,
+      })}
+    >
       <div style={styles.head}>{header}</div>
       <div style={styles.swatch} />
       <div style={styles.saturation}>

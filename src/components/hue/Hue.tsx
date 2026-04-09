@@ -2,8 +2,16 @@ import reactCSS from 'reactcss';
 import merge from 'lodash/merge';
 
 import { ColorWrap, Hue as HueControl } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import HuePointer from './HuePointer';
-import type { ClassName, ColorPickerInjectedProps, HueProps, PickerCustomStyles } from '../../types';
+import type {
+  ClassName,
+  ColorPickerInjectedProps,
+  HueProps,
+  PickerClassNames,
+  PickerCustomStyles,
+  PickerTheme,
+} from '../../types';
 
 type HuePickerProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -12,6 +20,8 @@ type HuePickerProps = ColorPickerInjectedProps & {
   pointer?: HueProps['pointer'];
   styles?: PickerCustomStyles;
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
 };
 
 export const HuePicker = ({
@@ -23,6 +33,8 @@ export const HuePicker = ({
   pointer = HuePointer,
   styles: passedStyles = {},
   className = '',
+  classNames,
+  theme,
 }: HuePickerProps) => {
   const styles = reactCSS(
     merge(
@@ -47,7 +59,15 @@ export const HuePicker = ({
   };
 
   return (
-    <div style={styles.picker} className={`hue-picker ${className}`}>
+    <div
+      style={styles.picker}
+      {...getPickerRootProps({
+        block: 'hue',
+        theme,
+        className: `hue-picker ${className}`,
+        classNames,
+      })}
+    >
       <HueControl {...styles.hue} hsl={hsl} pointer={pointer} onChange={handleChange} direction={direction} />
     </div>
   );

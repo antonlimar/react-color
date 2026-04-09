@@ -1,8 +1,17 @@
 import reactCSS from 'reactcss';
 
 import { ColorWrap, Alpha as AlphaControl } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import AlphaPointer from './AlphaPointer';
-import type { AlphaProps, CheckboardRenderers, ClassName, ColorPickerInjectedProps, PickerStyle } from '../../types';
+import type {
+  AlphaProps,
+  CheckboardRenderers,
+  ClassName,
+  ColorPickerInjectedProps,
+  PickerClassNames,
+  PickerStyle,
+  PickerTheme,
+} from '../../types';
 
 type AlphaPickerProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -12,6 +21,8 @@ type AlphaPickerProps = ColorPickerInjectedProps & {
   renderers?: CheckboardRenderers;
   pointer?: AlphaProps['pointer'];
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
 };
 
 export const AlphaPicker = ({
@@ -25,6 +36,8 @@ export const AlphaPicker = ({
   renderers,
   pointer = AlphaPointer,
   className = '',
+  classNames,
+  theme,
 }: AlphaPickerProps) => {
   const styles = reactCSS({
     default: {
@@ -41,7 +54,15 @@ export const AlphaPicker = ({
   });
 
   return (
-    <div style={styles.picker} className={`alpha-picker ${className}`}>
+    <div
+      style={styles.picker}
+      {...getPickerRootProps({
+        block: 'alpha',
+        theme,
+        className: `alpha-picker ${className}`,
+        classNames,
+      })}
+    >
       <AlphaControl
         {...styles.alpha}
         rgb={rgb}

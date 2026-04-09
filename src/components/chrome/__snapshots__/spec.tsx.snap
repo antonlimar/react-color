@@ -3,7 +3,7 @@
 exports[`Chrome renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="chrome-picker "
+    class="rc-chrome chrome-picker"
     style="width: 225px; background: rgb(255, 255, 255); -webkit-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: 0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3); box-shadow: 0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3); box-sizing: initial; font-family: Menlo;"
   >
     <div

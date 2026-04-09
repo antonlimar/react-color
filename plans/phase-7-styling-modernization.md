@@ -11,7 +11,7 @@ todos:
     status: completed
   - id: public-styling-api
     content: Расширить публичный API через theme и classNames, сохранить className на root и оставить styles как deprecated compatibility layer
-    status: pending
+    status: completed
   - id: migrate-common-primitives
     content: Перевести common-примитивы Alpha Hue Saturation EditableInput Swatch Checkboard Raised и общее styling-утилити на class-based markup с co-located SCSS
     status: pending
@@ -131,7 +131,7 @@ todos:
 
 - [x] **styling-architecture** — Ввести единую BEM-архитектуру классов для всех пикеров и общих примитивов, зафиксировать namespace `rc-*` и набор основных block/element/modifier соглашений
 - [x] **scss-structure-and-build** — Добавить co-located SCSS рядом с компонентами, granular CSS entrypoints для выборочного импорта стилей и optional aggregate entry без обязательной загрузки всех пикеров сразу
-- [ ] **public-styling-api** — Расширить публичный API через `theme` и `classNames`, сохранить `className` на root и оставить `styles` как deprecated compatibility layer
+- [x] **public-styling-api** — Расширить публичный API через `theme` и `classNames`, сохранить `className` на root и оставить `styles` как deprecated compatibility layer
 - [ ] **migrate-common-primitives** — Перевести common-примитивы `Alpha`, `Hue`, `Saturation`, `EditableInput`, `Swatch`, `Checkboard`, `Raised` и общее styling-утилити на class-based markup с co-located SCSS
 - [ ] **migrate-picker-subcomponents** — Перевести pointer, fields, swatch и preview подкомпоненты внутри папок picker-компонентов на co-located SCSS и единый slot/classNames контракт
 - [ ] **migrate-top-level-pickers** — Перевести top-level пикеры `alpha`, `block`, `chrome`, `circle`, `compact`, `github`, `google`, `hue`, `material`, `photoshop`, `sketch`, `slider`, `swatches`, `twitter` на class-based markup и BEM-модификаторы

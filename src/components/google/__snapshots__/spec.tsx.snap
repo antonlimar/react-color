@@ -3,7 +3,7 @@
 exports[`Google renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="google-picker "
+    class="rc-google google-picker"
     style="width: 652px; background: rgb(255, 255, 255); border: 1px solid rgb(223, 225, 229); box-sizing: initial; display: flex; flex-wrap: wrap; -webkit-border-radius: 8px 8px 0px 0px; border-radius: 8px 8px 0px 0px;"
   >
     <div

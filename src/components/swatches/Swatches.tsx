@@ -4,8 +4,15 @@ import merge from 'lodash/merge';
 import material from 'material-colors';
 
 import { ColorWrap, Raised } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import SwatchesGroup from './SwatchesGroup';
-import type { ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types';
+import type {
+  ClassName,
+  ColorPickerInjectedProps,
+  PickerClassNames,
+  PickerCustomStyles,
+  PickerTheme,
+} from '../../types';
 
 type SwatchesProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -13,6 +20,8 @@ type SwatchesProps = ColorPickerInjectedProps & {
   colors?: string[][];
   styles?: PickerCustomStyles;
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
 };
 
 const DEFAULT_SWATCH_GROUPS = [
@@ -100,6 +109,8 @@ export const Swatches = ({
   hex,
   styles: passedStyles = {},
   className = '',
+  classNames,
+  theme,
 }: SwatchesProps) => {
   const styles = reactCSS(
     merge(
@@ -126,7 +137,15 @@ export const Swatches = ({
   );
 
   return (
-    <div style={styles.picker} className={`swatches-picker ${className}`}>
+    <div
+      style={styles.picker}
+      {...getPickerRootProps({
+        block: 'swatches',
+        theme,
+        className: `swatches-picker ${className}`,
+        classNames,
+      })}
+    >
       <Raised>
         <div style={styles.overflow}>
           <div style={styles.body}>

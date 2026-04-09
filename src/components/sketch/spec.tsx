@@ -1,4 +1,5 @@
 import * as color from '../../helpers/color';
+import { expect, test } from 'vitest';
 
 import Sketch from './Sketch';
 import SketchFields from './SketchFields';
@@ -29,6 +30,20 @@ test('Sketch renders custom styles correctly', () => {
   const { container } = renderForSnapshot(<Sketch styles={{ default: { picker: { boxShadow: 'none' } } }} />);
 
   expect(container.firstChild.style.boxShadow).toBe('none');
+});
+
+test('Sketch applies public theme and root classNames without breaking legacy className', () => {
+  const { container } = renderForSnapshot(
+    <Sketch theme="light" className="legacy-root" classNames={{ root: 'consumer-root' }} disableAlpha />,
+  );
+  const picker = container.firstChild as HTMLElement;
+
+  expect(picker.className).toContain('rc-sketch');
+  expect(picker.className).toContain('rc-sketch--light');
+  expect(picker.className).toContain('rc-sketch--disabled-alpha');
+  expect(picker.className).toContain('sketch-picker');
+  expect(picker.className).toContain('legacy-root');
+  expect(picker.className).toContain('consumer-root');
 });
 
 test('SketchFields renders correctly', () => {

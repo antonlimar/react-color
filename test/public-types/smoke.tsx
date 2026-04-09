@@ -4,6 +4,8 @@ import ChromePickerDefault, {
   CustomPicker,
   EditableInput,
   GooglePicker,
+  type PickerClassNames,
+  type PickerTheme,
   SketchPicker,
   type ColorPickerProps,
   type ColorResult,
@@ -33,7 +35,20 @@ const googleProps: ComponentProps<typeof GooglePicker> = {
 const defaultPickerProps: ColorPickerProps = {
   color: '#ff0000',
   onChange: handleColorChange,
+  theme: 'dark',
+  classNames: {
+    root: 'consumer-root',
+  },
 };
+
+const pickerTheme: PickerTheme = 'auto';
+const pickerClassNames: PickerClassNames<'root' | 'body'> = {
+  root: 'consumer-root',
+  body: 'consumer-body',
+};
+
+void pickerTheme;
+void pickerClassNames;
 
 const WrappedBase = ({ hex, onChange }: CustomPickerInjectedProps) => (
   <button type="button" onClick={() => onChange('#000000')}>
@@ -46,7 +61,7 @@ const WrappedPicker = CustomPicker(WrappedBase);
 const elements = (
   <div>
     <ChromePickerDefault {...defaultPickerProps} />
-    <SketchPicker {...sketchProps} />
+    <SketchPicker {...sketchProps} theme="light" classNames={pickerClassNames} />
     <GooglePicker {...googleProps} />
     <SketchPickerEsm color="#00ff00" />
     <HuePickerLib color="#0000ff" />
@@ -65,3 +80,7 @@ void invalidSketchProps;
 // @ts-expect-error public wrapped picker should preserve the same `color` contract
 const invalidWrappedPicker = <WrappedPicker color={false} />;
 void invalidWrappedPicker;
+
+// @ts-expect-error theme only accepts the public light/dark/auto contract
+const invalidTheme: PickerTheme = 'system';
+void invalidTheme;

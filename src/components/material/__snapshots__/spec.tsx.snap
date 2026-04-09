@@ -12,7 +12,7 @@ exports[`Material renders correctly 1`] = `
       style="position: relative;"
     >
       <div
-        class="material-picker "
+        class="rc-material material-picker"
         style="width: 98px; height: 98px; padding: 16px; font-family: Roboto;"
       >
         <div

@@ -4,12 +4,15 @@ import merge from 'lodash/merge';
 import * as color from '../../helpers/color';
 
 import { ColorWrap, EditableInput, Swatch } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import type {
   ClassName,
   ColorInputChangeHandler,
   ColorPickerChangeEvent,
   ColorPickerInjectedProps,
+  PickerClassNames,
   PickerCustomStyles,
+  PickerTheme,
 } from '../../types';
 
 type TwitterProps = ColorPickerInjectedProps & {
@@ -18,6 +21,8 @@ type TwitterProps = ColorPickerInjectedProps & {
   triangle?: 'hide' | 'top-left' | 'top-right';
   styles?: PickerCustomStyles;
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
 };
 
 const DEFAULT_TWITTER_COLORS = [
@@ -54,6 +59,8 @@ export const Twitter = ({
   triangle = 'top-left',
   styles: passedStyles = {},
   className = '',
+  classNames,
+  theme,
 }: TwitterProps) => {
   const styles = reactCSS(
     merge(
@@ -164,7 +171,15 @@ export const Twitter = ({
   );
 
   return (
-    <div style={styles.card} className={`twitter-picker ${className}`}>
+    <div
+      style={styles.card}
+      {...getPickerRootProps({
+        block: 'twitter',
+        theme,
+        className: `twitter-picker ${className}`,
+        classNames,
+      })}
+    >
       <div style={styles.triangleShadow} />
       <div style={styles.triangle} />
 

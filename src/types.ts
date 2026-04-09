@@ -95,15 +95,28 @@ export type SwatchHoverHandler = (color: ColorResult, event?: ColorPickerChangeE
 
 export type PickerStyle = CSSProperties & Record<string, unknown>;
 export type PickerStyles = Record<string, PickerStyle | undefined>;
+/**
+ * @deprecated Use `className`, `classNames`, `theme`, and CSS custom properties instead.
+ */
 export type PickerCustomStyles = PickerStyles;
 export type ClassName = string;
 export type Radius = number | string;
 export type PointerComponent<Props> = ComponentType<Props>;
+export type PickerTheme = 'light' | 'dark' | 'auto';
+export type PickerClassNames<Slot extends string = string> = Partial<Record<Slot | 'root', ClassName>>;
 
-export interface ColorPickerProps {
-  color?: Color;
+export interface ColorPickerStylingProps<Slot extends string = string> {
   className?: ClassName;
+  classNames?: PickerClassNames<Slot>;
+  theme?: PickerTheme;
+  /**
+   * @deprecated Use `className`, `classNames`, `theme`, and CSS custom properties instead.
+   */
   styles?: PickerCustomStyles;
+}
+
+export interface ColorPickerProps extends ColorPickerStylingProps {
+  color?: Color;
   onChange?: ColorChangeHandler;
   onChangeComplete?: ColorChangeHandler;
   onSwatchHover?: SwatchHoverHandler;

@@ -3,7 +3,7 @@
 exports[`Swatches renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="swatches-picker "
+    class="rc-swatches swatches-picker"
     style="width: 320px; height: 240px;"
   >
     <div

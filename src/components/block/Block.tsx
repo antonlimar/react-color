@@ -3,13 +3,16 @@ import merge from 'lodash/merge';
 import * as color from '../../helpers/color';
 
 import { ColorWrap, EditableInput, Checkboard } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import BlockSwatches from './BlockSwatches';
 import type {
   ClassName,
   ColorInputChangeHandler,
   ColorPickerChangeEvent,
   ColorPickerInjectedProps,
+  PickerClassNames,
   PickerCustomStyles,
+  PickerTheme,
 } from '../../types';
 
 type BlockProps = ColorPickerInjectedProps & {
@@ -18,6 +21,8 @@ type BlockProps = ColorPickerInjectedProps & {
   triangle?: 'top' | 'hide';
   styles?: PickerCustomStyles;
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
 };
 
 const handleHexChange = (onChange: ColorInputChangeHandler, hexCode: string, event?: ColorPickerChangeEvent) => {
@@ -41,6 +46,8 @@ export const Block = ({
   triangle = 'top',
   styles: passedStyles = {},
   className = '',
+  classNames,
+  theme,
 }: BlockProps) => {
   const transparent = hex === 'transparent';
   const styles = reactCSS(
@@ -107,7 +114,15 @@ export const Block = ({
   );
 
   return (
-    <div style={styles.card} className={`block-picker ${className}`}>
+    <div
+      style={styles.card}
+      {...getPickerRootProps({
+        block: 'block',
+        theme,
+        className: `block-picker ${className}`,
+        classNames,
+      })}
+    >
       <div style={styles.triangle} />
 
       <div style={styles.head}>

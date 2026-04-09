@@ -3,8 +3,15 @@ import map from 'lodash/map';
 import merge from 'lodash/merge';
 
 import { ColorWrap } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import GithubSwatch from './GithubSwatch';
-import type { ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types';
+import type {
+  ClassName,
+  ColorPickerInjectedProps,
+  PickerClassNames,
+  PickerCustomStyles,
+  PickerTheme,
+} from '../../types';
 
 type GithubProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -12,6 +19,8 @@ type GithubProps = ColorPickerInjectedProps & {
   triangle?: 'hide' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
   styles?: PickerCustomStyles;
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
 };
 
 const DEFAULT_GITHUB_COLORS = [
@@ -41,6 +50,8 @@ export const Github = ({
   triangle = 'top-left',
   styles: passedStyles = {},
   className = '',
+  classNames,
+  theme,
 }: GithubProps) => {
   const styles = reactCSS(
     merge(
@@ -133,7 +144,15 @@ export const Github = ({
   );
 
   return (
-    <div style={styles.card} className={`github-picker ${className}`}>
+    <div
+      style={styles.card}
+      {...getPickerRootProps({
+        block: 'github',
+        theme,
+        className: `github-picker ${className}`,
+        classNames,
+      })}
+    >
       <div style={styles.triangleShadow} />
       <div style={styles.triangle} />
       {map(colors, (colorValue: string) => (

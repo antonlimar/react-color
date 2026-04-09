@@ -15,6 +15,10 @@ import {
   getBlockClassName,
   getElementClassName,
   getModifierClassName,
+  getPickerClassName,
+  getPickerRootProps,
+  getThemeDataAttributes,
+  getThemeModifier,
   stylingArchitecture,
 } from './styleArchitecture';
 import { renderForSnapshot } from '../../../test/helpers';
@@ -131,4 +135,36 @@ test('styling architecture composes root, modifiers, and user classes into one p
       className: 'custom-slot another-class',
     }),
   ).toBe('rc-sketch__controls rc-sketch--dark rc-sketch--vertical custom-slot another-class');
+});
+
+test('styling architecture derives theme modifiers and auto theme data markers for picker roots', () => {
+  expect(getThemeModifier('dark')).toBe('dark');
+  expect(getThemeModifier('light')).toBe('light');
+  expect(getThemeModifier('auto')).toBeUndefined();
+  expect(getThemeDataAttributes('auto')).toEqual({ 'data-theme': 'auto' });
+  expect(getThemeDataAttributes('dark')).toEqual({});
+});
+
+test('styling architecture merges legacy picker classes with slot-level classNames for public styling API', () => {
+  expect(
+    getPickerClassName({
+      block: 'chrome',
+      slot: 'root',
+      className: 'chrome-picker custom-root',
+      classNames: { root: 'consumer-root' },
+      modifiers: ['dark'],
+    }),
+  ).toBe('rc-chrome rc-chrome--dark chrome-picker custom-root consumer-root');
+
+  expect(
+    getPickerRootProps({
+      block: 'chrome',
+      theme: 'auto',
+      className: 'chrome-picker custom-root',
+      classNames: { root: 'consumer-root' },
+    }),
+  ).toEqual({
+    className: 'rc-chrome chrome-picker custom-root consumer-root',
+    'data-theme': 'auto',
+  });
 });

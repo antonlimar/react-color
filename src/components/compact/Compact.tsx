@@ -4,6 +4,7 @@ import merge from 'lodash/merge';
 import * as color from '../../helpers/color';
 
 import { ColorWrap, Raised } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import CompactColor from './CompactColor';
 import CompactFields from './CompactFields';
 import type {
@@ -11,13 +12,17 @@ import type {
   ColorChangeValue,
   ColorPickerChangeEvent,
   ColorPickerInjectedProps,
+  PickerClassNames,
   PickerCustomStyles,
+  PickerTheme,
 } from '../../types';
 
 type CompactProps = ColorPickerInjectedProps & {
   colors?: string[];
   styles?: PickerCustomStyles;
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
 };
 
 const handleCompactChange = (
@@ -87,6 +92,8 @@ export const Compact = ({
   rgb,
   styles: passedStyles = {},
   className = '',
+  classNames,
+  theme,
 }: CompactProps) => {
   const styles = reactCSS(
     merge(
@@ -113,7 +120,15 @@ export const Compact = ({
 
   return (
     <Raised style={styles.Compact} styles={passedStyles}>
-      <div style={styles.compact} className={`compact-picker ${className}`}>
+      <div
+        style={styles.compact}
+        {...getPickerRootProps({
+          block: 'compact',
+          theme,
+          className: `compact-picker ${className}`,
+          classNames,
+        })}
+      >
         <div>
           {map(colors, (colorValue: string) => (
             <CompactColor

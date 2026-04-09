@@ -12,7 +12,7 @@ exports[`Compact renders correctly 1`] = `
       style="position: relative;"
     >
       <div
-        class="compact-picker "
+        class="rc-compact compact-picker"
         style="padding-top: 5px; padding-left: 5px; box-sizing: initial; width: 240px;"
       >
         <div>
@@ -506,7 +506,7 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
       style="position: relative;"
     >
       <div
-        class="compact-picker "
+        class="rc-compact compact-picker"
         style="padding-top: 5px; padding-left: 5px; box-sizing: initial; width: 240px;"
       >
         <div>

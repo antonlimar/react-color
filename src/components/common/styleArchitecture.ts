@@ -49,6 +49,12 @@ const isNonEmptyToken = (value: string | null | undefined): value is string =>
 
 const normalizeToken = (value: string): string => value.trim().replace(/\s+/g, '-');
 
+const joinClassNames = (...values: Array<string | null | undefined | false>): string | undefined => {
+  const tokens = values.flatMap((value) => (typeof value === 'string' ? value.split(/\s+/).filter(Boolean) : []));
+
+  return tokens.length > 0 ? tokens.join(' ') : undefined;
+};
+
 export const getBlockClassName = (block: StylingArchitectureBlock): string => stylingArchitecture.blocks[block];
 
 export const getElementClassName = (
@@ -85,3 +91,52 @@ export const getArchitectureClassName = ({
     ...modifiers.filter(isNonEmptyToken).map((modifier) => getModifierClassName(block, modifier)),
     ...(className?.split(/\s+/).filter(Boolean) ?? []),
   ].join(' ');
+
+export const getThemeModifier = (theme?: 'light' | 'dark' | 'auto'): 'light' | 'dark' | undefined =>
+  theme === 'light' || theme === 'dark' ? theme : undefined;
+
+export const getThemeDataAttributes = (theme?: 'light' | 'dark' | 'auto'): { 'data-theme'?: 'auto' } =>
+  theme === 'auto' ? { 'data-theme': 'auto' } : {};
+
+export const getPickerClassName = ({
+  block,
+  slot = 'root',
+  modifiers = [],
+  className,
+  classNames,
+}: {
+  block: StylingArchitectureBlock;
+  slot?: StylingArchitectureElement | string;
+  modifiers?: Array<StylingArchitectureModifier | string | false | null | undefined>;
+  className?: string;
+  classNames?: Partial<Record<string, string | undefined>>;
+}): string =>
+  getArchitectureClassName({
+    block,
+    element: slot,
+    modifiers,
+    className: joinClassNames(slot === 'root' ? className : undefined, classNames?.[slot]),
+  });
+
+export const getPickerRootProps = ({
+  block,
+  theme,
+  modifiers = [],
+  className,
+  classNames,
+}: {
+  block: StylingArchitectureBlock;
+  theme?: 'light' | 'dark' | 'auto';
+  modifiers?: Array<StylingArchitectureModifier | string | false | null | undefined>;
+  className?: string;
+  classNames?: Partial<Record<string, string | undefined>>;
+}): { className: string; 'data-theme'?: 'auto' } => ({
+  className: getPickerClassName({
+    block,
+    slot: 'root',
+    modifiers: [...modifiers, getThemeModifier(theme)],
+    className,
+    classNames,
+  }),
+  ...getThemeDataAttributes(theme),
+});

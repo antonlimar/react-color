@@ -32,7 +32,10 @@ export type {
   HSVColor,
   HSVAColor,
   ColorResult,
+  PickerClassNames,
   ColorPickerProps,
+  ColorPickerStylingProps,
   ColorPickerComponent,
   CustomPickerInjectedProps,
+  PickerTheme,
 } from './types';

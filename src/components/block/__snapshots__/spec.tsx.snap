@@ -3,7 +3,7 @@
 exports[`Block \`triangle="hide"\` 1`] = `
 <DocumentFragment>
   <div
-    class="block-picker "
+    class="rc-block block-picker"
     style="width: 170px; background: rgb(255, 255, 255); -webkit-box-shadow: 0 1px rgba(0,0,0,.1); box-shadow: 0 1px rgba(0,0,0,.1); -webkit-border-radius: 6px; border-radius: 6px; position: relative;"
   >
     <div
@@ -109,7 +109,7 @@ exports[`Block \`triangle="hide"\` 1`] = `
 exports[`Block renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="block-picker "
+    class="rc-block block-picker"
     style="width: 170px; background: rgb(255, 255, 255); -webkit-box-shadow: 0 1px rgba(0,0,0,.1); box-shadow: 0 1px rgba(0,0,0,.1); -webkit-border-radius: 6px; border-radius: 6px; position: relative;"
   >
     <div

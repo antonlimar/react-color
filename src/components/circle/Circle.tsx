@@ -4,8 +4,15 @@ import merge from 'lodash/merge';
 import material from 'material-colors';
 
 import { ColorWrap } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import CircleSwatch from './CircleSwatch';
-import type { ClassName, ColorPickerInjectedProps, PickerCustomStyles } from '../../types';
+import type {
+  ClassName,
+  ColorPickerInjectedProps,
+  PickerClassNames,
+  PickerCustomStyles,
+  PickerTheme,
+} from '../../types';
 
 type CircleProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -14,6 +21,8 @@ type CircleProps = ColorPickerInjectedProps & {
   colors?: string[];
   styles?: PickerCustomStyles;
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
 };
 
 const DEFAULT_CIRCLE_COLORS = [
@@ -47,6 +56,8 @@ export const Circle = ({
   styles: passedStyles = {},
   circleSpacing = 14,
   className = '',
+  classNames,
+  theme,
 }: CircleProps) => {
   const styles = reactCSS(
     merge(
@@ -66,7 +77,15 @@ export const Circle = ({
   );
 
   return (
-    <div style={styles.card} className={`circle-picker ${className}`}>
+    <div
+      style={styles.card}
+      {...getPickerRootProps({
+        block: 'circle',
+        theme,
+        className: `circle-picker ${className}`,
+        classNames,
+      })}
+    >
       {map(colors, (colorValue: string) => (
         <CircleSwatch
           key={colorValue}

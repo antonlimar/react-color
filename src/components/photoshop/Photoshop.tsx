@@ -3,17 +3,27 @@ import reactCSS from 'reactcss';
 import merge from 'lodash/merge';
 
 import { ColorWrap, Saturation, Hue } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import PhotoshopFields from './PhotoshopFields';
 import PhotoshopPointerCircle from './PhotoshopPointerCircle';
 import PhotoshopPointer from './PhotoshopPointer';
 import PhotoshopButton from './PhotoshopButton';
 import PhotoshopPreviews from './PhotoshopPreviews';
-import type { ClassName, ColorPickerInjectedProps, ColorPickerProps, PickerCustomStyles } from '../../types';
+import type {
+  ClassName,
+  ColorPickerInjectedProps,
+  ColorPickerProps,
+  PickerClassNames,
+  PickerCustomStyles,
+  PickerTheme,
+} from '../../types';
 
 type PhotoshopProps = ColorPickerInjectedProps & {
   header?: string;
   styles?: PickerCustomStyles;
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
   onAccept?: ColorPickerProps['onChange'];
   onCancel?: () => void;
 };
@@ -29,7 +39,7 @@ export const Photoshop = (props: PhotoshopProps) => {
     header: props.header ?? defaultHeader,
     styles: props.styles ?? defaultStyles,
   };
-  const { styles: passedStyles, className = '' } = resolvedProps;
+  const { styles: passedStyles, className = '', classNames, theme } = resolvedProps;
 
   const styles = reactCSS(
     merge(
@@ -94,7 +104,15 @@ export const Photoshop = (props: PhotoshopProps) => {
   );
 
   return (
-    <div style={styles.picker} className={`photoshop-picker ${className}`}>
+    <div
+      style={styles.picker}
+      {...getPickerRootProps({
+        block: 'photoshop',
+        theme,
+        className: `photoshop-picker ${className}`,
+        classNames,
+      })}
+    >
       <div style={styles.head}>{resolvedProps.header}</div>
 
       <div style={styles.body} className="flexbox-fix">

@@ -3,18 +3,23 @@ import merge from 'lodash/merge';
 import * as color from '../../helpers/color';
 
 import { ColorWrap, EditableInput, Raised } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import type {
   ClassName,
   ColorChangeValue,
   ColorInputChangeHandler,
   ColorPickerChangeEvent,
   ColorPickerInjectedProps,
+  PickerClassNames,
   PickerCustomStyles,
+  PickerTheme,
 } from '../../types';
 
 type MaterialProps = ColorPickerInjectedProps & {
   styles?: PickerCustomStyles;
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
 };
 
 const handleMaterialChange = (
@@ -46,7 +51,15 @@ const handleMaterialChange = (
   }
 };
 
-export const Material = ({ onChange, hex, rgb, styles: passedStyles = {}, className = '' }: MaterialProps) => {
+export const Material = ({
+  onChange,
+  hex,
+  rgb,
+  styles: passedStyles = {},
+  className = '',
+  classNames,
+  theme,
+}: MaterialProps) => {
   const styles = reactCSS(
     merge(
       {
@@ -121,7 +134,15 @@ export const Material = ({ onChange, hex, rgb, styles: passedStyles = {}, classN
 
   return (
     <Raised styles={passedStyles}>
-      <div style={styles.material} className={`material-picker ${className}`}>
+      <div
+        style={styles.material}
+        {...getPickerRootProps({
+          block: 'material',
+          theme,
+          className: `material-picker ${className}`,
+          classNames,
+        })}
+      >
         <EditableInput
           style={{ wrap: styles.HEXwrap, input: styles.HEXinput, label: styles.HEXlabel }}
           label="hex"

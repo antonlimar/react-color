@@ -48,6 +48,29 @@ test('Chrome renders correctly with width', () => {
   expect((picker as HTMLElement).style.width).toBe('300px');
 });
 
+test('Chrome exposes public styling hooks on the root element', () => {
+  const { container } = renderForSnapshot(
+    <Chrome theme="dark" className="legacy-root" classNames={{ root: 'consumer-root' }} disableAlpha />,
+  );
+  const picker = container.firstChild;
+
+  expect(picker).toBeInstanceOf(HTMLElement);
+  expect((picker as HTMLElement).className).toContain('rc-chrome');
+  expect((picker as HTMLElement).className).toContain('rc-chrome--dark');
+  expect((picker as HTMLElement).className).toContain('rc-chrome--disabled-alpha');
+  expect((picker as HTMLElement).className).toContain('chrome-picker');
+  expect((picker as HTMLElement).className).toContain('legacy-root');
+  expect((picker as HTMLElement).className).toContain('consumer-root');
+});
+
+test('Chrome marks auto theme on the root element', () => {
+  const { container } = renderForSnapshot(<Chrome theme="auto" />);
+  const picker = container.firstChild;
+
+  expect(picker).toBeInstanceOf(HTMLElement);
+  expect((picker as HTMLElement).getAttribute('data-theme')).toBe('auto');
+});
+
 test('Chrome alpha updates immediately with only onChangeComplete', async () => {
   const onChangeComplete = vi.fn();
   const { container } = renderForSnapshot(<Chrome color={color.red.hsl} onChangeComplete={onChangeComplete} />);

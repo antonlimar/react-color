@@ -9,7 +9,7 @@ import tseslint from 'typescript-eslint';
 
 export default defineConfig([
   {
-    ignores: ['docs/build/**', '.out/**', 'es/**', 'lib/**', 'node_modules/**', 'examples/**/dist/**'],
+    ignores: ['docs/build/**', '.out/**', 'es/**', 'lib/**', 'node_modules/**', 'examples/**/dist/**', 'src/**/*.js'],
   },
   ...storybook.configs['flat/recommended'],
   {

@@ -2,13 +2,16 @@ import reactCSS from 'reactcss';
 import merge from 'lodash/merge';
 
 import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import SketchFields from './SketchFields';
 import SketchPresetColors from './SketchPresetColors';
 import type {
   CheckboardRenderers,
   ClassName,
   ColorPickerInjectedProps,
+  PickerClassNames,
   PickerCustomStyles,
+  PickerTheme,
   SaturationStyle,
 } from '../../types';
 
@@ -21,6 +24,8 @@ type SketchProps = ColorPickerInjectedProps & {
   presetColors?: SketchPresetColor[];
   renderers?: CheckboardRenderers;
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
 };
 
 const DEFAULT_SKETCH_PRESET_COLORS = [
@@ -54,6 +59,8 @@ export const Sketch = ({
   renderers,
   styles: passedStyles = {},
   className = '',
+  classNames,
+  theme,
 }: SketchProps) => {
   const styles = reactCSS(
     merge(
@@ -137,7 +144,16 @@ export const Sketch = ({
   );
 
   return (
-    <div style={styles.picker} className={`sketch-picker ${className}`}>
+    <div
+      style={styles.picker}
+      {...getPickerRootProps({
+        block: 'sketch',
+        theme,
+        modifiers: [disableAlpha && 'disabled-alpha'],
+        className: `sketch-picker ${className}`,
+        classNames,
+      })}
+    >
       <div style={styles.saturation}>
         <Saturation style={styles.Saturation as SaturationStyle} hsl={hsl} hsv={hsv} onChange={onChange} />
       </div>

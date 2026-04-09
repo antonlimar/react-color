@@ -2,6 +2,7 @@ import reactCSS from 'reactcss';
 import merge from 'lodash/merge';
 
 import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../common';
+import { getPickerRootProps } from '../common/styleArchitecture';
 import ChromeFields from './ChromeFields';
 import ChromePointer from './ChromePointer';
 import ChromePointerCircle from './ChromePointerCircle';
@@ -9,7 +10,9 @@ import type {
   CheckboardRenderers,
   ClassName,
   ColorPickerInjectedProps,
+  PickerClassNames,
   PickerCustomStyles,
+  PickerTheme,
   SaturationStyle,
 } from '../../types';
 
@@ -19,6 +22,8 @@ type ChromeProps = ColorPickerInjectedProps & {
   renderers?: CheckboardRenderers;
   styles?: PickerCustomStyles;
   className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
   defaultView?: 'hex' | 'rgb' | 'hsl';
 };
 
@@ -33,6 +38,8 @@ export const Chrome = ({
   renderers,
   styles: passedStyles = {},
   className = '',
+  classNames,
+  theme,
   defaultView,
 }: ChromeProps) => {
   const styles = reactCSS(
@@ -123,7 +130,16 @@ export const Chrome = ({
   );
 
   return (
-    <div style={styles.picker} className={`chrome-picker ${className}`}>
+    <div
+      style={styles.picker}
+      {...getPickerRootProps({
+        block: 'chrome',
+        theme,
+        modifiers: [disableAlpha && 'disabled-alpha'],
+        className: `chrome-picker ${className}`,
+        classNames,
+      })}
+    >
       <div style={styles.saturation}>
         <Saturation
           style={styles.Saturation as SaturationStyle}
