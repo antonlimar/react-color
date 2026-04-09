@@ -18,6 +18,7 @@
     "build": "npm run lib && npm run es",
     "ci:artifacts": "node ./scripts/verify-generated-artifacts.mjs",
     "test": "npm run test:unit && npm run eslint",
+    "prepare": "husky",
     "typecheck": "tsc -p tsconfig.typecheck.json",
     "test:public-types": "npm run build && tsc -p tsconfig.public-types.json",
     "test:esm-cjs-consumption": "npm run build && node ./scripts/esm-cjs-consumption-check.mjs",
@@ -40,6 +41,13 @@
     "docs-dist": "node ./scripts/docs-dist.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o .out"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs,cjs}": [
+      "prettier --check",
+      "eslint --max-warnings=0"
+    ],
+    "*.{json,md,mdx,html,css,scss,yml,yaml}": "prettier --check"
   },
   "sideEffects": false,
   "homepage": "http://casesandberg.github.io/react-color/",
@@ -94,7 +102,9 @@
     "eslint-plugin-storybook": "^10.3.3",
     "globals": "^17.4.0",
     "highlight.js": "^11.11.1",
+    "husky": "^9.1.7",
     "jsdom": "^29.0.1",
+    "lint-staged": "^16.4.0",
     "markdown-it": "^14.1.1",
     "playwright": "^1.58.2",
     "prettier": "^3.8.1",

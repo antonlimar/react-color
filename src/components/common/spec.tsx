@@ -10,6 +10,13 @@ import EditableInput from './EditableInput';
 import Hue from './Hue';
 import Saturation, { getSaturationRenderWindow } from './Saturation';
 import Swatch from './Swatch';
+import {
+  getArchitectureClassName,
+  getBlockClassName,
+  getElementClassName,
+  getModifierClassName,
+  stylingArchitecture,
+} from './styleArchitecture';
 import { renderForSnapshot } from '../../../test/helpers';
 import type { Color, ColorPickerInjectedProps } from '../../types';
 
@@ -97,4 +104,31 @@ test('Swatch renders custom title correctly', () => {
 
 test('Swatch renders with an onMouseOver handler correctly', () => {
   renderForSnapshot(<Swatch color="#fff" title="white" onHover={() => {}} />).expectSnapshot();
+});
+
+test('styling architecture reserves the rc namespace for all picker and primitive blocks', () => {
+  expect(stylingArchitecture.namespace).toBe('rc');
+  expect(stylingArchitecture.blocks.chrome).toBe('rc-chrome');
+  expect(stylingArchitecture.blocks.sketch).toBe('rc-sketch');
+  expect(stylingArchitecture.blocks.editableInput).toBe('rc-editable-input');
+  expect(stylingArchitecture.blocks.saturation).toBe('rc-saturation');
+});
+
+test('styling architecture builds BEM element and modifier class names from block definitions', () => {
+  expect(getBlockClassName('chrome')).toBe('rc-chrome');
+  expect(getElementClassName('chrome', 'body')).toBe('rc-chrome__body');
+  expect(getElementClassName('chrome', 'root')).toBe('rc-chrome');
+  expect(getModifierClassName('chrome', 'dark')).toBe('rc-chrome--dark');
+  expect(getModifierClassName('chrome', 'disabled alpha')).toBe('rc-chrome--disabled-alpha');
+});
+
+test('styling architecture composes root, modifiers, and user classes into one predictable class list', () => {
+  expect(
+    getArchitectureClassName({
+      block: 'sketch',
+      element: 'controls',
+      modifiers: ['dark', false, undefined, 'vertical'],
+      className: 'custom-slot another-class',
+    }),
+  ).toBe('rc-sketch__controls rc-sketch--dark rc-sketch--vertical custom-slot another-class');
 });

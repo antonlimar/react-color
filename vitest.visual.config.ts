@@ -4,6 +4,9 @@ import { defineConfig } from 'vitest/config';
 import { transformWithEsbuild } from 'vite';
 
 export default defineConfig({
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json'],
+  },
   plugins: [
     {
       name: 'react-color-visual-jsx-pretransform',

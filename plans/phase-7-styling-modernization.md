@@ -5,7 +5,7 @@ status: proposed
 todos:
   - id: styling-architecture
     content: Ввести единую BEM-архитектуру классов для всех пикеров и общих примитивов, зафиксировать namespace rc-* и набор основных block/element/modifier соглашений
-    status: pending
+    status: completed
   - id: scss-structure-and-build
     content: Добавить co-located SCSS рядом с компонентами, granular CSS entrypoints для выборочного импорта стилей и optional aggregate entry без обязательной загрузки всех пикеров сразу
     status: pending
@@ -79,6 +79,13 @@ todos:
 
 ## Implementation Details
 
+- Архитектурный контракт уже зафиксирован кодом в `src/components/common/styleArchitecture.ts`:
+  - единый namespace `rc`;
+  - словарь block names для top-level picker-компонентов и общих примитивов;
+  - helpers для сборки BEM block/element/modifier class names;
+  - базовый набор canonical slots: `root`, `body`, `controls`, `field`, `swatch`, `pointer`, `triangle`;
+  - базовый набор canonical modifiers: `light`, `dark`, `disabled-alpha`, `vertical`, `active`, `transparent`.
+
 - Общие интерактивные примитивы `Alpha`, `Hue`, `Saturation` сохранить с inline-стилями только там, где значение truly dynamic:
   - позиция pointer,
   - фон с конкретным выбранным цветом,
@@ -122,7 +129,7 @@ todos:
 
 ## Todo
 
-- [ ] **styling-architecture** — Ввести единую BEM-архитектуру классов для всех пикеров и общих примитивов, зафиксировать namespace `rc-*` и набор основных block/element/modifier соглашений
+- [x] **styling-architecture** — Ввести единую BEM-архитектуру классов для всех пикеров и общих примитивов, зафиксировать namespace `rc-*` и набор основных block/element/modifier соглашений
 - [ ] **scss-structure-and-build** — Добавить co-located SCSS рядом с компонентами, granular CSS entrypoints для выборочного импорта стилей и optional aggregate entry без обязательной загрузки всех пикеров сразу
 - [ ] **public-styling-api** — Расширить публичный API через `theme` и `classNames`, сохранить `className` на root и оставить `styles` как deprecated compatibility layer
 - [ ] **migrate-common-primitives** — Перевести common-примитивы `Alpha`, `Hue`, `Saturation`, `EditableInput`, `Swatch`, `Checkboard`, `Raised` и общее styling-утилити на class-based markup с co-located SCSS
