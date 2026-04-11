@@ -1,8 +1,7 @@
-import reactCSS from 'reactcss';
-
 import { Swatch } from '../common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { ColorInputChangeHandler, SwatchHoverHandler } from '../../types';
+import { getPickerClassName } from '../common/styleArchitecture';
 
 type PresetColor =
   | string
@@ -18,38 +17,6 @@ type SketchPresetColorsProps = {
 };
 
 export const SketchPresetColors = ({ colors, onClick = () => {}, onSwatchHover }: SketchPresetColorsProps) => {
-  const styles = reactCSS(
-    {
-      default: {
-        colors: {
-          margin: '0 -10px',
-          padding: '10px 0 0 10px',
-          borderTop: '1px solid #eee',
-          display: 'flex',
-          flexWrap: 'wrap',
-          position: 'relative',
-        },
-        swatchWrap: {
-          width: '16px',
-          height: '16px',
-          margin: '0 10px 10px 0',
-        },
-        swatch: {
-          borderRadius: '3px',
-          boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.15)',
-        },
-      },
-      'no-presets': {
-        colors: {
-          display: 'none',
-        },
-      },
-    },
-    {
-      'no-presets': !colors || !colors.length,
-    },
-  );
-
   const handleClick = (hex: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => {
     onClick(
       {
@@ -61,15 +28,22 @@ export const SketchPresetColors = ({ colors, onClick = () => {}, onSwatchHover }
   };
 
   return (
-    <div style={styles.colors} className="flexbox-fix">
+    <div
+      className={getPickerClassName({
+        block: 'sketch',
+        slot: 'preset-colors',
+        modifiers: [(!colors || colors.length === 0) && 'empty'],
+        className: 'flexbox-fix',
+      })}
+    >
       {colors.map((colorObjOrString) => {
         const colorValue = typeof colorObjOrString === 'string' ? { color: colorObjOrString } : colorObjOrString;
         const key = `${colorValue.color}${colorValue.title || ''}`;
         return (
-          <div key={key} style={styles.swatchWrap}>
+          <div key={key} className={getPickerClassName({ block: 'sketch', slot: 'preset-swatch' })}>
             <Swatch
               {...colorValue}
-              style={styles.swatch}
+              style={{ borderRadius: '3px', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.15)' }}
               onClick={handleClick}
               onHover={onSwatchHover as never}
               focusStyle={{

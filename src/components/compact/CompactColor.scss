@@ -1,0 +1,19 @@
+.rc-compact__swatch {
+  width: 15px;
+  height: 15px;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.rc-compact__dot {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.rc-compact__swatch.rc-compact--active .rc-compact__dot {
+  opacity: 1;
+}

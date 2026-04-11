@@ -1,6 +1,6 @@
-import reactCSS from 'reactcss';
-import type { MouseEvent } from 'react';
+import type { CSSProperties, MouseEvent } from 'react';
 import type { ColorInputChangeHandler, HSLAColor } from '../../types';
+import { getPickerClassName } from '../common/styleArchitecture';
 
 type SliderSwatchProps = {
   hsl: HSLAColor;
@@ -12,34 +12,9 @@ type SliderSwatchProps = {
 };
 
 export const SliderSwatch = ({ hsl, offset, onClick = () => {}, active, first, last }: SliderSwatchProps) => {
-  const styles = reactCSS(
-    {
-      default: {
-        swatch: {
-          height: '12px',
-          background: `hsl(${hsl.h}, 50%, ${offset * 100}%)`,
-          cursor: 'pointer',
-        },
-      },
-      first: {
-        swatch: {
-          borderRadius: '2px 0 0 2px',
-        },
-      },
-      last: {
-        swatch: {
-          borderRadius: '0 2px 2px 0',
-        },
-      },
-      active: {
-        swatch: {
-          transform: 'scaleY(1.8)',
-          borderRadius: '3.6px/2px',
-        },
-      },
-    },
-    { active, first, last },
-  );
+  const swatchStyle: CSSProperties = {
+    background: `hsl(${hsl.h}, 50%, ${offset * 100}%)`,
+  };
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     onClick(
@@ -53,7 +28,17 @@ export const SliderSwatch = ({ hsl, offset, onClick = () => {}, active, first, l
     );
   };
 
-  return <div style={styles.swatch} onClick={handleClick} />;
+  return (
+    <div
+      className={getPickerClassName({
+        block: 'slider',
+        slot: 'swatch',
+        modifiers: [active && 'active', first && 'first', last && 'last'],
+      })}
+      style={swatchStyle}
+      onClick={handleClick}
+    />
+  );
 };
 
 export default SliderSwatch;

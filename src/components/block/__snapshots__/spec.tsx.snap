@@ -22,82 +22,118 @@ exports[`Block \`triangle="hide"\` 1`] = `
       style="padding: 10px;"
     >
       <div
-        style="margin-right: -10px;"
+        class="rc-block__swatches"
       >
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(217, 227, 240); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#D9E3F0"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(244, 115, 115); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#F47373"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(105, 118, 137); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#697689"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(55, 214, 122); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#37D67A"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(44, 204, 228); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#2CCCE4"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(85, 85, 85); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#555555"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(220, 231, 117); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#dce775"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(255, 138, 101); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#ff8a65"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(186, 104, 200); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#ba68c8"
-          />
-        </span>
         <div
-          style="clear: both;"
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(217, 227, 240); border-radius: 4px;"
+              tabindex="0"
+              title="#D9E3F0"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(244, 115, 115); border-radius: 4px;"
+              tabindex="0"
+              title="#F47373"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(105, 118, 137); border-radius: 4px;"
+              tabindex="0"
+              title="#697689"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(55, 214, 122); border-radius: 4px;"
+              tabindex="0"
+              title="#37D67A"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(44, 204, 228); border-radius: 4px;"
+              tabindex="0"
+              title="#2CCCE4"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(85, 85, 85); border-radius: 4px;"
+              tabindex="0"
+              title="#555555"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(220, 231, 117); border-radius: 4px;"
+              tabindex="0"
+              title="#dce775"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(255, 138, 101); border-radius: 4px;"
+              tabindex="0"
+              title="#ff8a65"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(186, 104, 200); border-radius: 4px;"
+              tabindex="0"
+              title="#ba68c8"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__clear"
         />
       </div>
       <div
@@ -138,82 +174,118 @@ exports[`Block renders correctly 1`] = `
       style="padding: 10px;"
     >
       <div
-        style="margin-right: -10px;"
+        class="rc-block__swatches"
       >
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(217, 227, 240); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#D9E3F0"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(244, 115, 115); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#F47373"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(105, 118, 137); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#697689"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(55, 214, 122); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#37D67A"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(44, 204, 228); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#2CCCE4"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(85, 85, 85); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#555555"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(220, 231, 117); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#dce775"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(255, 138, 101); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#ff8a65"
-          />
-        </span>
-        <span>
-          <div
-            class="rc-swatch"
-            style="background: rgb(186, 104, 200); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-            tabindex="0"
-            title="#ba68c8"
-          />
-        </span>
         <div
-          style="clear: both;"
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(217, 227, 240); border-radius: 4px;"
+              tabindex="0"
+              title="#D9E3F0"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(244, 115, 115); border-radius: 4px;"
+              tabindex="0"
+              title="#F47373"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(105, 118, 137); border-radius: 4px;"
+              tabindex="0"
+              title="#697689"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(55, 214, 122); border-radius: 4px;"
+              tabindex="0"
+              title="#37D67A"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(44, 204, 228); border-radius: 4px;"
+              tabindex="0"
+              title="#2CCCE4"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(85, 85, 85); border-radius: 4px;"
+              tabindex="0"
+              title="#555555"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(220, 231, 117); border-radius: 4px;"
+              tabindex="0"
+              title="#dce775"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(255, 138, 101); border-radius: 4px;"
+              tabindex="0"
+              title="#ff8a65"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__swatch"
+        >
+          <span>
+            <div
+              class="rc-swatch"
+              style="background: rgb(186, 104, 200); border-radius: 4px;"
+              tabindex="0"
+              title="#ba68c8"
+            />
+          </span>
+        </div>
+        <div
+          class="rc-block__clear"
         />
       </div>
       <div
@@ -235,34 +307,46 @@ exports[`Block renders correctly 1`] = `
 exports[`BlockSwatches renders correctly 1`] = `
 <DocumentFragment>
   <div
-    style="margin-right: -10px;"
+    class="rc-block__swatches"
   >
-    <span>
-      <div
-        class="rc-swatch"
-        style="background: rgb(255, 255, 255); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-        tabindex="0"
-        title="#fff"
-      />
-    </span>
-    <span>
-      <div
-        class="rc-swatch"
-        style="background: rgb(153, 153, 153); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-        tabindex="0"
-        title="#999"
-      />
-    </span>
-    <span>
-      <div
-        class="rc-swatch"
-        style="background: rgb(0, 0, 0); width: 22px; height: 22px; float: left; margin-right: 10px; margin-bottom: 10px; -webkit-border-radius: 4px; border-radius: 4px;"
-        tabindex="0"
-        title="#000"
-      />
-    </span>
     <div
-      style="clear: both;"
+      class="rc-block__swatch"
+    >
+      <span>
+        <div
+          class="rc-swatch"
+          style="background: rgb(255, 255, 255); border-radius: 4px;"
+          tabindex="0"
+          title="#fff"
+        />
+      </span>
+    </div>
+    <div
+      class="rc-block__swatch"
+    >
+      <span>
+        <div
+          class="rc-swatch"
+          style="background: rgb(153, 153, 153); border-radius: 4px;"
+          tabindex="0"
+          title="#999"
+        />
+      </span>
+    </div>
+    <div
+      class="rc-block__swatch"
+    >
+      <span>
+        <div
+          class="rc-swatch"
+          style="background: rgb(0, 0, 0); border-radius: 4px;"
+          tabindex="0"
+          title="#000"
+        />
+      </span>
+    </div>
+    <div
+      class="rc-block__clear"
     />
   </div>
 </DocumentFragment>

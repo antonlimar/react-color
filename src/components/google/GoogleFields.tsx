@@ -1,6 +1,6 @@
-import reactCSS from 'reactcss';
 import * as color from '../../helpers/color';
 import { EditableInput } from '../common';
+import { getPickerClassName } from '../common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, HSVAColor, RGBAColor } from '../../types';
 
 type GoogleFieldsProps = {
@@ -89,119 +89,37 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }: GoogleFieldsProps
     }
   };
 
-  const styles = reactCSS({
-    default: {
-      wrap: {
-        display: 'flex',
-        height: '100px',
-        marginTop: '4px',
-      },
-      fields: {
-        width: '100%',
-      },
-      column: {
-        paddingTop: '10px',
-        display: 'flex',
-        justifyContent: 'space-between',
-      },
-      double: {
-        padding: '0px 4.4px',
-        boxSizing: 'border-box',
-      },
-      input: {
-        width: '100%',
-        height: '38px',
-        boxSizing: 'border-box',
-        padding: '4px 10% 3px',
-        textAlign: 'center',
-        border: '1px solid #dadce0',
-        fontSize: '11px',
-        textTransform: 'lowercase',
-        borderRadius: '5px',
-        outline: 'none',
-        fontFamily: 'Roboto,Arial,sans-serif',
-      },
-      input2: {
-        height: '38px',
-        width: '100%',
-        border: '1px solid #dadce0',
-        boxSizing: 'border-box',
-        fontSize: '11px',
-        textTransform: 'lowercase',
-        borderRadius: '5px',
-        outline: 'none',
-        paddingLeft: '10px',
-        fontFamily: 'Roboto,Arial,sans-serif',
-      },
-      label: {
-        textAlign: 'center',
-        fontSize: '12px',
-        background: '#fff',
-        position: 'absolute',
-        textTransform: 'uppercase',
-        color: '#3c4043',
-        width: '35px',
-        top: '-6px',
-        left: '0',
-        right: '0',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        fontFamily: 'Roboto,Arial,sans-serif',
-      },
-      label2: {
-        left: '10px',
-        textAlign: 'center',
-        fontSize: '12px',
-        background: '#fff',
-        position: 'absolute',
-        textTransform: 'uppercase',
-        color: '#3c4043',
-        width: '32px',
-        top: '-6px',
-        fontFamily: 'Roboto,Arial,sans-serif',
-      },
-      single: {
-        flexGrow: '1',
-        margin: '0px 4.4px',
-      },
-    },
-  });
-
   const rgbValue = `${rgb.r}, ${rgb.g}, ${rgb.b}`;
   const hslValue = `${Math.round(hsl.h)}°, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%`;
   const hsvValue = `${Math.round(hsv.h)}°, ${Math.round(hsv.s * 100)}%, ${Math.round(hsv.v * 100)}%`;
 
   return (
-    <div style={styles.wrap} className="flexbox-fix">
-      <div style={styles.fields}>
-        <div style={styles.double}>
+    <div className={getPickerClassName({ block: 'google', slot: 'fields', className: 'flexbox-fix' })}>
+      <div className={getPickerClassName({ block: 'google', slot: 'fields-body' })}>
+        <div className={getPickerClassName({ block: 'google', slot: 'field-row', modifiers: ['primary'] })}>
           <EditableInput
-            style={{ input: styles.input, label: styles.label }}
             label="hex"
             value={hex}
             onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
           />
         </div>
-        <div style={styles.column}>
-          <div style={styles.single}>
+        <div className={getPickerClassName({ block: 'google', slot: 'field-row', modifiers: ['secondary'] })}>
+          <div className={getPickerClassName({ block: 'google', slot: 'field' })}>
             <EditableInput
-              style={{ input: styles.input2, label: styles.label2 }}
               label="rgb"
               value={rgbValue}
               onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
             />
           </div>
-          <div style={styles.single}>
+          <div className={getPickerClassName({ block: 'google', slot: 'field' })}>
             <EditableInput
-              style={{ input: styles.input2, label: styles.label2 }}
               label="hsv"
               value={hsvValue}
               onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
             />
           </div>
-          <div style={styles.single}>
+          <div className={getPickerClassName({ block: 'google', slot: 'field' })}>
             <EditableInput
-              style={{ input: styles.input2, label: styles.label2 }}
               label="hsl"
               value={hslValue}
               onChange={(value, event) => handleChange(value as ColorChangeValue, event)}

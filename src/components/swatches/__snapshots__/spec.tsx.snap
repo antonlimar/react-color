@@ -23,54 +23,64 @@ exports[`Swatches renders correctly 1`] = `
             style="padding: 16px 0px 6px 16px;"
           >
             <div
-              style="padding-bottom: 10px; width: 40px; float: left; margin-right: 10px;"
+              class="rc-swatches__group"
             >
-              <span>
-                <div
-                  class="rc-swatch"
-                  style="background: rgb(255, 255, 255); width: 40px; height: 24px; cursor: pointer; margin-bottom: 1px; overflow: hidden; -webkit-border-radius: 0 0 2px 2px; border-radius: 0 0 2px 2px;"
-                  tabindex="0"
-                  title="#fff"
-                >
+              <div
+                class="rc-swatches__swatch rc-swatches--first rc-swatches--last"
+              >
+                <span>
                   <div
-                    style="color: rgb(0, 0, 0); margin-left: 8px; display: none;"
+                    class="rc-swatch"
+                    style="background: rgb(255, 255, 255); overflow: hidden; border-radius: 2px 2px 0 0;"
+                    tabindex="0"
+                    title="#fff"
                   >
-                    <svg
-                      style="fill: currentcolor; width: 24px; height: 24px;"
-                      viewBox="0 0 24 24"
+                    <div
+                      class="rc-swatches__check"
+                      style="color: rgb(0, 0, 0);"
                     >
-                      <path
-                        d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
-                      />
-                    </svg>
+                      <svg
+                        style="fill: currentcolor; width: 24px; height: 24px;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                        />
+                      </svg>
+                    </div>
                   </div>
-                </div>
-              </span>
+                </span>
+              </div>
             </div>
             <div
-              style="padding-bottom: 10px; width: 40px; float: left; margin-right: 10px;"
+              class="rc-swatches__group"
             >
-              <span>
-                <div
-                  class="rc-swatch"
-                  style="background: rgb(51, 51, 51); width: 40px; height: 24px; cursor: pointer; margin-bottom: 1px; overflow: hidden; -webkit-border-radius: 0 0 2px 2px; border-radius: 0 0 2px 2px;"
-                  tabindex="0"
-                  title="#333"
-                >
+              <div
+                class="rc-swatches__swatch rc-swatches--first rc-swatches--last"
+              >
+                <span>
                   <div
-                    style="color: rgb(255, 255, 255); margin-left: 8px; display: none;"
+                    class="rc-swatch"
+                    style="background: rgb(51, 51, 51); overflow: hidden; border-radius: 2px 2px 0 0;"
+                    tabindex="0"
+                    title="#333"
                   >
-                    <svg
-                      style="fill: currentcolor; width: 24px; height: 24px;"
-                      viewBox="0 0 24 24"
+                    <div
+                      class="rc-swatches__check"
+                      style="color: rgb(255, 255, 255);"
                     >
-                      <path
-                        d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
-                      />
-                    </svg>
+                      <svg
+                        style="fill: currentcolor; width: 24px; height: 24px;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                        />
+                      </svg>
+                    </div>
                   </div>
-                </div>
-              </span>
+                </span>
+              </div>
             </div>
             <div
               style="clear: both;"
@@ -85,68 +95,18 @@ exports[`Swatches renders correctly 1`] = `
 
 exports[`SwatchesColor renders correctly 1`] = `
 <DocumentFragment>
-  <span>
-    <div
-      class="rc-swatch"
-      style="width: 40px; height: 24px; cursor: pointer; margin-bottom: 1px;"
-      tabindex="0"
-    >
-      <div
-        style="color: rgb(255, 255, 255); margin-left: 8px; display: none;"
-      >
-        <svg
-          style="fill: currentcolor; width: 24px; height: 24px;"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
-          />
-        </svg>
-      </div>
-    </div>
-  </span>
-</DocumentFragment>
-`;
-
-exports[`SwatchesColor renders with props 1`] = `
-<DocumentFragment>
-  <span>
-    <div
-      class="rc-swatch"
-      style="width: 40px; height: 24px; cursor: pointer; margin-bottom: 1px; overflow: hidden; -webkit-border-radius: 0 0 2px 2px; border-radius: 0 0 2px 2px;"
-      tabindex="0"
-    >
-      <div
-        style="color: rgb(255, 255, 255); margin-left: 8px; display: block;"
-      >
-        <svg
-          style="fill: currentcolor; width: 24px; height: 24px;"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
-          />
-        </svg>
-      </div>
-    </div>
-  </span>
-</DocumentFragment>
-`;
-
-exports[`SwatchesGroup renders correctly 1`] = `
-<DocumentFragment>
   <div
-    style="padding-bottom: 10px; width: 40px; float: left; margin-right: 10px;"
+    class="rc-swatches__swatch"
   >
     <span>
       <div
         class="rc-swatch"
-        style="background: rgb(255, 255, 255); width: 40px; height: 24px; cursor: pointer; margin-bottom: 1px; overflow: hidden; -webkit-border-radius: 0 0 2px 2px; border-radius: 0 0 2px 2px;"
+        style="overflow: hidden;"
         tabindex="0"
-        title="#fff"
       >
         <div
-          style="color: rgb(0, 0, 0); margin-left: 8px; display: none;"
+          class="rc-swatches__check"
+          style="color: rgb(255, 255, 255);"
         >
           <svg
             style="fill: currentcolor; width: 24px; height: 24px;"
@@ -159,6 +119,71 @@ exports[`SwatchesGroup renders correctly 1`] = `
         </div>
       </div>
     </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SwatchesColor renders with props 1`] = `
+<DocumentFragment>
+  <div
+    class="rc-swatches__swatch rc-swatches--first rc-swatches--last rc-swatches--active"
+  >
+    <span>
+      <div
+        class="rc-swatch"
+        style="overflow: hidden; border-radius: 2px 2px 0 0;"
+        tabindex="0"
+      >
+        <div
+          class="rc-swatches__check"
+          style="color: rgb(255, 255, 255);"
+        >
+          <svg
+            style="fill: currentcolor; width: 24px; height: 24px;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+            />
+          </svg>
+        </div>
+      </div>
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SwatchesGroup renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="rc-swatches__group"
+  >
+    <div
+      class="rc-swatches__swatch rc-swatches--first rc-swatches--last"
+    >
+      <span>
+        <div
+          class="rc-swatch"
+          style="background: rgb(255, 255, 255); overflow: hidden; border-radius: 2px 2px 0 0;"
+          tabindex="0"
+          title="#fff"
+        >
+          <div
+            class="rc-swatches__check"
+            style="color: rgb(0, 0, 0);"
+          >
+            <svg
+              style="fill: currentcolor; width: 24px; height: 24px;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+              />
+            </svg>
+          </div>
+        </div>
+      </span>
+    </div>
   </div>
 </DocumentFragment>
 `;

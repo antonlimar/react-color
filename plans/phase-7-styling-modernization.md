@@ -17,7 +17,7 @@ todos:
     status: completed
   - id: migrate-picker-subcomponents
     content: Перевести pointer fields swatch и preview подкомпоненты внутри папок picker-компонентов на co-located SCSS и единый slot/classNames контракт
-    status: pending
+    status: completed
   - id: migrate-top-level-pickers
     content: Перевести top-level пикеры alpha block chrome circle compact github google hue material photoshop sketch slider swatches twitter на class-based markup и BEM-модификаторы
     status: pending
@@ -133,7 +133,7 @@ todos:
 - [x] **scss-structure-and-build** — Добавить co-located SCSS рядом с компонентами, granular CSS entrypoints для выборочного импорта стилей и optional aggregate entry без обязательной загрузки всех пикеров сразу
 - [x] **public-styling-api** — Расширить публичный API через `theme` и `classNames`, сохранить `className` на root и оставить `styles` как deprecated compatibility layer
 - [x] **migrate-common-primitives** — Перевести common-примитивы `Alpha`, `Hue`, `Saturation`, `EditableInput`, `Swatch`, `Checkboard`, `Raised` и общее styling-утилити на class-based markup с co-located SCSS
-- [ ] **migrate-picker-subcomponents** — Перевести pointer, fields, swatch и preview подкомпоненты внутри папок picker-компонентов на co-located SCSS и единый slot/classNames контракт
+- [x] **migrate-picker-subcomponents** — Перевести pointer, fields, swatch и preview подкомпоненты внутри папок picker-компонентов на co-located SCSS и единый slot/classNames контракт
 - [ ] **migrate-top-level-pickers** — Перевести top-level пикеры `alpha`, `block`, `chrome`, `circle`, `compact`, `github`, `google`, `hue`, `material`, `photoshop`, `sketch`, `slider`, `swatches`, `twitter` на class-based markup и BEM-модификаторы
 - [ ] **theming-and-css-vars** — Вынести визуальные токены в CSS custom properties и реализовать `light`/`dark`/`auto` тему через root BEM-модификаторы и `prefers-color-scheme`
 - [ ] **docs-and-migration-notes** — Обновить документацию по кастомизации и миграции со `styles` на `classNames`, CSS variables и выборочные CSS imports с optional aggregate entry

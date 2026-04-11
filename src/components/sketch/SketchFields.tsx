@@ -1,7 +1,7 @@
-import reactCSS from 'reactcss';
 import * as color from '../../helpers/color';
 
 import { EditableInput } from '../common';
+import { getPickerClassName } from '../common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '../../types';
 
 type SketchFieldsProps = {
@@ -13,50 +13,6 @@ type SketchFieldsProps = {
 };
 
 export const SketchFields = ({ onChange, rgb, hsl, hex, disableAlpha }: SketchFieldsProps) => {
-  const styles = reactCSS(
-    {
-      default: {
-        fields: {
-          display: 'flex',
-          paddingTop: '4px',
-        },
-        single: {
-          flex: '1',
-          paddingLeft: '6px',
-        },
-        alpha: {
-          flex: '1',
-          paddingLeft: '6px',
-        },
-        double: {
-          flex: '2',
-        },
-        input: {
-          width: '80%',
-          padding: '4px 10% 3px',
-          border: 'none',
-          boxShadow: 'inset 0 0 0 1px #ccc',
-          fontSize: '11px',
-        },
-        label: {
-          display: 'block',
-          textAlign: 'center',
-          fontSize: '11px',
-          color: '#222',
-          paddingTop: '3px',
-          paddingBottom: '4px',
-          textTransform: 'capitalize',
-        },
-      },
-      disableAlpha: {
-        alpha: {
-          display: 'none',
-        },
-      },
-    },
-    { disableAlpha },
-  );
-
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {
     if (data.hex) {
       if (color.isValidHex(data.hex)) {
@@ -100,56 +56,32 @@ export const SketchFields = ({ onChange, rgb, hsl, hex, disableAlpha }: SketchFi
     }
   };
 
+  const renderInput = (label: string, value: string | number, modifier: string, dragMax?: number) => (
+    <div className={getPickerClassName({ block: 'sketch', slot: 'field', modifiers: [modifier] })}>
+      <EditableInput
+        label={label}
+        value={value}
+        onChange={(nextValue, event) => handleChange(nextValue as ColorChangeValue, event)}
+        dragLabel={typeof dragMax === 'number'}
+        dragMax={dragMax}
+      />
+    </div>
+  );
+
   return (
-    <div style={styles.fields} className="flexbox-fix">
-      <div style={styles.double}>
-        <EditableInput
-          style={{ input: styles.input, label: styles.label }}
-          label="hex"
-          value={hex.replace('#', '')}
-          onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-        />
-      </div>
-      <div style={styles.single}>
-        <EditableInput
-          style={{ input: styles.input, label: styles.label }}
-          label="r"
-          value={rgb.r}
-          onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          dragLabel={true}
-          dragMax={255}
-        />
-      </div>
-      <div style={styles.single}>
-        <EditableInput
-          style={{ input: styles.input, label: styles.label }}
-          label="g"
-          value={rgb.g}
-          onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          dragLabel={true}
-          dragMax={255}
-        />
-      </div>
-      <div style={styles.single}>
-        <EditableInput
-          style={{ input: styles.input, label: styles.label }}
-          label="b"
-          value={rgb.b}
-          onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          dragLabel={true}
-          dragMax={255}
-        />
-      </div>
-      <div style={styles.alpha}>
-        <EditableInput
-          style={{ input: styles.input, label: styles.label }}
-          label="a"
-          value={Math.round(rgb.a * 100)}
-          onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          dragLabel={true}
-          dragMax={100}
-        />
-      </div>
+    <div
+      className={getPickerClassName({
+        block: 'sketch',
+        slot: 'fields',
+        modifiers: [disableAlpha && 'disabled-alpha'],
+        className: 'flexbox-fix',
+      })}
+    >
+      {renderInput('hex', hex.replace('#', ''), 'double')}
+      {renderInput('r', rgb.r, 'single', 255)}
+      {renderInput('g', rgb.g, 'single', 255)}
+      {renderInput('b', rgb.b, 'single', 255)}
+      {renderInput('a', Math.round(rgb.a * 100), 'alpha', 100)}
     </div>
   );
 };

@@ -1,9 +1,9 @@
-import reactCSS from 'reactcss';
 import * as colorUtils from '../../helpers/color';
 
 import { Swatch } from '../common';
 import type { KeyboardEvent, MouseEvent } from 'react';
-import type { SwatchHoverHandler } from '../../types';
+import type { PickerStyle, SwatchHoverHandler } from '../../types';
+import { getPickerClassName } from '../common/styleArchitecture';
 
 type CompactColorProps = {
   color: string;
@@ -13,58 +13,32 @@ type CompactColorProps = {
 };
 
 export const CompactColor = ({ color, onClick = () => {}, onSwatchHover, active }: CompactColorProps) => {
-  const styles = reactCSS(
-    {
-      default: {
-        color: {
-          background: color,
-          width: '15px',
-          height: '15px',
-          float: 'left',
-          marginRight: '5px',
-          marginBottom: '5px',
-          position: 'relative',
-          cursor: 'pointer',
-        },
-        dot: {
-          absolute: '5px 5px 5px 5px',
-          background: colorUtils.getContrastingColor(color),
-          borderRadius: '50%',
-          opacity: '0',
-        },
-      },
-      active: {
-        dot: {
-          opacity: '1',
-        },
-      },
-      'color-#FFFFFF': {
-        color: {
-          boxShadow: 'inset 0 0 0 1px #ddd',
-        },
-        dot: {
-          background: '#000',
-        },
-      },
-      transparent: {
-        dot: {
-          background: '#000',
-        },
-      },
-    },
-    { active, 'color-#FFFFFF': color === '#FFFFFF', transparent: color === 'transparent' },
-  );
+  const swatchStyle: PickerStyle = {
+    background: color,
+    boxShadow: color === '#FFFFFF' ? 'inset 0 0 0 1px #ddd' : undefined,
+  };
+  const dotStyle: PickerStyle = {
+    background: color === '#FFFFFF' || color === 'transparent' ? '#000' : colorUtils.getContrastingColor(color),
+  };
 
   return (
-    <Swatch
-      style={styles.color}
-      color={color}
-      onClick={onClick}
-      onHover={onSwatchHover as never}
-      focusStyle={{ boxShadow: `0 0 4px ${color}` }}
+    <div
+      className={getPickerClassName({
+        block: 'compact',
+        slot: 'swatch',
+        modifiers: [active && 'active', color === '#FFFFFF' && 'white', color === 'transparent' && 'transparent'],
+      })}
     >
-      <div style={styles.dot} />
-    </Swatch>
+      <Swatch
+        style={swatchStyle}
+        color={color}
+        onClick={onClick}
+        onHover={onSwatchHover as never}
+        focusStyle={{ boxShadow: `0 0 4px ${color}` }}
+      >
+        <div className={getPickerClassName({ block: 'compact', slot: 'dot' })} style={dotStyle} />
+      </Swatch>
+    </div>
   );
 };
 

@@ -1,8 +1,7 @@
-import reactCSS, { handleHover } from 'reactcss';
-
 import { Swatch } from '../common';
 import type { KeyboardEvent, MouseEvent } from 'react';
-import type { SwatchHoverHandler } from '../../types';
+import type { PickerStyle, SwatchHoverHandler } from '../../types';
+import { getPickerClassName } from '../common/styleArchitecture';
 
 type CircleSwatchProps = {
   color: string;
@@ -23,41 +22,27 @@ export const CircleSwatch = ({
   circleSize = 28,
   circleSpacing = 14,
 }: CircleSwatchProps) => {
-  const styles = reactCSS(
-    {
-      default: {
-        swatch: {
-          width: circleSize,
-          height: circleSize,
-          marginRight: circleSpacing,
-          marginBottom: circleSpacing,
-          transform: 'scale(1)',
-          transition: '100ms transform ease',
-        },
-        Swatch: {
-          borderRadius: '50%',
-          background: 'transparent',
-          boxShadow: `inset 0 0 0 ${circleSize! / 2 + 1}px ${color}`,
-          transition: '100ms box-shadow ease',
-        },
-      },
-      hover: {
-        swatch: {
-          transform: 'scale(1.2)',
-        },
-      },
-      active: {
-        Swatch: {
-          boxShadow: `inset 0 0 0 3px ${color}`,
-        },
-      },
-    },
-    { hover, active },
-  );
-  const circleStyle = styles.Swatch || {};
+  const wrapperStyle: PickerStyle = {
+    width: circleSize,
+    height: circleSize,
+    marginRight: circleSpacing,
+    marginBottom: circleSpacing,
+  };
+  const circleStyle: PickerStyle = {
+    borderRadius: '50%',
+    background: 'transparent',
+    boxShadow: active ? `inset 0 0 0 3px ${color}` : `inset 0 0 0 ${circleSize / 2 + 1}px ${color}`,
+  };
 
   return (
-    <div style={styles.swatch}>
+    <div
+      className={getPickerClassName({
+        block: 'circle',
+        slot: 'swatch',
+        modifiers: [hover && 'hover', active && 'active'],
+      })}
+      style={wrapperStyle}
+    >
       <Swatch
         style={circleStyle}
         color={color}
@@ -69,4 +54,4 @@ export const CircleSwatch = ({
   );
 };
 
-export default handleHover(CircleSwatch);
+export default CircleSwatch;

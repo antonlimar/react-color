@@ -1,7 +1,7 @@
-import reactCSS from 'reactcss';
 import * as color from '../../helpers/color';
 
 import { EditableInput } from '../common';
+import { getPickerClassName } from '../common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSVAColor, RGBAColor } from '../../types';
 
 type PhotoshopFieldsProps = {
@@ -12,78 +12,6 @@ type PhotoshopFieldsProps = {
 };
 
 export const PhotoshopFields = ({ onChange, rgb, hsv, hex }: PhotoshopFieldsProps) => {
-  const styles = reactCSS({
-    default: {
-      fields: {
-        paddingTop: '5px',
-        paddingBottom: '9px',
-        width: '80px',
-        position: 'relative',
-      },
-      divider: {
-        height: '5px',
-      },
-      RGBwrap: {
-        position: 'relative',
-      },
-      RGBinput: {
-        marginLeft: '40%',
-        width: '40%',
-        height: '18px',
-        border: '1px solid #888888',
-        boxShadow: 'inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC',
-        marginBottom: '5px',
-        fontSize: '13px',
-        paddingLeft: '3px',
-        marginRight: '10px',
-      },
-      RGBlabel: {
-        left: '0px',
-        top: '0px',
-        width: '34px',
-        textTransform: 'uppercase',
-        fontSize: '13px',
-        height: '18px',
-        lineHeight: '22px',
-        position: 'absolute',
-      },
-      HEXwrap: {
-        position: 'relative',
-      },
-      HEXinput: {
-        marginLeft: '20%',
-        width: '80%',
-        height: '18px',
-        border: '1px solid #888888',
-        boxShadow: 'inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC',
-        marginBottom: '6px',
-        fontSize: '13px',
-        paddingLeft: '3px',
-      },
-      HEXlabel: {
-        position: 'absolute',
-        top: '0px',
-        left: '0px',
-        width: '14px',
-        textTransform: 'uppercase',
-        fontSize: '13px',
-        height: '18px',
-        lineHeight: '22px',
-      },
-      fieldSymbols: {
-        position: 'absolute',
-        top: '5px',
-        right: '-7px',
-        fontSize: '13px',
-      },
-      symbol: {
-        height: '20px',
-        lineHeight: '22px',
-        paddingBottom: '7px',
-      },
-    },
-  });
-
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {
     if (data['#']) {
       if (color.isValidHex(data['#'])) {
@@ -118,56 +46,31 @@ export const PhotoshopFields = ({ onChange, rgb, hsv, hex }: PhotoshopFieldsProp
     }
   };
 
+  const renderField = (label: string, value: string | number, modifier: 'rgb' | 'hex') => (
+    <div className={getPickerClassName({ block: 'photoshop', slot: 'field', modifiers: [modifier] })}>
+      <EditableInput
+        label={label}
+        value={value}
+        onChange={(nextValue, event) => handleChange(nextValue as ColorChangeValue, event)}
+      />
+    </div>
+  );
+
   return (
-    <div style={styles.fields}>
-      <EditableInput
-        style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
-        label="h"
-        value={Math.round(hsv.h)}
-        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-      />
-      <EditableInput
-        style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
-        label="s"
-        value={Math.round(hsv.s * 100)}
-        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-      />
-      <EditableInput
-        style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
-        label="v"
-        value={Math.round(hsv.v * 100)}
-        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-      />
-      <div style={styles.divider} />
-      <EditableInput
-        style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
-        label="r"
-        value={rgb.r}
-        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-      />
-      <EditableInput
-        style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
-        label="g"
-        value={rgb.g}
-        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-      />
-      <EditableInput
-        style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
-        label="b"
-        value={rgb.b}
-        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-      />
-      <div style={styles.divider} />
-      <EditableInput
-        style={{ wrap: styles.HEXwrap, input: styles.HEXinput, label: styles.HEXlabel }}
-        label="#"
-        value={hex.replace('#', '')}
-        onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-      />
-      <div style={styles.fieldSymbols}>
-        <div style={styles.symbol}>°</div>
-        <div style={styles.symbol}>%</div>
-        <div style={styles.symbol}>%</div>
+    <div className={getPickerClassName({ block: 'photoshop', slot: 'fields' })}>
+      {renderField('h', Math.round(hsv.h), 'rgb')}
+      {renderField('s', Math.round(hsv.s * 100), 'rgb')}
+      {renderField('v', Math.round(hsv.v * 100), 'rgb')}
+      <div className={getPickerClassName({ block: 'photoshop', slot: 'divider' })} />
+      {renderField('r', rgb.r, 'rgb')}
+      {renderField('g', rgb.g, 'rgb')}
+      {renderField('b', rgb.b, 'rgb')}
+      <div className={getPickerClassName({ block: 'photoshop', slot: 'divider' })} />
+      {renderField('#', hex.replace('#', ''), 'hex')}
+      <div className={getPickerClassName({ block: 'photoshop', slot: 'field-symbols' })}>
+        <div className={getPickerClassName({ block: 'photoshop', slot: 'field-symbol' })}>°</div>
+        <div className={getPickerClassName({ block: 'photoshop', slot: 'field-symbol' })}>%</div>
+        <div className={getPickerClassName({ block: 'photoshop', slot: 'field-symbol' })}>%</div>
       </div>
     </div>
   );

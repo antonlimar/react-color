@@ -1,9 +1,9 @@
-import reactCSS from 'reactcss';
 import map from 'lodash/map';
 
 import { Swatch } from '../common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { SwatchHoverHandler } from '../../types';
+import { getPickerClassName } from '../common/styleArchitecture';
 
 type BlockSwatchesProps = {
   colors: string[];
@@ -12,40 +12,22 @@ type BlockSwatchesProps = {
 };
 
 export const BlockSwatches = ({ colors, onClick, onSwatchHover }: BlockSwatchesProps) => {
-  const styles = reactCSS({
-    default: {
-      swatches: {
-        marginRight: '-10px',
-      },
-      swatch: {
-        width: '22px',
-        height: '22px',
-        float: 'left',
-        marginRight: '10px',
-        marginBottom: '10px',
-        borderRadius: '4px',
-      },
-      clear: {
-        clear: 'both',
-      },
-    },
-  });
-
   return (
-    <div style={styles.swatches}>
+    <div className={getPickerClassName({ block: 'block', slot: 'swatches' })}>
       {map(colors, (colorValue: string) => (
-        <Swatch
-          key={colorValue}
-          color={colorValue}
-          style={styles.swatch}
-          onClick={onClick}
-          onHover={onSwatchHover as never}
-          focusStyle={{
-            boxShadow: `0 0 4px ${colorValue}`,
-          }}
-        />
+        <div key={colorValue} className={getPickerClassName({ block: 'block', slot: 'swatch' })}>
+          <Swatch
+            color={colorValue}
+            style={{ borderRadius: '4px' }}
+            onClick={onClick}
+            onHover={onSwatchHover as never}
+            focusStyle={{
+              boxShadow: `0 0 4px ${colorValue}`,
+            }}
+          />
+        </div>
       ))}
-      <div style={styles.clear} />
+      <div className={getPickerClassName({ block: 'block', slot: 'clear' })} />
     </div>
   );
 };

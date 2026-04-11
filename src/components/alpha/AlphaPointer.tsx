@@ -1,31 +1,18 @@
-import reactCSS from 'reactcss';
 import type { AlphaProps } from '../../types';
+import { getPickerClassName } from '../common/styleArchitecture';
 
 type AlphaPointerProps = Pick<AlphaProps, 'direction'>;
 
 export const AlphaPointer = ({ direction }: AlphaPointerProps) => {
-  const styles = reactCSS(
-    {
-      default: {
-        picker: {
-          width: '18px',
-          height: '18px',
-          borderRadius: '50%',
-          transform: 'translate(-9px, -1px)',
-          backgroundColor: 'rgb(248, 248, 248)',
-          boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.37)',
-        },
-      },
-      vertical: {
-        picker: {
-          transform: 'translate(-3px, -9px)',
-        },
-      },
-    },
-    { vertical: direction === 'vertical' },
+  return (
+    <div
+      className={getPickerClassName({
+        block: 'alpha',
+        slot: 'pointer',
+        modifiers: [direction === 'vertical' && 'vertical'],
+      })}
+    />
   );
-
-  return <div style={styles.picker} />;
 };
 
 export default AlphaPointer;

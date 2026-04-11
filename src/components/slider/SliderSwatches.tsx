@@ -1,7 +1,6 @@
-import reactCSS from 'reactcss';
-
 import SliderSwatch from './SliderSwatch';
 import type { ColorInputChangeHandler, HSLAColor } from '../../types';
+import { getPickerClassName } from '../common/styleArchitecture';
 
 type SliderSwatchesProps = {
   onClick: ColorInputChangeHandler;
@@ -9,30 +8,13 @@ type SliderSwatchesProps = {
 };
 
 export const SliderSwatches = ({ onClick, hsl }: SliderSwatchesProps) => {
-  const styles = reactCSS({
-    default: {
-      swatches: {
-        marginTop: '20px',
-      },
-      swatch: {
-        boxSizing: 'border-box',
-        width: '20%',
-        paddingRight: '1px',
-        float: 'left',
-      },
-      clear: {
-        clear: 'both',
-      },
-    },
-  });
-
   const epsilon = 0.1;
   const offsets = [0.8, 0.65, 0.5, 0.35, 0.2];
 
   return (
-    <div style={styles.swatches}>
+    <div className={getPickerClassName({ block: 'slider', slot: 'swatches' })}>
       {offsets.map((offset, index) => (
-        <div key={offset} style={styles.swatch}>
+        <div key={offset} className={getPickerClassName({ block: 'slider', slot: 'swatch-wrap' })}>
           <SliderSwatch
             hsl={hsl}
             offset={offset}
@@ -43,7 +25,7 @@ export const SliderSwatches = ({ onClick, hsl }: SliderSwatchesProps) => {
           />
         </div>
       ))}
-      <div style={styles.clear} />
+      <div className={getPickerClassName({ block: 'slider', slot: 'clear' })} />
     </div>
   );
 };

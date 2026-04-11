@@ -1,32 +1,20 @@
-import reactCSS from 'reactcss';
 import type { HSLAColor } from '../../types';
+import { getPickerClassName } from '../common/styleArchitecture';
 
 type PhotoshopPointerCircleProps = {
   hsl: HSLAColor;
 };
 
 export const PhotoshopPointerCircle = ({ hsl }: PhotoshopPointerCircleProps) => {
-  const styles = reactCSS(
-    {
-      default: {
-        picker: {
-          width: '12px',
-          height: '12px',
-          borderRadius: '6px',
-          boxShadow: 'inset 0 0 0 1px #fff',
-          transform: 'translate(-6px, -6px)',
-        },
-      },
-      'black-outline': {
-        picker: {
-          boxShadow: 'inset 0 0 0 1px #000',
-        },
-      },
-    },
-    { 'black-outline': hsl.l > 0.5 },
+  return (
+    <div
+      className={getPickerClassName({
+        block: 'photoshop',
+        slot: 'pointer-circle',
+        modifiers: [hsl.l > 0.5 && 'black-outline'],
+      })}
+    />
   );
-
-  return <div style={styles.picker} />;
 };
 
 export default PhotoshopPointerCircle;

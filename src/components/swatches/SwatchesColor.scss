@@ -1,0 +1,14 @@
+.rc-swatches__swatch {
+  width: 40px;
+  height: 24px;
+  margin-bottom: 1px;
+}
+
+.rc-swatches__check {
+  display: none;
+  margin-left: 8px;
+}
+
+.rc-swatches__swatch.rc-swatches--active .rc-swatches__check {
+  display: block;
+}

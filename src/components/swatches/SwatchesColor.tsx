@@ -1,10 +1,10 @@
-import reactCSS from 'reactcss';
 import * as colorUtils from '../../helpers/color';
 
 import { Swatch } from '../common';
 import CheckIcon from '../common/icons/CheckIcon';
 import type { KeyboardEvent, MouseEvent } from 'react';
-import type { SwatchHoverHandler } from '../../types';
+import type { PickerStyle, SwatchHoverHandler } from '../../types';
+import { getPickerClassName } from '../common/styleArchitecture';
 
 type SwatchesColorProps = {
   color: string;
@@ -23,74 +23,42 @@ export const SwatchesColor = ({
   last,
   active,
 }: SwatchesColorProps) => {
-  const styles = reactCSS(
-    {
-      default: {
-        color: {
-          width: '40px',
-          height: '24px',
-          cursor: 'pointer',
-          background: color,
-          marginBottom: '1px',
-        },
-        check: {
-          color: colorUtils.getContrastingColor(color),
-          marginLeft: '8px',
-          display: 'none',
-        },
-      },
-      first: {
-        color: {
-          overflow: 'hidden',
-          borderRadius: '2px 2px 0 0',
-        },
-      },
-      last: {
-        color: {
-          overflow: 'hidden',
-          borderRadius: '0 0 2px 2px',
-        },
-      },
-      active: {
-        check: {
-          display: 'block',
-        },
-      },
-      'color-#FFFFFF': {
-        color: {
-          boxShadow: 'inset 0 0 0 1px #ddd',
-        },
-        check: {
-          color: '#333',
-        },
-      },
-      transparent: {
-        check: {
-          color: '#333',
-        },
-      },
-    },
-    {
-      first,
-      last,
-      active,
-      'color-#FFFFFF': color === '#FFFFFF',
-      transparent: color === 'transparent',
-    },
-  );
+  const swatchStyle: PickerStyle = {
+    background: color,
+    overflow: 'hidden',
+    borderRadius: first ? '2px 2px 0 0' : last ? '0 0 2px 2px' : undefined,
+    boxShadow: color === '#FFFFFF' ? 'inset 0 0 0 1px #ddd' : undefined,
+  };
+  const checkStyle: PickerStyle = {
+    color: color === '#FFFFFF' || color === 'transparent' ? '#333' : colorUtils.getContrastingColor(color),
+  };
 
   return (
-    <Swatch
-      color={color}
-      style={styles.color}
-      onClick={onClick}
-      onHover={onSwatchHover as never}
-      focusStyle={{ boxShadow: `0 0 4px ${color}` }}
+    <div
+      className={getPickerClassName({
+        block: 'swatches',
+        slot: 'swatch',
+        modifiers: [
+          first && 'first',
+          last && 'last',
+          active && 'active',
+          color === '#FFFFFF' && 'white',
+          color === 'transparent' && 'transparent',
+        ],
+      })}
     >
-      <div style={styles.check}>
-        <CheckIcon />
-      </div>
-    </Swatch>
+      <Swatch
+        color={color}
+        style={swatchStyle}
+        onClick={onClick}
+        onHover={onSwatchHover as never}
+        focusStyle={{ boxShadow: `0 0 4px ${color}` }}
+      >
+        <div className={getPickerClassName({ block: 'swatches', slot: 'check' })} style={checkStyle}>
+          <CheckIcon />
+        </div>
+      </Swatch>
+    </div>
   );
 };
 

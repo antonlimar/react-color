@@ -17,524 +17,708 @@ exports[`Compact renders correctly 1`] = `
         style="padding-top: 5px; padding-left: 5px; box-sizing: initial; width: 240px;"
       >
         <div>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(77, 77, 77); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#4D4D4D"
-            >
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(153, 153, 153); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#999999"
-            >
+                class="rc-swatch"
+                style="background: rgb(77, 77, 77);"
+                tabindex="0"
+                title="#4D4D4D"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(255, 255, 255); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer; -webkit-box-shadow: inset 0 0 0 1px #ddd; box-shadow: inset 0 0 0 1px #ddd;"
-              tabindex="0"
-              title="#FFFFFF"
-            >
+                class="rc-swatch"
+                style="background: rgb(153, 153, 153);"
+                tabindex="0"
+                title="#999999"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch rc-compact--white"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(244, 78, 59); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#F44E3B"
-            >
+                class="rc-swatch"
+                style="background: rgb(255, 255, 255); box-shadow: inset 0 0 0 1px #ddd;"
+                tabindex="0"
+                title="#FFFFFF"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(254, 146, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#FE9200"
-            >
+                class="rc-swatch"
+                style="background: rgb(244, 78, 59);"
+                tabindex="0"
+                title="#F44E3B"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(252, 220, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#FCDC00"
-            >
+                class="rc-swatch"
+                style="background: rgb(254, 146, 0);"
+                tabindex="0"
+                title="#FE9200"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(219, 223, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#DBDF00"
-            >
+                class="rc-swatch"
+                style="background: rgb(252, 220, 0);"
+                tabindex="0"
+                title="#FCDC00"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(164, 221, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#A4DD00"
-            >
+                class="rc-swatch"
+                style="background: rgb(219, 223, 0);"
+                tabindex="0"
+                title="#DBDF00"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(104, 204, 202); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#68CCCA"
-            >
+                class="rc-swatch"
+                style="background: rgb(164, 221, 0);"
+                tabindex="0"
+                title="#A4DD00"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(115, 216, 255); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#73D8FF"
-            >
+                class="rc-swatch"
+                style="background: rgb(104, 204, 202);"
+                tabindex="0"
+                title="#68CCCA"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(174, 161, 255); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#AEA1FF"
-            >
+                class="rc-swatch"
+                style="background: rgb(115, 216, 255);"
+                tabindex="0"
+                title="#73D8FF"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(253, 161, 255); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#FDA1FF"
-            >
+                class="rc-swatch"
+                style="background: rgb(174, 161, 255);"
+                tabindex="0"
+                title="#AEA1FF"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(51, 51, 51); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#333333"
-            >
+                class="rc-swatch"
+                style="background: rgb(253, 161, 255);"
+                tabindex="0"
+                title="#FDA1FF"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(128, 128, 128); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#808080"
-            >
+                class="rc-swatch"
+                style="background: rgb(51, 51, 51);"
+                tabindex="0"
+                title="#333333"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(204, 204, 204); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#cccccc"
-            >
+                class="rc-swatch"
+                style="background: rgb(128, 128, 128);"
+                tabindex="0"
+                title="#808080"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(211, 49, 21); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#D33115"
-            >
+                class="rc-swatch"
+                style="background: rgb(204, 204, 204);"
+                tabindex="0"
+                title="#cccccc"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(226, 115, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#E27300"
-            >
+                class="rc-swatch"
+                style="background: rgb(211, 49, 21);"
+                tabindex="0"
+                title="#D33115"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(252, 196, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#FCC400"
-            >
+                class="rc-swatch"
+                style="background: rgb(226, 115, 0);"
+                tabindex="0"
+                title="#E27300"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(176, 188, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#B0BC00"
-            >
+                class="rc-swatch"
+                style="background: rgb(252, 196, 0);"
+                tabindex="0"
+                title="#FCC400"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(104, 188, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#68BC00"
-            >
+                class="rc-swatch"
+                style="background: rgb(176, 188, 0);"
+                tabindex="0"
+                title="#B0BC00"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(22, 165, 165); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#16A5A5"
-            >
+                class="rc-swatch"
+                style="background: rgb(104, 188, 0);"
+                tabindex="0"
+                title="#68BC00"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(0, 156, 224); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#009CE0"
-            >
+                class="rc-swatch"
+                style="background: rgb(22, 165, 165);"
+                tabindex="0"
+                title="#16A5A5"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(123, 100, 255); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#7B64FF"
-            >
+                class="rc-swatch"
+                style="background: rgb(0, 156, 224);"
+                tabindex="0"
+                title="#009CE0"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(250, 40, 255); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#FA28FF"
-            >
+                class="rc-swatch"
+                style="background: rgb(123, 100, 255);"
+                tabindex="0"
+                title="#7B64FF"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(0, 0, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#000000"
-            >
+                class="rc-swatch"
+                style="background: rgb(250, 40, 255);"
+                tabindex="0"
+                title="#FA28FF"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(102, 102, 102); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#666666"
-            >
+                class="rc-swatch"
+                style="background: rgb(0, 0, 0);"
+                tabindex="0"
+                title="#000000"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(179, 179, 179); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#B3B3B3"
-            >
+                class="rc-swatch"
+                style="background: rgb(102, 102, 102);"
+                tabindex="0"
+                title="#666666"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(159, 5, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#9F0500"
-            >
+                class="rc-swatch"
+                style="background: rgb(179, 179, 179);"
+                tabindex="0"
+                title="#B3B3B3"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(196, 81, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#C45100"
-            >
+                class="rc-swatch"
+                style="background: rgb(159, 5, 0);"
+                tabindex="0"
+                title="#9F0500"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(251, 158, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#FB9E00"
-            >
+                class="rc-swatch"
+                style="background: rgb(196, 81, 0);"
+                tabindex="0"
+                title="#C45100"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(128, 137, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#808900"
-            >
+                class="rc-swatch"
+                style="background: rgb(251, 158, 0);"
+                tabindex="0"
+                title="#FB9E00"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(25, 77, 51); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#194D33"
-            >
+                class="rc-swatch"
+                style="background: rgb(128, 137, 0);"
+                tabindex="0"
+                title="#808900"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(12, 121, 125); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#0C797D"
-            >
+                class="rc-swatch"
+                style="background: rgb(25, 77, 51);"
+                tabindex="0"
+                title="#194D33"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(0, 98, 177); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#0062B1"
-            >
+                class="rc-swatch"
+                style="background: rgb(12, 121, 125);"
+                tabindex="0"
+                title="#0C797D"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(101, 50, 148); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#653294"
-            >
+                class="rc-swatch"
+                style="background: rgb(0, 98, 177);"
+                tabindex="0"
+                title="#0062B1"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(171, 20, 158); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#AB149E"
-            >
+                class="rc-swatch"
+                style="background: rgb(101, 50, 148);"
+                tabindex="0"
+                title="#653294"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
+                class="rc-swatch"
+                style="background: rgb(171, 20, 158);"
+                tabindex="0"
+                title="#AB149E"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
           <div
             style="clear: both;"
           />
         </div>
         <div
-          class="flexbox-fix"
-          style="display: flex; padding-bottom: 6px; padding-right: 5px; position: relative;"
+          class="rc-compact__fields"
         >
           <div
-            style="position: absolute; top: 6px; left: 5px; height: 9px; width: 9px; background: rgb(34, 25, 77);"
+            class="rc-compact__active"
+            style="background: rgb(34, 25, 77);"
           />
           <div
-            class="rc-editable-input"
-            style="flex: 6 1 0%; position: relative;"
+            class="rc-compact__field rc-compact--hex"
           >
-            <input
-              class="rc-editable-input__input"
-              id="rc-editable-input-1"
-              spellcheck="false"
-              style="width: 80%; padding: 0px 0px 0px 20%; border: medium; outline: none; background: none; font-size: 12px; color: rgb(51, 51, 51); height: 16px;"
-              value="#22194D"
-            />
-            <label
-              class="rc-editable-input__label"
-              for="rc-editable-input-1"
-              style="display: none;"
+            <div
+              class="rc-editable-input"
             >
-              hex
-            </label>
+              <input
+                class="rc-editable-input__input"
+                id="rc-editable-input-1"
+                spellcheck="false"
+                value="#22194D"
+              />
+              <label
+                class="rc-editable-input__label"
+                for="rc-editable-input-1"
+              >
+                hex
+              </label>
+            </div>
           </div>
           <div
-            class="rc-editable-input"
-            style="flex: 3 1 0%; position: relative;"
+            class="rc-compact__field rc-compact--rgb"
           >
-            <input
-              class="rc-editable-input__input"
-              id="rc-editable-input-2"
-              spellcheck="false"
-              style="width: 70%; padding: 0px 0px 0px 30%; border: medium; outline: none; background: none; font-size: 12px; color: rgb(51, 51, 51); height: 16px;"
-              value="34"
-            />
-            <label
-              class="rc-editable-input__label"
-              for="rc-editable-input-2"
-              style="position: absolute; top: 3px; left: 0px; line-height: 16px; text-transform: uppercase; font-size: 12px; color: rgb(153, 153, 153);"
+            <div
+              class="rc-editable-input"
             >
-              r
-            </label>
+              <input
+                class="rc-editable-input__input"
+                id="rc-editable-input-2"
+                spellcheck="false"
+                value="34"
+              />
+              <label
+                class="rc-editable-input__label"
+                for="rc-editable-input-2"
+              >
+                r
+              </label>
+            </div>
           </div>
           <div
-            class="rc-editable-input"
-            style="flex: 3 1 0%; position: relative;"
+            class="rc-compact__field rc-compact--rgb"
           >
-            <input
-              class="rc-editable-input__input"
-              id="rc-editable-input-3"
-              spellcheck="false"
-              style="width: 70%; padding: 0px 0px 0px 30%; border: medium; outline: none; background: none; font-size: 12px; color: rgb(51, 51, 51); height: 16px;"
-              value="25"
-            />
-            <label
-              class="rc-editable-input__label"
-              for="rc-editable-input-3"
-              style="position: absolute; top: 3px; left: 0px; line-height: 16px; text-transform: uppercase; font-size: 12px; color: rgb(153, 153, 153);"
+            <div
+              class="rc-editable-input"
             >
-              g
-            </label>
+              <input
+                class="rc-editable-input__input"
+                id="rc-editable-input-3"
+                spellcheck="false"
+                value="25"
+              />
+              <label
+                class="rc-editable-input__label"
+                for="rc-editable-input-3"
+              >
+                g
+              </label>
+            </div>
           </div>
           <div
-            class="rc-editable-input"
-            style="flex: 3 1 0%; position: relative;"
+            class="rc-compact__field rc-compact--rgb"
           >
-            <input
-              class="rc-editable-input__input"
-              id="rc-editable-input-4"
-              spellcheck="false"
-              style="width: 70%; padding: 0px 0px 0px 30%; border: medium; outline: none; background: none; font-size: 12px; color: rgb(51, 51, 51); height: 16px;"
-              value="77"
-            />
-            <label
-              class="rc-editable-input__label"
-              for="rc-editable-input-4"
-              style="position: absolute; top: 3px; left: 0px; line-height: 16px; text-transform: uppercase; font-size: 12px; color: rgb(153, 153, 153);"
+            <div
+              class="rc-editable-input"
             >
-              b
-            </label>
+              <input
+                class="rc-editable-input__input"
+                id="rc-editable-input-4"
+                spellcheck="false"
+                value="77"
+              />
+              <label
+                class="rc-editable-input__label"
+                for="rc-editable-input-4"
+              >
+                b
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -560,524 +744,708 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
         style="padding-top: 5px; padding-left: 5px; box-sizing: initial; width: 240px;"
       >
         <div>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(77, 77, 77); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#4D4D4D"
-            >
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(153, 153, 153); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#999999"
-            >
+                class="rc-swatch"
+                style="background: rgb(77, 77, 77);"
+                tabindex="0"
+                title="#4D4D4D"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(255, 255, 255); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer; -webkit-box-shadow: inset 0 0 0 1px #ddd; box-shadow: inset 0 0 0 1px #ddd;"
-              tabindex="0"
-              title="#FFFFFF"
-            >
+                class="rc-swatch"
+                style="background: rgb(153, 153, 153);"
+                tabindex="0"
+                title="#999999"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch rc-compact--white"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(244, 78, 59); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#F44E3B"
-            >
+                class="rc-swatch"
+                style="background: rgb(255, 255, 255); box-shadow: inset 0 0 0 1px #ddd;"
+                tabindex="0"
+                title="#FFFFFF"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(254, 146, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#FE9200"
-            >
+                class="rc-swatch"
+                style="background: rgb(244, 78, 59);"
+                tabindex="0"
+                title="#F44E3B"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(252, 220, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#FCDC00"
-            >
+                class="rc-swatch"
+                style="background: rgb(254, 146, 0);"
+                tabindex="0"
+                title="#FE9200"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(219, 223, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#DBDF00"
-            >
+                class="rc-swatch"
+                style="background: rgb(252, 220, 0);"
+                tabindex="0"
+                title="#FCDC00"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(164, 221, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#A4DD00"
-            >
+                class="rc-swatch"
+                style="background: rgb(219, 223, 0);"
+                tabindex="0"
+                title="#DBDF00"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(104, 204, 202); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#68CCCA"
-            >
+                class="rc-swatch"
+                style="background: rgb(164, 221, 0);"
+                tabindex="0"
+                title="#A4DD00"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(115, 216, 255); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#73D8FF"
-            >
+                class="rc-swatch"
+                style="background: rgb(104, 204, 202);"
+                tabindex="0"
+                title="#68CCCA"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(174, 161, 255); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#AEA1FF"
-            >
+                class="rc-swatch"
+                style="background: rgb(115, 216, 255);"
+                tabindex="0"
+                title="#73D8FF"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(253, 161, 255); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#FDA1FF"
-            >
+                class="rc-swatch"
+                style="background: rgb(174, 161, 255);"
+                tabindex="0"
+                title="#AEA1FF"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(51, 51, 51); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#333333"
-            >
+                class="rc-swatch"
+                style="background: rgb(253, 161, 255);"
+                tabindex="0"
+                title="#FDA1FF"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(128, 128, 128); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#808080"
-            >
+                class="rc-swatch"
+                style="background: rgb(51, 51, 51);"
+                tabindex="0"
+                title="#333333"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(204, 204, 204); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#cccccc"
-            >
+                class="rc-swatch"
+                style="background: rgb(128, 128, 128);"
+                tabindex="0"
+                title="#808080"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(211, 49, 21); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#D33115"
-            >
+                class="rc-swatch"
+                style="background: rgb(204, 204, 204);"
+                tabindex="0"
+                title="#cccccc"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(226, 115, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#E27300"
-            >
+                class="rc-swatch"
+                style="background: rgb(211, 49, 21);"
+                tabindex="0"
+                title="#D33115"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(252, 196, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#FCC400"
-            >
+                class="rc-swatch"
+                style="background: rgb(226, 115, 0);"
+                tabindex="0"
+                title="#E27300"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(176, 188, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#B0BC00"
-            >
+                class="rc-swatch"
+                style="background: rgb(252, 196, 0);"
+                tabindex="0"
+                title="#FCC400"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(104, 188, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#68BC00"
-            >
+                class="rc-swatch"
+                style="background: rgb(176, 188, 0);"
+                tabindex="0"
+                title="#B0BC00"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(22, 165, 165); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#16A5A5"
-            >
+                class="rc-swatch"
+                style="background: rgb(104, 188, 0);"
+                tabindex="0"
+                title="#68BC00"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(0, 156, 224); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#009CE0"
-            >
+                class="rc-swatch"
+                style="background: rgb(22, 165, 165);"
+                tabindex="0"
+                title="#16A5A5"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(123, 100, 255); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#7B64FF"
-            >
+                class="rc-swatch"
+                style="background: rgb(0, 156, 224);"
+                tabindex="0"
+                title="#009CE0"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(250, 40, 255); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#FA28FF"
-            >
+                class="rc-swatch"
+                style="background: rgb(123, 100, 255);"
+                tabindex="0"
+                title="#7B64FF"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(0, 0, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#000000"
-            >
+                class="rc-swatch"
+                style="background: rgb(250, 40, 255);"
+                tabindex="0"
+                title="#FA28FF"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(102, 102, 102); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#666666"
-            >
+                class="rc-swatch"
+                style="background: rgb(0, 0, 0);"
+                tabindex="0"
+                title="#000000"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(179, 179, 179); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#B3B3B3"
-            >
+                class="rc-swatch"
+                style="background: rgb(102, 102, 102);"
+                tabindex="0"
+                title="#666666"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(159, 5, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#9F0500"
-            >
+                class="rc-swatch"
+                style="background: rgb(179, 179, 179);"
+                tabindex="0"
+                title="#B3B3B3"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(196, 81, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#C45100"
-            >
+                class="rc-swatch"
+                style="background: rgb(159, 5, 0);"
+                tabindex="0"
+                title="#9F0500"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(251, 158, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#FB9E00"
-            >
+                class="rc-swatch"
+                style="background: rgb(196, 81, 0);"
+                tabindex="0"
+                title="#C45100"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(0, 0, 0); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(128, 137, 0); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#808900"
-            >
+                class="rc-swatch"
+                style="background: rgb(251, 158, 0);"
+                tabindex="0"
+                title="#FB9E00"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(0, 0, 0);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(25, 77, 51); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#194D33"
-            >
+                class="rc-swatch"
+                style="background: rgb(128, 137, 0);"
+                tabindex="0"
+                title="#808900"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(12, 121, 125); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#0C797D"
-            >
+                class="rc-swatch"
+                style="background: rgb(25, 77, 51);"
+                tabindex="0"
+                title="#194D33"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(0, 98, 177); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#0062B1"
-            >
+                class="rc-swatch"
+                style="background: rgb(12, 121, 125);"
+                tabindex="0"
+                title="#0C797D"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(101, 50, 148); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#653294"
-            >
+                class="rc-swatch"
+                style="background: rgb(0, 98, 177);"
+                tabindex="0"
+                title="#0062B1"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
-          <span>
-            <div
-              class="rc-swatch"
-              style="background: rgb(171, 20, 158); width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-              tabindex="0"
-              title="#AB149E"
-            >
+                class="rc-swatch"
+                style="background: rgb(101, 50, 148);"
+                tabindex="0"
+                title="#653294"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
+          <div
+            class="rc-compact__swatch"
+          >
+            <span>
               <div
-                style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-              />
-            </div>
-          </span>
+                class="rc-swatch"
+                style="background: rgb(171, 20, 158);"
+                tabindex="0"
+                title="#AB149E"
+              >
+                <div
+                  class="rc-compact__dot"
+                  style="background: rgb(255, 255, 255);"
+                />
+              </div>
+            </span>
+          </div>
           <div
             style="clear: both;"
           />
         </div>
         <div
-          class="flexbox-fix"
-          style="display: flex; padding-bottom: 6px; padding-right: 5px; position: relative;"
+          class="rc-compact__fields"
         >
           <div
-            style="position: absolute; top: 6px; left: 5px; height: 9px; width: 9px; background: rgb(34, 25, 77);"
+            class="rc-compact__active"
+            style="background: rgb(34, 25, 77);"
           />
           <div
-            class="rc-editable-input"
-            style="flex: 6 1 0%; position: relative;"
+            class="rc-compact__field rc-compact--hex"
           >
-            <input
-              class="rc-editable-input__input"
-              id="rc-editable-input-5"
-              spellcheck="false"
-              style="width: 80%; padding: 0px 0px 0px 20%; border: medium; outline: none; background: none; font-size: 12px; color: rgb(51, 51, 51); height: 16px;"
-              value="#22194D"
-            />
-            <label
-              class="rc-editable-input__label"
-              for="rc-editable-input-5"
-              style="display: none;"
+            <div
+              class="rc-editable-input"
             >
-              hex
-            </label>
+              <input
+                class="rc-editable-input__input"
+                id="rc-editable-input-5"
+                spellcheck="false"
+                value="#22194D"
+              />
+              <label
+                class="rc-editable-input__label"
+                for="rc-editable-input-5"
+              >
+                hex
+              </label>
+            </div>
           </div>
           <div
-            class="rc-editable-input"
-            style="flex: 3 1 0%; position: relative;"
+            class="rc-compact__field rc-compact--rgb"
           >
-            <input
-              class="rc-editable-input__input"
-              id="rc-editable-input-6"
-              spellcheck="false"
-              style="width: 70%; padding: 0px 0px 0px 30%; border: medium; outline: none; background: none; font-size: 12px; color: rgb(51, 51, 51); height: 16px;"
-              value="34"
-            />
-            <label
-              class="rc-editable-input__label"
-              for="rc-editable-input-6"
-              style="position: absolute; top: 3px; left: 0px; line-height: 16px; text-transform: uppercase; font-size: 12px; color: rgb(153, 153, 153);"
+            <div
+              class="rc-editable-input"
             >
-              r
-            </label>
+              <input
+                class="rc-editable-input__input"
+                id="rc-editable-input-6"
+                spellcheck="false"
+                value="34"
+              />
+              <label
+                class="rc-editable-input__label"
+                for="rc-editable-input-6"
+              >
+                r
+              </label>
+            </div>
           </div>
           <div
-            class="rc-editable-input"
-            style="flex: 3 1 0%; position: relative;"
+            class="rc-compact__field rc-compact--rgb"
           >
-            <input
-              class="rc-editable-input__input"
-              id="rc-editable-input-7"
-              spellcheck="false"
-              style="width: 70%; padding: 0px 0px 0px 30%; border: medium; outline: none; background: none; font-size: 12px; color: rgb(51, 51, 51); height: 16px;"
-              value="25"
-            />
-            <label
-              class="rc-editable-input__label"
-              for="rc-editable-input-7"
-              style="position: absolute; top: 3px; left: 0px; line-height: 16px; text-transform: uppercase; font-size: 12px; color: rgb(153, 153, 153);"
+            <div
+              class="rc-editable-input"
             >
-              g
-            </label>
+              <input
+                class="rc-editable-input__input"
+                id="rc-editable-input-7"
+                spellcheck="false"
+                value="25"
+              />
+              <label
+                class="rc-editable-input__label"
+                for="rc-editable-input-7"
+              >
+                g
+              </label>
+            </div>
           </div>
           <div
-            class="rc-editable-input"
-            style="flex: 3 1 0%; position: relative;"
+            class="rc-compact__field rc-compact--rgb"
           >
-            <input
-              class="rc-editable-input__input"
-              id="rc-editable-input-8"
-              spellcheck="false"
-              style="width: 70%; padding: 0px 0px 0px 30%; border: medium; outline: none; background: none; font-size: 12px; color: rgb(51, 51, 51); height: 16px;"
-              value="77"
-            />
-            <label
-              class="rc-editable-input__label"
-              for="rc-editable-input-8"
-              style="position: absolute; top: 3px; left: 0px; line-height: 16px; text-transform: uppercase; font-size: 12px; color: rgb(153, 153, 153);"
+            <div
+              class="rc-editable-input"
             >
-              b
-            </label>
+              <input
+                class="rc-editable-input__input"
+                id="rc-editable-input-8"
+                spellcheck="false"
+                value="77"
+              />
+              <label
+                class="rc-editable-input__label"
+                for="rc-editable-input-8"
+              >
+                b
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -1088,104 +1456,112 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
 
 exports[`CompactColor renders correctly 1`] = `
 <DocumentFragment>
-  <span>
-    <div
-      class="rc-swatch"
-      style="width: 15px; height: 15px; float: left; margin-right: 5px; margin-bottom: 5px; position: relative; cursor: pointer;"
-      tabindex="0"
-    >
+  <div
+    class="rc-compact__swatch"
+  >
+    <span>
       <div
-        style="position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; background: rgb(255, 255, 255); -webkit-border-radius: 50%; border-radius: 50%; opacity: 0;"
-      />
-    </div>
-  </span>
+        class="rc-swatch"
+        tabindex="0"
+      >
+        <div
+          class="rc-compact__dot"
+          style="background: rgb(255, 255, 255);"
+        />
+      </div>
+    </span>
+  </div>
 </DocumentFragment>
 `;
 
 exports[`CompactFields renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="flexbox-fix"
-    style="display: flex; padding-bottom: 6px; padding-right: 5px; position: relative;"
+    class="rc-compact__fields"
   >
     <div
-      style="position: absolute; top: 6px; left: 5px; height: 9px; width: 9px; background: rgb(255, 0, 0);"
+      class="rc-compact__active"
+      style="background: rgb(255, 0, 0);"
     />
     <div
-      class="rc-editable-input"
-      style="flex: 6 1 0%; position: relative;"
+      class="rc-compact__field rc-compact--hex"
     >
-      <input
-        class="rc-editable-input__input"
-        id="rc-editable-input-17"
-        spellcheck="false"
-        style="width: 80%; padding: 0px 0px 0px 20%; border: medium; outline: none; background: none; font-size: 12px; color: rgb(51, 51, 51); height: 16px;"
-        value="#FF0000"
-      />
-      <label
-        class="rc-editable-input__label"
-        for="rc-editable-input-17"
-        style="display: none;"
+      <div
+        class="rc-editable-input"
       >
-        hex
-      </label>
+        <input
+          class="rc-editable-input__input"
+          id="rc-editable-input-17"
+          spellcheck="false"
+          value="#FF0000"
+        />
+        <label
+          class="rc-editable-input__label"
+          for="rc-editable-input-17"
+        >
+          hex
+        </label>
+      </div>
     </div>
     <div
-      class="rc-editable-input"
-      style="flex: 3 1 0%; position: relative;"
+      class="rc-compact__field rc-compact--rgb"
     >
-      <input
-        class="rc-editable-input__input"
-        id="rc-editable-input-18"
-        spellcheck="false"
-        style="width: 70%; padding: 0px 0px 0px 30%; border: medium; outline: none; background: none; font-size: 12px; color: rgb(51, 51, 51); height: 16px;"
-        value="255"
-      />
-      <label
-        class="rc-editable-input__label"
-        for="rc-editable-input-18"
-        style="position: absolute; top: 3px; left: 0px; line-height: 16px; text-transform: uppercase; font-size: 12px; color: rgb(153, 153, 153);"
+      <div
+        class="rc-editable-input"
       >
-        r
-      </label>
+        <input
+          class="rc-editable-input__input"
+          id="rc-editable-input-18"
+          spellcheck="false"
+          value="255"
+        />
+        <label
+          class="rc-editable-input__label"
+          for="rc-editable-input-18"
+        >
+          r
+        </label>
+      </div>
     </div>
     <div
-      class="rc-editable-input"
-      style="flex: 3 1 0%; position: relative;"
+      class="rc-compact__field rc-compact--rgb"
     >
-      <input
-        class="rc-editable-input__input"
-        id="rc-editable-input-19"
-        spellcheck="false"
-        style="width: 70%; padding: 0px 0px 0px 30%; border: medium; outline: none; background: none; font-size: 12px; color: rgb(51, 51, 51); height: 16px;"
-        value="0"
-      />
-      <label
-        class="rc-editable-input__label"
-        for="rc-editable-input-19"
-        style="position: absolute; top: 3px; left: 0px; line-height: 16px; text-transform: uppercase; font-size: 12px; color: rgb(153, 153, 153);"
+      <div
+        class="rc-editable-input"
       >
-        g
-      </label>
+        <input
+          class="rc-editable-input__input"
+          id="rc-editable-input-19"
+          spellcheck="false"
+          value="0"
+        />
+        <label
+          class="rc-editable-input__label"
+          for="rc-editable-input-19"
+        >
+          g
+        </label>
+      </div>
     </div>
     <div
-      class="rc-editable-input"
-      style="flex: 3 1 0%; position: relative;"
+      class="rc-compact__field rc-compact--rgb"
     >
-      <input
-        class="rc-editable-input__input"
-        id="rc-editable-input-20"
-        spellcheck="false"
-        style="width: 70%; padding: 0px 0px 0px 30%; border: medium; outline: none; background: none; font-size: 12px; color: rgb(51, 51, 51); height: 16px;"
-        value="0"
-      />
-      <label
-        class="rc-editable-input__label"
-        for="rc-editable-input-20"
-        style="position: absolute; top: 3px; left: 0px; line-height: 16px; text-transform: uppercase; font-size: 12px; color: rgb(153, 153, 153);"
+      <div
+        class="rc-editable-input"
       >
-        b
-      </label>
+        <input
+          class="rc-editable-input__input"
+          id="rc-editable-input-20"
+          spellcheck="false"
+          value="0"
+        />
+        <label
+          class="rc-editable-input__label"
+          for="rc-editable-input-20"
+        >
+          b
+        </label>
+      </div>
     </div>
   </div>
 </DocumentFragment>

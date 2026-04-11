@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import reactCSS from 'reactcss';
 import * as color from '../../helpers/color';
 import isUndefined from 'lodash/isUndefined';
 
 import { EditableInput } from '../common';
+import { getPickerClassName } from '../common/styleArchitecture';
 import UnfoldMoreHorizontalIcon from '../common/icons/UnfoldMoreHorizontalIcon';
 import type { ReactNode } from 'react';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '../../types';
@@ -99,172 +99,62 @@ export const ChromeFields = (props: ChromeFieldsProps) => {
     }
   };
 
-  const styles = reactCSS(
-    {
-      default: {
-        wrap: {
-          paddingTop: '16px',
-          display: 'flex',
-        },
-        fields: {
-          flex: '1',
-          display: 'flex',
-          marginLeft: '-6px',
-        },
-        field: {
-          paddingLeft: '6px',
-          width: '100%',
-        },
-        alpha: {
-          paddingLeft: '6px',
-          width: '100%',
-        },
-        toggle: {
-          width: '32px',
-          textAlign: 'right',
-          position: 'relative',
-        },
-        icon: {
-          marginRight: '-4px',
-          marginTop: '12px',
-          cursor: 'pointer',
-          position: 'relative',
-        },
-        input: {
-          fontSize: '11px',
-          color: '#333',
-          width: '100%',
-          borderRadius: '2px',
-          border: 'none',
-          boxShadow: 'inset 0 0 0 1px #dadada',
-          height: '21px',
-          textAlign: 'center',
-        },
-        label: {
-          textTransform: 'uppercase',
-          fontSize: '11px',
-          lineHeight: '11px',
-          color: '#969696',
-          textAlign: 'center',
-          display: 'block',
-          marginTop: '12px',
-        },
-        svg: {
-          fill: '#333',
-          width: '24px',
-          height: '24px',
-          border: '1px transparent solid',
-          borderRadius: '5px',
-        },
-      },
-      disableAlpha: {
-        alpha: {
-          display: 'none',
-        },
-      },
-    },
-    props,
-    { view: resolvedView },
+  const renderField = (label: string, value: string | number, fieldModifier?: string, arrowOffset?: number) => (
+    <div
+      className={getPickerClassName({
+        block: 'chrome',
+        slot: 'field',
+        modifiers: [fieldModifier],
+      })}
+    >
+      <EditableInput
+        label={label}
+        value={value}
+        arrowOffset={arrowOffset}
+        onChange={(nextValue, event) => handleChange(nextValue as ColorChangeValue, event)}
+      />
+    </div>
   );
 
   let fields: ReactNode;
   if (resolvedView === 'hex') {
     fields = (
-      <div style={styles.fields} className="flexbox-fix">
-        <div style={styles.field}>
-          <EditableInput
-            style={{ input: styles.input, label: styles.label }}
-            label="hex"
-            value={props.hex}
-            onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          />
-        </div>
+      <div className={getPickerClassName({ block: 'chrome', slot: 'fields-grid', className: 'flexbox-fix' })}>
+        {renderField('hex', props.hex)}
       </div>
     );
   } else if (resolvedView === 'rgb') {
     fields = (
-      <div style={styles.fields} className="flexbox-fix">
-        <div style={styles.field}>
-          <EditableInput
-            style={{ input: styles.input, label: styles.label }}
-            label="r"
-            value={props.rgb.r}
-            onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          />
-        </div>
-        <div style={styles.field}>
-          <EditableInput
-            style={{ input: styles.input, label: styles.label }}
-            label="g"
-            value={props.rgb.g}
-            onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          />
-        </div>
-        <div style={styles.field}>
-          <EditableInput
-            style={{ input: styles.input, label: styles.label }}
-            label="b"
-            value={props.rgb.b}
-            onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          />
-        </div>
-        <div style={styles.alpha}>
-          <EditableInput
-            style={{ input: styles.input, label: styles.label }}
-            label="a"
-            value={props.rgb.a}
-            arrowOffset={0.01}
-            onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          />
-        </div>
+      <div className={getPickerClassName({ block: 'chrome', slot: 'fields-grid', className: 'flexbox-fix' })}>
+        {renderField('r', props.rgb.r)}
+        {renderField('g', props.rgb.g)}
+        {renderField('b', props.rgb.b)}
+        {renderField('a', props.rgb.a, 'alpha', 0.01)}
       </div>
     );
   } else {
     fields = (
-      <div style={styles.fields} className="flexbox-fix">
-        <div style={styles.field}>
-          <EditableInput
-            style={{ input: styles.input, label: styles.label }}
-            label="h"
-            value={Math.round(props.hsl.h)}
-            onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          />
-        </div>
-        <div style={styles.field}>
-          <EditableInput
-            style={{ input: styles.input, label: styles.label }}
-            label="s"
-            value={`${Math.round(props.hsl.s * 100)}%`}
-            onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          />
-        </div>
-        <div style={styles.field}>
-          <EditableInput
-            style={{ input: styles.input, label: styles.label }}
-            label="l"
-            value={`${Math.round(props.hsl.l * 100)}%`}
-            onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          />
-        </div>
-        <div style={styles.alpha}>
-          <EditableInput
-            style={{ input: styles.input, label: styles.label }}
-            label="a"
-            value={props.hsl.a}
-            arrowOffset={0.01}
-            onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
-          />
-        </div>
+      <div className={getPickerClassName({ block: 'chrome', slot: 'fields-grid', className: 'flexbox-fix' })}>
+        {renderField('h', Math.round(props.hsl.h))}
+        {renderField('s', `${Math.round(props.hsl.s * 100)}%`)}
+        {renderField('l', `${Math.round(props.hsl.l * 100)}%`)}
+        {renderField('a', props.hsl.a, 'alpha', 0.01)}
       </div>
     );
   }
 
   return (
-    <div style={styles.wrap} className="flexbox-fix">
+    <div
+      className={getPickerClassName({
+        block: 'chrome',
+        slot: 'fields',
+        modifiers: [props.disableAlpha && 'disabled-alpha', resolvedView],
+      })}
+    >
       {fields}
-      <div style={styles.toggle}>
-        <div style={styles.icon} onClick={toggleViews}>
-          <UnfoldMoreHorizontalIcon style={styles.svg} />
+      <div className={getPickerClassName({ block: 'chrome', slot: 'toggle' })}>
+        <div onClick={toggleViews} className={getPickerClassName({ block: 'chrome', slot: 'toggle-icon' })}>
+          <UnfoldMoreHorizontalIcon />
         </div>
       </div>
     </div>

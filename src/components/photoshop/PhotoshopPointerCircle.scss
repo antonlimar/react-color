@@ -1,0 +1,11 @@
+.rc-photoshop__pointer-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px #fff;
+  transform: translate(-6px, -6px);
+}
+
+.rc-photoshop__pointer-circle.rc-photoshop--black-outline {
+  box-shadow: inset 0 0 0 1px #000;
+}

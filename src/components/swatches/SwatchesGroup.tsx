@@ -1,9 +1,9 @@
-import reactCSS from 'reactcss';
 import map from 'lodash/map';
 
 import SwatchesColor from './SwatchesColor';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { SwatchHoverHandler } from '../../types';
+import { getPickerClassName } from '../common/styleArchitecture';
 
 type SwatchesGroupProps = {
   onClick: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
@@ -13,19 +13,8 @@ type SwatchesGroupProps = {
 };
 
 export const SwatchesGroup = ({ onClick, onSwatchHover, group, active }: SwatchesGroupProps) => {
-  const styles = reactCSS({
-    default: {
-      group: {
-        paddingBottom: '10px',
-        width: '40px',
-        float: 'left',
-        marginRight: '10px',
-      },
-    },
-  });
-
   return (
-    <div style={styles.group}>
+    <div className={getPickerClassName({ block: 'swatches', slot: 'group' })}>
       {map(group, (colorValue: string, index: number | string) => (
         <SwatchesColor
           key={colorValue}

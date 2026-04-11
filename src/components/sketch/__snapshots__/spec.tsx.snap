@@ -106,11 +106,10 @@ exports[`Sketch renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="flexbox-fix"
-      style="display: flex; padding-top: 4px;"
+      class="rc-sketch__fields"
     >
       <div
-        style="flex: 2 1 0%;"
+        class="rc-sketch__field rc-sketch--double"
       >
         <div
           class="rc-editable-input"
@@ -119,20 +118,18 @@ exports[`Sketch renders correctly 1`] = `
             class="rc-editable-input__input"
             id="rc-editable-input-1"
             spellcheck="false"
-            style="width: 80%; padding: 4px 10% 3px; border: medium; -webkit-box-shadow: inset 0 0 0 1px #ccc; box-shadow: inset 0 0 0 1px #ccc; font-size: 11px;"
             value="22194D"
           />
           <label
             class="rc-editable-input__label"
             for="rc-editable-input-1"
-            style="display: block; text-align: center; font-size: 11px; color: rgb(34, 34, 34); padding-top: 3px; padding-bottom: 4px; text-transform: capitalize;"
           >
             hex
           </label>
         </div>
       </div>
       <div
-        style="flex: 1 1 0%; padding-left: 6px;"
+        class="rc-sketch__field rc-sketch--single"
       >
         <div
           class="rc-editable-input rc-editable-input--drag-label"
@@ -141,20 +138,18 @@ exports[`Sketch renders correctly 1`] = `
             class="rc-editable-input__input"
             id="rc-editable-input-2"
             spellcheck="false"
-            style="width: 80%; padding: 4px 10% 3px; border: medium; -webkit-box-shadow: inset 0 0 0 1px #ccc; box-shadow: inset 0 0 0 1px #ccc; font-size: 11px;"
             value="34"
           />
           <label
             class="rc-editable-input__label rc-editable-input--drag-label"
             for="rc-editable-input-2"
-            style="display: block; text-align: center; font-size: 11px; color: rgb(34, 34, 34); padding-top: 3px; padding-bottom: 4px; text-transform: capitalize;"
           >
             r
           </label>
         </div>
       </div>
       <div
-        style="flex: 1 1 0%; padding-left: 6px;"
+        class="rc-sketch__field rc-sketch--single"
       >
         <div
           class="rc-editable-input rc-editable-input--drag-label"
@@ -163,20 +158,18 @@ exports[`Sketch renders correctly 1`] = `
             class="rc-editable-input__input"
             id="rc-editable-input-3"
             spellcheck="false"
-            style="width: 80%; padding: 4px 10% 3px; border: medium; -webkit-box-shadow: inset 0 0 0 1px #ccc; box-shadow: inset 0 0 0 1px #ccc; font-size: 11px;"
             value="25"
           />
           <label
             class="rc-editable-input__label rc-editable-input--drag-label"
             for="rc-editable-input-3"
-            style="display: block; text-align: center; font-size: 11px; color: rgb(34, 34, 34); padding-top: 3px; padding-bottom: 4px; text-transform: capitalize;"
           >
             g
           </label>
         </div>
       </div>
       <div
-        style="flex: 1 1 0%; padding-left: 6px;"
+        class="rc-sketch__field rc-sketch--single"
       >
         <div
           class="rc-editable-input rc-editable-input--drag-label"
@@ -185,20 +178,18 @@ exports[`Sketch renders correctly 1`] = `
             class="rc-editable-input__input"
             id="rc-editable-input-4"
             spellcheck="false"
-            style="width: 80%; padding: 4px 10% 3px; border: medium; -webkit-box-shadow: inset 0 0 0 1px #ccc; box-shadow: inset 0 0 0 1px #ccc; font-size: 11px;"
             value="77"
           />
           <label
             class="rc-editable-input__label rc-editable-input--drag-label"
             for="rc-editable-input-4"
-            style="display: block; text-align: center; font-size: 11px; color: rgb(34, 34, 34); padding-top: 3px; padding-bottom: 4px; text-transform: capitalize;"
           >
             b
           </label>
         </div>
       </div>
       <div
-        style="flex: 1 1 0%; padding-left: 6px;"
+        class="rc-sketch__field rc-sketch--alpha"
       >
         <div
           class="rc-editable-input rc-editable-input--drag-label"
@@ -207,13 +198,11 @@ exports[`Sketch renders correctly 1`] = `
             class="rc-editable-input__input"
             id="rc-editable-input-5"
             spellcheck="false"
-            style="width: 80%; padding: 4px 10% 3px; border: medium; -webkit-box-shadow: inset 0 0 0 1px #ccc; box-shadow: inset 0 0 0 1px #ccc; font-size: 11px;"
             value="100"
           />
           <label
             class="rc-editable-input__label rc-editable-input--drag-label"
             for="rc-editable-input-5"
-            style="display: block; text-align: center; font-size: 11px; color: rgb(34, 34, 34); padding-top: 3px; padding-bottom: 4px; text-transform: capitalize;"
           >
             a
           </label>
@@ -221,184 +210,183 @@ exports[`Sketch renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="flexbox-fix"
-      style="margin: 0px -10px; padding: 10px 0px 0px 10px; border-top: 1px solid rgb(238, 238, 238); display: flex; flex-wrap: wrap; position: relative;"
+      class="rc-sketch__preset-colors"
     >
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(208, 2, 27); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(208, 2, 27); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#D0021B"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(245, 166, 35); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(245, 166, 35); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#F5A623"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(248, 231, 28); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(248, 231, 28); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#F8E71C"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(139, 87, 42); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(139, 87, 42); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#8B572A"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(126, 211, 33); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(126, 211, 33); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#7ED321"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(65, 117, 5); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(65, 117, 5); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#417505"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(189, 16, 224); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(189, 16, 224); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#BD10E0"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(144, 19, 254); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(144, 19, 254); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#9013FE"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(74, 144, 226); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(74, 144, 226); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#4A90E2"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(80, 227, 194); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(80, 227, 194); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#50E3C2"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(184, 233, 134); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(184, 233, 134); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#B8E986"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(0, 0, 0); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(0, 0, 0); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#000000"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(74, 74, 74); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(74, 74, 74); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#4A4A4A"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(155, 155, 155); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(155, 155, 155); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#9B9B9B"
           />
         </span>
       </div>
       <div
-        style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+        class="rc-sketch__preset-swatch"
       >
         <span>
           <div
             class="rc-swatch"
-            style="background: rgb(255, 255, 255); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            style="background: rgb(255, 255, 255); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#FFFFFF"
           />
@@ -412,11 +400,10 @@ exports[`Sketch renders correctly 1`] = `
 exports[`SketchFields renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="flexbox-fix"
-    style="display: flex; padding-top: 4px;"
+    class="rc-sketch__fields"
   >
     <div
-      style="flex: 2 1 0%;"
+      class="rc-sketch__field rc-sketch--double"
     >
       <div
         class="rc-editable-input"
@@ -425,20 +412,18 @@ exports[`SketchFields renders correctly 1`] = `
           class="rc-editable-input__input"
           id="rc-editable-input-26"
           spellcheck="false"
-          style="width: 80%; padding: 4px 10% 3px; border: medium; -webkit-box-shadow: inset 0 0 0 1px #ccc; box-shadow: inset 0 0 0 1px #ccc; font-size: 11px;"
           value="FF0000"
         />
         <label
           class="rc-editable-input__label"
           for="rc-editable-input-26"
-          style="display: block; text-align: center; font-size: 11px; color: rgb(34, 34, 34); padding-top: 3px; padding-bottom: 4px; text-transform: capitalize;"
         >
           hex
         </label>
       </div>
     </div>
     <div
-      style="flex: 1 1 0%; padding-left: 6px;"
+      class="rc-sketch__field rc-sketch--single"
     >
       <div
         class="rc-editable-input rc-editable-input--drag-label"
@@ -447,20 +432,18 @@ exports[`SketchFields renders correctly 1`] = `
           class="rc-editable-input__input"
           id="rc-editable-input-27"
           spellcheck="false"
-          style="width: 80%; padding: 4px 10% 3px; border: medium; -webkit-box-shadow: inset 0 0 0 1px #ccc; box-shadow: inset 0 0 0 1px #ccc; font-size: 11px;"
           value="255"
         />
         <label
           class="rc-editable-input__label rc-editable-input--drag-label"
           for="rc-editable-input-27"
-          style="display: block; text-align: center; font-size: 11px; color: rgb(34, 34, 34); padding-top: 3px; padding-bottom: 4px; text-transform: capitalize;"
         >
           r
         </label>
       </div>
     </div>
     <div
-      style="flex: 1 1 0%; padding-left: 6px;"
+      class="rc-sketch__field rc-sketch--single"
     >
       <div
         class="rc-editable-input rc-editable-input--drag-label"
@@ -469,20 +452,18 @@ exports[`SketchFields renders correctly 1`] = `
           class="rc-editable-input__input"
           id="rc-editable-input-28"
           spellcheck="false"
-          style="width: 80%; padding: 4px 10% 3px; border: medium; -webkit-box-shadow: inset 0 0 0 1px #ccc; box-shadow: inset 0 0 0 1px #ccc; font-size: 11px;"
           value="0"
         />
         <label
           class="rc-editable-input__label rc-editable-input--drag-label"
           for="rc-editable-input-28"
-          style="display: block; text-align: center; font-size: 11px; color: rgb(34, 34, 34); padding-top: 3px; padding-bottom: 4px; text-transform: capitalize;"
         >
           g
         </label>
       </div>
     </div>
     <div
-      style="flex: 1 1 0%; padding-left: 6px;"
+      class="rc-sketch__field rc-sketch--single"
     >
       <div
         class="rc-editable-input rc-editable-input--drag-label"
@@ -491,20 +472,18 @@ exports[`SketchFields renders correctly 1`] = `
           class="rc-editable-input__input"
           id="rc-editable-input-29"
           spellcheck="false"
-          style="width: 80%; padding: 4px 10% 3px; border: medium; -webkit-box-shadow: inset 0 0 0 1px #ccc; box-shadow: inset 0 0 0 1px #ccc; font-size: 11px;"
           value="0"
         />
         <label
           class="rc-editable-input__label rc-editable-input--drag-label"
           for="rc-editable-input-29"
-          style="display: block; text-align: center; font-size: 11px; color: rgb(34, 34, 34); padding-top: 3px; padding-bottom: 4px; text-transform: capitalize;"
         >
           b
         </label>
       </div>
     </div>
     <div
-      style="flex: 1 1 0%; padding-left: 6px;"
+      class="rc-sketch__field rc-sketch--alpha"
     >
       <div
         class="rc-editable-input rc-editable-input--drag-label"
@@ -513,13 +492,11 @@ exports[`SketchFields renders correctly 1`] = `
           class="rc-editable-input__input"
           id="rc-editable-input-30"
           spellcheck="false"
-          style="width: 80%; padding: 4px 10% 3px; border: medium; -webkit-box-shadow: inset 0 0 0 1px #ccc; box-shadow: inset 0 0 0 1px #ccc; font-size: 11px;"
           value="100"
         />
         <label
           class="rc-editable-input__label rc-editable-input--drag-label"
           for="rc-editable-input-30"
-          style="display: block; text-align: center; font-size: 11px; color: rgb(34, 34, 34); padding-top: 3px; padding-bottom: 4px; text-transform: capitalize;"
         >
           a
         </label>
@@ -532,40 +509,39 @@ exports[`SketchFields renders correctly 1`] = `
 exports[`SketchPresetColors renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="flexbox-fix"
-    style="margin: 0px -10px; padding: 10px 0px 0px 10px; border-top: 1px solid rgb(238, 238, 238); display: flex; flex-wrap: wrap; position: relative;"
+    class="rc-sketch__preset-colors"
   >
     <div
-      style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+      class="rc-sketch__preset-swatch"
     >
       <span>
         <div
           class="rc-swatch"
-          style="background: rgb(255, 255, 255); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+          style="background: rgb(255, 255, 255); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="#fff"
         />
       </span>
     </div>
     <div
-      style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+      class="rc-sketch__preset-swatch"
     >
       <span>
         <div
           class="rc-swatch"
-          style="background: rgb(153, 153, 153); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+          style="background: rgb(153, 153, 153); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="#999"
         />
       </span>
     </div>
     <div
-      style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+      class="rc-sketch__preset-swatch"
     >
       <span>
         <div
           class="rc-swatch"
-          style="background: rgb(0, 0, 0); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+          style="background: rgb(0, 0, 0); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="#000"
         />
@@ -578,52 +554,51 @@ exports[`SketchPresetColors renders correctly 1`] = `
 exports[`SketchPresetColors with custom titles renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="flexbox-fix"
-    style="margin: 0px -10px; padding: 10px 0px 0px 10px; border-top: 1px solid rgb(238, 238, 238); display: flex; flex-wrap: wrap; position: relative;"
+    class="rc-sketch__preset-colors"
   >
     <div
-      style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+      class="rc-sketch__preset-swatch"
     >
       <span>
         <div
           class="rc-swatch"
-          style="background: rgb(255, 255, 255); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+          style="background: rgb(255, 255, 255); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="white"
         />
       </span>
     </div>
     <div
-      style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+      class="rc-sketch__preset-swatch"
     >
       <span>
         <div
           class="rc-swatch"
-          style="background: rgb(153, 153, 153); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+          style="background: rgb(153, 153, 153); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="gray"
         />
       </span>
     </div>
     <div
-      style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+      class="rc-sketch__preset-swatch"
     >
       <span>
         <div
           class="rc-swatch"
-          style="background: rgb(0, 0, 0); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+          style="background: rgb(0, 0, 0); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="#000"
         />
       </span>
     </div>
     <div
-      style="width: 16px; height: 16px; margin: 0px 10px 10px 0px;"
+      class="rc-sketch__preset-swatch"
     >
       <span>
         <div
           class="rc-swatch"
-          style="background: rgb(255, 0, 0); -webkit-border-radius: 3px; border-radius: 3px; -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+          style="background: rgb(255, 0, 0); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="#f00"
         />

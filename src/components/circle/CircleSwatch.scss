@@ -1,0 +1,14 @@
+.rc-circle__swatch {
+  transform: scale(1);
+  transition: transform 100ms ease;
+}
+
+.rc-circle__swatch:hover,
+.rc-circle__swatch:focus-within,
+.rc-circle__swatch.rc-circle--hover {
+  transform: scale(1.2);
+}
+
+.rc-circle__swatch .rc-swatch {
+  transition: box-shadow 100ms ease;
+}

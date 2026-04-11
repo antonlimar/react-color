@@ -1,5 +1,6 @@
-import reactCSS from 'reactcss';
+import type { CSSProperties } from 'react';
 import type { RGBAColor } from '../../types';
+import { getPickerClassName } from '../common/styleArchitecture';
 
 type PhotoshopPreviewsProps = {
   rgb: RGBAColor;
@@ -7,40 +8,27 @@ type PhotoshopPreviewsProps = {
 };
 
 export const PhotoshopPreviews = ({ rgb, currentColor }: PhotoshopPreviewsProps) => {
-  const styles = reactCSS({
-    default: {
-      swatches: {
-        border: '1px solid #B3B3B3',
-        borderBottom: '1px solid #F0F0F0',
-        marginBottom: '2px',
-        marginTop: '1px',
-      },
-      new: {
-        height: '34px',
-        background: `rgb(${rgb.r},${rgb.g}, ${rgb.b})`,
-        boxShadow: 'inset 1px 0 0 #000, inset -1px 0 0 #000, inset 0 1px 0 #000',
-      },
-      current: {
-        height: '34px',
-        background: currentColor,
-        boxShadow: 'inset 1px 0 0 #000, inset -1px 0 0 #000, inset 0 -1px 0 #000',
-      },
-      label: {
-        fontSize: '14px',
-        color: '#000',
-        textAlign: 'center',
-      },
-    },
-  });
+  const nextColorStyle: CSSProperties = {
+    background: `rgb(${rgb.r},${rgb.g}, ${rgb.b})`,
+  };
+  const currentColorStyle: CSSProperties = {
+    background: currentColor,
+  };
 
   return (
-    <div>
-      <div style={styles.label}>new</div>
-      <div style={styles.swatches}>
-        <div style={styles.new} />
-        <div style={styles.current} />
+    <div className={getPickerClassName({ block: 'photoshop', slot: 'previews' })}>
+      <div className={getPickerClassName({ block: 'photoshop', slot: 'preview-label' })}>new</div>
+      <div className={getPickerClassName({ block: 'photoshop', slot: 'preview-swatches' })}>
+        <div
+          className={getPickerClassName({ block: 'photoshop', slot: 'preview-swatch', modifiers: ['new'] })}
+          style={nextColorStyle}
+        />
+        <div
+          className={getPickerClassName({ block: 'photoshop', slot: 'preview-swatch', modifiers: ['current'] })}
+          style={currentColorStyle}
+        />
       </div>
-      <div style={styles.label}>current</div>
+      <div className={getPickerClassName({ block: 'photoshop', slot: 'preview-label' })}>current</div>
     </div>
   );
 };
