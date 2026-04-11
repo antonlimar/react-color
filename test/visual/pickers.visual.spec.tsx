@@ -44,11 +44,53 @@ const themedVisualCases: Array<{
   frameBackground: string;
 }> = [
   {
+    groupName: 'block',
+    storyName: 'BlockPicker',
+    screenshotName: 'block/BlockPicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#111827',
+  },
+  {
     groupName: 'chrome',
     storyName: 'ChromePicker',
     screenshotName: 'chrome/ChromePicker-dark',
     args: { theme: 'dark' },
     frameBackground: '#0f1720',
+  },
+  {
+    groupName: 'circle',
+    storyName: 'CirclePicker',
+    screenshotName: 'circle/CirclePicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#111827',
+  },
+  {
+    groupName: 'compact',
+    storyName: 'CompactPicker',
+    screenshotName: 'compact/CompactPicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#111827',
+  },
+  {
+    groupName: 'github',
+    storyName: 'GithubPicker',
+    screenshotName: 'github/GithubPicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#0f1720',
+  },
+  {
+    groupName: 'google',
+    storyName: 'GooglePicker',
+    screenshotName: 'google/GooglePicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#111827',
+  },
+  {
+    groupName: 'material',
+    storyName: 'MaterialPicker',
+    screenshotName: 'material/MaterialPicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#111827',
   },
   {
     groupName: 'sketch',
@@ -63,6 +105,20 @@ const themedVisualCases: Array<{
     screenshotName: 'photoshop/PhotoshopPicker-dark',
     args: { theme: 'dark' },
     frameBackground: '#0b1220',
+  },
+  {
+    groupName: 'swatches',
+    storyName: 'SwatchesPicker',
+    screenshotName: 'swatches/SwatchesPicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#111827',
+  },
+  {
+    groupName: 'twitter',
+    storyName: 'TwitterPicker',
+    screenshotName: 'twitter/TwitterPicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#111827',
   },
 ];
 
