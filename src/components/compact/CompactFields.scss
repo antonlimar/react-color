@@ -33,7 +33,7 @@
   outline: none;
   background: none;
   font-size: 12px;
-  color: #333;
+  color: var(--rc-picker-text, #333);
 }
 
 .rc-compact__field.rc-compact--hex .rc-editable-input__label {
@@ -48,7 +48,7 @@
   outline: none;
   background: none;
   font-size: 12px;
-  color: #333;
+  color: var(--rc-picker-text, #333);
 }
 
 .rc-compact__field.rc-compact--rgb .rc-editable-input__label {
@@ -58,5 +58,5 @@
   line-height: 16px;
   text-transform: uppercase;
   font-size: 12px;
-  color: #999;
+  color: var(--rc-picker-text-subtle, #999);
 }

@@ -5,10 +5,11 @@
   display: flex;
   flex-wrap: wrap;
   padding: 5px;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: var(--rc-picker-surface, #fff);
+  border: 1px solid var(--rc-picker-border, rgba(0, 0, 0, 0.2));
   border-radius: 4px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--rc-picker-shadow-popover, 0 3px 12px rgba(0, 0, 0, 0.15));
+  color: var(--rc-picker-text, #333);
 }
 
 .rc-github__triangle,
@@ -23,13 +24,13 @@
 .rc-github__triangle {
   border-width: 7px;
   border-color: transparent;
-  border-bottom-color: #fff;
+  border-bottom-color: var(--rc-picker-triangle-surface, #fff);
 }
 
 .rc-github__triangle-shadow {
   border-width: 8px;
   border-color: transparent;
-  border-bottom-color: rgba(0, 0, 0, 0.15);
+  border-bottom-color: var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.15));
 }
 
 .rc-github.rc-github--hide-triangle .rc-github__triangle,

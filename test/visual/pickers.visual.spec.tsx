@@ -1,4 +1,5 @@
-import type { ReactElement } from 'react';
+import { createElement } from 'react';
+import type { ComponentType, ReactElement } from 'react';
 import { render } from '@testing-library/react';
 import { composeStories } from '@storybook/react-vite';
 import { describe, expect, test } from 'vitest';
@@ -15,7 +16,8 @@ import * as sketchStories from '../../src/components/sketch/story';
 import * as swatchesStories from '../../src/components/swatches/story';
 import * as twitterStories from '../../src/components/twitter/story';
 
-type VisualStoryComponent = () => ReactElement;
+type VisualStoryComponent = ComponentType<Record<string, unknown>>;
+type VisualStoryArgs = Record<string, unknown>;
 
 const composePickerStories = (storiesModule: unknown) =>
   composeStories(storiesModule as never) as Record<string, VisualStoryComponent>;
@@ -34,13 +36,43 @@ const storyGroups = [
   ['twitter', composePickerStories(twitterStories)],
 ] as const;
 
-const renderStoryFrame = (story: ReactElement) => {
+const themedVisualCases: Array<{
+  groupName: string;
+  storyName: string;
+  screenshotName: string;
+  args: VisualStoryArgs;
+  frameBackground: string;
+}> = [
+  {
+    groupName: 'chrome',
+    storyName: 'ChromePicker',
+    screenshotName: 'chrome/ChromePicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#0f1720',
+  },
+  {
+    groupName: 'sketch',
+    storyName: 'SketchPicker',
+    screenshotName: 'sketch/SketchPicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#111827',
+  },
+  {
+    groupName: 'photoshop',
+    storyName: 'PhotoshopPicker',
+    screenshotName: 'photoshop/PhotoshopPicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#0b1220',
+  },
+];
+
+const renderStoryFrame = (story: ReactElement, frameBackground = '#f6f7f9') => {
   return render(
     <div
       data-testid="visual-story-frame"
       style={{
         padding: '24px',
-        background: '#f6f7f9',
+        background: frameBackground,
         display: 'inline-block',
       }}
     >
@@ -63,5 +95,27 @@ describe('picker visual snapshots', () => {
         await browserExpect.element(getByTestId('visual-story-frame')).toMatchScreenshot(`${groupName}/${storyName}`);
       });
     }
+  }
+
+  for (const visualCase of themedVisualCases) {
+    test(visualCase.screenshotName, async () => {
+      const stories = storyGroups.find(([groupName]) => groupName === visualCase.groupName)?.[1];
+
+      expect(stories).toBeTruthy();
+      const Story = stories?.[visualCase.storyName];
+      expect(Story).toBeTruthy();
+      if (!Story) {
+        throw new Error(`Expected visual story ${visualCase.screenshotName} to exist`);
+      }
+
+      const { getByTestId } = renderStoryFrame(createElement(Story, visualCase.args), visualCase.frameBackground);
+      const browserExpect = expect as typeof expect & {
+        element: (target: HTMLElement) => {
+          toMatchScreenshot: (name: string) => Promise<void>;
+        };
+      };
+
+      await browserExpect.element(getByTestId('visual-story-frame')).toMatchScreenshot(visualCase.screenshotName);
+    });
   }
 });

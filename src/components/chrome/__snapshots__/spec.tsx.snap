@@ -164,6 +164,170 @@ exports[`Chrome renders correctly 1`] = `
 </DocumentFragment>
 `;
 
+exports[`Chrome renders correctly in dark theme 1`] = `
+<DocumentFragment>
+  <div
+    class="rc-chrome rc-chrome--dark chrome-picker"
+    style="width: 225px;"
+  >
+    <div
+      class="rc-chrome__saturation"
+    >
+      <div
+        class="rc-saturation"
+        style="background: rgb(43, 0, 255); border-radius: 2px 2px 0 0;"
+      >
+        <div
+          class="rc-saturation__white"
+          style="border-radius: 2px 2px 0 0; background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0));"
+        >
+          <div
+            class="rc-saturation__black"
+            style="border-radius: 2px 2px 0 0; background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));"
+          />
+          <div
+            class="rc-saturation__pointer"
+            style="top: 70%; left: 66.66666666666667%;"
+          >
+            <div
+              class="rc-chrome__pointer-circle"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="rc-chrome__body"
+    >
+      <div
+        class="rc-chrome__controls"
+      >
+        <div
+          class="rc-chrome__color"
+        >
+          <div
+            class="rc-chrome__swatch"
+          >
+            <div
+              class="rc-chrome__active"
+              style="background: rgb(34, 25, 77);"
+            />
+            <div
+              class="rc-checkboard"
+              style="background: url("null");"
+            />
+          </div>
+        </div>
+        <div
+          class="rc-chrome__toggles"
+        >
+          <div
+            class="rc-chrome__hue"
+          >
+            <div
+              class="rc-hue-control"
+              style="border-radius: 2px;"
+            >
+              <div
+                class="rc-hue-control__container"
+                style="border-radius: 2px; background: linear-gradient(to right, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0) 100%);"
+              >
+                <div
+                  class="rc-hue-control__pointer"
+                  style="left: 69.44444444444443%;"
+                >
+                  <div
+                    class="rc-chrome__pointer"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="rc-chrome__alpha"
+          >
+            <div
+              class="rc-alpha-control"
+              style="border-radius: 2px;"
+            >
+              <div
+                class="rc-alpha-control__checkboard"
+                style="border-radius: 2px;"
+              >
+                <div
+                  class="rc-checkboard"
+                  style="background: url("null");"
+                />
+              </div>
+              <div
+                class="rc-alpha-control__gradient"
+                style="background: linear-gradient(to right, rgba(34, 25, 77, 0) 0%, rgb(34, 25, 77) 100%); border-radius: 2px;"
+              />
+              <div
+                class="rc-alpha-control__container"
+              >
+                <div
+                  class="rc-alpha-control__pointer"
+                  style="left: 100%;"
+                >
+                  <div
+                    class="rc-chrome__pointer"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="rc-chrome__fields rc-chrome--hex"
+      >
+        <div
+          class="rc-chrome__fields-grid"
+        >
+          <div
+            class="rc-chrome__field"
+          >
+            <div
+              class="rc-editable-input"
+            >
+              <input
+                class="rc-editable-input__input"
+                id="rc-editable-input-2"
+                spellcheck="false"
+                value="#22194D"
+              />
+              <label
+                class="rc-editable-input__label"
+                for="rc-editable-input-2"
+              >
+                hex
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          class="rc-chrome__toggle"
+        >
+          <div
+            class="rc-chrome__toggle-icon"
+          >
+            <svg
+              style="fill: currentcolor; width: 24px; height: 24px;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`ChromeFields renders correctly 1`] = `
 <DocumentFragment>
   <div
@@ -180,13 +344,13 @@ exports[`ChromeFields renders correctly 1`] = `
         >
           <input
             class="rc-editable-input__input"
-            id="rc-editable-input-3"
+            id="rc-editable-input-4"
             spellcheck="false"
             value="#FF0000"
           />
           <label
             class="rc-editable-input__label"
-            for="rc-editable-input-3"
+            for="rc-editable-input-4"
           >
             hex
           </label>

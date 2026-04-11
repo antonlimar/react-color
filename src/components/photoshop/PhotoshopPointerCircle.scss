@@ -2,10 +2,10 @@
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  box-shadow: inset 0 0 0 1px #fff;
+  box-shadow: inset 0 0 0 1px var(--rc-picker-contrast-surface, #fff);
   transform: translate(-6px, -6px);
 }
 
 .rc-photoshop__pointer-circle.rc-photoshop--black-outline {
-  box-shadow: inset 0 0 0 1px #000;
+  box-shadow: inset 0 0 0 1px var(--rc-picker-contrast-shadow, #000);
 }

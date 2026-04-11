@@ -1,3 +1,6 @@
+@use './tokens' as tokens;
+
 @mixin rc-style-entry($name) {
   /*! react-color style entry: #{$name} */
+  @include tokens.rc-emit-theme-tokens;
 }

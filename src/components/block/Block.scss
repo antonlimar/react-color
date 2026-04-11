@@ -2,9 +2,10 @@
 
 .rc-block {
   position: relative;
-  background: #fff;
+  background: var(--rc-picker-surface, #fff);
   border-radius: 6px;
-  box-shadow: 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px var(--rc-picker-focus-outline, rgba(0, 0, 0, 0.1));
+  color: var(--rc-picker-text, #333);
 }
 
 .rc-block__triangle {
@@ -49,7 +50,8 @@
   border-radius: 4px;
   box-sizing: border-box;
   outline: none;
-  box-shadow: inset 0 0 0 1px #ddd;
+  background: var(--rc-picker-input-surface, #fff);
   font-size: 12px;
-  color: #666;
+  box-shadow: inset 0 0 0 1px var(--rc-picker-border, #ddd);
+  color: var(--rc-picker-text-muted, #666);
 }

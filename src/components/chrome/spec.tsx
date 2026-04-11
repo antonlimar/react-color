@@ -12,6 +12,10 @@ test('Chrome renders correctly', () => {
   renderForSnapshot(<Chrome {...color.red} />).expectSnapshot();
 });
 
+test('Chrome renders correctly in dark theme', () => {
+  renderForSnapshot(<Chrome {...color.red} theme="dark" />).expectSnapshot();
+});
+
 test('Chrome onChange events correctly', () => {
   const changeSpy = createColorChangeSpy(color);
   renderForSnapshot(<Chrome {...color.red} onChange={changeSpy} />);

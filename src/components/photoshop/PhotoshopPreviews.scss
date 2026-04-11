@@ -1,13 +1,13 @@
 .rc-photoshop__preview-label {
   font-size: 14px;
-  color: #000;
+  color: var(--rc-picker-text, #000);
   text-align: center;
 }
 
 .rc-photoshop__preview-swatches {
   margin: 1px 0 2px;
-  border: 1px solid #b3b3b3;
-  border-bottom-color: #f0f0f0;
+  border: 1px solid var(--rc-picker-border, #b3b3b3);
+  border-bottom-color: var(--rc-picker-border-contrast, #f0f0f0);
 }
 
 .rc-photoshop__preview-swatch {
@@ -16,14 +16,14 @@
 
 .rc-photoshop__preview-swatch.rc-photoshop--new {
   box-shadow:
-    inset 1px 0 0 #000,
-    inset -1px 0 0 #000,
-    inset 0 1px 0 #000;
+    inset 1px 0 0 var(--rc-picker-contrast-shadow, #000),
+    inset -1px 0 0 var(--rc-picker-contrast-shadow, #000),
+    inset 0 1px 0 var(--rc-picker-contrast-shadow, #000);
 }
 
 .rc-photoshop__preview-swatch.rc-photoshop--current {
   box-shadow:
-    inset 1px 0 0 #000,
-    inset -1px 0 0 #000,
-    inset 0 -1px 0 #000;
+    inset 1px 0 0 var(--rc-picker-contrast-shadow, #000),
+    inset -1px 0 0 var(--rc-picker-contrast-shadow, #000),
+    inset 0 -1px 0 var(--rc-picker-contrast-shadow, #000);
 }

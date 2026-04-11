@@ -34,10 +34,12 @@
   box-sizing: border-box;
   padding: 4px 10% 3px;
   text-align: center;
-  border: 1px solid #dadce0;
+  border: 1px solid var(--rc-picker-border, #dadce0);
   border-radius: 5px;
   outline: none;
+  background: var(--rc-picker-input-surface, #fff);
   font-size: 11px;
+  color: var(--rc-picker-text, #3c4043);
   text-transform: lowercase;
   font-family: Roboto, Arial, sans-serif;
 }
@@ -49,11 +51,11 @@
   right: 0;
   width: 35px;
   margin: 0 auto;
-  background: #fff;
+  background: var(--rc-picker-surface, #fff);
   text-align: center;
   text-transform: uppercase;
   font-size: 12px;
-  color: #3c4043;
+  color: var(--rc-picker-text, #3c4043);
   font-family: Roboto, Arial, sans-serif;
 }
 
@@ -66,10 +68,12 @@
   height: 38px;
   box-sizing: border-box;
   padding-left: 10px;
-  border: 1px solid #dadce0;
+  border: 1px solid var(--rc-picker-border, #dadce0);
   border-radius: 5px;
   outline: none;
+  background: var(--rc-picker-input-surface, #fff);
   font-size: 11px;
+  color: var(--rc-picker-text, #3c4043);
   text-transform: lowercase;
   font-family: Roboto, Arial, sans-serif;
 }
@@ -79,10 +83,10 @@
   top: -6px;
   left: 10px;
   width: 32px;
-  background: #fff;
+  background: var(--rc-picker-surface, #fff);
   text-align: center;
   text-transform: uppercase;
   font-size: 12px;
-  color: #3c4043;
+  color: var(--rc-picker-text, #3c4043);
   font-family: Roboto, Arial, sans-serif;
 }

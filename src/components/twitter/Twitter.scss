@@ -1,9 +1,10 @@
 .rc-twitter {
   position: relative;
-  background: #fff;
-  border: 0 solid rgba(0, 0, 0, 0.25);
+  background: var(--rc-picker-surface, #fff);
+  border: 0 solid var(--rc-picker-border-strong, rgba(0, 0, 0, 0.25));
   border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--rc-picker-shadow-popover, 0 1px 4px rgba(0, 0, 0, 0.25));
+  color: var(--rc-picker-text, #333);
 }
 
 .rc-twitter__triangle,
@@ -16,11 +17,11 @@
 }
 
 .rc-twitter__triangle {
-  border-color: transparent transparent #fff;
+  border-color: transparent transparent var(--rc-picker-triangle-surface, #fff);
 }
 
 .rc-twitter__triangle-shadow {
-  border-color: transparent transparent rgba(0, 0, 0, 0.1);
+  border-color: transparent transparent var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.1));
 }
 
 .rc-twitter.rc-twitter--hide-triangle .rc-twitter__triangle,
@@ -71,8 +72,8 @@
   width: 30px;
   height: 30px;
   border-radius: 4px 0 0 4px;
-  background: #f0f0f0;
-  color: #98a1a4;
+  background: var(--rc-picker-surface-muted, #f0f0f0);
+  color: var(--rc-picker-text-subtle, #98a1a4);
 }
 
 .rc-twitter__body .rc-editable-input {
@@ -87,9 +88,10 @@
   border-radius: 0 4px 4px 0;
   box-sizing: content-box;
   outline: none;
-  box-shadow: inset 0 0 0 1px #f0f0f0;
+  background: var(--rc-picker-input-surface, #fff);
   font-size: 14px;
-  color: #666;
+  box-shadow: inset 0 0 0 1px var(--rc-picker-border, #f0f0f0);
+  color: var(--rc-picker-text-muted, #666);
 }
 
 .rc-twitter__clear {

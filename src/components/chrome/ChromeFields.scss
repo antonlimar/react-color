@@ -34,7 +34,7 @@
 .rc-chrome__toggle-icon svg {
   width: 24px;
   height: 24px;
-  fill: #333;
+  fill: var(--rc-picker-icon, #333);
   border: 1px solid transparent;
   border-radius: 5px;
 }
@@ -44,9 +44,10 @@
   height: 21px;
   border: none;
   border-radius: 2px;
-  box-shadow: inset 0 0 0 1px #dadada;
+  background: var(--rc-picker-input-surface, #fff);
+  box-shadow: inset 0 0 0 1px var(--rc-picker-border, #dadada);
   font-size: 11px;
-  color: #333;
+  color: var(--rc-picker-text, #333);
   text-align: center;
 }
 
@@ -56,7 +57,7 @@
   text-transform: uppercase;
   font-size: 11px;
   line-height: 11px;
-  color: #969696;
+  color: var(--rc-picker-text-subtle, #969696);
   text-align: center;
 }
 

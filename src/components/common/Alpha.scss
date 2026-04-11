@@ -28,8 +28,8 @@
   width: 4px;
   height: 8px;
   margin-top: 1px;
-  background: #fff;
+  background: var(--rc-picker-contrast-surface, #fff);
   border-radius: 1px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 2px var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.6));
   transform: translateX(-2px);
 }

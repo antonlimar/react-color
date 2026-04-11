@@ -400,6 +400,406 @@ exports[`Sketch renders correctly 1`] = `
 </DocumentFragment>
 `;
 
+exports[`Sketch renders correctly in dark theme 1`] = `
+<DocumentFragment>
+  <div
+    class="rc-sketch rc-sketch--dark sketch-picker"
+    style="width: 200px;"
+  >
+    <div
+      class="rc-sketch__saturation"
+    >
+      <div
+        class="rc-saturation"
+        style="background: rgb(43, 0, 255); border-radius: 3px;"
+      >
+        <div
+          class="rc-saturation__white"
+          style="border-radius: 3px; background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0));"
+        >
+          <div
+            class="rc-saturation__black"
+            style="box-shadow: inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25); border-radius: 3px; background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));"
+          />
+          <div
+            class="rc-saturation__pointer"
+            style="top: 70%; left: 66.66666666666667%;"
+          >
+            <div
+              class="rc-saturation__circle"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="rc-sketch__controls"
+    >
+      <div
+        class="rc-sketch__sliders"
+      >
+        <div
+          class="rc-sketch__hue"
+        >
+          <div
+            class="rc-hue-control"
+            style="border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25);"
+          >
+            <div
+              class="rc-hue-control__container"
+              style="border-radius: 2px; background: linear-gradient(to right, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0) 100%);"
+            >
+              <div
+                class="rc-hue-control__pointer"
+                style="left: 69.44444444444443%;"
+              >
+                <div
+                  class="rc-hue-control__slider"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="rc-sketch__alpha"
+        >
+          <div
+            class="rc-alpha-control"
+            style="border-radius: 2px;"
+          >
+            <div
+              class="rc-alpha-control__checkboard"
+              style="border-radius: 2px;"
+            >
+              <div
+                class="rc-checkboard"
+                style="background: url("null");"
+              />
+            </div>
+            <div
+              class="rc-alpha-control__gradient"
+              style="background: linear-gradient(to right, rgba(34, 25, 77, 0) 0%, rgb(34, 25, 77) 100%); box-shadow: inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25); border-radius: 2px;"
+            />
+            <div
+              class="rc-alpha-control__container"
+            >
+              <div
+                class="rc-alpha-control__pointer"
+                style="left: 100%;"
+              >
+                <div
+                  class="rc-alpha-control__slider"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="rc-sketch__color"
+      >
+        <div
+          class="rc-checkboard"
+          style="background: url("null");"
+        />
+        <div
+          class="rc-sketch__active-color"
+          style="background: rgb(34, 25, 77);"
+        />
+      </div>
+    </div>
+    <div
+      class="rc-sketch__fields"
+    >
+      <div
+        class="rc-sketch__field rc-sketch--double"
+      >
+        <div
+          class="rc-editable-input"
+        >
+          <input
+            class="rc-editable-input__input"
+            id="rc-editable-input-6"
+            spellcheck="false"
+            value="22194D"
+          />
+          <label
+            class="rc-editable-input__label"
+            for="rc-editable-input-6"
+          >
+            hex
+          </label>
+        </div>
+      </div>
+      <div
+        class="rc-sketch__field rc-sketch--single"
+      >
+        <div
+          class="rc-editable-input rc-editable-input--drag-label"
+        >
+          <input
+            class="rc-editable-input__input"
+            id="rc-editable-input-7"
+            spellcheck="false"
+            value="34"
+          />
+          <label
+            class="rc-editable-input__label rc-editable-input--drag-label"
+            for="rc-editable-input-7"
+          >
+            r
+          </label>
+        </div>
+      </div>
+      <div
+        class="rc-sketch__field rc-sketch--single"
+      >
+        <div
+          class="rc-editable-input rc-editable-input--drag-label"
+        >
+          <input
+            class="rc-editable-input__input"
+            id="rc-editable-input-8"
+            spellcheck="false"
+            value="25"
+          />
+          <label
+            class="rc-editable-input__label rc-editable-input--drag-label"
+            for="rc-editable-input-8"
+          >
+            g
+          </label>
+        </div>
+      </div>
+      <div
+        class="rc-sketch__field rc-sketch--single"
+      >
+        <div
+          class="rc-editable-input rc-editable-input--drag-label"
+        >
+          <input
+            class="rc-editable-input__input"
+            id="rc-editable-input-9"
+            spellcheck="false"
+            value="77"
+          />
+          <label
+            class="rc-editable-input__label rc-editable-input--drag-label"
+            for="rc-editable-input-9"
+          >
+            b
+          </label>
+        </div>
+      </div>
+      <div
+        class="rc-sketch__field rc-sketch--alpha"
+      >
+        <div
+          class="rc-editable-input rc-editable-input--drag-label"
+        >
+          <input
+            class="rc-editable-input__input"
+            id="rc-editable-input-10"
+            spellcheck="false"
+            value="100"
+          />
+          <label
+            class="rc-editable-input__label rc-editable-input--drag-label"
+            for="rc-editable-input-10"
+          >
+            a
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      class="rc-sketch__preset-colors"
+    >
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(208, 2, 27); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#D0021B"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(245, 166, 35); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#F5A623"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(248, 231, 28); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#F8E71C"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(139, 87, 42); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#8B572A"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(126, 211, 33); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#7ED321"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(65, 117, 5); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#417505"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(189, 16, 224); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#BD10E0"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(144, 19, 254); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#9013FE"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(74, 144, 226); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#4A90E2"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(80, 227, 194); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#50E3C2"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(184, 233, 134); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#B8E986"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(0, 0, 0); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#000000"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(74, 74, 74); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#4A4A4A"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(155, 155, 155); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#9B9B9B"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-sketch__preset-swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(255, 255, 255); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
+            tabindex="0"
+            title="#FFFFFF"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`SketchFields renders correctly 1`] = `
 <DocumentFragment>
   <div
@@ -413,13 +813,13 @@ exports[`SketchFields renders correctly 1`] = `
       >
         <input
           class="rc-editable-input__input"
-          id="rc-editable-input-26"
+          id="rc-editable-input-31"
           spellcheck="false"
           value="FF0000"
         />
         <label
           class="rc-editable-input__label"
-          for="rc-editable-input-26"
+          for="rc-editable-input-31"
         >
           hex
         </label>
@@ -433,13 +833,13 @@ exports[`SketchFields renders correctly 1`] = `
       >
         <input
           class="rc-editable-input__input"
-          id="rc-editable-input-27"
+          id="rc-editable-input-32"
           spellcheck="false"
           value="255"
         />
         <label
           class="rc-editable-input__label rc-editable-input--drag-label"
-          for="rc-editable-input-27"
+          for="rc-editable-input-32"
         >
           r
         </label>
@@ -453,13 +853,13 @@ exports[`SketchFields renders correctly 1`] = `
       >
         <input
           class="rc-editable-input__input"
-          id="rc-editable-input-28"
+          id="rc-editable-input-33"
           spellcheck="false"
           value="0"
         />
         <label
           class="rc-editable-input__label rc-editable-input--drag-label"
-          for="rc-editable-input-28"
+          for="rc-editable-input-33"
         >
           g
         </label>
@@ -473,13 +873,13 @@ exports[`SketchFields renders correctly 1`] = `
       >
         <input
           class="rc-editable-input__input"
-          id="rc-editable-input-29"
+          id="rc-editable-input-34"
           spellcheck="false"
           value="0"
         />
         <label
           class="rc-editable-input__label rc-editable-input--drag-label"
-          for="rc-editable-input-29"
+          for="rc-editable-input-34"
         >
           b
         </label>
@@ -493,13 +893,13 @@ exports[`SketchFields renders correctly 1`] = `
       >
         <input
           class="rc-editable-input__input"
-          id="rc-editable-input-30"
+          id="rc-editable-input-35"
           spellcheck="false"
           value="100"
         />
         <label
           class="rc-editable-input__label rc-editable-input--drag-label"
-          for="rc-editable-input-30"
+          for="rc-editable-input-35"
         >
           a
         </label>

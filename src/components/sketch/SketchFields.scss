@@ -17,8 +17,10 @@
   width: 80%;
   padding: 4px 10% 3px;
   border: none;
-  box-shadow: inset 0 0 0 1px #ccc;
+  background: var(--rc-picker-input-surface, #fff);
+  box-shadow: inset 0 0 0 1px var(--rc-picker-border-strong, #ccc);
   font-size: 11px;
+  color: var(--rc-picker-text, #333);
 }
 
 .rc-sketch__field .rc-editable-input__label {
@@ -28,7 +30,7 @@
   text-align: center;
   text-transform: capitalize;
   font-size: 11px;
-  color: #222;
+  color: var(--rc-picker-text, #222);
 }
 
 .rc-sketch__fields.rc-sketch--disabled-alpha .rc-sketch__field.rc-sketch--alpha {

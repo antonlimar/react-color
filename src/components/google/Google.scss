@@ -5,10 +5,11 @@
 .rc-google {
   display: flex;
   flex-wrap: wrap;
-  background: #fff;
-  border: 1px solid #dfe1e5;
+  background: var(--rc-picker-surface, #fff);
+  border: 1px solid var(--rc-picker-border, #dfe1e5);
   border-radius: 8px 8px 0 0;
   box-sizing: initial;
+  color: var(--rc-picker-text, #333);
 }
 
 .rc-google__head {

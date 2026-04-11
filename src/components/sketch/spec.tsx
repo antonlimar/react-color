@@ -10,6 +10,10 @@ test('Sketch renders correctly', () => {
   renderForSnapshot(<Sketch {...color.red} />).expectSnapshot();
 });
 
+test('Sketch renders correctly in dark theme', () => {
+  renderForSnapshot(<Sketch {...color.red} theme="dark" />).expectSnapshot();
+});
+
 test('Sketch onChange events correctly', () => {
   const changeSpy = createColorChangeSpy(color);
   const { container } = renderForSnapshot(<Sketch onChange={changeSpy} />);

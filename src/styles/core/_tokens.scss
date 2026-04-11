@@ -1,1 +1,225 @@
-/*! react-color styling tokens placeholder for phase 7 */
+@mixin rc-apply-theme(
+  $color-scheme,
+  $surface,
+  $surface-muted,
+  $surface-subtle,
+  $input-surface,
+  $border,
+  $border-strong,
+  $border-contrast,
+  $text,
+  $text-muted,
+  $text-subtle,
+  $icon,
+  $shadow-popover,
+  $shadow-control,
+  $focus-outline,
+  $triangle-surface,
+  $triangle-shadow,
+  $contrast-surface,
+  $contrast-shadow
+) {
+  color-scheme: $color-scheme;
+  --rc-picker-surface: #{$surface};
+  --rc-picker-surface-muted: #{$surface-muted};
+  --rc-picker-surface-subtle: #{$surface-subtle};
+  --rc-picker-input-surface: #{$input-surface};
+  --rc-picker-border: #{$border};
+  --rc-picker-border-strong: #{$border-strong};
+  --rc-picker-border-contrast: #{$border-contrast};
+  --rc-picker-text: #{$text};
+  --rc-picker-text-muted: #{$text-muted};
+  --rc-picker-text-subtle: #{$text-subtle};
+  --rc-picker-icon: #{$icon};
+  --rc-picker-shadow-popover: #{$shadow-popover};
+  --rc-picker-shadow-control: #{$shadow-control};
+  --rc-picker-focus-outline: #{$focus-outline};
+  --rc-picker-triangle-surface: #{$triangle-surface};
+  --rc-picker-triangle-shadow: #{$triangle-shadow};
+  --rc-picker-contrast-surface: #{$contrast-surface};
+  --rc-picker-contrast-shadow: #{$contrast-shadow};
+}
+
+@mixin rc-theme-light {
+  @include rc-apply-theme(
+    light,
+    #fff,
+    #f0f0f0,
+    #fafafa,
+    #fff,
+    rgba(0, 0, 0, 0.14),
+    rgba(0, 0, 0, 0.22),
+    rgba(255, 255, 255, 0.88),
+    #333,
+    #666,
+    #969696,
+    #333,
+    0 8px 24px rgba(0, 0, 0, 0.18),
+    0 1px 4px rgba(0, 0, 0, 0.37),
+    rgba(0, 0, 0, 0.12),
+    #fff,
+    rgba(0, 0, 0, 0.15),
+    #fff,
+    #000
+  );
+}
+
+@mixin rc-theme-dark {
+  @include rc-apply-theme(
+    dark,
+    #1f2329,
+    #2a2f37,
+    #343b46,
+    #11161d,
+    rgba(240, 246, 252, 0.14),
+    rgba(240, 246, 252, 0.26),
+    rgba(255, 255, 255, 0.78),
+    #f0f6fc,
+    #c9d1d9,
+    #8b949e,
+    #c9d1d9,
+    0 18px 40px rgba(0, 0, 0, 0.52),
+    0 1px 4px rgba(0, 0, 0, 0.6),
+    rgba(255, 255, 255, 0.18),
+    #1f2329,
+    rgba(0, 0, 0, 0.45),
+    #fff,
+    #000
+  );
+}
+
+@mixin rc-photoshop-light {
+  --rc-picker-surface: #dcdcdc;
+  --rc-picker-surface-muted: #d4d4d4;
+  --rc-picker-surface-subtle: #f0f0f0;
+  --rc-picker-input-surface: #fff;
+  --rc-picker-border: #b1b1b1;
+  --rc-picker-border-strong: #878787;
+  --rc-picker-border-contrast: #f0f0f0;
+  --rc-picker-text: #000;
+  --rc-picker-text-muted: #4d4d4d;
+  --rc-picker-text-subtle: #555;
+  --rc-picker-icon: #4d4d4d;
+  --rc-picker-shadow-popover: 0 0 0 1px rgba(0, 0, 0, 0.25), 0 8px 16px rgba(0, 0, 0, 0.15);
+  --rc-picker-focus-outline: rgba(255, 255, 255, 0.2);
+  --rc-photoshop-head-start: #f0f0f0;
+  --rc-photoshop-head-end: #d4d4d4;
+  --rc-photoshop-button-shadow: #eaeaea;
+}
+
+@mixin rc-photoshop-dark {
+  --rc-picker-surface: #2b313a;
+  --rc-picker-surface-muted: #252b33;
+  --rc-picker-surface-subtle: #3a424d;
+  --rc-picker-input-surface: #11161d;
+  --rc-picker-border: #53606f;
+  --rc-picker-border-strong: #7b8794;
+  --rc-picker-border-contrast: #161b22;
+  --rc-picker-text: #f0f6fc;
+  --rc-picker-text-muted: #d0d7de;
+  --rc-picker-text-subtle: #9da7b3;
+  --rc-picker-icon: #d0d7de;
+  --rc-picker-shadow-popover: 0 0 0 1px rgba(0, 0, 0, 0.45), 0 16px 32px rgba(0, 0, 0, 0.4);
+  --rc-picker-focus-outline: rgba(255, 255, 255, 0.12);
+  --rc-photoshop-head-start: #404955;
+  --rc-photoshop-head-end: #252c34;
+  --rc-photoshop-button-shadow: rgba(255, 255, 255, 0.08);
+}
+
+@mixin rc-emit-theme-tokens {
+  :where(
+    .rc-alpha,
+    .rc-block,
+    .rc-chrome,
+    .rc-circle,
+    .rc-compact,
+    .rc-github,
+    .rc-google,
+    .rc-hue,
+    .rc-material,
+    .rc-sketch,
+    .rc-slider,
+    .rc-swatches,
+    .rc-twitter
+  ) {
+    @include rc-theme-light;
+  }
+
+  :where(
+    .rc-alpha--light,
+    .rc-block--light,
+    .rc-chrome--light,
+    .rc-circle--light,
+    .rc-compact--light,
+    .rc-github--light,
+    .rc-google--light,
+    .rc-hue--light,
+    .rc-material--light,
+    .rc-sketch--light,
+    .rc-slider--light,
+    .rc-swatches--light,
+    .rc-twitter--light
+  ) {
+    @include rc-theme-light;
+  }
+
+  :where(
+    .rc-alpha--dark,
+    .rc-block--dark,
+    .rc-chrome--dark,
+    .rc-circle--dark,
+    .rc-compact--dark,
+    .rc-github--dark,
+    .rc-google--dark,
+    .rc-hue--dark,
+    .rc-material--dark,
+    .rc-sketch--dark,
+    .rc-slider--dark,
+    .rc-swatches--dark,
+    .rc-twitter--dark
+  ) {
+    @include rc-theme-dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :where(
+      .rc-alpha[data-theme='auto'],
+      .rc-block[data-theme='auto'],
+      .rc-chrome[data-theme='auto'],
+      .rc-circle[data-theme='auto'],
+      .rc-compact[data-theme='auto'],
+      .rc-github[data-theme='auto'],
+      .rc-google[data-theme='auto'],
+      .rc-hue[data-theme='auto'],
+      .rc-material[data-theme='auto'],
+      .rc-sketch[data-theme='auto'],
+      .rc-slider[data-theme='auto'],
+      .rc-swatches[data-theme='auto'],
+      .rc-twitter[data-theme='auto']
+    ) {
+      @include rc-theme-dark;
+    }
+  }
+
+  .rc-photoshop {
+    color-scheme: light;
+    @include rc-photoshop-light;
+  }
+
+  .rc-photoshop--light {
+    color-scheme: light;
+    @include rc-photoshop-light;
+  }
+
+  .rc-photoshop--dark {
+    color-scheme: dark;
+    @include rc-photoshop-dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .rc-photoshop[data-theme='auto'] {
+      color-scheme: dark;
+      @include rc-photoshop-dark;
+    }
+  }
+}

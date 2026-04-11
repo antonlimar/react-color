@@ -2,6 +2,6 @@
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  box-shadow: inset 0 0 0 1px #fff;
+  box-shadow: inset 0 0 0 1px var(--rc-picker-contrast-surface, #fff);
   transform: translate(-6px, -6px);
 }
