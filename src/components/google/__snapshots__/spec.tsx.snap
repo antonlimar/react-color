@@ -4,18 +4,19 @@ exports[`Google renders correctly 1`] = `
 <DocumentFragment>
   <div
     class="rc-google google-picker"
-    style="width: 652px; background: rgb(255, 255, 255); border: 1px solid rgb(223, 225, 229); box-sizing: initial; display: flex; flex-wrap: wrap; -webkit-border-radius: 8px 8px 0px 0px; border-radius: 8px 8px 0px 0px;"
+    style="width: 652px;"
   >
     <div
-      style="height: 57px; width: 100%; padding-top: 16px; padding-bottom: 16px; padding-left: 16px; font-size: 20px; box-sizing: border-box; font-family: Roboto-Regular, HelveticaNeue, Arial, sans-serif;"
+      class="rc-google__head"
     >
       Color picker
     </div>
     <div
-      style="width: 30%; height: 228px; padding: 0px; background: rgb(34, 25, 77); position: relative; overflow: hidden;"
+      class="rc-google__swatch"
+      style="background: rgb(34, 25, 77);"
     />
     <div
-      style="width: 70%; padding: 0px; position: relative; overflow: hidden;"
+      class="rc-google__saturation"
     >
       <div
         class="rc-saturation"
@@ -42,14 +43,13 @@ exports[`Google renders correctly 1`] = `
       </div>
     </div>
     <div
-      style="margin: auto; width: 95%;"
+      class="rc-google__body"
     >
       <div
-        class="flexbox-fix"
-        style="display: flex; box-sizing: border-box; height: 52px; padding-top: 22px;"
+        class="rc-google__controls"
       >
         <div
-          style="height: 8px; position: relative; margin: 0px 16px; width: 100%;"
+          class="rc-google__hue"
         >
           <div
             class="rc-hue-control"

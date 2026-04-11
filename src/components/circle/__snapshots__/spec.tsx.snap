@@ -4,7 +4,7 @@ exports[`Circle renders correctly 1`] = `
 <DocumentFragment>
   <div
     class="rc-circle circle-picker"
-    style="width: 252px; display: flex; flex-wrap: wrap; margin-right: -14px; margin-bottom: -14px;"
+    style="width: 252px; margin-right: -14px; margin-bottom: -14px;"
   >
     <div
       class="rc-circle__swatch"

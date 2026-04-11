@@ -17,10 +17,11 @@ exports[`Swatches renders correctly 1`] = `
         class="rc-raised__content"
       >
         <div
-          style="height: 240px; overflow-y: scroll;"
+          class="rc-swatches__overflow"
+          style="height: 240px;"
         >
           <div
-            style="padding: 16px 0px 6px 16px;"
+            class="rc-swatches__body"
           >
             <div
               class="rc-swatches__group"
@@ -83,7 +84,7 @@ exports[`Swatches renders correctly 1`] = `
               </div>
             </div>
             <div
-              style="clear: both;"
+              class="rc-swatches__clear"
             />
           </div>
         </div>

@@ -1,9 +1,8 @@
-import reactCSS from 'reactcss';
-import merge from 'lodash/merge';
 import * as color from '../../helpers/color';
 
 import { ColorWrap, EditableInput, Checkboard } from '../common';
-import { getPickerRootProps } from '../common/styleArchitecture';
+import { getPickerClassName, getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import BlockSwatches from './BlockSwatches';
 import type {
   ClassName,
@@ -14,6 +13,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '../../types';
+
+const BLOCK_STYLE_SLOTS = ['card', 'triangle', 'head', 'label', 'body', 'input'] as const;
 
 type BlockProps = ColorPickerInjectedProps & {
   colors?: string[];
@@ -50,94 +51,60 @@ export const Block = ({
   theme,
 }: BlockProps) => {
   const transparent = hex === 'transparent';
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          card: {
-            width,
-            background: '#fff',
-            boxShadow: '0 1px rgba(0,0,0,.1)',
-            borderRadius: '6px',
-            position: 'relative',
-          },
-          head: {
-            height: '110px',
-            background: hex,
-            borderRadius: '6px 6px 0 0',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'relative',
-          },
-          body: {
-            padding: '10px',
-          },
-          label: {
-            fontSize: '18px',
-            color: color.getContrastingColor(hex),
-            position: 'relative',
-          },
-          triangle: {
-            width: '0px',
-            height: '0px',
-            borderStyle: 'solid',
-            borderWidth: '0 10px 10px 10px',
-            borderColor: `transparent transparent ${hex} transparent`,
-            position: 'absolute',
-            top: '-10px',
-            left: '50%',
-            marginLeft: '-10px',
-          },
-          input: {
-            width: '100%',
-            fontSize: '12px',
-            color: '#666',
-            border: '0px',
-            outline: 'none',
-            height: '22px',
-            boxShadow: 'inset 0 0 0 1px #ddd',
-            borderRadius: '4px',
-            padding: '0 7px',
-            boxSizing: 'border-box',
-          },
-        },
-        'hide-triangle': {
-          triangle: {
-            display: 'none',
-          },
-        },
-      },
-      passedStyles,
-    ),
-    { 'hide-triangle': triangle === 'hide' },
-  );
+  const rootStyle = {
+    width,
+    ...getDeprecatedStyleOverride(passedStyles, 'card', BLOCK_STYLE_SLOTS, 'card'),
+  };
+  const triangleStyle = {
+    borderColor: `transparent transparent ${hex} transparent`,
+    ...getDeprecatedStyleOverride(passedStyles, 'triangle', BLOCK_STYLE_SLOTS, 'triangle'),
+  };
+  const headStyle = {
+    background: hex,
+    ...getDeprecatedStyleOverride(passedStyles, 'head', BLOCK_STYLE_SLOTS, 'head'),
+  };
+  const labelStyle = {
+    color: color.getContrastingColor(hex),
+    ...getDeprecatedStyleOverride(passedStyles, 'label', BLOCK_STYLE_SLOTS, 'label'),
+  };
+  const bodyStyle = getDeprecatedStyleOverride(passedStyles, 'body', BLOCK_STYLE_SLOTS, 'body');
+  const inputStyle = getDeprecatedStyleOverride(passedStyles, 'input', BLOCK_STYLE_SLOTS, 'input');
 
   return (
     <div
-      style={styles.card}
+      style={rootStyle}
       {...getPickerRootProps({
         block: 'block',
         theme,
+        modifiers: [triangle === 'hide' && 'hide-triangle'],
         className: `block-picker ${className}`,
         classNames,
       })}
     >
-      <div style={styles.triangle} />
+      <div className={getPickerClassName({ block: 'block', slot: 'triangle' })} style={triangleStyle} />
 
-      <div style={styles.head}>
+      <div
+        className={getPickerClassName({
+          block: 'block',
+          slot: 'head',
+          modifiers: [transparent && 'transparent'],
+        })}
+        style={headStyle}
+      >
         {transparent ? <Checkboard borderRadius="6px 6px 0 0" /> : null}
-        <div style={styles.label}>{hex}</div>
+        <div className={getPickerClassName({ block: 'block', slot: 'label' })} style={labelStyle}>
+          {hex}
+        </div>
       </div>
 
-      <div style={styles.body}>
+      <div className={getPickerClassName({ block: 'block', slot: 'body' })} style={bodyStyle}>
         <BlockSwatches
           colors={colors!}
           onClick={(hexCode, event) => handleHexChange(onChange, hexCode, event)}
           onSwatchHover={onSwatchHover}
         />
         <EditableInput
-          style={{ input: styles.input }}
+          style={{ input: inputStyle }}
           value={hex}
           onChange={(value, event) => handleHexChange(onChange, String(value), event)}
         />

@@ -1,8 +1,6 @@
-import reactCSS from 'reactcss';
-import merge from 'lodash/merge';
-
 import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../common';
-import { getPickerRootProps } from '../common/styleArchitecture';
+import { getPickerClassName, getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import SketchFields from './SketchFields';
 import SketchPresetColors from './SketchPresetColors';
 import type {
@@ -12,7 +10,6 @@ import type {
   PickerClassNames,
   PickerCustomStyles,
   PickerTheme,
-  SaturationStyle,
 } from '../../types';
 
 type SketchPresetColor = string | { color: string; title?: string };
@@ -46,6 +43,17 @@ const DEFAULT_SKETCH_PRESET_COLORS = [
   '#FFFFFF',
 ];
 
+const SKETCH_STYLE_SLOTS = [
+  'picker',
+  'saturation',
+  'controls',
+  'sliders',
+  'color',
+  'activeColor',
+  'hue',
+  'alpha',
+] as const;
+
 export const Sketch = ({
   width = 200,
   rgb,
@@ -62,90 +70,24 @@ export const Sketch = ({
   classNames,
   theme,
 }: SketchProps) => {
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          picker: {
-            width,
-            padding: '10px 10px 0',
-            boxSizing: 'initial',
-            background: '#fff',
-            borderRadius: '4px',
-            boxShadow: '0 0 0 1px rgba(0,0,0,.15), 0 8px 16px rgba(0,0,0,.15)',
-          },
-          saturation: {
-            width: '100%',
-            paddingBottom: '75%',
-            position: 'relative',
-            overflow: 'hidden',
-          },
-          Saturation: {
-            radius: '3px',
-            shadow: 'inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)',
-          },
-          controls: {
-            display: 'flex',
-          },
-          sliders: {
-            padding: '4px 0',
-            flex: '1',
-          },
-          color: {
-            width: '24px',
-            height: '24px',
-            position: 'relative',
-            marginTop: '4px',
-            marginLeft: '4px',
-            borderRadius: '3px',
-          },
-          activeColor: {
-            absolute: '0px 0px 0px 0px',
-            borderRadius: '2px',
-            background: `rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`,
-            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)',
-          },
-          hue: {
-            position: 'relative',
-            height: '10px',
-            overflow: 'hidden',
-          },
-          Hue: {
-            radius: '2px',
-            shadow: 'inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)',
-          },
-          alpha: {
-            position: 'relative',
-            height: '10px',
-            marginTop: '4px',
-            overflow: 'hidden',
-          },
-          Alpha: {
-            radius: '2px',
-            shadow: 'inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)',
-          },
-          ...passedStyles,
-        },
-        disableAlpha: {
-          color: {
-            height: '10px',
-          },
-          hue: {
-            height: '10px',
-          },
-          alpha: {
-            display: 'none',
-          },
-        },
-      },
-      passedStyles,
-    ),
-    { disableAlpha },
-  );
+  const rootStyle = {
+    width,
+    ...getDeprecatedStyleOverride(passedStyles, 'picker', SKETCH_STYLE_SLOTS, 'picker'),
+  };
+  const saturationStyle = getDeprecatedStyleOverride(passedStyles, 'saturation', SKETCH_STYLE_SLOTS, 'saturation');
+  const controlsStyle = getDeprecatedStyleOverride(passedStyles, 'controls', SKETCH_STYLE_SLOTS, 'controls');
+  const slidersStyle = getDeprecatedStyleOverride(passedStyles, 'sliders', SKETCH_STYLE_SLOTS, 'sliders');
+  const colorStyle = getDeprecatedStyleOverride(passedStyles, 'color', SKETCH_STYLE_SLOTS, 'color');
+  const activeColorStyle = {
+    background: `rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`,
+    ...getDeprecatedStyleOverride(passedStyles, 'activeColor', SKETCH_STYLE_SLOTS, 'activeColor'),
+  };
+  const hueStyle = getDeprecatedStyleOverride(passedStyles, 'hue', SKETCH_STYLE_SLOTS, 'hue');
+  const alphaStyle = getDeprecatedStyleOverride(passedStyles, 'alpha', SKETCH_STYLE_SLOTS, 'alpha');
 
   return (
     <div
-      style={styles.picker}
+      style={rootStyle}
       {...getPickerRootProps({
         block: 'sketch',
         theme,
@@ -154,21 +96,42 @@ export const Sketch = ({
         classNames,
       })}
     >
-      <div style={styles.saturation}>
-        <Saturation style={styles.Saturation as SaturationStyle} hsl={hsl} hsv={hsv} onChange={onChange} />
+      <div className={getPickerClassName({ block: 'sketch', slot: 'saturation' })} style={saturationStyle}>
+        <Saturation
+          radius="3px"
+          shadow="inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)"
+          hsl={hsl}
+          hsv={hsv}
+          onChange={onChange}
+        />
       </div>
-      <div style={styles.controls} className="flexbox-fix">
-        <div style={styles.sliders}>
-          <div style={styles.hue}>
-            <Hue style={styles.Hue} hsl={hsl} onChange={onChange} />
+      <div
+        className={getPickerClassName({ block: 'sketch', slot: 'controls', className: 'flexbox-fix' })}
+        style={controlsStyle}
+      >
+        <div className={getPickerClassName({ block: 'sketch', slot: 'sliders' })} style={slidersStyle}>
+          <div className={getPickerClassName({ block: 'sketch', slot: 'hue' })} style={hueStyle}>
+            <Hue
+              radius="2px"
+              shadow="inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)"
+              hsl={hsl}
+              onChange={onChange}
+            />
           </div>
-          <div style={styles.alpha}>
-            <Alpha style={styles.Alpha} rgb={rgb} hsl={hsl} renderers={renderers} onChange={onChange} />
+          <div className={getPickerClassName({ block: 'sketch', slot: 'alpha' })} style={alphaStyle}>
+            <Alpha
+              radius="2px"
+              shadow="inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)"
+              rgb={rgb}
+              hsl={hsl}
+              renderers={renderers}
+              onChange={onChange}
+            />
           </div>
         </div>
-        <div style={styles.color}>
+        <div className={getPickerClassName({ block: 'sketch', slot: 'color' })} style={colorStyle}>
           <Checkboard />
-          <div style={styles.activeColor} />
+          <div className={getPickerClassName({ block: 'sketch', slot: 'active-color' })} style={activeColorStyle} />
         </div>
       </div>
 

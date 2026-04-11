@@ -14,95 +14,82 @@ exports[`Material renders correctly 1`] = `
     >
       <div
         class="rc-material material-picker"
-        style="width: 98px; height: 98px; padding: 16px; font-family: Roboto;"
+        style="--rc-material-accent: #22194d;"
       >
         <div
           class="rc-editable-input"
-          style="position: relative;"
         >
           <input
             class="rc-editable-input__input"
             id="rc-editable-input-1"
             spellcheck="false"
-            style="width: 100%; margin-top: 12px; font-size: 15px; color: rgb(51, 51, 51); padding: 0px; border-width: 0px 0px 2px; border-style: none none solid; border-color: currentcolor currentcolor rgb(34, 25, 77); border-image: none; outline: none; height: 30px;"
             value="#22194D"
           />
           <label
             class="rc-editable-input__label"
             for="rc-editable-input-1"
-            style="position: absolute; top: 0px; left: 0px; font-size: 11px; color: rgb(153, 153, 153); text-transform: capitalize;"
           >
             hex
           </label>
         </div>
         <div
-          class="flexbox-fix"
-          style="display: flex; margin-right: -10px; padding-top: 11px;"
+          class="rc-material__split"
         >
           <div
-            style="flex: 1 1 0%; padding-right: 10px;"
+            class="rc-material__third"
           >
             <div
               class="rc-editable-input"
-              style="position: relative;"
             >
               <input
                 class="rc-editable-input__input"
                 id="rc-editable-input-2"
                 spellcheck="false"
-                style="width: 100%; margin-top: 12px; font-size: 15px; color: rgb(51, 51, 51); padding: 0px; border-width: 0px 0px 1px; border-style: none none solid; border-color: currentcolor currentcolor rgb(238, 238, 238); border-image: none; outline: none; height: 30px;"
                 value="34"
               />
               <label
                 class="rc-editable-input__label"
                 for="rc-editable-input-2"
-                style="position: absolute; top: 0px; left: 0px; font-size: 11px; color: rgb(153, 153, 153); text-transform: capitalize;"
               >
                 r
               </label>
             </div>
           </div>
           <div
-            style="flex: 1 1 0%; padding-right: 10px;"
+            class="rc-material__third"
           >
             <div
               class="rc-editable-input"
-              style="position: relative;"
             >
               <input
                 class="rc-editable-input__input"
                 id="rc-editable-input-3"
                 spellcheck="false"
-                style="width: 100%; margin-top: 12px; font-size: 15px; color: rgb(51, 51, 51); padding: 0px; border-width: 0px 0px 1px; border-style: none none solid; border-color: currentcolor currentcolor rgb(238, 238, 238); border-image: none; outline: none; height: 30px;"
                 value="25"
               />
               <label
                 class="rc-editable-input__label"
                 for="rc-editable-input-3"
-                style="position: absolute; top: 0px; left: 0px; font-size: 11px; color: rgb(153, 153, 153); text-transform: capitalize;"
               >
                 g
               </label>
             </div>
           </div>
           <div
-            style="flex: 1 1 0%; padding-right: 10px;"
+            class="rc-material__third"
           >
             <div
               class="rc-editable-input"
-              style="position: relative;"
             >
               <input
                 class="rc-editable-input__input"
                 id="rc-editable-input-4"
                 spellcheck="false"
-                style="width: 100%; margin-top: 12px; font-size: 15px; color: rgb(51, 51, 51); padding: 0px; border-width: 0px 0px 1px; border-style: none none solid; border-color: currentcolor currentcolor rgb(238, 238, 238); border-image: none; outline: none; height: 30px;"
                 value="77"
               />
               <label
                 class="rc-editable-input__label"
                 for="rc-editable-input-4"
-                style="position: absolute; top: 0px; left: 0px; font-size: 11px; color: rgb(153, 153, 153); text-transform: capitalize;"
               >
                 b
               </label>

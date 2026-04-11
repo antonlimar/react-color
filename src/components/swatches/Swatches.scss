@@ -1,4 +1,14 @@
 @use './SwatchesColor';
 @use './SwatchesGroup';
 
-/*! rc-swatches co-located stylesheet placeholder */
+.rc-swatches__overflow {
+  overflow-y: scroll;
+}
+
+.rc-swatches__body {
+  padding: 16px 0 6px 16px;
+}
+
+.rc-swatches__clear {
+  clear: both;
+}

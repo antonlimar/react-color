@@ -1,9 +1,8 @@
-import reactCSS from 'reactcss';
-import merge from 'lodash/merge';
 import * as color from '../../helpers/color';
 
 import { ColorWrap, EditableInput, Raised } from '../common';
-import { getPickerRootProps } from '../common/styleArchitecture';
+import { getPickerClassName, getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import type {
   ClassName,
   ColorChangeValue,
@@ -14,6 +13,18 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '../../types';
+
+const MATERIAL_STYLE_SLOTS = [
+  'material',
+  'split',
+  'third',
+  'HEXwrap',
+  'HEXinput',
+  'HEXlabel',
+  'RGBwrap',
+  'RGBinput',
+  'RGBlabel',
+] as const;
 
 type MaterialProps = ColorPickerInjectedProps & {
   styles?: PickerCustomStyles;
@@ -60,82 +71,23 @@ export const Material = ({
   classNames,
   theme,
 }: MaterialProps) => {
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          material: {
-            width: '98px',
-            height: '98px',
-            padding: '16px',
-            fontFamily: 'Roboto',
-          },
-          HEXwrap: {
-            position: 'relative',
-          },
-          HEXinput: {
-            width: '100%',
-            marginTop: '12px',
-            fontSize: '15px',
-            color: '#333',
-            padding: '0px',
-            border: '0px',
-            borderBottom: `2px solid ${hex}`,
-            outline: 'none',
-            height: '30px',
-          },
-          HEXlabel: {
-            position: 'absolute',
-            top: '0px',
-            left: '0px',
-            fontSize: '11px',
-            color: '#999999',
-            textTransform: 'capitalize',
-          },
-          Hex: {
-            style: {},
-          },
-          RGBwrap: {
-            position: 'relative',
-          },
-          RGBinput: {
-            width: '100%',
-            marginTop: '12px',
-            fontSize: '15px',
-            color: '#333',
-            padding: '0px',
-            border: '0px',
-            borderBottom: '1px solid #eee',
-            outline: 'none',
-            height: '30px',
-          },
-          RGBlabel: {
-            position: 'absolute',
-            top: '0px',
-            left: '0px',
-            fontSize: '11px',
-            color: '#999999',
-            textTransform: 'capitalize',
-          },
-          split: {
-            display: 'flex',
-            marginRight: '-10px',
-            paddingTop: '11px',
-          },
-          third: {
-            flex: '1',
-            paddingRight: '10px',
-          },
-        },
-      },
-      passedStyles,
-    ),
-  );
+  const rootStyle = {
+    ['--rc-material-accent' as const]: hex,
+    ...getDeprecatedStyleOverride(passedStyles, 'material', MATERIAL_STYLE_SLOTS, 'material'),
+  };
+  const splitStyle = getDeprecatedStyleOverride(passedStyles, 'split', MATERIAL_STYLE_SLOTS, 'split');
+  const thirdStyle = getDeprecatedStyleOverride(passedStyles, 'third', MATERIAL_STYLE_SLOTS, 'third');
+  const hexWrapStyle = getDeprecatedStyleOverride(passedStyles, 'HEXwrap', MATERIAL_STYLE_SLOTS, 'HEXwrap');
+  const hexInputStyle = getDeprecatedStyleOverride(passedStyles, 'HEXinput', MATERIAL_STYLE_SLOTS, 'HEXinput');
+  const hexLabelStyle = getDeprecatedStyleOverride(passedStyles, 'HEXlabel', MATERIAL_STYLE_SLOTS, 'HEXlabel');
+  const rgbWrapStyle = getDeprecatedStyleOverride(passedStyles, 'RGBwrap', MATERIAL_STYLE_SLOTS, 'RGBwrap');
+  const rgbInputStyle = getDeprecatedStyleOverride(passedStyles, 'RGBinput', MATERIAL_STYLE_SLOTS, 'RGBinput');
+  const rgbLabelStyle = getDeprecatedStyleOverride(passedStyles, 'RGBlabel', MATERIAL_STYLE_SLOTS, 'RGBlabel');
 
   return (
     <Raised styles={passedStyles}>
       <div
-        style={styles.material}
+        style={rootStyle}
         {...getPickerRootProps({
           block: 'material',
           theme,
@@ -144,31 +96,34 @@ export const Material = ({
         })}
       >
         <EditableInput
-          style={{ wrap: styles.HEXwrap, input: styles.HEXinput, label: styles.HEXlabel }}
+          style={{ wrap: hexWrapStyle, input: hexInputStyle, label: hexLabelStyle }}
           label="hex"
           value={hex}
           onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
         />
-        <div style={styles.split} className="flexbox-fix">
-          <div style={styles.third}>
+        <div
+          className={getPickerClassName({ block: 'material', slot: 'split', className: 'flexbox-fix' })}
+          style={splitStyle}
+        >
+          <div className={getPickerClassName({ block: 'material', slot: 'third' })} style={thirdStyle}>
             <EditableInput
-              style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
+              style={{ wrap: rgbWrapStyle, input: rgbInputStyle, label: rgbLabelStyle }}
               label="r"
               value={rgb.r}
               onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
             />
           </div>
-          <div style={styles.third}>
+          <div className={getPickerClassName({ block: 'material', slot: 'third' })} style={thirdStyle}>
             <EditableInput
-              style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
+              style={{ wrap: rgbWrapStyle, input: rgbInputStyle, label: rgbLabelStyle }}
               label="g"
               value={rgb.g}
               onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
             />
           </div>
-          <div style={styles.third}>
+          <div className={getPickerClassName({ block: 'material', slot: 'third' })} style={thirdStyle}>
             <EditableInput
-              style={{ wrap: styles.RGBwrap, input: styles.RGBinput, label: styles.RGBlabel }}
+              style={{ wrap: rgbWrapStyle, input: rgbInputStyle, label: rgbLabelStyle }}
               label="b"
               value={rgb.b}
               onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}

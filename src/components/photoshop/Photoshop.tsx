@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import reactCSS from 'reactcss';
-import merge from 'lodash/merge';
 
 import { ColorWrap, Saturation, Hue } from '../common';
-import { getPickerRootProps } from '../common/styleArchitecture';
+import { getPickerClassName, getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import PhotoshopFields from './PhotoshopFields';
 import PhotoshopPointerCircle from './PhotoshopPointerCircle';
 import PhotoshopPointer from './PhotoshopPointer';
@@ -30,6 +29,17 @@ type PhotoshopProps = ColorPickerInjectedProps & {
 
 const defaultHeader = 'Color Picker';
 const defaultStyles: PickerCustomStyles = {};
+const PHOTOSHOP_STYLE_SLOTS = [
+  'picker',
+  'head',
+  'body',
+  'saturation',
+  'hue',
+  'controls',
+  'top',
+  'previews',
+  'actions',
+] as const;
 
 export const Photoshop = (props: PhotoshopProps) => {
   const [currentColor] = useState(props.hex);
@@ -40,72 +50,19 @@ export const Photoshop = (props: PhotoshopProps) => {
     styles: props.styles ?? defaultStyles,
   };
   const { styles: passedStyles, className = '', classNames, theme } = resolvedProps;
-
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          picker: {
-            background: '#DCDCDC',
-            borderRadius: '4px',
-            boxShadow: '0 0 0 1px rgba(0,0,0,.25), 0 8px 16px rgba(0,0,0,.15)',
-            boxSizing: 'initial',
-            width: '513px',
-          },
-          head: {
-            backgroundImage: 'linear-gradient(-180deg, #F0F0F0 0%, #D4D4D4 100%)',
-            borderBottom: '1px solid #B1B1B1',
-            boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,.2), inset 0 -1px 0 0 rgba(0,0,0,.02)',
-            height: '23px',
-            lineHeight: '24px',
-            borderRadius: '4px 4px 0 0',
-            fontSize: '13px',
-            color: '#4D4D4D',
-            textAlign: 'center',
-          },
-          body: {
-            padding: '15px 15px 0',
-            display: 'flex',
-          },
-          saturation: {
-            width: '256px',
-            height: '256px',
-            position: 'relative',
-            border: '2px solid #B3B3B3',
-            borderBottom: '2px solid #F0F0F0',
-            overflow: 'hidden',
-          },
-          hue: {
-            position: 'relative',
-            height: '256px',
-            width: '19px',
-            marginLeft: '10px',
-            border: '2px solid #B3B3B3',
-            borderBottom: '2px solid #F0F0F0',
-          },
-          controls: {
-            width: '180px',
-            marginLeft: '10px',
-          },
-          top: {
-            display: 'flex',
-          },
-          previews: {
-            width: '60px',
-          },
-          actions: {
-            flex: '1',
-            marginLeft: '20px',
-          },
-        },
-      },
-      passedStyles,
-    ),
-  );
+  const rootStyle = getDeprecatedStyleOverride(passedStyles, 'picker', PHOTOSHOP_STYLE_SLOTS, 'picker');
+  const headStyle = getDeprecatedStyleOverride(passedStyles, 'head', PHOTOSHOP_STYLE_SLOTS, 'head');
+  const bodyStyle = getDeprecatedStyleOverride(passedStyles, 'body', PHOTOSHOP_STYLE_SLOTS, 'body');
+  const saturationStyle = getDeprecatedStyleOverride(passedStyles, 'saturation', PHOTOSHOP_STYLE_SLOTS, 'saturation');
+  const hueStyle = getDeprecatedStyleOverride(passedStyles, 'hue', PHOTOSHOP_STYLE_SLOTS, 'hue');
+  const controlsStyle = getDeprecatedStyleOverride(passedStyles, 'controls', PHOTOSHOP_STYLE_SLOTS, 'controls');
+  const topStyle = getDeprecatedStyleOverride(passedStyles, 'top', PHOTOSHOP_STYLE_SLOTS, 'top');
+  const previewsStyle = getDeprecatedStyleOverride(passedStyles, 'previews', PHOTOSHOP_STYLE_SLOTS, 'previews');
+  const actionsStyle = getDeprecatedStyleOverride(passedStyles, 'actions', PHOTOSHOP_STYLE_SLOTS, 'actions');
 
   return (
     <div
-      style={styles.picker}
+      style={rootStyle}
       {...getPickerRootProps({
         block: 'photoshop',
         theme,
@@ -113,10 +70,15 @@ export const Photoshop = (props: PhotoshopProps) => {
         classNames,
       })}
     >
-      <div style={styles.head}>{resolvedProps.header}</div>
+      <div className={getPickerClassName({ block: 'photoshop', slot: 'head' })} style={headStyle}>
+        {resolvedProps.header}
+      </div>
 
-      <div style={styles.body} className="flexbox-fix">
-        <div style={styles.saturation}>
+      <div
+        className={getPickerClassName({ block: 'photoshop', slot: 'body', className: 'flexbox-fix' })}
+        style={bodyStyle}
+      >
+        <div className={getPickerClassName({ block: 'photoshop', slot: 'saturation' })} style={saturationStyle}>
           <Saturation
             hsl={resolvedProps.hsl}
             hsv={resolvedProps.hsv}
@@ -124,7 +86,7 @@ export const Photoshop = (props: PhotoshopProps) => {
             onChange={resolvedProps.onChange}
           />
         </div>
-        <div style={styles.hue}>
+        <div className={getPickerClassName({ block: 'photoshop', slot: 'hue' })} style={hueStyle}>
           <Hue
             direction="vertical"
             hsl={resolvedProps.hsl}
@@ -132,12 +94,15 @@ export const Photoshop = (props: PhotoshopProps) => {
             onChange={resolvedProps.onChange}
           />
         </div>
-        <div style={styles.controls}>
-          <div style={styles.top} className="flexbox-fix">
-            <div style={styles.previews}>
+        <div className={getPickerClassName({ block: 'photoshop', slot: 'controls' })} style={controlsStyle}>
+          <div
+            className={getPickerClassName({ block: 'photoshop', slot: 'top', className: 'flexbox-fix' })}
+            style={topStyle}
+          >
+            <div className={getPickerClassName({ block: 'photoshop', slot: 'previews' })} style={previewsStyle}>
               <PhotoshopPreviews rgb={resolvedProps.rgb} currentColor={currentColor} />
             </div>
-            <div style={styles.actions}>
+            <div className={getPickerClassName({ block: 'photoshop', slot: 'actions' })} style={actionsStyle}>
               <PhotoshopButton label="OK" onClick={() => resolvedProps.onAccept?.(resolvedProps, undefined)} active />
               <PhotoshopButton label="Cancel" onClick={resolvedProps.onCancel} />
               <PhotoshopFields

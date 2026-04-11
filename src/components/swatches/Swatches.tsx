@@ -1,10 +1,9 @@
-import reactCSS from 'reactcss';
 import map from 'lodash/map';
-import merge from 'lodash/merge';
 import material from 'material-colors';
 
 import { ColorWrap, Raised } from '../common';
-import { getPickerRootProps } from '../common/styleArchitecture';
+import { getPickerClassName, getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import SwatchesGroup from './SwatchesGroup';
 import type {
   ClassName,
@@ -13,6 +12,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '../../types';
+
+const SWATCHES_STYLE_SLOTS = ['picker', 'overflow', 'body', 'clear'] as const;
 
 type SwatchesProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -112,33 +113,21 @@ export const Swatches = ({
   classNames,
   theme,
 }: SwatchesProps) => {
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          picker: {
-            width,
-            height,
-          },
-          overflow: {
-            height,
-            overflowY: 'scroll',
-          },
-          body: {
-            padding: '16px 0 6px 16px',
-          },
-          clear: {
-            clear: 'both',
-          },
-        },
-      },
-      passedStyles,
-    ),
-  );
+  const rootStyle = {
+    width,
+    height,
+    ...getDeprecatedStyleOverride(passedStyles, 'picker', SWATCHES_STYLE_SLOTS, 'picker'),
+  };
+  const overflowStyle = {
+    height,
+    ...getDeprecatedStyleOverride(passedStyles, 'overflow', SWATCHES_STYLE_SLOTS, 'overflow'),
+  };
+  const bodyStyle = getDeprecatedStyleOverride(passedStyles, 'body', SWATCHES_STYLE_SLOTS, 'body');
+  const clearStyle = getDeprecatedStyleOverride(passedStyles, 'clear', SWATCHES_STYLE_SLOTS, 'clear');
 
   return (
     <div
-      style={styles.picker}
+      style={rootStyle}
       {...getPickerRootProps({
         block: 'swatches',
         theme,
@@ -147,8 +136,8 @@ export const Swatches = ({
       })}
     >
       <Raised>
-        <div style={styles.overflow}>
-          <div style={styles.body}>
+        <div className={getPickerClassName({ block: 'swatches', slot: 'overflow' })} style={overflowStyle}>
+          <div className={getPickerClassName({ block: 'swatches', slot: 'body' })} style={bodyStyle}>
             {map(colors, (group: string[]) => (
               <SwatchesGroup
                 key={group.toString()}
@@ -158,7 +147,7 @@ export const Swatches = ({
                 onSwatchHover={onSwatchHover}
               />
             ))}
-            <div style={styles.clear} />
+            <div className={getPickerClassName({ block: 'swatches', slot: 'clear' })} style={clearStyle} />
           </div>
         </div>
       </Raised>

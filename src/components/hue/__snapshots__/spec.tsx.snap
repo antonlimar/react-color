@@ -4,7 +4,7 @@ exports[`Hue renders correctly 1`] = `
 <DocumentFragment>
   <div
     class="rc-hue hue-picker"
-    style="position: relative; width: 316px; height: 16px;"
+    style="width: 316px; height: 16px;"
   >
     <div
       class="rc-hue-control"
@@ -32,7 +32,7 @@ exports[`Hue renders vertically 1`] = `
 <DocumentFragment>
   <div
     class="rc-hue hue-picker"
-    style="position: relative; width: 20px; height: 200px;"
+    style="width: 20px; height: 200px;"
   >
     <div
       class="rc-hue-control rc-hue-control--vertical"

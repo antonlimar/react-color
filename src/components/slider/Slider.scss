@@ -2,4 +2,11 @@
 @use './SliderSwatch';
 @use './SliderSwatches';
 
-/*! rc-slider co-located stylesheet placeholder */
+.rc-slider__hue {
+  position: relative;
+  height: 12px;
+}
+
+.rc-slider__swatches-wrap {
+  position: relative;
+}

@@ -1,4 +1,13 @@
 @use './CompactColor';
 @use './CompactFields';
 
-/*! rc-compact co-located stylesheet placeholder */
+.rc-compact {
+  width: 240px;
+  padding-top: 5px;
+  padding-left: 5px;
+  box-sizing: initial;
+}
+
+.rc-compact__clear {
+  clear: both;
+}

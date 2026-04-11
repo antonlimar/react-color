@@ -4,7 +4,7 @@ exports[`Alpha renders correctly 1`] = `
 <DocumentFragment>
   <div
     class="rc-alpha alpha-picker"
-    style="position: relative; width: 316px; height: 16px;"
+    style="width: 316px; height: 16px;"
   >
     <div
       class="rc-alpha-control"
@@ -44,7 +44,7 @@ exports[`Alpha renders vertically 1`] = `
 <DocumentFragment>
   <div
     class="rc-alpha alpha-picker"
-    style="position: relative; width: 20px; height: 200px;"
+    style="width: 20px; height: 200px;"
   >
     <div
       class="rc-alpha-control rc-alpha-control--vertical"

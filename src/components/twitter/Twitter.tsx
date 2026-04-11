@@ -1,10 +1,9 @@
-import reactCSS from 'reactcss';
 import map from 'lodash/map';
-import merge from 'lodash/merge';
 import * as color from '../../helpers/color';
 
 import { ColorWrap, EditableInput, Swatch } from '../common';
-import { getPickerRootProps } from '../common/styleArchitecture';
+import { getPickerClassName, getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import type {
   ClassName,
   ColorInputChangeHandler,
@@ -14,6 +13,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '../../types';
+
+const TWITTER_STYLE_SLOTS = ['card', 'body', 'triangle', 'triangleShadow', 'hash', 'input', 'swatch'] as const;
 
 type TwitterProps = ColorPickerInjectedProps & {
   colors?: string[];
@@ -62,148 +63,60 @@ export const Twitter = ({
   classNames,
   theme,
 }: TwitterProps) => {
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          card: {
-            width,
-            background: '#fff',
-            border: '0 solid rgba(0,0,0,0.25)',
-            boxShadow: '0 1px 4px rgba(0,0,0,0.25)',
-            borderRadius: '4px',
-            position: 'relative',
-          },
-          body: {
-            padding: '15px 9px 9px 15px',
-          },
-          label: {
-            fontSize: '18px',
-            color: '#fff',
-          },
-          triangle: {
-            width: '0px',
-            height: '0px',
-            borderStyle: 'solid',
-            borderWidth: '0 9px 10px 9px',
-            borderColor: 'transparent transparent #fff transparent',
-            position: 'absolute',
-          },
-          triangleShadow: {
-            width: '0px',
-            height: '0px',
-            borderStyle: 'solid',
-            borderWidth: '0 9px 10px 9px',
-            borderColor: 'transparent transparent rgba(0,0,0,.1) transparent',
-            position: 'absolute',
-          },
-          hash: {
-            background: '#F0F0F0',
-            height: '30px',
-            width: '30px',
-            borderRadius: '4px 0 0 4px',
-            float: 'left',
-            color: '#98A1A4',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          },
-          input: {
-            width: '100px',
-            fontSize: '14px',
-            color: '#666',
-            border: '0px',
-            outline: 'none',
-            height: '28px',
-            boxShadow: 'inset 0 0 0 1px #F0F0F0',
-            boxSizing: 'content-box',
-            borderRadius: '0 4px 4px 0',
-            float: 'left',
-            paddingLeft: '8px',
-          },
-          swatch: {
-            width: '30px',
-            height: '30px',
-            float: 'left',
-            borderRadius: '4px',
-            margin: '0 6px 6px 0',
-          },
-          clear: {
-            clear: 'both',
-          },
-        },
-        'hide-triangle': {
-          triangle: {
-            display: 'none',
-          },
-          triangleShadow: {
-            display: 'none',
-          },
-        },
-        'top-left-triangle': {
-          triangle: {
-            top: '-10px',
-            left: '12px',
-          },
-          triangleShadow: {
-            top: '-11px',
-            left: '12px',
-          },
-        },
-        'top-right-triangle': {
-          triangle: {
-            top: '-10px',
-            right: '12px',
-          },
-          triangleShadow: {
-            top: '-11px',
-            right: '12px',
-          },
-        },
-      },
-      passedStyles,
-    ),
-    {
-      'hide-triangle': triangle === 'hide',
-      'top-left-triangle': triangle === 'top-left',
-      'top-right-triangle': triangle === 'top-right',
-    },
+  const rootStyle = {
+    width,
+    ...getDeprecatedStyleOverride(passedStyles, 'card', TWITTER_STYLE_SLOTS, 'card'),
+  };
+  const bodyStyle = getDeprecatedStyleOverride(passedStyles, 'body', TWITTER_STYLE_SLOTS, 'body');
+  const triangleStyle = getDeprecatedStyleOverride(passedStyles, 'triangle', TWITTER_STYLE_SLOTS, 'triangle');
+  const triangleShadowStyle = getDeprecatedStyleOverride(
+    passedStyles,
+    'triangleShadow',
+    TWITTER_STYLE_SLOTS,
+    'triangleShadow',
   );
+  const hashStyle = getDeprecatedStyleOverride(passedStyles, 'hash', TWITTER_STYLE_SLOTS, 'hash');
+  const inputStyle = getDeprecatedStyleOverride(passedStyles, 'input', TWITTER_STYLE_SLOTS, 'input');
+  const swatchStyle = getDeprecatedStyleOverride(passedStyles, 'swatch', TWITTER_STYLE_SLOTS, 'swatch');
 
   return (
     <div
-      style={styles.card}
+      style={rootStyle}
       {...getPickerRootProps({
         block: 'twitter',
         theme,
+        modifiers: [triangle === 'hide' && 'hide-triangle', triangle],
         className: `twitter-picker ${className}`,
         classNames,
       })}
     >
-      <div style={styles.triangleShadow} />
-      <div style={styles.triangle} />
+      <div className={getPickerClassName({ block: 'twitter', slot: 'triangle-shadow' })} style={triangleShadowStyle} />
+      <div className={getPickerClassName({ block: 'twitter', slot: 'triangle' })} style={triangleStyle} />
 
-      <div style={styles.body}>
+      <div className={getPickerClassName({ block: 'twitter', slot: 'body' })} style={bodyStyle}>
         {map(colors, (colorValue: string, index: number | string) => (
-          <Swatch
-            key={index}
-            color={colorValue}
-            style={styles.swatch}
-            onClick={(hexCode, event) => handleHexChange(onChange, hexCode, event)}
-            onHover={onSwatchHover as never}
-            focusStyle={{
-              boxShadow: `0 0 4px ${colorValue}`,
-            }}
-          />
+          <div key={index} className={getPickerClassName({ block: 'twitter', slot: 'swatch' })}>
+            <Swatch
+              color={colorValue}
+              style={swatchStyle}
+              onClick={(hexCode, event) => handleHexChange(onChange, hexCode, event)}
+              onHover={onSwatchHover as never}
+              focusStyle={{
+                boxShadow: `0 0 4px ${colorValue}`,
+              }}
+            />
+          </div>
         ))}
-        <div style={styles.hash}>#</div>
+        <div className={getPickerClassName({ block: 'twitter', slot: 'hash' })} style={hashStyle}>
+          #
+        </div>
         <EditableInput
           label={null}
-          style={{ input: styles.input }}
+          style={{ input: inputStyle }}
           value={hex.replace('#', '')}
           onChange={(value, event) => handleHexChange(onChange, String(value), event)}
         />
-        <div style={styles.clear} />
+        <div className={getPickerClassName({ block: 'twitter', slot: 'clear' })} />
       </div>
     </div>
   );

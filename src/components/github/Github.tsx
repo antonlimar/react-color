@@ -1,9 +1,8 @@
-import reactCSS from 'reactcss';
 import map from 'lodash/map';
-import merge from 'lodash/merge';
 
 import { ColorWrap } from '../common';
-import { getPickerRootProps } from '../common/styleArchitecture';
+import { getPickerClassName, getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import GithubSwatch from './GithubSwatch';
 import type {
   ClassName,
@@ -12,6 +11,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '../../types';
+
+const GITHUB_STYLE_SLOTS = ['card', 'triangle', 'triangleShadow'] as const;
 
 type GithubProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -53,108 +54,31 @@ export const Github = ({
   classNames,
   theme,
 }: GithubProps) => {
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          card: {
-            width,
-            background: '#fff',
-            border: '1px solid rgba(0,0,0,0.2)',
-            boxShadow: '0 3px 12px rgba(0,0,0,0.15)',
-            borderRadius: '4px',
-            position: 'relative',
-            padding: '5px',
-            display: 'flex',
-            flexWrap: 'wrap',
-          },
-          triangle: {
-            position: 'absolute',
-            border: '7px solid transparent',
-            borderBottomColor: '#fff',
-          },
-          triangleShadow: {
-            position: 'absolute',
-            border: '8px solid transparent',
-            borderBottomColor: 'rgba(0,0,0,0.15)',
-          },
-        },
-        'hide-triangle': {
-          triangle: {
-            display: 'none',
-          },
-          triangleShadow: {
-            display: 'none',
-          },
-        },
-        'top-left-triangle': {
-          triangle: {
-            top: '-14px',
-            left: '10px',
-          },
-          triangleShadow: {
-            top: '-16px',
-            left: '9px',
-          },
-        },
-        'top-right-triangle': {
-          triangle: {
-            top: '-14px',
-            right: '10px',
-          },
-          triangleShadow: {
-            top: '-16px',
-            right: '9px',
-          },
-        },
-        'bottom-left-triangle': {
-          triangle: {
-            top: '35px',
-            left: '10px',
-            transform: 'rotate(180deg)',
-          },
-          triangleShadow: {
-            top: '37px',
-            left: '9px',
-            transform: 'rotate(180deg)',
-          },
-        },
-        'bottom-right-triangle': {
-          triangle: {
-            top: '35px',
-            right: '10px',
-            transform: 'rotate(180deg)',
-          },
-          triangleShadow: {
-            top: '37px',
-            right: '9px',
-            transform: 'rotate(180deg)',
-          },
-        },
-      },
-      passedStyles,
-    ),
-    {
-      'hide-triangle': triangle === 'hide',
-      'top-left-triangle': triangle === 'top-left',
-      'top-right-triangle': triangle === 'top-right',
-      'bottom-left-triangle': triangle === 'bottom-left',
-      'bottom-right-triangle': triangle === 'bottom-right',
-    },
+  const rootStyle = {
+    width,
+    ...getDeprecatedStyleOverride(passedStyles, 'card', GITHUB_STYLE_SLOTS, 'card'),
+  };
+  const triangleStyle = getDeprecatedStyleOverride(passedStyles, 'triangle', GITHUB_STYLE_SLOTS, 'triangle');
+  const triangleShadowStyle = getDeprecatedStyleOverride(
+    passedStyles,
+    'triangleShadow',
+    GITHUB_STYLE_SLOTS,
+    'triangleShadow',
   );
 
   return (
     <div
-      style={styles.card}
+      style={rootStyle}
       {...getPickerRootProps({
         block: 'github',
         theme,
+        modifiers: [triangle === 'hide' && 'hide-triangle', triangle],
         className: `github-picker ${className}`,
         classNames,
       })}
     >
-      <div style={styles.triangleShadow} />
-      <div style={styles.triangle} />
+      <div className={getPickerClassName({ block: 'github', slot: 'triangle-shadow' })} style={triangleShadowStyle} />
+      <div className={getPickerClassName({ block: 'github', slot: 'triangle' })} style={triangleStyle} />
       {map(colors, (colorValue: string) => (
         <GithubSwatch
           color={colorValue}

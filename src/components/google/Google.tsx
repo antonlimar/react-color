@@ -1,8 +1,6 @@
-import reactCSS from 'reactcss';
-import merge from 'lodash/merge';
-
 import { ColorWrap, Saturation, Hue } from '../common';
-import { getPickerRootProps } from '../common/styleArchitecture';
+import { getPickerClassName, getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import GooglePointerCircle from './GooglePointerCircle';
 import GooglePointer from './GooglePointer';
 import GoogleFields from './GoogleFields';
@@ -13,6 +11,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '../../types';
+
+const GOOGLE_STYLE_SLOTS = ['picker', 'head', 'saturation', 'swatch', 'body', 'controls', 'hue'] as const;
 
 type GoogleProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -36,74 +36,23 @@ export const Google = ({
   classNames,
   theme,
 }: GoogleProps) => {
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          picker: {
-            width,
-            background: '#fff',
-            border: '1px solid #dfe1e5',
-            boxSizing: 'initial',
-            display: 'flex',
-            flexWrap: 'wrap',
-            borderRadius: '8px 8px 0px 0px',
-          },
-          head: {
-            height: '57px',
-            width: '100%',
-            paddingTop: '16px',
-            paddingBottom: '16px',
-            paddingLeft: '16px',
-            fontSize: '20px',
-            boxSizing: 'border-box',
-            fontFamily: 'Roboto-Regular,HelveticaNeue,Arial,sans-serif',
-          },
-          saturation: {
-            width: '70%',
-            padding: '0px',
-            position: 'relative',
-            overflow: 'hidden',
-          },
-          swatch: {
-            width: '30%',
-            height: '228px',
-            padding: '0px',
-            background: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 1)`,
-            position: 'relative',
-            overflow: 'hidden',
-          },
-          body: {
-            margin: 'auto',
-            width: '95%',
-          },
-          controls: {
-            display: 'flex',
-            boxSizing: 'border-box',
-            height: '52px',
-            paddingTop: '22px',
-          },
-          color: {
-            width: '32px',
-          },
-          hue: {
-            height: '8px',
-            position: 'relative',
-            margin: '0px 16px 0px 16px',
-            width: '100%',
-          },
-          Hue: {
-            radius: '2px',
-          },
-        },
-      },
-      passedStyles,
-    ),
-  );
+  const rootStyle = {
+    width,
+    ...getDeprecatedStyleOverride(passedStyles, 'picker', GOOGLE_STYLE_SLOTS, 'picker'),
+  };
+  const headStyle = getDeprecatedStyleOverride(passedStyles, 'head', GOOGLE_STYLE_SLOTS, 'head');
+  const swatchStyle = {
+    background: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 1)`,
+    ...getDeprecatedStyleOverride(passedStyles, 'swatch', GOOGLE_STYLE_SLOTS, 'swatch'),
+  };
+  const saturationStyle = getDeprecatedStyleOverride(passedStyles, 'saturation', GOOGLE_STYLE_SLOTS, 'saturation');
+  const bodyStyle = getDeprecatedStyleOverride(passedStyles, 'body', GOOGLE_STYLE_SLOTS, 'body');
+  const controlsStyle = getDeprecatedStyleOverride(passedStyles, 'controls', GOOGLE_STYLE_SLOTS, 'controls');
+  const hueStyle = getDeprecatedStyleOverride(passedStyles, 'hue', GOOGLE_STYLE_SLOTS, 'hue');
 
   return (
     <div
-      style={styles.picker}
+      style={rootStyle}
       {...getPickerRootProps({
         block: 'google',
         theme,
@@ -111,15 +60,20 @@ export const Google = ({
         classNames,
       })}
     >
-      <div style={styles.head}>{header}</div>
-      <div style={styles.swatch} />
-      <div style={styles.saturation}>
+      <div className={getPickerClassName({ block: 'google', slot: 'head' })} style={headStyle}>
+        {header}
+      </div>
+      <div className={getPickerClassName({ block: 'google', slot: 'swatch' })} style={swatchStyle} />
+      <div className={getPickerClassName({ block: 'google', slot: 'saturation' })} style={saturationStyle}>
         <Saturation hsl={hsl} hsv={hsv} pointer={GooglePointerCircle} onChange={onChange} />
       </div>
-      <div style={styles.body}>
-        <div style={styles.controls} className="flexbox-fix">
-          <div style={styles.hue}>
-            <Hue style={styles.Hue} hsl={hsl} radius="4px" pointer={GooglePointer} onChange={onChange} />
+      <div className={getPickerClassName({ block: 'google', slot: 'body' })} style={bodyStyle}>
+        <div
+          className={getPickerClassName({ block: 'google', slot: 'controls', className: 'flexbox-fix' })}
+          style={controlsStyle}
+        >
+          <div className={getPickerClassName({ block: 'google', slot: 'hue' })} style={hueStyle}>
+            <Hue hsl={hsl} radius="4px" pointer={GooglePointer} onChange={onChange} />
           </div>
         </div>
         <GoogleFields rgb={rgb} hsl={hsl} hex={hex} hsv={hsv} onChange={onChange} />

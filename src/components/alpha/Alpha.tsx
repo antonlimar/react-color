@@ -1,5 +1,3 @@
-import reactCSS from 'reactcss';
-
 import { ColorWrap, Alpha as AlphaControl } from '../common';
 import { getPickerRootProps } from '../common/styleArchitecture';
 import AlphaPointer from './AlphaPointer';
@@ -39,23 +37,14 @@ export const AlphaPicker = ({
   classNames,
   theme,
 }: AlphaPickerProps) => {
-  const styles = reactCSS({
-    default: {
-      picker: {
-        position: 'relative',
-        width,
-        height,
-      },
-      alpha: {
-        radius: '2px',
-        style,
-      },
-    },
-  });
+  const rootStyle = {
+    width,
+    height,
+  };
 
   return (
     <div
-      style={styles.picker}
+      style={rootStyle}
       {...getPickerRootProps({
         block: 'alpha',
         theme,
@@ -64,9 +53,10 @@ export const AlphaPicker = ({
       })}
     >
       <AlphaControl
-        {...styles.alpha}
         rgb={rgb}
         hsl={hsl}
+        radius="2px"
+        style={style}
         pointer={pointer}
         renderers={renderers}
         onChange={onChange}

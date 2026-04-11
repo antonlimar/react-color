@@ -50,7 +50,7 @@ test('Photoshop keeps header and styles runtime defaults', () => {
 
   expect(screen.getByText('Color Picker')).toBeInTheDocument();
   expect(root).toBeInstanceOf(HTMLElement);
-  expect(root).toHaveStyle({ boxShadow: '0 0 0 1px rgba(0,0,0,.25), 0 8px 16px rgba(0,0,0,.15)' });
+  expect((root as HTMLElement).className).toContain('rc-photoshop');
 });
 
 test('Photoshop passes resolved defaults to onAccept', () => {

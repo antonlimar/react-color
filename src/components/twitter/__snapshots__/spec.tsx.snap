@@ -3,100 +3,140 @@
 exports[`Twitter \`triangle="hide"\` 1`] = `
 <DocumentFragment>
   <div
-    class="rc-twitter twitter-picker"
-    style="width: 276px; background: rgb(255, 255, 255); border: 0px solid rgba(0, 0, 0, 0.25); -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.25); box-shadow: 0 1px 4px rgba(0,0,0,0.25); -webkit-border-radius: 4px; border-radius: 4px; position: relative;"
+    class="rc-twitter rc-twitter--hide-triangle rc-twitter--hide twitter-picker"
+    style="width: 276px;"
   >
     <div
-      style="width: 0px; height: 0px; border-style: solid; border-width: 0px 9px 10px; border-color: transparent transparent rgba(0, 0, 0, 0.1); position: absolute; display: none;"
+      class="rc-twitter__triangle-shadow"
     />
     <div
-      style="width: 0px; height: 0px; border-style: solid; border-width: 0px 9px 10px; border-color: transparent transparent rgb(255, 255, 255); position: absolute; display: none;"
+      class="rc-twitter__triangle"
     />
     <div
-      style="padding: 15px 9px 9px 15px;"
+      class="rc-twitter__body"
     >
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(255, 105, 0); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#FF6900"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(252, 185, 0); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#FCB900"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(123, 220, 181); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#7BDCB5"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(0, 208, 132); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#00D084"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(142, 209, 252); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#8ED1FC"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(6, 147, 227); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#0693E3"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(171, 184, 195); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#ABB8C3"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(235, 20, 76); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#EB144C"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(247, 141, 167); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#F78DA7"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(153, 0, 239); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#9900EF"
-        />
-      </span>
       <div
-        style="background: rgb(240, 240, 240); height: 30px; width: 30px; -webkit-border-radius: 4px 0 0 4px; border-radius: 4px 0 0 4px; float: left; color: rgb(152, 161, 164); display: flex; align-items: center; -webkit-justify-content: center; justify-content: center;"
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(255, 105, 0);"
+            tabindex="0"
+            title="#FF6900"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(252, 185, 0);"
+            tabindex="0"
+            title="#FCB900"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(123, 220, 181);"
+            tabindex="0"
+            title="#7BDCB5"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(0, 208, 132);"
+            tabindex="0"
+            title="#00D084"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(142, 209, 252);"
+            tabindex="0"
+            title="#8ED1FC"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(6, 147, 227);"
+            tabindex="0"
+            title="#0693E3"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(171, 184, 195);"
+            tabindex="0"
+            title="#ABB8C3"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(235, 20, 76);"
+            tabindex="0"
+            title="#EB144C"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(247, 141, 167);"
+            tabindex="0"
+            title="#F78DA7"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(153, 0, 239);"
+            tabindex="0"
+            title="#9900EF"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__hash"
       >
         #
       </div>
@@ -107,12 +147,11 @@ exports[`Twitter \`triangle="hide"\` 1`] = `
           class="rc-editable-input__input"
           id="rc-editable-input-3"
           spellcheck="false"
-          style="width: 100px; font-size: 14px; color: rgb(102, 102, 102); border: 0px; outline: none; height: 28px; -webkit-box-shadow: inset 0 0 0 1px #F0F0F0; box-shadow: inset 0 0 0 1px #F0F0F0; box-sizing: content-box; -webkit-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; float: left; padding-left: 8px;"
           value="22194D"
         />
       </div>
       <div
-        style="clear: both;"
+        class="rc-twitter__clear"
       />
     </div>
   </div>
@@ -122,100 +161,140 @@ exports[`Twitter \`triangle="hide"\` 1`] = `
 exports[`Twitter \`triangle="top-right"\` 1`] = `
 <DocumentFragment>
   <div
-    class="rc-twitter twitter-picker"
-    style="width: 276px; background: rgb(255, 255, 255); border: 0px solid rgba(0, 0, 0, 0.25); -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.25); box-shadow: 0 1px 4px rgba(0,0,0,0.25); -webkit-border-radius: 4px; border-radius: 4px; position: relative;"
+    class="rc-twitter rc-twitter--top-right twitter-picker"
+    style="width: 276px;"
   >
     <div
-      style="width: 0px; height: 0px; border-style: solid; border-width: 0px 9px 10px; border-color: transparent transparent rgba(0, 0, 0, 0.1); position: absolute; top: -11px; right: 12px;"
+      class="rc-twitter__triangle-shadow"
     />
     <div
-      style="width: 0px; height: 0px; border-style: solid; border-width: 0px 9px 10px; border-color: transparent transparent rgb(255, 255, 255); position: absolute; top: -10px; right: 12px;"
+      class="rc-twitter__triangle"
     />
     <div
-      style="padding: 15px 9px 9px 15px;"
+      class="rc-twitter__body"
     >
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(255, 105, 0); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#FF6900"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(252, 185, 0); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#FCB900"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(123, 220, 181); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#7BDCB5"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(0, 208, 132); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#00D084"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(142, 209, 252); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#8ED1FC"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(6, 147, 227); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#0693E3"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(171, 184, 195); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#ABB8C3"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(235, 20, 76); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#EB144C"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(247, 141, 167); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#F78DA7"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(153, 0, 239); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#9900EF"
-        />
-      </span>
       <div
-        style="background: rgb(240, 240, 240); height: 30px; width: 30px; -webkit-border-radius: 4px 0 0 4px; border-radius: 4px 0 0 4px; float: left; color: rgb(152, 161, 164); display: flex; align-items: center; -webkit-justify-content: center; justify-content: center;"
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(255, 105, 0);"
+            tabindex="0"
+            title="#FF6900"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(252, 185, 0);"
+            tabindex="0"
+            title="#FCB900"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(123, 220, 181);"
+            tabindex="0"
+            title="#7BDCB5"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(0, 208, 132);"
+            tabindex="0"
+            title="#00D084"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(142, 209, 252);"
+            tabindex="0"
+            title="#8ED1FC"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(6, 147, 227);"
+            tabindex="0"
+            title="#0693E3"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(171, 184, 195);"
+            tabindex="0"
+            title="#ABB8C3"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(235, 20, 76);"
+            tabindex="0"
+            title="#EB144C"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(247, 141, 167);"
+            tabindex="0"
+            title="#F78DA7"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(153, 0, 239);"
+            tabindex="0"
+            title="#9900EF"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__hash"
       >
         #
       </div>
@@ -226,12 +305,11 @@ exports[`Twitter \`triangle="top-right"\` 1`] = `
           class="rc-editable-input__input"
           id="rc-editable-input-4"
           spellcheck="false"
-          style="width: 100px; font-size: 14px; color: rgb(102, 102, 102); border: 0px; outline: none; height: 28px; -webkit-box-shadow: inset 0 0 0 1px #F0F0F0; box-shadow: inset 0 0 0 1px #F0F0F0; box-sizing: content-box; -webkit-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; float: left; padding-left: 8px;"
           value="22194D"
         />
       </div>
       <div
-        style="clear: both;"
+        class="rc-twitter__clear"
       />
     </div>
   </div>
@@ -241,100 +319,140 @@ exports[`Twitter \`triangle="top-right"\` 1`] = `
 exports[`Twitter renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="rc-twitter twitter-picker"
-    style="width: 276px; background: rgb(255, 255, 255); border: 0px solid rgba(0, 0, 0, 0.25); -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.25); box-shadow: 0 1px 4px rgba(0,0,0,0.25); -webkit-border-radius: 4px; border-radius: 4px; position: relative;"
+    class="rc-twitter rc-twitter--top-left twitter-picker"
+    style="width: 276px;"
   >
     <div
-      style="width: 0px; height: 0px; border-style: solid; border-width: 0px 9px 10px; border-color: transparent transparent rgba(0, 0, 0, 0.1); position: absolute; top: -11px; left: 12px;"
+      class="rc-twitter__triangle-shadow"
     />
     <div
-      style="width: 0px; height: 0px; border-style: solid; border-width: 0px 9px 10px; border-color: transparent transparent rgb(255, 255, 255); position: absolute; top: -10px; left: 12px;"
+      class="rc-twitter__triangle"
     />
     <div
-      style="padding: 15px 9px 9px 15px;"
+      class="rc-twitter__body"
     >
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(255, 105, 0); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#FF6900"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(252, 185, 0); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#FCB900"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(123, 220, 181); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#7BDCB5"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(0, 208, 132); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#00D084"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(142, 209, 252); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#8ED1FC"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(6, 147, 227); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#0693E3"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(171, 184, 195); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#ABB8C3"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(235, 20, 76); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#EB144C"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(247, 141, 167); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#F78DA7"
-        />
-      </span>
-      <span>
-        <div
-          class="rc-swatch"
-          style="background: rgb(153, 0, 239); width: 30px; height: 30px; float: left; -webkit-border-radius: 4px; border-radius: 4px; margin: 0px 6px 6px 0px;"
-          tabindex="0"
-          title="#9900EF"
-        />
-      </span>
       <div
-        style="background: rgb(240, 240, 240); height: 30px; width: 30px; -webkit-border-radius: 4px 0 0 4px; border-radius: 4px 0 0 4px; float: left; color: rgb(152, 161, 164); display: flex; align-items: center; -webkit-justify-content: center; justify-content: center;"
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(255, 105, 0);"
+            tabindex="0"
+            title="#FF6900"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(252, 185, 0);"
+            tabindex="0"
+            title="#FCB900"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(123, 220, 181);"
+            tabindex="0"
+            title="#7BDCB5"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(0, 208, 132);"
+            tabindex="0"
+            title="#00D084"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(142, 209, 252);"
+            tabindex="0"
+            title="#8ED1FC"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(6, 147, 227);"
+            tabindex="0"
+            title="#0693E3"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(171, 184, 195);"
+            tabindex="0"
+            title="#ABB8C3"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(235, 20, 76);"
+            tabindex="0"
+            title="#EB144C"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(247, 141, 167);"
+            tabindex="0"
+            title="#F78DA7"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__swatch"
+      >
+        <span>
+          <div
+            class="rc-swatch"
+            style="background: rgb(153, 0, 239);"
+            tabindex="0"
+            title="#9900EF"
+          />
+        </span>
+      </div>
+      <div
+        class="rc-twitter__hash"
       >
         #
       </div>
@@ -345,12 +463,11 @@ exports[`Twitter renders correctly 1`] = `
           class="rc-editable-input__input"
           id="rc-editable-input-1"
           spellcheck="false"
-          style="width: 100px; font-size: 14px; color: rgb(102, 102, 102); border: 0px; outline: none; height: 28px; -webkit-box-shadow: inset 0 0 0 1px #F0F0F0; box-shadow: inset 0 0 0 1px #F0F0F0; box-sizing: content-box; -webkit-border-radius: 0 4px 4px 0; border-radius: 0 4px 4px 0; float: left; padding-left: 8px;"
           value="22194D"
         />
       </div>
       <div
-        style="clear: both;"
+        class="rc-twitter__clear"
       />
     </div>
   </div>

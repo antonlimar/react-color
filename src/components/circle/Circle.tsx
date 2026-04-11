@@ -1,10 +1,9 @@
-import reactCSS from 'reactcss';
 import map from 'lodash/map';
-import merge from 'lodash/merge';
 import material from 'material-colors';
 
 import { ColorWrap } from '../common';
 import { getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import CircleSwatch from './CircleSwatch';
 import type {
   ClassName,
@@ -13,6 +12,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '../../types';
+
+const CIRCLE_STYLE_SLOTS = ['card'] as const;
 
 type CircleProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -59,26 +60,16 @@ export const Circle = ({
   classNames,
   theme,
 }: CircleProps) => {
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          card: {
-            width,
-            display: 'flex',
-            flexWrap: 'wrap',
-            marginRight: -circleSpacing!,
-            marginBottom: -circleSpacing!,
-          },
-        },
-      },
-      passedStyles,
-    ),
-  );
+  const rootStyle = {
+    width,
+    marginRight: -circleSpacing,
+    marginBottom: -circleSpacing,
+    ...getDeprecatedStyleOverride(passedStyles, 'card', CIRCLE_STYLE_SLOTS, 'card'),
+  };
 
   return (
     <div
-      style={styles.card}
+      style={rootStyle}
       {...getPickerRootProps({
         block: 'circle',
         theme,

@@ -1,3 +1,6 @@
 @use './CircleSwatch';
 
-/*! rc-circle co-located stylesheet placeholder */
+.rc-circle {
+  display: flex;
+  flex-wrap: wrap;
+}

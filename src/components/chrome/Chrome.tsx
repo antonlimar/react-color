@@ -1,8 +1,6 @@
-import reactCSS from 'reactcss';
-import merge from 'lodash/merge';
-
 import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../common';
-import { getPickerRootProps } from '../common/styleArchitecture';
+import { getPickerClassName, getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import ChromeFields from './ChromeFields';
 import ChromePointer from './ChromePointer';
 import ChromePointerCircle from './ChromePointerCircle';
@@ -13,8 +11,20 @@ import type {
   PickerClassNames,
   PickerCustomStyles,
   PickerTheme,
-  SaturationStyle,
 } from '../../types';
+
+const CHROME_STYLE_SLOTS = [
+  'picker',
+  'saturation',
+  'body',
+  'controls',
+  'color',
+  'swatch',
+  'active',
+  'toggles',
+  'hue',
+  'alpha',
+] as const;
 
 type ChromeProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -42,96 +52,26 @@ export const Chrome = ({
   theme,
   defaultView,
 }: ChromeProps) => {
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          picker: {
-            width,
-            background: '#fff',
-            borderRadius: '2px',
-            boxShadow: '0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3)',
-            boxSizing: 'initial',
-            fontFamily: 'Menlo',
-          },
-          saturation: {
-            width: '100%',
-            paddingBottom: '55%',
-            position: 'relative',
-            borderRadius: '2px 2px 0 0',
-            overflow: 'hidden',
-          },
-          Saturation: {
-            radius: '2px 2px 0 0',
-          },
-          body: {
-            padding: '16px 16px 12px',
-          },
-          controls: {
-            display: 'flex',
-          },
-          color: {
-            width: '32px',
-          },
-          swatch: {
-            marginTop: '6px',
-            width: '16px',
-            height: '16px',
-            borderRadius: '8px',
-            position: 'relative',
-            overflow: 'hidden',
-          },
-          active: {
-            absolute: '0px 0px 0px 0px',
-            borderRadius: '8px',
-            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.1)',
-            background: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`,
-            zIndex: '2',
-          },
-          toggles: {
-            flex: '1',
-          },
-          hue: {
-            height: '10px',
-            position: 'relative',
-            marginBottom: '8px',
-          },
-          Hue: {
-            radius: '2px',
-          },
-          alpha: {
-            height: '10px',
-            position: 'relative',
-          },
-          Alpha: {
-            radius: '2px',
-          },
-        },
-        disableAlpha: {
-          color: {
-            width: '22px',
-          },
-          alpha: {
-            display: 'none',
-          },
-          hue: {
-            marginBottom: '0px',
-          },
-          swatch: {
-            width: '10px',
-            height: '10px',
-            marginTop: '0px',
-          },
-        },
-      },
-      passedStyles,
-    ),
-    { disableAlpha },
-  );
+  const rootStyle = {
+    width,
+    ...getDeprecatedStyleOverride(passedStyles, 'picker', CHROME_STYLE_SLOTS, 'picker'),
+  };
+  const saturationStyle = getDeprecatedStyleOverride(passedStyles, 'saturation', CHROME_STYLE_SLOTS, 'saturation');
+  const bodyStyle = getDeprecatedStyleOverride(passedStyles, 'body', CHROME_STYLE_SLOTS, 'body');
+  const controlsStyle = getDeprecatedStyleOverride(passedStyles, 'controls', CHROME_STYLE_SLOTS, 'controls');
+  const colorStyle = getDeprecatedStyleOverride(passedStyles, 'color', CHROME_STYLE_SLOTS, 'color');
+  const swatchStyle = getDeprecatedStyleOverride(passedStyles, 'swatch', CHROME_STYLE_SLOTS, 'swatch');
+  const activeStyle = {
+    background: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`,
+    ...getDeprecatedStyleOverride(passedStyles, 'active', CHROME_STYLE_SLOTS, 'active'),
+  };
+  const togglesStyle = getDeprecatedStyleOverride(passedStyles, 'toggles', CHROME_STYLE_SLOTS, 'toggles');
+  const hueStyle = getDeprecatedStyleOverride(passedStyles, 'hue', CHROME_STYLE_SLOTS, 'hue');
+  const alphaStyle = getDeprecatedStyleOverride(passedStyles, 'alpha', CHROME_STYLE_SLOTS, 'alpha');
 
   return (
     <div
-      style={styles.picker}
+      style={rootStyle}
       {...getPickerRootProps({
         block: 'chrome',
         theme,
@@ -140,30 +80,27 @@ export const Chrome = ({
         classNames,
       })}
     >
-      <div style={styles.saturation}>
-        <Saturation
-          style={styles.Saturation as SaturationStyle}
-          hsl={hsl}
-          hsv={hsv}
-          pointer={ChromePointerCircle}
-          onChange={onChange}
-        />
+      <div className={getPickerClassName({ block: 'chrome', slot: 'saturation' })} style={saturationStyle}>
+        <Saturation radius="2px 2px 0 0" hsl={hsl} hsv={hsv} pointer={ChromePointerCircle} onChange={onChange} />
       </div>
-      <div style={styles.body}>
-        <div style={styles.controls} className="flexbox-fix">
-          <div style={styles.color}>
-            <div style={styles.swatch}>
-              <div style={styles.active} />
+      <div className={getPickerClassName({ block: 'chrome', slot: 'body' })} style={bodyStyle}>
+        <div
+          className={getPickerClassName({ block: 'chrome', slot: 'controls', className: 'flexbox-fix' })}
+          style={controlsStyle}
+        >
+          <div className={getPickerClassName({ block: 'chrome', slot: 'color' })} style={colorStyle}>
+            <div className={getPickerClassName({ block: 'chrome', slot: 'swatch' })} style={swatchStyle}>
+              <div className={getPickerClassName({ block: 'chrome', slot: 'active' })} style={activeStyle} />
               <Checkboard renderers={renderers} />
             </div>
           </div>
-          <div style={styles.toggles}>
-            <div style={styles.hue}>
-              <Hue style={styles.Hue} hsl={hsl} pointer={ChromePointer} onChange={onChange} />
+          <div className={getPickerClassName({ block: 'chrome', slot: 'toggles' })} style={togglesStyle}>
+            <div className={getPickerClassName({ block: 'chrome', slot: 'hue' })} style={hueStyle}>
+              <Hue radius="2px" hsl={hsl} pointer={ChromePointer} onChange={onChange} />
             </div>
-            <div style={styles.alpha}>
+            <div className={getPickerClassName({ block: 'chrome', slot: 'alpha' })} style={alphaStyle}>
               <Alpha
-                style={styles.Alpha}
+                radius="2px"
                 rgb={rgb}
                 hsl={hsl}
                 pointer={ChromePointer}

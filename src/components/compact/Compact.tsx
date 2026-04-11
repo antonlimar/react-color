@@ -1,10 +1,9 @@
-import reactCSS from 'reactcss';
 import map from 'lodash/map';
-import merge from 'lodash/merge';
 import * as color from '../../helpers/color';
 
 import { ColorWrap, Raised } from '../common';
-import { getPickerRootProps } from '../common/styleArchitecture';
+import { getPickerClassName, getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import CompactColor from './CompactColor';
 import CompactFields from './CompactFields';
 import type {
@@ -16,6 +15,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '../../types';
+
+const COMPACT_STYLE_SLOTS = ['Compact', 'compact', 'clear'] as const;
 
 type CompactProps = ColorPickerInjectedProps & {
   colors?: string[];
@@ -95,33 +96,14 @@ export const Compact = ({
   classNames,
   theme,
 }: CompactProps) => {
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          Compact: {
-            background: '#f6f6f6',
-            radius: '4px',
-          },
-          compact: {
-            paddingTop: '5px',
-            paddingLeft: '5px',
-            boxSizing: 'initial',
-            width: '240px',
-          },
-          clear: {
-            clear: 'both',
-          },
-        },
-      },
-      passedStyles,
-    ),
-  );
+  const raisedStyle = getDeprecatedStyleOverride(passedStyles, 'Compact', COMPACT_STYLE_SLOTS, 'Compact');
+  const rootStyle = getDeprecatedStyleOverride(passedStyles, 'compact', COMPACT_STYLE_SLOTS, 'compact');
+  const clearStyle = getDeprecatedStyleOverride(passedStyles, 'clear', COMPACT_STYLE_SLOTS, 'clear');
 
   return (
-    <Raised style={styles.Compact} styles={passedStyles}>
+    <Raised style={raisedStyle} styles={passedStyles}>
       <div
-        style={styles.compact}
+        style={rootStyle}
         {...getPickerRootProps({
           block: 'compact',
           theme,
@@ -129,7 +111,7 @@ export const Compact = ({
           classNames,
         })}
       >
-        <div>
+        <div className={getPickerClassName({ block: 'compact', slot: 'swatches' })}>
           {map(colors, (colorValue: string) => (
             <CompactColor
               key={colorValue}
@@ -139,7 +121,7 @@ export const Compact = ({
               onSwatchHover={onSwatchHover}
             />
           ))}
-          <div style={styles.clear} />
+          <div className={getPickerClassName({ block: 'compact', slot: 'clear' })} style={clearStyle} />
         </div>
         <CompactFields hex={hex} rgb={rgb} onChange={(data, event) => handleCompactChange(onChange, data, event)} />
       </div>

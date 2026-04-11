@@ -1,8 +1,6 @@
-import reactCSS from 'reactcss';
-import merge from 'lodash/merge';
-
 import { ColorWrap, Hue as HueControl } from '../common';
 import { getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import HuePointer from './HuePointer';
 import type {
   ClassName,
@@ -12,6 +10,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '../../types';
+
+const HUE_PICKER_STYLE_SLOTS = ['picker'] as const;
 
 type HuePickerProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -36,31 +36,19 @@ export const HuePicker = ({
   classNames,
   theme,
 }: HuePickerProps) => {
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          picker: {
-            position: 'relative',
-            width,
-            height,
-          },
-          hue: {
-            radius: '2px',
-          },
-        },
-      },
-      passedStyles,
-    ),
-  );
-
   const handleChange: HueProps['onChange'] = (data) => {
     onChange({ a: 1, h: data.h, l: 0.5, s: 1 });
   };
 
+  const rootStyle = {
+    width,
+    height,
+    ...getDeprecatedStyleOverride(passedStyles, 'picker', HUE_PICKER_STYLE_SLOTS, 'picker'),
+  };
+
   return (
     <div
-      style={styles.picker}
+      style={rootStyle}
       {...getPickerRootProps({
         block: 'hue',
         theme,
@@ -68,7 +56,7 @@ export const HuePicker = ({
         classNames,
       })}
     >
-      <HueControl {...styles.hue} hsl={hsl} pointer={pointer} onChange={handleChange} direction={direction} />
+      <HueControl hsl={hsl} radius="2px" pointer={pointer} onChange={handleChange} direction={direction} />
     </div>
   );
 };

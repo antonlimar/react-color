@@ -1,8 +1,6 @@
-import reactCSS from 'reactcss';
-import merge from 'lodash/merge';
-
 import { ColorWrap, Hue } from '../common';
-import { getPickerRootProps } from '../common/styleArchitecture';
+import { getPickerClassName, getPickerRootProps } from '../common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '../common/styleOverrides';
 import SliderSwatches from './SliderSwatches';
 import SliderPointer from './SliderPointer';
 import type {
@@ -13,6 +11,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '../../types';
+
+const SLIDER_STYLE_SLOTS = ['wrap', 'hue', 'swatches'] as const;
 
 type SliderProps = ColorPickerInjectedProps & {
   pointer?: HueProps['pointer'];
@@ -31,26 +31,13 @@ export const Slider = ({
   classNames,
   theme,
 }: SliderProps) => {
-  const styles = reactCSS(
-    merge(
-      {
-        default: {
-          hue: {
-            height: '12px',
-            position: 'relative',
-          },
-          Hue: {
-            radius: '2px',
-          },
-        },
-      },
-      passedStyles,
-    ),
-  );
+  const rootStyle = getDeprecatedStyleOverride(passedStyles, 'wrap', SLIDER_STYLE_SLOTS, 'wrap');
+  const hueStyle = getDeprecatedStyleOverride(passedStyles, 'hue', SLIDER_STYLE_SLOTS, 'hue');
+  const swatchesStyle = getDeprecatedStyleOverride(passedStyles, 'swatches', SLIDER_STYLE_SLOTS, 'swatches');
 
   return (
     <div
-      style={styles.wrap || {}}
+      style={rootStyle}
       {...getPickerRootProps({
         block: 'slider',
         theme,
@@ -58,10 +45,10 @@ export const Slider = ({
         classNames,
       })}
     >
-      <div style={styles.hue}>
-        <Hue style={styles.Hue} hsl={hsl} pointer={pointer} onChange={onChange} />
+      <div className={getPickerClassName({ block: 'slider', slot: 'hue' })} style={hueStyle}>
+        <Hue radius="2px" hsl={hsl} pointer={pointer} onChange={onChange} />
       </div>
-      <div style={styles.swatches}>
+      <div className={getPickerClassName({ block: 'slider', slot: 'swatches-wrap' })} style={swatchesStyle}>
         <SliderSwatches hsl={hsl} onClick={onChange} />
       </div>
     </div>
