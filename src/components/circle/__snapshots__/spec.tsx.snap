@@ -12,7 +12,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #f44336; box-shadow: inset 0 0 0 15px #f44336; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #f44336; box-shadow: inset 0 0 0 15px #f44336; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#f44336"
           />
@@ -25,7 +26,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #e91e63; box-shadow: inset 0 0 0 15px #e91e63; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #e91e63; box-shadow: inset 0 0 0 15px #e91e63; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#e91e63"
           />
@@ -38,7 +40,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #9c27b0; box-shadow: inset 0 0 0 15px #9c27b0; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #9c27b0; box-shadow: inset 0 0 0 15px #9c27b0; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#9c27b0"
           />
@@ -51,7 +54,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #673ab7; box-shadow: inset 0 0 0 15px #673ab7; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #673ab7; box-shadow: inset 0 0 0 15px #673ab7; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#673ab7"
           />
@@ -64,7 +68,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #3f51b5; box-shadow: inset 0 0 0 15px #3f51b5; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #3f51b5; box-shadow: inset 0 0 0 15px #3f51b5; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#3f51b5"
           />
@@ -77,7 +82,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #2196f3; box-shadow: inset 0 0 0 15px #2196f3; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #2196f3; box-shadow: inset 0 0 0 15px #2196f3; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#2196f3"
           />
@@ -90,7 +96,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #03a9f4; box-shadow: inset 0 0 0 15px #03a9f4; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #03a9f4; box-shadow: inset 0 0 0 15px #03a9f4; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#03a9f4"
           />
@@ -103,7 +110,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #00bcd4; box-shadow: inset 0 0 0 15px #00bcd4; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #00bcd4; box-shadow: inset 0 0 0 15px #00bcd4; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#00bcd4"
           />
@@ -116,7 +124,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #009688; box-shadow: inset 0 0 0 15px #009688; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #009688; box-shadow: inset 0 0 0 15px #009688; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#009688"
           />
@@ -129,7 +138,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #4caf50; box-shadow: inset 0 0 0 15px #4caf50; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #4caf50; box-shadow: inset 0 0 0 15px #4caf50; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#4caf50"
           />
@@ -142,7 +152,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #8bc34a; box-shadow: inset 0 0 0 15px #8bc34a; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #8bc34a; box-shadow: inset 0 0 0 15px #8bc34a; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#8bc34a"
           />
@@ -155,7 +166,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #cddc39; box-shadow: inset 0 0 0 15px #cddc39; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #cddc39; box-shadow: inset 0 0 0 15px #cddc39; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#cddc39"
           />
@@ -168,7 +180,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #ffeb3b; box-shadow: inset 0 0 0 15px #ffeb3b; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #ffeb3b; box-shadow: inset 0 0 0 15px #ffeb3b; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#ffeb3b"
           />
@@ -181,7 +194,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #ffc107; box-shadow: inset 0 0 0 15px #ffc107; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #ffc107; box-shadow: inset 0 0 0 15px #ffc107; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#ffc107"
           />
@@ -194,7 +208,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #ff9800; box-shadow: inset 0 0 0 15px #ff9800; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #ff9800; box-shadow: inset 0 0 0 15px #ff9800; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#ff9800"
           />
@@ -207,7 +222,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #ff5722; box-shadow: inset 0 0 0 15px #ff5722; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #ff5722; box-shadow: inset 0 0 0 15px #ff5722; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#ff5722"
           />
@@ -220,7 +236,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #795548; box-shadow: inset 0 0 0 15px #795548; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #795548; box-shadow: inset 0 0 0 15px #795548; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#795548"
           />
@@ -233,7 +250,8 @@ exports[`Circle renders correctly 1`] = `
       >
         <span>
           <div
-            style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #607d8b; box-shadow: inset 0 0 0 15px #607d8b; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+            class="rc-swatch"
+            style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-box-shadow: inset 0 0 0 15px #607d8b; box-shadow: inset 0 0 0 15px #607d8b; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
             tabindex="0"
             title="#607d8b"
           />
@@ -252,7 +270,8 @@ exports[`CircleSwatch renders correctly 1`] = `
     >
       <span>
         <div
-          style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+          class="rc-swatch"
+          style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
           tabindex="0"
         />
       </span>
@@ -269,7 +288,8 @@ exports[`CircleSwatch renders with sizing and spacing 1`] = `
     >
       <span>
         <div
-          style="background: transparent; height: 100%; width: 100%; cursor: pointer; position: relative; outline: none; -webkit-border-radius: 50%; border-radius: 50%; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
+          class="rc-swatch"
+          style="background: transparent; -webkit-border-radius: 50%; border-radius: 50%; -webkit-transition: 100ms box-shadow ease; transition: 100ms box-shadow ease;"
           tabindex="0"
         />
       </span>

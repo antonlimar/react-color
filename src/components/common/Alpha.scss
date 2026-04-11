@@ -1,1 +1,35 @@
-/*! rc-alpha-control co-located stylesheet placeholder */
+.rc-alpha-control {
+  position: absolute;
+  inset: 0;
+}
+
+.rc-alpha-control__checkboard {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.rc-alpha-control__gradient {
+  position: absolute;
+  inset: 0;
+}
+
+.rc-alpha-control__container {
+  position: relative;
+  height: 100%;
+  margin: 0 3px;
+}
+
+.rc-alpha-control__pointer {
+  position: absolute;
+}
+
+.rc-alpha-control__slider {
+  width: 4px;
+  height: 8px;
+  margin-top: 1px;
+  background: #fff;
+  border-radius: 1px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  transform: translateX(-2px);
+}

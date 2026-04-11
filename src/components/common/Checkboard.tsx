@@ -1,8 +1,8 @@
 import { cloneElement, isValidElement } from 'react';
 import type { CSSProperties, ReactElement } from 'react';
-import reactCSS from 'reactcss';
 import * as checkboard from '../../helpers/checkboard';
 import type { CheckboardProps } from '../../types';
+import { getPickerClassName } from './styleArchitecture';
 
 export const Checkboard = ({
   white = 'transparent',
@@ -13,27 +13,24 @@ export const Checkboard = ({
   boxShadow,
   children,
 }: CheckboardProps) => {
-  const styles = reactCSS({
-    default: {
-      grid: {
-        borderRadius,
-        boxShadow,
-        absolute: '0px 0px 0px 0px',
-        background: `url(${checkboard.get(white!, grey!, size!, renderers?.canvas)}) center left`,
-      },
-    },
-  });
+  const style: CSSProperties = {
+    borderRadius,
+    boxShadow,
+    background: `url(${checkboard.get(white!, grey!, size!, renderers?.canvas)}) center left`,
+  };
+  const className = getPickerClassName({ block: 'checkboard' });
 
   if (isValidElement(children)) {
-    const child = children as ReactElement<{ style?: CSSProperties }>;
+    const child = children as ReactElement<{ className?: string; style?: CSSProperties }>;
 
     return cloneElement(child, {
       ...child.props,
-      style: { ...child.props.style, ...styles.grid },
+      className: [child.props.className, className].filter(Boolean).join(' ') || undefined,
+      style: { ...child.props.style, ...style },
     });
   }
 
-  return <div style={styles.grid} />;
+  return <div className={className} style={style} />;
 };
 
 export default Checkboard;

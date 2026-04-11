@@ -19,18 +19,20 @@ exports[`Photoshop renders correctly 1`] = `
         style="width: 256px; height: 256px; position: relative; border-width: 2px; border-style: solid; border-color: rgb(179, 179, 179) rgb(179, 179, 179) rgb(240, 240, 240); border-image: none; overflow: hidden;"
       >
         <div
-          style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; background: rgb(43, 0, 255);"
+          class="rc-saturation"
+          style="background: rgb(43, 0, 255);"
         >
           <div
-            class="saturation-white"
-            style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0));"
+            class="rc-saturation__white"
+            style="background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0));"
           >
             <div
-              class="saturation-black"
-              style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));"
+              class="rc-saturation__black"
+              style="background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));"
             />
             <div
-              style="position: absolute; top: 70%; left: 66.66666666666667%; cursor: default;"
+              class="rc-saturation__pointer"
+              style="top: 70%; left: 66.66666666666667%;"
             >
               <div
                 style="width: 12px; height: 12px; -webkit-border-radius: 6px; border-radius: 6px; -webkit-box-shadow: inset 0 0 0 1px #fff; box-shadow: inset 0 0 0 1px #fff; -webkit-transform: translate(-6px, -6px); transform: translate(-6px, -6px);"
@@ -43,14 +45,15 @@ exports[`Photoshop renders correctly 1`] = `
         style="position: relative; height: 256px; width: 19px; margin-left: 10px; border-width: 2px; border-style: solid; border-color: rgb(179, 179, 179) rgb(179, 179, 179) rgb(240, 240, 240); border-image: none;"
       >
         <div
-          style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px;"
+          class="rc-hue-control rc-hue-control--vertical"
         >
           <div
-            class="hue-vertical"
-            style="padding: 0px 2px; position: relative; height: 100%; background: linear-gradient(to top, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0) 100%);"
+            class="rc-hue-control__container"
+            style="background: linear-gradient(to top, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0) 100%);"
           >
             <div
-              style="position: absolute; left: 0px; top: 30.55555555555557%;"
+              class="rc-hue-control__pointer"
+              style="left: 0px; top: 30.55555555555557%;"
             >
               <div>
                 <div
@@ -122,15 +125,18 @@ exports[`Photoshop renders correctly 1`] = `
               style="padding-top: 5px; padding-bottom: 9px; width: 80px; position: relative;"
             >
               <div
+                class="rc-editable-input"
                 style="position: relative;"
               >
                 <input
+                  class="rc-editable-input__input"
                   id="rc-editable-input-1"
                   spellcheck="false"
                   style="margin-left: 40%; width: 40%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 5px; font-size: 13px; padding-left: 3px; margin-right: 10px;"
                   value="250"
                 />
                 <label
+                  class="rc-editable-input__label"
                   for="rc-editable-input-1"
                   style="left: 0px; top: 0px; width: 34px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px; position: absolute;"
                 >
@@ -138,15 +144,18 @@ exports[`Photoshop renders correctly 1`] = `
                 </label>
               </div>
               <div
+                class="rc-editable-input"
                 style="position: relative;"
               >
                 <input
+                  class="rc-editable-input__input"
                   id="rc-editable-input-2"
                   spellcheck="false"
                   style="margin-left: 40%; width: 40%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 5px; font-size: 13px; padding-left: 3px; margin-right: 10px;"
                   value="67"
                 />
                 <label
+                  class="rc-editable-input__label"
                   for="rc-editable-input-2"
                   style="left: 0px; top: 0px; width: 34px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px; position: absolute;"
                 >
@@ -154,15 +163,18 @@ exports[`Photoshop renders correctly 1`] = `
                 </label>
               </div>
               <div
+                class="rc-editable-input"
                 style="position: relative;"
               >
                 <input
+                  class="rc-editable-input__input"
                   id="rc-editable-input-3"
                   spellcheck="false"
                   style="margin-left: 40%; width: 40%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 5px; font-size: 13px; padding-left: 3px; margin-right: 10px;"
                   value="30"
                 />
                 <label
+                  class="rc-editable-input__label"
                   for="rc-editable-input-3"
                   style="left: 0px; top: 0px; width: 34px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px; position: absolute;"
                 >
@@ -173,15 +185,18 @@ exports[`Photoshop renders correctly 1`] = `
                 style="height: 5px;"
               />
               <div
+                class="rc-editable-input"
                 style="position: relative;"
               >
                 <input
+                  class="rc-editable-input__input"
                   id="rc-editable-input-4"
                   spellcheck="false"
                   style="margin-left: 40%; width: 40%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 5px; font-size: 13px; padding-left: 3px; margin-right: 10px;"
                   value="34"
                 />
                 <label
+                  class="rc-editable-input__label"
                   for="rc-editable-input-4"
                   style="left: 0px; top: 0px; width: 34px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px; position: absolute;"
                 >
@@ -189,15 +204,18 @@ exports[`Photoshop renders correctly 1`] = `
                 </label>
               </div>
               <div
+                class="rc-editable-input"
                 style="position: relative;"
               >
                 <input
+                  class="rc-editable-input__input"
                   id="rc-editable-input-5"
                   spellcheck="false"
                   style="margin-left: 40%; width: 40%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 5px; font-size: 13px; padding-left: 3px; margin-right: 10px;"
                   value="25"
                 />
                 <label
+                  class="rc-editable-input__label"
                   for="rc-editable-input-5"
                   style="left: 0px; top: 0px; width: 34px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px; position: absolute;"
                 >
@@ -205,15 +223,18 @@ exports[`Photoshop renders correctly 1`] = `
                 </label>
               </div>
               <div
+                class="rc-editable-input"
                 style="position: relative;"
               >
                 <input
+                  class="rc-editable-input__input"
                   id="rc-editable-input-6"
                   spellcheck="false"
                   style="margin-left: 40%; width: 40%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 5px; font-size: 13px; padding-left: 3px; margin-right: 10px;"
                   value="77"
                 />
                 <label
+                  class="rc-editable-input__label"
                   for="rc-editable-input-6"
                   style="left: 0px; top: 0px; width: 34px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px; position: absolute;"
                 >
@@ -224,15 +245,18 @@ exports[`Photoshop renders correctly 1`] = `
                 style="height: 5px;"
               />
               <div
+                class="rc-editable-input"
                 style="position: relative;"
               >
                 <input
+                  class="rc-editable-input__input"
                   id="rc-editable-input-7"
                   spellcheck="false"
                   style="margin-left: 20%; width: 80%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 6px; font-size: 13px; padding-left: 3px;"
                   value="22194D"
                 />
                 <label
+                  class="rc-editable-input__label"
                   for="rc-editable-input-7"
                   style="position: absolute; top: 0px; left: 0px; width: 14px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px;"
                 >
@@ -283,15 +307,18 @@ exports[`PhotoshopFields renders correctly 1`] = `
     style="padding-top: 5px; padding-bottom: 9px; width: 80px; position: relative;"
   >
     <div
+      class="rc-editable-input"
       style="position: relative;"
     >
       <input
+        class="rc-editable-input__input"
         id="rc-editable-input-15"
         spellcheck="false"
         style="margin-left: 40%; width: 40%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 5px; font-size: 13px; padding-left: 3px; margin-right: 10px;"
         value="0"
       />
       <label
+        class="rc-editable-input__label"
         for="rc-editable-input-15"
         style="left: 0px; top: 0px; width: 34px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px; position: absolute;"
       >
@@ -299,15 +326,18 @@ exports[`PhotoshopFields renders correctly 1`] = `
       </label>
     </div>
     <div
+      class="rc-editable-input"
       style="position: relative;"
     >
       <input
+        class="rc-editable-input__input"
         id="rc-editable-input-16"
         spellcheck="false"
         style="margin-left: 40%; width: 40%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 5px; font-size: 13px; padding-left: 3px; margin-right: 10px;"
         value="100"
       />
       <label
+        class="rc-editable-input__label"
         for="rc-editable-input-16"
         style="left: 0px; top: 0px; width: 34px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px; position: absolute;"
       >
@@ -315,15 +345,18 @@ exports[`PhotoshopFields renders correctly 1`] = `
       </label>
     </div>
     <div
+      class="rc-editable-input"
       style="position: relative;"
     >
       <input
+        class="rc-editable-input__input"
         id="rc-editable-input-17"
         spellcheck="false"
         style="margin-left: 40%; width: 40%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 5px; font-size: 13px; padding-left: 3px; margin-right: 10px;"
         value="100"
       />
       <label
+        class="rc-editable-input__label"
         for="rc-editable-input-17"
         style="left: 0px; top: 0px; width: 34px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px; position: absolute;"
       >
@@ -334,15 +367,18 @@ exports[`PhotoshopFields renders correctly 1`] = `
       style="height: 5px;"
     />
     <div
+      class="rc-editable-input"
       style="position: relative;"
     >
       <input
+        class="rc-editable-input__input"
         id="rc-editable-input-18"
         spellcheck="false"
         style="margin-left: 40%; width: 40%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 5px; font-size: 13px; padding-left: 3px; margin-right: 10px;"
         value="255"
       />
       <label
+        class="rc-editable-input__label"
         for="rc-editable-input-18"
         style="left: 0px; top: 0px; width: 34px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px; position: absolute;"
       >
@@ -350,15 +386,18 @@ exports[`PhotoshopFields renders correctly 1`] = `
       </label>
     </div>
     <div
+      class="rc-editable-input"
       style="position: relative;"
     >
       <input
+        class="rc-editable-input__input"
         id="rc-editable-input-19"
         spellcheck="false"
         style="margin-left: 40%; width: 40%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 5px; font-size: 13px; padding-left: 3px; margin-right: 10px;"
         value="0"
       />
       <label
+        class="rc-editable-input__label"
         for="rc-editable-input-19"
         style="left: 0px; top: 0px; width: 34px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px; position: absolute;"
       >
@@ -366,15 +405,18 @@ exports[`PhotoshopFields renders correctly 1`] = `
       </label>
     </div>
     <div
+      class="rc-editable-input"
       style="position: relative;"
     >
       <input
+        class="rc-editable-input__input"
         id="rc-editable-input-20"
         spellcheck="false"
         style="margin-left: 40%; width: 40%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 5px; font-size: 13px; padding-left: 3px; margin-right: 10px;"
         value="0"
       />
       <label
+        class="rc-editable-input__label"
         for="rc-editable-input-20"
         style="left: 0px; top: 0px; width: 34px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px; position: absolute;"
       >
@@ -385,15 +427,18 @@ exports[`PhotoshopFields renders correctly 1`] = `
       style="height: 5px;"
     />
     <div
+      class="rc-editable-input"
       style="position: relative;"
     >
       <input
+        class="rc-editable-input__input"
         id="rc-editable-input-21"
         spellcheck="false"
         style="margin-left: 20%; width: 80%; height: 18px; border: 1px solid rgb(136, 136, 136); -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC; margin-bottom: 6px; font-size: 13px; padding-left: 3px;"
         value="FF0000"
       />
       <label
+        class="rc-editable-input__label"
         for="rc-editable-input-21"
         style="position: absolute; top: 0px; left: 0px; width: 14px; text-transform: uppercase; font-size: 13px; height: 18px; line-height: 22px;"
       >

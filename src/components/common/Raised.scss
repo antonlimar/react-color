@@ -1,1 +1,13 @@
-/*! rc-raised co-located stylesheet placeholder */
+.rc-raised {
+  position: relative;
+  display: inline-block;
+}
+
+.rc-raised__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.rc-raised__content {
+  position: relative;
+}

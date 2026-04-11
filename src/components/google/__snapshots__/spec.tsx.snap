@@ -18,18 +18,20 @@ exports[`Google renders correctly 1`] = `
       style="width: 70%; padding: 0px; position: relative; overflow: hidden;"
     >
       <div
-        style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; background: rgb(43, 0, 255);"
+        class="rc-saturation"
+        style="background: rgb(43, 0, 255);"
       >
         <div
-          class="saturation-white"
-          style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0));"
+          class="rc-saturation__white"
+          style="background: linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0));"
         >
           <div
-            class="saturation-black"
-            style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));"
+            class="rc-saturation__black"
+            style="background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));"
           />
           <div
-            style="position: absolute; top: 70%; left: 66.66666666666667%; cursor: default;"
+            class="rc-saturation__pointer"
+            style="top: 70%; left: 66.66666666666667%;"
           >
             <div
               style="width: 20px; height: 20px; -webkit-border-radius: 22px; border-radius: 22px; border: 2px solid rgb(255, 255, 255); -webkit-transform: translate(-12px, -13px); transform: translate(-12px, -13px); background: rgb(34, 26, 77);"
@@ -49,14 +51,16 @@ exports[`Google renders correctly 1`] = `
           style="height: 8px; position: relative; margin: 0px 16px; width: 100%;"
         >
           <div
-            style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; -webkit-border-radius: 4px; border-radius: 4px;"
+            class="rc-hue-control"
+            style="border-radius: 4px;"
           >
             <div
-              class="hue-horizontal"
-              style="padding: 0px 2px; position: relative; height: 100%; -webkit-border-radius: 4px; border-radius: 4px; background: linear-gradient(to right, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0) 100%);"
+              class="rc-hue-control__container"
+              style="border-radius: 4px; background: linear-gradient(to right, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0) 100%);"
             >
               <div
-                style="position: absolute; left: 69.44444444444443%;"
+                class="rc-hue-control__pointer"
+                style="left: 69.44444444444443%;"
               >
                 <div
                   style="width: 20px; height: 20px; -webkit-border-radius: 22px; border-radius: 22px; -webkit-transform: translate(-10px, -7px); transform: translate(-10px, -7px); background: rgb(43, 0, 255); border: 2px solid white;"
@@ -77,15 +81,17 @@ exports[`Google renders correctly 1`] = `
             style="padding: 0px 4.4px; box-sizing: border-box;"
           >
             <div
-              style="position: relative;"
+              class="rc-editable-input"
             >
               <input
+                class="rc-editable-input__input"
                 id="rc-editable-input-1"
                 spellcheck="false"
                 style="width: 100%; height: 38px; box-sizing: border-box; padding: 4px 10% 3px; text-align: center; border: 1px solid rgb(218, 220, 224); font-size: 11px; text-transform: lowercase; -webkit-border-radius: 5px; border-radius: 5px; outline: none; font-family: Roboto, Arial, sans-serif;"
                 value="#22194D"
               />
               <label
+                class="rc-editable-input__label"
                 for="rc-editable-input-1"
                 style="text-align: center; font-size: 12px; background: rgb(255, 255, 255); position: absolute; text-transform: uppercase; color: rgb(60, 64, 67); width: 35px; top: -6px; left: 0px; right: 0px; margin-left: auto; margin-right: auto; font-family: Roboto, Arial, sans-serif;"
               >
@@ -100,15 +106,17 @@ exports[`Google renders correctly 1`] = `
               style="flex-grow: 1; margin: 0px 4.4px;"
             >
               <div
-                style="position: relative;"
+                class="rc-editable-input"
               >
                 <input
+                  class="rc-editable-input__input"
                   id="rc-editable-input-2"
                   spellcheck="false"
                   style="height: 38px; width: 100%; border: 1px solid rgb(218, 220, 224); box-sizing: border-box; font-size: 11px; text-transform: lowercase; -webkit-border-radius: 5px; border-radius: 5px; outline: none; padding-left: 10px; font-family: Roboto, Arial, sans-serif;"
                   value="34, 25, 77"
                 />
                 <label
+                  class="rc-editable-input__label"
                   for="rc-editable-input-2"
                   style="left: 10px; text-align: center; font-size: 12px; background: rgb(255, 255, 255); position: absolute; text-transform: uppercase; color: rgb(60, 64, 67); width: 32px; top: -6px; font-family: Roboto, Arial, sans-serif;"
                 >
@@ -120,15 +128,17 @@ exports[`Google renders correctly 1`] = `
               style="flex-grow: 1; margin: 0px 4.4px;"
             >
               <div
-                style="position: relative;"
+                class="rc-editable-input"
               >
                 <input
+                  class="rc-editable-input__input"
                   id="rc-editable-input-3"
                   spellcheck="false"
                   style="height: 38px; width: 100%; border: 1px solid rgb(218, 220, 224); box-sizing: border-box; font-size: 11px; text-transform: lowercase; -webkit-border-radius: 5px; border-radius: 5px; outline: none; padding-left: 10px; font-family: Roboto, Arial, sans-serif;"
                   value="250°, 67%, 30%"
                 />
                 <label
+                  class="rc-editable-input__label"
                   for="rc-editable-input-3"
                   style="left: 10px; text-align: center; font-size: 12px; background: rgb(255, 255, 255); position: absolute; text-transform: uppercase; color: rgb(60, 64, 67); width: 32px; top: -6px; font-family: Roboto, Arial, sans-serif;"
                 >
@@ -140,15 +150,17 @@ exports[`Google renders correctly 1`] = `
               style="flex-grow: 1; margin: 0px 4.4px;"
             >
               <div
-                style="position: relative;"
+                class="rc-editable-input"
               >
                 <input
+                  class="rc-editable-input__input"
                   id="rc-editable-input-4"
                   spellcheck="false"
                   style="height: 38px; width: 100%; border: 1px solid rgb(218, 220, 224); box-sizing: border-box; font-size: 11px; text-transform: lowercase; -webkit-border-radius: 5px; border-radius: 5px; outline: none; padding-left: 10px; font-family: Roboto, Arial, sans-serif;"
                   value="250°, 50%, 20%"
                 />
                 <label
+                  class="rc-editable-input__label"
                   for="rc-editable-input-4"
                   style="left: 10px; text-align: center; font-size: 12px; background: rgb(255, 255, 255); position: absolute; text-transform: uppercase; color: rgb(60, 64, 67); width: 32px; top: -6px; font-family: Roboto, Arial, sans-serif;"
                 >
@@ -177,15 +189,17 @@ exports[`GoogleFields renders correctly 1`] = `
         style="padding: 0px 4.4px; box-sizing: border-box;"
       >
         <div
-          style="position: relative;"
+          class="rc-editable-input"
         >
           <input
+            class="rc-editable-input__input"
             id="rc-editable-input-9"
             spellcheck="false"
             style="width: 100%; height: 38px; box-sizing: border-box; padding: 4px 10% 3px; text-align: center; border: 1px solid rgb(218, 220, 224); font-size: 11px; text-transform: lowercase; -webkit-border-radius: 5px; border-radius: 5px; outline: none; font-family: Roboto, Arial, sans-serif;"
             value="#FF0000"
           />
           <label
+            class="rc-editable-input__label"
             for="rc-editable-input-9"
             style="text-align: center; font-size: 12px; background: rgb(255, 255, 255); position: absolute; text-transform: uppercase; color: rgb(60, 64, 67); width: 35px; top: -6px; left: 0px; right: 0px; margin-left: auto; margin-right: auto; font-family: Roboto, Arial, sans-serif;"
           >
@@ -200,15 +214,17 @@ exports[`GoogleFields renders correctly 1`] = `
           style="flex-grow: 1; margin: 0px 4.4px;"
         >
           <div
-            style="position: relative;"
+            class="rc-editable-input"
           >
             <input
+              class="rc-editable-input__input"
               id="rc-editable-input-10"
               spellcheck="false"
               style="height: 38px; width: 100%; border: 1px solid rgb(218, 220, 224); box-sizing: border-box; font-size: 11px; text-transform: lowercase; -webkit-border-radius: 5px; border-radius: 5px; outline: none; padding-left: 10px; font-family: Roboto, Arial, sans-serif;"
               value="255, 0, 0"
             />
             <label
+              class="rc-editable-input__label"
               for="rc-editable-input-10"
               style="left: 10px; text-align: center; font-size: 12px; background: rgb(255, 255, 255); position: absolute; text-transform: uppercase; color: rgb(60, 64, 67); width: 32px; top: -6px; font-family: Roboto, Arial, sans-serif;"
             >
@@ -220,15 +236,17 @@ exports[`GoogleFields renders correctly 1`] = `
           style="flex-grow: 1; margin: 0px 4.4px;"
         >
           <div
-            style="position: relative;"
+            class="rc-editable-input"
           >
             <input
+              class="rc-editable-input__input"
               id="rc-editable-input-11"
               spellcheck="false"
               style="height: 38px; width: 100%; border: 1px solid rgb(218, 220, 224); box-sizing: border-box; font-size: 11px; text-transform: lowercase; -webkit-border-radius: 5px; border-radius: 5px; outline: none; padding-left: 10px; font-family: Roboto, Arial, sans-serif;"
               value="0°, 100%, 100%"
             />
             <label
+              class="rc-editable-input__label"
               for="rc-editable-input-11"
               style="left: 10px; text-align: center; font-size: 12px; background: rgb(255, 255, 255); position: absolute; text-transform: uppercase; color: rgb(60, 64, 67); width: 32px; top: -6px; font-family: Roboto, Arial, sans-serif;"
             >
@@ -240,15 +258,17 @@ exports[`GoogleFields renders correctly 1`] = `
           style="flex-grow: 1; margin: 0px 4.4px;"
         >
           <div
-            style="position: relative;"
+            class="rc-editable-input"
           >
             <input
+              class="rc-editable-input__input"
               id="rc-editable-input-12"
               spellcheck="false"
               style="height: 38px; width: 100%; border: 1px solid rgb(218, 220, 224); box-sizing: border-box; font-size: 11px; text-transform: lowercase; -webkit-border-radius: 5px; border-radius: 5px; outline: none; padding-left: 10px; font-family: Roboto, Arial, sans-serif;"
               value="0°, 100%, 50%"
             />
             <label
+              class="rc-editable-input__label"
               for="rc-editable-input-12"
               style="left: 10px; text-align: center; font-size: 12px; background: rgb(255, 255, 255); position: absolute; text-transform: uppercase; color: rgb(60, 64, 67); width: 32px; top: -6px; font-family: Roboto, Arial, sans-serif;"
             >

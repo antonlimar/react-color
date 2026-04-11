@@ -1,9 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import reactCSS from 'reactcss';
 import * as alpha from '../../helpers/alpha';
 import type { MouseEvent } from 'react';
+import type { CSSProperties } from 'react';
 import type { AlphaProps, InternalColorChangeEvent } from '../../types';
 import Checkboard from './Checkboard';
+import { getPickerClassName } from './styleArchitecture';
+import { getSlotStyleOverride } from './styleOverrides';
+
+const ALPHA_STYLE_SLOTS = ['alpha', 'checkboard', 'gradient', 'container', 'pointer', 'slider'] as const;
 
 export function Alpha(props: AlphaProps) {
   const { a, direction, hsl, onChange, pointer, radius, renderers, rgb, shadow, style } = props;
@@ -51,80 +55,66 @@ export function Alpha(props: AlphaProps) {
     };
   }, [handleChange, isDragging]);
 
-  const styles = reactCSS(
-    {
-      default: {
-        alpha: {
-          absolute: '0px 0px 0px 0px',
-          borderRadius: radius,
-        },
-        checkboard: {
-          absolute: '0px 0px 0px 0px',
-          overflow: 'hidden',
-          borderRadius: radius,
-        },
-        gradient: {
-          absolute: '0px 0px 0px 0px',
-          background: `linear-gradient(to right, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 0%,
+  const rootStyle: CSSProperties = {
+    borderRadius: radius,
+    ...getSlotStyleOverride(style, 'alpha', ALPHA_STYLE_SLOTS, 'alpha'),
+  };
+  const checkboardStyle: CSSProperties = {
+    borderRadius: radius,
+    ...getSlotStyleOverride(style, 'checkboard', ALPHA_STYLE_SLOTS, 'alpha'),
+  };
+  const gradientStyle: CSSProperties = {
+    background:
+      direction === 'vertical'
+        ? `linear-gradient(to bottom, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 0%,
+           rgba(${rgb.r},${rgb.g},${rgb.b}, 1) 100%)`
+        : `linear-gradient(to right, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 0%,
            rgba(${rgb.r},${rgb.g},${rgb.b}, 1) 100%)`,
-          boxShadow: shadow,
-          borderRadius: radius,
-        },
-        container: {
-          position: 'relative',
-          height: '100%',
-          margin: '0 3px',
-        },
-        pointer: {
-          position: 'absolute',
-          left: `${rgb.a * 100}%`,
-        },
-        slider: {
-          width: '4px',
-          borderRadius: '1px',
-          height: '8px',
-          boxShadow: '0 0 2px rgba(0, 0, 0, .6)',
-          background: '#fff',
-          marginTop: '1px',
-          transform: 'translateX(-2px)',
-        },
-      },
-      vertical: {
-        gradient: {
-          background: `linear-gradient(to bottom, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 0%,
-           rgba(${rgb.r},${rgb.g},${rgb.b}, 1) 100%)`,
-        },
-        pointer: {
-          left: 0,
-          top: `${rgb.a * 100}%`,
-        },
-      },
-      overwrite: {
-        ...style,
-      },
-    },
-    {
-      vertical: direction === 'vertical',
-      overwrite: true,
-    },
-  );
+    boxShadow: shadow,
+    borderRadius: radius,
+    ...getSlotStyleOverride(style, 'gradient', ALPHA_STYLE_SLOTS, 'alpha'),
+  };
+  const containerStyle: CSSProperties = {
+    ...getSlotStyleOverride(style, 'container', ALPHA_STYLE_SLOTS, 'alpha'),
+  };
+  const pointerStyle: CSSProperties = {
+    left: direction === 'vertical' ? 0 : `${rgb.a * 100}%`,
+    top: direction === 'vertical' ? `${rgb.a * 100}%` : undefined,
+    ...getSlotStyleOverride(style, 'pointer', ALPHA_STYLE_SLOTS, 'alpha'),
+  };
+  const sliderStyle: CSSProperties = {
+    ...getSlotStyleOverride(style, 'slider', ALPHA_STYLE_SLOTS, 'alpha'),
+  };
 
   const Pointer = pointer;
 
   return (
-    <div style={styles.alpha}>
-      <div style={styles.checkboard}>
+    <div
+      className={getPickerClassName({
+        block: 'alphaControl',
+        modifiers: [direction === 'vertical' && 'vertical'],
+      })}
+      style={rootStyle}
+    >
+      <div className={getPickerClassName({ block: 'alphaControl', slot: 'checkboard' })} style={checkboardStyle}>
         <Checkboard renderers={renderers} />
       </div>
-      <div style={styles.gradient} />
+      <div className={getPickerClassName({ block: 'alphaControl', slot: 'gradient' })} style={gradientStyle} />
       <div
-        style={styles.container}
+        className={getPickerClassName({ block: 'alphaControl', slot: 'container' })}
+        style={containerStyle}
         ref={containerRef}
         onMouseDown={handleMouseDown}
         onTouchMove={handleChange}
         onTouchStart={handleChange}
       >
-        <div style={styles.pointer}>{Pointer ? <Pointer {...props} /> : <div style={styles.slider} />}</div>
+        <div className={getPickerClassName({ block: 'alphaControl', slot: 'pointer' })} style={pointerStyle}>
+          {Pointer ? (
+            <Pointer {...props} />
+          ) : (
+            <div className={getPickerClassName({ block: 'alphaControl', slot: 'slider' })} style={sliderStyle} />
+          )}
+        </div>
       </div>
     </div>
   );

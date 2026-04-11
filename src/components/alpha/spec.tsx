@@ -13,7 +13,7 @@ test('Alpha onChange events correctly', () => {
   const changeSpy = createColorChangeSpy(color);
   const { container } = renderForSnapshot(<Alpha {...color.red} width={20} height={200} onChange={changeSpy} />);
 
-  const alphaContainer = container.querySelector('[style*="margin: 0px 3px"]');
+  const alphaContainer = container.querySelector('.rc-alpha-control__container');
 
   expect(alphaContainer).toBeTruthy();
   fireEvent.mouseDown(alphaContainer, {

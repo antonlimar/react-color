@@ -74,7 +74,7 @@ test('Chrome marks auto theme on the root element', () => {
 test('Chrome alpha updates immediately with only onChangeComplete', async () => {
   const onChangeComplete = vi.fn();
   const { container } = renderForSnapshot(<Chrome color={color.red.hsl} onChangeComplete={onChangeComplete} />);
-  const alphaControl = container.querySelector('[style*="margin: 0px 3px"]') as HTMLDivElement | null;
+  const alphaControl = container.querySelector('.rc-alpha-control__container') as HTMLDivElement | null;
 
   expect(alphaControl).toBeTruthy();
   if (!alphaControl) {
@@ -109,7 +109,7 @@ test('Chrome alpha updates immediately with only onChangeComplete', async () => 
     clientY: 5,
   });
 
-  const alphaPointer = alphaControl.querySelector('[style*="left:"]') as HTMLDivElement | null;
+  const alphaPointer = alphaControl.querySelector('.rc-alpha-control__pointer') as HTMLDivElement | null;
   expect(alphaPointer).toBeTruthy();
   if (!alphaPointer) {
     throw new Error('Expected alpha pointer to render');

@@ -1,1 +1,24 @@
-/*! rc-hue-control co-located stylesheet placeholder */
+.rc-hue-control {
+  position: absolute;
+  inset: 0;
+}
+
+.rc-hue-control__container {
+  position: relative;
+  height: 100%;
+  padding: 0 2px;
+}
+
+.rc-hue-control__pointer {
+  position: absolute;
+}
+
+.rc-hue-control__slider {
+  width: 4px;
+  height: 8px;
+  margin-top: 1px;
+  background: #fff;
+  border-radius: 1px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  transform: translateX(-2px);
+}

@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import reactCSS from 'reactcss';
 import type { ChangeEvent, KeyboardEvent, MouseEvent } from 'react';
+import type { CSSProperties } from 'react';
 import type {
   EditableInputChangeEvent,
   EditableInputChangeValue,
   EditableInputProps,
   EditableInputValue,
 } from '../../types';
+import { getPickerClassName } from './styleArchitecture';
 
 const DEFAULT_ARROW_OFFSET = 1;
 const UP_KEY_CODE = 38;
@@ -146,35 +147,28 @@ export function EditableInput(props: EditableInputProps) {
     };
   }, [handleDrag, isDragging]);
 
-  const styles = reactCSS(
-    {
-      default: {
-        wrap: {
-          position: 'relative',
-        },
-      },
-      'user-override': {
-        wrap: style?.wrap || {},
-        input: style?.input || {},
-        label: style?.label || {},
-      },
-      'dragLabel-true': {
-        label: {
-          cursor: 'ew-resize',
-        },
-      },
-    },
-    {
-      'user-override': true,
-    },
-    props,
-  );
+  const wrapStyle: CSSProperties = {
+    ...style?.wrap,
+  };
+  const inputStyle: CSSProperties = {
+    ...style?.input,
+  };
+  const labelStyle: CSSProperties = {
+    ...style?.label,
+  };
 
   return (
-    <div style={styles.wrap}>
+    <div
+      className={getPickerClassName({
+        block: 'editableInput',
+        modifiers: [dragLabel && 'drag-label'],
+      })}
+      style={wrapStyle}
+    >
       <input
         id={inputId}
-        style={styles.input}
+        className={getPickerClassName({ block: 'editableInput', slot: 'input' })}
+        style={inputStyle}
         ref={inputRef}
         value={state.value}
         onKeyDown={handleKeyDown}
@@ -184,7 +178,16 @@ export function EditableInput(props: EditableInputProps) {
         spellCheck="false"
       />
       {label && !hideLabel ? (
-        <label htmlFor={inputId} style={styles.label} onMouseDown={handleMouseDown}>
+        <label
+          htmlFor={inputId}
+          className={getPickerClassName({
+            block: 'editableInput',
+            slot: 'label',
+            modifiers: [dragLabel && 'drag-label'],
+          })}
+          style={labelStyle}
+          onMouseDown={handleMouseDown}
+        >
           {label}
         </label>
       ) : null}

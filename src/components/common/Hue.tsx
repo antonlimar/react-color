@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import reactCSS from 'reactcss';
 import * as hue from '../../helpers/hue';
 import type { MouseEvent } from 'react';
+import type { CSSProperties } from 'react';
 import type { HueProps, InternalColorChangeEvent } from '../../types';
+import { getPickerClassName } from './styleArchitecture';
+import { getSlotStyleOverride } from './styleOverrides';
 
 const HUE_GRADIENT_HORIZONTAL =
   'linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)';
 const HUE_GRADIENT_VERTICAL =
   'linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)';
+const HUE_STYLE_SLOTS = ['hue', 'container', 'pointer', 'slider'] as const;
 
 export function Hue(props: HueProps) {
   const { direction = 'horizontal', hsl, onChange, pointer, radius, shadow } = props;
@@ -55,61 +58,54 @@ export function Hue(props: HueProps) {
     };
   }, [handleChange, isDragging]);
 
-  const styles = reactCSS(
-    {
-      default: {
-        hue: {
-          absolute: '0px 0px 0px 0px',
-          borderRadius: radius,
-          boxShadow: shadow,
-        },
-        container: {
-          padding: '0 2px',
-          position: 'relative',
-          height: '100%',
-          borderRadius: radius,
-          background: HUE_GRADIENT_HORIZONTAL,
-        },
-        pointer: {
-          position: 'absolute',
-          left: `${(hsl.h * 100) / 360}%`,
-        },
-        slider: {
-          marginTop: '1px',
-          width: '4px',
-          borderRadius: '1px',
-          height: '8px',
-          boxShadow: '0 0 2px rgba(0, 0, 0, .6)',
-          background: '#fff',
-          transform: 'translateX(-2px)',
-        },
-      },
-      vertical: {
-        container: {
-          background: HUE_GRADIENT_VERTICAL,
-        },
-        pointer: {
-          left: '0px',
-          top: `${-((hsl.h * 100) / 360) + 100}%`,
-        },
-      },
-    },
-    { vertical: direction === 'vertical' },
-  );
+  const rootStyle: CSSProperties = {
+    borderRadius: radius,
+    boxShadow: shadow,
+    ...getSlotStyleOverride(props.style, 'hue', HUE_STYLE_SLOTS, 'hue'),
+  };
+  const containerStyle: CSSProperties = {
+    borderRadius: radius,
+    background: direction === 'vertical' ? HUE_GRADIENT_VERTICAL : HUE_GRADIENT_HORIZONTAL,
+    ...getSlotStyleOverride(props.style, 'container', HUE_STYLE_SLOTS, 'hue'),
+  };
+  const pointerStyle: CSSProperties = {
+    left: direction === 'vertical' ? '0px' : `${(hsl.h * 100) / 360}%`,
+    top: direction === 'vertical' ? `${-((hsl.h * 100) / 360) + 100}%` : undefined,
+    ...getSlotStyleOverride(props.style, 'pointer', HUE_STYLE_SLOTS, 'hue'),
+  };
+  const sliderStyle: CSSProperties = {
+    ...getSlotStyleOverride(props.style, 'slider', HUE_STYLE_SLOTS, 'hue'),
+  };
 
   const Pointer = pointer;
 
   return (
-    <div style={styles.hue}>
+    <div
+      className={getPickerClassName({
+        block: 'hueControl',
+        modifiers: [direction === 'vertical' && 'vertical'],
+      })}
+      style={rootStyle}
+    >
       <div
-        className={`hue-${direction}`}
-        style={styles.container}
+        className={getPickerClassName({
+          block: 'hueControl',
+          slot: 'container',
+          className: `hue-${direction}`,
+        })}
+        style={containerStyle}
         ref={containerRef}
         onMouseDown={handleMouseDown}
         onTouchMove={handleChange}
         onTouchStart={handleChange}
       >
-        <div style={styles.pointer}>{Pointer ? <Pointer {...props} /> : <div style={styles.slider} />}</div>
+        <div className={getPickerClassName({ block: 'hueControl', slot: 'pointer' })} style={pointerStyle}>
+          {Pointer ? (
+            <Pointer {...props} />
+          ) : (
+            <div className={getPickerClassName({ block: 'hueControl', slot: 'slider' })} style={sliderStyle} />
+          )}
+        </div>
       </div>
     </div>
   );

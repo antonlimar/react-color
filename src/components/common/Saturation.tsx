@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import reactCSS from 'reactcss';
 import throttle from 'lodash/throttle';
 import * as saturation from '../../helpers/saturation';
 import type { MouseEvent } from 'react';
+import type { CSSProperties } from 'react';
 import type { InternalColorChangeEvent, SaturationProps } from '../../types';
+import { getPickerClassName } from './styleArchitecture';
 
 type ThrottledChange = {
   (
@@ -84,65 +85,65 @@ export function Saturation(props: SaturationProps) {
   }, [handleChange, isDragging]);
 
   const { color, white, black, pointer: pointerStyle, circle } = style || {};
-  const styles = reactCSS(
-    {
-      default: {
-        color: {
-          absolute: '0px 0px 0px 0px',
-          background: `hsl(${hsl.h},100%, 50%)`,
-          borderRadius: radius,
-        },
-        white: {
-          absolute: '0px 0px 0px 0px',
-          borderRadius: radius,
-          background: SATURATION_WHITE_GRADIENT,
-        },
-        black: {
-          absolute: '0px 0px 0px 0px',
-          boxShadow: shadow,
-          borderRadius: radius,
-          background: SATURATION_BLACK_GRADIENT,
-        },
-        pointer: {
-          position: 'absolute',
-          top: `${-(hsv.v * 100) + 100}%`,
-          left: `${hsv.s * 100}%`,
-          cursor: 'default',
-        },
-        circle: {
-          width: '4px',
-          height: '4px',
-          boxShadow: `0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3),
-            0 0 1px 2px rgba(0,0,0,.4)`,
-          borderRadius: '50%',
-          cursor: 'hand',
-          transform: 'translate(-2px, -2px)',
-        },
-      },
-      custom: {
-        color,
-        white,
-        black,
-        pointer: pointerStyle,
-        circle,
-      },
-    },
-    { custom: !!style },
-  );
+  const rootStyle: CSSProperties = {
+    background: `hsl(${hsl.h},100%, 50%)`,
+    borderRadius: radius,
+    ...color,
+  };
+  const whiteStyle: CSSProperties = {
+    borderRadius: radius,
+    background: SATURATION_WHITE_GRADIENT,
+    ...white,
+  };
+  const blackStyle: CSSProperties = {
+    boxShadow: shadow,
+    borderRadius: radius,
+    background: SATURATION_BLACK_GRADIENT,
+    ...black,
+  };
+  const controlPointerStyle: CSSProperties = {
+    top: `${-(hsv.v * 100) + 100}%`,
+    left: `${hsv.s * 100}%`,
+    ...pointerStyle,
+  };
+  const circleStyle: CSSProperties = {
+    ...circle,
+  };
 
   const Pointer = pointer;
 
   return (
     <div
-      style={styles.color}
+      className={getPickerClassName({ block: 'saturation' })}
+      style={rootStyle}
       ref={containerRef}
       onMouseDown={handleMouseDown}
       onTouchMove={handleChange}
       onTouchStart={handleChange}
     >
-      <div style={styles.white} className="saturation-white">
-        <div style={styles.black} className="saturation-black" />
-        <div style={styles.pointer}>{Pointer ? <Pointer {...props} /> : <div style={styles.circle} />}</div>
+      <div
+        className={getPickerClassName({
+          block: 'saturation',
+          slot: 'white',
+          className: 'saturation-white',
+        })}
+        style={whiteStyle}
+      >
+        <div
+          className={getPickerClassName({
+            block: 'saturation',
+            slot: 'black',
+            className: 'saturation-black',
+          })}
+          style={blackStyle}
+        />
+        <div className={getPickerClassName({ block: 'saturation', slot: 'pointer' })} style={controlPointerStyle}>
+          {Pointer ? (
+            <Pointer {...props} />
+          ) : (
+            <div className={getPickerClassName({ block: 'saturation', slot: 'circle' })} style={circleStyle} />
+          )}
+        </div>
       </div>
     </div>
   );

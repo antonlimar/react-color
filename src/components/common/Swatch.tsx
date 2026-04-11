@@ -1,8 +1,9 @@
 import type { KeyboardEvent, MouseEvent } from 'react';
-import reactCSS from 'reactcss';
+import type { CSSProperties } from 'react';
 import { handleFocus } from '../../helpers/interaction';
 import type { Radius, SwatchProps } from '../../types';
 import Checkboard from './Checkboard';
+import { getPickerClassName } from './styleArchitecture';
 
 const ENTER = 13;
 
@@ -17,21 +18,11 @@ export const Swatch = ({
   focusStyle = {},
 }: SwatchProps) => {
   const transparent = color === 'transparent';
-  const styles = reactCSS({
-    default: {
-      swatch: {
-        background: color,
-        height: '100%',
-        width: '100%',
-        cursor: 'pointer',
-        position: 'relative',
-        outline: 'none',
-        ...style,
-        ...(focus ? focusStyle : {}),
-      },
-    },
-  });
-  const swatchStyle = styles.swatch || {};
+  const swatchStyle: CSSProperties = {
+    background: color,
+    ...style,
+    ...(focus ? focusStyle : {}),
+  };
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => onClick(color, event);
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => event.keyCode === ENTER && onClick(color, event);
@@ -41,6 +32,10 @@ export const Swatch = ({
 
   return (
     <div
+      className={getPickerClassName({
+        block: 'swatch',
+        modifiers: [transparent && 'transparent', focus && 'active'],
+      })}
       style={swatchStyle}
       onClick={handleClick}
       title={title}

@@ -8,6 +8,7 @@ import Checkboard from './Checkboard';
 import ColorWrap from './ColorWrap';
 import EditableInput from './EditableInput';
 import Hue from './Hue';
+import Raised from './Raised';
 import Saturation, { getSaturationRenderWindow } from './Saturation';
 import Swatch from './Swatch';
 import {
@@ -108,6 +109,32 @@ test('Swatch renders custom title correctly', () => {
 
 test('Swatch renders with an onMouseOver handler correctly', () => {
   renderForSnapshot(<Swatch color="#fff" title="white" onHover={() => {}} />).expectSnapshot();
+});
+
+test('common primitives expose the expected BEM classes after styling modernization', () => {
+  const { container: alphaContainer } = render(<Alpha {...red} />);
+  expect(alphaContainer.firstElementChild).toHaveClass('rc-alpha-control');
+  expect(alphaContainer.querySelector('.rc-alpha-control__gradient')).not.toBeNull();
+
+  const { container: hueContainer } = render(<Hue {...red} />);
+  expect(hueContainer.firstElementChild).toHaveClass('rc-hue-control');
+  expect(hueContainer.querySelector('.rc-hue-control__container')).not.toBeNull();
+
+  const { container: saturationContainer } = render(<Saturation {...red} />);
+  expect(saturationContainer.firstElementChild).toHaveClass('rc-saturation');
+  expect(saturationContainer.querySelector('.rc-saturation__white')).not.toBeNull();
+
+  const { container: editableInputContainer } = render(<EditableInput label="Hex" />);
+  expect(editableInputContainer.firstElementChild).toHaveClass('rc-editable-input');
+  expect(editableInputContainer.querySelector('.rc-editable-input__label')).not.toBeNull();
+
+  const { container: swatchContainer } = render(<Swatch color="transparent" />);
+  expect(swatchContainer.querySelector('.rc-swatch')).not.toBeNull();
+  expect(swatchContainer.querySelector('.rc-checkboard')).not.toBeNull();
+
+  const { container: raisedContainer } = render(<Raised>content</Raised>);
+  expect(raisedContainer.firstElementChild).toHaveClass('rc-raised');
+  expect(raisedContainer.querySelector('.rc-raised__bg')).not.toBeNull();
 });
 
 test('styling architecture reserves the rc namespace for all picker and primitive blocks', () => {
