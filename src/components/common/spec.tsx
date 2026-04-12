@@ -137,6 +137,15 @@ test('common primitives expose the expected BEM classes after styling modernizat
   expect(raisedContainer.querySelector('.rc-raised__bg')).not.toBeNull();
 });
 
+test('Raised can opt into theme-aware tokens for wrappers that do not inherit picker variables', () => {
+  const { container } = render(<Raised theme="dark">content</Raised>);
+  const raised = container.firstElementChild as HTMLElement | null;
+  const background = container.querySelector('.rc-raised__bg') as HTMLElement | null;
+
+  expect(raised).toHaveClass('rc-raised', 'rc-raised--dark');
+  expect(background?.style.background).toBe('var(--rc-picker-surface, #fff)');
+});
+
 test('styling architecture reserves the rc namespace for all picker and primitive blocks', () => {
   expect(stylingArchitecture.namespace).toBe('rc');
   expect(stylingArchitecture.blocks.chrome).toBe('rc-chrome');

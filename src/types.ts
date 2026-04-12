@@ -172,6 +172,7 @@ export interface RaisedProps {
   radius?: number;
   style?: PickerStyle;
   styles?: PickerCustomStyles;
+  theme?: PickerTheme;
   children?: ReactNode;
 }
 

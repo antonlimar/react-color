@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import type { RaisedProps } from '../../types';
-import { getPickerClassName } from './styleArchitecture';
+import { getPickerClassName, getPickerRootProps } from './styleArchitecture';
 
 const isStyleObject = (value: unknown): value is CSSProperties =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -22,6 +22,7 @@ export const Raised = ({
   children,
   style,
   styles: passedStyles = {},
+  theme,
 }: RaisedProps) => {
   const wrapStyle = getRaisedStyle(passedStyles, 'wrap');
   const contentStyle = getRaisedStyle(passedStyles, 'content');
@@ -33,13 +34,13 @@ export const Raised = ({
           ? '0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)'
           : `0 ${zDepth}px ${zDepth * 4}px rgba(0,0,0,.24)`,
     borderRadius: radius,
-    background,
+    background: theme ? 'var(--rc-picker-surface, #fff)' : background,
     ...(style || {}),
     ...getRaisedStyle(passedStyles, 'bg'),
   };
 
   return (
-    <div className={getPickerClassName({ block: 'raised' })} style={wrapStyle}>
+    <div style={wrapStyle} {...getPickerRootProps({ block: 'raised', theme })}>
       <div className={getPickerClassName({ block: 'raised', slot: 'bg' })} style={bgStyle} />
       <div className={getPickerClassName({ block: 'raised', slot: 'content' })} style={contentStyle}>
         {children}

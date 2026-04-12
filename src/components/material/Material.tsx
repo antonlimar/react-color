@@ -85,7 +85,7 @@ export const Material = ({
   const rgbLabelStyle = getDeprecatedStyleOverride(passedStyles, 'RGBlabel', MATERIAL_STYLE_SLOTS, 'RGBlabel');
 
   return (
-    <Raised styles={passedStyles}>
+    <Raised styles={passedStyles} theme={theme}>
       <div
         style={rootStyle}
         {...getPickerRootProps({

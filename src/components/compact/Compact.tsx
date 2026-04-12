@@ -101,7 +101,7 @@ export const Compact = ({
   const clearStyle = getDeprecatedStyleOverride(passedStyles, 'clear', COMPACT_STYLE_SLOTS, 'clear');
 
   return (
-    <Raised style={raisedStyle} styles={passedStyles}>
+    <Raised style={raisedStyle} styles={passedStyles} theme={theme}>
       <div
         style={rootStyle}
         {...getPickerRootProps({

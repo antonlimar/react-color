@@ -128,6 +128,7 @@
 
 @mixin rc-emit-theme-tokens {
   :where(
+    .rc-raised,
     .rc-alpha,
     .rc-block,
     .rc-chrome,
@@ -146,6 +147,7 @@
   }
 
   :where(
+    .rc-raised--light,
     .rc-alpha--light,
     .rc-block--light,
     .rc-chrome--light,
@@ -164,6 +166,7 @@
   }
 
   :where(
+    .rc-raised--dark,
     .rc-alpha--dark,
     .rc-block--dark,
     .rc-chrome--dark,
@@ -183,6 +186,7 @@
 
   @media (prefers-color-scheme: dark) {
     :where(
+      .rc-raised[data-theme='auto'],
       .rc-alpha[data-theme='auto'],
       .rc-block[data-theme='auto'],
       .rc-chrome[data-theme='auto'],

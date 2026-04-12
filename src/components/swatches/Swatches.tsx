@@ -135,7 +135,7 @@ export const Swatches = ({
         classNames,
       })}
     >
-      <Raised>
+      <Raised theme={theme}>
         <div className={getPickerClassName({ block: 'swatches', slot: 'overflow' })} style={overflowStyle}>
           <div className={getPickerClassName({ block: 'swatches', slot: 'body' })} style={bodyStyle}>
             {map(colors, (group: string[]) => (
