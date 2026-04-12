@@ -24,19 +24,19 @@ This tree is maintained as a modernization fork. Source layout, npm export names
 
 The modernization branch now uses a TypeScript-based dual emit for package builds, Vitest for tests, Storybook 10 for component work, and Vite for docs.
 
-| Command                   | Purpose                                                                      |
-| ------------------------- | ---------------------------------------------------------------------------- |
-| `npm run build`           | Build both published outputs: `lib/` (CJS) and `es/` (ESM).                  |
-| `npm test`                | Run Vitest test suite and ESLint.                                            |
+| Command                            | Purpose                                                                         |
+| ---------------------------------- | ------------------------------------------------------------------------------- |
+| `npm run build`                    | Build both published outputs: `lib/` (CJS) and `es/` (ESM).                     |
+| `npm test`                         | Run Vitest test suite and ESLint.                                               |
 | `npm run test:esm-cjs-consumption` | Build the package and smoke-check CJS, Node ESM, and bundler consumption paths. |
-| `npm run test:watch`      | Start Vitest in watch mode.                                                  |
-| `npm run eslint`          | Lint `src`, `docs`, `scripts`, `test`, and repo tooling sources with ESLint. |
-| `npm run storybook`       | Start Storybook on port `6006`.                                              |
-| `npm run build-storybook` | Emit the static Storybook site to `.out/`.                                   |
-| `npm run docs`            | Start the Vite-powered docs server on `http://localhost:9100/`.              |
-| `npm run typecheck`       | Run the TypeScript check for `src`, `docs`, `scripts`, and `test`.           |
-| `npm run docs:typecheck`  | Compatibility alias for the shared TypeScript check.                         |
-| `npm run docs-dist`       | Build the docs bundle into `docs/build/`.                                    |
+| `npm run test:watch`               | Start Vitest in watch mode.                                                     |
+| `npm run eslint`                   | Lint `src`, `docs`, `scripts`, `test`, and repo tooling sources with ESLint.    |
+| `npm run storybook`                | Start Storybook on port `6006`.                                                 |
+| `npm run build-storybook`          | Emit the static Storybook site to `.out/`.                                      |
+| `npm run docs`                     | Start the Vite-powered docs server on `http://localhost:9100/`.                 |
+| `npm run typecheck`                | Run the TypeScript check for `src`, `docs`, `scripts`, and `test`.              |
+| `npm run docs:typecheck`           | Compatibility alias for the shared TypeScript check.                            |
+| `npm run docs-dist`                | Build the docs bundle into `docs/build/`.                                       |
 
 Published package artifacts currently expose `main` via `lib/index.js`, `module` via `es/index.js`, keep full `lib/` and `es/` trees for deep imports, and expose root typings via `index.d.ts`.
 
@@ -74,7 +74,30 @@ function Component() {
 
 You can import `AlphaPicker` `BlockPicker` `ChromePicker` `CirclePicker` `CompactPicker` `GithubPicker` `HuePicker` `MaterialPicker` `PhotoshopPicker` `SketchPicker` `SliderPicker` `SwatchesPicker` `TwitterPicker` respectively.
 
-> 100% inline styles via [ReactCSS](http://reactcss.com/)
+### Styling
+
+The modernization fork now ships explicit CSS entrypoints instead of relying on default picker UI from inline `reactcss` styles.
+
+Import the aggregate stylesheet:
+
+```js
+import 'react-color/es/styles/index.css';
+```
+
+Or import only the styles you need for a specific picker or shared primitive:
+
+```js
+import 'react-color/es/styles/pickers/sketch.css';
+import 'react-color/es/styles/common/editable-input.css';
+```
+
+All public pickers keep accepting `className` on the root node and now also support `theme`, `classNames`, and CSS custom properties for styling. The legacy `styles` prop is still available as a deprecated compatibility layer for runtime inline overrides, but new customizations should prefer `classNames`, CSS variables, and the published `rc-*` BEM hooks.
+
+### Styling migration
+
+- Old approach: rely on default inline styles and override them with the `styles` prop.
+- New approach: import the published CSS, then customize with `className`, `classNames`, `theme`, and CSS custom properties.
+- Aggregate CSS (`react-color/es/styles/index.css` or `react-color/lib/styles/index.css`) is optional convenience only; consumers can keep bundle size tighter with granular picker-level imports.
 
 [license-image]: http://img.shields.io/npm/l/react-color.svg
 [license-url]: LICENSE

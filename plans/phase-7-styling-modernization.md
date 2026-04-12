@@ -26,7 +26,7 @@ todos:
     status: completed
   - id: docs-and-migration-notes
     content: Обновить документацию по кастомизации и миграции со styles на classNames CSS variables и per-component CSS imports с optional aggregate entry
-    status: pending
+    status: completed
   - id: tests-and-consumption
     content: Обновить snapshots visual tests public-types и build/consumption проверки, включая granular CSS imports optional aggregate CSS entry и сценарии light dark theme
     status: pending
@@ -136,5 +136,5 @@ todos:
 - [x] **migrate-picker-subcomponents** — Перевести pointer, fields, swatch и preview подкомпоненты внутри папок picker-компонентов на co-located SCSS и единый slot/classNames контракт
 - [x] **migrate-top-level-pickers** — Перевести top-level пикеры `alpha`, `block`, `chrome`, `circle`, `compact`, `github`, `google`, `hue`, `material`, `photoshop`, `sketch`, `slider`, `swatches`, `twitter` на class-based markup и BEM-модификаторы
 - [x] **theming-and-css-vars** — Вынести визуальные токены в CSS custom properties и реализовать `light`/`dark`/`auto` тему через root BEM-модификаторы и `prefers-color-scheme`
-- [ ] **docs-and-migration-notes** — Обновить документацию по кастомизации и миграции со `styles` на `classNames`, CSS variables и выборочные CSS imports с optional aggregate entry
+- [x] **docs-and-migration-notes** — Выполнено: `README.md`, `CHANGELOG.md` и docs-страницы `02.01-install`, `02.02-include`, `03.05-customStyles` синхронизированы с новым styling contract (`theme`, `classNames`, CSS variables, granular CSS imports и optional aggregate entry), а миграция со `styles` описана как deprecated compatibility path
 - [ ] **tests-and-consumption** — Обновить snapshots, visual tests, public-types и build/consumption проверки, включая granular CSS imports, optional aggregate CSS entry и сценарии light/dark theme
