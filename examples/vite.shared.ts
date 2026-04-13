@@ -11,7 +11,6 @@ export function createExampleConfig({ exampleDir }: { exampleDir: string }) {
   const reactDomEntry = path.resolve(exampleDir, 'node_modules/react-dom');
   const packageRoot = path.resolve(exampleDir, 'node_modules/react-color');
   const libraryEntry = path.resolve(packageRoot, 'es/index.js');
-  const commonLibEntry = path.resolve(packageRoot, 'lib/components/common/index.js');
   const commonEsEntry = path.resolve(packageRoot, 'es/components/common/index.js');
 
   return defineConfig({
@@ -21,7 +20,9 @@ export function createExampleConfig({ exampleDir }: { exampleDir: string }) {
         { find: 'react', replacement: reactEntry },
         { find: 'react-dom', replacement: reactDomEntry },
         { find: /^react-color$/, replacement: libraryEntry },
-        { find: /^react-color\/lib\/components\/common$/, replacement: commonLibEntry },
+        // Vite expects ESM for named imports during dev/build, so map the legacy
+        // deep-import path to the equivalent ESM entry.
+        { find: /^react-color\/lib\/components\/common$/, replacement: commonEsEntry },
         { find: /^react-color\/es\/components\/common$/, replacement: commonEsEntry },
       ],
       dedupe: ['react', 'react-dom'],
