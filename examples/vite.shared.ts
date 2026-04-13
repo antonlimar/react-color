@@ -5,12 +5,14 @@ import { defineConfig } from 'vite';
 
 const sharedDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(sharedDir, '..');
-const commonEntry = path.resolve(repoRoot, 'src/components/common/index.ts');
-const libraryEntry = path.resolve(repoRoot, 'src/index.ts');
 
 export function createExampleConfig({ exampleDir }: { exampleDir: string }) {
   const reactEntry = path.resolve(exampleDir, 'node_modules/react');
   const reactDomEntry = path.resolve(exampleDir, 'node_modules/react-dom');
+  const packageRoot = path.resolve(exampleDir, 'node_modules/react-color');
+  const libraryEntry = path.resolve(packageRoot, 'es/index.js');
+  const commonLibEntry = path.resolve(packageRoot, 'lib/components/common/index.js');
+  const commonEsEntry = path.resolve(packageRoot, 'es/components/common/index.js');
 
   return defineConfig({
     plugins: [react({ jsxRuntime: 'automatic' })],
@@ -19,8 +21,8 @@ export function createExampleConfig({ exampleDir }: { exampleDir: string }) {
         { find: 'react', replacement: reactEntry },
         { find: 'react-dom', replacement: reactDomEntry },
         { find: /^react-color$/, replacement: libraryEntry },
-        { find: /^react-color\/lib\/components\/common$/, replacement: commonEntry },
-        { find: /^react-color\/es\/components\/common$/, replacement: commonEntry },
+        { find: /^react-color\/lib\/components\/common$/, replacement: commonLibEntry },
+        { find: /^react-color\/es\/components\/common$/, replacement: commonEsEntry },
       ],
       dedupe: ['react', 'react-dom'],
     },

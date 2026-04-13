@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { constants } from 'node:fs';
-import { access, mkdtemp, mkdir, readdir, rm, symlink, writeFile } from 'node:fs/promises';
+import { access, mkdtemp, mkdir, readdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -40,6 +40,40 @@ async function ensureBuildArtifacts() {
     await access(path.join(repoRoot, 'lib', 'styles', relativeCssPath), constants.R_OK);
     await access(path.join(repoRoot, 'es', 'styles', relativeCssPath), constants.R_OK);
   }
+
+  const [libChromeEntry, libHueEntry, esChromeEntry, esSketchEntry, esIndexEntry] = await Promise.all([
+    readFile(path.join(repoRoot, 'lib', 'Chrome.js'), 'utf8'),
+    readFile(path.join(repoRoot, 'lib', 'Hue.js'), 'utf8'),
+    readFile(path.join(repoRoot, 'es', 'Chrome.js'), 'utf8'),
+    readFile(path.join(repoRoot, 'es', 'Sketch.js'), 'utf8'),
+    readFile(path.join(repoRoot, 'es', 'index.js'), 'utf8'),
+  ]);
+
+  assert.match(
+    libChromeEntry,
+    /require\('\.\/styles\/pickers\/chrome\.css'\)/u,
+    'lib/Chrome.js is missing the CommonJS style side effect.',
+  );
+  assert.match(
+    libHueEntry,
+    /require\('\.\/styles\/pickers\/hue\.css'\)/u,
+    'lib/Hue.js is missing the CommonJS style side effect.',
+  );
+  assert.match(
+    esChromeEntry,
+    /import '\.\/styles\/pickers\/chrome\.css';/u,
+    'es/Chrome.js is missing the ESM style side effect.',
+  );
+  assert.match(
+    esSketchEntry,
+    /import '\.\/styles\/pickers\/sketch\.css';/u,
+    'es/Sketch.js is missing the ESM style side effect.',
+  );
+  assert.match(
+    esIndexEntry,
+    /from '\.\/Chrome';/u,
+    'es/index.js is not re-exporting picker wrappers with style side effects.',
+  );
 }
 
 function runNode(args, cwd) {
@@ -111,13 +145,7 @@ async function runBundlerFixture(workspace) {
   await writeFixture(
     bundlerRoot,
     'main.ts',
-    `import 'react-color/es/styles/index.css';
-import 'react-color/lib/styles/index.css';
-import 'react-color/es/styles/pickers/chrome.css';
-import 'react-color/lib/styles/pickers/sketch.css';
-import 'react-color/es/styles/common/editable-input.css';
-import 'react-color/lib/styles/common/editable-input.css';
-import ReactColorDefault, { SketchPicker } from 'react-color';
+    `import ReactColorDefault, { SketchPicker } from 'react-color';
 import SketchPickerEsm from 'react-color/es/Sketch';
 import HuePickerLib from 'react-color/lib/Hue';
 import { EditableInput as EditableInputLib } from 'react-color/lib/components/common';
@@ -144,6 +172,16 @@ document.body.dataset.reactColorConsumptionCheck = String(consumedEntries.length
       outDir: 'dist',
     },
   });
+
+  const assetDir = path.join(bundlerRoot, 'dist', 'assets');
+  const assetNames = await readdir(assetDir);
+  const cssAssetName = assetNames.find((assetName) => assetName.endsWith('.css'));
+
+  assert.ok(cssAssetName, 'Bundler output did not emit any CSS asset.');
+
+  const bundleCss = await readFile(path.join(assetDir, cssAssetName), 'utf8');
+
+  assert.ok(bundleCss.length > 0, 'Bundler emitted an empty CSS asset.');
 }
 
 async function main() {
@@ -225,9 +263,10 @@ assert.equal(typeof reactColorCjsNamespace.SketchPicker, 'function');
         'esm-cjs-consumption-check passed:',
         '- CommonJS require() consumed the root entry and lib/ deep imports.',
         '- The published package layout exposes aggregate and granular CSS entrypoints for every built stylesheet in lib/styles and es/styles.',
+        '- Root and deep picker entrypoints now pull in their own published CSS automatically for bundlers.',
         '- Native Node ESM consumed the root CommonJS entry via the default namespace object.',
         '- Native Node ESM still rejects direct named root imports and extensionless lib/es deep imports without an exports map.',
-        '- Vite consumed root default/named imports, lib/es deep imports, and aggregate/granular CSS entrypoints through the published package layout.',
+        '- Vite consumed root default/named imports and lib/es deep imports without any manual CSS imports.',
       ].join('\n'),
     );
   } finally {
