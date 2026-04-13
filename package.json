@@ -35,7 +35,6 @@
     "clean-lib": "rm -rf lib && mkdir lib",
     "clean-es": "rm -rf es && mkdir es",
     "prepack": "npm run build",
-    "docs": "npm run docs-server",
     "docs-server": "node ./scripts/docs-server.mjs",
     "docs-dist": "node ./scripts/docs-dist.mjs",
     "storybook": "storybook dev -p 6006",

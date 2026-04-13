@@ -33,7 +33,7 @@ The modernization branch now uses a TypeScript-based dual emit for package build
 | `npm run eslint`                   | Lint `src`, `docs`, `scripts`, `test`, and repo tooling sources with ESLint.    |
 | `npm run storybook`                | Start Storybook on port `6006`.                                                 |
 | `npm run build-storybook`          | Emit the static Storybook site to `.out/`.                                      |
-| `npm run docs`                     | Start the Vite-powered docs server on `http://localhost:9100/`.                 |
+| `npm run docs-server`              | Start the Vite-powered docs server on `http://localhost:9100/`.                 |
 | `npm run typecheck`                | Run the TypeScript check for `src`, `docs`, `scripts`, and `test`.              |
 | `npm run docs-dist`                | Build the docs bundle into `docs/build/`.                                       |
 
