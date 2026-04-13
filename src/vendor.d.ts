@@ -52,13 +52,6 @@ declare module 'lodash/isUndefined' {
   export default isUndefined;
 }
 
-declare module 'reactcss' {
-  function reactCSS(...args: unknown[]): import('./types').PickerStyles;
-  export function handleHover<T>(component: T): T;
-
-  export default reactCSS;
-}
-
 declare module 'tinycolor2' {
   type TinyColorInput =
     | import('./types').Color
@@ -69,7 +62,6 @@ declare module 'tinycolor2' {
     | undefined;
 
   interface TinyColorInstance {
-    _ok: boolean;
     isValid(): boolean;
     toHex(): string;
     toHsl(): import('./types').HSLAColor;
