@@ -12,7 +12,7 @@ todos:
     content: Перевести компоненты docs/components и docs/examples на TypeScript, зафиксировать типы props и локальных state
     status: completed
   - id: docs-tooling
-    content: Подключить отдельный typecheck docs в scripts/CI и синхронизировать документацию по командам при необходимости; выполнено: добавлены npm run docs:typecheck, CI-шаг для него, eslint на docs/repo tooling, синхронизированы README.md, AGENTS.md и .github/CONTRIBUTING.md, а из vite.docs.config.js удалён уже ненужный jsxInJsPlugin
+    content: Подключить docs typecheck в scripts/CI и синхронизировать документацию по командам при необходимости; выполнено: typecheck docs включён в общий npm run typecheck и CI, eslint настроен на docs/repo tooling, синхронизированы README.md, AGENTS.md и .github/CONTRIBUTING.md, а из vite.docs.config.js удалён уже ненужный jsxInJsPlugin
     status: completed
   - id: docs-verification
     content: Подтвердить миграцию через npm run docs-dist и локальный docs-server без регрессий в render/markdown/examples; выполнено: повторный прогон `npm run docs-dist` успешно собрал `docs/build/bundle.js`, локальный `npm run docs-server` поднял docs на `http://localhost:9100/`, а повторная браузерная проверка подтвердила render главной страницы и docs-секций, загрузку markdown (`docs/documentation/*.md?raw`), работу sidebar-якоря `#examples`, интерактивность `Button Example` и отсутствие console errors в текущем dev-сеансе
@@ -116,7 +116,7 @@ todos:
 
 Когда JSX в `.js` внутри `docs/` исчезнет, проверить, нужен ли ещё костыль `jsxInJsPlugin()` в [`../vite.docs.config.js`](../vite.docs.config.js). Если он остаётся нужен только ради `src/`, решение принять отдельно; если нет, удалить его как технический долг.
 
-Также добавить отдельную команду вида `docs:typecheck` и решить, должна ли она входить в:
+Также нужно решить, будет ли docs-specific typecheck отдельной командой или войдёт в общий `typecheck`:
 
 - общий `npm test`;
 - CI;
@@ -144,5 +144,5 @@ todos:
 - [x] **docs-tsconfig** — Добавить отдельный `tsconfig` для docs и минимальные декларации для markdown raw imports, не затрагивая library build
 - [x] **docs-entrypoints** — Перевести docs entrypoints и registry-модули на `.ts` / `.tsx` с сохранением текущего Vite pipeline
 - [x] **docs-components** — Перевести `docs/components` и `docs/examples` на TypeScript, зафиксировать типы props и локальных state
-- [x] **docs-tooling** — Подключить отдельный typecheck docs в scripts/CI и синхронизировать документацию по командам при необходимости; выполнено: добавлены `npm run docs:typecheck`, CI-шаг для него, eslint на `docs/` и repo tooling, синхронизированы `README.md`, `AGENTS.md` и `.github/CONTRIBUTING.md`, а из `vite.docs.config.js` удалён уже ненужный `jsxInJsPlugin`
+- [x] **docs-tooling** — Подключить docs typecheck в scripts/CI и синхронизировать документацию по командам при необходимости; выполнено: проверка docs включена в общий `npm run typecheck` и CI, eslint настроен на `docs/` и repo tooling, синхронизированы `README.md`, `AGENTS.md` и `.github/CONTRIBUTING.md`, а из `vite.docs.config.js` удалён уже ненужный `jsxInJsPlugin`
 - [x] **docs-verification** — Подтвердить миграцию через `npm run docs-dist` и локальный `docs-server` без регрессий в render/markdown/examples; выполнено: повторный `npm run docs-dist` успешно собрал docs, локальный `npm run docs-server` поднял сайт на `http://localhost:9100/`, а повторная браузерная проверка подтвердила render главной/docs, загрузку markdown, работу sidebar-якоря `#examples`, интерактивность `Button Example` и отсутствие console errors в текущем dev-сеансе

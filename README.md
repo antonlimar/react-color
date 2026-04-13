@@ -35,7 +35,6 @@ The modernization branch now uses a TypeScript-based dual emit for package build
 | `npm run build-storybook`          | Emit the static Storybook site to `.out/`.                                      |
 | `npm run docs`                     | Start the Vite-powered docs server on `http://localhost:9100/`.                 |
 | `npm run typecheck`                | Run the TypeScript check for `src`, `docs`, `scripts`, and `test`.              |
-| `npm run docs:typecheck`           | Compatibility alias for the shared TypeScript check.                            |
 | `npm run docs-dist`                | Build the docs bundle into `docs/build/`.                                       |
 
 Published package artifacts currently expose `main` via `lib/index.js`, `module` via `es/index.js`, keep full `lib/` and `es/` trees for deep imports, and expose root typings via `index.d.ts`.
