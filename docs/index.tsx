@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 
+import '../src/styles/index.scss';
 import Home from './components/home/Home';
 
 if (typeof document !== 'undefined') {
