@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { constants } from 'node:fs';
-import { access, mkdtemp, mkdir, rm, symlink, writeFile } from 'node:fs/promises';
+import { access, mkdtemp, mkdir, readdir, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -10,14 +10,36 @@ import { build } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
+const stylesSourceRoot = path.join(repoRoot, 'src', 'styles');
+
+async function collectExpectedStyleArtifacts(directory = stylesSourceRoot) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const stylePaths = [];
+
+  for (const entry of entries) {
+    const absolutePath = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      stylePaths.push(...(await collectExpectedStyleArtifacts(absolutePath)));
+      continue;
+    }
+
+    if (entry.isFile() && entry.name.endsWith('.scss') && !entry.name.startsWith('_')) {
+      stylePaths.push(path.relative(stylesSourceRoot, absolutePath).replace(/\.scss$/u, '.css'));
+    }
+  }
+
+  return stylePaths.sort();
+}
 
 async function ensureBuildArtifacts() {
   await access(path.join(repoRoot, 'lib', 'index.js'), constants.R_OK);
   await access(path.join(repoRoot, 'es', 'index.js'), constants.R_OK);
-  await access(path.join(repoRoot, 'lib', 'styles', 'index.css'), constants.R_OK);
-  await access(path.join(repoRoot, 'es', 'styles', 'index.css'), constants.R_OK);
-  await access(path.join(repoRoot, 'lib', 'styles', 'pickers', 'chrome.css'), constants.R_OK);
-  await access(path.join(repoRoot, 'es', 'styles', 'common', 'editable-input.css'), constants.R_OK);
+  const expectedCssArtifacts = await collectExpectedStyleArtifacts();
+
+  for (const relativeCssPath of expectedCssArtifacts) {
+    await access(path.join(repoRoot, 'lib', 'styles', relativeCssPath), constants.R_OK);
+    await access(path.join(repoRoot, 'es', 'styles', relativeCssPath), constants.R_OK);
+  }
 }
 
 function runNode(args, cwd) {
@@ -90,8 +112,11 @@ async function runBundlerFixture(workspace) {
     bundlerRoot,
     'main.ts',
     `import 'react-color/es/styles/index.css';
+import 'react-color/lib/styles/index.css';
 import 'react-color/es/styles/pickers/chrome.css';
+import 'react-color/lib/styles/pickers/sketch.css';
 import 'react-color/es/styles/common/editable-input.css';
+import 'react-color/lib/styles/common/editable-input.css';
 import ReactColorDefault, { SketchPicker } from 'react-color';
 import SketchPickerEsm from 'react-color/es/Sketch';
 import HuePickerLib from 'react-color/lib/Hue';
@@ -199,10 +224,10 @@ assert.equal(typeof reactColorCjsNamespace.SketchPicker, 'function');
       [
         'esm-cjs-consumption-check passed:',
         '- CommonJS require() consumed the root entry and lib/ deep imports.',
-        '- The published package layout exposes aggregate and granular CSS entrypoints in lib/styles and es/styles.',
+        '- The published package layout exposes aggregate and granular CSS entrypoints for every built stylesheet in lib/styles and es/styles.',
         '- Native Node ESM consumed the root CommonJS entry via the default namespace object.',
         '- Native Node ESM still rejects direct named root imports and extensionless lib/es deep imports without an exports map.',
-        '- Vite consumed root default/named imports, lib/es deep imports, and CSS entrypoints through the published package layout.',
+        '- Vite consumed root default/named imports, lib/es deep imports, and aggregate/granular CSS entrypoints through the published package layout.',
       ].join('\n'),
     );
   } finally {

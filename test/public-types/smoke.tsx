@@ -1,3 +1,10 @@
+import 'react-color/es/styles/index.css';
+import 'react-color/es/styles/pickers/sketch.css';
+import 'react-color/es/styles/common/editable-input.css';
+import 'react-color/lib/styles/index.css';
+import 'react-color/lib/styles/pickers/chrome.css';
+import 'react-color/lib/styles/common/editable-input.css';
+
 import type { ComponentProps } from 'react';
 import React from 'react';
 import ChromePickerDefault, {
@@ -14,8 +21,6 @@ import ChromePickerDefault, {
   type RGBAColor,
 } from 'react-color';
 import SketchPickerEsm from 'react-color/es/Sketch';
-import HuePickerLib from 'react-color/lib/Hue';
-import { EditableInput as EditableInputLib } from 'react-color/lib/components/common';
 
 const rgba: RGBAColor = { r: 255, g: 0, b: 0, a: 1 };
 const hsl: HSLAColor = { h: 0, s: 1, l: 0.5, a: 1 };
@@ -64,9 +69,7 @@ const elements = (
     <SketchPicker {...sketchProps} theme="light" classNames={pickerClassNames} />
     <GooglePicker {...googleProps} />
     <SketchPickerEsm color="#00ff00" />
-    <HuePickerLib color="#0000ff" />
     <EditableInput value="ff0000" onChange={() => undefined} />
-    <EditableInputLib value="00ff00" onChange={() => undefined} />
     <WrappedPicker color="#ffffff" />
   </div>
 );

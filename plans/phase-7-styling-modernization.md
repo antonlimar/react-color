@@ -29,7 +29,7 @@ todos:
     status: completed
   - id: tests-and-consumption
     content: Обновить snapshots visual tests public-types и build/consumption проверки, включая granular CSS imports optional aggregate CSS entry и сценарии light dark theme
-    status: pending
+    status: completed
 ---
 
 # Фаза 7: убрать `reactcss` и перевести пикеры на BEM + SCSS с темизацией
@@ -137,4 +137,4 @@ todos:
 - [x] **migrate-top-level-pickers** — Перевести top-level пикеры `alpha`, `block`, `chrome`, `circle`, `compact`, `github`, `google`, `hue`, `material`, `photoshop`, `sketch`, `slider`, `swatches`, `twitter` на class-based markup и BEM-модификаторы
 - [x] **theming-and-css-vars** — Вынести визуальные токены в CSS custom properties и реализовать `light`/`dark`/`auto` тему через root BEM-модификаторы и `prefers-color-scheme`
 - [x] **docs-and-migration-notes** — Выполнено: `README.md`, `CHANGELOG.md` и docs-страницы `02.01-install`, `02.02-include`, `03.05-customStyles` синхронизированы с новым styling contract (`theme`, `classNames`, CSS variables, granular CSS imports и optional aggregate entry), а миграция со `styles` описана как deprecated compatibility path
-- [ ] **tests-and-consumption** — Обновить snapshots, visual tests, public-types и build/consumption проверки, включая granular CSS imports, optional aggregate CSS entry и сценарии light/dark theme
+- [x] **tests-and-consumption** — Выполнено: `test/public-types/smoke.tsx` теперь типизирует aggregate и granular CSS imports из `es/` и `lib/`, `scripts/esm-cjs-consumption-check.mjs` валидирует весь набор собранных CSS entrypoints и smoke-импортирует aggregate/granular CSS в bundler fixture, а `test/visual/pickers.visual.spec.tsx` покрывает dark-theme screenshots и пользовательский className-сценарий для styling hooks

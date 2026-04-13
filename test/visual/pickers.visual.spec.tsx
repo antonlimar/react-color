@@ -122,7 +122,32 @@ const themedVisualCases: Array<{
   },
 ];
 
-const renderStoryFrame = (story: ReactElement, frameBackground = '#f6f7f9') => {
+const classNameVisualCases: Array<{
+  groupName: string;
+  storyName: string;
+  screenshotName: string;
+  args: VisualStoryArgs;
+  frameBackground: string;
+  stylesheet: string;
+}> = [
+  {
+    groupName: 'sketch',
+    storyName: 'SketchPicker',
+    screenshotName: 'sketch/SketchPicker-classNames',
+    args: { className: 'visual-sketch-root' },
+    frameBackground: '#f3f4f6',
+    stylesheet: `
+      .visual-sketch-root {
+        border: 3px solid #0f172a;
+        border-radius: 14px;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+        overflow: hidden;
+      }
+    `,
+  },
+];
+
+const renderStoryFrame = (story: ReactElement, frameBackground = '#f6f7f9', stylesheet?: string) => {
   return render(
     <div
       data-testid="visual-story-frame"
@@ -132,6 +157,7 @@ const renderStoryFrame = (story: ReactElement, frameBackground = '#f6f7f9') => {
         display: 'inline-block',
       }}
     >
+      {stylesheet ? <style>{stylesheet}</style> : null}
       {story}
     </div>,
   );
@@ -165,6 +191,32 @@ describe('picker visual snapshots', () => {
       }
 
       const { getByTestId } = renderStoryFrame(createElement(Story, visualCase.args), visualCase.frameBackground);
+      const browserExpect = expect as typeof expect & {
+        element: (target: HTMLElement) => {
+          toMatchScreenshot: (name: string) => Promise<void>;
+        };
+      };
+
+      await browserExpect.element(getByTestId('visual-story-frame')).toMatchScreenshot(visualCase.screenshotName);
+    });
+  }
+
+  for (const visualCase of classNameVisualCases) {
+    test(visualCase.screenshotName, async () => {
+      const stories = storyGroups.find(([groupName]) => groupName === visualCase.groupName)?.[1];
+
+      expect(stories).toBeTruthy();
+      const Story = stories?.[visualCase.storyName];
+      expect(Story).toBeTruthy();
+      if (!Story) {
+        throw new Error(`Expected visual story ${visualCase.screenshotName} to exist`);
+      }
+
+      const { getByTestId } = renderStoryFrame(
+        createElement(Story, visualCase.args),
+        visualCase.frameBackground,
+        visualCase.stylesheet,
+      );
       const browserExpect = expect as typeof expect & {
         element: (target: HTMLElement) => {
           toMatchScreenshot: (name: string) => Promise<void>;
