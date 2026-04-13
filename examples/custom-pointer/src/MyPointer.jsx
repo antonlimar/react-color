@@ -5,6 +5,8 @@ export const MyPointer = () => {
         transform: 'translate(-50%, -10px)',
         cursor: 'pointer',
         fontSize: 32,
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
       }}
     >
       🔥
