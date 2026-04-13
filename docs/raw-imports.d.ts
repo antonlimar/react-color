@@ -17,3 +17,8 @@ declare module '*.tsx?raw' {
   const content: string;
   export default content;
 }
+
+declare module '*.scss' {
+  const stylesheet: string;
+  export default stylesheet;
+}
