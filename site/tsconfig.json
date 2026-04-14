@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.docs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "react-color": ["../src/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
+  "exclude": ["dist"]
+}
