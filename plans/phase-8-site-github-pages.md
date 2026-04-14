@@ -8,7 +8,7 @@ todos:
     status: completed
   - id: hero-live-pickers
     content: Реализовать hero-блок с современным адаптивным layout, общей color state-моделью, синхронизацией всех visible pickers и динамическим фоном секции
-    status: proposed
+    status: completed
   - id: content-model-and-migration
     content: Вынести контент About Getting Started Component API Create Your Own в typed content-слой внутри `site/src/content` и перенести актуальные тексты из `docs/documentation`
     status: proposed
@@ -123,7 +123,7 @@ The new site will fully replace the current `docs/` site as the project website.
 ## Todo
 
 - [x] **site-scaffold-and-build** — Создать standalone Vite-приложение в `site/`, настроить entrypoints, `tsconfig`, scripts и production build с корректным GitHub Pages base path
-- [ ] **hero-live-pickers** — Реализовать hero-блок с современным адаптивным layout, общей color state-моделью, синхронизацией всех visible pickers и динамическим фоном секции
+- [x] **hero-live-pickers** — Реализовать hero-блок с современным адаптивным layout, общей color state-моделью, синхронизацией всех visible pickers и динамическим фоном секции
 - [ ] **content-model-and-migration** — Вынести контент `About`, `Getting Started`, `Component API`, `Create Your Own` в typed content-слой внутри `site/src/content` и перенести актуальные тексты из `docs/documentation`
 - [ ] **component-api-reference** — Построить раздел `Component API` с подразделами для общих props `color`, `onChange`, `onChangeComplete` и picker-specific API на основе структурированных данных
 - [ ] **responsive-anchor-navigation** — Реализовать desktop sticky sidebar navigation для блоков 2-5 и mobile drawer navigation с якорями, active-state подсветкой и корректным scroll behavior
