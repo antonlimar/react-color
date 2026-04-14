@@ -93,17 +93,34 @@ export const siteSections: readonly ContentSection[] = [
     id: 'component-api',
     order: 3,
     title: 'Component API',
-    intro: 'The API reference is split into common color props, picker-specific props, and styling migration guidance.',
+    intro:
+      'The API reference is organized around the three shared color props and a picker-by-picker view of the props that only exist on individual components.',
     blocks: [],
     subsections: [
       {
-        id: 'common-props',
-        title: 'Common Props',
+        id: 'color',
+        title: 'color',
         intro:
-          'These props are shared by the main public pickers and define how color state moves through the component tree.',
+          'Use `color` to set the active value for a picker, either as an initial value or as a fully controlled prop from parent state.',
+        blocks: [
+          {
+            type: 'text',
+            text: 'Accepted values include a hex string such as `#333`, an rgb/rgba object, an hsl/hsla object, an hsv/hsva object, or the string `transparent`.',
+          },
+          {
+            type: 'text',
+            text: 'This is the prop that keeps multiple pickers in sync with the same source of truth, just like the shared hero demo on the site.',
+          },
+          {
+            type: 'code',
+            language: 'tsx',
+            label: 'Controlled color value',
+            code: "import React, { useState } from 'react';\nimport { SketchPicker } from 'react-color';\n\nfunction Component() {\n  const [background, setBackground] = useState('#fff');\n\n  return (\n    <SketchPicker\n      color={background}\n      onChangeComplete={(color) => setBackground(color.hex)}\n    />\n  );\n}\n",
+          },
+        ],
         propertyGroups: [
           {
-            title: 'Shared color props',
+            title: 'Prop signature',
             properties: [
               {
                 name: 'color',
@@ -111,12 +128,66 @@ export const siteSections: readonly ContentSection[] = [
                 description:
                   'Controls the active color on the picker. Use it to initialize the picker or keep it in sync with parent state.',
               },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'on-change',
+        title: 'onChange',
+        intro:
+          'Use `onChange` when you want every intermediate drag or click update while the user is actively editing the color.',
+        blocks: [
+          {
+            type: 'text',
+            text: 'This callback fires frequently during pointer interaction, so it is the right place for live previews, synchronized UI state, or derived visual updates.',
+          },
+          {
+            type: 'text',
+            text: 'The first argument is a normalized color result with `hex`, `rgb`, `hsl`, `hsv`, `oldHue`, and `source`. The second argument is the original DOM or React event when one exists.',
+          },
+          {
+            type: 'code',
+            language: 'tsx',
+            label: 'Live updates during interaction',
+            code: "import React from 'react';\nimport { SwatchesPicker } from 'react-color';\n\nfunction Component() {\n  const handleChange = (color, event) => {\n    console.log(color.hex, color.rgb, event?.type);\n  };\n\n  return <SwatchesPicker onChange={handleChange} />;\n}\n",
+          },
+        ],
+        propertyGroups: [
+          {
+            title: 'Prop signature',
+            properties: [
               {
                 name: 'onChange',
                 type: '(color, event) => void',
                 description:
                   'Called every time the color changes. Use it to store state in a parent component or derive other transformations.',
               },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'on-change-complete',
+        title: 'onChangeComplete',
+        intro:
+          'Use `onChangeComplete` when you only need the final result after a drag or other color-edit interaction has settled.',
+        blocks: [
+          {
+            type: 'text',
+            text: 'This is the lower-frequency callback that works well for persistence, server writes, analytics, or any expensive state update you do not want to run on every intermediate change.',
+          },
+          {
+            type: 'code',
+            language: 'tsx',
+            label: 'Commit the final color value',
+            code: "import React, { useState } from 'react';\nimport { PhotoshopPicker } from 'react-color';\n\nfunction Component() {\n  const [background, setBackground] = useState('#fff');\n\n  const handleChangeComplete = (color, event) => {\n    setBackground(color.hex);\n  };\n\n  return <PhotoshopPicker onChangeComplete={handleChangeComplete} />;\n}\n",
+          },
+        ],
+        propertyGroups: [
+          {
+            title: 'Prop signature',
+            properties: [
               {
                 name: 'onChangeComplete',
                 type: '(color, event) => void',
@@ -130,7 +201,17 @@ export const siteSections: readonly ContentSection[] = [
         id: 'picker-specific-props',
         title: 'Picker-Specific Props',
         intro:
-          'The individual picker APIs stay intentionally small and map closely to the docs that shipped with the library.',
+          'These props only exist on specific pickers. Shared props like `color`, `onChange`, `onChangeComplete`, `className`, `classNames`, and `theme` still apply on top.',
+        blocks: [
+          {
+            type: 'text',
+            text: 'Most public pickers stay intentionally small: the unique props usually control layout, preset palettes, optional UI pieces, or swatch hover behavior.',
+          },
+          {
+            type: 'text',
+            text: 'MaterialPicker does not currently add picker-only props beyond the shared color and styling surface, so it is fully described by the common API plus its CSS hooks.',
+          },
+        ],
         propertyGroups: [
           {
             title: 'Alpha',
@@ -258,6 +339,18 @@ export const siteSections: readonly ContentSection[] = [
             ],
           },
           {
+            title: 'Google',
+            properties: [
+              { name: 'width', type: 'string | number', defaultValue: '652', description: 'Width of the picker.' },
+              {
+                name: 'header',
+                type: 'string',
+                defaultValue: 'Color picker',
+                description: 'Title text shown in the picker header.',
+              },
+            ],
+          },
+          {
             title: 'Hue',
             properties: [
               { name: 'width', type: 'string', defaultValue: '316px', description: 'Pixel value for picker width.' },
@@ -295,10 +388,11 @@ export const siteSections: readonly ContentSection[] = [
               },
               {
                 name: 'presetColors',
-                type: 'array',
+                type: 'string[] | { color: string; title?: string }[]',
                 defaultValue:
                   "['#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', '#417505', '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF']",
-                description: 'Hex strings for default colors at the bottom of the picker.',
+                description:
+                  'Default colors at the bottom of the picker. Entries may be hex strings or objects with `color` and optional `title`.',
               },
               { name: 'width', type: 'number', defaultValue: '200', description: 'Width of picker.' },
               {
