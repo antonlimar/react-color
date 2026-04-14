@@ -26,7 +26,7 @@ todos:
     status: completed
   - id: docs-metadata-and-verification
     content: Обновить README homepage/site references и добавить проверки сборки, responsive behavior, anchor navigation и shared-color interaction в локальную верификацию и CI
-    status: proposed
+    status: completed
 ---
 
 # New GitHub Pages Site in `site/`
@@ -129,4 +129,4 @@ The new site will fully replace the current `docs/` site as the project website.
 - [x] **responsive-anchor-navigation** — Реализовать desktop sticky sidebar navigation для блоков 2-5 и mobile drawer navigation с якорями, active-state подсветкой и корректным scroll behavior
 - [x] **visual-design-system** — Собрать отдельную site-only styling систему с выразительной типографикой, адаптивной сеткой, CSS custom properties и изолированными стилями внутри `site/` без затрагивания styling internals библиотеки
 - [x] **pages-deployment-and-ci** — Добавить GitHub Actions workflow для сборки `site/` и автоматического деплоя на GitHub Pages отдельно от package build/publish pipeline
-- [ ] **docs-metadata-and-verification** — Обновить README, `homepage`/site references и добавить проверки сборки, responsive behavior, anchor navigation и shared-color interaction в локальную верификацию и CI
+- [x] **docs-metadata-and-verification** — Обновить README, `homepage`/site references и добавить проверки сборки, responsive behavior, anchor navigation и shared-color interaction в локальную верификацию и CI

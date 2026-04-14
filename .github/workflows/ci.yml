@@ -46,8 +46,8 @@ jobs:
       - name: Typecheck sources
         run: npm run typecheck
 
-      - name: Build site
-        run: npm run site:build
+      - name: Verify site metadata and interactions
+        run: npm run site:verify
 
       - name: Build docs
         run: npm run docs-dist

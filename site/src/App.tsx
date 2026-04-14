@@ -86,14 +86,18 @@ function isSubsectionActive(subsection: ContentSubsection, activeAnchorId: strin
   return subsection.id === activeAnchorId;
 }
 
-function renderBlock(block: SectionBlock) {
+function renderBlock(block: SectionBlock, index: number) {
   if (block.type === 'text') {
-    return <p className="content-text">{block.text}</p>;
+    return (
+      <p className="content-text" key={`text-${index}`}>
+        {block.text}
+      </p>
+    );
   }
 
   if (block.type === 'bullets') {
     return (
-      <ul className="content-list">
+      <ul className="content-list" key={`bullets-${index}`}>
         {block.items.map((item) => (
           <li key={item}>{item}</li>
         ))}
@@ -102,7 +106,7 @@ function renderBlock(block: SectionBlock) {
   }
 
   return (
-    <figure className="content-code">
+    <figure className="content-code" key={`code-${index}-${block.label ?? 'snippet'}`}>
       {block.label ? <figcaption>{block.label}</figcaption> : null}
       <pre>
         <code>{block.code}</code>
@@ -362,7 +366,7 @@ export default function App() {
             <a className="hero__button hero__button--primary" href="#about">
               Explore the docs shell
             </a>
-            <a className="hero__button" href="https://github.com/casesandberg/react-color">
+            <a className="hero__button" href="https://github.com/antonlimar/react-color">
               View repository
             </a>
           </div>

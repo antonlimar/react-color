@@ -1,4 +1,4 @@
-# [React Color](http://casesandberg.github.io/react-color/)
+# [React Color](https://antonlimar.github.io/react-color/)
 
 [![Npm Version][npm-version-image]][npm-version-url]
 [![License][license-image]][license-url]
@@ -22,17 +22,21 @@ This tree is maintained as a modernization fork. Source layout, npm export names
 
 ### Development workflow
 
-The modernization branch now uses a TypeScript-based dual emit for package builds, Vitest for tests, Storybook 10 for component work, and Vite for docs.
+The modernization branch now uses a TypeScript-based dual emit for package builds, Vitest for tests, Storybook 10 for component work, and Vite for both the new GitHub Pages site and the legacy docs app.
 
 | Command                            | Purpose                                                                         |
 | ---------------------------------- | ------------------------------------------------------------------------------- |
 | `npm run build`                    | Build both published outputs: `lib/` (CJS) and `es/` (ESM).                     |
 | `npm test`                         | Run Vitest test suite and ESLint.                                               |
+| `npm run test:site`                | Run the dedicated site interaction tests for navigation and shared color state. |
 | `npm run test:esm-cjs-consumption` | Build the package and smoke-check CJS, Node ESM, and bundler consumption paths. |
 | `npm run test:watch`               | Start Vitest in watch mode.                                                     |
 | `npm run eslint`                   | Lint `src`, `docs`, `scripts`, `test`, and repo tooling sources with ESLint.    |
 | `npm run storybook`                | Start Storybook on port `6006`.                                                 |
 | `npm run build-storybook`          | Emit the static Storybook site to `.out/`.                                      |
+| `npm run site:dev`                 | Start the new GitHub Pages site on `http://localhost:4173/`.                    |
+| `npm run site:build`               | Build the new GitHub Pages site into `site/dist/`.                              |
+| `npm run site:verify`              | Run site interaction tests, build the Pages app, and verify metadata/output.    |
 | `npm run docs-server`              | Start the Vite-powered docs server on `http://localhost:9100/`.                 |
 | `npm run typecheck`                | Run the TypeScript check for `src`, `docs`, `scripts`, and `test`.              |
 | `npm run docs-dist`                | Build the docs bundle into `docs/build/`.                                       |
@@ -52,7 +56,7 @@ The package still ships the upstream-style `main`/`module` contract and intentio
 
 ![Demo](https://media.giphy.com/media/26FfggT53qE304CwE/giphy.gif)
 
-[**Live Demo**](http://casesandberg.github.io/react-color/)
+[**Live Demo**](https://antonlimar.github.io/react-color/)
 
 ## Installation & Usage
 

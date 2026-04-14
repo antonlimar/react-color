@@ -12,7 +12,7 @@
   "author": "case <case@casesandberg.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/casesandberg/react-color/issues"
+    "url": "https://github.com/antonlimar/react-color/issues"
   },
   "scripts": {
     "build": "npm run lib && npm run es",
@@ -23,6 +23,7 @@
     "test:public-types": "npm run build && tsc -p tsconfig.public-types.json",
     "test:esm-cjs-consumption": "npm run build && node ./scripts/esm-cjs-consumption-check.mjs",
     "test:unit": "vitest run -c vitest.config.ts",
+    "test:site": "vitest run -c vitest.config.ts site/src/App.spec.tsx",
     "test:visual": "vitest run -c vitest.visual.config.ts",
     "test:visual:update": "vitest run -c vitest.visual.config.ts --update",
     "test:watch": "vitest -c vitest.config.ts",
@@ -38,6 +39,7 @@
     "site:dev": "vite --config vite.site.config.ts",
     "site:build": "vite build --config vite.site.config.ts",
     "site:preview": "vite preview --config vite.site.config.ts",
+    "site:verify": "npm run test:site && npm run site:build && node ./scripts/verify-site-build.mjs",
     "docs-server": "node ./scripts/docs-server.mjs",
     "docs-dist": "node ./scripts/docs-dist.mjs",
     "storybook": "storybook dev -p 6006",
@@ -53,7 +55,7 @@
   "sideEffects": [
     "**/*.css"
   ],
-  "homepage": "http://casesandberg.github.io/react-color/",
+  "homepage": "https://antonlimar.github.io/react-color/",
   "keywords": [
     "react",
     "color picker",
