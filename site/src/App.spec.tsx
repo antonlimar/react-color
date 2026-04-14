@@ -62,6 +62,42 @@ describe('site app', () => {
     expect(drawerNav?.closest('.sections-shell__drawer')).toHaveAttribute('hidden');
   });
 
+  test('renders documentation examples as highlighted TypeScript snippets', () => {
+    const { container } = render(<App />);
+    const inlineUsageCaption = screen.getByText('Inline usage');
+    const codeFigure = inlineUsageCaption.closest('.content-code');
+    const codeElement = codeFigure?.querySelector('code');
+
+    expect(codeElement).toHaveClass('language-tsx');
+    expect(codeElement?.innerHTML).toContain('token keyword');
+    expect(codeElement).toHaveTextContent("import { SketchPicker } from 'react-color';");
+    expect(container).not.toHaveTextContent("import React from 'react';");
+  });
+
+  test('highlights JSX inside tsx return statements', () => {
+    render(<App />);
+    const liveUpdatesCaption = screen.getByText('Live updates during interaction');
+    const codeFigure = liveUpdatesCaption.closest('.content-code');
+    const codeElement = codeFigure?.querySelector('code');
+
+    expect(codeElement?.innerHTML).toContain('token tag');
+    expect(codeElement?.innerHTML).toContain('SwatchesPicker');
+    expect(codeElement?.innerHTML).toContain('token attr-name');
+  });
+
+  test('renders backtick-wrapped inline content as code in prose sections', () => {
+    const { container } = render(<App />);
+    const section = container.querySelector('#color');
+    const introParagraph = section?.querySelector('.section__intro');
+    const acceptedValuesParagraph = section?.querySelector('.content-text');
+
+    const inlineCode = within(introParagraph as HTMLElement).getByText('color');
+    expect(inlineCode.tagName).toBe('CODE');
+
+    const transparentInlineCode = within(acceptedValuesParagraph as HTMLElement).getByText('transparent');
+    expect(transparentInlineCode.tagName).toBe('CODE');
+  });
+
   test('closes the mobile drawer when resizing back to desktop widths', async () => {
     render(<App />);
     const drawerToggle = screen.getByRole('button', { name: /browse sections/i });

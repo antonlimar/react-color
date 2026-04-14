@@ -66,10 +66,17 @@
 .hero::before {
   content: '';
   position: absolute;
-  inset: 0;
+  top: -2rem;
+  right: 50%;
+  bottom: -5.5rem;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.72), transparent 46%),
-    radial-gradient(circle at center, transparent 0 44%, rgba(255, 255, 255, 0.42) 80%);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0) 48%),
+    radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.52), transparent 62%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.62) 100%);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.92) 74%, transparent 100%);
   pointer-events: none;
 }
 
@@ -656,6 +663,20 @@
   font-size: 1rem;
 }
 
+.section__intro code,
+.content-text code,
+.content-list code,
+.api-group__head p code,
+.api-table code {
+  padding: 0.08rem 0.38rem;
+  border: 1px solid rgba(16, 32, 58, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--site-text-strong);
+  font-family: var(--site-font-mono);
+  font-size: 0.92em;
+}
+
 .section__subsection {
   display: flex;
   flex-direction: column;
@@ -716,7 +737,55 @@
 }
 
 .content-code code {
+  display: block;
   font-family: var(--site-font-mono);
+}
+
+.content-code .token.keyword,
+.content-code .token.selector,
+.content-code .token.atrule,
+.content-code .token.rule,
+.content-code .token.property,
+.content-code .token.class-name {
+  color: #ff8f70;
+}
+
+.content-code .token.string,
+.content-code .token.attr-value,
+.content-code .token.template-string,
+.content-code .token.regex {
+  color: #b8f07a;
+}
+
+.content-code .token.tag,
+.content-code .token.attr-name,
+.content-code .token.function,
+.content-code .token.builtin,
+.content-code .token.constant,
+.content-code .token.namespace {
+  color: #7fd6ff;
+}
+
+.content-code .token.comment,
+.content-code .token.prolog,
+.content-code .token.doctype,
+.content-code .token.cdata {
+  color: rgba(214, 225, 244, 0.52);
+}
+
+.content-code .token.number,
+.content-code .token.boolean,
+.content-code .token.symbol,
+.content-code .token.unit {
+  color: #ffd166;
+}
+
+.content-code .token.parameter,
+.content-code .token.script,
+.content-code .token.operator,
+.content-code .token.punctuation,
+.content-code .token.plain-text {
+  color: #f7fbff;
 }
 
 .api-group {

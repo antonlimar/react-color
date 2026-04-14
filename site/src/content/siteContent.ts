@@ -64,7 +64,7 @@ export const siteSections: readonly ContentSection[] = [
           {
             type: 'code',
             language: 'tsx',
-            code: "import React from 'react';\nimport { SketchPicker } from 'react-color';\n\nfunction Component() {\n  return <SketchPicker theme=\"auto\" />;\n}\n",
+            code: 'import { SketchPicker } from \'react-color\';\n\nexport function Example(): JSX.Element {\n  return <SketchPicker theme="auto" />;\n}\n',
             label: 'Inline usage',
           },
           {
@@ -115,7 +115,7 @@ export const siteSections: readonly ContentSection[] = [
             type: 'code',
             language: 'tsx',
             label: 'Controlled color value',
-            code: "import React, { useState } from 'react';\nimport { SketchPicker } from 'react-color';\n\nfunction Component() {\n  const [background, setBackground] = useState('#fff');\n\n  return (\n    <SketchPicker\n      color={background}\n      onChangeComplete={(color) => setBackground(color.hex)}\n    />\n  );\n}\n",
+            code: "import { useState } from 'react';\nimport { SketchPicker } from 'react-color';\nimport type { ColorResult } from 'react-color';\n\nexport function Example(): JSX.Element {\n  const [background, setBackground] = useState<string>('#fff');\n\n  return (\n    <SketchPicker\n      color={background}\n      onChangeComplete={(nextColor: ColorResult) => setBackground(nextColor.hex)}\n    />\n  );\n}\n",
           },
         ],
         propertyGroups: [
@@ -150,7 +150,7 @@ export const siteSections: readonly ContentSection[] = [
             type: 'code',
             language: 'tsx',
             label: 'Live updates during interaction',
-            code: "import React from 'react';\nimport { SwatchesPicker } from 'react-color';\n\nfunction Component() {\n  const handleChange = (color, event) => {\n    console.log(color.hex, color.rgb, event?.type);\n  };\n\n  return <SwatchesPicker onChange={handleChange} />;\n}\n",
+            code: "import { SwatchesPicker } from 'react-color';\nimport type { ColorResult } from 'react-color';\n\nexport function Example(): JSX.Element {\n  const handleChange = (nextColor: ColorResult) => {\n    console.log(nextColor.hex, nextColor.rgb);\n  };\n\n  return <SwatchesPicker onChange={handleChange} />;\n}\n",
           },
         ],
         propertyGroups: [
@@ -181,7 +181,7 @@ export const siteSections: readonly ContentSection[] = [
             type: 'code',
             language: 'tsx',
             label: 'Commit the final color value',
-            code: "import React, { useState } from 'react';\nimport { PhotoshopPicker } from 'react-color';\n\nfunction Component() {\n  const [background, setBackground] = useState('#fff');\n\n  const handleChangeComplete = (color, event) => {\n    setBackground(color.hex);\n  };\n\n  return <PhotoshopPicker onChangeComplete={handleChangeComplete} />;\n}\n",
+            code: "import { useState } from 'react';\nimport { PhotoshopPicker } from 'react-color';\nimport type { ColorResult } from 'react-color';\n\nexport function Example(): JSX.Element {\n  const [background, setBackground] = useState<string>('#fff');\n\n  const handleChangeComplete = (nextColor: ColorResult) => {\n    setBackground(nextColor.hex);\n  };\n\n  return <PhotoshopPicker onChangeComplete={handleChangeComplete} />;\n}\n",
           },
         ],
         propertyGroups: [
@@ -474,7 +474,7 @@ export const siteSections: readonly ContentSection[] = [
             type: 'code',
             language: 'tsx',
             label: 'Theme and classNames',
-            code: "import React from 'react'\nimport { SketchPicker } from 'react-color'\n\nexport default function Component() {\n  return (\n    <SketchPicker\n      theme=\"dark\"\n      className=\"profile-color-picker\"\n      classNames={{\n        root: 'profile-color-picker__root',\n        body: 'profile-color-picker__body',\n        controls: 'profile-color-picker__controls',\n        swatch: 'profile-color-picker__swatch',\n      }}\n    />\n  )\n}\n",
+            code: "import { SketchPicker } from 'react-color';\n\nexport function Example(): JSX.Element {\n  return (\n    <SketchPicker\n      theme=\"dark\"\n      className=\"profile-color-picker\"\n      classNames={{\n        root: 'profile-color-picker__root',\n        body: 'profile-color-picker__body',\n        controls: 'profile-color-picker__controls',\n        swatch: 'profile-color-picker__swatch',\n      }}\n    />\n  );\n}\n",
           },
           {
             type: 'code',
@@ -503,7 +503,7 @@ export const siteSections: readonly ContentSection[] = [
             type: 'code',
             language: 'tsx',
             label: 'CustomPicker bridge',
-            code: "import React from 'react';\nimport { CustomPicker } from 'react-color';\n\nfunction MyColorPicker() {\n  return <div>MyColorPicker</div>;\n}\n\nexport default CustomPicker(MyColorPicker);\n",
+            code: "import { CustomPicker } from 'react-color';\nimport type { CustomPickerInjectedProps } from 'react-color';\n\nfunction MyColorPicker({ hex }: CustomPickerInjectedProps): JSX.Element {\n  return <div>Selected color: {hex}</div>;\n}\n\nexport default CustomPicker(MyColorPicker);\n",
           },
           {
             type: 'text',

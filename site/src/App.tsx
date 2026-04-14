@@ -1,9 +1,59 @@
-import { useEffect, useState } from 'react';
-import type { CSSProperties } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-tsx';
 import { ChromePicker, CompactPicker, GithubPicker, SketchPicker } from 'react-color';
 import type { ColorResult, RGBAColor } from 'react-color';
 import { siteSections } from './content';
-import type { ContentSection, ContentSubsection, SectionBlock } from './content';
+import type { CodeBlock, ContentSection, ContentSubsection, SectionBlock } from './content';
+
+function escapeHtml(code: string) {
+  return code
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function highlightCode(code: string, language: CodeBlock['language']) {
+  const prismLanguage =
+    language === 'tsx'
+      ? Prism.languages.tsx
+      : language === 'css'
+        ? Prism.languages.css
+        : language === 'bash'
+          ? Prism.languages.bash
+          : undefined;
+
+  if (!prismLanguage) {
+    return escapeHtml(code);
+  }
+
+  return Prism.highlight(code, prismLanguage, language);
+}
+
+function renderInlineCode(text: string): ReactNode {
+  const segments = text.split(/(`[^`]+`)/g);
+
+  if (segments.length === 1) {
+    return text;
+  }
+
+  return segments.map((segment, index) => {
+    if (segment.startsWith('`') && segment.endsWith('`') && segment.length >= 2) {
+      return <code key={`inline-code-${index}`}>{segment.slice(1, -1)}</code>;
+    }
+
+    return <Fragment key={`inline-text-${index}`}>{segment}</Fragment>;
+  });
+}
 
 const initialColor: RGBAColor = {
   r: 61,
@@ -90,7 +140,7 @@ function renderBlock(block: SectionBlock, index: number) {
   if (block.type === 'text') {
     return (
       <p className="content-text" key={`text-${index}`}>
-        {block.text}
+        {renderInlineCode(block.text)}
       </p>
     );
   }
@@ -99,7 +149,7 @@ function renderBlock(block: SectionBlock, index: number) {
     return (
       <ul className="content-list" key={`bullets-${index}`}>
         {block.items.map((item) => (
-          <li key={item}>{item}</li>
+          <li key={item}>{renderInlineCode(item)}</li>
         ))}
       </ul>
     );
@@ -109,7 +159,10 @@ function renderBlock(block: SectionBlock, index: number) {
     <figure className="content-code" key={`code-${index}-${block.label ?? 'snippet'}`}>
       {block.label ? <figcaption>{block.label}</figcaption> : null}
       <pre>
-        <code>{block.code}</code>
+        <code
+          className={`language-${block.language}`}
+          dangerouslySetInnerHTML={{ __html: highlightCode(block.code, block.language) }}
+        />
       </pre>
     </figure>
   );
@@ -126,14 +179,14 @@ function renderSection(section: ContentSection) {
       <div className="section__panel">
         <div className="section__body">
           <h2>{section.title}</h2>
-          {section.intro ? <p className="section__intro">{section.intro}</p> : null}
+          {section.intro ? <p className="section__intro">{renderInlineCode(section.intro)}</p> : null}
           {section.blocks.map(renderBlock)}
 
           {section.subsections?.map((subsection) => (
             <div className="section__subsection" id={subsection.id} key={subsection.id}>
               <h3>{subsection.title}</h3>
               {subsection.intro ? (
-                <p className="section__intro section__intro--subsection">{subsection.intro}</p>
+                <p className="section__intro section__intro--subsection">{renderInlineCode(subsection.intro)}</p>
               ) : null}
               {subsection.blocks?.map(renderBlock)}
 
@@ -141,7 +194,7 @@ function renderSection(section: ContentSection) {
                 <div className="api-group" key={group.title}>
                   <div className="api-group__head">
                     <h4>{group.title}</h4>
-                    {group.summary ? <p>{group.summary}</p> : null}
+                    {group.summary ? <p>{renderInlineCode(group.summary)}</p> : null}
                   </div>
 
                   <table className="api-table">
@@ -156,10 +209,10 @@ function renderSection(section: ContentSection) {
                     <tbody>
                       {group.properties.map((property) => (
                         <tr key={`${group.title}-${property.name}`}>
-                          <th scope="row">{property.name}</th>
-                          <td>{property.type}</td>
-                          <td>{property.defaultValue ?? '—'}</td>
-                          <td>{property.description}</td>
+                          <th scope="row">{renderInlineCode(property.name)}</th>
+                          <td>{renderInlineCode(property.type)}</td>
+                          <td>{property.defaultValue ? renderInlineCode(property.defaultValue) : '—'}</td>
+                          <td>{renderInlineCode(property.description)}</td>
                         </tr>
                       ))}
                     </tbody>
