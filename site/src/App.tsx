@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { CSSProperties } from 'react';
 import { ChromePicker, CompactPicker, GithubPicker, SketchPicker } from 'react-color';
 import type { ColorResult, RGBAColor } from 'react-color';
 import { siteSections } from './content';
-import type { ContentSection, SectionBlock } from './content';
+import type { ContentSection, ContentSubsection, SectionBlock } from './content';
 
 const initialColor: RGBAColor = {
   r: 61,
@@ -58,6 +58,18 @@ function clampColorChannel(value: number) {
 function colorToHex(color: RGBAColor) {
   const toHex = (value: number) => clampColorChannel(value).toString(16).padStart(2, '0');
   return `#${toHex(color.r)}${toHex(color.g)}${toHex(color.b)}`.toUpperCase();
+}
+
+function createNavItems(section: ContentSection) {
+  return {
+    id: section.id,
+    title: section.title,
+    subsections: section.subsections ?? [],
+  };
+}
+
+function isSubsectionActive(subsection: ContentSubsection, activeAnchorId: string) {
+  return subsection.id === activeAnchorId;
 }
 
 function renderBlock(block: SectionBlock) {
@@ -140,10 +152,145 @@ function renderSection(section: ContentSection) {
   );
 }
 
+function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void, className = 'section-nav') {
+  const navSections = siteSections.map(createNavItems);
+
+  return (
+    <nav className={className} aria-label="Section navigation">
+      <div className="section-nav__eyebrow">Jump to section</div>
+      <ul className="section-nav__list">
+        {navSections.map((section) => {
+          const isSectionActive =
+            activeAnchorId === section.id || section.subsections.some((subsection) => subsection.id === activeAnchorId);
+
+          return (
+            <li className="section-nav__item" key={section.id}>
+              <a
+                className={`section-nav__link${isSectionActive ? ' section-nav__link--active' : ''}`}
+                href={`#${section.id}`}
+                aria-current={activeAnchorId === section.id ? 'location' : undefined}
+                onClick={onNavigate}
+              >
+                <span className="section-nav__index">
+                  {String(siteSections.findIndex((entry) => entry.id === section.id) + 2).padStart(2, '0')}
+                </span>
+                <span>{section.title}</span>
+              </a>
+
+              {section.subsections.length > 0 ? (
+                <ul className="section-nav__sublist">
+                  {section.subsections.map((subsection) => (
+                    <li key={subsection.id}>
+                      <a
+                        className={`section-nav__sublink${
+                          isSubsectionActive(subsection, activeAnchorId) ? ' section-nav__sublink--active' : ''
+                        }`}
+                        href={`#${subsection.id}`}
+                        aria-current={activeAnchorId === subsection.id ? 'location' : undefined}
+                        onClick={onNavigate}
+                      >
+                        {subsection.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
+
 export default function App() {
   const [color, setColor] = useState<RGBAColor>(initialColor);
+  const [activeAnchorId, setActiveAnchorId] = useState<string>(() => {
+    const defaultId = siteSections[0]?.id ?? 'about';
+
+    if (typeof window === 'undefined') {
+      return defaultId;
+    }
+
+    const hash = window.location.hash.replace('#', '');
+    const anchorIds = siteSections.flatMap((section) => [
+      section.id,
+      ...(section.subsections?.map((subsection) => subsection.id) ?? []),
+    ]);
+
+    return hash && anchorIds.includes(hash) ? hash : defaultId;
+  });
+  const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
   const alpha = color.a ?? 1;
   const rgbaLabel = `rgba(${clampColorChannel(color.r)}, ${clampColorChannel(color.g)}, ${clampColorChannel(color.b)}, ${alpha.toFixed(2)})`;
+
+  useEffect(() => {
+    const anchorIds = siteSections.flatMap((section) => [
+      section.id,
+      ...(section.subsections?.map((subsection) => subsection.id) ?? []),
+    ]);
+
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const observedElements = anchorIds
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => Boolean(element));
+
+    if (observedElements.length === 0) {
+      return undefined;
+    }
+
+    const visibleEntries = new Map<string, number>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleEntries.set(entry.target.id, entry.intersectionRatio);
+          } else {
+            visibleEntries.delete(entry.target.id);
+          }
+        });
+
+        const nextActiveId = Array.from(visibleEntries.entries()).sort((left, right) => right[1] - left[1])[0]?.[0];
+
+        if (nextActiveId) {
+          setActiveAnchorId(nextActiveId);
+        }
+      },
+      {
+        rootMargin: '-18% 0px -58% 0px',
+        threshold: [0.15, 0.35, 0.55, 0.75],
+      },
+    );
+
+    observedElements.forEach((element) => observer.observe(element));
+
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && anchorIds.includes(hash)) {
+        setActiveAnchorId(hash);
+      }
+      setIsNavDrawerOpen(false);
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth > 920) {
+        setIsNavDrawerOpen(false);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className="site-shell" style={formatBackground(color)}>
@@ -216,7 +363,65 @@ export default function App() {
         </div>
       </header>
 
-      <main className="sections">{siteSections.map(renderSection)}</main>
+      <main className="sections-shell">
+        <div className="sections-shell__toolbar">
+          <button
+            className="sections-shell__drawer-toggle"
+            type="button"
+            aria-expanded={isNavDrawerOpen}
+            aria-controls="mobile-section-nav"
+            onClick={() => setIsNavDrawerOpen((current) => !current)}
+          >
+            <span>Browse sections</span>
+            <span className="sections-shell__drawer-meta">
+              {siteSections.find((section) => section.id === activeAnchorId)?.title ??
+                siteSections.find((section) =>
+                  section.subsections?.some((subsection) => subsection.id === activeAnchorId),
+                )?.title ??
+                'Navigation'}
+            </span>
+          </button>
+        </div>
+
+        <div className="sections-layout">
+          <aside className="sections-layout__sidebar">{renderAnchorNavigation(activeAnchorId)}</aside>
+
+          <div
+            className={`sections-shell__drawer${isNavDrawerOpen ? ' sections-shell__drawer--open' : ''}`}
+            hidden={!isNavDrawerOpen}
+          >
+            <button
+              className="sections-shell__drawer-backdrop"
+              type="button"
+              aria-label="Close section navigation"
+              onClick={() => setIsNavDrawerOpen(false)}
+            />
+            <div className="sections-shell__drawer-panel" id="mobile-section-nav">
+              <div className="sections-shell__drawer-head">
+                <div>
+                  <p className="sections-shell__drawer-eyebrow">Mobile navigation</p>
+                  <strong>Docs anchors</strong>
+                </div>
+                <button
+                  className="sections-shell__drawer-close"
+                  type="button"
+                  aria-label="Close section navigation"
+                  onClick={() => setIsNavDrawerOpen(false)}
+                >
+                  Close
+                </button>
+              </div>
+              {renderAnchorNavigation(
+                activeAnchorId,
+                () => setIsNavDrawerOpen(false),
+                'section-nav section-nav--drawer',
+              )}
+            </div>
+          </div>
+
+          <div className="sections">{siteSections.map(renderSection)}</div>
+        </div>
+      </main>
     </div>
   );
 }
