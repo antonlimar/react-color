@@ -2,6 +2,8 @@ import { useState } from 'react';
 import type { CSSProperties } from 'react';
 import { ChromePicker, CompactPicker, GithubPicker, SketchPicker } from 'react-color';
 import type { ColorResult, RGBAColor } from 'react-color';
+import { siteSections } from './content';
+import type { ContentSection, SectionBlock } from './content';
 
 const initialColor: RGBAColor = {
   r: 61,
@@ -9,29 +11,6 @@ const initialColor: RGBAColor = {
   b: 255,
   a: 1,
 };
-
-const placeholderSections = [
-  {
-    id: 'about',
-    title: 'About',
-    text: 'A dedicated Vite-powered site now lives in `site/`, ready for the full Phase 8 content migration and navigation work.',
-  },
-  {
-    id: 'getting-started',
-    title: 'Getting Started',
-    text: 'The app already resolves the local package source directly, so future docs and demos stay aligned with the library implementation.',
-  },
-  {
-    id: 'component-api',
-    title: 'Component API',
-    text: 'This scaffold reserves the data-driven API section that will be layered in next, without coupling it to the package build.',
-  },
-  {
-    id: 'create-your-own',
-    title: 'Create Your Own',
-    text: 'The layout leaves room for custom picker guides and richer interactive examples while keeping site styling fully isolated under `site/`.',
-  },
-] as const;
 
 const heroPickerCards = [
   {
@@ -79,6 +58,86 @@ function clampColorChannel(value: number) {
 function colorToHex(color: RGBAColor) {
   const toHex = (value: number) => clampColorChannel(value).toString(16).padStart(2, '0');
   return `#${toHex(color.r)}${toHex(color.g)}${toHex(color.b)}`.toUpperCase();
+}
+
+function renderBlock(block: SectionBlock) {
+  if (block.type === 'text') {
+    return <p className="content-text">{block.text}</p>;
+  }
+
+  if (block.type === 'bullets') {
+    return (
+      <ul className="content-list">
+        {block.items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  return (
+    <figure className="content-code">
+      {block.label ? <figcaption>{block.label}</figcaption> : null}
+      <pre>
+        <code>{block.code}</code>
+      </pre>
+    </figure>
+  );
+}
+
+function renderSection(section: ContentSection) {
+  return (
+    <section className="section" id={section.id} key={section.id}>
+      <div className="section__index">
+        <span>{String(section.order).padStart(2, '0')}</span>
+        <span>{section.id.replace(/-/g, ' ')}</span>
+      </div>
+
+      <div className="section__body">
+        <h2>{section.title}</h2>
+        {section.intro ? <p className="section__intro">{section.intro}</p> : null}
+        {section.blocks.map(renderBlock)}
+
+        {section.subsections?.map((subsection) => (
+          <div className="section__subsection" id={subsection.id} key={subsection.id}>
+            <h3>{subsection.title}</h3>
+            {subsection.intro ? <p className="section__intro section__intro--subsection">{subsection.intro}</p> : null}
+            {subsection.blocks?.map(renderBlock)}
+
+            {subsection.propertyGroups?.map((group) => (
+              <div className="api-group" key={group.title}>
+                <div className="api-group__head">
+                  <h4>{group.title}</h4>
+                  {group.summary ? <p>{group.summary}</p> : null}
+                </div>
+
+                <table className="api-table">
+                  <thead>
+                    <tr>
+                      <th>Prop</th>
+                      <th>Type</th>
+                      <th>Default</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {group.properties.map((property) => (
+                      <tr key={`${group.title}-${property.name}`}>
+                        <th scope="row">{property.name}</th>
+                        <td>{property.type}</td>
+                        <td>{property.defaultValue ?? '—'}</td>
+                        <td>{property.description}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 export default function App() {
@@ -157,17 +216,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="sections">
-        {placeholderSections.map((section) => (
-          <section className="section" id={section.id} key={section.id}>
-            <div className="section__index">{section.id}</div>
-            <div className="section__body">
-              <h2>{section.title}</h2>
-              <p>{section.text}</p>
-            </div>
-          </section>
-        ))}
-      </main>
+      <main className="sections">{siteSections.map(renderSection)}</main>
     </div>
   );
 }
