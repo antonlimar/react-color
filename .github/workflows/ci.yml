@@ -46,6 +46,9 @@ jobs:
       - name: Typecheck sources
         run: npm run typecheck
 
+      - name: Build site
+        run: npm run site:build
+
       - name: Build docs
         run: npm run docs-dist
 
