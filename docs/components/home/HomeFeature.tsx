@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useState } from 'react';
 
-import { createDocsStyles } from '../../createDocsStyles';
+import { createDocsStyles, useDocsStyles } from '../../createDocsStyles';
 import {
   AlphaPicker,
   BlockPicker,
@@ -38,7 +38,6 @@ function renderCard(label: string, element: ReactNode, tone: 'default' | 'dark' 
         position: 'relative',
         padding: '20px',
         borderRadius: '18px',
-        minHeight: '100%',
         background: tone === 'dark' ? 'rgba(17,24,39,.82)' : 'rgba(255,255,255,.9)',
         boxShadow: '0 22px 44px rgba(15,23,42,.12)',
         backdropFilter: 'blur(10px)',
@@ -75,7 +74,7 @@ function HomeFeature({ primaryColor, onChange }: HomeFeatureProps) {
     onChange?.(hex);
   };
 
-  const styles = createDocsStyles({
+  const styles = useDocsStyles({
     default: {
       feature: {
         position: 'relative',

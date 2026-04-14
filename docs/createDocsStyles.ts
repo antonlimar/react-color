@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import type { CSSProperties } from 'react';
 
 export type DocsStyles = Record<string, CSSProperties>;
@@ -35,4 +36,32 @@ export function createDocsStyles(...layers: DocsStyleLayers[]): DocsStyles {
 
     return styles;
   }, {});
+}
+
+export function useDocsStyles(...layers: DocsStyleLayers[]): DocsStyles {
+  const [, setViewportVersion] = useState(0);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    let frame = 0;
+
+    const handleResize = () => {
+      cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        setViewportVersion((version) => version + 1);
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return createDocsStyles(...layers);
 }

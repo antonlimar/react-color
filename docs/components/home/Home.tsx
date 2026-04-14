@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import { createDocsStyles } from '../../createDocsStyles';
+import { useDocsStyles } from '../../createDocsStyles';
 import HomeFeature from './HomeFeature';
 import HomeDocumentation from './HomeDocumentation';
 
 function Home() {
   const [primaryColor, setPrimaryColor] = useState('#194D33');
 
-  const styles = createDocsStyles({
+  const styles = useDocsStyles({
     default: {
       home: {
         fontFamily: 'Roboto',
