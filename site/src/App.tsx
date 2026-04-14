@@ -60,6 +60,20 @@ function colorToHex(color: RGBAColor) {
   return `#${toHex(color.r)}${toHex(color.g)}${toHex(color.b)}`.toUpperCase();
 }
 
+function createPaletteStops(color: RGBAColor) {
+  const alpha = color.a ?? 1;
+  const offsets = [120, 48, -18, -80];
+
+  return offsets.map((offset, index) => {
+    const mix = index < 2 ? 0.28 : 0.16;
+    const target = index < 2 ? 255 : 12;
+
+    const channel = (value: number) => clampColorChannel(value + (target - value) * mix + offset * 0.08);
+
+    return `rgba(${channel(color.r)}, ${channel(color.g)}, ${channel(color.b)}, ${Math.max(alpha * 0.92, 0.84)})`;
+  });
+}
+
 function createNavItems(section: ContentSection) {
   return {
     id: section.id,
@@ -105,48 +119,52 @@ function renderSection(section: ContentSection) {
         <span>{section.id.replace(/-/g, ' ')}</span>
       </div>
 
-      <div className="section__body">
-        <h2>{section.title}</h2>
-        {section.intro ? <p className="section__intro">{section.intro}</p> : null}
-        {section.blocks.map(renderBlock)}
+      <div className="section__panel">
+        <div className="section__body">
+          <h2>{section.title}</h2>
+          {section.intro ? <p className="section__intro">{section.intro}</p> : null}
+          {section.blocks.map(renderBlock)}
 
-        {section.subsections?.map((subsection) => (
-          <div className="section__subsection" id={subsection.id} key={subsection.id}>
-            <h3>{subsection.title}</h3>
-            {subsection.intro ? <p className="section__intro section__intro--subsection">{subsection.intro}</p> : null}
-            {subsection.blocks?.map(renderBlock)}
+          {section.subsections?.map((subsection) => (
+            <div className="section__subsection" id={subsection.id} key={subsection.id}>
+              <h3>{subsection.title}</h3>
+              {subsection.intro ? (
+                <p className="section__intro section__intro--subsection">{subsection.intro}</p>
+              ) : null}
+              {subsection.blocks?.map(renderBlock)}
 
-            {subsection.propertyGroups?.map((group) => (
-              <div className="api-group" key={group.title}>
-                <div className="api-group__head">
-                  <h4>{group.title}</h4>
-                  {group.summary ? <p>{group.summary}</p> : null}
-                </div>
+              {subsection.propertyGroups?.map((group) => (
+                <div className="api-group" key={group.title}>
+                  <div className="api-group__head">
+                    <h4>{group.title}</h4>
+                    {group.summary ? <p>{group.summary}</p> : null}
+                  </div>
 
-                <table className="api-table">
-                  <thead>
-                    <tr>
-                      <th>Prop</th>
-                      <th>Type</th>
-                      <th>Default</th>
-                      <th>Description</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {group.properties.map((property) => (
-                      <tr key={`${group.title}-${property.name}`}>
-                        <th scope="row">{property.name}</th>
-                        <td>{property.type}</td>
-                        <td>{property.defaultValue ?? '—'}</td>
-                        <td>{property.description}</td>
+                  <table className="api-table">
+                    <thead>
+                      <tr>
+                        <th>Prop</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ))}
-          </div>
-        ))}
+                    </thead>
+                    <tbody>
+                      {group.properties.map((property) => (
+                        <tr key={`${group.title}-${property.name}`}>
+                          <th scope="row">{property.name}</th>
+                          <td>{property.type}</td>
+                          <td>{property.defaultValue ?? '—'}</td>
+                          <td>{property.description}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -223,6 +241,7 @@ export default function App() {
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
   const alpha = color.a ?? 1;
   const rgbaLabel = `rgba(${clampColorChannel(color.r)}, ${clampColorChannel(color.g)}, ${clampColorChannel(color.b)}, ${alpha.toFixed(2)})`;
+  const paletteStops = createPaletteStops(color);
 
   useEffect(() => {
     const anchorIds = siteSections.flatMap((section) => [
@@ -294,11 +313,26 @@ export default function App() {
 
   return (
     <div className="site-shell" style={formatBackground(color)}>
+      <div className="site-shell__ambient site-shell__ambient--grid" aria-hidden="true" />
+      <div className="site-shell__ambient site-shell__ambient--one" aria-hidden="true" />
+      <div className="site-shell__ambient site-shell__ambient--two" aria-hidden="true" />
+
       <header className="hero">
         <div className="hero__backdrop hero__backdrop--left" aria-hidden="true" />
         <div className="hero__backdrop hero__backdrop--right" aria-hidden="true" />
 
         <div className="hero__content">
+          <div className="hero__masthead">
+            <div className="hero__brand">
+              <span className="hero__brand-mark" aria-hidden="true" />
+              <div className="hero__brand-copy">
+                <strong>react-color</strong>
+                <span>GitHub Pages site system</span>
+              </div>
+            </div>
+            <span className="hero__status">Visual design system</span>
+          </div>
+
           <p className="eyebrow">Phase 8 hero live pickers</p>
           <h1>One shared color state, rendered through real pickers.</h1>
           <p className="hero__lede">
@@ -332,6 +366,15 @@ export default function App() {
               View repository
             </a>
           </div>
+
+          <div className="hero__palette" aria-label="Current color family">
+            <span className="hero__palette-label">Adaptive palette rail</span>
+            <div className="hero__palette-track">
+              {paletteStops.map((stop, index) => (
+                <span className="hero__palette-stop" key={`${stop}-${index}`} style={{ backgroundColor: stop }} />
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="hero__demo" aria-label="Synchronized live picker demo">
@@ -364,6 +407,17 @@ export default function App() {
       </header>
 
       <main className="sections-shell">
+        <section className="sections-shell__intro" aria-label="Site design system summary">
+          <div className="sections-shell__intro-copy">
+            <p className="eyebrow">Site-only styling layer</p>
+            <h2>Typography, spacing, surfaces, and navigation now speak the same design language.</h2>
+          </div>
+          <div className="sections-shell__intro-card">
+            <strong>Isolated in `site/`</strong>
+            <span>Custom properties, layout rules, and decorative treatments live entirely in the site app.</span>
+          </div>
+        </section>
+
         <div className="sections-shell__toolbar">
           <button
             className="sections-shell__drawer-toggle"

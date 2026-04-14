@@ -20,7 +20,7 @@ todos:
     status: completed
   - id: visual-design-system
     content: Собрать отдельную site-only styling систему с выразительной типографикой, адаптивной сеткой, CSS custom properties и изолированными стилями внутри `site/` без затрагивания styling internals библиотеки
-    status: proposed
+    status: completed
   - id: pages-deployment-and-ci
     content: Добавить GitHub Actions workflow для сборки `site/` и автоматического деплоя на GitHub Pages отдельно от package build/publish pipeline
     status: proposed
@@ -127,6 +127,6 @@ The new site will fully replace the current `docs/` site as the project website.
 - [x] **content-model-and-migration** — Вынести контент `About`, `Getting Started`, `Component API`, `Create Your Own` в typed content-слой внутри `site/src/content` и перенести актуальные тексты из `docs/documentation`
 - [x] **component-api-reference** — Построить раздел `Component API` с подразделами для общих props `color`, `onChange`, `onChangeComplete` и picker-specific API на основе структурированных данных
 - [x] **responsive-anchor-navigation** — Реализовать desktop sticky sidebar navigation для блоков 2-5 и mobile drawer navigation с якорями, active-state подсветкой и корректным scroll behavior
-- [ ] **visual-design-system** — Собрать отдельную site-only styling систему с выразительной типографикой, адаптивной сеткой, CSS custom properties и изолированными стилями внутри `site/` без затрагивания styling internals библиотеки
+- [x] **visual-design-system** — Собрать отдельную site-only styling систему с выразительной типографикой, адаптивной сеткой, CSS custom properties и изолированными стилями внутри `site/` без затрагивания styling internals библиотеки
 - [ ] **pages-deployment-and-ci** — Добавить GitHub Actions workflow для сборки `site/` и автоматического деплоя на GitHub Pages отдельно от package build/publish pipeline
 - [ ] **docs-metadata-and-verification** — Обновить README, `homepage`/site references и добавить проверки сборки, responsive behavior, anchor navigation и shared-color interaction в локальную верификацию и CI
