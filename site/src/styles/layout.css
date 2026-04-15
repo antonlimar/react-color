@@ -423,7 +423,10 @@
 .hero__picker-surface > div {
   width: 100% !important;
   max-width: 100%;
-  box-shadow: none !important;
+}
+
+.hero__picker-surface > .rc-sketch {
+  box-sizing: border-box;
 }
 
 .sections-shell {
