@@ -24,3 +24,10 @@ class IntersectionObserverMock implements IntersectionObserver {
 if (!globalThis.IntersectionObserver) {
   globalThis.IntersectionObserver = IntersectionObserverMock as typeof IntersectionObserver;
 }
+
+Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
+  configurable: true,
+  value() {
+    return null;
+  },
+});

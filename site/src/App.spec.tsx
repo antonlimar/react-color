@@ -11,6 +11,14 @@ function setViewportWidth(width: number) {
   });
 }
 
+function clickAnchorWithoutNavigation(anchor: HTMLElement) {
+  const preventNavigation = (event: MouseEvent) => event.preventDefault();
+
+  anchor.addEventListener('click', preventNavigation);
+  fireEvent.click(anchor);
+  anchor.removeEventListener('click', preventNavigation);
+}
+
 describe('site app', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
@@ -60,7 +68,7 @@ describe('site app', () => {
     expect(drawerToggle).toHaveAttribute('aria-expanded', 'true');
 
     const drawerInstallLink = within(drawerNav as HTMLElement).getByRole('link', { name: 'Install', hidden: true });
-    fireEvent.click(drawerInstallLink);
+    clickAnchorWithoutNavigation(drawerInstallLink);
 
     expect(drawerToggle).toHaveAttribute('aria-expanded', 'false');
     expect(drawerNav?.closest('.sections-shell__drawer')).toHaveAttribute('hidden');
@@ -339,7 +347,7 @@ describe('site app', () => {
     fireEvent.change(drawerSearch, { target: { value: 'presetColors' } });
 
     const presetColorsResult = within(drawer).getByRole('link', { name: /presetColors in Sketch/i });
-    fireEvent.click(presetColorsResult);
+    clickAnchorWithoutNavigation(presetColorsResult);
 
     expect(drawerToggle).toHaveAttribute('aria-expanded', 'false');
     expect(drawer.closest('.sections-shell__drawer')).toHaveAttribute('hidden');
