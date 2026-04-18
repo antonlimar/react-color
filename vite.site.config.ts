@@ -54,11 +54,26 @@ function getSiteBase(command: 'serve' | 'build') {
   return readHomepageBasePath() ?? '/';
 }
 
+function githubPagesSpaFallbackPlugin() {
+  return {
+    name: 'site-github-pages-spa-fallback',
+    apply: 'build' as const,
+    closeBundle() {
+      const indexPath = path.resolve(siteRoot, 'dist', 'index.html');
+      const fallbackPath = path.resolve(siteRoot, 'dist', '404.html');
+
+      if (fs.existsSync(indexPath)) {
+        fs.copyFileSync(indexPath, fallbackPath);
+      }
+    },
+  };
+}
+
 export default defineConfig(({ command }) => ({
   root: siteRoot,
   base: getSiteBase(command),
   publicDir: false,
-  plugins: [react({ jsxRuntime: 'automatic' })],
+  plugins: [react({ jsxRuntime: 'automatic' }), githubPagesSpaFallbackPlugin()],
   resolve: {
     alias: {
       'react-color': path.resolve(__dirname, 'src/index.ts'),

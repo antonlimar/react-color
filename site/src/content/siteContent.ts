@@ -225,21 +225,8 @@ export const siteSections: readonly ContentSection[] = [
     ],
   },
   {
-    id: 'picker-gallery',
-    order: 3,
-    title: 'Picker Gallery',
-    intro:
-      'Compare every public picker export, copy the import shape, and jump straight to the props that make each component different.',
-    blocks: [
-      {
-        type: 'text',
-        text: 'Each picker below keeps the same top-level package import and also documents the compatible deep import path for existing integrations.',
-      },
-    ],
-  },
-  {
     id: 'component-api',
-    order: 4,
+    order: 3,
     title: 'Component API',
     intro:
       'The API reference is organized around the three shared color props and a picker-by-picker view of the props that only exist on individual components.',
@@ -643,7 +630,7 @@ export const siteSections: readonly ContentSection[] = [
   },
   {
     id: 'developer-guides',
-    order: 5,
+    order: 4,
     title: 'Developer Guides',
     intro:
       'These guides collect the most common migration, TypeScript, styling, SSR, and accessibility questions in one place.',
@@ -753,7 +740,7 @@ export const siteSections: readonly ContentSection[] = [
   },
   {
     id: 'create-your-own',
-    order: 6,
+    order: 5,
     title: 'Create Your Own',
     intro: 'The custom picker docs stay centered on CustomPicker plus the helper components that build up the UI.',
     blocks: [],

@@ -1,5 +1,13 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import type { CSSProperties, ReactNode, RefObject } from 'react';
+import {
+  Link,
+  RouterProvider,
+  createRootRoute,
+  createRoute,
+  createRouter,
+  useRouterState,
+} from '@tanstack/react-router';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-clike';
@@ -55,6 +63,16 @@ function escapeHtml(code: string) {
 const packageManagerStorageKey = 'react-color-docs-package-manager';
 
 const packageManagers: PackageManager[] = ['npm', 'pnpm', 'yarn', 'bun'];
+
+const galleryPagePath = '/gallery' as const;
+
+function normalizeRouterBasepath(baseUrl: string) {
+  if (!baseUrl || baseUrl === '/') {
+    return '/';
+  }
+
+  return `/${baseUrl.replace(/^\/+|\/+$/g, '')}`;
+}
 
 function isPackageManager(value: string | null): value is PackageManager {
   return packageManagers.includes(value as PackageManager);
@@ -190,6 +208,12 @@ const heroPickerCards = [
     component: CompactPicker,
   },
 ] as const;
+
+const pickerGalleryIntro =
+  'Compare every public picker export, copy the import shape, and jump straight to the props that make each component different.';
+
+const pickerGalleryNote =
+  'Each picker keeps the same top-level package import and also documents the compatible deep import path for existing integrations.';
 
 function formatBackground(color: RGBAColor) {
   const alpha = color.a ?? 1;
@@ -712,7 +736,7 @@ function PickerGallery() {
         const importSnippet = `import { ${picker.exportName} } from 'react-color';`;
 
         return (
-          <article className="picker-gallery__item" key={picker.id}>
+          <article className="picker-gallery__item" id={`picker-${picker.id}`} key={picker.id}>
             <PickerPreview picker={picker} />
             <div className="picker-gallery__content">
               <div className="picker-gallery__head">
@@ -729,9 +753,9 @@ function PickerGallery() {
                 <code>{importSnippet}</code>
                 <code>{picker.deepImport}</code>
               </div>
-              <a className="picker-gallery__api-link" href={`#${picker.apiAnchor}`}>
+              <Link className="picker-gallery__api-link" to="/" hash={picker.apiAnchor}>
                 API props
-              </a>
+              </Link>
             </div>
           </article>
         );
@@ -797,17 +821,12 @@ function ApiPropertyCards({ group, subsection }: { group: PropertyGroup; subsect
 
 function renderSection(section: ContentSection, options: RenderBlockOptions) {
   return (
-    <section
-      className={`section${section.id === 'picker-gallery' ? ' section--gallery' : ''}`}
-      id={section.id}
-      key={section.id}
-    >
+    <section className="section" id={section.id} key={section.id}>
       <div className="section__panel">
         <div className="section__body">
           <h2>{section.title}</h2>
           {section.intro ? <p className="section__intro">{renderInlineCode(section.intro)}</p> : null}
           {section.blocks.map((block, index) => renderBlock(block, index, options))}
-          {section.id === 'picker-gallery' ? <PickerGallery /> : null}
 
           {section.subsections?.map((subsection) => (
             <div className="section__subsection" id={subsection.id} key={subsection.id}>
@@ -1008,7 +1027,37 @@ function SearchNavigation({ id, query, results, inputRef, onQueryChange, onNavig
   );
 }
 
-export default function App() {
+function PickerGalleryPage() {
+  return (
+    <div className="gallery-page">
+      <nav className="page-breadcrumbs" aria-label="Page navigation">
+        <Link to="/" hash="about">
+          Documentation
+        </Link>
+        <span aria-hidden="true">/</span>
+        <span>Picker Gallery</span>
+      </nav>
+
+      <section className="gallery-page__intro" id="picker-gallery" aria-labelledby="picker-gallery-title">
+        <p className="eyebrow">Picker Gallery</p>
+        <div className="gallery-page__intro-grid">
+          <div>
+            <h2 id="picker-gallery-title">Every public picker, one import map.</h2>
+            <p>{pickerGalleryIntro}</p>
+          </div>
+          <div className="gallery-page__note">
+            <strong>{pickerMetadata.length} picker exports</strong>
+            <span>{pickerGalleryNote}</span>
+          </div>
+        </div>
+      </section>
+
+      <PickerGallery />
+    </div>
+  );
+}
+
+function AppShell() {
   const [color, setColor] = useState<RGBAColor>(initialColor);
   const [packageManager, setPackageManagerState] = useState<PackageManager>(getInitialPackageManager);
   const drawerToggleRef = useRef<HTMLButtonElement>(null);
@@ -1031,6 +1080,8 @@ export default function App() {
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
   const [drawerFocusRestoreRequest, setDrawerFocusRestoreRequest] = useState(0);
   const searchResults = searchDocs(searchQuery);
+  const currentPathname = useRouterState({ select: (state) => state.location.pathname });
+  const isGalleryPage = currentPathname === galleryPagePath;
   const alpha = color.a ?? 1;
   const rgbaLabel = `rgba(${clampColorChannel(color.r)}, ${clampColorChannel(color.g)}, ${clampColorChannel(color.b)}, ${alpha.toFixed(2)})`;
   const paletteStops = createPaletteStops(color);
@@ -1242,9 +1293,12 @@ export default function App() {
           </div>
 
           <div className="hero__actions">
-            <a className="hero__button hero__button--primary" href="#about">
+            <Link className="hero__button hero__button--primary" to="/" hash="about">
               Read the docs
-            </a>
+            </Link>
+            <Link className="hero__button" to={galleryPagePath}>
+              Picker Gallery
+            </Link>
             <a className="hero__button" href="https://github.com/antonlimar/react-color">
               View repository
             </a>
@@ -1289,103 +1343,149 @@ export default function App() {
         </div>
       </header>
 
-      <main className="sections-shell" id="site-documentation">
-        <section className="sections-shell__intro" aria-label="Documentation overview">
-          <div className="sections-shell__intro-copy">
-            <p className="eyebrow">Documentation</p>
-            <h2>Install, configure, and customize the pickers without guesswork.</h2>
-          </div>
-          <div className="sections-shell__intro-card">
-            <strong>Stable public API</strong>
-            <span>Named picker exports, deep imports, and CSS entrypoints are documented below.</span>
-          </div>
-        </section>
+      <main className={`sections-shell${isGalleryPage ? ' sections-shell--gallery-page' : ''}`} id="site-documentation">
+        {isGalleryPage ? (
+          <PickerGalleryPage />
+        ) : (
+          <>
+            <section className="sections-shell__intro" aria-label="Documentation overview">
+              <div className="sections-shell__intro-copy">
+                <p className="eyebrow">Documentation</p>
+                <h2>Install, configure, and customize the pickers without guesswork.</h2>
+              </div>
+              <div className="sections-shell__intro-card">
+                <strong>Stable public API</strong>
+                <span>Named picker exports, deep imports, and CSS entrypoints are documented below.</span>
+                <Link className="sections-shell__intro-link" to={galleryPagePath}>
+                  Open Picker Gallery
+                </Link>
+              </div>
+            </section>
 
-        <div className="sections-shell__toolbar">
-          <button
-            className="sections-shell__drawer-toggle"
-            ref={drawerToggleRef}
-            type="button"
-            aria-expanded={isNavDrawerOpen}
-            aria-controls="mobile-section-nav"
-            onClick={() => setIsNavDrawerOpen((current) => !current)}
-          >
-            <span>Browse sections</span>
-            <span className="sections-shell__drawer-meta">
-              {siteSections.find((section) => section.id === activeAnchorId)?.title ??
-                siteSections.find((section) =>
-                  section.subsections?.some((subsection) => subsection.id === activeAnchorId),
-                )?.title ??
-                'Navigation'}
-            </span>
-          </button>
-        </div>
+            <div className="sections-shell__toolbar">
+              <button
+                className="sections-shell__drawer-toggle"
+                ref={drawerToggleRef}
+                type="button"
+                aria-expanded={isNavDrawerOpen}
+                aria-controls="mobile-section-nav"
+                onClick={() => setIsNavDrawerOpen((current) => !current)}
+              >
+                <span>Browse sections</span>
+                <span className="sections-shell__drawer-meta">
+                  {siteSections.find((section) => section.id === activeAnchorId)?.title ??
+                    siteSections.find((section) =>
+                      section.subsections?.some((subsection) => subsection.id === activeAnchorId),
+                    )?.title ??
+                    'Navigation'}
+                </span>
+              </button>
+            </div>
 
-        <div className="sections-layout">
-          <aside className="sections-layout__sidebar">
-            <SearchNavigation
-              id="desktop-docs-search"
-              inputRef={desktopSearchRef}
-              query={searchQuery}
-              results={searchResults}
-              onQueryChange={handleSearchQueryChange}
-            />
-            {searchQuery.trim() ? null : renderAnchorNavigation(activeAnchorId)}
-          </aside>
+            <div className="sections-layout">
+              <aside className="sections-layout__sidebar">
+                <SearchNavigation
+                  id="desktop-docs-search"
+                  inputRef={desktopSearchRef}
+                  query={searchQuery}
+                  results={searchResults}
+                  onQueryChange={handleSearchQueryChange}
+                />
+                {searchQuery.trim() ? null : renderAnchorNavigation(activeAnchorId)}
+              </aside>
 
-          <div
-            className={`sections-shell__drawer${isNavDrawerOpen ? ' sections-shell__drawer--open' : ''}`}
-            hidden={!isNavDrawerOpen}
-            aria-hidden={!isNavDrawerOpen}
-          >
-            <button
-              className="sections-shell__drawer-backdrop"
-              type="button"
-              aria-label="Close section navigation"
-              onClick={closeNavDrawer}
-            />
-            <div
-              className="sections-shell__drawer-panel"
-              id="mobile-section-nav"
-              ref={drawerPanelRef}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="mobile-section-nav-title"
-              tabIndex={-1}
-            >
-              <div className="sections-shell__drawer-head">
-                <div>
-                  <p className="sections-shell__drawer-eyebrow">Mobile navigation</p>
-                  <strong id="mobile-section-nav-title">Docs anchors</strong>
-                </div>
+              <div
+                className={`sections-shell__drawer${isNavDrawerOpen ? ' sections-shell__drawer--open' : ''}`}
+                hidden={!isNavDrawerOpen}
+                aria-hidden={!isNavDrawerOpen}
+              >
                 <button
-                  className="sections-shell__drawer-close"
+                  className="sections-shell__drawer-backdrop"
                   type="button"
                   aria-label="Close section navigation"
                   onClick={closeNavDrawer}
+                />
+                <div
+                  className="sections-shell__drawer-panel"
+                  id="mobile-section-nav"
+                  ref={drawerPanelRef}
+                  role="dialog"
+                  aria-modal="true"
+                  aria-labelledby="mobile-section-nav-title"
+                  tabIndex={-1}
                 >
-                  Close
-                </button>
+                  <div className="sections-shell__drawer-head">
+                    <div>
+                      <p className="sections-shell__drawer-eyebrow">Mobile navigation</p>
+                      <strong id="mobile-section-nav-title">Docs anchors</strong>
+                    </div>
+                    <button
+                      className="sections-shell__drawer-close"
+                      type="button"
+                      aria-label="Close section navigation"
+                      onClick={closeNavDrawer}
+                    >
+                      Close
+                    </button>
+                  </div>
+                  <SearchNavigation
+                    id="mobile-docs-search"
+                    inputRef={mobileSearchRef}
+                    query={searchQuery}
+                    results={searchResults}
+                    onNavigate={closeNavDrawer}
+                    onQueryChange={handleSearchQueryChange}
+                  />
+                  {searchQuery.trim()
+                    ? null
+                    : renderAnchorNavigation(activeAnchorId, closeNavDrawer, 'section-nav section-nav--drawer')}
+                </div>
               </div>
-              <SearchNavigation
-                id="mobile-docs-search"
-                inputRef={mobileSearchRef}
-                query={searchQuery}
-                results={searchResults}
-                onNavigate={closeNavDrawer}
-                onQueryChange={handleSearchQueryChange}
-              />
-              {searchQuery.trim()
-                ? null
-                : renderAnchorNavigation(activeAnchorId, closeNavDrawer, 'section-nav section-nav--drawer')}
-            </div>
-          </div>
 
-          <div className="sections">
-            {siteSections.map((section) => renderSection(section, { packageManager, setPackageManager }))}
-          </div>
-        </div>
+              <div className="sections">
+                {siteSections.map((section) => renderSection(section, { packageManager, setPackageManager }))}
+              </div>
+            </div>
+          </>
+        )}
       </main>
     </div>
   );
+}
+
+function EmptyRoute() {
+  return null;
+}
+
+const rootRoute = createRootRoute({
+  component: AppShell,
+});
+
+const indexRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/',
+  component: EmptyRoute,
+});
+
+const galleryRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: galleryPagePath,
+  component: EmptyRoute,
+});
+
+const routeTree = rootRoute.addChildren([indexRoute, galleryRoute]);
+
+const router = createRouter({
+  routeTree,
+  basepath: normalizeRouterBasepath(import.meta.env.BASE_URL),
+});
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
+}
+
+export default function App() {
+  return <RouterProvider router={router} />;
 }

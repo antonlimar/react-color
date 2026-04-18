@@ -22,15 +22,24 @@ function clickAnchorWithoutNavigation(anchor: HTMLElement) {
 describe('site app', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    Object.defineProperty(window.HTMLElement.prototype, 'scrollIntoView', {
+      configurable: true,
+      value: vi.fn(),
+    });
     window.localStorage.clear();
     window.history.replaceState(null, '', '/');
     window.location.hash = '';
     setViewportWidth(768);
   });
 
-  test('keeps the hero state synchronized when a picker changes color', () => {
+  test('keeps the hero state synchronized when a picker changes color', async () => {
     const { container } = render(<App />);
-    const siteShell = container.querySelector('.site-shell');
+
+    await waitFor(() => {
+      expect(container.querySelector('.site-shell')).toBeInstanceOf(HTMLElement);
+    });
+
+    const siteShell = container.querySelector('.site-shell') as HTMLElement;
     const githubSwatch = container.querySelector('.hero__picker-card--github [tabindex="0"]');
     const heroDemoValue = container.querySelector('.hero__demo-value');
 
@@ -353,11 +362,19 @@ describe('site app', () => {
     expect(drawer.closest('.sections-shell__drawer')).toHaveAttribute('hidden');
   });
 
-  test('renders the public picker gallery with import snippets and API links', () => {
+  test('renders the public picker gallery page with import snippets and API links', async () => {
+    window.history.replaceState(null, '', '/gallery');
+
     const { container } = render(<App />);
-    const gallery = container.querySelector('.picker-gallery') as HTMLElement;
+
+    const gallery = await waitFor(() => {
+      const element = container.querySelector('.picker-gallery') as HTMLElement | null;
+      expect(element).toBeInstanceOf(HTMLElement);
+      return element as HTMLElement;
+    });
     const galleryCards = gallery.querySelectorAll('.picker-gallery__item');
 
+    expect(screen.getByRole('heading', { name: 'Every public picker, one import map.' })).toBeInTheDocument();
     expect(galleryCards).toHaveLength(14);
     expect(within(gallery).getByRole('heading', { name: 'Sketch' })).toBeInTheDocument();
     expect(within(gallery).getByText("import { SketchPicker } from 'react-color';")).toBeInTheDocument();
@@ -365,9 +382,9 @@ describe('site app', () => {
     expect(within(gallery).getAllByRole('link', { name: 'API props' })).toHaveLength(14);
     expect(within(gallery).getAllByRole('link', { name: 'API props' })[0]).toHaveAttribute(
       'href',
-      '#picker-specific-props-alpha',
+      '/#picker-specific-props-alpha',
     );
-    expect(container.querySelector('#picker-specific-props-material')).toBeInstanceOf(HTMLElement);
+    expect(container.querySelector('#picker-specific-props-material')).not.toBeInTheDocument();
   });
 
   test('adds prop-level anchors and collapses long default values', () => {
