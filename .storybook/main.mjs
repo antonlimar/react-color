@@ -1,4 +1,4 @@
-import { mergeConfig, transformWithEsbuild } from 'vite';
+import { mergeConfig, transformWithOxc } from 'vite';
 
 function jsxInJsPlugin() {
   return {
@@ -9,11 +9,23 @@ function jsxInJsPlugin() {
         return null;
       }
 
-      return transformWithEsbuild(code, id, {
-        loader: 'jsx',
-        jsx: 'automatic',
-        jsxDev: true,
+      const result = await transformWithOxc(code, id, {
+        lang: 'jsx',
+        jsx: {
+          runtime: 'automatic',
+          development: true,
+        },
       });
+
+      for (const warning of result.warnings) {
+        this.warn(warning);
+      }
+
+      return {
+        code: result.code,
+        map: result.map,
+        moduleType: 'js',
+      };
     },
   };
 }
