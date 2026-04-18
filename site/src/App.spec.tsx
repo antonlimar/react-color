@@ -86,10 +86,17 @@ describe('site app', () => {
   test('renders favicon link and skip link to the documentation main landmark', () => {
     const { container } = render(<App />);
     const skipLink = screen.getByRole('link', { name: /skip to documentation/i });
+    const primaryNav = screen.getByRole('navigation', { name: /primary navigation/i });
 
     expect(siteHtml).toContain('<link rel="icon" href="/src/assets/favicon.ico" sizes="16x16" />');
     expect(skipLink).toHaveAttribute('href', '#site-documentation');
     expect(container.querySelector('main#site-documentation')).toBeInstanceOf(HTMLElement);
+    expect(within(primaryNav).getByRole('link', { name: 'Read the docs' })).toHaveAttribute('href', '/#about');
+    expect(within(primaryNav).getByRole('link', { name: 'Picker Gallery' })).toHaveAttribute('href', '/gallery');
+    expect(within(primaryNav).getByRole('link', { name: 'View repository' })).toHaveAttribute(
+      'href',
+      'https://github.com/antonlimar/react-color',
+    );
   });
 
   test('closes the mobile drawer with Escape, restores focus, and unlocks body scrolling', async () => {
@@ -375,6 +382,7 @@ describe('site app', () => {
     const galleryCards = gallery.querySelectorAll('.picker-gallery__item');
 
     expect(screen.getByRole('heading', { name: 'Every public picker, one import map.' })).toBeInTheDocument();
+    expect(container.querySelector('.hero')).not.toBeInTheDocument();
     expect(galleryCards).toHaveLength(14);
     expect(within(gallery).getByRole('heading', { name: 'Sketch' })).toBeInTheDocument();
     expect(within(gallery).getByText("import { SketchPicker } from 'react-color';")).toBeInTheDocument();

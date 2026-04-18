@@ -16,8 +16,23 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-tsx';
-import { ChromePicker, CompactPicker, GithubPicker, SketchPicker } from 'react-color';
-import type { ColorResult, RGBAColor } from 'react-color';
+import {
+  AlphaPicker,
+  BlockPicker,
+  ChromePicker,
+  CirclePicker,
+  CompactPicker,
+  GithubPicker,
+  GooglePicker,
+  HuePicker,
+  MaterialPicker,
+  PhotoshopPicker,
+  SketchPicker,
+  SliderPicker,
+  SwatchesPicker,
+  TwitterPicker,
+} from 'react-color';
+import type { ColorPickerComponent, ColorPickerProps, ColorResult, RGBAColor } from 'react-color';
 import { pickerMetadata, siteSections } from './content';
 import type {
   ApiProperty,
@@ -208,6 +223,49 @@ const heroPickerCards = [
     component: CompactPicker,
   },
 ] as const;
+
+const pickerGalleryComponents: Record<string, ColorPickerComponent> = {
+  alpha: AlphaPicker,
+  block: BlockPicker,
+  chrome: ChromePicker,
+  circle: CirclePicker,
+  compact: CompactPicker,
+  github: GithubPicker,
+  google: GooglePicker,
+  hue: HuePicker,
+  material: MaterialPicker,
+  photoshop: PhotoshopPicker,
+  sketch: SketchPicker,
+  slider: SliderPicker,
+  swatches: SwatchesPicker,
+  twitter: TwitterPicker,
+};
+
+const pickerGalleryPreviewProps: Record<string, ColorPickerProps> = {
+  alpha: { width: '100%' },
+  google: { width: 420 },
+  hue: { width: '100%' },
+  material: {
+    styles: {
+      default: {
+        bg: {
+          borderRadius: 16,
+          boxShadow: 'var(--site-picker-gallery-shadow)',
+        },
+        material: {
+          height: 'auto',
+          minHeight: 112,
+        },
+      },
+    },
+  },
+  photoshop: {
+    onCancel: () => undefined,
+    styles: { default: { picker: { boxShadow: 'var(--site-picker-gallery-shadow)' } } },
+  },
+  slider: { styles: { default: { wrap: { width: '100%' } } } },
+  swatches: { width: 320, height: 220 },
+};
 
 const pickerGalleryIntro =
   'Compare every public picker export, copy the import shape, and jump straight to the props that make each component different.';
@@ -695,41 +753,45 @@ function ApiDefaultValue({ value }: { value?: string }) {
   );
 }
 
-function PickerPreview({ picker }: { picker: PickerMetadata }) {
-  const colors = ['#D0021B', '#F5A623', '#7ED321', '#4A90E2', '#9013FE', '#50E3C2'];
-  const isSlider = picker.badges.includes('slider');
-  const isFullEditor = picker.badges.includes('full editor');
+function LivePickerPreview({
+  picker,
+  color,
+  onChange,
+}: {
+  picker: PickerMetadata;
+  color: RGBAColor;
+  onChange: (color: ColorResult) => void;
+}) {
+  const PickerComponent = pickerGalleryComponents[picker.id];
+
+  if (!PickerComponent) {
+    return null;
+  }
 
   return (
-    <div className={`picker-gallery__preview picker-gallery__preview--${picker.id}`} aria-hidden="true">
-      {isFullEditor ? (
-        <>
-          <span className="picker-gallery__saturation" />
-          <span className="picker-gallery__rail picker-gallery__rail--hue" />
-          {picker.badges.includes('alpha') ? (
-            <span className="picker-gallery__rail picker-gallery__rail--alpha" />
-          ) : null}
-          <span className="picker-gallery__fields" />
-        </>
-      ) : isSlider ? (
-        <>
-          <span className="picker-gallery__rail picker-gallery__rail--hue" />
-          {picker.badges.includes('alpha') ? (
-            <span className="picker-gallery__rail picker-gallery__rail--alpha" />
-          ) : null}
-        </>
-      ) : (
-        <span className="picker-gallery__swatches">
-          {colors.map((color) => (
-            <span key={`${picker.id}-${color}`} style={{ backgroundColor: color }} />
-          ))}
-        </span>
-      )}
+    <div
+      className={`picker-gallery__preview picker-gallery__preview--${picker.id}`}
+      aria-label={`${picker.title} live demo`}
+    >
+      <div className="picker-gallery__live">
+        <PickerComponent
+          color={color}
+          onChange={onChange}
+          onAccept={onChange}
+          {...(pickerGalleryPreviewProps[picker.id] ?? {})}
+        />
+      </div>
     </div>
   );
 }
 
 function PickerGallery() {
+  const [galleryColor, setGalleryColor] = useState<RGBAColor>(initialColor);
+  const handleGalleryColorChange = useCallback((nextColor: ColorResult) => {
+    setGalleryColor(nextColor.rgb);
+  }, []);
+  const galleryColorLabel = colorToHex(galleryColor);
+
   return (
     <div className="picker-gallery" aria-label="Public picker components">
       {pickerMetadata.map((picker) => {
@@ -737,11 +799,14 @@ function PickerGallery() {
 
         return (
           <article className="picker-gallery__item" id={`picker-${picker.id}`} key={picker.id}>
-            <PickerPreview picker={picker} />
+            <LivePickerPreview picker={picker} color={galleryColor} onChange={handleGalleryColorChange} />
             <div className="picker-gallery__content">
               <div className="picker-gallery__head">
                 <h3>{picker.title}</h3>
-                <code>{picker.exportName}</code>
+                <div className="picker-gallery__meta">
+                  <code>{picker.exportName}</code>
+                  <span>{galleryColorLabel}</span>
+                </div>
               </div>
               <p>{picker.summary}</p>
               <div className="picker-gallery__badges" aria-label={`${picker.title} capabilities`}>
@@ -1057,6 +1122,43 @@ function PickerGalleryPage() {
   );
 }
 
+function SiteHeader({ isGalleryPage }: { isGalleryPage: boolean }) {
+  return (
+    <header className="site-header">
+      <Link className="site-header__brand" to="/" hash="about" aria-label="react-color documentation home">
+        <span className="site-header__brand-mark" aria-hidden="true" />
+        <span className="site-header__brand-copy">
+          <strong>react-color</strong>
+          <span>Modern React color pickers</span>
+        </span>
+      </Link>
+
+      <nav className="site-header__nav" aria-label="Primary navigation">
+        <Link
+          className={`site-header__link${isGalleryPage ? '' : ' site-header__link--active'}`}
+          to="/"
+          hash="about"
+          aria-current={isGalleryPage ? undefined : 'page'}
+        >
+          Read the docs
+        </Link>
+        <Link
+          className={`site-header__link${isGalleryPage ? ' site-header__link--active' : ''}`}
+          to={galleryPagePath}
+          aria-current={isGalleryPage ? 'page' : undefined}
+        >
+          Picker Gallery
+        </Link>
+        <a className="site-header__link" href="https://github.com/antonlimar/react-color">
+          View repository
+        </a>
+      </nav>
+
+      <span className="site-header__status">Actively maintained fork</span>
+    </header>
+  );
+}
+
 function AppShell() {
   const [color, setColor] = useState<RGBAColor>(initialColor);
   const [packageManager, setPackageManagerState] = useState<PackageManager>(getInitialPackageManager);
@@ -1251,97 +1353,78 @@ function AppShell() {
       <div className="site-shell__ambient site-shell__ambient--one" aria-hidden="true" />
       <div className="site-shell__ambient site-shell__ambient--two" aria-hidden="true" />
 
-      <header className="hero">
-        <div className="hero__backdrop hero__backdrop--left" aria-hidden="true" />
-        <div className="hero__backdrop hero__backdrop--right" aria-hidden="true" />
+      <SiteHeader isGalleryPage={isGalleryPage} />
 
-        <div className="hero__content">
-          <div className="hero__masthead">
-            <div className="hero__brand">
-              <span className="hero__brand-mark" aria-hidden="true" />
-              <div className="hero__brand-copy">
-                <strong>react-color</strong>
-                <span>Modern React color pickers</span>
+      {isGalleryPage ? null : (
+        <header className="hero">
+          <div className="hero__backdrop hero__backdrop--left" aria-hidden="true" />
+          <div className="hero__backdrop hero__backdrop--right" aria-hidden="true" />
+
+          <div className="hero__content">
+            <p className="eyebrow">React color pickers</p>
+            <h1>Real pickers, one reliable color state.</h1>
+            <p className="hero__lede">
+              Drop in familiar picker components, control them from React state, and customize the look with published
+              CSS hooks.
+            </p>
+
+            <div className="hero__metrics" aria-label="Current shared color values">
+              <div className="hero__metric hero__metric--swatch">
+                <span className="hero__swatch" style={{ backgroundColor: rgbaLabel }} />
+                <div>
+                  <strong>{colorToHex(color)}</strong>
+                  <span>Current color</span>
+                </div>
+              </div>
+              <div className="hero__metric">
+                <strong>{rgbaLabel}</strong>
+                <span>RGBA value</span>
+              </div>
+              <div className="hero__metric">
+                <strong>{heroPickerCards.length} synced demos</strong>
+                <span>Interactive pickers</span>
               </div>
             </div>
-            <span className="hero__status">Actively maintained fork</span>
+
+            <div className="hero__palette" aria-label="Current color family">
+              <span className="hero__palette-label">Current color scale</span>
+              <div className="hero__palette-track">
+                {paletteStops.map((stop, index) => (
+                  <span className="hero__palette-stop" key={`${stop}-${index}`} style={{ backgroundColor: stop }} />
+                ))}
+              </div>
+            </div>
           </div>
 
-          <p className="eyebrow">React color pickers</p>
-          <h1>Real pickers, one reliable color state.</h1>
-          <p className="hero__lede">
-            Drop in familiar picker components, control them from React state, and customize the look with published CSS
-            hooks.
-          </p>
-
-          <div className="hero__metrics" aria-label="Current shared color values">
-            <div className="hero__metric hero__metric--swatch">
-              <span className="hero__swatch" style={{ backgroundColor: rgbaLabel }} />
+          <div className="hero__demo" aria-label="Synchronized live picker demo">
+            <div className="hero__demo-head">
               <div>
-                <strong>{colorToHex(color)}</strong>
-                <span>Current color</span>
+                <span className="hero__demo-label">Synchronized pickers</span>
+                <p className="hero__demo-copy">Each panel reads and writes the same React color value.</p>
               </div>
+              <span className="hero__demo-value">{colorToHex(color)}</span>
             </div>
-            <div className="hero__metric">
-              <strong>{rgbaLabel}</strong>
-              <span>RGBA value</span>
-            </div>
-            <div className="hero__metric">
-              <strong>{heroPickerCards.length} synced demos</strong>
-              <span>Interactive pickers</span>
-            </div>
-          </div>
 
-          <div className="hero__actions">
-            <Link className="hero__button hero__button--primary" to="/" hash="about">
-              Read the docs
-            </Link>
-            <Link className="hero__button" to={galleryPagePath}>
-              Picker Gallery
-            </Link>
-            <a className="hero__button" href="https://github.com/antonlimar/react-color">
-              View repository
-            </a>
-          </div>
+            <div className="hero__picker-grid">
+              {heroPickerCards.map(({ id, title, description, component: PickerComponent }) => (
+                <article className={`hero__picker-card hero__picker-card--${id}`} key={id}>
+                  <div className="hero__picker-meta">
+                    <div>
+                      <h2>{title}</h2>
+                      <p>{description}</p>
+                    </div>
+                    <span className="hero__picker-chip">{title}</span>
+                  </div>
 
-          <div className="hero__palette" aria-label="Current color family">
-            <span className="hero__palette-label">Current color scale</span>
-            <div className="hero__palette-track">
-              {paletteStops.map((stop, index) => (
-                <span className="hero__palette-stop" key={`${stop}-${index}`} style={{ backgroundColor: stop }} />
+                  <div className="hero__picker-surface">
+                    <PickerComponent color={color} onChange={(nextColor: ColorResult) => setColor(nextColor.rgb)} />
+                  </div>
+                </article>
               ))}
             </div>
           </div>
-        </div>
-
-        <div className="hero__demo" aria-label="Synchronized live picker demo">
-          <div className="hero__demo-head">
-            <div>
-              <span className="hero__demo-label">Synchronized pickers</span>
-              <p className="hero__demo-copy">Each panel reads and writes the same React color value.</p>
-            </div>
-            <span className="hero__demo-value">{colorToHex(color)}</span>
-          </div>
-
-          <div className="hero__picker-grid">
-            {heroPickerCards.map(({ id, title, description, component: PickerComponent }) => (
-              <article className={`hero__picker-card hero__picker-card--${id}`} key={id}>
-                <div className="hero__picker-meta">
-                  <div>
-                    <h2>{title}</h2>
-                    <p>{description}</p>
-                  </div>
-                  <span className="hero__picker-chip">{title}</span>
-                </div>
-
-                <div className="hero__picker-surface">
-                  <PickerComponent color={color} onChange={(nextColor: ColorResult) => setColor(nextColor.rgb)} />
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </header>
+        </header>
+      )}
 
       <main className={`sections-shell${isGalleryPage ? ' sections-shell--gallery-page' : ''}`} id="site-documentation">
         {isGalleryPage ? (
