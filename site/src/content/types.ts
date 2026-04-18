@@ -1,4 +1,10 @@
-export type SectionId = 'about' | 'getting-started' | 'picker-gallery' | 'component-api' | 'create-your-own';
+export type SectionId =
+  | 'about'
+  | 'getting-started'
+  | 'picker-gallery'
+  | 'component-api'
+  | 'developer-guides'
+  | 'create-your-own';
 
 export interface TextBlock {
   type: 'text';

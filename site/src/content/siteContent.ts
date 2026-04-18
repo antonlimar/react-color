@@ -642,8 +642,118 @@ export const siteSections: readonly ContentSection[] = [
     ],
   },
   {
-    id: 'create-your-own',
+    id: 'developer-guides',
     order: 5,
+    title: 'Developer Guides',
+    intro:
+      'These guides collect the most common migration, TypeScript, styling, SSR, and accessibility questions in one place.',
+    blocks: [],
+    subsections: [
+      {
+        id: 'migration-from-casesandberg-react-color',
+        title: 'Migration from casesandberg/react-color',
+        intro:
+          'The fork keeps the familiar default export and named picker exports, while modernizing the build, typing, and CSS delivery story.',
+        blocks: [
+          {
+            type: 'bullets',
+            items: [
+              "Default export remains the Chrome picker wrapped with ColorWrap, so existing `import Chrome from 'react-color'` style usage still maps to the same mental model.",
+              'Named picker exports keep the same top-level component names, and deep imports continue to work for bundle-sensitive code paths.',
+              'CSS entrypoints are still published, but picker entrypoints also import their own styles automatically for normal usage.',
+              'The TypeScript-enabled toolchain improves editor feedback without forcing a runtime API rewrite.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'typescript-recipes',
+        title: 'TypeScript Recipes',
+        intro:
+          'The public types are intentionally small, so the most useful patterns are usually controlled color state, picker-specific props, and narrow handler signatures.',
+        blocks: [
+          {
+            type: 'code',
+            language: 'tsx',
+            label: 'Controlled picker with ColorResult',
+            code: "import { useState } from 'react';\nimport { SketchPicker } from 'react-color';\nimport type { ColorResult } from 'react-color';\n\nexport function Example(): JSX.Element {\n  const [color, setColor] = useState('#3D91FF');\n\n  const handleChangeComplete = (nextColor: ColorResult) => {\n    setColor(nextColor.hex);\n  };\n\n  return <SketchPicker color={color} onChangeComplete={handleChangeComplete} />;\n}\n",
+          },
+          {
+            type: 'code',
+            language: 'tsx',
+            label: 'Typing classNames and event handlers',
+            code: "import { GithubPicker } from 'react-color';\n\ninterface PickerClasses {\n  root?: string;\n  body?: string;\n  swatch?: string;\n}\n\nexport function Example({ classNames }: { classNames?: PickerClasses }): JSX.Element {\n  const handleSwatchHover = (color: string, event: React.MouseEvent<HTMLDivElement>) => {\n    console.log(color, event.currentTarget);\n  };\n\n  return <GithubPicker classNames={classNames} onSwatchHover={handleSwatchHover} />;\n}\n",
+          },
+          {
+            type: 'code',
+            language: 'tsx',
+            label: 'Typing custom picker props',
+            code: "import { CustomPicker } from 'react-color';\nimport type { CustomPickerInjectedProps } from 'react-color';\n\ninterface BrandPickerProps extends CustomPickerInjectedProps {\n  label: string;\n}\n\nfunction BrandPicker({ hex, label, onChange }: BrandPickerProps): JSX.Element {\n  return (\n    <label>\n      {label}\n      <input\n        type=\"color\"\n        value={hex}\n        onChange={(event) => onChange({ hex: event.currentTarget.value }, event)}\n      />\n    </label>\n  );\n}\n\nexport const BrandColorPicker = CustomPicker(BrandPicker);\n",
+          },
+        ],
+      },
+      {
+        id: 'styling-css-hooks',
+        title: 'Styling & CSS Hooks',
+        intro:
+          'Theme props, CSS custom properties, and supported class hooks are the preferred way to customize pickers without replacing internals.',
+        blocks: [
+          {
+            type: 'bullets',
+            items: [
+              'Use `theme="light" | "dark" | "auto"` when you want a built-in token set that tracks the host page.',
+              'Use `className` for the outer wrapper and `classNames` when the picker exposes slot-level hooks.',
+              'Override CSS variables for palette-level adjustments, spacing, shadows, or borders instead of rewriting component markup.',
+              'Import CSS manually only when you need aggregate stylesheet control or shared primitive styles for custom compositions.',
+            ],
+          },
+          {
+            type: 'code',
+            language: 'css',
+            label: 'Token overrides',
+            code: '.profile-swatch-picker {\n  --rc-color-surface: #111827;\n  --rc-color-surface-elevated: #1f2937;\n  --rc-color-border: #334155;\n  --rc-color-text: #f8fafc;\n}\n',
+          },
+        ],
+      },
+      {
+        id: 'ssr-framework-notes',
+        title: 'SSR & Framework Notes',
+        intro:
+          'Interactive pickers work well in Next.js, Vite, and other modern frameworks as long as browser-only behavior stays inside the client side of the tree.',
+        blocks: [
+          {
+            type: 'bullets',
+            items: [
+              'In Next.js App Router, render the picker from a client component when it needs pointer interaction or clipboard access.',
+              'Avoid direct DOM assumptions during server render; the pickers already expect to hydrate into a normal browser environment.',
+              'Some custom compositions use canvas-backed renderers in SSR-aware setups, so wire those dependencies explicitly when you need them.',
+              'Keep framework wrappers thin so the public `react-color` API stays the source of truth for color state and callbacks.',
+            ],
+          },
+        ],
+      },
+      {
+        id: 'accessibility-notes',
+        title: 'Accessibility Notes',
+        intro:
+          'The bundled pickers provide interaction patterns, but the surrounding app still controls labels, contrast, and any domain-specific meaning of the selected color.',
+        blocks: [
+          {
+            type: 'bullets',
+            items: [
+              'Treat keyboard and pointer interactions as first-class when you build custom pickers or compose the helper components.',
+              'Always provide labels for color inputs and any extra controls that sit around the picker UI.',
+              'Check contrast for your own palette choices, because the library cannot know whether a swatch set is legible for your product.',
+              'When you build custom editors, keep helper components wired to `onChange` so assistive technology receives the same state updates as sighted users.',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'create-your-own',
+    order: 6,
     title: 'Create Your Own',
     intro: 'The custom picker docs stay centered on CustomPicker plus the helper components that build up the UI.',
     blocks: [],

@@ -207,6 +207,33 @@ describe('site app', () => {
     expect(screen.getAllByText(/actively maintained fork/i)).toHaveLength(2);
   });
 
+  test('renders the developer guides section with migration, TypeScript, styling, SSR, and accessibility notes', () => {
+    const { container } = render(<App />);
+    const developerGuides = container.querySelector('#developer-guides');
+
+    expect(developerGuides).toBeInstanceOf(HTMLElement);
+    expect(
+      within(developerGuides as HTMLElement).getByRole('heading', { name: 'Developer Guides' }),
+    ).toBeInTheDocument();
+    expect(
+      within(developerGuides as HTMLElement).getByRole('heading', { name: 'Migration from casesandberg/react-color' }),
+    ).toBeInTheDocument();
+    expect(
+      within(developerGuides as HTMLElement).getByRole('heading', { name: 'TypeScript Recipes' }),
+    ).toBeInTheDocument();
+    expect(
+      within(developerGuides as HTMLElement).getByRole('heading', { name: 'Styling & CSS Hooks' }),
+    ).toBeInTheDocument();
+    expect(
+      within(developerGuides as HTMLElement).getByRole('heading', { name: 'SSR & Framework Notes' }),
+    ).toBeInTheDocument();
+    expect(
+      within(developerGuides as HTMLElement).getByRole('heading', { name: 'Accessibility Notes' }),
+    ).toBeInTheDocument();
+    expect(within(developerGuides as HTMLElement).getByText('Typing custom picker props')).toBeInTheDocument();
+    expect(within(developerGuides as HTMLElement).getByText('CustomPickerInjectedProps')).toBeInTheDocument();
+  });
+
   test('adds picker-specific prop groups as nested navigation anchors', () => {
     const { container } = render(<App />);
     const sidebar = container.querySelector('.sections-layout__sidebar');

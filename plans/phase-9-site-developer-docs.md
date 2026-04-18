@@ -17,10 +17,10 @@ todos:
     status: done
   - id: developer-guides
     content: Добавить разделы Migration, TypeScript Recipes, Styling & CSS Hooks, SSR & Framework Notes и Accessibility Notes
-    status: pending
+    status: done
   - id: content-validation
     content: Добавить site content validation script для уникальности anchors, валидности внутренних ссылок и покрытия публичных picker exports в gallery, подключить к site verification
-    status: pending
+    status: done
 ---
 
 # Developer-Focused Site Documentation
@@ -216,5 +216,5 @@ todos:
 - [x] **developer-code-blocks** — Добавить copyable code blocks, package-manager tabs, clipboard states, `aria-live` feedback и устойчивую mobile-верстку сниппетов
 - [x] **docs-search-navigation** — Реализовать локальный поиск по секциям, props, examples и picker metadata с URL query state, desktop/mobile UI и keyboard shortcut
 - [x] **api-reference-and-gallery** — Улучшить API reference для длинных defaults и mobile prop cards, добавить prop-level anchors и полноценную Picker Gallery для всех публичных пикеров
-- [ ] **developer-guides** — Добавить разделы Migration, TypeScript Recipes, Styling & CSS Hooks, SSR & Framework Notes и Accessibility Notes
-- [ ] **content-validation** — Добавить site content validation script для уникальности anchors, валидности внутренних ссылок и покрытия публичных picker exports в gallery, подключить к site verification
+- [x] **developer-guides** — Добавить разделы Migration, TypeScript Recipes, Styling & CSS Hooks, SSR & Framework Notes и Accessibility Notes
+- [x] **content-validation** — Добавлен `scripts/validate-site-content.mjs` для проверки уникальности generated anchors, валидности внутренних `#...` ссылок, существования gallery `apiAnchor` и покрытия публичных picker exports; команда `npm run site:content` подключена в `site:verify` перед `site:build`

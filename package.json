@@ -38,7 +38,8 @@
     "site:dev": "vite --config vite.site.config.ts",
     "site:build": "vite build --config vite.site.config.ts",
     "site:preview": "vite preview --config vite.site.config.ts",
-    "site:verify": "npm run test:site && npm run site:build && node ./scripts/verify-site-build.mjs",
+    "site:content": "node ./scripts/validate-site-content.mjs",
+    "site:verify": "npm run test:site && npm run site:content && npm run site:build && node ./scripts/verify-site-build.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o .out"
   },
