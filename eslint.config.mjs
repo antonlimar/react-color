@@ -9,7 +9,7 @@ import tseslint from 'typescript-eslint';
 
 export default defineConfig([
   {
-    ignores: ['docs/build/**', '.out/**', 'es/**', 'lib/**', 'node_modules/**', 'examples/**/dist/**', 'src/**/*.js'],
+    ignores: ['site/dist/**', '.out/**', 'es/**', 'lib/**', 'node_modules/**', 'src/**/*.js'],
   },
   ...storybook.configs['flat/recommended'],
   {
@@ -71,12 +71,6 @@ export default defineConfig([
       globals: {
         ...globals.jest,
       },
-    },
-  },
-  {
-    files: ['examples/**/*.{js,jsx,ts,tsx,mjs}'],
-    rules: {
-      'react/no-deprecated': 'off',
     },
   },
   eslintPluginPrettierRecommended,

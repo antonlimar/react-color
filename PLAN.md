@@ -3,7 +3,7 @@
 ## Текущее состояние (кратко)
 
 - Сборка пакета уже переведена на **`tsc`** с пофайловым выводом в `lib/` (CJS) и `es/` (ESM), см. [`package.json`](package.json), [`tsconfig.lib.json`](tsconfig.lib.json), [`tsconfig.es.json`](tsconfig.es.json).
-- Тестовый стек уже обновлён до **Vitest + Testing Library + jsdom**, линтинг работает через **ESLint flat config**, а docs и Storybook переведены на современный пайплайн.
+- Тестовый стек уже обновлён до **Vitest + Testing Library + jsdom**, линтинг работает через **ESLint flat config**, а сайт документации и Storybook переведены на современный пайплайн.
 - Код библиотеки, истории Storybook и тестовые файлы под [`src/`](src/) уже переведены на актуальные TypeScript-совместимые расширения.
 - Публичный barrel уже синхронизирован с текущим публичным API: default export и именованные экспорты идут из [`src/index.ts`](src/index.ts).
 
@@ -17,7 +17,7 @@ flowchart LR
   end
   subgraph target [Цель]
     TS[tsc или dual emit]
-    Vite[Vite docs или аналог]
+    Vite[Vite site]
     SB[Storybook 10+]
     Test[Vitest или Jest 29]
   end
@@ -32,7 +32,7 @@ flowchart LR
 
 1. **[AGENTS.md](AGENTS.md)** в корне (кратко и по делу):
    - Назначение репозитория (форк, цели: TS, современные deps, чистка legacy).
-   - Карта каталогов: `src/` — исходники библиотеки; `examples/` — примеры; `docs/` — сайт; `.storybook/` — сторибук.
+   - Карта каталогов: `src/` — исходники библиотеки; `site/` — актуальная документация; `.storybook/` — сторибук.
    - Команды (после миграции обновить): тесты, линт, сборка пакета, сторибук, доки.
    - **Публичный API**: перечислить экспорты из [`src/index.ts`](src/index.ts) и правило «не ломать имена экспортов без major и CHANGELOG».
    - Ограничения: peer `react`/`react-dom`, стиль стилизации (сейчас `reactcss` + inline — не менять весь подход в одном PR).
@@ -68,7 +68,7 @@ flowchart LR
 | Линт      | ESLint **flat config** + `@typescript-eslint` + `eslint-plugin-react-hooks`; удалить зависимость от `@case/eslint-config`, если она не поддерживается.                                                                                                                                                                                                                                                                                                     |
 | Тесты     | **Vitest** + **jsdom** + **@testing-library/react** (замена Enzyme 2 / старых утилит); тестовые файлы уже живут на TS-совместимых расширениях.                                                                                                                                                                                                                                                                                                             |
 | Storybook | Обновить до **10.x** (или актуальной LTS), переписать [`.storybook/config.js`](.storybook/config.js) под новый формат; истории уже переведены на `story.tsx`. После миграции вернуть `reactDocgen`, если он был временно отключён из-за legacy Babel-конфига.                                                                                                                                                                                              |
-| Доки      | Заменить Webpack 1 на **Vite** (или аналог) для dev-сервера документации; пересмотреть [`scripts/docs-server.js`](scripts/docs-server.js) / [`docs-dist`](scripts/docs-dist.js).                                                                                                                                                                                                                                                                           |
+| Доки      | Legacy `docs/` был заменён Vite-сайтом в [`site/`](site/); актуальные команды: `site:dev`, `site:build`, `site:verify`.                                                                                                                                                                                                                                                                                                                                      |
 
 Статус: фаза по сути завершена. Дальше остаются только follow-up задачи по legacy dependencies и cleanup, а не незавершённый toolchain-блок.
 
@@ -89,14 +89,14 @@ flowchart LR
 
 Статус: основная цель фазы завершена.
 
-- **React**: `peerDependencies.react` зафиксирован на `>=16.8.0`; корневые `devDependencies.react` / `react-dom` остаются на современном major для docs и Storybook. Примеры в [`examples/`](examples/) синхронизированы на `react@16.14.0` / `react-dom@16.14.0` и используют локальную зависимость `react-color: "file:../.."`.
-- **Примеры**: все example-проекты переведены на Vite, используют единые `dev` / `build` скрипты и проверяются агрегирующим `npm run examples:check`. Нижняя граница совместимости валидируется через `ReactDOM.render`, а не `createRoot`.
+- **React**: `peerDependencies.react` зафиксирован на `>=16.8.0`; корневые `devDependencies.react` / `react-dom` остаются на современном major для сайта документации и Storybook.
+- **Примеры**: старые standalone example-приложения из `examples/` удалены; актуальные демонстрации и developer docs живут в [`site/`](site/) и Storybook.
 - **lodash / lodash-es**: зафиксирована промежуточная стратегия без лишнего рефакторинга: path-imports в исходниках и post-build rewrite импортов на `lodash-es` для ESM-сборки.
-- **Cleanup**: прямые legacy `devDependencies` и старые toolchain-хвосты убраны из корня репозитория; в docs-части оставлены только реально используемые пакеты вроде `highlight.js` и `markdown-it`.
-- **CI**: добавлен GitHub Actions workflow в [`.github/workflows/ci.yml`](.github/workflows/ci.yml) с матрицей Node `20.x` / `24.x` и обязательными шагами `npm test`, `npm run build`, `npm run build-storybook`, `npm run docs-dist`, `npm run examples:check`, `npm run ci:artifacts`, `npm pack --dry-run`.
+- **Cleanup**: прямые legacy `devDependencies`, старые standalone examples и legacy docs toolchain убраны из корня репозитория.
+- **CI**: GitHub Actions workflow в [`.github/workflows/ci.yml`](.github/workflows/ci.yml) использует матрицу Node `20.x` / `24.x` и обязательные шаги `npm test`, `npm run test:visual`, `npm run build`, `npm run test:public-types`, `npm run build-storybook`, `npm run typecheck`, `npm run site:verify`, `npm run ci:artifacts`, `npm pack --dry-run`.
 - **Post-phase-3 follow-up**: `noImplicitAny` и `strictNullChecks` уже включены, permissive API для `Color` / `styles` / callback-аргументов сохранён, post-migration хвосты по `lodash`-утилитам и helper-типам дочищены, а совместимые DX-изменения и migration notes синхронизированы в [`CHANGELOG.md`](CHANGELOG.md) и [`README.md`](README.md).
 
-Проверено локально `2026-03-20`: `npm test`, `npm run build` и `npm run examples:check` проходят на текущем состоянии репозитория.
+Проверено локально `2026-03-20`: `npm test` и `npm run build` проходят на текущем состоянии репозитория.
 
 ---
 
@@ -104,11 +104,11 @@ flowchart LR
 
 Статус: завершена как отдельный follow-up после основной модернизации `src`, toolchain и legacy cleanup.
 
-- Цель фазы выполнена: runtime-код документационного сайта в [`docs/`](docs/) переведён на TypeScript без непреднамеренных изменений публичного API пакета и без смешивания этой работы с library build для `lib/` / `es/`.
-- Область фазы закрыта: переведены [`docs/index.tsx`](docs/index.tsx), [`docs/documentation/index.ts`](docs/documentation/index.ts), runtime-компоненты в [`docs/components/`](docs/components/) и примеры в [`docs/examples/`](docs/examples/); markdown, ассеты и [`docs/build/`](docs/build/) по-прежнему не входят в scope миграции.
-- Для docs раньше рассматривался отдельный docs-specific typecheck; сейчас репозиторий использует единый `npm run typecheck` для `src/`, `docs/`, `scripts/` и `test`, без дополнительного алиаса.
-- После миграции удалён уже ненужный `jsxInJsPlugin()` из [`vite.docs.config.js`](vite.docs.config.js), а команды и документация синхронизированы в [`README.md`](README.md), [`AGENTS.md`](AGENTS.md) и [`.github/CONTRIBUTING.md`](.github/CONTRIBUTING.md).
-- Локальная верификация завершена: `npm run docs-dist` проходит, локальный `npm run docs-server` поднимает сайт на `http://localhost:9100/`, а браузерная проверка подтверждает render docs-секций, загрузку markdown, работу sidebar-якоря `#examples` и интерактивность `Button Example` без console errors в текущем dev-сеансе.
+Примечание: legacy-приложение `docs/` удалено после появления актуального сайта в [`site/`](site/). Исторические детали фазы сохранены в [`plans/phase-5-docs-typescript.md`](plans/phase-5-docs-typescript.md).
+
+- Цель фазы была выполнена до удаления legacy docs: runtime-код документационного сайта был переведён на TypeScript без непреднамеренных изменений публичного API пакета.
+- После удаления `docs/` отдельные legacy-команды документационного приложения и docs-specific typecheck больше не являются актуальной частью workflow.
+- Текущий documentation workflow: `npm run site:dev`, `npm run site:build`, `npm run site:verify`.
 
 Подробный план ведётся в [`plans/phase-5-docs-typescript.md`](plans/phase-5-docs-typescript.md).
 
@@ -176,7 +176,7 @@ flowchart LR
 - [x] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
 - [x] Обновить Storybook и пайплайн docs (убрать Webpack 1); после удаления legacy Babel вернуть `reactDocgen`, если он был временно отключён
 - [x] Обновить peer deps, почистить devDependencies, примеры, CI
-- [x] Усилить TS-строгость и закрыть текущий follow-up cleanup legacy в docs/dev tooling; migration notes синхронизированы в `CHANGELOG.md`, `README.md` и `plans/phase-4-dependencies-and-legacy.md`
-- [x] Перевести runtime-код `docs/` на `.ts`/`.tsx`, ввести отдельный docs typecheck и закрыть оставшийся JS-only хвост документационного приложения; `npm run docs-dist` и локальный `npm run docs-server` повторно подтверждены после миграции
+- [x] Усилить TS-строгость и закрыть follow-up cleanup legacy docs/dev tooling; migration notes синхронизированы в `CHANGELOG.md`, `README.md` и `plans/phase-4-dependencies-and-legacy.md`
+- [x] Заменить legacy `docs/` workflow актуальным сайтом в `site/`; текущие проверки документации идут через `npm run site:verify`
 - [x] Закрыть следующую волну upstream/runtime follow-up задач без breaking changes: CSP-safe градиенты, удаление `defaultProps`, локальные runtime-иконки, iframe-safe `Saturation` и проверка ESM/CJS interop; подробности в `plans/phase-6-upstream-issues-follow-up.md`
 - [ ] Убрать `reactcss` и перевести styling-систему на co-located SCSS, BEM-классы, dark theme и granular CSS imports; подробности в `plans/phase-7-styling-modernization.md`

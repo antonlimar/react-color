@@ -11,13 +11,12 @@
 | Путь          | Назначение                                                              |
 | ------------- | ----------------------------------------------------------------------- |
 | `src/`        | Исходники библиотеки, публичные экспорты, компоненты и хелперы.         |
-| `examples/`   | Отдельные мини-приложения-примеры; не публикуются как часть npm-пакета. |
-| `docs/`       | Сайт документации.                                                      |
 | `.storybook/` | Конфигурация Storybook.                                                 |
+| `site/`       | Актуальный сайт документации для GitHub Pages.                          |
 | `test/`       | Тесты и test helpers.                                                   |
 | `scripts/`    | Скрипты сборки, проверки и repo tooling.                                |
 
-Сгенерированные артефакты `lib/`, `es/`, `.out/` и `docs/build/` не править вручную.
+Сгенерированные артефакты `lib/`, `es/`, `.out/` и `site/dist/` не править вручную.
 
 ## Основные команды
 
@@ -30,9 +29,9 @@
 | `npm run build`           | Полная сборка пакета в `lib/` и `es/`.               |
 | `npm run storybook`       | Dev Storybook на `http://localhost:6006/`.           |
 | `npm run build-storybook` | Статическая сборка Storybook в `.out/`.              |
-| `npm run docs-server`     | Dev-сервер документации на `http://localhost:9100/`. |
-| `npm run docs-dist`       | Production-сборка документации в `docs/build/`.      |
-| `npm run examples:check`  | Проверка example-приложений.                         |
+| `npm run site:dev`        | Dev-сервер документации на `http://localhost:4173/`. |
+| `npm run site:build`      | Production-сборка документации в `site/dist/`.       |
+| `npm run site:verify`     | Проверка тестов, сборки и метаданных сайта.          |
 
 ## Публичный API
 
@@ -57,9 +56,8 @@ Default export:
 
 - библиотека и tooling уже переведены на TypeScript-совместимый стек;
 - тестовый стек: Vitest + Testing Library + jsdom;
-- docs и Storybook работают на современном пайплайне;
+- сайт документации в `site/` и Storybook работают на современном пайплайне;
 - `peerDependencies.react` рассчитан на совместимость с React `>=16.8.0`;
-- examples используют локальный пакет и служат дополнительной проверкой совместимости.
 
 ## Рабочие соглашения
 

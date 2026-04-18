@@ -1,4 +1,133 @@
-import type { ContentSection } from './types';
+import type { ContentSection, PickerMetadata } from './types';
+
+export const pickerMetadata: readonly PickerMetadata[] = [
+  {
+    id: 'alpha',
+    title: 'Alpha',
+    exportName: 'AlphaPicker',
+    deepImport: 'react-color/lib/Alpha',
+    summary: 'Standalone alpha slider for compact transparency controls.',
+    badges: ['alpha', 'slider'],
+    apiAnchor: 'picker-specific-props-alpha',
+  },
+  {
+    id: 'block',
+    title: 'Block',
+    exportName: 'BlockPicker',
+    deepImport: 'react-color/lib/Block',
+    summary: 'Simple block palette with optional triangle marker.',
+    badges: ['palette', 'compact'],
+    apiAnchor: 'picker-specific-props-block',
+  },
+  {
+    id: 'chrome',
+    title: 'Chrome',
+    exportName: 'ChromePicker',
+    deepImport: 'react-color/lib/Chrome',
+    summary: 'Classic full color editor with saturation, hue, alpha, and fields.',
+    badges: ['full editor', 'alpha'],
+    apiAnchor: 'picker-specific-props-chrome',
+  },
+  {
+    id: 'circle',
+    title: 'Circle',
+    exportName: 'CirclePicker',
+    deepImport: 'react-color/lib/Circle',
+    summary: 'Circular swatch palette for preset color selection.',
+    badges: ['palette'],
+    apiAnchor: 'picker-specific-props-circle',
+  },
+  {
+    id: 'compact',
+    title: 'Compact',
+    exportName: 'CompactPicker',
+    deepImport: 'react-color/lib/Compact',
+    summary: 'Dense preset grid for fast color selection in tight layouts.',
+    badges: ['palette', 'compact'],
+    apiAnchor: 'picker-specific-props-compact',
+  },
+  {
+    id: 'github',
+    title: 'Github',
+    exportName: 'GithubPicker',
+    deepImport: 'react-color/lib/Github',
+    summary: 'GitHub-style palette popover with configurable triangle placement.',
+    badges: ['palette', 'compact'],
+    apiAnchor: 'picker-specific-props-github',
+  },
+  {
+    id: 'google',
+    title: 'Google',
+    exportName: 'GooglePicker',
+    deepImport: 'react-color/lib/Google',
+    summary: 'Material-like color editor with a configurable header.',
+    badges: ['full editor'],
+    apiAnchor: 'picker-specific-props-google',
+  },
+  {
+    id: 'hue',
+    title: 'Hue',
+    exportName: 'HuePicker',
+    deepImport: 'react-color/lib/Hue',
+    summary: 'Standalone hue slider for custom picker composition.',
+    badges: ['slider'],
+    apiAnchor: 'picker-specific-props-hue',
+  },
+  {
+    id: 'material',
+    title: 'Material',
+    exportName: 'MaterialPicker',
+    deepImport: 'react-color/lib/Material',
+    summary: 'Compact Material-style color fields for simple editing.',
+    badges: ['compact'],
+    apiAnchor: 'picker-specific-props-material',
+  },
+  {
+    id: 'photoshop',
+    title: 'Photoshop',
+    exportName: 'PhotoshopPicker',
+    deepImport: 'react-color/lib/Photoshop',
+    summary: 'Photoshop-inspired editor with accept and cancel actions.',
+    badges: ['full editor'],
+    apiAnchor: 'picker-specific-props-photoshop',
+  },
+  {
+    id: 'sketch',
+    title: 'Sketch',
+    exportName: 'SketchPicker',
+    deepImport: 'react-color/lib/Sketch',
+    summary: 'Full picker with saturation, hue, alpha, fields, and presetColors.',
+    badges: ['full editor', 'alpha', 'customizable'],
+    apiAnchor: 'picker-specific-props-sketch',
+  },
+  {
+    id: 'slider',
+    title: 'Slider',
+    exportName: 'SliderPicker',
+    deepImport: 'react-color/lib/Slider',
+    summary: 'Horizontal slider-oriented picker for concise color editing.',
+    badges: ['slider'],
+    apiAnchor: 'picker-specific-props-slider',
+  },
+  {
+    id: 'swatches',
+    title: 'Swatches',
+    exportName: 'SwatchesPicker',
+    deepImport: 'react-color/lib/Swatches',
+    summary: 'Grouped swatch palette for curated color systems.',
+    badges: ['palette'],
+    apiAnchor: 'picker-specific-props-swatches',
+  },
+  {
+    id: 'twitter',
+    title: 'Twitter',
+    exportName: 'TwitterPicker',
+    deepImport: 'react-color/lib/Twitter',
+    summary: 'Twitter-style palette popover with configurable triangle placement.',
+    badges: ['palette', 'compact'],
+    apiAnchor: 'picker-specific-props-twitter',
+  },
+] as const;
 
 export const siteSections: readonly ContentSection[] = [
   {
@@ -27,12 +156,17 @@ export const siteSections: readonly ContentSection[] = [
       {
         id: 'install',
         title: 'Install',
-        intro: 'Add react-color to your project with npm.',
+        intro: 'Add react-color to your project with your package manager of choice.',
         blocks: [
           {
-            type: 'code',
-            language: 'bash',
-            code: 'npm install react-color --save',
+            type: 'package-manager',
+            label: 'Install package',
+            commands: {
+              npm: 'npm install react-color --save',
+              pnpm: 'pnpm add react-color',
+              yarn: 'yarn add react-color',
+              bun: 'bun add react-color',
+            },
           },
           {
             type: 'text',
@@ -91,8 +225,21 @@ export const siteSections: readonly ContentSection[] = [
     ],
   },
   {
-    id: 'component-api',
+    id: 'picker-gallery',
     order: 3,
+    title: 'Picker Gallery',
+    intro:
+      'Compare every public picker export, copy the import shape, and jump straight to the props that make each component different.',
+    blocks: [
+      {
+        type: 'text',
+        text: 'Each picker below keeps the same top-level package import and also documents the compatible deep import path for existing integrations.',
+      },
+    ],
+  },
+  {
+    id: 'component-api',
+    order: 4,
     title: 'Component API',
     intro:
       'The API reference is organized around the three shared color props and a picker-by-picker view of the props that only exist on individual components.',
@@ -366,6 +513,12 @@ export const siteSections: readonly ContentSection[] = [
             ],
           },
           {
+            title: 'Material',
+            summary:
+              'MaterialPicker does not add picker-specific props beyond the shared color callbacks, class hooks, and theme surface.',
+            properties: [],
+          },
+          {
             title: 'Photoshop',
             properties: [
               {
@@ -490,7 +643,7 @@ export const siteSections: readonly ContentSection[] = [
   },
   {
     id: 'create-your-own',
-    order: 4,
+    order: 5,
     title: 'Create Your Own',
     intro: 'The custom picker docs stay centered on CustomPicker plus the helper components that build up the UI.',
     blocks: [],

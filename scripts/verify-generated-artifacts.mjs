@@ -3,11 +3,10 @@ import { spawn } from 'node:child_process';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 
-const artifactPaths = ['lib', 'es', 'docs/build', 'package-lock.json'];
+const artifactPaths = ['lib', 'es', 'package-lock.json'];
 const regenerationSteps = [
   ['npm', ['run', 'build']],
   ['npm', ['run', 'build-storybook']],
-  ['npm', ['run', 'docs-dist']],
 ];
 
 async function pathExists(targetPath) {

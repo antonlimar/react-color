@@ -49,12 +49,6 @@ jobs:
       - name: Verify site metadata and interactions
         run: npm run site:verify
 
-      - name: Build docs
-        run: npm run docs-dist
-
-      - name: Build examples
-        run: npm run examples:check
-
       - name: Verify generated artifacts
         run: npm run ci:artifacts
 

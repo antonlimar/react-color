@@ -29,8 +29,7 @@
     "test:watch": "vitest -c vitest.config.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "examples:check": "node ./scripts/examples-check.mjs",
-    "eslint": "eslint src docs site scripts test .storybook vite.docs.config.ts vite.site.config.ts vitest.config.ts vitest.visual.config.ts eslint.config.mjs",
+    "eslint": "eslint src site scripts test .storybook vite.site.config.ts vitest.config.ts vitest.visual.config.ts eslint.config.mjs",
     "lib": "npm run clean-lib && tsc -p tsconfig.lib.json && node scripts/build-styles.mjs lib && node scripts/attach-picker-style-imports.mjs lib",
     "es": "npm run clean-es && tsc -p tsconfig.es.json && node scripts/rewrite-lodash-es-imports.mjs es && node scripts/build-styles.mjs es && node scripts/attach-picker-style-imports.mjs es",
     "clean-lib": "rm -rf lib && mkdir lib",
@@ -40,8 +39,6 @@
     "site:build": "vite build --config vite.site.config.ts",
     "site:preview": "vite preview --config vite.site.config.ts",
     "site:verify": "npm run test:site && npm run site:build && node ./scripts/verify-site-build.mjs",
-    "docs-server": "node ./scripts/docs-server.mjs",
-    "docs-dist": "node ./scripts/docs-dist.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o .out"
   },
@@ -85,8 +82,8 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@types/lodash": "^4.17.24",
-    "@types/markdown-it": "^14.1.2",
     "@types/material-colors": "^1.2.3",
+    "@types/prismjs": "^1.26.6",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/tinycolor2": "^1.4.6",
@@ -102,7 +99,6 @@
     "husky": "^9.1.7",
     "jsdom": "^29.0.2",
     "lint-staged": "^16.4.0",
-    "markdown-it": "^14.1.1",
     "playwright": "^1.59.1",
     "prettier": "^3.8.2",
     "prismjs": "^1.30.0",
@@ -119,16 +115,5 @@
     "lib",
     "es",
     "index.d.ts"
-  ],
-  "payload": {
-    "builds": [
-      {
-        "cmd": "npm run docs-dist",
-        "files": [
-          "docs/build/bundle.js",
-          "docs/index.tsx"
-        ]
-      }
-    ]
-  }
+  ]
 }

@@ -35,6 +35,20 @@ a {
   text-decoration: none;
 }
 
+button {
+  cursor: pointer;
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--site-accent);
+  outline-offset: 4px;
+}
+
 img,
 svg {
   display: block;

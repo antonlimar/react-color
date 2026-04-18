@@ -14,7 +14,7 @@ This tree is maintained as a modernization fork. Source layout, npm export names
 
 **Library compatibility baseline:** published `peerDependencies.react` is `>=16.8.0`, matching the modernization track minimum documented in `AGENTS.md`.
 
-**Local development baseline:** docs and Storybook continue to run on the newer root `devDependencies.react` / `react-dom`, because the docs app already uses `react-dom/client` and `createRoot`. Minimum React compatibility for the library itself is validated separately from the root dev environment.
+**Local development baseline:** the documentation site and Storybook run on the newer root `devDependencies.react` / `react-dom`. Minimum React compatibility for the library itself is validated separately from the root dev environment.
 
 **Compatibility notes:** the published API remains intentionally stable where practical, but repository internals have been modernized. In particular, runtime `propTypes` are no longer emitted, so JavaScript consumers should rely on docs and TypeScript typings rather than `prop-types` warnings during development.
 
@@ -22,7 +22,7 @@ This tree is maintained as a modernization fork. Source layout, npm export names
 
 ### Development workflow
 
-The modernization branch now uses a TypeScript-based dual emit for package builds, Vitest for tests, Storybook 10 for component work, and Vite for both the new GitHub Pages site and the legacy docs app.
+The modernization branch now uses a TypeScript-based dual emit for package builds, Vitest for tests, Storybook 10 for component work, and Vite for the GitHub Pages documentation site in `site/`.
 
 | Command                            | Purpose                                                                         |
 | ---------------------------------- | ------------------------------------------------------------------------------- |
@@ -31,15 +31,13 @@ The modernization branch now uses a TypeScript-based dual emit for package build
 | `npm run test:site`                | Run the dedicated site interaction tests for navigation and shared color state. |
 | `npm run test:esm-cjs-consumption` | Build the package and smoke-check CJS, Node ESM, and bundler consumption paths. |
 | `npm run test:watch`               | Start Vitest in watch mode.                                                     |
-| `npm run eslint`                   | Lint `src`, `docs`, `scripts`, `test`, and repo tooling sources with ESLint.    |
+| `npm run eslint`                   | Lint `src`, `site`, `scripts`, `test`, and repo tooling sources with ESLint.    |
 | `npm run storybook`                | Start Storybook on port `6006`.                                                 |
 | `npm run build-storybook`          | Emit the static Storybook site to `.out/`.                                      |
-| `npm run site:dev`                 | Start the new GitHub Pages site on `http://localhost:4173/`.                    |
-| `npm run site:build`               | Build the new GitHub Pages site into `site/dist/`.                              |
+| `npm run site:dev`                 | Start the GitHub Pages documentation site on `http://localhost:4173/`.          |
+| `npm run site:build`               | Build the GitHub Pages documentation site into `site/dist/`.                    |
 | `npm run site:verify`              | Run site interaction tests, build the Pages app, and verify metadata/output.    |
-| `npm run docs-server`              | Start the Vite-powered docs server on `http://localhost:9100/`.                 |
-| `npm run typecheck`                | Run the TypeScript check for `src`, `docs`, `scripts`, and `test`.              |
-| `npm run docs-dist`                | Build the docs bundle into `docs/build/`.                                       |
+| `npm run typecheck`                | Run the TypeScript check for `src`, `site`, `scripts`, and `test`.              |
 
 Published package artifacts currently expose `main` via `lib/index.js`, `module` via `es/index.js`, keep full `lib/` and `es/` trees for deep imports, and expose root typings via `index.d.ts`.
 
