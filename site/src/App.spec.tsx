@@ -98,6 +98,15 @@ describe('site app', () => {
     expect(transparentInlineCode.tagName).toBe('CODE');
   });
 
+  test('renders the original project reference as an external link', () => {
+    render(<App />);
+    const originalProjectLink = screen.getByRole('link', { name: 'casesandberg/react-color' });
+
+    expect(originalProjectLink).toHaveAttribute('href', 'https://github.com/casesandberg/react-color');
+    expect(originalProjectLink).toHaveAttribute('target', '_blank');
+    expect(screen.getAllByText(/actively maintained fork/i)).toHaveLength(2);
+  });
+
   test('adds picker-specific prop groups as nested navigation anchors', () => {
     const { container } = render(<App />);
     const sidebar = container.querySelector('.sections-layout__sidebar');

@@ -5,13 +5,14 @@ export const siteSections: readonly ContentSection[] = [
     id: 'about',
     order: 1,
     title: 'About',
-    intro: 'A compact summary of what react-color ships and why the package still matters.',
+    intro:
+      'An actively maintained fork and reincarnation of the popular [casesandberg/react-color](https://github.com/casesandberg/react-color) package, focused on the same familiar API with modern tooling, types, and styling hooks.',
     blocks: [
       {
         type: 'bullets',
         items: [
-          '13 Different Pickers - Sketch, Photoshop, Chrome and many more',
-          'Make Your Own - Use the building block components to make your own',
+          '13 picker components, including Sketch, Photoshop, Chrome, GitHub, Twitter, and more.',
+          'Shared primitives for building custom pickers when the bundled components are not enough.',
         ],
       },
     ],
@@ -20,13 +21,13 @@ export const siteSections: readonly ContentSection[] = [
     id: 'getting-started',
     order: 2,
     title: 'Getting Started',
-    intro: 'Installation and usage guidance from the current documentation, carried into a typed content layer.',
+    intro: 'Install the package, import a picker, and wire it to your React state.',
     blocks: [],
     subsections: [
       {
         id: 'install',
         title: 'Install',
-        intro: 'Start by installing react-color via npm.',
+        intro: 'Add react-color to your project with npm.',
         blocks: [
           {
             type: 'code',
@@ -35,7 +36,7 @@ export const siteSections: readonly ContentSection[] = [
           },
           {
             type: 'text',
-            text: 'Picker entrypoints now import their own published CSS automatically, so normal usage does not need any extra setup.',
+            text: 'Picker entrypoints import their own published CSS automatically, so normal usage does not need any extra setup.',
           },
           {
             type: 'code',
@@ -45,7 +46,7 @@ export const siteSections: readonly ContentSection[] = [
           },
           {
             type: 'text',
-            text: 'Published CSS entrypoints remain available when you want the full stylesheet up front or when you build custom pickers from the shared primitives.',
+            text: 'Published CSS entrypoints are also available when you want the full stylesheet up front or when you build custom pickers from shared primitives.',
           },
           {
             type: 'code',
@@ -456,18 +457,19 @@ export const siteSections: readonly ContentSection[] = [
       },
       {
         id: 'styling',
-        title: 'Styling Migration',
-        intro: 'The current docs emphasize the newer styling surface and keep legacy inline styles only as a bridge.',
+        title: 'Styling',
+        intro:
+          'Use themes, class hooks, and CSS variables for predictable customization without replacing picker internals.',
         blocks: [
           {
             type: 'bullets',
             items: [
-              'Picker entrypoints now import their own published CSS automatically.',
+              'Picker entrypoints import their own published CSS automatically.',
               'Use theme="light" | "dark" | "auto" to switch built-in token sets.',
               'Use className and classNames to attach custom classes to supported slots.',
               'Override CSS custom properties for token-level tweaks.',
               'Import published CSS entrypoints manually only when you need aggregate CSS or shared primitive styles.',
-              'Keep styles only for legacy inline compatibility when migrating existing code.',
+              'Prefer CSS variables and classes for new UI; use inline style props only as an escape hatch.',
             ],
           },
           {

@@ -47,7 +47,7 @@ function highlightCode(code: string, language: CodeBlock['language']) {
 }
 
 function renderInlineCode(text: string): ReactNode {
-  const segments = text.split(/(`[^`]+`)/g);
+  const segments = text.split(/(`[^`]+`|\[[^\]]+\]\(https?:\/\/[^)\s]+\))/g);
 
   if (segments.length === 1) {
     return text;
@@ -56,6 +56,18 @@ function renderInlineCode(text: string): ReactNode {
   return segments.map((segment, index) => {
     if (segment.startsWith('`') && segment.endsWith('`') && segment.length >= 2) {
       return <code key={`inline-code-${index}`}>{segment.slice(1, -1)}</code>;
+    }
+
+    const linkMatch = segment.match(/^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/);
+
+    if (linkMatch) {
+      const [, label, href] = linkMatch;
+
+      return (
+        <a href={href} key={`inline-link-${index}`} rel="noreferrer" target="_blank">
+          {label}
+        </a>
+      );
     }
 
     return <Fragment key={`inline-text-${index}`}>{segment}</Fragment>;
@@ -433,17 +445,17 @@ export default function App() {
               <span className="hero__brand-mark" aria-hidden="true" />
               <div className="hero__brand-copy">
                 <strong>react-color</strong>
-                <span>GitHub Pages site system</span>
+                <span>Modern React color pickers</span>
               </div>
             </div>
-            <span className="hero__status">Visual design system</span>
+            <span className="hero__status">Actively maintained fork</span>
           </div>
 
-          <p className="eyebrow">Phase 8 hero live pickers</p>
-          <h1>One shared color state, rendered through real pickers.</h1>
+          <p className="eyebrow">React color pickers</p>
+          <h1>Real pickers, one reliable color state.</h1>
           <p className="hero__lede">
-            The new site hero now behaves like a live control surface: change the color in any visible picker and the
-            whole composition updates in sync, from the section atmosphere to every other picker panel.
+            Drop in familiar picker components, control them from React state, and customize the look with published CSS
+            hooks.
           </p>
 
           <div className="hero__metrics" aria-label="Current shared color values">
@@ -451,22 +463,22 @@ export default function App() {
               <span className="hero__swatch" style={{ backgroundColor: rgbaLabel }} />
               <div>
                 <strong>{colorToHex(color)}</strong>
-                <span>Shared theme color</span>
+                <span>Current color</span>
               </div>
             </div>
             <div className="hero__metric">
               <strong>{rgbaLabel}</strong>
-              <span>Live RGBA state</span>
+              <span>RGBA value</span>
             </div>
             <div className="hero__metric">
               <strong>{heroPickerCards.length} synced demos</strong>
-              <span>Visible pickers</span>
+              <span>Interactive pickers</span>
             </div>
           </div>
 
           <div className="hero__actions">
             <a className="hero__button hero__button--primary" href="#about">
-              Explore the docs shell
+              Read the docs
             </a>
             <a className="hero__button" href="https://github.com/antonlimar/react-color">
               View repository
@@ -474,7 +486,7 @@ export default function App() {
           </div>
 
           <div className="hero__palette" aria-label="Current color family">
-            <span className="hero__palette-label">Adaptive palette rail</span>
+            <span className="hero__palette-label">Current color scale</span>
             <div className="hero__palette-track">
               {paletteStops.map((stop, index) => (
                 <span className="hero__palette-stop" key={`${stop}-${index}`} style={{ backgroundColor: stop }} />
@@ -486,8 +498,8 @@ export default function App() {
         <div className="hero__demo" aria-label="Synchronized live picker demo">
           <div className="hero__demo-head">
             <div>
-              <span className="hero__demo-label">Synchronized live pickers</span>
-              <p className="hero__demo-copy">Every visible panel reads and writes the same source of truth.</p>
+              <span className="hero__demo-label">Synchronized pickers</span>
+              <p className="hero__demo-copy">Each panel reads and writes the same React color value.</p>
             </div>
             <span className="hero__demo-value">{colorToHex(color)}</span>
           </div>
@@ -513,14 +525,14 @@ export default function App() {
       </header>
 
       <main className="sections-shell">
-        <section className="sections-shell__intro" aria-label="Site design system summary">
+        <section className="sections-shell__intro" aria-label="Documentation overview">
           <div className="sections-shell__intro-copy">
-            <p className="eyebrow">Site-only styling layer</p>
-            <h2>Typography, spacing, surfaces, and navigation now speak the same design language.</h2>
+            <p className="eyebrow">Documentation</p>
+            <h2>Install, configure, and customize the pickers without guesswork.</h2>
           </div>
           <div className="sections-shell__intro-card">
-            <strong>Isolated in `site/`</strong>
-            <span>Custom properties, layout rules, and decorative treatments live entirely in the site app.</span>
+            <strong>Stable public API</strong>
+            <span>Named picker exports, deep imports, and CSS entrypoints are documented below.</span>
           </div>
         </section>
 
