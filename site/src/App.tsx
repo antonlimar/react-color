@@ -1153,8 +1153,6 @@ function SiteHeader({ isGalleryPage }: { isGalleryPage: boolean }) {
           View repository
         </a>
       </nav>
-
-      <span className="site-header__status">Actively maintained fork</span>
     </header>
   );
 }

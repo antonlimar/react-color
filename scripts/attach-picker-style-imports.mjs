@@ -35,21 +35,6 @@ function getStylePrelude(targetDir, cssEntry) {
     return `${cssPaths.map((cssPath) => `import '${cssPath}';`).join('\n')}\n`;
   }
 
-  if (targetDir === 'lib') {
-    return `${cssPaths
-      .map((cssPath) =>
-        [
-          `try {`,
-          `    require('${cssPath}');`,
-          `}`,
-          `catch (_error) {`,
-          `    // Ignore CSS loading in plain Node environments without a bundler.`,
-          `}`,
-        ].join('\n'),
-      )
-      .join('\n')}\n\n`;
-  }
-
   throw new Error(`Unsupported target directory: ${targetDir}`);
 }
 
@@ -68,8 +53,8 @@ async function prependStylePrelude(targetDir, fileName, cssEntry) {
 async function main() {
   const targetDir = process.argv[2];
 
-  if (targetDir !== 'lib' && targetDir !== 'es') {
-    throw new Error('Usage: node scripts/attach-picker-style-imports.mjs <lib|es>');
+  if (targetDir !== 'es') {
+    throw new Error('Usage: node scripts/attach-picker-style-imports.mjs <es>');
   }
 
   await Promise.all(

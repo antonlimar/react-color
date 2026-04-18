@@ -1,2 +1,2 @@
-export * from './lib/index';
-export { default } from './lib/index';
+export * from './es/index';
+export { default } from './es/index';

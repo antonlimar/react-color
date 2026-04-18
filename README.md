@@ -10,7 +10,7 @@
 
 ## Fork development
 
-This tree is maintained as a modernization fork. Source layout, npm export names, and agent-oriented conventions are documented in [`AGENTS.md`](AGENTS.md). Roadmap (TypeScript, toolchain, tests): [`PLAN.md`](PLAN.md). Do not edit generated `lib/` or `es/` by hand—use the build scripts from `package.json`.
+This tree is maintained as a modernization fork. Source layout, npm export names, and agent-oriented conventions are documented in [`AGENTS.md`](AGENTS.md). Roadmap (TypeScript, toolchain, tests): [`PLAN.md`](PLAN.md). Do not edit generated `es/` by hand; use the build scripts from `package.json`.
 
 **Library compatibility baseline:** published `peerDependencies.react` is `>=16.8.0`, matching the modernization track minimum documented in `AGENTS.md`.
 
@@ -22,33 +22,32 @@ This tree is maintained as a modernization fork. Source layout, npm export names
 
 ### Development workflow
 
-The modernization branch now uses a TypeScript-based dual emit for package builds, Vitest for tests, Storybook 10 for component work, and Vite for the GitHub Pages documentation site in `site/`.
+The modernization branch now uses a TypeScript-based ESM emit for package builds, Vitest for tests, Storybook 10 for component work, and Vite for the GitHub Pages documentation site in `site/`.
 
-| Command                            | Purpose                                                                         |
-| ---------------------------------- | ------------------------------------------------------------------------------- |
-| `npm run build`                    | Build both published outputs: `lib/` (CJS) and `es/` (ESM).                     |
-| `npm test`                         | Run Vitest test suite and ESLint.                                               |
-| `npm run test:site`                | Run the dedicated site interaction tests for navigation and shared color state. |
-| `npm run test:esm-cjs-consumption` | Build the package and smoke-check CJS, Node ESM, and bundler consumption paths. |
-| `npm run test:watch`               | Start Vitest in watch mode.                                                     |
-| `npm run eslint`                   | Lint `src`, `site`, `scripts`, `test`, and repo tooling sources with ESLint.    |
-| `npm run storybook`                | Start Storybook on port `6006`.                                                 |
-| `npm run build-storybook`          | Emit the static Storybook site to `.out/`.                                      |
-| `npm run site:dev`                 | Start the GitHub Pages documentation site on `http://localhost:4173/`.          |
-| `npm run site:build`               | Build the GitHub Pages documentation site into `site/dist/`.                    |
-| `npm run site:verify`              | Run site interaction tests, build the Pages app, and verify metadata/output.    |
-| `npm run typecheck`                | Run the TypeScript check for `src`, `site`, `scripts`, and `test`.              |
+| Command                        | Purpose                                                                         |
+| ------------------------------ | ------------------------------------------------------------------------------- |
+| `npm run build`                | Build the published ESM output in `es/`.                                        |
+| `npm test`                     | Run Vitest test suite and ESLint.                                               |
+| `npm run test:site`            | Run the dedicated site interaction tests for navigation and shared color state. |
+| `npm run test:esm-consumption` | Build the package and smoke-check Node ESM and bundler consumption paths.       |
+| `npm run test:watch`           | Start Vitest in watch mode.                                                     |
+| `npm run eslint`               | Lint `src`, `site`, `scripts`, `test`, and repo tooling sources with ESLint.    |
+| `npm run storybook`            | Start Storybook on port `6006`.                                                 |
+| `npm run build-storybook`      | Emit the static Storybook site to `.out/`.                                      |
+| `npm run site:dev`             | Start the GitHub Pages documentation site on `http://localhost:4173/`.          |
+| `npm run site:build`           | Build the GitHub Pages documentation site into `site/dist/`.                    |
+| `npm run site:verify`          | Run site interaction tests, build the Pages app, and verify metadata/output.    |
+| `npm run typecheck`            | Run the TypeScript check for `src`, `site`, `scripts`, and `test`.              |
 
-Published package artifacts currently expose `main` via `lib/index.js`, `module` via `es/index.js`, keep full `lib/` and `es/` trees for deep imports, and expose root typings via `index.d.ts`.
+Published package artifacts are ESM-only. The package exposes `main` and `module` via `es/index.js`, keeps the full `es/` tree for deep imports, and exposes root typings via `index.d.ts`.
 
 ### Packaging interop notes
 
-The package still ships the upstream-style `main`/`module` contract and intentionally does not publish an `exports` map in this fork.
+The package ships an ESM-only `main`/`module` contract and an `exports` map for the root entry, documented `es/*` deep imports, and published CSS entrypoints.
 
-- Bundlers and TypeScript toolchains that honor `module` can use root default/named imports and extensionless deep imports such as `react-color/es/Sketch` or `react-color/lib/Hue`.
-- CommonJS consumers can keep using `require('react-color')` and `require('react-color/lib/...')`.
-- Native Node ESM resolves the package root through `main` (`lib/index.js`), so `import reactColor from 'react-color'` yields the CommonJS namespace object; access pickers from that object (`reactColor.default`, `reactColor.SketchPicker`) rather than relying on direct named imports.
-- Native Node ESM without bundler-style resolution does not guarantee extensionless deep imports from `react-color/lib/*` or `react-color/es/*` until the package adopts an explicit `exports` map, which is not part of the current packaging setup.
+- Bundlers and TypeScript toolchains can use root default/named imports and extensionless ESM deep imports such as `react-color/es/Sketch` or `react-color/es/Hue`.
+- Native Node ESM can resolve the root entry and documented `react-color/es/*` deep imports through the package `exports` map; plain Node execution still needs a CSS-aware loader because picker entrypoints import CSS side effects.
+- CommonJS `require('react-color')` and `require('react-color/lib/...')` are no longer supported.
 
 ## Demo
 
@@ -98,7 +97,7 @@ All public pickers keep accepting `className` on the root node and now also supp
 
 - Old approach: rely on default inline styles and override them with the `styles` prop.
 - New approach: import the published CSS, then customize with `className`, `classNames`, `theme`, and CSS custom properties.
-- Aggregate CSS (`react-color/es/styles/index.css` or `react-color/lib/styles/index.css`) is optional convenience only; consumers can keep bundle size tighter with granular picker-level imports.
+- Aggregate CSS (`react-color/es/styles/index.css`) is optional convenience only; consumers can keep bundle size tighter with granular picker-level imports.
 
 [license-image]: http://img.shields.io/npm/l/react-color.svg
 [license-url]: LICENSE

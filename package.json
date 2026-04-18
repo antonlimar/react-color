@@ -2,9 +2,33 @@
   "name": "react-color",
   "version": "2.19.3",
   "description": "A Collection of Color Pickers from Sketch, Photoshop, Chrome & more",
-  "main": "lib/index.js",
+  "type": "module",
+  "main": "es/index.js",
   "module": "es/index.js",
   "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./es/index.js",
+      "default": "./es/index.js"
+    },
+    "./es/components/common": {
+      "types": "./es/components/common/index.d.ts",
+      "import": "./es/components/common/index.js",
+      "default": "./es/components/common/index.js"
+    },
+    "./es/styles/*.css": "./es/styles/*.css",
+    "./es/*.js": {
+      "types": "./es/*.d.ts",
+      "import": "./es/*.js",
+      "default": "./es/*.js"
+    },
+    "./es/*": {
+      "types": "./es/*.d.ts",
+      "import": "./es/*.js",
+      "default": "./es/*.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/casesandberg/react-color.git"
@@ -15,13 +39,13 @@
     "url": "https://github.com/antonlimar/react-color/issues"
   },
   "scripts": {
-    "build": "npm run lib && npm run es",
+    "build": "npm run es",
     "ci:artifacts": "node ./scripts/verify-generated-artifacts.mjs",
     "test": "npm run test:unit && npm run eslint",
     "prepare": "husky",
     "typecheck": "tsc -p tsconfig.typecheck.json",
     "test:public-types": "npm run build && tsc -p tsconfig.public-types.json",
-    "test:esm-cjs-consumption": "npm run build && node ./scripts/esm-cjs-consumption-check.mjs",
+    "test:esm-consumption": "npm run build && node ./scripts/esm-consumption-check.mjs",
     "test:unit": "vitest run -c vitest.config.ts",
     "test:site": "vitest run -c vitest.config.ts site/src/App.spec.tsx",
     "test:visual": "vitest run -c vitest.visual.config.ts",
@@ -30,9 +54,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "eslint": "eslint src site scripts test .storybook vite.site.config.ts vitest.config.ts vitest.visual.config.ts eslint.config.mjs",
-    "lib": "npm run clean-lib && tsc -p tsconfig.lib.json && node scripts/build-styles.mjs lib && node scripts/attach-picker-style-imports.mjs lib",
-    "es": "npm run clean-es && tsc -p tsconfig.es.json && node scripts/rewrite-lodash-es-imports.mjs es && node scripts/build-styles.mjs es && node scripts/attach-picker-style-imports.mjs es",
-    "clean-lib": "rm -rf lib && mkdir lib",
+    "es": "npm run clean-es && tsc -p tsconfig.es.json && node scripts/rewrite-lodash-es-imports.mjs es && node scripts/build-styles.mjs es && node scripts/attach-picker-style-imports.mjs es && node scripts/rewrite-esm-import-specifiers.mjs es",
     "clean-es": "rm -rf es && mkdir es",
     "prepack": "npm run build",
     "site:dev": "vite --config vite.site.config.ts",
@@ -51,6 +73,7 @@
     "*.{json,md,mdx,html,css,scss,yml,yaml}": "prettier --check"
   },
   "sideEffects": [
+    "es/*.js",
     "**/*.css"
   ],
   "homepage": "https://antonlimar.github.io/react-color/",
@@ -114,7 +137,6 @@
     "vitest": "^4.1.4"
   },
   "files": [
-    "lib",
     "es",
     "index.d.ts"
   ]

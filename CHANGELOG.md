@@ -4,10 +4,11 @@
 
 ### Compatibility and migration notes
 
-- Published package compatibility remains drop-in for the upstream `react-color` entrypoints: `main`, `module`, root `index.d.ts`, and deep imports from `lib/` and `es/` are preserved.
+- Published package output is now ESM-only: `main` and `module` point at `es/index.js`, `lib/` CommonJS artifacts are no longer built or published, and `react-color/lib/*` deep imports are no longer supported.
+- The package now publishes an `exports` map for the root entry, documented `react-color/es/*` deep imports, and CSS entrypoints.
 - Library peer compatibility is now explicitly documented and enforced as `react >=16.8.0`.
 - Root development dependencies for the documentation site and Storybook intentionally stay on a newer React major than the package peer baseline. This is a repository-development constraint, not a published runtime requirement for consumers.
-- The styling system now publishes aggregate and granular CSS entrypoints in both `lib/styles` and `es/styles`; consumers should explicitly import either `react-color/es/styles/index.css` or only the picker/common CSS files they use.
+- The styling system now publishes aggregate and granular CSS entrypoints in `es/styles`; consumers should explicitly import either `react-color/es/styles/index.css` or only the picker/common CSS files they use.
 - `theme` and `classNames` are now the preferred public styling API, while `styles` remains available only as a deprecated compatibility layer for legacy inline overrides.
 
 ### User-visible DX changes

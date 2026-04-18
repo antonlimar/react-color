@@ -13,8 +13,7 @@
     "noImplicitAny": true,
     "paths": {
       "react-color": ["./index.d.ts"],
-      "react-color/es/*": ["./es/*"],
-      "react-color/lib/*": ["./lib/*"]
+      "react-color/es/*": ["./es/*"]
     },
     "skipLibCheck": true,
     "strictNullChecks": true,

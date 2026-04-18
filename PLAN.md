@@ -2,7 +2,7 @@
 
 ## Текущее состояние (кратко)
 
-- Сборка пакета уже переведена на **`tsc`** с пофайловым выводом в `lib/` (CJS) и `es/` (ESM), см. [`package.json`](package.json), [`tsconfig.lib.json`](tsconfig.lib.json), [`tsconfig.es.json`](tsconfig.es.json).
+- Сборка пакета уже переведена на **`tsc`** с пофайловым ESM-выводом в `es/`, см. [`package.json`](package.json) и [`tsconfig.es.json`](tsconfig.es.json).
 - Тестовый стек уже обновлён до **Vitest + Testing Library + jsdom**, линтинг работает через **ESLint flat config**, а сайт документации и Storybook переведены на современный пайплайн.
 - Код библиотеки, истории Storybook и тестовые файлы под [`src/`](src/) уже переведены на актуальные TypeScript-совместимые расширения.
 - Публичный barrel уже синхронизирован с текущим публичным API: default export и именованные экспорты идут из [`src/index.ts`](src/index.ts).
@@ -38,7 +38,7 @@ flowchart LR
    - Ограничения: peer `react`/`react-dom`, стиль стилизации (сейчас `reactcss` + inline — не менять весь подход в одном PR).
 
 2. **`.cursor/rules/`** — несколько узких правил (формат `.mdc` с frontmatter), по рекомендациям Cursor: одна тема — один файл, **&lt; ~50 строк** где возможно:
-   - `alwaysApply: true` — общий контекст проекта (форк, цель миграции, не трогать `lib/`/`es/` руками, только через сборку).
+   - `alwaysApply: true` — общий контекст проекта (форк, цель миграции, не трогать `es/` руками, только через сборку).
    - `globs: src/**/*.{ts,tsx}` — стандарты TypeScript (strict поэтапно, типы для публичных пропсов, `types` в package.json).
    - опционально `globs: **/*.spec.*` — тесты (переход на Testing Library вместо Enzyme).
 
@@ -61,14 +61,14 @@ flowchart LR
 
 **Ограничение:** избегать лишних breaking changes в структуре публикации пакета без осознанного решения и записи в CHANGELOG; изменения `main` / `module` / `files`, deep imports и формата сборочных артефактов рассматривать отдельно.
 
-| Область   | Направление                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Сборка    | Приоритет: **`tsc`** (два `tsconfig` для CJS/ESM), пофайловый выход как у Babel. **tsdown** — только если подтверждён режим без единого бандла на весь пакет и сохраняется дерево путей. **tsup** не использовать (не поддерживается; **tsdown** — преемник в экосистеме). Цель — убрать Babel 6 и ручные скрипты [`scripts/use-module-babelrc.js`](scripts/use-module-babelrc.js) / [`restore-original-babelrc.js`](scripts/restore-original-babelrc.js). |
-| Типы      | `typescript`, в [`package.json`](package.json) добавить поле **`types`**; поле **`exports`** — опционально и вводится только после отдельной оценки влияния на резолверы и deep imports.                                                                                                                                                                                                                                                                   |
-| Линт      | ESLint **flat config** + `@typescript-eslint` + `eslint-plugin-react-hooks`; удалить зависимость от `@case/eslint-config`, если она не поддерживается.                                                                                                                                                                                                                                                                                                     |
-| Тесты     | **Vitest** + **jsdom** + **@testing-library/react** (замена Enzyme 2 / старых утилит); тестовые файлы уже живут на TS-совместимых расширениях.                                                                                                                                                                                                                                                                                                             |
-| Storybook | Обновить до **10.x** (или актуальной LTS), переписать [`.storybook/config.js`](.storybook/config.js) под новый формат; истории уже переведены на `story.tsx`. После миграции вернуть `reactDocgen`, если он был временно отключён из-за legacy Babel-конфига.                                                                                                                                                                                              |
-| Доки      | Legacy `docs/` был заменён Vite-сайтом в [`site/`](site/); актуальные команды: `site:dev`, `site:build`, `site:verify`.                                                                                                                                                                                                                                                                                                                                      |
+| Область   | Направление                                                                                                                                                                                                                                                                                                                    |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Сборка    | Приоритет: **`tsc`** с пофайловым выходом как у Babel. Исторически фаза начиналась с dual emit, текущий контракт — ESM-only в `es/`. **tsdown** — только если подтверждён режим без единого бандла на весь пакет и сохраняется дерево путей. **tsup** не использовать (не поддерживается; **tsdown** — преемник в экосистеме). |
+| Типы      | `typescript`, в [`package.json`](package.json) добавить поле **`types`**; поле **`exports`** — опционально и вводится только после отдельной оценки влияния на резолверы и deep imports.                                                                                                                                       |
+| Линт      | ESLint **flat config** + `@typescript-eslint` + `eslint-plugin-react-hooks`; удалить зависимость от `@case/eslint-config`, если она не поддерживается.                                                                                                                                                                         |
+| Тесты     | **Vitest** + **jsdom** + **@testing-library/react** (замена Enzyme 2 / старых утилит); тестовые файлы уже живут на TS-совместимых расширениях.                                                                                                                                                                                 |
+| Storybook | Обновить до **10.x** (или актуальной LTS), переписать [`.storybook/config.js`](.storybook/config.js) под новый формат; истории уже переведены на `story.tsx`. После миграции вернуть `reactDocgen`, если он был временно отключён из-за legacy Babel-конфига.                                                                  |
+| Доки      | Legacy `docs/` был заменён Vite-сайтом в [`site/`](site/); актуальные команды: `site:dev`, `site:build`, `site:verify`.                                                                                                                                                                                                        |
 
 Статус: фаза по сути завершена. Дальше остаются только follow-up задачи по legacy dependencies и cleanup, а не незавершённый toolchain-блок.
 
@@ -119,11 +119,11 @@ flowchart LR
 Статус: завершена как отдельная волна runtime/DX follow-up после модернизационных фаз 2–5.
 
 - Цель фазы: закрыть наиболее ценные открытые боли upstream `casesandberg/react-color`, которые всё ещё могут быть актуальны для форка, без ненужных поломок публичного API пакета.
-- Реализованы и зафиксированы: CSP-safe градиенты, удаление `defaultProps` warnings, локализация runtime-иконок, iframe-safe drag behavior в `Saturation` и отдельная проверка ESM/CJS interop с документацией ожидаемого поведения без `exports` map.
-- Публичный контракт не меняется: сохраняются `main`, `module`, `files`, root `index.d.ts`, пофайловые `lib/` / `es/`, deep imports и текущие имена экспортов из [`src/index.ts`](src/index.ts).
+- Реализованы и зафиксированы: CSP-safe градиенты, удаление `defaultProps` warnings, локализация runtime-иконок, iframe-safe drag behavior в `Saturation` и текущая ESM-only consumption-проверка.
+- Публичный контракт текущей ветки ESM-only: сохраняются root `index.d.ts`, пофайловые `es/`, documented ESM deep imports и текущие имена экспортов из [`src/index.ts`](src/index.ts).
 - В scope фазы входили только non-breaking runtime и DX-улучшения; `exports` map, смена packaging contract, redesign theming/styling-системы и отдельный accessibility rewrite оставлены вне этой волны.
 
-Проверки и notes синхронизированы в [`README.md`](README.md) и [`package.json`](package.json), включая `npm run test:esm-cjs-consumption`.
+Проверки и notes синхронизированы в [`README.md`](README.md) и [`package.json`](package.json), включая `npm run test:esm-consumption`.
 
 Подробный план ведётся в [`plans/phase-6-upstream-issues-follow-up.md`](plans/phase-6-upstream-issues-follow-up.md).
 
@@ -171,7 +171,7 @@ flowchart LR
 
 - [x] Добавить AGENTS.md и `.cursor/rules/*.mdc` (контекст форка, структура, API, соглашения)
 - [x] Исправить невалидный экспорт в entrypoint-е пакета (Chrome default + ChromePicker)
-- [x] Заменить Babel 6 на пофайловую сборку через `tsc` (два `tsconfig` для `lib/` и `es/`); обновить package.json (`types`; `exports` — только после отдельной оценки совместимости)
+- [x] Заменить Babel 6 на пофайловую ESM-сборку через `tsc`; обновить package.json (`types`, `exports`)
 - [x] Ввести Vitest/Jest 29 + Testing Library + ESLint flat + typescript-eslint
 - [x] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
 - [x] Обновить Storybook и пайплайн docs (убрать Webpack 1); после удаления legacy Babel вернуть `reactDocgen`, если он был временно отключён

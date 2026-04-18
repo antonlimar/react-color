@@ -32,33 +32,19 @@ async function collectExpectedStyleArtifacts(directory = stylesSourceRoot) {
 }
 
 async function ensureBuildArtifacts() {
-  await access(path.join(repoRoot, 'lib', 'index.js'), constants.R_OK);
   await access(path.join(repoRoot, 'es', 'index.js'), constants.R_OK);
   const expectedCssArtifacts = await collectExpectedStyleArtifacts();
 
   for (const relativeCssPath of expectedCssArtifacts) {
-    await access(path.join(repoRoot, 'lib', 'styles', relativeCssPath), constants.R_OK);
     await access(path.join(repoRoot, 'es', 'styles', relativeCssPath), constants.R_OK);
   }
 
-  const [libChromeEntry, libHueEntry, esChromeEntry, esSketchEntry, esIndexEntry] = await Promise.all([
-    readFile(path.join(repoRoot, 'lib', 'Chrome.js'), 'utf8'),
-    readFile(path.join(repoRoot, 'lib', 'Hue.js'), 'utf8'),
+  const [esChromeEntry, esSketchEntry, esIndexEntry] = await Promise.all([
     readFile(path.join(repoRoot, 'es', 'Chrome.js'), 'utf8'),
     readFile(path.join(repoRoot, 'es', 'Sketch.js'), 'utf8'),
     readFile(path.join(repoRoot, 'es', 'index.js'), 'utf8'),
   ]);
 
-  assert.match(
-    libChromeEntry,
-    /require\('\.\/styles\/pickers\/chrome\.css'\)/u,
-    'lib/Chrome.js is missing the CommonJS style side effect.',
-  );
-  assert.match(
-    libHueEntry,
-    /require\('\.\/styles\/pickers\/hue\.css'\)/u,
-    'lib/Hue.js is missing the CommonJS style side effect.',
-  );
   assert.match(
     esChromeEntry,
     /import '\.\/styles\/pickers\/chrome\.css';/u,
@@ -71,8 +57,8 @@ async function ensureBuildArtifacts() {
   );
   assert.match(
     esIndexEntry,
-    /from '\.\/Chrome';/u,
-    'es/index.js is not re-exporting picker wrappers with style side effects.',
+    /from '\.\/Chrome\.js';/u,
+    'es/index.js is not re-exporting picker wrappers with Node-compatible ESM specifiers.',
   );
 }
 
@@ -145,12 +131,11 @@ async function runBundlerFixture(workspace) {
   await writeFixture(
     bundlerRoot,
     'main.ts',
-    `import ReactColorDefault, { SketchPicker } from 'react-color';
+    `import ReactColorDefault, { EditableInput, SketchPicker } from 'react-color';
 import SketchPickerEsm from 'react-color/es/Sketch';
-import HuePickerLib from 'react-color/lib/Hue';
-import { EditableInput as EditableInputLib } from 'react-color/lib/components/common';
+import HuePickerEsm from 'react-color/es/Hue';
 
-const consumedEntries = [ReactColorDefault, SketchPicker, SketchPickerEsm, HuePickerLib, EditableInputLib];
+const consumedEntries = [ReactColorDefault, SketchPicker, EditableInput, SketchPickerEsm, HuePickerEsm];
 
 if (consumedEntries.some((entry) => typeof entry !== 'function')) {
   throw new Error('Bundler consumption smoke imported a non-component export shape.');
@@ -192,81 +177,49 @@ async function main() {
   try {
     await writeFixture(
       workspace,
-      'consumer.cjs',
-      `const assert = require('node:assert/strict');
-const reactColor = require('react-color');
-const { SketchPicker } = reactColor;
-const HuePickerLib = require('react-color/lib/Hue').default;
-const EditableInputLib = require('react-color/lib/components/common').EditableInput;
+      'resolve-node-esm.mjs',
+      `import assert from 'node:assert/strict';
 
-assert.equal(typeof reactColor.default, 'function');
-assert.equal(typeof SketchPicker, 'function');
-assert.equal(typeof HuePickerLib, 'function');
-assert.equal(typeof EditableInputLib, 'function');
+assert.match(import.meta.resolve('react-color'), /\\/es\\/index\\.js$/);
+assert.match(import.meta.resolve('react-color/es/Sketch'), /\\/es\\/Sketch\\.js$/);
+assert.match(import.meta.resolve('react-color/es/Hue'), /\\/es\\/Hue\\.js$/);
+assert.match(import.meta.resolve('react-color/es/components/common'), /\\/es\\/components\\/common\\/index\\.js$/);
 `,
     );
 
     await writeFixture(
       workspace,
-      'consumer-node-esm.mjs',
-      `import assert from 'node:assert/strict';
-import reactColorCjsNamespace from 'react-color';
-
-assert.equal(typeof reactColorCjsNamespace.default, 'function');
-assert.equal(typeof reactColorCjsNamespace.SketchPicker, 'function');
+      'consumer.cjs',
+      `const reactColor = require('react-color');
+void reactColor;
 `,
     );
 
+    const nodeEsmResolveResult = await runNode(['resolve-node-esm.mjs'], workspace);
+    assert.equal(
+      nodeEsmResolveResult.code,
+      0,
+      `Native Node ESM export map resolution failed:\n${nodeEsmResolveResult.stderr}`,
+    );
+
     const cjsResult = await runNode(['consumer.cjs'], workspace);
-    assert.equal(cjsResult.code, 0, `CommonJS root/lib consumption failed:\n${cjsResult.stderr}`);
-
-    const nodeEsmResult = await runNode(['consumer-node-esm.mjs'], workspace);
-    assert.equal(nodeEsmResult.code, 0, `Native Node ESM root consumption failed:\n${nodeEsmResult.stderr}`);
-
-    const nodeEsmNamedResult = await runNode(
-      ['--input-type=module', '-e', `import { SketchPicker } from 'react-color'; void SketchPicker;`],
-      workspace,
-    );
-    assert.notEqual(nodeEsmNamedResult.code, 0, 'Native Node ESM named root import unexpectedly succeeded.');
+    assert.notEqual(cjsResult.code, 0, 'CommonJS require() unexpectedly consumed the ESM-only package.');
     assert.match(
-      nodeEsmNamedResult.stderr,
-      /Named export 'SketchPicker' not found/,
-      `Unexpected native Node ESM named-import failure:\n${nodeEsmNamedResult.stderr}`,
-    );
-
-    const nodeEsmDeepLibResult = await runNode(
-      ['--input-type=module', '-e', `import HuePickerLib from 'react-color/lib/Hue'; void HuePickerLib;`],
-      workspace,
-    );
-    assert.notEqual(nodeEsmDeepLibResult.code, 0, 'Native Node ESM lib deep import unexpectedly succeeded.');
-    assert.match(
-      nodeEsmDeepLibResult.stderr,
-      /ERR_MODULE_NOT_FOUND/,
-      `Unexpected native Node ESM lib deep-import failure:\n${nodeEsmDeepLibResult.stderr}`,
-    );
-
-    const nodeEsmDeepEsResult = await runNode(
-      ['--input-type=module', '-e', `import SketchPickerEsm from 'react-color/es/Sketch'; void SketchPickerEsm;`],
-      workspace,
-    );
-    assert.notEqual(nodeEsmDeepEsResult.code, 0, 'Native Node ESM es deep import unexpectedly succeeded.');
-    assert.match(
-      nodeEsmDeepEsResult.stderr,
-      /ERR_MODULE_NOT_FOUND/,
-      `Unexpected native Node ESM es deep-import failure:\n${nodeEsmDeepEsResult.stderr}`,
+      cjsResult.stderr,
+      /ERR_REQUIRE_ESM|require\(\) of ES Module|ERR_UNKNOWN_FILE_EXTENSION/u,
+      `Unexpected CommonJS require() failure:\n${cjsResult.stderr}`,
     );
 
     await runBundlerFixture(workspace);
 
     console.log(
       [
-        'esm-cjs-consumption-check passed:',
-        '- CommonJS require() consumed the root entry and lib/ deep imports.',
-        '- The published package layout exposes aggregate and granular CSS entrypoints for every built stylesheet in lib/styles and es/styles.',
-        '- Root and deep picker entrypoints now pull in their own published CSS automatically for bundlers.',
-        '- Native Node ESM consumed the root CommonJS entry via the default namespace object.',
-        '- Native Node ESM still rejects direct named root imports and extensionless lib/es deep imports without an exports map.',
-        '- Vite consumed root default/named imports and lib/es deep imports without any manual CSS imports.',
+        'esm-consumption-check passed:',
+        '- Native Node ESM resolved root and documented ESM deep imports through the exports map.',
+        '- CommonJS require() no longer consumes the package root.',
+        '- The published package layout exposes aggregate and granular CSS entrypoints for every built stylesheet in es/styles.',
+        '- Root and deep picker entrypoints pull in their own published CSS automatically for bundlers.',
+        '- Vite consumed root default/named imports and es deep imports without any manual CSS imports.',
       ].join('\n'),
     );
   } finally {

@@ -228,7 +228,7 @@ describe('site app', () => {
 
     expect(originalProjectLink).toHaveAttribute('href', 'https://github.com/casesandberg/react-color');
     expect(originalProjectLink).toHaveAttribute('target', '_blank');
-    expect(screen.getAllByText(/actively maintained fork/i)).toHaveLength(2);
+    expect(screen.getAllByText(/actively maintained fork/i)).toHaveLength(1);
   });
 
   test('renders the developer guides section with migration, TypeScript, styling, SSR, and accessibility notes', () => {
@@ -386,7 +386,7 @@ describe('site app', () => {
     expect(galleryCards).toHaveLength(14);
     expect(within(gallery).getByRole('heading', { name: 'Sketch' })).toBeInTheDocument();
     expect(within(gallery).getByText("import { SketchPicker } from 'react-color';")).toBeInTheDocument();
-    expect(within(gallery).getByText('react-color/lib/Sketch')).toBeInTheDocument();
+    expect(within(gallery).getByText('react-color/es/Sketch')).toBeInTheDocument();
     expect(within(gallery).getAllByRole('link', { name: 'API props' })).toHaveLength(14);
     expect(within(gallery).getAllByRole('link', { name: 'API props' })[0]).toHaveAttribute(
       'href',

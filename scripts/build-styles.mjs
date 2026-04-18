@@ -53,8 +53,8 @@ async function compileEntry(entryPath, targetDir) {
 async function main() {
   const targetDir = process.argv[2];
 
-  if (targetDir !== 'lib' && targetDir !== 'es') {
-    throw new Error('Usage: node scripts/build-styles.mjs <lib|es>');
+  if (targetDir !== 'es') {
+    throw new Error('Usage: node scripts/build-styles.mjs <es>');
   }
 
   const entries = await collectEntries();

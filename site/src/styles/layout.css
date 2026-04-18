@@ -194,7 +194,7 @@
 .hero::before {
   content: '';
   position: absolute;
-  top: -2rem;
+  top: -7rem;
   right: 50%;
   bottom: -5.5rem;
   left: 50%;
