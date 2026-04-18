@@ -34,6 +34,6 @@
   --site-hero-gap: clamp(2.5rem, 5vw, 5rem);
 
   --site-anchor-offset: 6rem;
-  --site-content-max: 78rem;
-  --site-reading-max: 48rem;
+  --site-content-max: 86rem;
+  --site-reading-max: 56rem;
 }

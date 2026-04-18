@@ -98,6 +98,37 @@ describe('site app', () => {
     expect(transparentInlineCode.tagName).toBe('CODE');
   });
 
+  test('adds picker-specific prop groups as nested navigation anchors', () => {
+    const { container } = render(<App />);
+    const sidebar = container.querySelector('.sections-layout__sidebar');
+    const pickerPropsLink = within(sidebar as HTMLElement).getByRole('link', { name: 'Picker-Specific Props' });
+    const pickerPropsItem = pickerPropsLink.closest('li');
+    const nestedList = pickerPropsItem?.querySelector('.section-nav__childlist');
+
+    expect(pickerPropsLink).toHaveAttribute('href', '#picker-specific-props');
+    expect(nestedList).toBeInstanceOf(HTMLElement);
+
+    const alphaLink = within(nestedList as HTMLElement).getByRole('link', { name: 'Alpha' });
+    const sketchLink = within(nestedList as HTMLElement).getByRole('link', { name: 'Sketch' });
+
+    expect(alphaLink).toHaveAttribute('href', '#picker-specific-props-alpha');
+    expect(sketchLink).toHaveAttribute('href', '#picker-specific-props-sketch');
+    expect(container.querySelector('#picker-specific-props-alpha h4')).toHaveTextContent('Alpha');
+    expect(container.querySelector('#picker-specific-props-sketch h4')).toHaveTextContent('Sketch');
+  });
+
+  test('accepts picker-specific prop group hashes as active anchors', () => {
+    window.location.hash = '#picker-specific-props-alpha';
+
+    const { container } = render(<App />);
+    const sidebar = container.querySelector('.sections-layout__sidebar');
+    const alphaLink = within(sidebar as HTMLElement).getByRole('link', { name: 'Alpha' });
+    const pickerPropsLink = within(sidebar as HTMLElement).getByRole('link', { name: 'Picker-Specific Props' });
+
+    expect(alphaLink).toHaveAttribute('aria-current', 'location');
+    expect(pickerPropsLink).toHaveClass('section-nav__sublink--active');
+  });
+
   test('closes the mobile drawer when resizing back to desktop widths', async () => {
     render(<App />);
     const drawerToggle = screen.getByRole('button', { name: /browse sections/i });

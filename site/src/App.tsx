@@ -11,7 +11,14 @@ import 'prismjs/components/prism-tsx';
 import { ChromePicker, CompactPicker, GithubPicker, SketchPicker } from 'react-color';
 import type { ColorResult, RGBAColor } from 'react-color';
 import { siteSections } from './content';
-import type { CodeBlock, ContentSection, ContentSubsection, SectionBlock } from './content';
+import type { CodeBlock, ContentSection, ContentSubsection, PropertyGroup, SectionBlock } from './content';
+
+interface NavSubsection extends ContentSubsection {
+  children: Array<{
+    id: string;
+    title: string;
+  }>;
+}
 
 function escapeHtml(code: string) {
   return code
@@ -128,12 +135,46 @@ function createNavItems(section: ContentSection) {
   return {
     id: section.id,
     title: section.title,
-    subsections: section.subsections ?? [],
+    subsections:
+      section.subsections?.map((subsection): NavSubsection => {
+        const children =
+          subsection.id === 'picker-specific-props'
+            ? (subsection.propertyGroups ?? []).map((group) => ({
+                id: createPropertyGroupAnchorId(subsection, group),
+                title: group.title,
+              }))
+            : [];
+
+        return {
+          ...subsection,
+          children,
+        };
+      }) ?? [],
   };
 }
 
-function isSubsectionActive(subsection: ContentSubsection, activeAnchorId: string) {
-  return subsection.id === activeAnchorId;
+function createPropertyGroupAnchorId(subsection: ContentSubsection, group: PropertyGroup) {
+  return `${subsection.id}-${group.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+}
+
+function getPropertyGroupAnchorId(subsection: ContentSubsection, group: PropertyGroup) {
+  return subsection.id === 'picker-specific-props' ? createPropertyGroupAnchorId(subsection, group) : undefined;
+}
+
+function getAnchorIds() {
+  return siteSections.flatMap((section) => [
+    section.id,
+    ...(section.subsections?.flatMap((subsection) => [
+      subsection.id,
+      ...(subsection.id === 'picker-specific-props'
+        ? (subsection.propertyGroups?.map((group) => createPropertyGroupAnchorId(subsection, group)) ?? [])
+        : []),
+    ]) ?? []),
+  ]);
+}
+
+function isSubsectionActive(subsection: NavSubsection, activeAnchorId: string) {
+  return subsection.id === activeAnchorId || subsection.children.some((child) => child.id === activeAnchorId);
 }
 
 function renderBlock(block: SectionBlock, index: number) {
@@ -171,11 +212,6 @@ function renderBlock(block: SectionBlock, index: number) {
 function renderSection(section: ContentSection) {
   return (
     <section className="section" id={section.id} key={section.id}>
-      <div className="section__index">
-        <span>{String(section.order).padStart(2, '0')}</span>
-        <span>{section.id.replace(/-/g, ' ')}</span>
-      </div>
-
       <div className="section__panel">
         <div className="section__body">
           <h2>{section.title}</h2>
@@ -191,7 +227,7 @@ function renderSection(section: ContentSection) {
               {subsection.blocks?.map(renderBlock)}
 
               {subsection.propertyGroups?.map((group) => (
-                <div className="api-group" key={group.title}>
+                <div className="api-group" id={getPropertyGroupAnchorId(subsection, group)} key={group.title}>
                   <div className="api-group__head">
                     <h4>{group.title}</h4>
                     {group.summary ? <p>{renderInlineCode(group.summary)}</p> : null}
@@ -236,7 +272,8 @@ function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void,
       <ul className="section-nav__list">
         {navSections.map((section) => {
           const isSectionActive =
-            activeAnchorId === section.id || section.subsections.some((subsection) => subsection.id === activeAnchorId);
+            activeAnchorId === section.id ||
+            section.subsections.some((subsection) => isSubsectionActive(subsection, activeAnchorId));
 
           return (
             <li className="section-nav__item" key={section.id}>
@@ -266,6 +303,24 @@ function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void,
                       >
                         {subsection.title}
                       </a>
+                      {subsection.children.length > 0 ? (
+                        <ul className="section-nav__childlist">
+                          {subsection.children.map((child) => (
+                            <li key={child.id}>
+                              <a
+                                className={`section-nav__childlink${
+                                  activeAnchorId === child.id ? ' section-nav__childlink--active' : ''
+                                }`}
+                                href={`#${child.id}`}
+                                aria-current={activeAnchorId === child.id ? 'location' : undefined}
+                                onClick={onNavigate}
+                              >
+                                {child.title}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
                     </li>
                   ))}
                 </ul>
@@ -288,10 +343,7 @@ export default function App() {
     }
 
     const hash = window.location.hash.replace('#', '');
-    const anchorIds = siteSections.flatMap((section) => [
-      section.id,
-      ...(section.subsections?.map((subsection) => subsection.id) ?? []),
-    ]);
+    const anchorIds = getAnchorIds();
 
     return hash && anchorIds.includes(hash) ? hash : defaultId;
   });
@@ -301,10 +353,7 @@ export default function App() {
   const paletteStops = createPaletteStops(color);
 
   useEffect(() => {
-    const anchorIds = siteSections.flatMap((section) => [
-      section.id,
-      ...(section.subsections?.map((subsection) => subsection.id) ?? []),
-    ]);
+    const anchorIds = getAnchorIds();
 
     if (typeof window === 'undefined') {
       return undefined;
