@@ -27,7 +27,7 @@ The modernization branch now uses a TypeScript-based ESM emit for package builds
 | Command                        | Purpose                                                                         |
 | ------------------------------ | ------------------------------------------------------------------------------- |
 | `npm run build`                | Build the published ESM output in `es/`.                                        |
-| `npm test`                     | Run Vitest test suite and ESLint.                                               |
+| `npm run test:unit`            | Run the unit/UI test suite through Vitest.                                      |
 | `npm run test:site`            | Run the dedicated site interaction tests for navigation and shared color state. |
 | `npm run test:esm-consumption` | Build the package and smoke-check Node ESM and bundler consumption paths.       |
 | `npm run test:watch`           | Start Vitest in watch mode.                                                     |

@@ -39,9 +39,8 @@
     "url": "https://github.com/antonlimar/react-color/issues"
   },
   "scripts": {
-    "build": "npm run es",
+    "build": "npm run clean-es && tsc -p tsconfig.es.json && node scripts/rewrite-lodash-es-imports.mjs es && node scripts/build-styles.mjs es && node scripts/attach-picker-style-imports.mjs es && node scripts/rewrite-esm-import-specifiers.mjs es",
     "ci:artifacts": "node ./scripts/verify-generated-artifacts.mjs",
-    "test": "npm run test:unit && npm run eslint",
     "prepare": "husky",
     "typecheck": "tsc -p tsconfig.typecheck.json",
     "test:public-types": "npm run build && tsc -p tsconfig.public-types.json",
@@ -54,7 +53,6 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "eslint": "eslint src site scripts test .storybook vite.site.config.ts vitest.config.ts vitest.visual.config.ts eslint.config.mjs",
-    "es": "npm run clean-es && tsc -p tsconfig.es.json && node scripts/rewrite-lodash-es-imports.mjs es && node scripts/build-styles.mjs es && node scripts/attach-picker-style-imports.mjs es && node scripts/rewrite-esm-import-specifiers.mjs es",
     "clean-es": "rm -rf es && mkdir es",
     "prepack": "npm run build",
     "site:dev": "vite --config vite.site.config.ts",
