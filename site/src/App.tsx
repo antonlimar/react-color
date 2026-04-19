@@ -1046,15 +1046,12 @@ function SearchNavigation({ id, query, results, inputRef, onQueryChange, onNavig
         Search documentation
       </label>
       <div className="docs-search__field">
-        <span className="docs-search__icon" aria-hidden="true">
-          /
-        </span>
         <input
           id={id}
           ref={inputRef}
           type="search"
           value={query}
-          placeholder="Search props, pickers, examples..."
+          placeholder="Search..."
           onChange={(event) => onQueryChange(event.currentTarget.value)}
         />
         {hasQuery ? (
@@ -1083,7 +1080,6 @@ function SearchNavigation({ id, query, results, inputRef, onQueryChange, onNavig
           ) : (
             <div className="docs-search__empty">
               <strong>No results found</strong>
-              <span>Try onChange, Sketch, or presetColors.</span>
             </div>
           )}
         </div>
@@ -1358,11 +1354,9 @@ function AppShell() {
           <div className="hero__backdrop hero__backdrop--right" aria-hidden="true" />
 
           <div className="hero__content">
-            <p className="eyebrow">React color pickers</p>
-            <h1>Real pickers, one reliable color state.</h1>
+            <h1>React Color</h1>
             <p className="hero__lede">
-              Drop in familiar picker components, control them from React state, and customize the look with published
-              CSS hooks.
+              A Collection of Color Pickers from Sketch, Photoshop, Chrome, Github, Twitter, Material Design & more
             </p>
 
             <div className="hero__metrics" aria-label="Current shared color values">
@@ -1376,10 +1370,6 @@ function AppShell() {
               <div className="hero__metric">
                 <strong>{rgbaLabel}</strong>
                 <span>RGBA value</span>
-              </div>
-              <div className="hero__metric">
-                <strong>{heroPickerCards.length} synced demos</strong>
-                <span>Interactive pickers</span>
               </div>
             </div>
 
@@ -1397,7 +1387,7 @@ function AppShell() {
             <div className="hero__demo-head">
               <div>
                 <span className="hero__demo-label">Synchronized pickers</span>
-                <p className="hero__demo-copy">Each panel reads and writes the same React color value.</p>
+                <p className="hero__demo-copy">Each panel reads and writes the same color value.</p>
               </div>
               <span className="hero__demo-value">{colorToHex(color)}</span>
             </div>
@@ -1428,20 +1418,6 @@ function AppShell() {
           <PickerGalleryPage />
         ) : (
           <>
-            <section className="sections-shell__intro" aria-label="Documentation overview">
-              <div className="sections-shell__intro-copy">
-                <p className="eyebrow">Documentation</p>
-                <h2>Install, configure, and customize the pickers without guesswork.</h2>
-              </div>
-              <div className="sections-shell__intro-card">
-                <strong>Stable public API</strong>
-                <span>Named picker exports, deep imports, and CSS entrypoints are documented below.</span>
-                <Link className="sections-shell__intro-link" to={galleryPagePath}>
-                  Open Picker Gallery
-                </Link>
-              </div>
-            </section>
-
             <div className="sections-shell__toolbar">
               <button
                 className="sections-shell__drawer-toggle"

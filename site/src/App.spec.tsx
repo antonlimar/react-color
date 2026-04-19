@@ -149,7 +149,7 @@ describe('site app', () => {
 
     await waitFor(() => {
       expect(writeText).toHaveBeenCalledWith(
-        'import { SketchPicker } from \'react-color\';\n\nexport function Example(): JSX.Element {\n  return <SketchPicker theme="auto" />;\n}\n',
+        'import { SketchPicker } from \'react-color\';\n\nexport function Example() {\n  return <SketchPicker theme="auto" />;\n}\n',
       );
       expect(copyButton).toHaveTextContent('Copied');
       expect(within(codeFigure).getByText('Code copied to clipboard.')).toHaveAttribute('aria-live', 'polite');
