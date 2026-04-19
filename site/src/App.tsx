@@ -829,31 +829,13 @@ function PickerGallery() {
   );
 }
 
-function ApiPropertyName({
-  subsection,
-  group,
-  property,
-}: {
-  subsection: ContentSubsection;
-  group: PropertyGroup;
-  property: ApiProperty;
-}) {
-  const propertyAnchorId = getPropertyAnchorId(subsection, group, property);
-
-  if (!propertyAnchorId) {
-    return <>{renderInlineCode(property.name)}</>;
-  }
-
-  return (
-    <a className="api-property-anchor" href={`#${propertyAnchorId}`}>
-      <code>{property.name}</code>
-    </a>
-  );
+function ApiPropertyName({ property }: { property: ApiProperty }) {
+  return <>{renderInlineCode(property.name)}</>;
 }
 
 function ApiPropertyCards({ group, subsection }: { group: PropertyGroup; subsection: ContentSubsection }) {
   if (group.properties.length === 0) {
-    return <p className="api-empty">No picker-specific props.</p>;
+    return null;
   }
 
   return (
@@ -863,7 +845,7 @@ function ApiPropertyCards({ group, subsection }: { group: PropertyGroup; subsect
           <div>
             <span>Prop</span>
             <strong>
-              <ApiPropertyName group={group} property={property} subsection={subsection} />
+              <ApiPropertyName property={property} />
             </strong>
           </div>
           <div>
@@ -908,32 +890,34 @@ function renderSection(section: ContentSection, options: RenderBlockOptions) {
                     {group.summary ? <p>{renderInlineCode(group.summary)}</p> : null}
                   </div>
 
-                  <table className="api-table">
-                    <thead>
-                      <tr>
-                        <th>Prop</th>
-                        <th>Type</th>
-                        <th>Default</th>
-                        <th>Description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {group.properties.map((property) => (
-                        <tr key={`${group.title}-${property.name}`}>
-                          <th scope="row">
-                            <ApiPropertyName group={group} property={property} subsection={subsection} />
-                          </th>
-                          <td>
-                            <code className="api-type">{property.type}</code>
-                          </td>
-                          <td>
-                            <ApiDefaultValue value={property.defaultValue} />
-                          </td>
-                          <td>{renderInlineCode(property.description)}</td>
+                  {group.properties.length > 0 ? (
+                    <table className="api-table">
+                      <thead>
+                        <tr>
+                          <th>Prop</th>
+                          <th>Type</th>
+                          <th>Default</th>
+                          <th>Description</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {group.properties.map((property) => (
+                          <tr key={`${group.title}-${property.name}`}>
+                            <th scope="row">
+                              <ApiPropertyName property={property} />
+                            </th>
+                            <td>
+                              <code className="api-type">{property.type}</code>
+                            </td>
+                            <td>
+                              <ApiDefaultValue value={property.defaultValue} />
+                            </td>
+                            <td>{renderInlineCode(property.description)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  ) : null}
                   <ApiPropertyCards group={group} subsection={subsection} />
                 </div>
               ))}

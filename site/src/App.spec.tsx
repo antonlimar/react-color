@@ -395,14 +395,12 @@ describe('site app', () => {
     expect(container.querySelector('#picker-specific-props-material')).not.toBeInTheDocument();
   });
 
-  test('adds prop-level anchors and collapses long default values', () => {
+  test('keeps prop names as text and collapses long default values', () => {
     const { container } = render(<App />);
-    const presetColorsAnchor = container.querySelector('#picker-specific-props-sketch-presetcolors');
+    const presetColorsLink = screen.queryByRole('link', { name: 'presetColors' });
 
-    expect(presetColorsAnchor).toBeInstanceOf(HTMLElement);
-
-    const presetColorsLink = screen.getAllByRole('link', { name: 'presetColors' })[0];
-    expect(presetColorsLink).toHaveAttribute('href', '#picker-specific-props-sketch-presetcolors');
+    expect(presetColorsLink).not.toBeInTheDocument();
+    expect(screen.getAllByText('presetColors').length).toBeGreaterThan(0);
 
     const sketchGroup = container.querySelector('#picker-specific-props-sketch') as HTMLElement;
     const defaultToggle = within(sketchGroup).getAllByRole('button', { name: 'Show default' })[0];
@@ -427,5 +425,13 @@ describe('site app', () => {
     expect(within(propCards[0] as HTMLElement).getByText('Type')).toBeInTheDocument();
     expect(within(propCards[0] as HTMLElement).getByText('Default')).toBeInTheDocument();
     expect(within(propCards[0] as HTMLElement).getByText('Description')).toBeInTheDocument();
+  });
+
+  test('does not render an API table for empty property groups', () => {
+    const { container } = render(<App />);
+    const materialGroup = container.querySelector('#picker-specific-props-material') as HTMLElement;
+
+    expect(materialGroup).toBeInTheDocument();
+    expect(materialGroup.querySelector('.api-table')).not.toBeInTheDocument();
   });
 });

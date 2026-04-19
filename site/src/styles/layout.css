@@ -1500,6 +1500,7 @@
 
 .api-table {
   width: 100%;
+  margin-bottom: 0.75rem;
   border-collapse: separate;
   border-spacing: 0;
   border: 1px solid rgba(16, 32, 58, 0.16);
@@ -1556,12 +1557,7 @@
   scroll-margin-top: var(--site-anchor-offset);
 }
 
-.api-property-anchor {
-  display: inline-flex;
-  max-width: 100%;
-}
-
-.api-table .api-property-anchor code,
+.api-table tbody th code,
 .api-table .api-type,
 .api-table .api-default,
 .api-prop-card code,
@@ -1605,12 +1601,6 @@
 
 .api-prop-cards {
   display: none;
-}
-
-.api-empty {
-  margin: 0;
-  color: rgba(16, 32, 58, 0.62);
-  font-size: 0.9rem;
 }
 
 .sections-shell__drawer {
