@@ -1570,6 +1570,15 @@
   font-family: var(--site-font-mono);
 }
 
+.api-table .api-type,
+.api-table code.api-default,
+.api-table .api-default__value {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
 .api-default--empty {
   color: rgba(16, 32, 58, 0.46);
   font-family: var(--site-font-sans);

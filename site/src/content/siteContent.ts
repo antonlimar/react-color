@@ -669,7 +669,7 @@ export const siteSections: readonly ContentSection[] = [
             type: 'code',
             language: 'tsx',
             label: 'Typing classNames and event handlers',
-            code: "import { GithubPicker } from 'react-color';\n\ninterface PickerClasses {\n  root?: string;\n  body?: string;\n  swatch?: string;\n}\n\nexport function Example({ classNames }: { classNames?: PickerClasses }) {\n  const handleSwatchHover = (color: string, event: React.MouseEvent<HTMLDivElement>) => {\n    console.log(color, event.currentTarget);\n  };\n\n  return <GithubPicker classNames={classNames} onSwatchHover={handleSwatchHover} />;\n}\n",
+            code: "import { GithubPicker } from 'react-color';\n\ninterface PickerClasses {\n  root?: string;\n  body?: string;\n  swatch?: string;\n}\n\nexport function Example({ classNames }: { classNames?: PickerClasses }) {\n  const handleSwatchHover = (color: string, event: MouseEvent<HTMLDivElement>) => {\n    console.log(color, event.currentTarget);\n  };\n\n  return <GithubPicker classNames={classNames} onSwatchHover={handleSwatchHover} />;\n}\n",
           },
           {
             type: 'code',

@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactElement, ElementType, ReactNode, createElement } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import type { RenderResult } from '@testing-library/react';
 import { expect, vi } from 'vitest';
@@ -11,7 +11,7 @@ type ValidColorChecker = {
   simpleCheckForValidColor: (data: unknown) => boolean;
 };
 
-export function renderForSnapshot(element: React.ReactElement): SnapshotRenderResult {
+export function renderForSnapshot(element: ReactElement): SnapshotRenderResult {
   const view = render(element);
 
   return {
@@ -23,11 +23,11 @@ export function renderForSnapshot(element: React.ReactElement): SnapshotRenderRe
 }
 
 export function renderComponent(
-  Component: React.ElementType,
+  Component: ElementType,
   props?: Record<string, unknown> | null,
-  ...children: React.ReactNode[]
+  ...children: ReactNode[]
 ): SnapshotRenderResult {
-  return renderForSnapshot(React.createElement(Component, props, ...children));
+  return renderForSnapshot(createElement(Component, props, ...children));
 }
 
 export function createColorChangeSpy(color: ValidColorChecker) {
