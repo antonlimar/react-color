@@ -510,13 +510,33 @@ describe('site app', () => {
     expect(galleryCards).toHaveLength(14);
     expect(within(gallery).getByRole('heading', { name: 'Sketch' })).toBeInTheDocument();
     expect(within(gallery).getByText("import { SketchPicker } from 'react-color';")).toBeInTheDocument();
-    expect(within(gallery).getByText('react-color/es/Sketch')).toBeInTheDocument();
+    expect(within(gallery).queryByText(/react-color\/es\//)).not.toBeInTheDocument();
     expect(within(gallery).getAllByRole('link', { name: 'API props' })).toHaveLength(14);
     expect(within(gallery).getAllByRole('link', { name: 'API props' })[0]).toHaveAttribute(
       'href',
       '/#picker-specific-props-alpha',
     );
     expect(container.querySelector('#picker-specific-props-material')).not.toBeInTheDocument();
+  });
+
+  test('keeps gallery picker changes synchronized with the page background', async () => {
+    window.history.replaceState(null, '', '/gallery');
+
+    const { container } = render(<App />);
+
+    const siteShell = await waitFor(() => {
+      const element = container.querySelector('.site-shell') as HTMLElement | null;
+      expect(element).toBeInstanceOf(HTMLElement);
+      return element as HTMLElement;
+    });
+    const githubSwatch = container.querySelector('#picker-github [tabindex="0"]');
+
+    expect(githubSwatch).toBeInstanceOf(HTMLElement);
+    expect(siteShell).toHaveStyle('--site-accent: rgba(61, 145, 255, 1)');
+
+    fireEvent.click(githubSwatch as HTMLElement);
+
+    expect(siteShell.getAttribute('style')).not.toContain('rgba(61, 145, 255, 1)');
   });
 
   test('keeps prop names as text and collapses long default values', () => {

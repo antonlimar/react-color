@@ -272,8 +272,7 @@ const pickerGalleryPreviewProps: Record<string, ColorPickerProps> = {
 const pickerGalleryIntro =
   'Compare every public picker export, copy the import shape, and jump straight to the props that make each component different.';
 
-const pickerGalleryNote =
-  'Each picker keeps the same top-level package import and also documents the compatible deep import path for existing integrations.';
+const pickerGalleryNote = 'Each picker keeps the same top-level package import for current integrations.';
 
 function formatBackground(color: RGBAColor) {
   const alpha = color.a ?? 1;
@@ -804,12 +803,14 @@ function LivePickerPreview({
   );
 }
 
-function PickerGallery() {
-  const [galleryColor, setGalleryColor] = useState<RGBAColor>(initialColor);
-  const handleGalleryColorChange = useCallback((nextColor: ColorResult) => {
-    setGalleryColor(nextColor.rgb);
-  }, []);
-  const galleryColorLabel = colorToHex(galleryColor);
+function PickerGallery({ color, onChange }: { color: RGBAColor; onChange: (color: ColorResult) => void }) {
+  const handleGalleryColorChange = useCallback(
+    (nextColor: ColorResult) => {
+      onChange(nextColor);
+    },
+    [onChange],
+  );
+  const galleryColorLabel = colorToHex(color);
 
   return (
     <div className="picker-gallery" aria-label="Public picker components">
@@ -818,7 +819,7 @@ function PickerGallery() {
 
         return (
           <article className="picker-gallery__item" id={`picker-${picker.id}`} key={picker.id}>
-            <LivePickerPreview picker={picker} color={galleryColor} onChange={handleGalleryColorChange} />
+            <LivePickerPreview picker={picker} color={color} onChange={handleGalleryColorChange} />
             <div className="picker-gallery__content">
               <div className="picker-gallery__head">
                 <h3>{picker.title}</h3>
@@ -835,7 +836,6 @@ function PickerGallery() {
               </div>
               <div className="picker-gallery__imports">
                 <code>{importSnippet}</code>
-                <code>{picker.deepImport}</code>
               </div>
               <Link className="picker-gallery__api-link" to="/" hash={picker.apiAnchor}>
                 API props
@@ -1415,7 +1415,7 @@ function SearchNavigation({ id, query, results, inputRef, onQueryChange, onNavig
   );
 }
 
-function PickerGalleryPage() {
+function PickerGalleryPage({ color, onChange }: { color: RGBAColor; onChange: (color: ColorResult) => void }) {
   return (
     <div className="gallery-page">
       <nav className="page-breadcrumbs" aria-label="Page navigation">
@@ -1440,7 +1440,7 @@ function PickerGalleryPage() {
         </div>
       </section>
 
-      <PickerGallery />
+      <PickerGallery color={color} onChange={onChange} />
     </div>
   );
 }
@@ -1521,6 +1521,9 @@ function AppShell() {
   }, []);
   const handleSearchQueryChange = useCallback((query: string) => {
     setSearchQuery(query);
+  }, []);
+  const handleColorChange = useCallback((nextColor: ColorResult) => {
+    setColor(nextColor.rgb);
   }, []);
 
   useEffect(() => {
@@ -1813,7 +1816,7 @@ function AppShell() {
                     </div>
 
                     <div className="hero__picker-surface">
-                      <PickerComponent color={color} onChange={(nextColor: ColorResult) => setColor(nextColor.rgb)} />
+                      <PickerComponent color={color} onChange={handleColorChange} />
                     </div>
                   </article>
                 ))}
@@ -1825,7 +1828,7 @@ function AppShell() {
 
       <main className={`sections-shell${isGalleryPage ? ' sections-shell--gallery-page' : ''}`} id="site-documentation">
         {isGalleryPage ? (
-          <PickerGalleryPage />
+          <PickerGalleryPage color={color} onChange={handleColorChange} />
         ) : (
           <>
             <div className="sections-shell__toolbar">

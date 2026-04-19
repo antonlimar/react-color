@@ -1434,7 +1434,6 @@
 }
 
 .sections-shell--gallery-page {
-  max-width: 1180px;
   padding-top: clamp(1.5rem, 4vw, 2.5rem);
 }
 
@@ -1602,7 +1601,6 @@
 }
 
 .picker-gallery__preview--photoshop {
-  justify-content: flex-start;
   min-height: 22.25rem;
 }
 
