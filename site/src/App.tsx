@@ -907,17 +907,6 @@ function renderSection(section: ContentSection, options: RenderBlockOptions) {
                     <h4>{group.title}</h4>
                     {group.summary ? <p>{renderInlineCode(group.summary)}</p> : null}
                   </div>
-                  {group.properties.map((property) => {
-                    const propertyAnchorId = getPropertyAnchorId(subsection, group, property);
-
-                    return propertyAnchorId ? (
-                      <span
-                        className="api-property-target"
-                        id={propertyAnchorId}
-                        key={`${group.title}-${property.name}-target`}
-                      />
-                    ) : null;
-                  })}
 
                   <table className="api-table">
                     <thead>
