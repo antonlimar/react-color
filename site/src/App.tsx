@@ -1647,20 +1647,6 @@ function AppShell() {
               </div>
             </div>
           </header>
-
-          <section className="project-thanks" aria-labelledby="project-thanks-title">
-            <div className="project-thanks__inner">
-              <span className="project-thanks__eyebrow">Acknowledgement</span>
-              <h2 id="project-thanks-title">Thank you, casesandberg</h2>
-              <p>
-                This modernization fork stands on the years of work behind the original{' '}
-                <a href="https://github.com/casesandberg/react-color" target="_blank" rel="noreferrer">
-                  casesandberg/react-color
-                </a>{' '}
-                project. Its API, picker set, and community adoption made this continuation possible.
-              </p>
-            </div>
-          </section>
         </>
       )}
 

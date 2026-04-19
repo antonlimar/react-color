@@ -237,12 +237,19 @@ describe('site app', () => {
     expect(screen.getAllByText(/actively maintained fork/i)).toHaveLength(1);
   });
 
-  test('renders a homepage acknowledgement for casesandberg', () => {
-    render(<App />);
+  test('renders an acknowledgement section after Create Your Own and in navigation', () => {
+    const { container } = render(<App />);
+    const sidebar = container.querySelector('.sections-layout__sidebar') as HTMLElement;
+    const createYourOwn = container.querySelector('#create-your-own') as HTMLElement;
+    const acknowledgement = container.querySelector('#acknowledgement') as HTMLElement;
 
-    expect(screen.getByRole('heading', { name: 'Thank you, casesandberg' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Acknowledgement' })).toBeInTheDocument();
+    expect(within(sidebar).getByRole('link', { name: /Acknowledgement/ })).toHaveAttribute('href', '#acknowledgement');
     expect(screen.getAllByRole('link', { name: 'casesandberg/react-color' })).toHaveLength(2);
     expect(screen.getByText(/made this continuation possible/i)).toBeInTheDocument();
+    expect(createYourOwn.compareDocumentPosition(acknowledgement) & Node.DOCUMENT_POSITION_FOLLOWING).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    );
   });
 
   test('renders the developer guides section with migration, TypeScript, styling, SSR, and accessibility notes', () => {

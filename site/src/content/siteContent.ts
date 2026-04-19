@@ -840,4 +840,20 @@ export const siteSections: readonly ContentSection[] = [
       },
     ],
   },
+  {
+    id: 'acknowledgement',
+    order: 6,
+    title: 'Acknowledgement',
+    intro:
+      'This modernization fork stands on the years of work behind the original [casesandberg/react-color](https://github.com/casesandberg/react-color) project, whose API, picker set, and community adoption made this continuation possible.',
+    blocks: [
+      {
+        type: 'bullets',
+        items: [
+          'Thank you to casesandberg for the original package and the familiar picker experience that people still rely on.',
+          'This fork keeps that foundation intact while modernizing the tooling and documentation around it.',
+        ],
+      },
+    ],
+  },
 ] as const;
