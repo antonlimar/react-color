@@ -1,5 +1,7 @@
 .site-shell {
   --site-accent: rgba(61, 145, 255, 1);
+  --site-accent-page: rgba(61, 145, 255, 0.18);
+  --site-accent-floor: rgba(61, 145, 255, 0.42);
   --site-accent-soft: rgba(61, 145, 255, 0.24);
   --site-accent-wash: rgba(61, 145, 255, 0.1);
   position: relative;
@@ -9,7 +11,13 @@
     radial-gradient(circle at 50% 18%, var(--site-accent-wash), transparent 34%),
     radial-gradient(circle at 12% 18%, var(--site-accent-soft), transparent 28%),
     radial-gradient(circle at 88% 12%, rgba(255, 255, 255, 0.95), transparent 32%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(245, 247, 252, 0.96));
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.88) 0%,
+      rgba(255, 255, 255, 0.66) 42%,
+      rgba(255, 255, 255, 0.48) 100%
+    ),
+    linear-gradient(180deg, var(--site-accent-wash) 0%, var(--site-accent-page) 48%, var(--site-accent-floor) 100%);
   overflow: clip;
 }
 

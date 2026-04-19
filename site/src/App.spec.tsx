@@ -44,6 +44,8 @@ describe('site app', () => {
     const heroDemoValue = container.querySelector('.hero__demo-value');
 
     expect(siteShell).toHaveStyle('--site-accent: rgba(61, 145, 255, 1)');
+    expect(siteShell).toHaveStyle('--site-accent-page: rgba(61, 145, 255, 0.18)');
+    expect(siteShell).toHaveStyle('--site-accent-floor: rgba(61, 145, 255, 0.42)');
     expect(githubSwatch).toBeInstanceOf(HTMLElement);
     expect(heroDemoValue).toHaveTextContent('#3D91FF');
 
@@ -51,6 +53,8 @@ describe('site app', () => {
 
     expect(heroDemoValue).not.toHaveTextContent('#3D91FF');
     expect(siteShell?.getAttribute('style')).not.toContain('rgba(61, 145, 255, 1)');
+    expect(siteShell?.getAttribute('style')).not.toContain('rgba(61, 145, 255, 0.18)');
+    expect(siteShell?.getAttribute('style')).not.toContain('rgba(61, 145, 255, 0.42)');
   });
 
   test('updates active anchors from the hash and closes the mobile drawer on navigation', async () => {

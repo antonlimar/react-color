@@ -276,11 +276,15 @@ const pickerGalleryNote =
 function formatBackground(color: RGBAColor) {
   const alpha = color.a ?? 1;
   const glowAlpha = Math.max(alpha * 0.32, 0.18);
+  const pageAlpha = Math.max(alpha * 0.18, 0.12);
+  const floorAlpha = Math.max(alpha * 0.42, 0.28);
   const washAlpha = Math.max(alpha * 0.12, 0.08);
 
   return {
     '--site-accent': `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`,
     '--site-accent-soft': `rgba(${color.r}, ${color.g}, ${color.b}, ${glowAlpha})`,
+    '--site-accent-page': `rgba(${color.r}, ${color.g}, ${color.b}, ${pageAlpha})`,
+    '--site-accent-floor': `rgba(${color.r}, ${color.g}, ${color.b}, ${floorAlpha})`,
     '--site-accent-wash': `rgba(${color.r}, ${color.g}, ${color.b}, ${washAlpha})`,
   } as CSSProperties;
 }
