@@ -525,6 +525,28 @@ describe('site app', () => {
     expect(container.querySelector('#picker-specific-props-material')).not.toBeInTheDocument();
   });
 
+  test('renders a dedicated not found page for unknown routes', async () => {
+    window.history.replaceState(null, '', '/missing-picker');
+
+    const { container } = render(<App />);
+
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { name: 'This color is outside the palette.' })).toBeInTheDocument();
+    });
+
+    const primaryNav = screen.getByRole('navigation', { name: /primary navigation/i });
+
+    expect(screen.getByText('404 / Page not found')).toBeInTheDocument();
+    expect(container.querySelector('.hero')).not.toBeInTheDocument();
+    expect(container.querySelector('.sections-layout')).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /skip to 404 message/i })).toHaveAttribute('href', '#site-not-found');
+    expect(within(primaryNav).getByRole('link', { name: 'Read the docs' })).not.toHaveAttribute('aria-current', 'page');
+    expect(
+      screen.getAllByRole('link', { name: 'Read the docs' }).some((link) => link.getAttribute('href') === '/'),
+    ).toBe(true);
+    expect(screen.getByRole('link', { name: 'Open picker gallery' })).toHaveAttribute('href', '/gallery');
+  });
+
   test('copies highlighted picker gallery import snippets', async () => {
     const writeText = vi.fn().mockResolvedValue(undefined);
     Object.defineProperty(navigator, 'clipboard', {

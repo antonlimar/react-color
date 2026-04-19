@@ -1483,7 +1483,12 @@ function PickerGalleryPage({ color, onChange }: { color: RGBAColor; onChange: (c
   );
 }
 
-function SiteHeader({ isGalleryPage }: { isGalleryPage: boolean }) {
+type SitePage = 'docs' | 'gallery' | 'not-found';
+
+function SiteHeader({ page }: { page: SitePage }) {
+  const isDocsPage = page === 'docs';
+  const isGalleryPage = page === 'gallery';
+
   return (
     <header className="site-header">
       <Link className="site-header__brand" to="/" aria-label="react-color documentation home">
@@ -1496,9 +1501,9 @@ function SiteHeader({ isGalleryPage }: { isGalleryPage: boolean }) {
 
       <nav className="site-header__nav" aria-label="Primary navigation">
         <Link
-          className={`site-header__link${isGalleryPage ? '' : ' site-header__link--active'}`}
+          className={`site-header__link${isDocsPage ? ' site-header__link--active' : ''}`}
           to="/"
-          aria-current={isGalleryPage ? undefined : 'page'}
+          aria-current={isDocsPage ? 'page' : undefined}
         >
           Read the docs
         </Link>
@@ -1514,6 +1519,56 @@ function SiteHeader({ isGalleryPage }: { isGalleryPage: boolean }) {
         </a>
       </nav>
     </header>
+  );
+}
+
+function NotFoundMain() {
+  return (
+    <main className="not-found-page" id="site-not-found">
+      <section className="not-found-page__panel" aria-labelledby="not-found-title">
+        <div className="not-found-page__copy">
+          <p className="eyebrow">404 / Page not found</p>
+          <h1 id="not-found-title">This color is outside the palette.</h1>
+          <p>
+            The page you tried to open is not part of the documentation site. The docs and picker gallery are still one
+            click away.
+          </p>
+        </div>
+
+        <div className="not-found-page__actions" aria-label="404 recovery links">
+          <Link className="not-found-page__primary-action" to="/">
+            Read the docs
+          </Link>
+          <Link className="not-found-page__secondary-action" to={galleryPagePath}>
+            Open picker gallery
+          </Link>
+        </div>
+
+        <div className="not-found-page__swatches" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function NotFoundPage() {
+  return (
+    <div className="site-shell" style={formatBackground(initialColor)}>
+      <a className="skip-link" href="#site-not-found">
+        Skip to 404 message
+      </a>
+      <div className="site-shell__ambient site-shell__ambient--grid" aria-hidden="true" />
+      <div className="site-shell__ambient site-shell__ambient--one" aria-hidden="true" />
+      <div className="site-shell__ambient site-shell__ambient--two" aria-hidden="true" />
+
+      <SiteHeader page="not-found" />
+      <NotFoundMain />
+    </div>
   );
 }
 
@@ -1543,6 +1598,7 @@ function AppShell() {
   const searchResults = searchDocs(searchQuery);
   const currentPathname = useRouterState({ select: (state) => state.location.pathname });
   const isGalleryPage = currentPathname === galleryPagePath;
+  const isNotFoundPage = currentPathname !== '/' && !isGalleryPage;
   const alpha = color.a ?? 1;
   const rgbaLabel = `rgba(${clampColorChannel(color.r)}, ${clampColorChannel(color.g)}, ${clampColorChannel(color.b)}, ${alpha.toFixed(2)})`;
   const paletteStops = createPaletteStops(color);
@@ -1781,6 +1837,22 @@ function AppShell() {
     };
   }, [activeAnchorId, isGalleryPage, isNavDrawerOpen, searchQuery]);
 
+  if (isNotFoundPage) {
+    return (
+      <div className="site-shell" style={formatBackground(color)}>
+        <a className="skip-link" href="#site-not-found">
+          Skip to 404 message
+        </a>
+        <div className="site-shell__ambient site-shell__ambient--grid" aria-hidden="true" />
+        <div className="site-shell__ambient site-shell__ambient--one" aria-hidden="true" />
+        <div className="site-shell__ambient site-shell__ambient--two" aria-hidden="true" />
+
+        <SiteHeader page="not-found" />
+        <NotFoundMain />
+      </div>
+    );
+  }
+
   return (
     <div className="site-shell" style={formatBackground(color)}>
       <a className="skip-link" href="#site-documentation">
@@ -1790,7 +1862,7 @@ function AppShell() {
       <div className="site-shell__ambient site-shell__ambient--one" aria-hidden="true" />
       <div className="site-shell__ambient site-shell__ambient--two" aria-hidden="true" />
 
-      <SiteHeader isGalleryPage={isGalleryPage} />
+      <SiteHeader page={isGalleryPage ? 'gallery' : 'docs'} />
 
       {isGalleryPage ? null : (
         <>
@@ -1966,6 +2038,7 @@ function EmptyRoute() {
 
 const rootRoute = createRootRoute({
   component: AppShell,
+  notFoundComponent: NotFoundPage,
 });
 
 const indexRoute = createRoute({
