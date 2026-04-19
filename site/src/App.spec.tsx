@@ -105,6 +105,26 @@ describe('site app', () => {
     );
   });
 
+  test('copies section anchors when documentation headings are clicked', () => {
+    const writeText = vi.fn();
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    });
+
+    render(<App />);
+
+    const installHeading = screen.getByRole('heading', { name: 'Install' });
+    const installAnchor = within(installHeading).getByRole('link', { name: 'Install' });
+
+    expect(installAnchor).toHaveAttribute('href', '#install');
+    expect(installAnchor.querySelector('.anchor-heading__icon svg')).toBeInstanceOf(SVGElement);
+
+    clickAnchorWithoutNavigation(installAnchor);
+
+    expect(writeText).toHaveBeenCalledWith('#install');
+  });
+
   test('closes the mobile drawer with Escape, restores focus, and unlocks body scrolling', async () => {
     render(<App />);
     const drawerToggle = screen.getByRole('button', { name: /browse sections/i });

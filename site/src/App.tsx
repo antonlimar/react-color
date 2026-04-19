@@ -66,6 +66,8 @@ interface SearchResult extends SearchIndexEntry {
   snippet: string;
 }
 
+type AnchorHeadingLevel = 2 | 3 | 4;
+
 function escapeHtml(code: string) {
   return code
     .replaceAll('&', '&amp;')
@@ -883,61 +885,103 @@ function ApiPropertyCards({ group, subsection }: { group: PropertyGroup; subsect
   );
 }
 
+function AnchorHeading({
+  anchorId,
+  children,
+  level,
+}: {
+  anchorId: string;
+  children: ReactNode;
+  level: AnchorHeadingLevel;
+}) {
+  const Heading = `h${level}` as const;
+  const anchor = `#${anchorId}`;
+
+  const copyAnchor = useCallback(() => {
+    void navigator.clipboard?.writeText(anchor);
+  }, [anchor]);
+
+  return (
+    <Heading className="anchor-heading">
+      <a className="anchor-heading__link" href={anchor} onClick={copyAnchor} title={`Copy ${anchor} anchor`}>
+        <span className="anchor-heading__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M10.6 13.4a1 1 0 0 1 0-1.4l2.6-2.6a1 1 0 0 1 1.4 1.4L12 13.4a1 1 0 0 1-1.4 0Z" />
+            <path d="M8.1 17.3a4.2 4.2 0 0 1-5.9-5.9l3.4-3.4a4.2 4.2 0 0 1 5.9 0 1 1 0 1 1-1.4 1.4 2.2 2.2 0 0 0-3.1 0l-3.4 3.4a2.2 2.2 0 0 0 3.1 3.1l1.2-1.2a1 1 0 1 1 1.4 1.4l-1.2 1.2Z" />
+            <path d="M12.5 16a1 1 0 0 1 0-1.4 2.2 2.2 0 0 0 3.1 0l3.4-3.4a2.2 2.2 0 0 0-3.1-3.1l-1.2 1.2a1 1 0 1 1-1.4-1.4l1.2-1.2a4.2 4.2 0 0 1 5.9 5.9L17 16a4.2 4.2 0 0 1-5.9 0 1 1 0 0 1 1.4 0Z" />
+          </svg>
+        </span>
+        <span>{children}</span>
+      </a>
+    </Heading>
+  );
+}
+
 function renderSection(section: ContentSection, options: RenderBlockOptions) {
   return (
     <section className="section" id={section.id} key={section.id}>
       <div className="section__panel">
         <div className="section__body">
-          <h2>{section.title}</h2>
+          <AnchorHeading anchorId={section.id} level={2}>
+            {section.title}
+          </AnchorHeading>
           {section.intro ? <p className="section__intro">{renderInlineCode(section.intro)}</p> : null}
           {section.blocks.map((block, index) => renderBlock(block, index, options))}
 
           {section.subsections?.map((subsection) => (
             <div className="section__subsection" id={subsection.id} key={subsection.id}>
-              <h3>{subsection.title}</h3>
+              <AnchorHeading anchorId={subsection.id} level={3}>
+                {subsection.title}
+              </AnchorHeading>
               {subsection.intro ? (
                 <p className="section__intro section__intro--subsection">{renderInlineCode(subsection.intro)}</p>
               ) : null}
               {subsection.blocks?.map((block, index) => renderBlock(block, index, options))}
 
-              {subsection.propertyGroups?.map((group) => (
-                <div className="api-group" id={getPropertyGroupAnchorId(subsection, group)} key={group.title}>
-                  <div className="api-group__head">
-                    <h4>{group.title}</h4>
-                    {group.summary ? <p>{renderInlineCode(group.summary)}</p> : null}
-                  </div>
+              {subsection.propertyGroups?.map((group) => {
+                const groupAnchorId = createPropertyGroupAnchorId(subsection, group);
 
-                  {group.properties.length > 0 ? (
-                    <table className="api-table">
-                      <thead>
-                        <tr>
-                          <th>Prop</th>
-                          <th>Type</th>
-                          <th>Default</th>
-                          <th>Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {group.properties.map((property) => (
-                          <tr key={`${group.title}-${property.name}`}>
-                            <th scope="row">
-                              <ApiPropertyName property={property} />
-                            </th>
-                            <td>
-                              <code className="api-type">{property.type}</code>
-                            </td>
-                            <td>
-                              <ApiDefaultValue value={property.defaultValue} />
-                            </td>
-                            <td>{renderInlineCode(property.description)}</td>
+                return (
+                  <div className="api-group" id={groupAnchorId} key={group.title}>
+                    <div className="api-group__head">
+                      <AnchorHeading anchorId={groupAnchorId} level={4}>
+                        {group.title}
+                      </AnchorHeading>
+                      {group.summary ? <p>{renderInlineCode(group.summary)}</p> : null}
+                    </div>
+
+                    {group.properties.length > 0 ? (
+                      <table className="api-table">
+                        <thead>
+                          <tr>
+                            <th>Prop</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  ) : null}
-                  <ApiPropertyCards group={group} subsection={subsection} />
-                </div>
-              ))}
+                        </thead>
+                        <tbody>
+                          {group.properties.map((property) => (
+                            <tr key={`${group.title}-${property.name}`}>
+                              <th scope="row">
+                                <ApiPropertyName property={property} />
+                              </th>
+                              <td>
+                                <code className="api-type">{property.type}</code>
+                              </td>
+                              <td>
+                                <ApiDefaultValue value={property.defaultValue} />
+                              </td>
+                              <td>{renderInlineCode(property.description)}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    ) : null}
+                    <ApiPropertyCards group={group} subsection={subsection} />
+                  </div>
+                );
+              })}
             </div>
           ))}
         </div>
@@ -1029,6 +1073,8 @@ function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void,
 
 const sectionNavigationScrollbarTrackInset = 16;
 const sectionNavigationScrollbarMinThumbHeight = 44;
+const docsSearchScrollbarTrackInset = 8;
+const docsSearchScrollbarMinThumbHeight = 44;
 
 function updateSectionNavigationScrollbar(navigation: HTMLElement) {
   const shell = navigation.closest<HTMLElement>('.section-nav-shell');
@@ -1144,6 +1190,117 @@ function handleSectionNavigationScrollbarDrag(event: ReactPointerEvent<HTMLEleme
   }
 }
 
+function updateDocsSearchScrollbar(results: HTMLElement) {
+  const shell = results.closest<HTMLElement>('.docs-search__results-shell');
+
+  if (!shell) {
+    return;
+  }
+
+  const scrollableDistance = results.scrollHeight - results.clientHeight;
+
+  if (scrollableDistance <= 1) {
+    shell.classList.remove('docs-search__results-shell--scrollable');
+    return;
+  }
+
+  const trackHeight = Math.max(0, results.clientHeight - docsSearchScrollbarTrackInset * 2);
+  const thumbHeight = Math.max(
+    docsSearchScrollbarMinThumbHeight,
+    (results.clientHeight / results.scrollHeight) * trackHeight,
+  );
+  const maxThumbOffset = Math.max(0, trackHeight - thumbHeight);
+  const thumbOffset = (results.scrollTop / scrollableDistance) * maxThumbOffset;
+
+  shell.classList.add('docs-search__results-shell--scrollable');
+  shell.style.setProperty('--docs-search-scrollbar-thumb-height', `${thumbHeight}px`);
+  shell.style.setProperty('--docs-search-scrollbar-thumb-offset', `${docsSearchScrollbarTrackInset + thumbOffset}px`);
+}
+
+function syncDocsSearchScrollbars() {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
+  document.querySelectorAll<HTMLElement>('.docs-search__results').forEach(updateDocsSearchScrollbar);
+}
+
+function handleDocsSearchScrollbarDrag(event: ReactPointerEvent<HTMLElement>) {
+  if (event.pointerType === 'mouse' && event.button !== 0) {
+    return;
+  }
+
+  const scrollbar = event.currentTarget;
+  const shell = scrollbar.closest<HTMLElement>('.docs-search__results-shell');
+  const results = shell?.querySelector<HTMLElement>('.docs-search__results');
+
+  if (!shell || !results) {
+    return;
+  }
+
+  const scrollableDistance = results.scrollHeight - results.clientHeight;
+
+  if (scrollableDistance <= 1) {
+    return;
+  }
+
+  const trackHeight = Math.max(0, results.clientHeight - docsSearchScrollbarTrackInset * 2);
+  const thumbHeight = Math.max(
+    docsSearchScrollbarMinThumbHeight,
+    (results.clientHeight / results.scrollHeight) * trackHeight,
+  );
+  const maxThumbOffset = Math.max(0, trackHeight - thumbHeight);
+
+  if (maxThumbOffset <= 0) {
+    return;
+  }
+
+  const scrollbarRect = scrollbar.getBoundingClientRect();
+  const currentThumbOffset = (results.scrollTop / scrollableDistance) * maxThumbOffset;
+  const pointerTarget = event.target as HTMLElement;
+  const didGrabThumb = Boolean(pointerTarget.closest('.docs-search-scrollbar__thumb'));
+  const grabOffset = didGrabThumb
+    ? event.clientY - scrollbarRect.top - docsSearchScrollbarTrackInset - currentThumbOffset
+    : thumbHeight / 2;
+
+  const setResultsScrollFromPointer = (clientY: number) => {
+    const nextThumbOffset = Math.min(
+      maxThumbOffset,
+      Math.max(0, clientY - scrollbarRect.top - docsSearchScrollbarTrackInset - grabOffset),
+    );
+
+    results.scrollTop = (nextThumbOffset / maxThumbOffset) * scrollableDistance;
+    updateDocsSearchScrollbar(results);
+  };
+
+  const handlePointerMove = (pointerEvent: PointerEvent) => {
+    pointerEvent.preventDefault();
+    setResultsScrollFromPointer(pointerEvent.clientY);
+  };
+
+  const stopDragging = () => {
+    shell.classList.remove('docs-search__results-shell--dragging');
+    window.removeEventListener('pointermove', handlePointerMove);
+    window.removeEventListener('pointerup', stopDragging);
+    window.removeEventListener('pointercancel', stopDragging);
+    scrollbar.removeEventListener('lostpointercapture', stopDragging);
+  };
+
+  event.preventDefault();
+  shell.classList.add('docs-search__results-shell--dragging');
+  if (typeof scrollbar.setPointerCapture === 'function') {
+    scrollbar.setPointerCapture(event.pointerId);
+  }
+  window.addEventListener('pointermove', handlePointerMove);
+  window.addEventListener('pointerup', stopDragging);
+  window.addEventListener('pointercancel', stopDragging);
+  scrollbar.addEventListener('lostpointercapture', stopDragging);
+
+  if (!didGrabThumb) {
+    setResultsScrollFromPointer(event.clientY);
+  }
+}
+
 function syncDesktopAnchorNavigationScroll(activeAnchorId: string) {
   if (typeof document === 'undefined') {
     return;
@@ -1206,7 +1363,7 @@ function SearchNavigation({ id, query, results, inputRef, onQueryChange, onNavig
   const hasQuery = query.trim().length > 0;
 
   return (
-    <div className="docs-search">
+    <div className={`docs-search${hasQuery ? ' docs-search--with-results' : ''}`}>
       <label className="docs-search__label" htmlFor={id}>
         Search documentation
       </label>
@@ -1227,26 +1384,31 @@ function SearchNavigation({ id, query, results, inputRef, onQueryChange, onNavig
       </div>
 
       {hasQuery ? (
-        <div className="docs-search__results" aria-live="polite">
-          {results.length > 0 ? (
-            <ul className="docs-search__result-list">
-              {results.map((result) => (
-                <li key={result.id}>
-                  <a className="docs-search__result" href={`#${result.anchorId}`} onClick={onNavigate}>
-                    <span className="docs-search__result-head">
-                      <span className="docs-search__result-title">{result.title}</span>
-                      <span className={`docs-search__kind docs-search__kind--${result.kind}`}>{result.kind}</span>
-                    </span>
-                    <span className="docs-search__snippet">{result.snippet}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="docs-search__empty">
-              <strong>No results found</strong>
-            </div>
-          )}
+        <div className="docs-search__results-shell">
+          <div className="docs-search__results" aria-live="polite">
+            {results.length > 0 ? (
+              <ul className="docs-search__result-list">
+                {results.map((result) => (
+                  <li key={result.id}>
+                    <a className="docs-search__result" href={`#${result.anchorId}`} onClick={onNavigate}>
+                      <span className="docs-search__result-head">
+                        <span className="docs-search__result-title">{result.title}</span>
+                        <span className={`docs-search__kind docs-search__kind--${result.kind}`}>{result.kind}</span>
+                      </span>
+                      <span className="docs-search__snippet">{result.snippet}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="docs-search__empty">
+                <strong>No results found</strong>
+              </div>
+            )}
+          </div>
+          <span className="docs-search-scrollbar" aria-hidden="true" onPointerDown={handleDocsSearchScrollbarDrag}>
+            <span className="docs-search-scrollbar__thumb" />
+          </span>
         </div>
       ) : null}
     </div>
@@ -1539,11 +1701,15 @@ function AppShell() {
     }
 
     const navigations = Array.from(document.querySelectorAll<HTMLElement>('.section-nav'));
+    const searchResultsPanels = Array.from(document.querySelectorAll<HTMLElement>('.docs-search__results'));
     let animationFrame = 0;
 
     const scheduleScrollbarSync = () => {
       cancelAnimationFrame(animationFrame);
-      animationFrame = requestAnimationFrame(syncSectionNavigationScrollbars);
+      animationFrame = requestAnimationFrame(() => {
+        syncSectionNavigationScrollbars();
+        syncDocsSearchScrollbars();
+      });
     };
 
     const resizeObserver =
@@ -1553,6 +1719,10 @@ function AppShell() {
       navigation.addEventListener('scroll', scheduleScrollbarSync, { passive: true });
       resizeObserver?.observe(navigation);
     });
+    searchResultsPanels.forEach((resultsPanel) => {
+      resultsPanel.addEventListener('scroll', scheduleScrollbarSync, { passive: true });
+      resizeObserver?.observe(resultsPanel);
+    });
     window.addEventListener('resize', scheduleScrollbarSync);
 
     scheduleScrollbarSync();
@@ -1561,6 +1731,9 @@ function AppShell() {
       cancelAnimationFrame(animationFrame);
       navigations.forEach((navigation) => {
         navigation.removeEventListener('scroll', scheduleScrollbarSync);
+      });
+      searchResultsPanels.forEach((resultsPanel) => {
+        resultsPanel.removeEventListener('scroll', scheduleScrollbarSync);
       });
       resizeObserver?.disconnect();
       window.removeEventListener('resize', scheduleScrollbarSync);
