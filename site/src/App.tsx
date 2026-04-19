@@ -1448,7 +1448,7 @@ function PickerGalleryPage() {
 function SiteHeader({ isGalleryPage }: { isGalleryPage: boolean }) {
   return (
     <header className="site-header">
-      <Link className="site-header__brand" to="/" hash="about" aria-label="react-color documentation home">
+      <Link className="site-header__brand" to="/" aria-label="react-color documentation home">
         <span className="site-header__brand-mark" aria-hidden="true" />
         <span className="site-header__brand-copy">
           <strong>react-color</strong>
