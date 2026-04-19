@@ -293,6 +293,60 @@ describe('site app', () => {
     expect(pickerPropsLink).toHaveClass('section-nav__sublink--active');
   });
 
+  test('scrolls the desktop section navigation to the active anchor', async () => {
+    setViewportWidth(1024);
+    const { container } = render(<App />);
+    const navigation = container.querySelector('.sections-layout__sidebar .section-nav') as HTMLElement;
+    const sketchLink = within(navigation).getByRole('link', { name: 'Sketch' });
+    const scrollTo = vi.fn();
+
+    Object.defineProperty(navigation, 'clientHeight', {
+      configurable: true,
+      value: 100,
+    });
+    Object.defineProperty(sketchLink, 'clientHeight', {
+      configurable: true,
+      value: 20,
+    });
+    Object.defineProperty(navigation, 'scrollTo', {
+      configurable: true,
+      value: scrollTo,
+    });
+    vi.spyOn(navigation, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 240, 100));
+    vi.spyOn(sketchLink, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 220, 240, 20));
+
+    await act(async () => {
+      window.location.hash = '#picker-specific-props-sketch';
+      window.dispatchEvent(new Event('hashchange'));
+    });
+
+    await waitFor(() => {
+      expect(scrollTo).toHaveBeenCalledWith({ top: 180, behavior: 'smooth' });
+    });
+  });
+
+  test('keeps hash navigation from bouncing through intermediate active anchors', async () => {
+    setViewportWidth(1024);
+    const { container } = render(<App />);
+    const navigation = container.querySelector('.sections-layout__sidebar .section-nav') as HTMLElement;
+    const targetSection = container.querySelector('#picker-specific-props-sketch') as HTMLElement;
+
+    vi.spyOn(targetSection, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 1000, 240, 120));
+
+    await act(async () => {
+      window.location.hash = '#picker-specific-props-sketch';
+      window.dispatchEvent(new Event('hashchange'));
+      window.dispatchEvent(new Event('scroll'));
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    });
+
+    const sketchLink = within(navigation).getByRole('link', { name: 'Sketch' });
+    const aboutLink = navigation.querySelector('[data-anchor-id="about"]');
+
+    expect(sketchLink).toHaveAttribute('aria-current', 'location');
+    expect(aboutLink).not.toHaveAttribute('aria-current');
+  });
+
   test('closes the mobile drawer when resizing back to desktop widths', async () => {
     render(<App />);
     const drawerToggle = screen.getByRole('button', { name: /browse sections/i });

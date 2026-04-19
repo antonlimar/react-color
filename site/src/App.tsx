@@ -587,6 +587,19 @@ function findNearestAnchorId(anchorIds: string[]) {
     .sort((left, right) => left.distance - right.distance)[0]?.id;
 }
 
+function isAnchorNavigationSettled(anchorId: string) {
+  const element = document.getElementById(anchorId);
+
+  if (!element) {
+    return true;
+  }
+
+  const rect = element.getBoundingClientRect();
+  const settledLine = Math.min(180, window.innerHeight * 0.3);
+
+  return rect.top >= 0 && rect.top <= settledLine;
+}
+
 function isSubsectionActive(subsection: NavSubsection, activeAnchorId: string) {
   return (
     subsection.id === activeAnchorId ||
@@ -950,6 +963,7 @@ function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void,
               <a
                 className={`section-nav__link${isSectionActive ? ' section-nav__link--active' : ''}`}
                 href={`#${section.id}`}
+                data-anchor-id={section.id}
                 aria-current={activeAnchorId === section.id ? 'location' : undefined}
                 onClick={onNavigate}
               >
@@ -968,6 +982,7 @@ function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void,
                           isSubsectionActive(subsection, activeAnchorId) ? ' section-nav__sublink--active' : ''
                         }`}
                         href={`#${subsection.id}`}
+                        data-anchor-id={subsection.id}
                         aria-current={activeAnchorId === subsection.id ? 'location' : undefined}
                         onClick={onNavigate}
                       >
@@ -984,6 +999,7 @@ function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void,
                                     : ''
                                 }`}
                                 href={`#${child.id}`}
+                                data-anchor-id={child.id}
                                 aria-current={activeAnchorId === child.id ? 'location' : undefined}
                                 onClick={onNavigate}
                               >
@@ -1003,6 +1019,55 @@ function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void,
       </ul>
     </nav>
   );
+}
+
+function syncDesktopAnchorNavigationScroll(activeAnchorId: string) {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
+  const navigation = document.querySelector<HTMLElement>('.sections-layout__sidebar .section-nav');
+
+  if (!navigation) {
+    return;
+  }
+
+  const links = Array.from(navigation.querySelectorAll<HTMLElement>('a[data-anchor-id]'));
+  let activeLink = links.find((link) => link.dataset.anchorId === activeAnchorId);
+
+  if (!activeLink) {
+    for (let index = links.length - 1; index >= 0; index -= 1) {
+      const link = links[index];
+      const anchorId = link.dataset.anchorId;
+
+      if (anchorId && activeAnchorId.startsWith(`${anchorId}-`)) {
+        activeLink = link;
+        break;
+      }
+    }
+  }
+
+  if (!activeLink) {
+    return;
+  }
+
+  const navigationRect = navigation.getBoundingClientRect();
+  const activeLinkRect = activeLink.getBoundingClientRect();
+  const nextScrollTop =
+    navigation.scrollTop +
+    activeLinkRect.top -
+    navigationRect.top -
+    (navigation.clientHeight - activeLink.clientHeight) / 2;
+
+  const clampedScrollTop = Math.max(0, nextScrollTop);
+  const scrollTo = navigation.scrollTo;
+
+  if (typeof scrollTo === 'function') {
+    scrollTo.call(navigation, { top: clampedScrollTop, behavior: 'smooth' });
+    return;
+  }
+
+  navigation.scrollTop = clampedScrollTop;
 }
 
 interface SearchNavigationProps {
@@ -1136,6 +1201,7 @@ function AppShell() {
   const drawerPanelRef = useRef<HTMLDivElement>(null);
   const desktopSearchRef = useRef<HTMLInputElement>(null);
   const mobileSearchRef = useRef<HTMLInputElement>(null);
+  const pendingAnchorNavigationRef = useRef<{ id: string; startedAt: number } | null>(null);
   const [searchQuery, setSearchQuery] = useState(getInitialSearchQuery);
   const [activeAnchorId, setActiveAnchorId] = useState<string>(() => {
     const defaultId = siteSections[0]?.id ?? 'about';
@@ -1239,14 +1305,27 @@ function AppShell() {
 
     let animationFrame = 0;
 
-    const updateActiveFromScroll = () => {
+    const updateActiveFromScroll = ({ preferHash = false } = {}) => {
       cancelAnimationFrame(animationFrame);
       animationFrame = window.requestAnimationFrame(() => {
         const hash = window.location.hash.replace('#', '');
 
-        if (hash && anchorIds.includes(hash)) {
+        if (preferHash && hash && anchorIds.includes(hash)) {
           setActiveAnchorId(hash);
           return;
+        }
+
+        const pendingAnchorNavigation = pendingAnchorNavigationRef.current;
+
+        if (pendingAnchorNavigation) {
+          const elapsed = window.performance.now() - pendingAnchorNavigation.startedAt;
+
+          if (elapsed < 1400 && !isAnchorNavigationSettled(pendingAnchorNavigation.id)) {
+            setActiveAnchorId(pendingAnchorNavigation.id);
+            return;
+          }
+
+          pendingAnchorNavigationRef.current = null;
         }
 
         const nextActiveId = findNearestAnchorId(anchorIds);
@@ -1258,8 +1337,13 @@ function AppShell() {
     };
 
     const handleHashChange = () => {
+      cancelAnimationFrame(animationFrame);
       const hash = window.location.hash.replace('#', '');
       if (hash && anchorIds.includes(hash)) {
+        pendingAnchorNavigationRef.current = {
+          id: hash,
+          startedAt: window.performance.now(),
+        };
         setActiveAnchorId(hash);
       }
       closeNavDrawer();
@@ -1271,14 +1355,18 @@ function AppShell() {
       }
     };
 
-    updateActiveFromScroll();
-    window.addEventListener('scroll', updateActiveFromScroll, { passive: true });
+    const handleScroll = () => {
+      updateActiveFromScroll();
+    };
+
+    updateActiveFromScroll({ preferHash: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('hashchange', handleHashChange);
     window.addEventListener('resize', handleResize);
 
     return () => {
       cancelAnimationFrame(animationFrame);
-      window.removeEventListener('scroll', updateActiveFromScroll);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('hashchange', handleHashChange);
       window.removeEventListener('resize', handleResize);
     };
@@ -1313,6 +1401,14 @@ function AppShell() {
       drawerToggleRef.current?.focus();
     }
   }, [drawerFocusRestoreRequest, isNavDrawerOpen]);
+
+  useEffect(() => {
+    if (searchQuery.trim() || isGalleryPage) {
+      return;
+    }
+
+    syncDesktopAnchorNavigationScroll(activeAnchorId);
+  }, [activeAnchorId, isGalleryPage, searchQuery]);
 
   return (
     <div className="site-shell" style={formatBackground(color)}>
