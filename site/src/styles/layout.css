@@ -168,6 +168,8 @@
   border-color: transparent;
   color: #ffffff;
   background: linear-gradient(135deg, #0d1726 0%, var(--site-accent) 100%);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .site-header__link--active:hover {
@@ -1391,14 +1393,24 @@
 .content-code .token.atrule,
 .content-code .token.rule,
 .content-code .token.property,
-.content-code .token.class-name {
+.content-code .token.class-name,
+.picker-gallery__imports .token.keyword,
+.picker-gallery__imports .token.selector,
+.picker-gallery__imports .token.atrule,
+.picker-gallery__imports .token.rule,
+.picker-gallery__imports .token.property,
+.picker-gallery__imports .token.class-name {
   color: #ff8f70;
 }
 
 .content-code .token.string,
 .content-code .token.attr-value,
 .content-code .token.template-string,
-.content-code .token.regex {
+.content-code .token.regex,
+.picker-gallery__imports .token.string,
+.picker-gallery__imports .token.attr-value,
+.picker-gallery__imports .token.template-string,
+.picker-gallery__imports .token.regex {
   color: #b8f07a;
 }
 
@@ -1407,21 +1419,35 @@
 .content-code .token.function,
 .content-code .token.builtin,
 .content-code .token.constant,
-.content-code .token.namespace {
+.content-code .token.namespace,
+.picker-gallery__imports .token.tag,
+.picker-gallery__imports .token.attr-name,
+.picker-gallery__imports .token.function,
+.picker-gallery__imports .token.builtin,
+.picker-gallery__imports .token.constant,
+.picker-gallery__imports .token.namespace {
   color: #7fd6ff;
 }
 
 .content-code .token.comment,
 .content-code .token.prolog,
 .content-code .token.doctype,
-.content-code .token.cdata {
+.content-code .token.cdata,
+.picker-gallery__imports .token.comment,
+.picker-gallery__imports .token.prolog,
+.picker-gallery__imports .token.doctype,
+.picker-gallery__imports .token.cdata {
   color: rgba(214, 225, 244, 0.52);
 }
 
 .content-code .token.number,
 .content-code .token.boolean,
 .content-code .token.symbol,
-.content-code .token.unit {
+.content-code .token.unit,
+.picker-gallery__imports .token.number,
+.picker-gallery__imports .token.boolean,
+.picker-gallery__imports .token.symbol,
+.picker-gallery__imports .token.unit {
   color: #ffd166;
 }
 
@@ -1429,7 +1455,12 @@
 .content-code .token.script,
 .content-code .token.operator,
 .content-code .token.punctuation,
-.content-code .token.plain-text {
+.content-code .token.plain-text,
+.picker-gallery__imports .token.parameter,
+.picker-gallery__imports .token.script,
+.picker-gallery__imports .token.operator,
+.picker-gallery__imports .token.punctuation,
+.picker-gallery__imports .token.plain-text {
   color: #f7fbff;
 }
 
@@ -1705,17 +1736,55 @@
 
 .picker-gallery__imports {
   display: grid;
-  gap: 0.38rem;
+  gap: 0.48rem;
   min-width: 0;
   padding: 0.7rem;
   border: 1px solid rgba(16, 32, 58, 0.08);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.58);
+  background: var(--site-surface-dark);
+  box-shadow: var(--site-shadow-code);
+}
+
+.picker-gallery__imports-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.65rem;
+  align-items: center;
+  min-width: 0;
+}
+
+.picker-gallery__imports-header span {
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.picker-gallery__copy {
+  min-height: 1.75rem;
+  padding: 0.25rem 0.58rem;
+}
+
+.picker-gallery__imports pre {
+  overflow-x: auto;
+  margin: 0;
+  max-width: 100%;
+  color: #f7fbff;
+  line-height: 1.55;
+  scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
 }
 
 .picker-gallery__imports code {
-  color: rgba(16, 32, 58, 0.76);
+  display: block;
+  min-width: max-content;
+  color: #f7fbff;
   font-size: 0.78rem;
+}
+
+.picker-gallery__status {
+  color: rgba(255, 255, 255, 0.54);
+  font-size: 0.72rem;
 }
 
 .picker-gallery__api-link {

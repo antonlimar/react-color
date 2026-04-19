@@ -270,9 +270,10 @@ const pickerGalleryPreviewProps: Record<string, ColorPickerProps> = {
 };
 
 const pickerGalleryIntro =
-  'Compare every public picker export, copy the import shape, and jump straight to the props that make each component different.';
+  'Use this gallery to compare the bundled picker layouts side by side: full editors for precise input, palette pickers for presets, and sliders for focused hue or alpha controls.';
 
-const pickerGalleryNote = 'Each picker keeps the same top-level package import for current integrations.';
+const pickerGalleryNote =
+  'Every card shows the named package import and links to the picker-specific props, so you can copy the component shape without digging through the API reference.';
 
 function formatBackground(color: RGBAColor) {
   const alpha = color.a ?? 1;
@@ -616,10 +617,11 @@ interface CodeFigureProps {
   packageManagerControls?: ReactNode;
 }
 
-function CodeFigure({ code, language, label, copyValue, packageManagerControls }: CodeFigureProps) {
-  const [copyState, setCopyState] = useState<'idle' | 'copied' | 'error'>('idle');
+type CodeCopyState = 'idle' | 'copied' | 'error';
+
+function useCodeCopy(valueToCopy: string) {
+  const [copyState, setCopyState] = useState<CodeCopyState>('idle');
   const timeoutRef = useRef<number | undefined>(undefined);
-  const valueToCopy = copyValue ?? code;
   const buttonLabel = copyState === 'copied' ? 'Copied' : copyState === 'error' ? 'Retry Copy' : 'Copy';
   const statusLabel =
     copyState === 'copied'
@@ -636,7 +638,7 @@ function CodeFigure({ code, language, label, copyValue, packageManagerControls }
     };
   }, []);
 
-  const handleCopy = async () => {
+  const handleCopy = useCallback(async () => {
     if (timeoutRef.current) {
       window.clearTimeout(timeoutRef.current);
     }
@@ -650,7 +652,19 @@ function CodeFigure({ code, language, label, copyValue, packageManagerControls }
     } catch {
       setCopyState('error');
     }
+  }, [valueToCopy]);
+
+  return {
+    buttonLabel,
+    copyState,
+    handleCopy,
+    statusLabel,
   };
+}
+
+function CodeFigure({ code, language, label, copyValue, packageManagerControls }: CodeFigureProps) {
+  const valueToCopy = copyValue ?? code;
+  const { buttonLabel, copyState, handleCopy, statusLabel } = useCodeCopy(valueToCopy);
 
   return (
     <figure className="content-code">
@@ -803,6 +817,32 @@ function LivePickerPreview({
   );
 }
 
+function PickerImportSnippet({ picker, code }: { picker: PickerMetadata; code: string }) {
+  const { buttonLabel, copyState, handleCopy, statusLabel } = useCodeCopy(code);
+
+  return (
+    <div className="picker-gallery__imports">
+      <div className="picker-gallery__imports-header">
+        <span>Import</span>
+        <button
+          className={`content-code__copy content-code__copy--${copyState} picker-gallery__copy`}
+          type="button"
+          onClick={handleCopy}
+          aria-label={`${buttonLabel}: ${picker.title} import`}
+        >
+          {buttonLabel}
+        </button>
+      </div>
+      <pre>
+        <code className="language-tsx" dangerouslySetInnerHTML={{ __html: highlightCode(code, 'tsx') }} />
+      </pre>
+      <span className="picker-gallery__status" aria-live="polite">
+        {statusLabel}
+      </span>
+    </div>
+  );
+}
+
 function PickerGallery({ color, onChange }: { color: RGBAColor; onChange: (color: ColorResult) => void }) {
   const handleGalleryColorChange = useCallback(
     (nextColor: ColorResult) => {
@@ -834,9 +874,7 @@ function PickerGallery({ color, onChange }: { color: RGBAColor; onChange: (color
                   <span key={`${picker.id}-${badge}`}>{badge}</span>
                 ))}
               </div>
-              <div className="picker-gallery__imports">
-                <code>{importSnippet}</code>
-              </div>
+              <PickerImportSnippet picker={picker} code={importSnippet} />
               <Link className="picker-gallery__api-link" to="/" hash={picker.apiAnchor}>
                 API props
               </Link>
@@ -1430,7 +1468,7 @@ function PickerGalleryPage({ color, onChange }: { color: RGBAColor; onChange: (c
         <p className="eyebrow">Picker Gallery</p>
         <div className="gallery-page__intro-grid">
           <div>
-            <h2 id="picker-gallery-title">Every public picker, one import map.</h2>
+            <h2 id="picker-gallery-title">Find the picker that fits the job.</h2>
             <p>{pickerGalleryIntro}</p>
           </div>
           <div className="gallery-page__note">

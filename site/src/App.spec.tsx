@@ -505,11 +505,17 @@ describe('site app', () => {
     });
     const galleryCards = gallery.querySelectorAll('.picker-gallery__item');
 
-    expect(screen.getByRole('heading', { name: 'Every public picker, one import map.' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Find the picker that fits the job.' })).toBeInTheDocument();
     expect(container.querySelector('.hero')).not.toBeInTheDocument();
     expect(galleryCards).toHaveLength(14);
     expect(within(gallery).getByRole('heading', { name: 'Sketch' })).toBeInTheDocument();
-    expect(within(gallery).getByText("import { SketchPicker } from 'react-color';")).toBeInTheDocument();
+    const sketchImport = Array.from(gallery.querySelectorAll('.picker-gallery__imports code')).find(
+      (code) => code.textContent === "import { SketchPicker } from 'react-color';",
+    );
+    expect(sketchImport).toBeInstanceOf(HTMLElement);
+    expect(sketchImport).toHaveClass('language-tsx');
+    expect(sketchImport?.innerHTML).toContain('token keyword');
+    expect(within(gallery).getByRole('button', { name: 'Copy: Sketch import' })).toBeInTheDocument();
     expect(within(gallery).queryByText(/react-color\/es\//)).not.toBeInTheDocument();
     expect(within(gallery).getAllByRole('link', { name: 'API props' })).toHaveLength(14);
     expect(within(gallery).getAllByRole('link', { name: 'API props' })[0]).toHaveAttribute(
@@ -517,6 +523,27 @@ describe('site app', () => {
       '/#picker-specific-props-alpha',
     );
     expect(container.querySelector('#picker-specific-props-material')).not.toBeInTheDocument();
+  });
+
+  test('copies highlighted picker gallery import snippets', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    });
+    window.history.replaceState(null, '', '/gallery');
+
+    render(<App />);
+    const copyButton = await screen.findByRole('button', { name: 'Copy: Sketch import' });
+    const importSnippet = copyButton.closest('.picker-gallery__imports') as HTMLElement;
+
+    fireEvent.click(copyButton);
+
+    await waitFor(() => {
+      expect(writeText).toHaveBeenCalledWith("import { SketchPicker } from 'react-color';");
+      expect(copyButton).toHaveTextContent('Copied');
+      expect(within(importSnippet).getByText('Code copied to clipboard.')).toHaveAttribute('aria-live', 'polite');
+    });
   });
 
   test('keeps gallery picker changes synchronized with the page background', async () => {
