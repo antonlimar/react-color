@@ -42,12 +42,14 @@ describe('site app', () => {
     const siteShell = container.querySelector('.site-shell') as HTMLElement;
     const githubSwatch = container.querySelector('.hero__picker-card--github [tabindex="0"]');
     const heroDemoValue = container.querySelector('.hero__demo-value');
+    const heroDemo = container.querySelector('.hero__demo') as HTMLElement;
 
     expect(siteShell).toHaveStyle('--site-accent: rgba(61, 145, 255, 1)');
     expect(siteShell).toHaveStyle('--site-accent-page: rgba(61, 145, 255, 0.18)');
     expect(siteShell).toHaveStyle('--site-accent-floor: rgba(61, 145, 255, 0.42)');
     expect(githubSwatch).toBeInstanceOf(HTMLElement);
     expect(heroDemoValue).toHaveTextContent('#3D91FF');
+    expect(within(heroDemo).getByRole('link', { name: 'Show more' })).toHaveAttribute('href', '/gallery');
 
     fireEvent.click(githubSwatch as HTMLElement);
 
@@ -228,11 +230,19 @@ describe('site app', () => {
 
   test('renders the original project reference as an external link', () => {
     render(<App />);
-    const originalProjectLink = screen.getByRole('link', { name: 'casesandberg/react-color' });
+    const [originalProjectLink] = screen.getAllByRole('link', { name: 'casesandberg/react-color' });
 
     expect(originalProjectLink).toHaveAttribute('href', 'https://github.com/casesandberg/react-color');
     expect(originalProjectLink).toHaveAttribute('target', '_blank');
     expect(screen.getAllByText(/actively maintained fork/i)).toHaveLength(1);
+  });
+
+  test('renders a homepage acknowledgement for casesandberg', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: 'Thank you, casesandberg' })).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: 'casesandberg/react-color' })).toHaveLength(2);
+    expect(screen.getByText(/made this continuation possible/i)).toBeInTheDocument();
   });
 
   test('renders the developer guides section with migration, TypeScript, styling, SSR, and accessibility notes', () => {
@@ -323,6 +333,35 @@ describe('site app', () => {
     await waitFor(() => {
       expect(scrollTo).toHaveBeenCalledWith({ top: 180, behavior: 'smooth' });
     });
+  });
+
+  test('drags the custom desktop section navigation scrollbar thumb', () => {
+    setViewportWidth(1024);
+    const { container } = render(<App />);
+    const navigation = container.querySelector('.sections-layout__sidebar .section-nav') as HTMLElement;
+    const scrollbar = container.querySelector('.sections-layout__sidebar .section-nav-scrollbar') as HTMLElement;
+    const thumb = container.querySelector('.sections-layout__sidebar .section-nav-scrollbar__thumb') as HTMLElement;
+    const shell = container.querySelector('.sections-layout__sidebar .section-nav-shell') as HTMLElement;
+
+    Object.defineProperty(navigation, 'clientHeight', {
+      configurable: true,
+      value: 100,
+    });
+    Object.defineProperty(navigation, 'scrollHeight', {
+      configurable: true,
+      value: 300,
+    });
+    vi.spyOn(scrollbar, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 16, 100));
+
+    fireEvent.pointerDown(thumb, { pointerId: 1, pointerType: 'mouse', button: 0, clientY: 20 });
+    fireEvent.pointerMove(window, { pointerId: 1, pointerType: 'mouse', clientY: 40 });
+
+    expect(navigation.scrollTop).toBeCloseTo(166.67, 1);
+    expect(shell).toHaveClass('section-nav-shell--dragging');
+
+    fireEvent.pointerUp(window, { pointerId: 1, pointerType: 'mouse' });
+
+    expect(shell).not.toHaveClass('section-nav-shell--dragging');
   });
 
   test('keeps hash navigation from bouncing through intermediate active anchors', async () => {

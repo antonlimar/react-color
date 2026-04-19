@@ -1,5 +1,5 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
-import type { CSSProperties, ReactNode, RefObject } from 'react';
+import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactNode, RefObject } from 'react';
 import {
   Link,
   RouterProvider,
@@ -948,77 +948,200 @@ function renderSection(section: ContentSection, options: RenderBlockOptions) {
 
 function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void, className = 'section-nav') {
   const navSections = siteSections.map(createNavItems);
+  const isDrawerNavigation = className.split(' ').includes('section-nav--drawer');
 
   return (
-    <nav className={className} aria-label="Section navigation">
-      <div className="section-nav__eyebrow">Jump to section</div>
-      <ul className="section-nav__list">
-        {navSections.map((section) => {
-          const isSectionActive =
-            activeAnchorId === section.id ||
-            section.subsections.some((subsection) => isSubsectionActive(subsection, activeAnchorId));
+    <div className={`section-nav-shell${isDrawerNavigation ? ' section-nav-shell--drawer' : ''}`}>
+      <nav className={className} aria-label="Section navigation">
+        <div className="section-nav__eyebrow">Jump to section</div>
+        <ul className="section-nav__list">
+          {navSections.map((section) => {
+            const isSectionActive =
+              activeAnchorId === section.id ||
+              section.subsections.some((subsection) => isSubsectionActive(subsection, activeAnchorId));
 
-          return (
-            <li className="section-nav__item" key={section.id}>
-              <a
-                className={`section-nav__link${isSectionActive ? ' section-nav__link--active' : ''}`}
-                href={`#${section.id}`}
-                data-anchor-id={section.id}
-                aria-current={activeAnchorId === section.id ? 'location' : undefined}
-                onClick={onNavigate}
-              >
-                <span className="section-nav__index">
-                  {String(siteSections.findIndex((entry) => entry.id === section.id) + 2).padStart(2, '0')}
-                </span>
-                <span>{section.title}</span>
-              </a>
+            return (
+              <li className="section-nav__item" key={section.id}>
+                <a
+                  className={`section-nav__link${isSectionActive ? ' section-nav__link--active' : ''}`}
+                  href={`#${section.id}`}
+                  data-anchor-id={section.id}
+                  aria-current={activeAnchorId === section.id ? 'location' : undefined}
+                  onClick={onNavigate}
+                >
+                  <span className="section-nav__index">
+                    {String(siteSections.findIndex((entry) => entry.id === section.id) + 2).padStart(2, '0')}
+                  </span>
+                  <span>{section.title}</span>
+                </a>
 
-              {section.subsections.length > 0 ? (
-                <ul className="section-nav__sublist">
-                  {section.subsections.map((subsection) => (
-                    <li key={subsection.id}>
-                      <a
-                        className={`section-nav__sublink${
-                          isSubsectionActive(subsection, activeAnchorId) ? ' section-nav__sublink--active' : ''
-                        }`}
-                        href={`#${subsection.id}`}
-                        data-anchor-id={subsection.id}
-                        aria-current={activeAnchorId === subsection.id ? 'location' : undefined}
-                        onClick={onNavigate}
-                      >
-                        {subsection.title}
-                      </a>
-                      {subsection.children.length > 0 ? (
-                        <ul className="section-nav__childlist">
-                          {subsection.children.map((child) => (
-                            <li key={child.id}>
-                              <a
-                                className={`section-nav__childlink${
-                                  activeAnchorId === child.id || activeAnchorId.startsWith(`${child.id}-`)
-                                    ? ' section-nav__childlink--active'
-                                    : ''
-                                }`}
-                                href={`#${child.id}`}
-                                data-anchor-id={child.id}
-                                aria-current={activeAnchorId === child.id ? 'location' : undefined}
-                                onClick={onNavigate}
-                              >
-                                {child.title}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null}
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+                {section.subsections.length > 0 ? (
+                  <ul className="section-nav__sublist">
+                    {section.subsections.map((subsection) => (
+                      <li key={subsection.id}>
+                        <a
+                          className={`section-nav__sublink${
+                            isSubsectionActive(subsection, activeAnchorId) ? ' section-nav__sublink--active' : ''
+                          }`}
+                          href={`#${subsection.id}`}
+                          data-anchor-id={subsection.id}
+                          aria-current={activeAnchorId === subsection.id ? 'location' : undefined}
+                          onClick={onNavigate}
+                        >
+                          {subsection.title}
+                        </a>
+                        {subsection.children.length > 0 ? (
+                          <ul className="section-nav__childlist">
+                            {subsection.children.map((child) => (
+                              <li key={child.id}>
+                                <a
+                                  className={`section-nav__childlink${
+                                    activeAnchorId === child.id || activeAnchorId.startsWith(`${child.id}-`)
+                                      ? ' section-nav__childlink--active'
+                                      : ''
+                                  }`}
+                                  href={`#${child.id}`}
+                                  data-anchor-id={child.id}
+                                  aria-current={activeAnchorId === child.id ? 'location' : undefined}
+                                  onClick={onNavigate}
+                                >
+                                  {child.title}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+      <span className="section-nav-scrollbar" aria-hidden="true" onPointerDown={handleSectionNavigationScrollbarDrag}>
+        <span className="section-nav-scrollbar__thumb" />
+      </span>
+    </div>
   );
+}
+
+const sectionNavigationScrollbarTrackInset = 16;
+const sectionNavigationScrollbarMinThumbHeight = 44;
+
+function updateSectionNavigationScrollbar(navigation: HTMLElement) {
+  const shell = navigation.closest<HTMLElement>('.section-nav-shell');
+
+  if (!shell) {
+    return;
+  }
+
+  const scrollableDistance = navigation.scrollHeight - navigation.clientHeight;
+
+  if (scrollableDistance <= 1) {
+    shell.classList.remove('section-nav-shell--scrollable');
+    return;
+  }
+
+  const trackHeight = Math.max(0, navigation.clientHeight - sectionNavigationScrollbarTrackInset * 2);
+  const thumbHeight = Math.max(
+    sectionNavigationScrollbarMinThumbHeight,
+    (navigation.clientHeight / navigation.scrollHeight) * trackHeight,
+  );
+  const maxThumbOffset = Math.max(0, trackHeight - thumbHeight);
+  const thumbOffset = (navigation.scrollTop / scrollableDistance) * maxThumbOffset;
+
+  shell.classList.add('section-nav-shell--scrollable');
+  shell.style.setProperty('--section-nav-scrollbar-thumb-height', `${thumbHeight}px`);
+  shell.style.setProperty(
+    '--section-nav-scrollbar-thumb-offset',
+    `${sectionNavigationScrollbarTrackInset + thumbOffset}px`,
+  );
+}
+
+function syncSectionNavigationScrollbars() {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
+  document.querySelectorAll<HTMLElement>('.section-nav').forEach(updateSectionNavigationScrollbar);
+}
+
+function handleSectionNavigationScrollbarDrag(event: ReactPointerEvent<HTMLElement>) {
+  if (event.pointerType === 'mouse' && event.button !== 0) {
+    return;
+  }
+
+  const scrollbar = event.currentTarget;
+  const shell = scrollbar.closest<HTMLElement>('.section-nav-shell');
+  const navigation = shell?.querySelector<HTMLElement>('.section-nav');
+
+  if (!shell || !navigation) {
+    return;
+  }
+
+  const scrollableDistance = navigation.scrollHeight - navigation.clientHeight;
+
+  if (scrollableDistance <= 1) {
+    return;
+  }
+
+  const trackHeight = Math.max(0, navigation.clientHeight - sectionNavigationScrollbarTrackInset * 2);
+  const thumbHeight = Math.max(
+    sectionNavigationScrollbarMinThumbHeight,
+    (navigation.clientHeight / navigation.scrollHeight) * trackHeight,
+  );
+  const maxThumbOffset = Math.max(0, trackHeight - thumbHeight);
+
+  if (maxThumbOffset <= 0) {
+    return;
+  }
+
+  const scrollbarRect = scrollbar.getBoundingClientRect();
+  const currentThumbOffset = (navigation.scrollTop / scrollableDistance) * maxThumbOffset;
+  const pointerTarget = event.target as HTMLElement;
+  const didGrabThumb = Boolean(pointerTarget.closest('.section-nav-scrollbar__thumb'));
+  const grabOffset = didGrabThumb
+    ? event.clientY - scrollbarRect.top - sectionNavigationScrollbarTrackInset - currentThumbOffset
+    : thumbHeight / 2;
+
+  const setNavigationScrollFromPointer = (clientY: number) => {
+    const nextThumbOffset = Math.min(
+      maxThumbOffset,
+      Math.max(0, clientY - scrollbarRect.top - sectionNavigationScrollbarTrackInset - grabOffset),
+    );
+
+    navigation.scrollTop = (nextThumbOffset / maxThumbOffset) * scrollableDistance;
+    updateSectionNavigationScrollbar(navigation);
+  };
+
+  const handlePointerMove = (pointerEvent: PointerEvent) => {
+    pointerEvent.preventDefault();
+    setNavigationScrollFromPointer(pointerEvent.clientY);
+  };
+
+  const stopDragging = () => {
+    shell.classList.remove('section-nav-shell--dragging');
+    window.removeEventListener('pointermove', handlePointerMove);
+    window.removeEventListener('pointerup', stopDragging);
+    window.removeEventListener('pointercancel', stopDragging);
+    scrollbar.removeEventListener('lostpointercapture', stopDragging);
+  };
+
+  event.preventDefault();
+  shell.classList.add('section-nav-shell--dragging');
+  if (typeof scrollbar.setPointerCapture === 'function') {
+    scrollbar.setPointerCapture(event.pointerId);
+  }
+  window.addEventListener('pointermove', handlePointerMove);
+  window.addEventListener('pointerup', stopDragging);
+  window.addEventListener('pointercancel', stopDragging);
+  scrollbar.addEventListener('lostpointercapture', stopDragging);
+
+  if (!didGrabThumb) {
+    setNavigationScrollFromPointer(event.clientY);
+  }
 }
 
 function syncDesktopAnchorNavigationScroll(activeAnchorId: string) {
@@ -1410,6 +1533,40 @@ function AppShell() {
     syncDesktopAnchorNavigationScroll(activeAnchorId);
   }, [activeAnchorId, isGalleryPage, searchQuery]);
 
+  useEffect(() => {
+    if (isGalleryPage || typeof document === 'undefined') {
+      return undefined;
+    }
+
+    const navigations = Array.from(document.querySelectorAll<HTMLElement>('.section-nav'));
+    let animationFrame = 0;
+
+    const scheduleScrollbarSync = () => {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = requestAnimationFrame(syncSectionNavigationScrollbars);
+    };
+
+    const resizeObserver =
+      typeof ResizeObserver === 'undefined' ? undefined : new ResizeObserver(scheduleScrollbarSync);
+
+    navigations.forEach((navigation) => {
+      navigation.addEventListener('scroll', scheduleScrollbarSync, { passive: true });
+      resizeObserver?.observe(navigation);
+    });
+    window.addEventListener('resize', scheduleScrollbarSync);
+
+    scheduleScrollbarSync();
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      navigations.forEach((navigation) => {
+        navigation.removeEventListener('scroll', scheduleScrollbarSync);
+      });
+      resizeObserver?.disconnect();
+      window.removeEventListener('resize', scheduleScrollbarSync);
+    };
+  }, [activeAnchorId, isGalleryPage, isNavDrawerOpen, searchQuery]);
+
   return (
     <div className="site-shell" style={formatBackground(color)}>
       <a className="skip-link" href="#site-documentation">
@@ -1422,68 +1579,89 @@ function AppShell() {
       <SiteHeader isGalleryPage={isGalleryPage} />
 
       {isGalleryPage ? null : (
-        <header className="hero">
-          <div className="hero__backdrop hero__backdrop--left" aria-hidden="true" />
-          <div className="hero__backdrop hero__backdrop--right" aria-hidden="true" />
+        <>
+          <header className="hero">
+            <div className="hero__backdrop hero__backdrop--left" aria-hidden="true" />
+            <div className="hero__backdrop hero__backdrop--right" aria-hidden="true" />
 
-          <div className="hero__content">
-            <h1>React Color</h1>
-            <p className="hero__lede">
-              A Collection of Color Pickers from Sketch, Photoshop, Chrome, Github, Twitter, Material Design & more
-            </p>
+            <div className="hero__content">
+              <h1>React Color</h1>
+              <p className="hero__lede">
+                A Collection of Color Pickers from Sketch, Photoshop, Chrome, Github, Twitter, Material Design & more
+              </p>
 
-            <div className="hero__metrics" aria-label="Current shared color values">
-              <div className="hero__metric hero__metric--swatch">
-                <span className="hero__swatch" style={{ backgroundColor: rgbaLabel }} />
-                <div>
-                  <strong>{colorToHex(color)}</strong>
-                  <span>Current color</span>
+              <div className="hero__metrics" aria-label="Current shared color values">
+                <div className="hero__metric hero__metric--swatch">
+                  <span className="hero__swatch" style={{ backgroundColor: rgbaLabel }} />
+                  <div>
+                    <strong>{colorToHex(color)}</strong>
+                    <span>Current color</span>
+                  </div>
+                </div>
+                <div className="hero__metric">
+                  <strong>{rgbaLabel}</strong>
+                  <span>RGBA value</span>
                 </div>
               </div>
-              <div className="hero__metric">
-                <strong>{rgbaLabel}</strong>
-                <span>RGBA value</span>
+
+              <div className="hero__palette" aria-label="Current color family">
+                <span className="hero__palette-label">Current color scale</span>
+                <div className="hero__palette-track">
+                  {paletteStops.map((stop, index) => (
+                    <span className="hero__palette-stop" key={`${stop}-${index}`} style={{ backgroundColor: stop }} />
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className="hero__palette" aria-label="Current color family">
-              <span className="hero__palette-label">Current color scale</span>
-              <div className="hero__palette-track">
-                {paletteStops.map((stop, index) => (
-                  <span className="hero__palette-stop" key={`${stop}-${index}`} style={{ backgroundColor: stop }} />
+            <div className="hero__demo" aria-label="Synchronized live picker demo">
+              <div className="hero__demo-head">
+                <div>
+                  <span className="hero__demo-label">Synchronized pickers</span>
+                  <p className="hero__demo-copy">Each panel reads and writes the same color value.</p>
+                </div>
+                <div className="hero__demo-actions">
+                  <span className="hero__demo-value">{colorToHex(color)}</span>
+                  <Link className="hero__demo-link" to={galleryPagePath}>
+                    Show more
+                  </Link>
+                </div>
+              </div>
+
+              <div className="hero__picker-grid">
+                {heroPickerCards.map(({ id, title, description, component: PickerComponent }) => (
+                  <article className={`hero__picker-card hero__picker-card--${id}`} key={id}>
+                    <div className="hero__picker-meta">
+                      <div>
+                        <h2>{title}</h2>
+                        <p>{description}</p>
+                      </div>
+                      <span className="hero__picker-chip">{title}</span>
+                    </div>
+
+                    <div className="hero__picker-surface">
+                      <PickerComponent color={color} onChange={(nextColor: ColorResult) => setColor(nextColor.rgb)} />
+                    </div>
+                  </article>
                 ))}
               </div>
             </div>
-          </div>
+          </header>
 
-          <div className="hero__demo" aria-label="Synchronized live picker demo">
-            <div className="hero__demo-head">
-              <div>
-                <span className="hero__demo-label">Synchronized pickers</span>
-                <p className="hero__demo-copy">Each panel reads and writes the same color value.</p>
-              </div>
-              <span className="hero__demo-value">{colorToHex(color)}</span>
+          <section className="project-thanks" aria-labelledby="project-thanks-title">
+            <div className="project-thanks__inner">
+              <span className="project-thanks__eyebrow">Acknowledgement</span>
+              <h2 id="project-thanks-title">Thank you, casesandberg</h2>
+              <p>
+                This modernization fork stands on the years of work behind the original{' '}
+                <a href="https://github.com/casesandberg/react-color" target="_blank" rel="noreferrer">
+                  casesandberg/react-color
+                </a>{' '}
+                project. Its API, picker set, and community adoption made this continuation possible.
+              </p>
             </div>
-
-            <div className="hero__picker-grid">
-              {heroPickerCards.map(({ id, title, description, component: PickerComponent }) => (
-                <article className={`hero__picker-card hero__picker-card--${id}`} key={id}>
-                  <div className="hero__picker-meta">
-                    <div>
-                      <h2>{title}</h2>
-                      <p>{description}</p>
-                    </div>
-                    <span className="hero__picker-chip">{title}</span>
-                  </div>
-
-                  <div className="hero__picker-surface">
-                    <PickerComponent color={color} onChange={(nextColor: ColorResult) => setColor(nextColor.rgb)} />
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </header>
+          </section>
+        </>
       )}
 
       <main className={`sections-shell${isGalleryPage ? ' sections-shell--gallery-page' : ''}`} id="site-documentation">
