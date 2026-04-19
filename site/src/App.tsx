@@ -1137,7 +1137,6 @@ function SiteHeader({ isGalleryPage }: { isGalleryPage: boolean }) {
         <Link
           className={`site-header__link${isGalleryPage ? '' : ' site-header__link--active'}`}
           to="/"
-          hash="about"
           aria-current={isGalleryPage ? undefined : 'page'}
         >
           Read the docs

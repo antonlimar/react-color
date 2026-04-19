@@ -162,6 +162,12 @@
   background: linear-gradient(135deg, #0d1726 0%, var(--site-accent) 100%);
 }
 
+.site-header__link--active:hover {
+  border-color: transparent;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0d1726 0%, var(--site-accent) 100%);
+}
+
 .site-header__status {
   display: inline-flex;
   align-items: center;

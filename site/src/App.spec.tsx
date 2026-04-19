@@ -91,7 +91,7 @@ describe('site app', () => {
     expect(siteHtml).toContain('<link rel="icon" href="/src/assets/favicon.ico" sizes="16x16" />');
     expect(skipLink).toHaveAttribute('href', '#site-documentation');
     expect(container.querySelector('main#site-documentation')).toBeInstanceOf(HTMLElement);
-    expect(within(primaryNav).getByRole('link', { name: 'Read the docs' })).toHaveAttribute('href', '/#about');
+    expect(within(primaryNav).getByRole('link', { name: 'Read the docs' })).toHaveAttribute('href', '/');
     expect(within(primaryNav).getByRole('link', { name: 'Picker Gallery' })).toHaveAttribute('href', '/gallery');
     expect(within(primaryNav).getByRole('link', { name: 'View repository' })).toHaveAttribute(
       'href',
