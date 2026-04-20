@@ -131,7 +131,7 @@ describe('site app', () => {
 
     fireEvent.click(drawerToggle);
 
-    const drawer = screen.getByRole('dialog', { name: /docs anchors/i });
+    const drawer = screen.getByRole('dialog', { name: /sections/i });
     expect(drawerToggle).toHaveAttribute('aria-expanded', 'true');
     expect(drawer).toHaveAttribute('aria-modal', 'true');
     expect(document.body).toHaveStyle({ overflow: 'hidden' });
@@ -437,10 +437,11 @@ describe('site app', () => {
     fireEvent.change(searchInput, { target: { value: 'presetColors' } });
 
     expect(window.location.search).toBe('?q=presetColors');
-    expect(screen.getByRole('link', { name: /presetColors in Sketch/i })).toHaveAttribute(
-      'href',
-      '#picker-specific-props-sketch-presetcolors',
-    );
+    expect(
+      screen
+        .getAllByRole('link', { name: /presetColors in Sketch/i })
+        .some((link) => link.getAttribute('href') === '#picker-specific-props-sketch-presetcolors'),
+    ).toBe(true);
 
     fireEvent.change(searchInput, { target: { value: 'onChangeComplete' } });
     expect(
@@ -466,7 +467,7 @@ describe('site app', () => {
 
   test('focuses search with slash unless the user is already typing', () => {
     const { container } = render(<App />);
-    const searchInput = container.querySelector('#desktop-docs-search') as HTMLInputElement;
+    const searchInput = container.querySelector('#mobile-docs-search') as HTMLInputElement;
 
     fireEvent.keyDown(window, { key: '/' });
     expect(searchInput).toHaveFocus();
@@ -476,21 +477,48 @@ describe('site app', () => {
     expect(searchInput).toHaveValue('Sketch');
   });
 
-  test('closes the mobile drawer when a search result is selected', () => {
+  test('keeps mobile search outside the full-screen section drawer', () => {
     render(<App />);
     const drawerToggle = screen.getByRole('button', { name: /browse sections/i });
 
     fireEvent.click(drawerToggle);
 
-    const drawer = screen.getByRole('dialog', { name: /docs anchors/i });
-    const drawerSearch = within(drawer).getByLabelText('Search documentation');
-    fireEvent.change(drawerSearch, { target: { value: 'presetColors' } });
+    const drawer = screen.getByRole('dialog', { name: /sections/i });
+    const mobileSearch = document.querySelector('#mobile-docs-search');
 
-    const presetColorsResult = within(drawer).getByRole('link', { name: /presetColors in Sketch/i });
-    clickAnchorWithoutNavigation(presetColorsResult);
+    expect(mobileSearch).toBeInstanceOf(HTMLInputElement);
+    expect(within(drawer).queryByLabelText('Search documentation')).not.toBeInTheDocument();
+    expect(drawer.closest('.sections-shell__drawer')).not.toHaveAttribute('hidden');
+  });
 
-    expect(drawerToggle).toHaveAttribute('aria-expanded', 'false');
-    expect(drawer.closest('.sections-shell__drawer')).toHaveAttribute('hidden');
+  test('renders the mobile section menu on the gallery page with links back to docs anchors', async () => {
+    window.history.replaceState(null, '', '/gallery');
+
+    render(<App />);
+
+    await screen.findByRole('heading', { name: 'Find the picker that fits the job.' });
+
+    const drawerToggle = screen.getByRole('button', { name: /browse sections/i });
+    fireEvent.click(drawerToggle);
+
+    const drawer = screen.getByRole('dialog', { name: /sections/i });
+    expect(drawer.closest('.sections-shell__drawer')).not.toHaveAttribute('hidden');
+    expect(within(drawer).getByRole('link', { name: 'Install' })).toHaveAttribute('href', '/#install');
+    expect(screen.queryByLabelText('Search documentation')).not.toBeInTheDocument();
+  });
+
+  test('renders the mobile section menu on the 404 page', async () => {
+    window.history.replaceState(null, '', '/missing-page');
+
+    render(<App />);
+
+    await screen.findByRole('heading', { name: 'This color is outside the palette.' });
+
+    const drawerToggle = screen.getByRole('button', { name: /browse sections/i });
+    fireEvent.click(drawerToggle);
+
+    const drawer = screen.getByRole('dialog', { name: /sections/i });
+    expect(within(drawer).getByRole('link', { name: 'Install' })).toHaveAttribute('href', '/#install');
   });
 
   test('renders the public picker gallery page with import snippets and API links', async () => {

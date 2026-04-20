@@ -1028,14 +1028,18 @@ function renderSection(section: ContentSection, options: RenderBlockOptions) {
   );
 }
 
-function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void, className = 'section-nav') {
+function renderAnchorNavigation(
+  activeAnchorId: string,
+  onNavigate?: () => void,
+  className = 'section-nav',
+  anchorPath = '',
+) {
   const navSections = siteSections.map(createNavItems);
   const isDrawerNavigation = className.split(' ').includes('section-nav--drawer');
 
   return (
     <div className={`section-nav-shell${isDrawerNavigation ? ' section-nav-shell--drawer' : ''}`}>
       <nav className={className} aria-label="Section navigation">
-        <div className="section-nav__eyebrow">Jump to section</div>
         <ul className="section-nav__list">
           {navSections.map((section) => {
             const isSectionActive =
@@ -1046,7 +1050,7 @@ function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void,
               <li className="section-nav__item" key={section.id}>
                 <a
                   className={`section-nav__link${isSectionActive ? ' section-nav__link--active' : ''}`}
-                  href={`#${section.id}`}
+                  href={`${anchorPath}#${section.id}`}
                   data-anchor-id={section.id}
                   aria-current={activeAnchorId === section.id ? 'location' : undefined}
                   onClick={onNavigate}
@@ -1065,7 +1069,7 @@ function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void,
                           className={`section-nav__sublink${
                             isSubsectionActive(subsection, activeAnchorId) ? ' section-nav__sublink--active' : ''
                           }`}
-                          href={`#${subsection.id}`}
+                          href={`${anchorPath}#${subsection.id}`}
                           data-anchor-id={subsection.id}
                           aria-current={activeAnchorId === subsection.id ? 'location' : undefined}
                           onClick={onNavigate}
@@ -1082,7 +1086,7 @@ function renderAnchorNavigation(activeAnchorId: string, onNavigate?: () => void,
                                       ? ' section-nav__childlink--active'
                                       : ''
                                   }`}
-                                  href={`#${child.id}`}
+                                  href={`${anchorPath}#${child.id}`}
                                   data-anchor-id={child.id}
                                   aria-current={activeAnchorId === child.id ? 'location' : undefined}
                                   onClick={onNavigate}
@@ -1599,6 +1603,7 @@ function AppShell() {
   const currentPathname = useRouterState({ select: (state) => state.location.pathname });
   const isGalleryPage = currentPathname === galleryPagePath;
   const isNotFoundPage = currentPathname !== '/' && !isGalleryPage;
+  const anchorNavigationPath = isGalleryPage || isNotFoundPage ? '/' : '';
   const alpha = color.a ?? 1;
   const rgbaLabel = `rgba(${clampColorChannel(color.r)}, ${clampColorChannel(color.g)}, ${clampColorChannel(color.b)}, ${alpha.toFixed(2)})`;
   const paletteStops = createPaletteStops(color);
@@ -1619,6 +1624,65 @@ function AppShell() {
   const handleColorChange = useCallback((nextColor: ColorResult) => {
     setColor(nextColor.rgb);
   }, []);
+  const mobileSectionDrawer = (
+    <>
+      <div className="sections-shell__toolbar">
+        <button
+          className="sections-shell__drawer-toggle"
+          ref={drawerToggleRef}
+          type="button"
+          aria-label="Browse sections"
+          aria-expanded={isNavDrawerOpen}
+          aria-controls="mobile-section-nav"
+          onClick={() => setIsNavDrawerOpen((current) => !current)}
+        >
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+        </button>
+      </div>
+
+      <div
+        className={`sections-shell__drawer${isNavDrawerOpen ? ' sections-shell__drawer--open' : ''}`}
+        hidden={!isNavDrawerOpen}
+        aria-hidden={!isNavDrawerOpen}
+      >
+        <button
+          className="sections-shell__drawer-backdrop"
+          type="button"
+          aria-label="Close section navigation"
+          onClick={closeNavDrawer}
+        />
+        <div
+          className="sections-shell__drawer-panel"
+          id="mobile-section-nav"
+          ref={drawerPanelRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="mobile-section-nav-title"
+          tabIndex={-1}
+        >
+          <div className="sections-shell__drawer-head">
+            <strong id="mobile-section-nav-title">Sections</strong>
+            <button
+              className="sections-shell__drawer-close"
+              type="button"
+              aria-label="Close section navigation"
+              onClick={closeNavDrawer}
+            >
+              Close
+            </button>
+          </div>
+          {renderAnchorNavigation(
+            activeAnchorId,
+            closeNavDrawer,
+            'section-nav section-nav--drawer',
+            anchorNavigationPath,
+          )}
+        </div>
+      </div>
+    </>
+  );
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -1661,7 +1725,7 @@ function AppShell() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === '/' && !isTextEntryTarget(event.target)) {
         event.preventDefault();
-        (isNavDrawerOpen ? mobileSearchRef.current : desktopSearchRef.current)?.focus();
+        (window.innerWidth <= 920 ? mobileSearchRef.current : desktopSearchRef.current)?.focus();
         return;
       }
 
@@ -1676,7 +1740,7 @@ function AppShell() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isNavDrawerOpen, searchQuery]);
+  }, [searchQuery]);
 
   useEffect(() => {
     const anchorIds = getAnchorIds();
@@ -1848,6 +1912,7 @@ function AppShell() {
         <div className="site-shell__ambient site-shell__ambient--two" aria-hidden="true" />
 
         <SiteHeader page="not-found" />
+        {mobileSectionDrawer}
         <NotFoundMain />
       </div>
     );
@@ -1863,6 +1928,7 @@ function AppShell() {
       <div className="site-shell__ambient site-shell__ambient--two" aria-hidden="true" />
 
       <SiteHeader page={isGalleryPage ? 'gallery' : 'docs'} />
+      {mobileSectionDrawer}
 
       {isGalleryPage ? null : (
         <>
@@ -1941,24 +2007,14 @@ function AppShell() {
           <PickerGalleryPage color={color} onChange={handleColorChange} />
         ) : (
           <>
-            <div className="sections-shell__toolbar">
-              <button
-                className="sections-shell__drawer-toggle"
-                ref={drawerToggleRef}
-                type="button"
-                aria-expanded={isNavDrawerOpen}
-                aria-controls="mobile-section-nav"
-                onClick={() => setIsNavDrawerOpen((current) => !current)}
-              >
-                <span>Browse sections</span>
-                <span className="sections-shell__drawer-meta">
-                  {siteSections.find((section) => section.id === activeAnchorId)?.title ??
-                    siteSections.find((section) =>
-                      section.subsections?.some((subsection) => subsection.id === activeAnchorId),
-                    )?.title ??
-                    'Navigation'}
-                </span>
-              </button>
+            <div className="sections-shell__mobile-search">
+              <SearchNavigation
+                id="mobile-docs-search"
+                inputRef={mobileSearchRef}
+                query={searchQuery}
+                results={searchResults}
+                onQueryChange={handleSearchQueryChange}
+              />
             </div>
 
             <div className="sections-layout">
@@ -1972,54 +2028,6 @@ function AppShell() {
                 />
                 {searchQuery.trim() ? null : renderAnchorNavigation(activeAnchorId)}
               </aside>
-
-              <div
-                className={`sections-shell__drawer${isNavDrawerOpen ? ' sections-shell__drawer--open' : ''}`}
-                hidden={!isNavDrawerOpen}
-                aria-hidden={!isNavDrawerOpen}
-              >
-                <button
-                  className="sections-shell__drawer-backdrop"
-                  type="button"
-                  aria-label="Close section navigation"
-                  onClick={closeNavDrawer}
-                />
-                <div
-                  className="sections-shell__drawer-panel"
-                  id="mobile-section-nav"
-                  ref={drawerPanelRef}
-                  role="dialog"
-                  aria-modal="true"
-                  aria-labelledby="mobile-section-nav-title"
-                  tabIndex={-1}
-                >
-                  <div className="sections-shell__drawer-head">
-                    <div>
-                      <p className="sections-shell__drawer-eyebrow">Mobile navigation</p>
-                      <strong id="mobile-section-nav-title">Docs anchors</strong>
-                    </div>
-                    <button
-                      className="sections-shell__drawer-close"
-                      type="button"
-                      aria-label="Close section navigation"
-                      onClick={closeNavDrawer}
-                    >
-                      Close
-                    </button>
-                  </div>
-                  <SearchNavigation
-                    id="mobile-docs-search"
-                    inputRef={mobileSearchRef}
-                    query={searchQuery}
-                    results={searchResults}
-                    onNavigate={closeNavDrawer}
-                    onQueryChange={handleSearchQueryChange}
-                  />
-                  {searchQuery.trim()
-                    ? null
-                    : renderAnchorNavigation(activeAnchorId, closeNavDrawer, 'section-nav section-nav--drawer')}
-                </div>
-              </div>
 
               <div className="sections">
                 {siteSections.map((section) => renderSection(section, { packageManager, setPackageManager }))}
