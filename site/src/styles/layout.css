@@ -2113,7 +2113,7 @@
 
   .hero__content {
     max-width: none;
-    padding-top: clamp(4.5rem, 12vw, 6.5rem);
+    padding-top: 0;
   }
 
   .hero__masthead {
@@ -2122,8 +2122,11 @@
   }
 
   .hero__metrics {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
+    display: none;
+  }
+
+  .hero__palette {
+    display: none;
   }
 
   .hero__demo {
@@ -2143,6 +2146,7 @@
 
   .sections-shell {
     padding-top: 0.75rem;
+    padding-bottom: 1.5rem;
     z-index: 70;
   }
 
