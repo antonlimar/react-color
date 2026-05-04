@@ -54,8 +54,14 @@ const siteViewports = [
   },
 ];
 
+const drawerOpenViewports = siteViewports.filter((viewport) => ['tablet', 'mobile'].includes(viewport.name));
+
 function createScreenshotName(sitePage, viewport) {
   return `${sitePage.name}-${viewport.name}-full-${browserName}.png`;
+}
+
+function createDrawerOpenScreenshotName(viewport) {
+  return `home-${viewport.name}-drawer-open-${browserName}.png`;
 }
 
 async function fileExists(filePath) {
@@ -174,6 +180,39 @@ async function main() {
           }
 
           failures.push(`${screenshotName}: ${result.message}`);
+        }
+      }
+
+      if (drawerOpenViewports.includes(viewport)) {
+        const screenshotName = createDrawerOpenScreenshotName(viewport);
+        const screenshotPath = path.join(screenshotRoot, screenshotName);
+        const diffPath = path.join(diffRoot, screenshotName);
+
+        await page.goto(new URL('/', baseUrl).href, { waitUntil: 'networkidle' });
+        await page.locator('h1', { hasText: 'React Color' }).first().waitFor();
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.getByRole('button', { name: 'Browse sections' }).click();
+        await page.getByRole('dialog', { name: 'Sections' }).waitFor();
+
+        const screenshot = await page.screenshot({
+          animations: 'disabled',
+        });
+
+        if (shouldUpdate || !(await fileExists(screenshotPath))) {
+          await fs.writeFile(screenshotPath, screenshot);
+          console.log(`Updated ${path.relative(repoRoot, screenshotPath)}`);
+        } else {
+          const expected = await fs.readFile(screenshotPath);
+          const result = compareScreenshots(screenshot, expected, diffPath);
+
+          if (!result.passed) {
+            if (result.diffBuffer) {
+              await fs.mkdir(diffRoot, { recursive: true });
+              await fs.writeFile(diffPath, result.diffBuffer);
+            }
+
+            failures.push(`${screenshotName}: ${result.message}`);
+          }
         }
       }
 
