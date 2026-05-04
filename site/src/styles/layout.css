@@ -1,9 +1,9 @@
 .site-shell {
-  --site-accent: rgba(61, 145, 255, 1);
-  --site-accent-page: rgba(61, 145, 255, 0.18);
-  --site-accent-floor: rgba(61, 145, 255, 0.42);
-  --site-accent-soft: rgba(61, 145, 255, 0.24);
-  --site-accent-wash: rgba(61, 145, 255, 0.1);
+  --site-accent: rgba(65, 117, 5, 1);
+  --site-accent-page: rgba(65, 117, 5, 0.18);
+  --site-accent-floor: rgba(65, 117, 5, 0.42);
+  --site-accent-soft: rgba(65, 117, 5, 0.24);
+  --site-accent-wash: rgba(65, 117, 5, 0.1);
   position: relative;
   min-height: 100vh;
   color: var(--site-text);
@@ -1204,7 +1204,7 @@
   color: rgba(21, 82, 143, 0.92);
   font-weight: 650;
   text-decoration: underline;
-  text-decoration-color: rgba(61, 145, 255, 0.34);
+  text-decoration-color: rgba(65, 117, 5, 0.34);
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.18em;
   transition:
@@ -1675,7 +1675,7 @@
 }
 
 .not-found-page__swatches span:nth-child(1) {
-  background: #3d91ff;
+  background: #417505;
 }
 
 .not-found-page__swatches span:nth-child(2) {

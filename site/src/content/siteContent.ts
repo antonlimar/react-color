@@ -663,7 +663,7 @@ export const siteSections: readonly ContentSection[] = [
             type: 'code',
             language: 'tsx',
             label: 'Controlled picker with ColorResult',
-            code: "import { useState } from 'react';\nimport { SketchPicker } from 'react-color';\nimport type { ColorResult } from 'react-color';\n\nexport function Example() {\n  const [color, setColor] = useState('#3D91FF');\n\n  const handleChangeComplete = (nextColor: ColorResult) => {\n    setColor(nextColor.hex);\n  };\n\n  return <SketchPicker color={color} onChangeComplete={handleChangeComplete} />;\n}\n",
+            code: "import { useState } from 'react';\nimport { SketchPicker } from 'react-color';\nimport type { ColorResult } from 'react-color';\n\nexport function Example() {\n  const [color, setColor] = useState('#417505');\n\n  const handleChangeComplete = (nextColor: ColorResult) => {\n    setColor(nextColor.hex);\n  };\n\n  return <SketchPicker color={color} onChangeComplete={handleChangeComplete} />;\n}\n",
           },
           {
             type: 'code',

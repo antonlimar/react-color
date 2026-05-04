@@ -193,9 +193,9 @@ function renderInlineCode(text: string): ReactNode {
 }
 
 const initialColor: RGBAColor = {
-  r: 61,
-  g: 145,
-  b: 255,
+  r: 65,
+  g: 117,
+  b: 5,
   a: 1,
 };
 

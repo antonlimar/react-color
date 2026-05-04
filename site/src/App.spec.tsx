@@ -44,19 +44,19 @@ describe('site app', () => {
     const heroDemoValue = container.querySelector('.hero__demo-value');
     const heroDemo = container.querySelector('.hero__demo') as HTMLElement;
 
-    expect(siteShell).toHaveStyle('--site-accent: rgba(61, 145, 255, 1)');
-    expect(siteShell).toHaveStyle('--site-accent-page: rgba(61, 145, 255, 0.18)');
-    expect(siteShell).toHaveStyle('--site-accent-floor: rgba(61, 145, 255, 0.42)');
+    expect(siteShell).toHaveStyle('--site-accent: rgba(65, 117, 5, 1)');
+    expect(siteShell).toHaveStyle('--site-accent-page: rgba(65, 117, 5, 0.18)');
+    expect(siteShell).toHaveStyle('--site-accent-floor: rgba(65, 117, 5, 0.42)');
     expect(githubSwatch).toBeInstanceOf(HTMLElement);
-    expect(heroDemoValue).toHaveTextContent('#3D91FF');
+    expect(heroDemoValue).toHaveTextContent('#417505');
     expect(within(heroDemo).getByRole('link', { name: 'Show more' })).toHaveAttribute('href', '/gallery');
 
     fireEvent.click(githubSwatch as HTMLElement);
 
-    expect(heroDemoValue).not.toHaveTextContent('#3D91FF');
-    expect(siteShell?.getAttribute('style')).not.toContain('rgba(61, 145, 255, 1)');
-    expect(siteShell?.getAttribute('style')).not.toContain('rgba(61, 145, 255, 0.18)');
-    expect(siteShell?.getAttribute('style')).not.toContain('rgba(61, 145, 255, 0.42)');
+    expect(heroDemoValue).not.toHaveTextContent('#417505');
+    expect(siteShell?.getAttribute('style')).not.toContain('rgba(65, 117, 5, 1)');
+    expect(siteShell?.getAttribute('style')).not.toContain('rgba(65, 117, 5, 0.18)');
+    expect(siteShell?.getAttribute('style')).not.toContain('rgba(65, 117, 5, 0.42)');
   });
 
   test('updates active anchors from the hash and closes the mobile drawer on navigation', async () => {
@@ -617,11 +617,11 @@ describe('site app', () => {
     const githubSwatch = container.querySelector('#picker-github [tabindex="0"]');
 
     expect(githubSwatch).toBeInstanceOf(HTMLElement);
-    expect(siteShell).toHaveStyle('--site-accent: rgba(61, 145, 255, 1)');
+    expect(siteShell).toHaveStyle('--site-accent: rgba(65, 117, 5, 1)');
 
     fireEvent.click(githubSwatch as HTMLElement);
 
-    expect(siteShell.getAttribute('style')).not.toContain('rgba(61, 145, 255, 1)');
+    expect(siteShell.getAttribute('style')).not.toContain('rgba(65, 117, 5, 1)');
   });
 
   test('keeps prop names as text and collapses long default values', () => {
