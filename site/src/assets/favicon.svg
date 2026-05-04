@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="react-color">
+  <defs>
+    <clipPath id="ring">
+      <path
+        fill-rule="evenodd"
+        d="M32 7a25 25 0 1 1 0 50 25 25 0 0 1 0-50Zm0 14a11 11 0 1 0 0 22 11 11 0 0 0 0-22Z"
+      />
+    </clipPath>
+    <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity=".24" />
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#111827" />
+  <g clip-path="url(#ring)" filter="url(#soft-shadow)">
+    <path d="M32 32 32 0A32 32 0 0 1 59.7 16Z" fill="#ff4f81" />
+    <path d="M32 32 59.7 16A32 32 0 0 1 59.7 48Z" fill="#ffb000" />
+    <path d="M32 32 59.7 48A32 32 0 0 1 32 64Z" fill="#36c56f" />
+    <path d="M32 32 32 64A32 32 0 0 1 4.3 48Z" fill="#22b8cf" />
+    <path d="M32 32 4.3 48A32 32 0 0 1 4.3 16Z" fill="#4c6fff" />
+    <path d="M32 32 4.3 16A32 32 0 0 1 32 0Z" fill="#9b5cff" />
+  </g>
+  <path
+    d="M42.5 21.8A16 16 0 1 0 42.5 42.2"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="7.5"
+    stroke-linecap="round"
+  />
+  <circle cx="46.5" cy="18.5" r="4" fill="#ffffff" />
+  <circle cx="46.5" cy="45.5" r="4" fill="#ffffff" />
+</svg>
