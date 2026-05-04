@@ -610,6 +610,10 @@
   max-width: 100%;
 }
 
+.hero__picker-card--github .hero__picker-surface > .github-picker {
+  width: 200px !important;
+}
+
 .hero__picker-surface > .rc-sketch {
   box-sizing: border-box;
 }
@@ -2164,6 +2168,8 @@
   .sections-shell__mobile-search {
     display: block;
     margin-bottom: 1rem;
+    position: relative;
+    z-index: 110;
   }
 
   .sections-layout {
@@ -2396,12 +2402,77 @@
   .picker-gallery__preview {
     justify-content: flex-start;
     min-height: 16rem;
+    overflow: hidden;
+  }
+
+  .picker-gallery__live {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .picker-gallery__live > * {
+    flex: 0 1 auto;
+    max-width: 100%;
   }
 
   .picker-gallery__preview--alpha,
   .picker-gallery__preview--hue,
   .picker-gallery__preview--slider {
     min-height: 6.25rem;
+  }
+
+  .picker-gallery__preview--google {
+    min-height: 22rem;
+  }
+
+  .picker-gallery__preview--photoshop {
+    min-height: 24rem;
+  }
+
+  .picker-gallery__preview .rc-raised,
+  .picker-gallery__preview .rc-compact,
+  .picker-gallery__preview .circle-picker,
+  .picker-gallery__preview .google-picker,
+  .picker-gallery__preview .photoshop-picker,
+  .picker-gallery__preview .swatches-picker,
+  .picker-gallery__preview .twitter-picker,
+  .picker-gallery__preview .github-picker,
+  .picker-gallery__preview .block-picker {
+    max-width: 100%;
+  }
+
+  .picker-gallery__preview .rc-compact {
+    box-sizing: border-box;
+  }
+
+  .picker-gallery__preview--photoshop .rc-photoshop__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 1.45rem;
+    gap: 10px;
+    padding: 0.75rem;
+  }
+
+  .picker-gallery__preview--photoshop .rc-photoshop__saturation {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .picker-gallery__preview--photoshop .rc-photoshop__hue {
+    width: 19px;
+    height: auto;
+    margin-left: 0;
+  }
+
+  .picker-gallery__preview--photoshop .rc-photoshop__controls {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .picker-gallery__preview--photoshop .rc-photoshop__actions {
+    margin-left: 12px;
   }
 
   .api-table {
