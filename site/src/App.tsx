@@ -247,20 +247,6 @@ const pickerGalleryPreviewProps: Record<string, ColorPickerProps> = {
   alpha: { width: '100%' },
   google: { width: 420 },
   hue: { width: '100%' },
-  material: {
-    styles: {
-      default: {
-        bg: {
-          borderRadius: 16,
-          boxShadow: 'var(--site-picker-gallery-shadow)',
-        },
-        material: {
-          height: 'auto',
-          minHeight: 112,
-        },
-      },
-    },
-  },
   photoshop: {
     onCancel: () => undefined,
     styles: { default: { picker: { boxShadow: 'var(--site-picker-gallery-shadow)' } } },
