@@ -4,15 +4,18 @@ import { render } from '@testing-library/react';
 import { composeStories } from '@storybook/react-vite';
 import { describe, expect, test } from 'vitest';
 
+import * as alphaStories from '../../src/components/alpha/story';
 import * as blockStories from '../../src/components/block/story';
 import * as chromeStories from '../../src/components/chrome/story';
 import * as circleStories from '../../src/components/circle/story';
 import * as compactStories from '../../src/components/compact/story';
 import * as githubStories from '../../src/components/github/story';
 import * as googleStories from '../../src/components/google/story';
+import * as hueStories from '../../src/components/hue/story';
 import * as materialStories from '../../src/components/material/story';
 import * as photoshopStories from '../../src/components/photoshop/story';
 import * as sketchStories from '../../src/components/sketch/story';
+import * as sliderStories from '../../src/components/slider/story';
 import * as swatchesStories from '../../src/components/swatches/story';
 import * as twitterStories from '../../src/components/twitter/story';
 
@@ -23,15 +26,18 @@ const composePickerStories = (storiesModule: unknown) =>
   composeStories(storiesModule as never) as Record<string, VisualStoryComponent>;
 
 const storyGroups = [
+  ['alpha', composePickerStories(alphaStories)],
   ['block', composePickerStories(blockStories)],
   ['chrome', composePickerStories(chromeStories)],
   ['circle', composePickerStories(circleStories)],
   ['compact', composePickerStories(compactStories)],
   ['github', composePickerStories(githubStories)],
   ['google', composePickerStories(googleStories)],
+  ['hue', composePickerStories(hueStories)],
   ['material', composePickerStories(materialStories)],
   ['photoshop', composePickerStories(photoshopStories)],
   ['sketch', composePickerStories(sketchStories)],
+  ['slider', composePickerStories(sliderStories)],
   ['swatches', composePickerStories(swatchesStories)],
   ['twitter', composePickerStories(twitterStories)],
 ] as const;
@@ -43,6 +49,13 @@ const themedVisualCases: Array<{
   args: VisualStoryArgs;
   frameBackground: string;
 }> = [
+  {
+    groupName: 'alpha',
+    storyName: 'AlphaPicker',
+    screenshotName: 'alpha/AlphaPicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#111827',
+  },
   {
     groupName: 'block',
     storyName: 'BlockPicker',
@@ -86,6 +99,13 @@ const themedVisualCases: Array<{
     frameBackground: '#111827',
   },
   {
+    groupName: 'hue',
+    storyName: 'HuePicker',
+    screenshotName: 'hue/HuePicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#111827',
+  },
+  {
     groupName: 'material',
     storyName: 'MaterialPicker',
     screenshotName: 'material/MaterialPicker-dark',
@@ -105,6 +125,13 @@ const themedVisualCases: Array<{
     screenshotName: 'photoshop/PhotoshopPicker-dark',
     args: { theme: 'dark' },
     frameBackground: '#0b1220',
+  },
+  {
+    groupName: 'slider',
+    storyName: 'SliderPicker',
+    screenshotName: 'slider/SliderPicker-dark',
+    args: { theme: 'dark' },
+    frameBackground: '#111827',
   },
   {
     groupName: 'swatches',
