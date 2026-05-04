@@ -1371,7 +1371,7 @@ function syncDesktopAnchorNavigationScroll(activeAnchorId: string) {
   const scrollTo = navigation.scrollTo;
 
   if (typeof scrollTo === 'function') {
-    scrollTo.call(navigation, { top: clampedScrollTop, behavior: 'smooth' });
+    navigation.scrollTo({ top: clampedScrollTop, behavior: 'smooth' });
     return;
   }
 

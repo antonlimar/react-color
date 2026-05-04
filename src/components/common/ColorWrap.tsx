@@ -29,6 +29,11 @@ type ColorWrapState = ColorResult & {
   colorPropKey: string;
 };
 
+type DebouncedColorChange = {
+  (fn: ColorChangeHandler, data: ColorResult, event: ColorPickerChangeEvent): void;
+  cancel(): void;
+};
+
 const defaultColor: Color = {
   h: 250,
   s: 0.5,
@@ -65,10 +70,10 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
         colorPropKey: getColorPropKey(resolvedColor),
       };
     });
-    const debounceRef = useRef(
-      debounce((fn: ColorChangeHandler, data: ColorResult, event: ColorPickerChangeEvent) => {
-        fn(data, event);
-      }, 100),
+    const debounceRef = useRef<DebouncedColorChange>(
+      debounce((fn: unknown, data: unknown, event: unknown) => {
+        (fn as ColorChangeHandler)(data as ColorResult, event as ColorPickerChangeEvent);
+      }, 100) as DebouncedColorChange,
     );
 
     useEffect(() => {

@@ -6,12 +6,10 @@ import type { CSSProperties } from 'react';
 import type { InternalColorChangeEvent, SaturationProps } from '../../types';
 import { getPickerClassName } from './styleArchitecture';
 
+type SaturationChangeHandler = NonNullable<SaturationProps['onChange']>;
+type SaturationChangeData = ReturnType<typeof saturation.calculateChange>;
 type ThrottledChange = {
-  (
-    fn: NonNullable<SaturationProps['onChange']>,
-    data: ReturnType<typeof saturation.calculateChange>,
-    event: InternalColorChangeEvent,
-  ): void;
+  (fn: SaturationChangeHandler, data: SaturationChangeData, event: InternalColorChangeEvent): void;
   cancel(): void;
 };
 
@@ -25,16 +23,9 @@ export function Saturation(props: SaturationProps) {
   const { hsl, hsv, onChange, pointer, radius, shadow, style } = props;
   const containerRef = useRef<HTMLDivElement | null>(null);
   const throttledChangeRef = useRef<ThrottledChange>(
-    throttle(
-      (
-        fn: NonNullable<SaturationProps['onChange']>,
-        data: ReturnType<typeof saturation.calculateChange>,
-        event: InternalColorChangeEvent,
-      ) => {
-        fn(data, event);
-      },
-      50,
-    ),
+    throttle((fn: unknown, data: unknown, event: unknown) => {
+      (fn as SaturationChangeHandler)(data as SaturationChangeData, event as InternalColorChangeEvent);
+    }, 50) as ThrottledChange,
   );
   const [isDragging, setIsDragging] = useState(false);
 

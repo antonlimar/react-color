@@ -3,6 +3,7 @@ import '@testing-library/jest-dom/vitest';
 class IntersectionObserverMock implements IntersectionObserver {
   readonly root = null;
   readonly rootMargin = '';
+  readonly scrollMargin = '';
   readonly thresholds = [0];
 
   constructor(

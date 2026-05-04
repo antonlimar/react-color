@@ -44,13 +44,19 @@ export type StylingArchitectureBlock = keyof typeof stylingArchitecture.blocks;
 export type StylingArchitectureElement = (typeof defaultElementSlots)[number];
 export type StylingArchitectureModifier = (typeof defaultModifiers)[number];
 
-const isNonEmptyToken = (value: string | null | undefined): value is string =>
+const isNonEmptyToken = (value: string | false | null | undefined): value is string =>
   Boolean(value && value.trim().length > 0);
 
 const normalizeToken = (value: string): string => value.trim().replace(/\s+/g, '-');
 
 const joinClassNames = (...values: Array<string | null | undefined | false>): string | undefined => {
-  const tokens = values.flatMap((value) => (typeof value === 'string' ? value.split(/\s+/).filter(Boolean) : []));
+  const tokens = values.reduce<string[]>((acc, value) => {
+    if (typeof value === 'string') {
+      acc.push(...value.split(/\s+/).filter(Boolean));
+    }
+
+    return acc;
+  }, []);
 
   return tokens.length > 0 ? tokens.join(' ') : undefined;
 };
