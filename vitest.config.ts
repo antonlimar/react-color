@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { defineConfig } from 'vitest/config';
-import { transformWithEsbuild } from 'vite';
+import { transformWithOxc } from 'vite';
 
 export default defineConfig({
   resolve: {
@@ -18,10 +18,12 @@ export default defineConfig({
           return null;
         }
 
-        return transformWithEsbuild(code, id, {
-          loader: 'jsx',
-          jsx: 'automatic',
-          jsxDev: false,
+        return transformWithOxc(code, id, {
+          lang: 'jsx',
+          jsx: {
+            runtime: 'automatic',
+            development: false,
+          },
         });
       },
     },
