@@ -1042,7 +1042,7 @@ function renderAnchorNavigation(
                   onClick={onNavigate}
                 >
                   <span className="section-nav__index">
-                    {String(siteSections.findIndex((entry) => entry.id === section.id) + 2).padStart(2, '0')}
+                    {String(siteSections.findIndex((entry) => entry.id === section.id) + 1).padStart(2, '0')}
                   </span>
                   <span>{section.title}</span>
                 </a>

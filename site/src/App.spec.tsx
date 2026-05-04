@@ -105,6 +105,14 @@ describe('site app', () => {
     );
   });
 
+  test('starts section navigation numbering at 01', () => {
+    const { container } = render(<App />);
+    const sidebar = container.querySelector('.sections-layout__sidebar') as HTMLElement;
+    const indexes = Array.from(sidebar.querySelectorAll('.section-nav__index')).map((index) => index.textContent);
+
+    expect(indexes.slice(0, 3)).toEqual(['01', '02', '03']);
+  });
+
   test('copies section anchors when documentation headings are clicked', () => {
     const writeText = vi.fn();
     Object.defineProperty(navigator, 'clipboard', {
