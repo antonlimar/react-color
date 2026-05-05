@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
-import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import siteHtml from '../index.html?raw';
 import App from './App';
 
@@ -19,7 +19,22 @@ function clickAnchorWithoutNavigation(anchor: HTMLElement) {
   anchor.removeEventListener('click', preventNavigation);
 }
 
+async function renderApp() {
+  const view = render(<App />);
+
+  await act(async () => {
+    await Promise.resolve();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  });
+
+  return view;
+}
+
 describe('site app', () => {
+  afterEach(async () => {
+    await act(async () => {});
+  });
+
   beforeEach(() => {
     vi.restoreAllMocks();
     Object.defineProperty(window.HTMLElement.prototype, 'scrollIntoView', {
@@ -33,7 +48,7 @@ describe('site app', () => {
   });
 
   test('keeps the hero state synchronized when a picker changes color', async () => {
-    const { container } = render(<App />);
+    const { container } = await renderApp();
 
     await waitFor(() => {
       expect(container.querySelector('.site-shell')).toBeInstanceOf(HTMLElement);
@@ -60,7 +75,7 @@ describe('site app', () => {
   });
 
   test('updates active anchors from the hash and closes the mobile drawer on navigation', async () => {
-    const { container } = render(<App />);
+    const { container } = await renderApp();
     const drawerToggle = screen.getByRole('button', { name: /browse sections/i });
 
     fireEvent.click(drawerToggle);
@@ -89,12 +104,15 @@ describe('site app', () => {
     expect(drawerNav?.closest('.sections-shell__drawer')).toHaveAttribute('hidden');
   });
 
-  test('renders favicon link and skip link to the documentation main landmark', () => {
-    const { container } = render(<App />);
+  test('renders favicon link and skip link to the documentation main landmark', async () => {
+    const { container } = await renderApp();
     const skipLink = screen.getByRole('link', { name: /skip to documentation/i });
     const primaryNav = screen.getByRole('navigation', { name: /primary navigation/i });
 
-    expect(siteHtml).toContain('<link rel="icon" href="/src/assets/favicon.ico" sizes="16x16" />');
+    expect(siteHtml).toContain('<link rel="icon" href="/src/assets/favicon.svg" type="image/svg+xml" />');
+    expect(siteHtml).toContain(
+      '<link rel="alternate icon" href="/src/assets/favicon.ico" sizes="16x16 32x32 48x48" />',
+    );
     expect(skipLink).toHaveAttribute('href', '#site-documentation');
     expect(container.querySelector('main#site-documentation')).toBeInstanceOf(HTMLElement);
     expect(within(primaryNav).getByRole('link', { name: 'Read the docs' })).toHaveAttribute('href', '/');
@@ -103,24 +121,28 @@ describe('site app', () => {
       'href',
       'https://github.com/antonlimar/react-color',
     );
+
+    await waitFor(() => {
+      expect(container.querySelector('.site-shell')).toBeInstanceOf(HTMLElement);
+    });
   });
 
-  test('starts section navigation numbering at 01', () => {
-    const { container } = render(<App />);
+  test('starts section navigation numbering at 01', async () => {
+    const { container } = await renderApp();
     const sidebar = container.querySelector('.sections-layout__sidebar') as HTMLElement;
     const indexes = Array.from(sidebar.querySelectorAll('.section-nav__index')).map((index) => index.textContent);
 
     expect(indexes.slice(0, 3)).toEqual(['01', '02', '03']);
   });
 
-  test('copies section anchors when documentation headings are clicked', () => {
+  test('copies section anchors when documentation headings are clicked', async () => {
     const writeText = vi.fn();
     Object.defineProperty(navigator, 'clipboard', {
       configurable: true,
       value: { writeText },
     });
 
-    render(<App />);
+    await renderApp();
 
     const installHeading = screen.getByRole('heading', { name: 'Install' });
     const installAnchor = within(installHeading).getByRole('link', { name: 'Install' });
@@ -134,7 +156,7 @@ describe('site app', () => {
   });
 
   test('closes the mobile drawer with Escape, restores focus, and unlocks body scrolling', async () => {
-    render(<App />);
+    await renderApp();
     const drawerToggle = screen.getByRole('button', { name: /browse sections/i });
 
     fireEvent.click(drawerToggle);
@@ -155,8 +177,8 @@ describe('site app', () => {
     });
   });
 
-  test('renders documentation examples as highlighted TypeScript snippets', () => {
-    const { container } = render(<App />);
+  test('renders documentation examples as highlighted TypeScript snippets', async () => {
+    const { container } = await renderApp();
     const inlineUsageCaption = screen.getByText('Inline usage');
     const codeFigure = inlineUsageCaption.closest('.content-code');
     const codeElement = codeFigure?.querySelector('code');
@@ -174,7 +196,7 @@ describe('site app', () => {
       value: { writeText },
     });
 
-    render(<App />);
+    await renderApp();
     const inlineUsageCaption = screen.getByText('Inline usage');
     const codeFigure = inlineUsageCaption.closest('.content-code') as HTMLElement;
     const copyButton = within(codeFigure).getByRole('button', { name: /copy: inline usage/i });
@@ -196,7 +218,7 @@ describe('site app', () => {
       value: { writeText: vi.fn().mockRejectedValue(new Error('denied')) },
     });
 
-    render(<App />);
+    await renderApp();
     const inlineUsageCaption = screen.getByText('Inline usage');
     const codeFigure = inlineUsageCaption.closest('.content-code') as HTMLElement;
     const copyButton = within(codeFigure).getByRole('button', { name: /copy: inline usage/i });
@@ -209,8 +231,8 @@ describe('site app', () => {
     });
   });
 
-  test('switches package-manager tabs and persists the selected install command', () => {
-    const { unmount } = render(<App />);
+  test('switches package-manager tabs and persists the selected install command', async () => {
+    const { unmount } = await renderApp();
     const installCaption = screen.getByText('Install package');
     const installFigure = installCaption.closest('.content-code') as HTMLElement;
     const yarnTab = within(installFigure).getByRole('tab', { name: 'yarn' });
@@ -225,15 +247,15 @@ describe('site app', () => {
     expect(installFigure.querySelector('code')).toHaveTextContent('yarn add react-color');
 
     unmount();
-    render(<App />);
+    await renderApp();
 
     const persistedInstallFigure = screen.getByText('Install package').closest('.content-code') as HTMLElement;
     expect(within(persistedInstallFigure).getByRole('tab', { name: 'yarn' })).toHaveAttribute('aria-selected', 'true');
     expect(persistedInstallFigure.querySelector('code')).toHaveTextContent('yarn add react-color');
   });
 
-  test('highlights JSX inside tsx return statements', () => {
-    render(<App />);
+  test('highlights JSX inside tsx return statements', async () => {
+    await renderApp();
     const liveUpdatesCaption = screen.getByText('Live updates during interaction');
     const codeFigure = liveUpdatesCaption.closest('.content-code');
     const codeElement = codeFigure?.querySelector('code');
@@ -243,8 +265,8 @@ describe('site app', () => {
     expect(codeElement?.innerHTML).toContain('token attr-name');
   });
 
-  test('renders backtick-wrapped inline content as code in prose sections', () => {
-    const { container } = render(<App />);
+  test('renders backtick-wrapped inline content as code in prose sections', async () => {
+    const { container } = await renderApp();
     const section = container.querySelector('#color');
     const introParagraph = section?.querySelector('.section__intro');
     const acceptedValuesParagraph = section?.querySelector('.content-text');
@@ -256,8 +278,8 @@ describe('site app', () => {
     expect(transparentInlineCode.tagName).toBe('CODE');
   });
 
-  test('renders the original project reference as an external link', () => {
-    render(<App />);
+  test('renders the original project reference as an external link', async () => {
+    await renderApp();
     const [originalProjectLink] = screen.getAllByRole('link', { name: 'casesandberg/react-color' });
 
     expect(originalProjectLink).toHaveAttribute('href', 'https://github.com/casesandberg/react-color');
@@ -265,8 +287,8 @@ describe('site app', () => {
     expect(screen.getAllByText(/actively maintained fork/i)).toHaveLength(1);
   });
 
-  test('renders an acknowledgement section after Create Your Own and in navigation', () => {
-    const { container } = render(<App />);
+  test('renders an acknowledgement section after Create Your Own and in navigation', async () => {
+    const { container } = await renderApp();
     const sidebar = container.querySelector('.sections-layout__sidebar') as HTMLElement;
     const createYourOwn = container.querySelector('#create-your-own') as HTMLElement;
     const acknowledgement = container.querySelector('#acknowledgement') as HTMLElement;
@@ -280,8 +302,8 @@ describe('site app', () => {
     );
   });
 
-  test('renders the developer guides section with migration, TypeScript, styling, SSR, and accessibility notes', () => {
-    const { container } = render(<App />);
+  test('renders the developer guides section with migration, TypeScript, styling, SSR, and accessibility notes', async () => {
+    const { container } = await renderApp();
     const developerGuides = container.querySelector('#developer-guides');
 
     expect(developerGuides).toBeInstanceOf(HTMLElement);
@@ -307,8 +329,8 @@ describe('site app', () => {
     expect(within(developerGuides as HTMLElement).getByText('CustomPickerInjectedProps')).toBeInTheDocument();
   });
 
-  test('adds picker-specific prop groups as nested navigation anchors', () => {
-    const { container } = render(<App />);
+  test('adds picker-specific prop groups as nested navigation anchors', async () => {
+    const { container } = await renderApp();
     const sidebar = container.querySelector('.sections-layout__sidebar');
     const pickerPropsLink = within(sidebar as HTMLElement).getByRole('link', { name: 'Picker-Specific Props' });
     const pickerPropsItem = pickerPropsLink.closest('li');
@@ -326,10 +348,10 @@ describe('site app', () => {
     expect(container.querySelector('#picker-specific-props-sketch h4')).toHaveTextContent('Sketch');
   });
 
-  test('accepts picker-specific prop group hashes as active anchors', () => {
+  test('accepts picker-specific prop group hashes as active anchors', async () => {
     window.location.hash = '#picker-specific-props-alpha';
 
-    const { container } = render(<App />);
+    const { container } = await renderApp();
     const sidebar = container.querySelector('.sections-layout__sidebar');
     const alphaLink = within(sidebar as HTMLElement).getByRole('link', { name: 'Alpha' });
     const pickerPropsLink = within(sidebar as HTMLElement).getByRole('link', { name: 'Picker-Specific Props' });
@@ -340,7 +362,7 @@ describe('site app', () => {
 
   test('scrolls the desktop section navigation to the active anchor', async () => {
     setViewportWidth(1024);
-    const { container } = render(<App />);
+    const { container } = await renderApp();
     const navigation = container.querySelector('.sections-layout__sidebar .section-nav') as HTMLElement;
     const sketchLink = within(navigation).getByRole('link', { name: 'Sketch' });
     const scrollTo = vi.fn();
@@ -370,9 +392,9 @@ describe('site app', () => {
     });
   });
 
-  test('drags the custom desktop section navigation scrollbar thumb', () => {
+  test('drags the custom desktop section navigation scrollbar thumb', async () => {
     setViewportWidth(1024);
-    const { container } = render(<App />);
+    const { container } = await renderApp();
     const navigation = container.querySelector('.sections-layout__sidebar .section-nav') as HTMLElement;
     const scrollbar = container.querySelector('.sections-layout__sidebar .section-nav-scrollbar') as HTMLElement;
     const thumb = container.querySelector('.sections-layout__sidebar .section-nav-scrollbar__thumb') as HTMLElement;
@@ -401,7 +423,7 @@ describe('site app', () => {
 
   test('keeps hash navigation from bouncing through intermediate active anchors', async () => {
     setViewportWidth(1024);
-    const { container } = render(<App />);
+    const { container } = await renderApp();
     const navigation = container.querySelector('.sections-layout__sidebar .section-nav') as HTMLElement;
     const targetSection = container.querySelector('#picker-specific-props-sketch') as HTMLElement;
 
@@ -422,7 +444,7 @@ describe('site app', () => {
   });
 
   test('closes the mobile drawer when resizing back to desktop widths', async () => {
-    render(<App />);
+    await renderApp();
     const drawerToggle = screen.getByRole('button', { name: /browse sections/i });
 
     fireEvent.click(drawerToggle);
@@ -439,7 +461,7 @@ describe('site app', () => {
   });
 
   test('searches props, examples, and picker metadata while syncing the URL query', async () => {
-    const { container } = render(<App />);
+    const { container } = await renderApp();
     const searchInput = container.querySelector('#desktop-docs-search') as HTMLInputElement;
 
     fireEvent.change(searchInput, { target: { value: 'presetColors' } });
@@ -473,8 +495,8 @@ describe('site app', () => {
     expect(window.location.search).toBe('');
   });
 
-  test('focuses search with slash unless the user is already typing', () => {
-    const { container } = render(<App />);
+  test('focuses search with slash unless the user is already typing', async () => {
+    const { container } = await renderApp();
     const searchInput = container.querySelector('#mobile-docs-search') as HTMLInputElement;
 
     fireEvent.keyDown(window, { key: '/' });
@@ -485,8 +507,8 @@ describe('site app', () => {
     expect(searchInput).toHaveValue('Sketch');
   });
 
-  test('keeps mobile search outside the full-screen section drawer', () => {
-    render(<App />);
+  test('keeps mobile search outside the full-screen section drawer', async () => {
+    await renderApp();
     const drawerToggle = screen.getByRole('button', { name: /browse sections/i });
 
     fireEvent.click(drawerToggle);
@@ -502,7 +524,7 @@ describe('site app', () => {
   test('renders the mobile section menu on the gallery page with links back to docs anchors', async () => {
     window.history.replaceState(null, '', '/gallery');
 
-    render(<App />);
+    await renderApp();
 
     await screen.findByRole('heading', { name: 'Find the picker that fits the job.' });
 
@@ -518,7 +540,7 @@ describe('site app', () => {
   test('renders the mobile section menu on the 404 page', async () => {
     window.history.replaceState(null, '', '/missing-page');
 
-    render(<App />);
+    await renderApp();
 
     await screen.findByRole('heading', { name: 'This color is outside the palette.' });
 
@@ -532,7 +554,7 @@ describe('site app', () => {
   test('renders the public picker gallery page with import snippets and API links', async () => {
     window.history.replaceState(null, '', '/gallery');
 
-    const { container } = render(<App />);
+    const { container } = await renderApp();
 
     const gallery = await waitFor(() => {
       const element = container.querySelector('.picker-gallery') as HTMLElement | null;
@@ -564,7 +586,7 @@ describe('site app', () => {
   test('renders a dedicated not found page for unknown routes', async () => {
     window.history.replaceState(null, '', '/missing-picker');
 
-    const { container } = render(<App />);
+    const { container } = await renderApp();
 
     await waitFor(() => {
       expect(screen.getByRole('heading', { name: 'This color is outside the palette.' })).toBeInTheDocument();
@@ -591,7 +613,7 @@ describe('site app', () => {
     });
     window.history.replaceState(null, '', '/gallery');
 
-    render(<App />);
+    await renderApp();
     const copyButton = await screen.findByRole('button', { name: 'Copy: Sketch import' });
     const importSnippet = copyButton.closest('.picker-gallery__imports') as HTMLElement;
 
@@ -607,7 +629,7 @@ describe('site app', () => {
   test('keeps gallery picker changes synchronized with the page background', async () => {
     window.history.replaceState(null, '', '/gallery');
 
-    const { container } = render(<App />);
+    const { container } = await renderApp();
 
     const siteShell = await waitFor(() => {
       const element = container.querySelector('.site-shell') as HTMLElement | null;
@@ -624,8 +646,8 @@ describe('site app', () => {
     expect(siteShell.getAttribute('style')).not.toContain('rgba(65, 117, 5, 1)');
   });
 
-  test('keeps prop names as text and collapses long default values', () => {
-    const { container } = render(<App />);
+  test('keeps prop names as text and collapses long default values', async () => {
+    const { container } = await renderApp();
     const presetColorsLink = screen.queryByRole('link', { name: 'presetColors' });
 
     expect(presetColorsLink).not.toBeInTheDocument();
@@ -642,10 +664,10 @@ describe('site app', () => {
     expect(sketchGroup).toHaveTextContent('#D0021B');
   });
 
-  test('renders mobile API prop cards alongside the desktop table data', () => {
+  test('renders mobile API prop cards alongside the desktop table data', async () => {
     setViewportWidth(390);
 
-    const { container } = render(<App />);
+    const { container } = await renderApp();
     const sketchGroup = container.querySelector('#picker-specific-props-sketch') as HTMLElement;
     const propCards = sketchGroup.querySelectorAll('.api-prop-card');
 
@@ -656,8 +678,8 @@ describe('site app', () => {
     expect(within(propCards[0] as HTMLElement).getByText('Description')).toBeInTheDocument();
   });
 
-  test('does not render an API table for empty property groups', () => {
-    const { container } = render(<App />);
+  test('does not render an API table for empty property groups', async () => {
+    const { container } = await renderApp();
     const materialGroup = container.querySelector('#picker-specific-props-material') as HTMLElement;
 
     expect(materialGroup).toBeInTheDocument();
