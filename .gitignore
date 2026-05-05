@@ -1,6 +1,5 @@
 # Dependencies
 node_modules
-package-lock.json
 
 # Logs
 *.log
@@ -17,6 +16,7 @@ pnpm-debug.log*
 lib
 es
 .out
+site/dist
 coverage
 playwright-report
 test-results
