@@ -499,11 +499,17 @@ describe('site app', () => {
     const { container } = await renderApp();
     const searchInput = container.querySelector('#mobile-docs-search') as HTMLInputElement;
 
-    fireEvent.keyDown(window, { key: '/' });
+    await act(async () => {
+      fireEvent.keyDown(window, { key: '/' });
+    });
+
     expect(searchInput).toHaveFocus();
 
-    fireEvent.change(searchInput, { target: { value: 'Sketch' } });
-    fireEvent.keyDown(window, { key: '/' });
+    await act(async () => {
+      fireEvent.change(searchInput, { target: { value: 'Sketch' } });
+      fireEvent.keyDown(window, { key: '/' });
+    });
+
     expect(searchInput).toHaveValue('Sketch');
   });
 
