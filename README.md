@@ -39,14 +39,14 @@ The modernization branch now uses a TypeScript-based ESM emit for package builds
 | `npm run site:verify`          | Run site interaction tests, build the Pages app, and verify metadata/output.    |
 | `npm run typecheck`            | Run the TypeScript check for `src`, `site`, `scripts`, and `test`.              |
 
-Published package artifacts are ESM-only. The package exposes `main` and `module` via `es/index.js`, keeps the full `es/` tree for deep imports, and exposes root typings via `index.d.ts`.
+Published package artifacts are ESM-only. The package exposes `main` and `module` via `es/index.js` and exposes root typings via `index.d.ts`.
 
 ### Packaging interop notes
 
-The package ships an ESM-only `main`/`module` contract and an `exports` map for the root entry, documented `es/*` deep imports, and published CSS entrypoints.
+The package ships an ESM-only `main`/`module` contract and an `exports` map for the root entry, shared common components, and published CSS entrypoints.
 
-- Bundlers and TypeScript toolchains can use root default/named imports and extensionless ESM deep imports such as `react-color/es/Sketch` or `react-color/es/Hue`.
-- Native Node ESM can resolve the root entry and documented `react-color/es/*` deep imports through the package `exports` map; plain Node execution still needs a CSS-aware loader because picker entrypoints import CSS side effects.
+- Bundlers and TypeScript toolchains should use root default/named imports such as `import { SketchPicker } from 'react-color'`.
+- Native Node ESM can resolve the root entry through the package `exports` map; plain Node execution still needs a CSS-aware loader because picker component modules import CSS side effects.
 - CommonJS `require('react-color')` and `require('react-color/lib/...')` are no longer supported.
 
 ## Demo

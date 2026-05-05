@@ -40,25 +40,25 @@ async function ensureBuildArtifacts() {
   }
 
   const [esChromeEntry, esSketchEntry, esIndexEntry] = await Promise.all([
-    readFile(path.join(repoRoot, 'es', 'Chrome.js'), 'utf8'),
-    readFile(path.join(repoRoot, 'es', 'Sketch.js'), 'utf8'),
+    readFile(path.join(repoRoot, 'es', 'components', 'chrome', 'Chrome.js'), 'utf8'),
+    readFile(path.join(repoRoot, 'es', 'components', 'sketch', 'Sketch.js'), 'utf8'),
     readFile(path.join(repoRoot, 'es', 'index.js'), 'utf8'),
   ]);
 
   assert.match(
     esChromeEntry,
-    /import '\.\/styles\/pickers\/chrome\.css';/u,
-    'es/Chrome.js is missing the ESM style side effect.',
+    /import '\.\.\/\.\.\/styles\/pickers\/chrome\.css';/u,
+    'es/components/chrome/Chrome.js is missing the ESM style side effect.',
   );
   assert.match(
     esSketchEntry,
-    /import '\.\/styles\/pickers\/sketch\.css';/u,
-    'es/Sketch.js is missing the ESM style side effect.',
+    /import '\.\.\/\.\.\/styles\/pickers\/sketch\.css';/u,
+    'es/components/sketch/Sketch.js is missing the ESM style side effect.',
   );
   assert.match(
     esIndexEntry,
-    /from '\.\/Chrome\.js';/u,
-    'es/index.js is not re-exporting picker wrappers with Node-compatible ESM specifiers.',
+    /from '\.\/components\/chrome\/Chrome\.js';/u,
+    'es/index.js is not re-exporting picker components with Node-compatible ESM specifiers.',
   );
 }
 
@@ -131,11 +131,9 @@ async function runBundlerFixture(workspace) {
   await writeFixture(
     bundlerRoot,
     'main.ts',
-    `import ReactColorDefault, { EditableInput, SketchPicker } from 'react-color';
-import SketchPickerEsm from 'react-color/es/Sketch';
-import HuePickerEsm from 'react-color/es/Hue';
+    `import ReactColorDefault, { EditableInput, HuePicker, SketchPicker } from 'react-color';
 
-const consumedEntries = [ReactColorDefault, SketchPicker, EditableInput, SketchPickerEsm, HuePickerEsm];
+const consumedEntries = [ReactColorDefault, SketchPicker, EditableInput, HuePicker];
 
 if (consumedEntries.some((entry) => typeof entry !== 'function')) {
   throw new Error('Bundler consumption smoke imported a non-component export shape.');
@@ -181,8 +179,6 @@ async function main() {
       `import assert from 'node:assert/strict';
 
 assert.match(import.meta.resolve('react-color'), /\\/es\\/index\\.js$/);
-assert.match(import.meta.resolve('react-color/es/Sketch'), /\\/es\\/Sketch\\.js$/);
-assert.match(import.meta.resolve('react-color/es/Hue'), /\\/es\\/Hue\\.js$/);
 assert.match(import.meta.resolve('react-color/es/components/common'), /\\/es\\/components\\/common\\/index\\.js$/);
 `,
     );
@@ -215,11 +211,11 @@ void reactColor;
     console.log(
       [
         'esm-consumption-check passed:',
-        '- Native Node ESM resolved root and documented ESM deep imports through the exports map.',
+        '- Native Node ESM resolved the root entry and documented common component entry through the exports map.',
         '- CommonJS require() no longer consumes the package root.',
         '- The published package layout exposes aggregate and granular CSS entrypoints for every built stylesheet in es/styles.',
-        '- Root and deep picker entrypoints pull in their own published CSS automatically for bundlers.',
-        '- Vite consumed root default/named imports and es deep imports without any manual CSS imports.',
+        '- Picker component modules pull in their own published CSS automatically for bundlers.',
+        '- Vite consumed root default/named imports without any manual CSS imports.',
       ].join('\n'),
     );
   } finally {

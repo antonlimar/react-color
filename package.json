@@ -17,17 +17,7 @@
       "import": "./es/components/common/index.js",
       "default": "./es/components/common/index.js"
     },
-    "./es/styles/*.css": "./es/styles/*.css",
-    "./es/*.js": {
-      "types": "./es/*.d.ts",
-      "import": "./es/*.js",
-      "default": "./es/*.js"
-    },
-    "./es/*": {
-      "types": "./es/*.d.ts",
-      "import": "./es/*.js",
-      "default": "./es/*.js"
-    }
+    "./es/styles/*.css": "./es/styles/*.css"
   },
   "repository": {
     "type": "git",
@@ -71,7 +61,7 @@
     "*.{json,md,mdx,html,css,scss,yml,yaml}": "prettier --check"
   },
   "sideEffects": [
-    "es/*.js",
+    "es/**/*.js",
     "**/*.css"
   ],
   "homepage": "https://antonlimar.github.io/react-color/",

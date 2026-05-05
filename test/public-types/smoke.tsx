@@ -8,6 +8,7 @@ import ChromePickerDefault, {
   CustomPicker,
   EditableInput,
   GooglePicker,
+  HuePicker,
   type PickerClassNames,
   type PickerTheme,
   SketchPicker,
@@ -17,8 +18,6 @@ import ChromePickerDefault, {
   type HSLAColor,
   type RGBAColor,
 } from 'react-color';
-import SketchPickerEsm from 'react-color/es/Sketch';
-import HuePickerEsm from 'react-color/es/Hue';
 
 const rgba: RGBAColor = { r: 255, g: 0, b: 0, a: 1 };
 const hsl: HSLAColor = { h: 0, s: 1, l: 0.5, a: 1 };
@@ -66,8 +65,7 @@ const elements = (
     <ChromePickerDefault {...defaultPickerProps} />
     <SketchPicker {...sketchProps} theme="light" classNames={pickerClassNames} />
     <GooglePicker {...googleProps} />
-    <SketchPickerEsm color="#00ff00" />
-    <HuePickerEsm color="#00ff00" />
+    <HuePicker color="#00ff00" />
     <EditableInput value="ff0000" onChange={() => undefined} />
     <WrappedPicker color="#ffffff" />
   </div>
