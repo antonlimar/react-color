@@ -1,36 +1,7 @@
 import type { HSLAColor, InternalColorChangeEvent, SaturationChange } from '../types';
+import type { MouseLikeEvent, PageCoordinates, SaturationChangeContainer, TouchLikeEvent } from './types';
 
-interface ContainerRect {
-  width: number;
-  height: number;
-  left: number;
-  top: number;
-}
-
-interface ChangeContainer {
-  getBoundingClientRect(): ContainerRect;
-}
-
-interface TouchLike {
-  pageX: number;
-  pageY: number;
-}
-
-interface MouseLikeEvent {
-  pageX: number;
-  pageY: number;
-}
-
-interface TouchListLike {
-  0: TouchLike;
-  length: number;
-}
-
-interface TouchLikeEvent {
-  touches: TouchListLike;
-}
-
-const getPageCoordinates = (event: InternalColorChangeEvent): TouchLike => {
+const getPageCoordinates = (event: InternalColorChangeEvent): PageCoordinates => {
   const mouseEvent = event as MouseLikeEvent;
 
   if (typeof mouseEvent.pageX === 'number' && typeof mouseEvent.pageY === 'number') {
@@ -48,7 +19,7 @@ const getPageCoordinates = (event: InternalColorChangeEvent): TouchLike => {
 export const calculateChange = (
   event: InternalColorChangeEvent,
   hsl: HSLAColor,
-  container: ChangeContainer,
+  container: SaturationChangeContainer,
 ): SaturationChange => {
   const {
     width: containerWidth,

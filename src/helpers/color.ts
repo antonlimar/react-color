@@ -2,11 +2,7 @@ import each from 'lodash/each';
 import tinycolor from 'tinycolor2';
 
 import type { Color, ColorChangeValue, ColorResult } from '../types';
-
-type ColorDataKey = 'r' | 'g' | 'b' | 'a' | 'h' | 's' | 'l' | 'v';
-type ColorDataRecord = Record<string, unknown>;
-type ValidColorStringType = 'rgb' | 'hsl' | 'hsv';
-type BasicColorState = Omit<ColorResult, 'oldHue' | 'source'>;
+import type { BasicColorState, ColorDataKey, ColorDataRecord, ValidColorStringType } from './types';
 
 const keysToCheck: ColorDataKey[] = ['r', 'g', 'b', 'a', 'h', 's', 'l', 'v'];
 

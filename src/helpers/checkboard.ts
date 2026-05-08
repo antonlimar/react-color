@@ -1,17 +1,4 @@
-interface CanvasRenderingContext2DLike {
-  fillStyle: string;
-  fillRect(x: number, y: number, width: number, height: number): void;
-  translate(x: number, y: number): void;
-}
-
-interface CanvasLike {
-  width: number;
-  height: number;
-  getContext(contextId: '2d'): CanvasRenderingContext2DLike | null;
-  toDataURL(): string;
-}
-
-type ServerCanvas = new () => CanvasLike;
+import type { ServerCanvas } from './types';
 
 const checkboardCache: Record<string, string | null> = {};
 

@@ -1,38 +1,7 @@
 import type { AlphaChange, HSLAColor, InternalColorChangeEvent } from '../types';
+import type { MouseLikeEvent, PageCoordinates, SliderChangeContainer, SliderDirection, TouchLikeEvent } from './types';
 
-type Direction = 'horizontal' | 'vertical';
-
-interface ContainerBounds {
-  left: number;
-  top: number;
-}
-
-interface ChangeContainer {
-  clientWidth: number;
-  clientHeight: number;
-  getBoundingClientRect(): ContainerBounds;
-}
-
-interface TouchLike {
-  pageX: number;
-  pageY: number;
-}
-
-interface MouseLikeEvent {
-  pageX: number;
-  pageY: number;
-}
-
-interface TouchListLike {
-  0: TouchLike;
-  length: number;
-}
-
-interface TouchLikeEvent {
-  touches: TouchListLike;
-}
-
-const getPageCoordinates = (event: InternalColorChangeEvent): TouchLike => {
+const getPageCoordinates = (event: InternalColorChangeEvent): PageCoordinates => {
   const mouseEvent = event as MouseLikeEvent;
 
   if (typeof mouseEvent.pageX === 'number' && typeof mouseEvent.pageY === 'number') {
@@ -50,9 +19,9 @@ const getPageCoordinates = (event: InternalColorChangeEvent): TouchLike => {
 export const calculateChange = (
   event: InternalColorChangeEvent,
   hsl: HSLAColor,
-  direction: Direction = 'horizontal',
+  direction: SliderDirection = 'horizontal',
   initialA: number | undefined,
-  container: ChangeContainer,
+  container: SliderChangeContainer,
 ): AlphaChange | null => {
   const containerWidth = container.clientWidth;
   const containerHeight = container.clientHeight;
