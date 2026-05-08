@@ -1,13 +1,13 @@
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
-import { handleFocus } from '../../helpers/interaction';
-import type { Radius, SwatchProps } from '../../types';
-import Checkboard from './Checkboard';
-import { getPickerClassName } from './styleArchitecture';
+import { handleFocus } from '../../../helpers/interaction';
+import type { Radius, SwatchProps } from '../../../types';
+import { Checkboard } from '../Checkboard';
+import { getPickerClassName } from '../styleArchitecture';
 
 const ENTER = 13;
 
-export const Swatch = ({
+const SwatchBase = ({
   color,
   style,
   onClick = () => {},
@@ -51,4 +51,4 @@ export const Swatch = ({
   );
 };
 
-export default handleFocus(Swatch);
+export const Swatch = handleFocus(SwatchBase);

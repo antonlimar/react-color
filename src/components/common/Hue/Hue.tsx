@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import * as hue from '../../helpers/hue';
+import * as hue from '../../../helpers/hue';
 import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
-import type { HueProps, InternalColorChangeEvent } from '../../types';
-import { getPickerClassName } from './styleArchitecture';
-import { getSlotStyleOverride } from './styleOverrides';
+import type { HueProps, InternalColorChangeEvent } from '../../../types';
+import { getPickerClassName } from '../styleArchitecture';
+import { getSlotStyleOverride } from '../styleOverrides';
 
 const HUE_GRADIENT_HORIZONTAL =
   'linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)';
@@ -110,5 +110,3 @@ export function Hue(props: HueProps) {
     </div>
   );
 }
-
-export default Hue;

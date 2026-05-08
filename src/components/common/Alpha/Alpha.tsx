@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import * as alpha from '../../helpers/alpha';
+import * as alpha from '../../../helpers/alpha';
 import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
-import type { AlphaProps, InternalColorChangeEvent } from '../../types';
-import Checkboard from './Checkboard';
-import { getPickerClassName } from './styleArchitecture';
-import { getSlotStyleOverride } from './styleOverrides';
+import type { AlphaProps, InternalColorChangeEvent } from '../../../types';
+import { Checkboard } from '../Checkboard';
+import { getPickerClassName } from '../styleArchitecture';
+import { getSlotStyleOverride } from '../styleOverrides';
 
 const ALPHA_STYLE_SLOTS = ['alpha', 'checkboard', 'gradient', 'container', 'pointer', 'slider'] as const;
 
@@ -119,5 +119,3 @@ export function Alpha(props: AlphaProps) {
     </div>
   );
 }
-
-export default Alpha;

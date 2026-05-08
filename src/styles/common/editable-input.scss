@@ -1,4 +1,4 @@
 @use '../core/index' as core;
-@use '../../components/common/EditableInput';
+@use '../../components/common/EditableInput/EditableInput';
 
 @include core.rc-style-entry('common-editable-input');

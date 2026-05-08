@@ -1,7 +1,7 @@
 import * as colorUtils from '../../helpers/color';
 
 import { Swatch } from '../common';
-import CheckIcon from '../common/icons/CheckIcon';
+import { CheckIcon } from '../common/icons/CheckIcon';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { PickerStyle, SwatchHoverHandler } from '../../types';
 import { getPickerClassName } from '../common/styleArchitecture';

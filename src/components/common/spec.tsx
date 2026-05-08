@@ -3,14 +3,14 @@ import { expect, test, vi } from 'vitest';
 import { red } from '../../helpers/color';
 import * as color from '../../helpers/color';
 
-import Alpha from './Alpha';
-import Checkboard from './Checkboard';
-import ColorWrap from './ColorWrap';
-import EditableInput from './EditableInput';
-import Hue from './Hue';
-import Raised from './Raised';
-import Saturation, { getSaturationRenderWindow } from './Saturation';
-import Swatch from './Swatch';
+import { Alpha } from './Alpha';
+import { Checkboard } from './Checkboard';
+import { ColorWrap } from './ColorWrap';
+import { EditableInput } from './EditableInput';
+import { Hue } from './Hue';
+import { Raised } from './Raised';
+import { Saturation, getSaturationRenderWindow } from './Saturation';
+import { Swatch } from './Swatch';
 import {
   getArchitectureClassName,
   getBlockClassName,

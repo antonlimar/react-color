@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
-import type { RaisedProps } from '../../types';
-import { getPickerClassName, getPickerRootProps } from './styleArchitecture';
+import type { RaisedProps } from '../../../types';
+import { getPickerClassName, getPickerRootProps } from '../styleArchitecture';
 
 const isStyleObject = (value: unknown): value is CSSProperties =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -48,5 +48,3 @@ export const Raised = ({
     </div>
   );
 };
-
-export default Raised;

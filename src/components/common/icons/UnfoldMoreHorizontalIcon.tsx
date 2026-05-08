@@ -13,5 +13,3 @@ export const UnfoldMoreHorizontalIcon = ({ style, ...props }: SVGProps<SVGSVGEle
     </svg>
   );
 };
-
-export default UnfoldMoreHorizontalIcon;

@@ -4,7 +4,7 @@ import isUndefined from 'lodash/isUndefined';
 
 import { EditableInput } from '../common';
 import { getPickerClassName } from '../common/styleArchitecture';
-import UnfoldMoreHorizontalIcon from '../common/icons/UnfoldMoreHorizontalIcon';
+import { UnfoldMoreHorizontalIcon } from '../common/icons/UnfoldMoreHorizontalIcon';
 import type { ReactNode } from 'react';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '../../types';
 

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import debounce from 'lodash/debounce';
 import type { ComponentType } from 'react';
 
-import * as color from '../../helpers/color';
+import * as color from '../../../helpers/color';
 import type {
   Color,
   ColorChangeHandler,
@@ -11,7 +11,7 @@ import type {
   ColorPickerInjectedProps,
   ColorPickerProps,
   ColorResult,
-} from '../../types';
+} from '../../../types';
 
 type WrappedColorPickerProps<PickerProps extends ColorPickerInjectedProps> = Omit<
   PickerProps,
@@ -131,5 +131,3 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
 
   return ColorPicker as WrappedColorPickerComponent<PickerProps>;
 };
-
-export default ColorWrap;

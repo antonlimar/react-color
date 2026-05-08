@@ -14,14 +14,14 @@ export { default as SwatchesPicker } from './components/swatches/Swatches';
 export { default as TwitterPicker } from './components/twitter/Twitter';
 export { default as GooglePicker } from './components/google/Google';
 
-export { default as CustomPicker } from './components/common/ColorWrap';
-export { default as Alpha } from './components/common/Alpha';
-export { default as Checkboard } from './components/common/Checkboard';
-export { default as EditableInput } from './components/common/EditableInput';
-export { default as Hue } from './components/common/Hue';
-export { default as Raised } from './components/common/Raised';
-export { default as Saturation } from './components/common/Saturation';
-export { default as Swatch } from './components/common/Swatch';
+export { ColorWrap as CustomPicker } from './components/common/ColorWrap';
+export { Alpha } from './components/common/Alpha';
+export { Checkboard } from './components/common/Checkboard';
+export { EditableInput } from './components/common/EditableInput';
+export { Hue } from './components/common/Hue';
+export { Raised } from './components/common/Raised';
+export { Saturation } from './components/common/Saturation';
+export { Swatch } from './components/common/Swatch';
 
 export type {
   Color,
