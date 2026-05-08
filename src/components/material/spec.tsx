@@ -1,7 +1,7 @@
-import { red } from '../../helpers/color';
+import { red } from '@/helpers/color';
 
 import { Material } from './Material';
-import { getRootElement, renderForSnapshot } from '../../../test/helpers';
+import { getRootElement, renderForSnapshot } from '@test/helpers';
 
 test('Material renders correctly', () => {
   renderForSnapshot(<Material {...red} />).expectSnapshot();

@@ -1,11 +1,11 @@
 import map from 'lodash/map';
-import * as color from '../../../helpers/color';
+import * as color from '@/helpers/color';
 
-import { ColorWrap, Raised } from '../../common';
-import { getPickerClassName, getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
-import { CompactColor } from '../CompactColor';
-import { CompactFields } from '../CompactFields';
+import { ColorWrap, Raised } from '@/components/common';
+import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { CompactColor } from '@/components/compact/CompactColor';
+import { CompactFields } from '@/components/compact/CompactFields';
 import type {
   ClassName,
   ColorChangeValue,
@@ -14,7 +14,7 @@ import type {
   PickerClassNames,
   PickerCustomStyles,
   PickerTheme,
-} from '../../../types';
+} from '@/types';
 
 const COMPACT_STYLE_SLOTS = ['Compact', 'compact', 'clear'] as const;
 

@@ -1,7 +1,7 @@
-import * as color from '../../../helpers/color';
-import { EditableInput } from '../../common';
-import { getPickerClassName } from '../../common/styleArchitecture';
-import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, HSVAColor, RGBAColor } from '../../../types';
+import * as color from '@/helpers/color';
+import { EditableInput } from '@/components/common';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
+import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, HSVAColor, RGBAColor } from '@/types';
 
 type GoogleFieldsProps = {
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;

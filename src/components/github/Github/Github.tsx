@@ -1,16 +1,10 @@
 import map from 'lodash/map';
 
-import { ColorWrap } from '../../common';
-import { getPickerClassName, getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
-import { GithubSwatch } from '../GithubSwatch';
-import type {
-  ClassName,
-  ColorPickerInjectedProps,
-  PickerClassNames,
-  PickerCustomStyles,
-  PickerTheme,
-} from '../../../types';
+import { ColorWrap } from '@/components/common';
+import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { GithubSwatch } from '@/components/github/GithubSwatch';
+import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
 
 const GITHUB_STYLE_SLOTS = ['card', 'triangle', 'triangleShadow'] as const;
 

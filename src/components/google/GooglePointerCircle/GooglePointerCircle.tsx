@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
-import type { HSLAColor } from '../../../types';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import type { HSLAColor } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type GooglePointerCircleProps = {
   hsl?: HSLAColor;

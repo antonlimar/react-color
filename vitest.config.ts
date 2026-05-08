@@ -5,6 +5,9 @@ import { transformWithOxc } from 'vite';
 export default defineConfig({
   resolve: {
     alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@storybook-utils': path.resolve(__dirname, '.storybook'),
+      '@test': path.resolve(__dirname, 'test'),
       'react-color': path.resolve(__dirname, 'src/index.ts'),
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json'],

@@ -1,4 +1,4 @@
-import * as color from '../../helpers/color';
+import * as color from '@/helpers/color';
 
 import { Compact } from './Compact';
 import { CompactColor } from './CompactColor';
@@ -9,7 +9,7 @@ import {
   getRootElement,
   hoverFirstSwatch,
   renderForSnapshot,
-} from '../../../test/helpers';
+} from '@test/helpers';
 
 test('Compact renders correctly', () => {
   renderForSnapshot(<Compact {...color.red} />).expectSnapshot();

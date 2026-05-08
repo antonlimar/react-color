@@ -1,8 +1,8 @@
-import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../../common';
-import { getPickerClassName, getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
-import { SketchFields } from '../SketchFields';
-import { SketchPresetColors } from '../SketchPresetColors';
+import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '@/components/common';
+import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { SketchFields } from '@/components/sketch/SketchFields';
+import { SketchPresetColors } from '@/components/sketch/SketchPresetColors';
 import type {
   CheckboardRenderers,
   ClassName,
@@ -10,7 +10,7 @@ import type {
   PickerClassNames,
   PickerCustomStyles,
   PickerTheme,
-} from '../../../types';
+} from '@/types';
 
 type SketchPresetColor = string | { color: string; title?: string };
 

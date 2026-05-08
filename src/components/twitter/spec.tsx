@@ -1,4 +1,4 @@
-import * as color from '../../helpers/color';
+import * as color from '@/helpers/color';
 
 import { Twitter } from './Twitter';
 import {
@@ -7,7 +7,7 @@ import {
   getRootElement,
   hoverFirstSwatch,
   renderForSnapshot,
-} from '../../../test/helpers';
+} from '@test/helpers';
 
 test('Twitter renders correctly', () => {
   renderForSnapshot(<Twitter {...color.red} />).expectSnapshot();

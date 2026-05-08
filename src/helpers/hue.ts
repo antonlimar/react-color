@@ -1,4 +1,4 @@
-import type { HSLAColor, HueChange, InternalColorChangeEvent } from '../types';
+import type { HSLAColor, HueChange, InternalColorChangeEvent } from '@/types';
 import { getPageCoordinates } from './coordinates';
 import type { SliderChangeContainer, SliderDirection } from './types';
 

@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
 
-async function collectJavaScriptFiles(directory) {
+async function collectImportFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
   const files = [];
 
@@ -14,11 +14,11 @@ async function collectJavaScriptFiles(directory) {
     const absolutePath = path.join(directory, entry.name);
 
     if (entry.isDirectory()) {
-      files.push(...(await collectJavaScriptFiles(absolutePath)));
+      files.push(...(await collectImportFiles(absolutePath)));
       continue;
     }
 
-    if (entry.isFile() && entry.name.endsWith('.js')) {
+    if (entry.isFile() && (entry.name.endsWith('.js') || entry.name.endsWith('.d.ts'))) {
       files.push(absolutePath);
     }
   }
@@ -26,17 +26,34 @@ async function collectJavaScriptFiles(directory) {
   return files;
 }
 
+function getAliasedTarget(specifier) {
+  if (!specifier.startsWith('@/')) {
+    return null;
+  }
+
+  return path.join(repoRoot, 'es', specifier.slice(2));
+}
+
 async function resolveRelativeSpecifier(filePath, specifier) {
+  const aliasedTarget = getAliasedTarget(specifier);
+
+  if (aliasedTarget) {
+    const sourceDir = path.dirname(filePath);
+    const relativeSpecifier = path.relative(sourceDir, aliasedTarget).split(path.sep).join(path.posix.sep);
+    specifier = relativeSpecifier.startsWith('.') ? relativeSpecifier : `./${relativeSpecifier}`;
+  }
+
   if (!specifier.startsWith('.') || path.extname(specifier)) {
     return specifier;
   }
 
   const sourceDir = path.dirname(filePath);
   const absoluteTarget = path.resolve(sourceDir, specifier);
+  const extension = filePath.endsWith('.d.ts') ? '.d.ts' : '.js';
 
   try {
-    await readFile(`${absoluteTarget}.js`);
-    return `${specifier}.js`;
+    await readFile(`${absoluteTarget}${extension}`);
+    return `${specifier}${extension}`;
   } catch (error) {
     if (!error || error.code !== 'ENOENT') {
       throw error;
@@ -44,8 +61,8 @@ async function resolveRelativeSpecifier(filePath, specifier) {
   }
 
   try {
-    await readFile(path.join(absoluteTarget, 'index.js'));
-    return `${specifier}/index.js`;
+    await readFile(path.join(absoluteTarget, `index${extension}`));
+    return `${specifier}/index${extension}`;
   } catch (error) {
     if (!error || error.code !== 'ENOENT') {
       throw error;
@@ -58,8 +75,8 @@ async function resolveRelativeSpecifier(filePath, specifier) {
 async function rewriteFile(filePath) {
   const source = await readFile(filePath, 'utf8');
   const matches = [
-    ...source.matchAll(/\bfrom\s+(['"])(\.[^'"]+)\1/gu),
-    ...source.matchAll(/\bimport\s+(['"])(\.[^'"]+)\1/gu),
+    ...source.matchAll(/\bfrom\s+(['"])(\.\/|\.\.\/|@\/)[^'"]*\1/gu),
+    ...source.matchAll(/\bimport\s+(['"])(\.\/|\.\.\/|@\/)[^'"]*\1/gu),
   ];
 
   if (matches.length === 0) {
@@ -70,7 +87,11 @@ async function rewriteFile(filePath) {
 
   await Promise.all(
     matches.map(async (match) => {
-      replacements.set(match[2], await resolveRelativeSpecifier(filePath, match[2]));
+      const specifier = match[0].match(/['"]([^'"]+)['"]/u)?.[1];
+
+      if (specifier) {
+        replacements.set(specifier, await resolveRelativeSpecifier(filePath, specifier));
+      }
     }),
   );
 
@@ -98,11 +119,11 @@ async function main() {
     throw new Error('Usage: node scripts/rewrite-esm-import-specifiers.mjs <es>');
   }
 
-  const files = await collectJavaScriptFiles(path.join(repoRoot, targetDir));
+  const files = await collectImportFiles(path.join(repoRoot, targetDir));
 
   await Promise.all(files.map((filePath) => rewriteFile(filePath)));
 
-  console.log(`Rewrote relative ESM import specifiers in ${files.length} ${targetDir} files.`);
+  console.log(`Rewrote relative and aliased ESM import specifiers in ${files.length} ${targetDir} files.`);
 }
 
 await main();

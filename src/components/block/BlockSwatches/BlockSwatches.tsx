@@ -1,9 +1,9 @@
 import map from 'lodash/map';
 
-import { Swatch } from '../../common';
+import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
-import type { SwatchHoverHandler } from '../../../types';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import type { SwatchHoverHandler } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type BlockSwatchesProps = {
   colors: string[];

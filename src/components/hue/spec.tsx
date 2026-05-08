@@ -1,8 +1,8 @@
-import { red } from '../../helpers/color';
+import { red } from '@/helpers/color';
 
 import { Hue } from './Hue';
 import { HuePointer } from './HuePointer';
-import { getRootElement, renderForSnapshot } from '../../../test/helpers';
+import { getRootElement, renderForSnapshot } from '@test/helpers';
 
 test('Hue renders correctly', () => {
   renderForSnapshot(<Hue {...red} />).expectSnapshot();

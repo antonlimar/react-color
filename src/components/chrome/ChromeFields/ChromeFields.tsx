@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import * as color from '../../../helpers/color';
+import * as color from '@/helpers/color';
 import isUndefined from 'lodash/isUndefined';
 
-import { EditableInput } from '../../common';
-import { getPickerClassName } from '../../common/styleArchitecture';
-import { UnfoldMoreHorizontalIcon } from '../../common/icons/UnfoldMoreHorizontalIcon';
+import { EditableInput } from '@/components/common';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { UnfoldMoreHorizontalIcon } from '@/components/common/icons/UnfoldMoreHorizontalIcon';
 import type { ReactNode } from 'react';
-import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '../../../types';
+import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '@/types';
 
 type ChromeFieldsProps = {
   hsl: HSLAColor;

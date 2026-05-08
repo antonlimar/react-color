@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
-import { red } from '../../helpers/color';
-import * as color from '../../helpers/color';
+import { red } from '@/helpers/color';
+import * as color from '@/helpers/color';
 
 import { Alpha } from './Alpha';
 import { Checkboard } from './Checkboard';
@@ -22,8 +22,8 @@ import {
   getThemeModifier,
   stylingArchitecture,
 } from './styleArchitecture';
-import { getRequiredElement, getRootElement, renderForSnapshot } from '../../../test/helpers';
-import type { Color, ColorPickerInjectedProps } from '../../types';
+import { getRequiredElement, getRootElement, renderForSnapshot } from '@test/helpers';
+import type { Color, ColorPickerInjectedProps } from '@/types';
 
 test('Alpha renders correctly', () => {
   renderForSnapshot(<Alpha {...red} />).expectSnapshot();

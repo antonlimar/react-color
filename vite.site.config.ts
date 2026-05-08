@@ -76,6 +76,9 @@ export default defineConfig(({ command }) => ({
   plugins: [react({ jsxRuntime: 'automatic' }), githubPagesSpaFallbackPlugin()],
   resolve: {
     alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@storybook-utils': path.resolve(__dirname, '.storybook'),
+      '@test': path.resolve(__dirname, 'test'),
       'react-color': path.resolve(__dirname, 'src/index.ts'),
     },
   },

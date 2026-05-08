@@ -1,4 +1,4 @@
-import type { ColorResult } from '../types';
+import type { ColorResult } from '@/types';
 
 export type SliderDirection = 'horizontal' | 'vertical';
 

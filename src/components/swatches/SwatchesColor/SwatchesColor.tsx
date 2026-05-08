@@ -1,10 +1,10 @@
-import * as colorUtils from '../../../helpers/color';
+import * as colorUtils from '@/helpers/color';
 
-import { Swatch } from '../../common';
-import { CheckIcon } from '../../common/icons/CheckIcon';
+import { Swatch } from '@/components/common';
+import { CheckIcon } from '@/components/common/icons/CheckIcon';
 import type { KeyboardEvent, MouseEvent } from 'react';
-import type { PickerStyle, SwatchHoverHandler } from '../../../types';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import type { PickerStyle, SwatchHoverHandler } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type SwatchesColorProps = {
   color: string;

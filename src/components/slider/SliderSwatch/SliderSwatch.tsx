@@ -1,6 +1,6 @@
 import type { CSSProperties, MouseEvent } from 'react';
-import type { ColorInputChangeHandler, HSLAColor } from '../../../types';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import type { ColorInputChangeHandler, HSLAColor } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type SliderSwatchProps = {
   hsl: HSLAColor;

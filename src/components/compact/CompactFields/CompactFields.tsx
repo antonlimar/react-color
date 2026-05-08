@@ -1,6 +1,6 @@
-import { EditableInput } from '../../common';
-import { getPickerClassName } from '../../common/styleArchitecture';
-import type { ColorChangeValue, ColorPickerChangeEvent, RGBAColor } from '../../../types';
+import { EditableInput } from '@/components/common';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
+import type { ColorChangeValue, ColorPickerChangeEvent, RGBAColor } from '@/types';
 
 type CompactFieldsProps = {
   hex: string;

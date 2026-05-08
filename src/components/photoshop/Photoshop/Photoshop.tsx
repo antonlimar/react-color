@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import { ColorWrap, Saturation, Hue } from '../../common';
-import { getPickerClassName, getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
-import { PhotoshopFields } from '../PhotoshopFields';
-import { PhotoshopPointerCircle } from '../PhotoshopPointerCircle';
-import { PhotoshopPointer } from '../PhotoshopPointer';
-import { PhotoshopButton } from '../PhotoshopButton';
-import { PhotoshopPreviews } from '../PhotoshopPreviews';
+import { ColorWrap, Saturation, Hue } from '@/components/common';
+import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { PhotoshopFields } from '@/components/photoshop/PhotoshopFields';
+import { PhotoshopPointerCircle } from '@/components/photoshop/PhotoshopPointerCircle';
+import { PhotoshopPointer } from '@/components/photoshop/PhotoshopPointer';
+import { PhotoshopButton } from '@/components/photoshop/PhotoshopButton';
+import { PhotoshopPreviews } from '@/components/photoshop/PhotoshopPreviews';
 import type {
   ClassName,
   ColorPickerInjectedProps,
@@ -15,7 +15,7 @@ import type {
   PickerClassNames,
   PickerCustomStyles,
   PickerTheme,
-} from '../../../types';
+} from '@/types';
 
 type PhotoshopProps = ColorPickerInjectedProps & {
   header?: string;

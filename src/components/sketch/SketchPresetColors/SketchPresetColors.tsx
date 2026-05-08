@@ -1,7 +1,7 @@
-import { Swatch } from '../../common';
+import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
-import type { ColorInputChangeHandler, SwatchHoverHandler } from '../../../types';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import type { ColorInputChangeHandler, SwatchHoverHandler } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type PresetColor =
   | string

@@ -1,7 +1,7 @@
 import each from 'lodash/each';
 import tinycolor from 'tinycolor2';
 
-import type { Color, ColorChangeValue, ColorResult } from '../types';
+import type { Color, ColorChangeValue, ColorResult } from '@/types';
 import type { BasicColorState, ColorDataKey, ColorDataRecord, ValidColorStringType } from './types';
 
 const keysToCheck: ColorDataKey[] = ['r', 'g', 'b', 'a', 'h', 's', 'l', 'v'];

@@ -1,5 +1,5 @@
 import { fireEvent, waitFor } from '@testing-library/react';
-import * as color from '../../helpers/color';
+import * as color from '@/helpers/color';
 import { expect, test, vi } from 'vitest';
 
 import { Chrome } from './Chrome';
@@ -12,7 +12,7 @@ import {
   getRequiredElement,
   getRootElement,
   renderForSnapshot,
-} from '../../../test/helpers';
+} from '@test/helpers';
 
 test('Chrome renders correctly', () => {
   renderForSnapshot(<Chrome {...color.red} />).expectSnapshot();

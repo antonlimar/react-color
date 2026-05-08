@@ -1,6 +1,6 @@
-import { ColorWrap, Alpha as AlphaControl } from '../../common';
-import { getPickerRootProps } from '../../common/styleArchitecture';
-import { AlphaPointer } from '../AlphaPointer';
+import { ColorWrap, Alpha as AlphaControl } from '@/components/common';
+import { getPickerRootProps } from '@/components/common/styleArchitecture';
+import { AlphaPointer } from '@/components/alpha/AlphaPointer';
 import type {
   AlphaProps,
   CheckboardRenderers,
@@ -9,7 +9,7 @@ import type {
   PickerClassNames,
   PickerStyle,
   PickerTheme,
-} from '../../../types';
+} from '@/types';
 
 type AlphaPickerProps = ColorPickerInjectedProps & {
   width?: string | number;

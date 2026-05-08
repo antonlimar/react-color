@@ -1,5 +1,5 @@
-import type { AlphaProps } from '../../../types';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import type { AlphaProps } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type AlphaPointerProps = Pick<AlphaProps, 'direction'>;
 

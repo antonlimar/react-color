@@ -1,9 +1,9 @@
-import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '../../common';
-import { getPickerClassName, getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
-import { ChromeFields } from '../ChromeFields';
-import { ChromePointer } from '../ChromePointer';
-import { ChromePointerCircle } from '../ChromePointerCircle';
+import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '@/components/common';
+import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { ChromeFields } from '@/components/chrome/ChromeFields';
+import { ChromePointer } from '@/components/chrome/ChromePointer';
+import { ChromePointerCircle } from '@/components/chrome/ChromePointerCircle';
 import type {
   CheckboardRenderers,
   ClassName,
@@ -11,7 +11,7 @@ import type {
   PickerClassNames,
   PickerCustomStyles,
   PickerTheme,
-} from '../../../types';
+} from '@/types';
 
 const CHROME_STYLE_SLOTS = [
   'picker',

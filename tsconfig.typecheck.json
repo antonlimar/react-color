@@ -11,6 +11,9 @@
     "noEmit": true,
     "noImplicitAny": true,
     "paths": {
+      "@/*": ["./src/*"],
+      "@storybook-utils/*": ["./.storybook/*"],
+      "@test/*": ["./test/*"],
       "react-color": ["./index.d.ts"],
       "react-color/es/*": ["./es/*"]
     },

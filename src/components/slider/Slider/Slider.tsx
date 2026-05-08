@@ -1,8 +1,8 @@
-import { ColorWrap, Hue } from '../../common';
-import { getPickerClassName, getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
-import { SliderSwatches } from '../SliderSwatches';
-import { SliderPointer } from '../SliderPointer';
+import { ColorWrap, Hue } from '@/components/common';
+import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { SliderSwatches } from '@/components/slider/SliderSwatches';
+import { SliderPointer } from '@/components/slider/SliderPointer';
 import type {
   ClassName,
   ColorPickerInjectedProps,
@@ -10,7 +10,7 @@ import type {
   PickerClassNames,
   PickerCustomStyles,
   PickerTheme,
-} from '../../../types';
+} from '@/types';
 
 const SLIDER_STYLE_SLOTS = ['wrap', 'hue', 'swatches'] as const;
 

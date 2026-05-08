@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
-import type { RGBAColor } from '../../../types';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import type { RGBAColor } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type PhotoshopPreviewsProps = {
   rgb: RGBAColor;

@@ -1,5 +1,5 @@
-import type { HSLAColor } from '../../../types';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import type { HSLAColor } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type PhotoshopPointerCircleProps = {
   hsl: HSLAColor;

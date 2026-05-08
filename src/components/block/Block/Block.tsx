@@ -1,9 +1,9 @@
-import * as color from '../../../helpers/color';
+import * as color from '@/helpers/color';
 
-import { ColorWrap, EditableInput, Checkboard } from '../../common';
-import { getPickerClassName, getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
-import { BlockSwatches } from '../BlockSwatches';
+import { ColorWrap, EditableInput, Checkboard } from '@/components/common';
+import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { BlockSwatches } from '@/components/block/BlockSwatches';
 import type {
   ClassName,
   ColorInputChangeHandler,
@@ -12,7 +12,7 @@ import type {
   PickerClassNames,
   PickerCustomStyles,
   PickerTheme,
-} from '../../../types';
+} from '@/types';
 
 const BLOCK_STYLE_SLOTS = ['card', 'triangle', 'head', 'label', 'body', 'input'] as const;
 

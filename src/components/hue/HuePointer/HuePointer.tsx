@@ -1,5 +1,5 @@
-import type { HueProps } from '../../../types';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import type { HueProps } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type HuePointerProps = Pick<HueProps, 'direction'>;
 

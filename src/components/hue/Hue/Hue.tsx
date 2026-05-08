@@ -1,7 +1,7 @@
-import { ColorWrap, Hue as HueControl } from '../../common';
-import { getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
-import { HuePointer } from '../HuePointer';
+import { ColorWrap, Hue as HueControl } from '@/components/common';
+import { getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { HuePointer } from '@/components/hue/HuePointer';
 import type {
   ClassName,
   ColorPickerInjectedProps,
@@ -9,7 +9,7 @@ import type {
   PickerClassNames,
   PickerCustomStyles,
   PickerTheme,
-} from '../../../types';
+} from '@/types';
 
 const HUE_PICKER_STYLE_SLOTS = ['picker'] as const;
 

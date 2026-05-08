@@ -1,17 +1,11 @@
 import map from 'lodash/map';
 import material from 'material-colors';
 
-import { ColorWrap } from '../../common';
-import { getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
-import { CircleSwatch } from '../CircleSwatch';
-import type {
-  ClassName,
-  ColorPickerInjectedProps,
-  PickerClassNames,
-  PickerCustomStyles,
-  PickerTheme,
-} from '../../../types';
+import { ColorWrap } from '@/components/common';
+import { getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { CircleSwatch } from '@/components/circle/CircleSwatch';
+import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
 
 const CIRCLE_STYLE_SLOTS = ['card'] as const;
 

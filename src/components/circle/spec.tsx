@@ -1,13 +1,13 @@
 import { Circle } from './Circle';
 import { CircleSwatch } from './CircleSwatch';
-import * as color from '../../helpers/color';
+import * as color from '@/helpers/color';
 import {
   clickFirstSwatch,
   createColorChangeSpy,
   getRootElement,
   hoverFirstSwatch,
   renderForSnapshot,
-} from '../../../test/helpers';
+} from '@test/helpers';
 
 test('Circle renders correctly', () => {
   renderForSnapshot(<Circle />).expectSnapshot();

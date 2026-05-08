@@ -1,4 +1,8 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { mergeConfig, transformWithOxc } from 'vite';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function jsxInJsPlugin() {
   return {
@@ -44,6 +48,13 @@ const config = {
   async viteFinal(baseConfig) {
     return mergeConfig(baseConfig, {
       plugins: [jsxInJsPlugin()],
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, '../src'),
+          '@storybook-utils': path.resolve(__dirname),
+          '@test': path.resolve(__dirname, '../test'),
+        },
+      },
     });
   },
 };

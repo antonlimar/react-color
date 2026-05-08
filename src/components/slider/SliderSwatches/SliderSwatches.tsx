@@ -1,6 +1,6 @@
-import { SliderSwatch } from '../SliderSwatch';
-import type { ColorInputChangeHandler, HSLAColor } from '../../../types';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import { SliderSwatch } from '@/components/slider/SliderSwatch';
+import type { ColorInputChangeHandler, HSLAColor } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type SliderSwatchesProps = {
   onClick: ColorInputChangeHandler;

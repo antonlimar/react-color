@@ -1,9 +1,9 @@
 import map from 'lodash/map';
 
-import { SwatchesColor } from '../SwatchesColor';
+import { SwatchesColor } from '@/components/swatches/SwatchesColor';
 import type { KeyboardEvent, MouseEvent } from 'react';
-import type { SwatchHoverHandler } from '../../../types';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import type { SwatchHoverHandler } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type SwatchesGroupProps = {
   onClick: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;

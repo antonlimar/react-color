@@ -1,4 +1,4 @@
-import * as color from '../../helpers/color';
+import * as color from '@/helpers/color';
 
 import { Github } from './Github';
 import { GithubSwatch } from './GithubSwatch';
@@ -8,7 +8,7 @@ import {
   getRootElement,
   hoverFirstSwatch,
   renderForSnapshot,
-} from '../../../test/helpers';
+} from '@test/helpers';
 
 test('Github renders correctly', () => {
   renderForSnapshot(<Github {...color.red} />).expectSnapshot();

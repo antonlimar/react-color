@@ -1,16 +1,10 @@
-import { ColorWrap, Saturation, Hue } from '../../common';
-import { getPickerClassName, getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
-import { GooglePointerCircle } from '../GooglePointerCircle';
-import { GooglePointer } from '../GooglePointer';
-import { GoogleFields } from '../GoogleFields';
-import type {
-  ClassName,
-  ColorPickerInjectedProps,
-  PickerClassNames,
-  PickerCustomStyles,
-  PickerTheme,
-} from '../../../types';
+import { ColorWrap, Saturation, Hue } from '@/components/common';
+import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { GooglePointerCircle } from '@/components/google/GooglePointerCircle';
+import { GooglePointer } from '@/components/google/GooglePointer';
+import { GoogleFields } from '@/components/google/GoogleFields';
+import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
 
 const GOOGLE_STYLE_SLOTS = ['picker', 'head', 'saturation', 'swatch', 'body', 'controls', 'hue'] as const;
 

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type PhotoshopButtonProps = {
   onClick?: () => void;

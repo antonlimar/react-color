@@ -1,4 +1,4 @@
-import type { AlphaChange, HSLAColor, InternalColorChangeEvent } from '../types';
+import type { AlphaChange, HSLAColor, InternalColorChangeEvent } from '@/types';
 import { getPageCoordinates } from './coordinates';
 import type { SliderChangeContainer, SliderDirection } from './types';
 

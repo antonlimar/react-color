@@ -1,10 +1,10 @@
-import { red } from '../../helpers/color';
+import { red } from '@/helpers/color';
 
 import { Slider } from './Slider';
 import { SliderPointer } from './SliderPointer';
 import { SliderSwatch } from './SliderSwatch';
 import { SliderSwatches } from './SliderSwatches';
-import { getRootElement, renderForSnapshot } from '../../../test/helpers';
+import { getRootElement, renderForSnapshot } from '@test/helpers';
 
 test('Slider renders correctly', () => {
   renderForSnapshot(<Slider {...red} />).expectSnapshot();

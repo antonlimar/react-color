@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import throttle from 'lodash/throttle';
-import * as saturation from '../../../helpers/saturation';
+import * as saturation from '@/helpers/saturation';
 import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
-import type { InternalColorChangeEvent, SaturationProps } from '../../../types';
-import { getPickerClassName } from '../styleArchitecture';
+import type { InternalColorChangeEvent, SaturationProps } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type SaturationChangeHandler = NonNullable<SaturationProps['onChange']>;
 type SaturationChangeData = ReturnType<typeof saturation.calculateChange>;

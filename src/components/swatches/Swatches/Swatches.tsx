@@ -1,17 +1,11 @@
 import map from 'lodash/map';
 import material from 'material-colors';
 
-import { ColorWrap, Raised } from '../../common';
-import { getPickerClassName, getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
-import { SwatchesGroup } from '../SwatchesGroup';
-import type {
-  ClassName,
-  ColorPickerInjectedProps,
-  PickerClassNames,
-  PickerCustomStyles,
-  PickerTheme,
-} from '../../../types';
+import { ColorWrap, Raised } from '@/components/common';
+import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { SwatchesGroup } from '@/components/swatches/SwatchesGroup';
+import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
 
 const SWATCHES_STYLE_SLOTS = ['picker', 'overflow', 'body', 'clear'] as const;
 

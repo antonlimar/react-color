@@ -8,6 +8,11 @@
     "jsx": "react-jsx",
     "moduleResolution": "Bundler",
     "noImplicitAny": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@storybook-utils/*": ["./.storybook/*"],
+      "@test/*": ["./test/*"]
+    },
     "strictNullChecks": true,
     "noEmit": false,
     "rootDir": "./src",

@@ -1,9 +1,9 @@
-import * as colorUtils from '../../../helpers/color';
+import * as colorUtils from '@/helpers/color';
 
-import { Swatch } from '../../common';
+import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
-import type { PickerStyle, SwatchHoverHandler } from '../../../types';
-import { getPickerClassName } from '../../common/styleArchitecture';
+import type { PickerStyle, SwatchHoverHandler } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type CompactColorProps = {
   color: string;

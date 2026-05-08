@@ -1,4 +1,4 @@
-import * as color from '../../helpers/color';
+import * as color from '@/helpers/color';
 
 import { Swatches } from './Swatches';
 import { SwatchesColor } from './SwatchesColor';
@@ -9,7 +9,7 @@ import {
   getRootElement,
   hoverFirstSwatch,
   renderForSnapshot,
-} from '../../../test/helpers';
+} from '@test/helpers';
 
 test('Swatches renders correctly', () => {
   renderForSnapshot(<Swatches hex={color.red.hex} colors={[['#fff'], ['#333']]} />).expectSnapshot();

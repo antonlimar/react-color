@@ -40,24 +40,24 @@ async function ensureBuildArtifacts() {
   }
 
   const [esChromeEntry, esSketchEntry, esIndexEntry] = await Promise.all([
-    readFile(path.join(repoRoot, 'es', 'components', 'chrome', 'Chrome.js'), 'utf8'),
-    readFile(path.join(repoRoot, 'es', 'components', 'sketch', 'Sketch.js'), 'utf8'),
+    readFile(path.join(repoRoot, 'es', 'components', 'chrome', 'Chrome', 'index.js'), 'utf8'),
+    readFile(path.join(repoRoot, 'es', 'components', 'sketch', 'Sketch', 'index.js'), 'utf8'),
     readFile(path.join(repoRoot, 'es', 'index.js'), 'utf8'),
   ]);
 
   assert.match(
     esChromeEntry,
-    /import '\.\.\/\.\.\/styles\/pickers\/chrome\.css';/u,
+    /import '\.\.\/\.\.\/\.\.\/styles\/pickers\/chrome\.css';/u,
     'es/components/chrome/Chrome/index.js is missing the ESM style side effect.',
   );
   assert.match(
     esSketchEntry,
-    /import '\.\.\/\.\.\/styles\/pickers\/sketch\.css';/u,
+    /import '\.\.\/\.\.\/\.\.\/styles\/pickers\/sketch\.css';/u,
     'es/components/sketch/Sketch/index.js is missing the ESM style side effect.',
   );
   assert.match(
     esIndexEntry,
-    /from '\.\/components\/chrome\/Chrome\.js';/u,
+    /from '\.\/components\/chrome\/index\.js';/u,
     'es/index.js is not re-exporting picker components with Node-compatible ESM specifiers.',
   );
 }

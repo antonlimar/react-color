@@ -1,4 +1,4 @@
-import type { InternalColorChangeEvent } from '../types';
+import type { InternalColorChangeEvent } from '@/types';
 import type { MouseLikeEvent, PageCoordinates, TouchLikeEvent } from './types';
 
 export const getPageCoordinates = (event: InternalColorChangeEvent): PageCoordinates => {

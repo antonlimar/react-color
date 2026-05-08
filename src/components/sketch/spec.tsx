@@ -1,4 +1,4 @@
-import * as color from '../../helpers/color';
+import * as color from '@/helpers/color';
 import { expect, test } from 'vitest';
 
 import { Sketch } from './Sketch';
@@ -10,7 +10,7 @@ import {
   getRootElement,
   hoverFirstSwatch,
   renderForSnapshot,
-} from '../../../test/helpers';
+} from '@test/helpers';
 
 test('Sketch renders correctly', () => {
   renderForSnapshot(<Sketch {...color.red} />).expectSnapshot();

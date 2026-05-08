@@ -1,8 +1,8 @@
-import * as color from '../../../helpers/color';
+import * as color from '@/helpers/color';
 
-import { ColorWrap, EditableInput, Raised } from '../../common';
-import { getPickerClassName, getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
+import { ColorWrap, EditableInput, Raised } from '@/components/common';
+import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import type {
   ClassName,
   ColorChangeValue,
@@ -12,7 +12,7 @@ import type {
   PickerClassNames,
   PickerCustomStyles,
   PickerTheme,
-} from '../../../types';
+} from '@/types';
 
 const MATERIAL_STYLE_SLOTS = [
   'material',

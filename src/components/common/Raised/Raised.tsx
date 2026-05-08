@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
-import type { RaisedProps } from '../../../types';
-import { getPickerClassName, getPickerRootProps } from '../styleArchitecture';
+import type { RaisedProps } from '@/types';
+import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
 
 const isStyleObject = (value: unknown): value is CSSProperties =>
   typeof value === 'object' && value !== null && !Array.isArray(value);

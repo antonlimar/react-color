@@ -1,5 +1,5 @@
 import { Twitter } from './Twitter';
-import { renderPickerStory } from '../../../.storybook/renderPickerStory';
+import { renderPickerStory } from '@storybook-utils/renderPickerStory';
 
 export default {
   title: 'Pickers',

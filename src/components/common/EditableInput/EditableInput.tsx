@@ -6,8 +6,8 @@ import type {
   EditableInputChangeValue,
   EditableInputProps,
   EditableInputValue,
-} from '../../../types';
-import { getPickerClassName } from '../styleArchitecture';
+} from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 const DEFAULT_ARROW_OFFSET = 1;
 const UP_KEY_CODE = 38;

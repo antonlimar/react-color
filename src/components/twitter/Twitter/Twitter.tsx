@@ -1,9 +1,9 @@
 import map from 'lodash/map';
-import * as color from '../../../helpers/color';
+import * as color from '@/helpers/color';
 
-import { ColorWrap, EditableInput, Swatch } from '../../common';
-import { getPickerClassName, getPickerRootProps } from '../../common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '../../common/styleOverrides';
+import { ColorWrap, EditableInput, Swatch } from '@/components/common';
+import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import type {
   ClassName,
   ColorInputChangeHandler,
@@ -12,7 +12,7 @@ import type {
   PickerClassNames,
   PickerCustomStyles,
   PickerTheme,
-} from '../../../types';
+} from '@/types';
 
 const TWITTER_STYLE_SLOTS = ['card', 'body', 'triangle', 'triangleShadow', 'hash', 'input', 'swatch'] as const;
 

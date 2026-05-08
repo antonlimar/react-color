@@ -1,8 +1,8 @@
 import { cloneElement, isValidElement } from 'react';
 import type { CSSProperties, ReactElement } from 'react';
-import * as checkboard from '../../../helpers/checkboard';
-import type { CheckboardProps } from '../../../types';
-import { getPickerClassName } from '../styleArchitecture';
+import * as checkboard from '@/helpers/checkboard';
+import type { CheckboardProps } from '@/types';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 export const Checkboard = ({
   white = 'transparent',

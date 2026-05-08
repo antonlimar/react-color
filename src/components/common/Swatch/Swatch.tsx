@@ -1,9 +1,9 @@
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
-import { handleFocus } from '../../../helpers/interaction';
-import type { Radius, SwatchProps } from '../../../types';
-import { Checkboard } from '../Checkboard';
-import { getPickerClassName } from '../styleArchitecture';
+import { handleFocus } from '@/helpers/interaction';
+import type { Radius, SwatchProps } from '@/types';
+import { Checkboard } from '@/components/common/Checkboard';
+import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 const ENTER = 13;
 
