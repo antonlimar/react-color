@@ -1,4 +1,4 @@
 @use '../core/index' as core;
-@use '../../components/block/Block';
+@use '../../components/block/Block/Block';
 
 @include core.rc-style-entry('picker-block');

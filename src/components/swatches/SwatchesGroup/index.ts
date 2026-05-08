@@ -1,0 +1,1 @@
+export { SwatchesGroup } from './SwatchesGroup';

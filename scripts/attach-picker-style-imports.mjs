@@ -7,20 +7,20 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
 
 const pickerFiles = new Map([
-  ['components/alpha/Alpha', 'alpha'],
-  ['components/block/Block', 'block'],
-  ['components/circle/Circle', 'circle'],
-  ['components/chrome/Chrome', 'chrome'],
-  ['components/compact/Compact', 'compact'],
-  ['components/github/Github', 'github'],
-  ['components/google/Google', 'google'],
-  ['components/hue/Hue', 'hue'],
-  ['components/material/Material', 'material'],
-  ['components/photoshop/Photoshop', 'photoshop'],
-  ['components/sketch/Sketch', 'sketch'],
-  ['components/slider/Slider', 'slider'],
-  ['components/swatches/Swatches', 'swatches'],
-  ['components/twitter/Twitter', 'twitter'],
+  ['components/alpha/Alpha/index', 'alpha'],
+  ['components/block/Block/index', 'block'],
+  ['components/circle/Circle/index', 'circle'],
+  ['components/chrome/Chrome/index', 'chrome'],
+  ['components/compact/Compact/index', 'compact'],
+  ['components/github/Github/index', 'github'],
+  ['components/google/Google/index', 'google'],
+  ['components/hue/Hue/index', 'hue'],
+  ['components/material/Material/index', 'material'],
+  ['components/photoshop/Photoshop/index', 'photoshop'],
+  ['components/sketch/Sketch/index', 'sketch'],
+  ['components/slider/Slider/index', 'slider'],
+  ['components/swatches/Swatches/index', 'swatches'],
+  ['components/twitter/Twitter/index', 'twitter'],
 ]);
 
 const commonCssEntries = ['alpha', 'checkboard', 'editable-input', 'hue', 'raised', 'saturation', 'swatch'];

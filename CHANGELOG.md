@@ -6,6 +6,7 @@
 
 - Published package output is now ESM-only: `main` and `module` point at `es/index.js`, `lib/` CommonJS artifacts are no longer built or published, and `react-color/lib/*` deep imports are no longer supported.
 - The package now publishes an `exports` map for the root entry, shared common components, and CSS entrypoints.
+- Picker modules now use named exports only; the legacy root default export has been removed.
 - Library peer compatibility is now explicitly documented and enforced as `react >=16.8.0`.
 - Root development dependencies for the documentation site and Storybook intentionally stay on a newer React major than the package peer baseline. This is a repository-development constraint, not a published runtime requirement for consumers.
 - The styling system now publishes aggregate and granular CSS entrypoints in `es/styles`; consumers should explicitly import either `react-color/es/styles/index.css` or only the picker/common CSS files they use.

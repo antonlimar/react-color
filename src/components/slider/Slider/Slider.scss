@@ -1,0 +1,12 @@
+@use '../SliderPointer/SliderPointer';
+@use '../SliderSwatch/SliderSwatch';
+@use '../SliderSwatches/SliderSwatches';
+
+.rc-slider__hue {
+  position: relative;
+  height: 12px;
+}
+
+.rc-slider__swatches-wrap {
+  position: relative;
+}

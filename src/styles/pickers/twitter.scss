@@ -1,4 +1,4 @@
 @use '../core/index' as core;
-@use '../../components/twitter/Twitter';
+@use '../../components/twitter/Twitter/Twitter';
 
 @include core.rc-style-entry('picker-twitter');

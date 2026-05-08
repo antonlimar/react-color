@@ -1,4 +1,4 @@
-import Swatches from './Swatches';
+import { Swatches } from './Swatches';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {

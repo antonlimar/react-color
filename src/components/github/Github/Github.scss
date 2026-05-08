@@ -1,0 +1,84 @@
+@use '../GithubSwatch/GithubSwatch';
+
+.rc-github {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  background: var(--rc-picker-surface, #fff);
+  border: 1px solid var(--rc-picker-border, rgba(0, 0, 0, 0.2));
+  border-radius: 4px;
+  box-sizing: initial;
+  box-shadow: var(--rc-picker-shadow-popover, 0 3px 12px rgba(0, 0, 0, 0.15));
+  color: var(--rc-picker-text, #333);
+}
+
+.rc-github__triangle,
+.rc-github__triangle-shadow {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.rc-github__triangle {
+  border-width: 7px;
+  border-color: transparent;
+  border-bottom-color: var(--rc-picker-triangle-surface, #fff);
+}
+
+.rc-github__triangle-shadow {
+  border-width: 8px;
+  border-color: transparent;
+  border-bottom-color: var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.15));
+}
+
+.rc-github.rc-github--hide-triangle .rc-github__triangle,
+.rc-github.rc-github--hide-triangle .rc-github__triangle-shadow {
+  display: none;
+}
+
+.rc-github.rc-github--top-left .rc-github__triangle {
+  top: -14px;
+  left: 10px;
+}
+
+.rc-github.rc-github--top-left .rc-github__triangle-shadow {
+  top: -16px;
+  left: 9px;
+}
+
+.rc-github.rc-github--top-right .rc-github__triangle {
+  top: -14px;
+  right: 10px;
+}
+
+.rc-github.rc-github--top-right .rc-github__triangle-shadow {
+  top: -16px;
+  right: 9px;
+}
+
+.rc-github.rc-github--bottom-left .rc-github__triangle {
+  top: 35px;
+  left: 10px;
+  transform: rotate(180deg);
+}
+
+.rc-github.rc-github--bottom-left .rc-github__triangle-shadow {
+  top: 37px;
+  left: 9px;
+  transform: rotate(180deg);
+}
+
+.rc-github.rc-github--bottom-right .rc-github__triangle {
+  top: 35px;
+  right: 10px;
+  transform: rotate(180deg);
+}
+
+.rc-github.rc-github--bottom-right .rc-github__triangle-shadow {
+  top: 37px;
+  right: 9px;
+  transform: rotate(180deg);
+}

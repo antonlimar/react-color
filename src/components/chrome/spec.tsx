@@ -2,10 +2,10 @@ import { fireEvent, waitFor } from '@testing-library/react';
 import * as color from '../../helpers/color';
 import { expect, test, vi } from 'vitest';
 
-import Chrome from './Chrome';
-import ChromeFields from './ChromeFields';
-import ChromePointer from './ChromePointer';
-import ChromePointerCircle from './ChromePointerCircle';
+import { Chrome } from './Chrome';
+import { ChromeFields } from './ChromeFields';
+import { ChromePointer } from './ChromePointer';
+import { ChromePointerCircle } from './ChromePointerCircle';
 import { changeInputByLabel, createColorChangeSpy, renderForSnapshot } from '../../../test/helpers';
 
 test('Chrome renders correctly', () => {

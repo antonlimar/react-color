@@ -1,0 +1,1 @@
+export { PhotoshopButton } from './PhotoshopButton';

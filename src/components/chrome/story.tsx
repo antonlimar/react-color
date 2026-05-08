@@ -1,4 +1,4 @@
-import Chrome from './Chrome';
+import { Chrome } from './Chrome';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {

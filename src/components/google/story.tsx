@@ -1,4 +1,4 @@
-import Google from './Google';
+import { Google } from './Google';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {

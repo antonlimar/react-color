@@ -1,0 +1,1 @@
+export { Photoshop } from './Photoshop';

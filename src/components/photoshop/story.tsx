@@ -1,4 +1,4 @@
-import Photoshop from './Photoshop';
+import { Photoshop } from './Photoshop';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {

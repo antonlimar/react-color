@@ -1,0 +1,1 @@
+export { CompactColor } from './CompactColor';

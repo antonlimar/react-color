@@ -1,0 +1,1 @@
+export { SwatchesColor } from './SwatchesColor';

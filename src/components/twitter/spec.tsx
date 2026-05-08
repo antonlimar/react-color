@@ -1,6 +1,6 @@
 import * as color from '../../helpers/color';
 
-import Twitter from './Twitter';
+import { Twitter } from './Twitter';
 import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
 
 test('Twitter renders correctly', () => {

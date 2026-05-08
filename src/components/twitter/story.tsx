@@ -1,4 +1,4 @@
-import Twitter from './Twitter';
+import { Twitter } from './Twitter';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {

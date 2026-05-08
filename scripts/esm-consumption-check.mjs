@@ -48,12 +48,12 @@ async function ensureBuildArtifacts() {
   assert.match(
     esChromeEntry,
     /import '\.\.\/\.\.\/styles\/pickers\/chrome\.css';/u,
-    'es/components/chrome/Chrome.js is missing the ESM style side effect.',
+    'es/components/chrome/Chrome/index.js is missing the ESM style side effect.',
   );
   assert.match(
     esSketchEntry,
     /import '\.\.\/\.\.\/styles\/pickers\/sketch\.css';/u,
-    'es/components/sketch/Sketch.js is missing the ESM style side effect.',
+    'es/components/sketch/Sketch/index.js is missing the ESM style side effect.',
   );
   assert.match(
     esIndexEntry,

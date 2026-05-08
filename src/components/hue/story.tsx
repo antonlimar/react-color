@@ -1,4 +1,4 @@
-import Hue from './Hue';
+import { Hue } from './Hue';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {

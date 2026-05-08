@@ -1,0 +1,57 @@
+@use '../BlockSwatches/BlockSwatches';
+
+.rc-block {
+  position: relative;
+  background: var(--rc-picker-surface, #fff);
+  border-radius: 6px;
+  box-shadow: 0 1px var(--rc-picker-focus-outline, rgba(0, 0, 0, 0.1));
+  color: var(--rc-picker-text, #333);
+}
+
+.rc-block__triangle {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border-style: solid;
+  border-width: 0 10px 10px;
+}
+
+.rc-block.rc-block--hide-triangle .rc-block__triangle {
+  display: none;
+}
+
+.rc-block__head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110px;
+  border-radius: 6px 6px 0 0;
+  overflow: hidden;
+}
+
+.rc-block__label {
+  position: relative;
+  font-size: 18px;
+}
+
+.rc-block__body {
+  padding: 10px;
+}
+
+.rc-block__body .rc-editable-input__input {
+  width: 100%;
+  height: 22px;
+  padding: 0 7px;
+  border: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+  background: var(--rc-picker-input-surface, #fff);
+  font-size: 12px;
+  box-shadow: inset 0 0 0 1px var(--rc-picker-border, #ddd);
+  color: var(--rc-picker-text-muted, #666);
+}

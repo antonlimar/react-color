@@ -1,4 +1,4 @@
-import Circle from './Circle';
+import { Circle } from './Circle';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {

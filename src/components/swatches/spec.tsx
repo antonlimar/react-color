@@ -1,8 +1,8 @@
 import * as color from '../../helpers/color';
 
-import Swatches from './Swatches';
-import SwatchesColor from './SwatchesColor';
-import SwatchesGroup from './SwatchesGroup';
+import { Swatches } from './Swatches';
+import { SwatchesColor } from './SwatchesColor';
+import { SwatchesGroup } from './SwatchesGroup';
 import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
 
 test('Swatches renders correctly', () => {

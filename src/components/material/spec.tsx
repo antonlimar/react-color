@@ -1,6 +1,6 @@
 import { red } from '../../helpers/color';
 
-import Material from './Material';
+import { Material } from './Material';
 import { renderForSnapshot } from '../../../test/helpers';
 
 test('Material renders correctly', () => {

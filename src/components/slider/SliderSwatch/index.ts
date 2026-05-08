@@ -1,0 +1,1 @@
+export { SliderSwatch } from './SliderSwatch';

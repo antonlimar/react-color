@@ -1,7 +1,7 @@
 import * as color from '../../helpers/color';
 
-import Github from './Github';
-import GithubSwatch from './GithubSwatch';
+import { Github } from './Github';
+import { GithubSwatch } from './GithubSwatch';
 import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
 
 test('Github renders correctly', () => {

@@ -45,7 +45,7 @@ Published package artifacts are ESM-only. The package exposes `main` and `module
 
 The package ships an ESM-only `main`/`module` contract and an `exports` map for the root entry, shared common components, and published CSS entrypoints.
 
-- Bundlers and TypeScript toolchains should use root default/named imports such as `import { SketchPicker } from 'react-color'`.
+- Bundlers and TypeScript toolchains should use root named imports such as `import { SketchPicker } from 'react-color'`.
 - Native Node ESM can resolve the root entry through the package `exports` map; plain Node execution still needs a CSS-aware loader because picker component modules import CSS side effects.
 - CommonJS `require('react-color')` and `require('react-color/lib/...')` are no longer supported.
 
@@ -72,7 +72,7 @@ function Component() {
 }
 ```
 
-You can import `AlphaPicker` `BlockPicker` `ChromePicker` `CirclePicker` `CompactPicker` `GithubPicker` `HuePicker` `MaterialPicker` `PhotoshopPicker` `SketchPicker` `SliderPicker` `SwatchesPicker` `TwitterPicker` respectively.
+You can import `AlphaPicker` `BlockPicker` `ChromePicker` `CirclePicker` `CompactPicker` `GithubPicker` `GooglePicker` `HuePicker` `MaterialPicker` `PhotoshopPicker` `SketchPicker` `SliderPicker` `SwatchesPicker` `TwitterPicker` respectively.
 
 ### Styling
 

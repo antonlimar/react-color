@@ -1,8 +1,8 @@
 import * as color from '../../helpers/color';
 
-import Compact from './Compact';
-import CompactColor from './CompactColor';
-import CompactFields from './CompactFields';
+import { Compact } from './Compact';
+import { CompactColor } from './CompactColor';
+import { CompactFields } from './CompactFields';
 import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
 
 test('Compact renders correctly', () => {

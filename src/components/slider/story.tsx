@@ -1,4 +1,4 @@
-import Slider from './Slider';
+import { Slider } from './Slider';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {

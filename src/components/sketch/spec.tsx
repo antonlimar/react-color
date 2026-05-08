@@ -1,9 +1,9 @@
 import * as color from '../../helpers/color';
 import { expect, test } from 'vitest';
 
-import Sketch from './Sketch';
-import SketchFields from './SketchFields';
-import SketchPresetColors from './SketchPresetColors';
+import { Sketch } from './Sketch';
+import { SketchFields } from './SketchFields';
+import { SketchPresetColors } from './SketchPresetColors';
 import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
 
 test('Sketch renders correctly', () => {

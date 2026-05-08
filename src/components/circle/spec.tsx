@@ -1,5 +1,5 @@
-import Circle from './Circle';
-import CircleSwatch from './CircleSwatch';
+import { Circle } from './Circle';
+import { CircleSwatch } from './CircleSwatch';
 import * as color from '../../helpers/color';
 import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
 

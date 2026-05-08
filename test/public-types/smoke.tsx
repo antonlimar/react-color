@@ -4,7 +4,8 @@ import 'react-color/es/styles/common/editable-input.css';
 
 import type { ComponentProps } from 'react';
 import React from 'react';
-import ChromePickerDefault, {
+import {
+  ChromePicker,
   CustomPicker,
   EditableInput,
   GooglePicker,
@@ -62,7 +63,7 @@ const WrappedPicker = CustomPicker(WrappedBase);
 
 const elements = (
   <div>
-    <ChromePickerDefault {...defaultPickerProps} />
+    <ChromePicker {...defaultPickerProps} />
     <SketchPicker {...sketchProps} theme="light" classNames={pickerClassNames} />
     <GooglePicker {...googleProps} />
     <HuePicker color="#00ff00" />

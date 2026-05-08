@@ -2,12 +2,12 @@ import { fireEvent, screen } from '@testing-library/react';
 import { red } from '../../helpers/color';
 import { expect, test, vi } from 'vitest';
 
-import Photoshop from './Photoshop';
-import PhotoshopButton from './PhotoshopButton';
-import PhotoshopFields from './PhotoshopFields';
-import PhotoshopPointer from './PhotoshopPointer';
-import PhotoshopPointerCircle from './PhotoshopPointerCircle';
-import PhotoshopPreviews from './PhotoshopPreviews';
+import { Photoshop } from './Photoshop';
+import { PhotoshopButton } from './PhotoshopButton';
+import { PhotoshopFields } from './PhotoshopFields';
+import { PhotoshopPointer } from './PhotoshopPointer';
+import { PhotoshopPointerCircle } from './PhotoshopPointerCircle';
+import { PhotoshopPreviews } from './PhotoshopPreviews';
 import { renderForSnapshot } from '../../../test/helpers';
 
 test('Photoshop renders correctly', () => {

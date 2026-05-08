@@ -1,5 +1,5 @@
-import Block from './Block';
-import BlockSwatches from './BlockSwatches';
+import { Block } from './Block';
+import { BlockSwatches } from './BlockSwatches';
 import * as color from '../../helpers/color';
 import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
 

@@ -1,9 +1,9 @@
 import { red } from '../../helpers/color';
 
-import Slider from './Slider';
-import SliderPointer from './SliderPointer';
-import SliderSwatch from './SliderSwatch';
-import SliderSwatches from './SliderSwatches';
+import { Slider } from './Slider';
+import { SliderPointer } from './SliderPointer';
+import { SliderSwatch } from './SliderSwatch';
+import { SliderSwatches } from './SliderSwatches';
 import { renderForSnapshot } from '../../../test/helpers';
 
 test('Slider renders correctly', () => {

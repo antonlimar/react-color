@@ -1,0 +1,94 @@
+@use '../PhotoshopFields/PhotoshopFields';
+@use '../PhotoshopPointer/PhotoshopPointer';
+@use '../PhotoshopPointerCircle/PhotoshopPointerCircle';
+@use '../PhotoshopPreviews/PhotoshopPreviews';
+
+.rc-photoshop {
+  width: 513px;
+  background: var(--rc-picker-surface, #dcdcdc);
+  border-radius: 4px;
+  box-sizing: initial;
+  box-shadow: var(--rc-picker-shadow-popover, 0 0 0 1px rgba(0, 0, 0, 0.25), 0 8px 16px rgba(0, 0, 0, 0.15));
+  color: var(--rc-picker-text, #000);
+}
+
+.rc-photoshop__head {
+  height: 23px;
+  line-height: 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--rc-picker-border, #b1b1b1);
+  border-radius: 4px 4px 0 0;
+  box-shadow:
+    inset 0 1px 0 0 var(--rc-picker-focus-outline, rgba(255, 255, 255, 0.2)),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.02);
+  background-image: linear-gradient(
+    -180deg,
+    var(--rc-photoshop-head-start, #f0f0f0) 0%,
+    var(--rc-photoshop-head-end, #d4d4d4) 100%
+  );
+  font-size: 13px;
+  color: var(--rc-picker-text-muted, #4d4d4d);
+}
+
+.rc-photoshop__body {
+  display: flex;
+  padding: 15px 15px 0;
+}
+
+.rc-photoshop__saturation {
+  position: relative;
+  width: 256px;
+  height: 256px;
+  overflow: hidden;
+  border: 2px solid var(--rc-picker-border, #b3b3b3);
+  border-bottom-color: var(--rc-picker-border-contrast, #f0f0f0);
+}
+
+.rc-photoshop__hue {
+  position: relative;
+  width: 19px;
+  height: 256px;
+  margin-left: 10px;
+  border: 2px solid var(--rc-picker-border, #b3b3b3);
+  border-bottom-color: var(--rc-picker-border-contrast, #f0f0f0);
+}
+
+.rc-photoshop__controls {
+  width: 180px;
+  margin-left: 10px;
+}
+
+.rc-photoshop__top {
+  display: flex;
+}
+
+.rc-photoshop__previews {
+  width: 60px;
+}
+
+.rc-photoshop__actions {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.rc-photoshop__button {
+  height: 20px;
+  margin-bottom: 10px;
+  border: 1px solid var(--rc-picker-border-strong, #878787);
+  border-radius: 2px;
+  box-shadow: 0 1px 0 0 var(--rc-photoshop-button-shadow, #eaeaea);
+  background-image: linear-gradient(
+    -180deg,
+    var(--rc-picker-input-surface, #fff) 0%,
+    var(--rc-picker-surface-muted, #e6e6e6) 100%
+  );
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: var(--rc-picker-text, #000);
+  cursor: pointer;
+}
+
+.rc-photoshop__button.rc-photoshop--active {
+  box-shadow: 0 0 0 1px var(--rc-picker-border-strong, #878787);
+}

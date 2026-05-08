@@ -1,4 +1,4 @@
-import Alpha from './Alpha';
+import { Alpha } from './Alpha';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {

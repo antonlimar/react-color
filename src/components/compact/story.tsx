@@ -1,4 +1,4 @@
-import Compact from './Compact';
+import { Compact } from './Compact';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {

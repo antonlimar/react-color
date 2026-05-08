@@ -1,4 +1,4 @@
-import Material from './Material';
+import { Material } from './Material';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {

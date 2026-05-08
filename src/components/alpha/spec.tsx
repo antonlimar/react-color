@@ -1,8 +1,8 @@
 import { fireEvent } from '@testing-library/react';
 import * as color from '../../helpers/color';
 
-import Alpha from './Alpha';
-import AlphaPointer from './AlphaPointer';
+import { Alpha } from './Alpha';
+import { AlphaPointer } from './AlphaPointer';
 import { createColorChangeSpy, renderForSnapshot } from '../../../test/helpers';
 
 test('Alpha renders correctly', () => {

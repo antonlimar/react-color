@@ -1,4 +1,4 @@
-import Github from './Github';
+import { Github } from './Github';
 import { renderPickerStory } from '../../../.storybook/renderPickerStory';
 
 export default {

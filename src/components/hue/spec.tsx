@@ -1,7 +1,7 @@
 import { red } from '../../helpers/color';
 
-import Hue from './Hue';
-import HuePointer from './HuePointer';
+import { Hue } from './Hue';
+import { HuePointer } from './HuePointer';
 import { renderForSnapshot } from '../../../test/helpers';
 
 test('Hue renders correctly', () => {

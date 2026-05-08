@@ -1,0 +1,82 @@
+@use '../ChromeFields/ChromeFields';
+@use '../ChromePointer/ChromePointer';
+@use '../ChromePointerCircle/ChromePointerCircle';
+
+.rc-chrome {
+  background: var(--rc-picker-surface, #fff);
+  border-radius: 2px;
+  box-sizing: initial;
+  box-shadow: var(--rc-picker-shadow-popover, 0 0 2px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.3));
+  color: var(--rc-picker-text, #333);
+  font-family: Menlo, monospace;
+}
+
+.rc-chrome__saturation {
+  position: relative;
+  width: 100%;
+  padding-bottom: 55%;
+  overflow: hidden;
+  border-radius: 2px 2px 0 0;
+}
+
+.rc-chrome__body {
+  padding: 16px 16px 12px;
+}
+
+.rc-chrome__controls {
+  display: flex;
+}
+
+.rc-chrome__color {
+  width: 32px;
+}
+
+.rc-chrome__swatch {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  margin-top: 6px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.rc-chrome__active {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px var(--rc-picker-focus-outline, rgba(0, 0, 0, 0.1));
+}
+
+.rc-chrome__toggles {
+  flex: 1;
+}
+
+.rc-chrome__hue {
+  position: relative;
+  height: 10px;
+  margin-bottom: 8px;
+}
+
+.rc-chrome__alpha {
+  position: relative;
+  height: 10px;
+}
+
+.rc-chrome.rc-chrome--disabled-alpha .rc-chrome__color {
+  width: 22px;
+}
+
+.rc-chrome.rc-chrome--disabled-alpha .rc-chrome__swatch {
+  width: 10px;
+  height: 10px;
+  margin-top: 0;
+}
+
+.rc-chrome.rc-chrome--disabled-alpha .rc-chrome__hue {
+  margin-bottom: 0;
+}
+
+.rc-chrome.rc-chrome--disabled-alpha .rc-chrome__alpha {
+  display: none;
+}

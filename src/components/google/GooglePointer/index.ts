@@ -1,0 +1,1 @@
+export { GooglePointer } from './GooglePointer';

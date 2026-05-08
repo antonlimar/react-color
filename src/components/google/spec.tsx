@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react';
 import * as color from '../../helpers/color';
 
-import Google from './Google';
-import GoogleFields from './GoogleFields';
-import GooglePointer from './GooglePointer';
-import GooglePointerCircle from './GooglePointerCircle';
+import { Google } from './Google';
+import { GoogleFields } from './GoogleFields';
+import { GooglePointer } from './GooglePointer';
+import { GooglePointerCircle } from './GooglePointerCircle';
 import { changeInputByLabel, createColorChangeSpy, renderForSnapshot } from '../../../test/helpers';
 
 test('Google renders correctly', () => {
