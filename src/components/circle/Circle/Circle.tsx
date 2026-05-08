@@ -1,6 +1,4 @@
-import { map } from 'lodash-es';
 import material from 'material-colors';
-
 import { ColorWrap } from '@/components/common';
 import { getPickerRootProps } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
@@ -71,7 +69,7 @@ function CircleBase({
         classNames,
       })}
     >
-      {map(colors, (colorValue: string) => (
+      {colors.map((colorValue: string) => (
         <CircleSwatch
           key={colorValue}
           color={colorValue}

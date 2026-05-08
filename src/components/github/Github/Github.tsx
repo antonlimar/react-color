@@ -1,5 +1,3 @@
-import { map } from 'lodash-es';
-
 import { ColorWrap } from '@/components/common';
 import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
@@ -73,7 +71,7 @@ const GithubBase = ({
     >
       <div className={getPickerClassName({ block: 'github', slot: 'triangle-shadow' })} style={triangleShadowStyle} />
       <div className={getPickerClassName({ block: 'github', slot: 'triangle' })} style={triangleStyle} />
-      {map(colors, (colorValue: string) => (
+      {colors.map((colorValue: string) => (
         <GithubSwatch
           color={colorValue}
           key={colorValue}

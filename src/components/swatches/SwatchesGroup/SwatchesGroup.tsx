@@ -1,5 +1,3 @@
-import { map } from 'lodash-es';
-
 import { SwatchesColor } from '@/components/swatches/SwatchesColor';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { SwatchHoverHandler } from '@/types';
@@ -15,7 +13,7 @@ type SwatchesGroupProps = {
 export const SwatchesGroup = ({ onClick, onSwatchHover, group, active }: SwatchesGroupProps) => {
   return (
     <div className={getPickerClassName({ block: 'swatches', slot: 'group' })}>
-      {map(group, (colorValue: string, index: number | string) => (
+      {group.map((colorValue: string, index: number | string) => (
         <SwatchesColor
           key={colorValue}
           color={colorValue}

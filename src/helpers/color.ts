@@ -1,6 +1,4 @@
-import { each } from 'lodash-es';
 import tinycolor from 'tinycolor2';
-
 import type { Color, ColorChangeValue, ColorResult } from '@/types';
 import type { BasicColorState, ColorDataKey, ColorDataRecord, ValidColorStringType } from './types';
 
@@ -10,7 +8,7 @@ export const simpleCheckForValidColor = <T>(data: T): T | false => {
   let checked = 0;
   let passed = 0;
 
-  each(keysToCheck, (letter) => {
+  keysToCheck.forEach((letter) => {
     const value = (data as ColorDataRecord)[letter];
 
     if (value) {

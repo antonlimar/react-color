@@ -1,4 +1,3 @@
-import { map } from 'lodash-es';
 import material from 'material-colors';
 
 import { ColorWrap, Raised } from '@/components/common';
@@ -132,7 +131,7 @@ const SwatchesBase = ({
       <Raised theme={theme}>
         <div className={getPickerClassName({ block: 'swatches', slot: 'overflow' })} style={overflowStyle}>
           <div className={getPickerClassName({ block: 'swatches', slot: 'body' })} style={bodyStyle}>
-            {map(colors, (group: string[]) => (
+            {colors.map((group: string[]) => (
               <SwatchesGroup
                 key={group.toString()}
                 group={group}

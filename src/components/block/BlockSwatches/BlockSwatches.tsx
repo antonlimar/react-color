@@ -1,5 +1,3 @@
-import { map } from 'lodash-es';
-
 import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { SwatchHoverHandler } from '@/types';
@@ -14,7 +12,7 @@ type BlockSwatchesProps = {
 export function BlockSwatches({ colors, onClick, onSwatchHover }: BlockSwatchesProps) {
   return (
     <div className={getPickerClassName({ block: 'block', slot: 'swatches' })}>
-      {map(colors, (colorValue: string) => (
+      {colors.map((colorValue: string) => (
         <div key={colorValue} className={getPickerClassName({ block: 'block', slot: 'swatch' })}>
           <Swatch
             color={colorValue}

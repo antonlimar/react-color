@@ -1,6 +1,4 @@
-import { map } from 'lodash-es';
 import * as color from '@/helpers/color';
-
 import { ColorWrap, Raised } from '@/components/common';
 import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
@@ -112,7 +110,7 @@ const CompactBase = ({
         })}
       >
         <div className={getPickerClassName({ block: 'compact', slot: 'swatches' })}>
-          {map(colors, (colorValue: string) => (
+          {colors.map((colorValue: string) => (
             <CompactColor
               key={colorValue}
               color={colorValue}

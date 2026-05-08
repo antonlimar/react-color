@@ -1,4 +1,3 @@
-import { map } from 'lodash-es';
 import * as color from '@/helpers/color';
 
 import { ColorWrap, EditableInput, Swatch } from '@/components/common';
@@ -94,7 +93,7 @@ const TwitterBase = ({
       <div className={getPickerClassName({ block: 'twitter', slot: 'triangle' })} style={triangleStyle} />
 
       <div className={getPickerClassName({ block: 'twitter', slot: 'body' })} style={bodyStyle}>
-        {map(colors, (colorValue: string, index: number | string) => (
+        {colors.map((colorValue: string, index: number | string) => (
           <div key={index} className={getPickerClassName({ block: 'twitter', slot: 'swatch' })}>
             <Swatch
               color={colorValue}
