@@ -13,7 +13,7 @@ type CircleSwatchProps = {
   circleSpacing?: number;
 };
 
-export const CircleSwatch = ({
+export function CircleSwatch({
   color,
   onClick,
   onSwatchHover,
@@ -21,7 +21,7 @@ export const CircleSwatch = ({
   active,
   circleSize = 28,
   circleSpacing = 14,
-}: CircleSwatchProps) => {
+}: CircleSwatchProps) {
   const wrapperStyle: PickerStyle = {
     width: circleSize,
     height: circleSize,
@@ -52,4 +52,4 @@ export const CircleSwatch = ({
       />
     </div>
   );
-};
+}

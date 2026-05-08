@@ -47,7 +47,7 @@ const DEFAULT_CIRCLE_COLORS = [
   material.blueGrey['500'],
 ];
 
-const CircleBase = ({
+function CircleBase({
   width = 252,
   onChange,
   onSwatchHover,
@@ -59,7 +59,7 @@ const CircleBase = ({
   className = '',
   classNames,
   theme,
-}: CircleProps) => {
+}: CircleProps) {
   const rootStyle = {
     width,
     marginRight: -circleSpacing,
@@ -90,6 +90,6 @@ const CircleBase = ({
       ))}
     </div>
   );
-};
+}
 
 export const Circle = ColorWrap(CircleBase);

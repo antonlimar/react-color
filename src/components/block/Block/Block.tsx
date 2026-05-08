@@ -38,7 +38,7 @@ const handleHexChange = (onChange: ColorInputChangeHandler, hexCode: string, eve
   }
 };
 
-const BlockBase = ({
+function BlockBase({
   onChange,
   onSwatchHover,
   hex,
@@ -49,7 +49,7 @@ const BlockBase = ({
   className = '',
   classNames,
   theme,
-}: BlockProps) => {
+}: BlockProps) {
   const transparent = hex === 'transparent';
   const rootStyle = {
     width,
@@ -111,6 +111,6 @@ const BlockBase = ({
       </div>
     </div>
   );
-};
+}
 
 export const Block = ColorWrap(BlockBase);

@@ -1,3 +1,4 @@
+import { expect, test } from 'vitest';
 import { fireEvent } from '@testing-library/react';
 import * as color from '../../helpers/color';
 

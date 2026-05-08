@@ -3,7 +3,7 @@ import { getPickerClassName } from '../../common/styleArchitecture';
 
 type AlphaPointerProps = Pick<AlphaProps, 'direction'>;
 
-export const AlphaPointer = ({ direction }: AlphaPointerProps) => {
+export function AlphaPointer({ direction }: AlphaPointerProps) {
   return (
     <div
       className={getPickerClassName({
@@ -13,4 +13,4 @@ export const AlphaPointer = ({ direction }: AlphaPointerProps) => {
       })}
     />
   );
-};
+}

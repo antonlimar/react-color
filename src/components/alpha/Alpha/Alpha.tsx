@@ -23,7 +23,7 @@ type AlphaPickerProps = ColorPickerInjectedProps & {
   theme?: PickerTheme;
 };
 
-export const AlphaPicker = ({
+function AlphaPicker({
   rgb,
   hsl,
   width = '316px',
@@ -36,7 +36,7 @@ export const AlphaPicker = ({
   className = '',
   classNames,
   theme,
-}: AlphaPickerProps) => {
+}: AlphaPickerProps) {
   const rootStyle = {
     width,
     height,
@@ -64,6 +64,6 @@ export const AlphaPicker = ({
       />
     </div>
   );
-};
+}
 
 export const Alpha = ColorWrap(AlphaPicker);

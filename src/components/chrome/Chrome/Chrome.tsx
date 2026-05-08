@@ -37,7 +37,7 @@ type ChromeProps = ColorPickerInjectedProps & {
   defaultView?: 'hex' | 'rgb' | 'hsl';
 };
 
-const ChromeBase = ({
+function ChromeBase({
   width = 225,
   onChange,
   disableAlpha = false,
@@ -51,7 +51,7 @@ const ChromeBase = ({
   classNames,
   theme,
   defaultView,
-}: ChromeProps) => {
+}: ChromeProps) {
   const rootStyle = {
     width,
     ...getDeprecatedStyleOverride(passedStyles, 'picker', CHROME_STYLE_SLOTS, 'picker'),
@@ -121,6 +121,6 @@ const ChromeBase = ({
       </div>
     </div>
   );
-};
+}
 
 export const Chrome = ColorWrap(ChromeBase);

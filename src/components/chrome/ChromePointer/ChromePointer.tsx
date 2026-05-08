@@ -1,5 +1,5 @@
 import { getPickerClassName } from '../../common/styleArchitecture';
 
-export const ChromePointer = () => {
+export function ChromePointer() {
   return <div className={getPickerClassName({ block: 'chrome', slot: 'pointer' })} />;
-};
+}

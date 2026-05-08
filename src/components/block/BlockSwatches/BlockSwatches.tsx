@@ -11,7 +11,7 @@ type BlockSwatchesProps = {
   onSwatchHover?: SwatchHoverHandler;
 };
 
-export const BlockSwatches = ({ colors, onClick, onSwatchHover }: BlockSwatchesProps) => {
+export function BlockSwatches({ colors, onClick, onSwatchHover }: BlockSwatchesProps) {
   return (
     <div className={getPickerClassName({ block: 'block', slot: 'swatches' })}>
       {map(colors, (colorValue: string) => (
@@ -30,4 +30,4 @@ export const BlockSwatches = ({ colors, onClick, onSwatchHover }: BlockSwatchesP
       <div className={getPickerClassName({ block: 'block', slot: 'clear' })} />
     </div>
   );
-};
+}

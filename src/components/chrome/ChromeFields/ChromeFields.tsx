@@ -17,7 +17,7 @@ type ChromeFieldsProps = {
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
 };
 
-export const ChromeFields = (props: ChromeFieldsProps) => {
+export function ChromeFields(props: ChromeFieldsProps) {
   const [view, setView] = useState<'hex' | 'rgb' | 'hsl'>(() =>
     props.hsl.a !== 1 && props.view === 'hex' ? 'rgb' : props.view || 'hex',
   );
@@ -159,4 +159,4 @@ export const ChromeFields = (props: ChromeFieldsProps) => {
       </div>
     </div>
   );
-};
+}
