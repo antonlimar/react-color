@@ -7,7 +7,7 @@ import { getPickerClassName } from '../../common/styleArchitecture';
 
 type BlockSwatchesProps = {
   colors: string[];
-  onClick: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
+  onClick?: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
   onSwatchHover?: SwatchHoverHandler;
 };
 
