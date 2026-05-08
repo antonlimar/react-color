@@ -8,7 +8,7 @@ import { PhotoshopFields } from './PhotoshopFields';
 import { PhotoshopPointer } from './PhotoshopPointer';
 import { PhotoshopPointerCircle } from './PhotoshopPointerCircle';
 import { PhotoshopPreviews } from './PhotoshopPreviews';
-import { renderForSnapshot } from '../../../test/helpers';
+import { getRootElement, renderForSnapshot } from '../../../test/helpers';
 
 test('Photoshop renders correctly', () => {
   renderForSnapshot(<Photoshop {...red} onAccept={() => {}} onCancel={() => {}} />).expectSnapshot();
@@ -18,7 +18,7 @@ test('Photoshop renders custom styles correctly', () => {
   const { container } = renderForSnapshot(
     <Photoshop {...red} styles={{ default: { picker: { boxShadow: '0 0 10px red' } } }} />,
   );
-  const root = container.firstElementChild;
+  const root = getRootElement(container);
 
   expect(root).toBeInstanceOf(HTMLElement);
   expect(root).toHaveStyle({ boxShadow: '0 0 10px red' });
@@ -46,11 +46,11 @@ test('PhotoshopPreviews renders correctly', () => {
 
 test('Photoshop keeps header and styles runtime defaults', () => {
   const { container } = renderForSnapshot(<Photoshop {...red} />);
-  const root = container.firstElementChild;
+  const root = getRootElement(container);
 
   expect(screen.getByText('Color Picker')).toBeInTheDocument();
   expect(root).toBeInstanceOf(HTMLElement);
-  expect((root as HTMLElement).className).toContain('rc-photoshop');
+  expect(root.className).toContain('rc-photoshop');
 });
 
 test('Photoshop passes resolved defaults to onAccept', () => {

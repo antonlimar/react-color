@@ -4,7 +4,7 @@ import { Slider } from './Slider';
 import { SliderPointer } from './SliderPointer';
 import { SliderSwatch } from './SliderSwatch';
 import { SliderSwatches } from './SliderSwatches';
-import { renderForSnapshot } from '../../../test/helpers';
+import { getRootElement, renderForSnapshot } from '../../../test/helpers';
 
 test('Slider renders correctly', () => {
   renderForSnapshot(<Slider {...red} />).expectSnapshot();
@@ -13,7 +13,7 @@ test('Slider renders correctly', () => {
 test('Slider renders custom styles correctly', () => {
   const { container } = renderForSnapshot(<Slider styles={{ default: { wrap: { boxShadow: 'none' } } }} />);
 
-  expect(container.firstChild.style.boxShadow).toBe('none');
+  expect(getRootElement(container).style.boxShadow).toBe('none');
 });
 
 test('SliderPointer renders correctly', () => {

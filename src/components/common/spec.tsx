@@ -22,7 +22,7 @@ import {
   getThemeModifier,
   stylingArchitecture,
 } from './styleArchitecture';
-import { renderForSnapshot } from '../../../test/helpers';
+import { getRequiredElement, getRootElement, renderForSnapshot } from '../../../test/helpers';
 import type { Color, ColorPickerInjectedProps } from '../../types';
 
 test('Alpha renders correctly', () => {
@@ -59,11 +59,10 @@ test('ColorWrap provides the same runtime default color', () => {
   ));
   const defaultHex = color.toState({ h: 250, s: 0.5, l: 0.2, a: 1 }, 0).hex;
   const { container } = render(<WrappedPicker />);
-  const wrapped = container.firstElementChild;
+  const wrapped = getRootElement(container);
 
-  expect(wrapped).not.toBeNull();
-  expect(wrapped?.getAttribute('data-color-present')).toBe('true');
-  expect(wrapped?.getAttribute('data-hex')).toBe(defaultHex);
+  expect(wrapped.getAttribute('data-color-present')).toBe('true');
+  expect(wrapped.getAttribute('data-hex')).toBe(defaultHex);
 });
 
 test('Hue and Saturation do not render runtime style tags', () => {
@@ -113,37 +112,37 @@ test('Swatch renders with an onMouseOver handler correctly', () => {
 
 test('common primitives expose the expected BEM classes after styling modernization', () => {
   const { container: alphaContainer } = render(<Alpha {...red} />);
-  expect(alphaContainer.firstElementChild).toHaveClass('rc-alpha-control');
-  expect(alphaContainer.querySelector('.rc-alpha-control__gradient')).not.toBeNull();
+  expect(getRootElement(alphaContainer)).toHaveClass('rc-alpha-control');
+  expect(getRequiredElement(alphaContainer, '.rc-alpha-control__gradient')).toBeInTheDocument();
 
   const { container: hueContainer } = render(<Hue {...red} />);
-  expect(hueContainer.firstElementChild).toHaveClass('rc-hue-control');
-  expect(hueContainer.querySelector('.rc-hue-control__container')).not.toBeNull();
+  expect(getRootElement(hueContainer)).toHaveClass('rc-hue-control');
+  expect(getRequiredElement(hueContainer, '.rc-hue-control__container')).toBeInTheDocument();
 
   const { container: saturationContainer } = render(<Saturation {...red} />);
-  expect(saturationContainer.firstElementChild).toHaveClass('rc-saturation');
-  expect(saturationContainer.querySelector('.rc-saturation__white')).not.toBeNull();
+  expect(getRootElement(saturationContainer)).toHaveClass('rc-saturation');
+  expect(getRequiredElement(saturationContainer, '.rc-saturation__white')).toBeInTheDocument();
 
   const { container: editableInputContainer } = render(<EditableInput label="Hex" />);
-  expect(editableInputContainer.firstElementChild).toHaveClass('rc-editable-input');
-  expect(editableInputContainer.querySelector('.rc-editable-input__label')).not.toBeNull();
+  expect(getRootElement(editableInputContainer)).toHaveClass('rc-editable-input');
+  expect(getRequiredElement(editableInputContainer, '.rc-editable-input__label')).toBeInTheDocument();
 
   const { container: swatchContainer } = render(<Swatch color="transparent" />);
-  expect(swatchContainer.querySelector('.rc-swatch')).not.toBeNull();
-  expect(swatchContainer.querySelector('.rc-checkboard')).not.toBeNull();
+  expect(getRequiredElement(swatchContainer, '.rc-swatch')).toBeInTheDocument();
+  expect(getRequiredElement(swatchContainer, '.rc-checkboard')).toBeInTheDocument();
 
   const { container: raisedContainer } = render(<Raised>content</Raised>);
-  expect(raisedContainer.firstElementChild).toHaveClass('rc-raised');
-  expect(raisedContainer.querySelector('.rc-raised__bg')).not.toBeNull();
+  expect(getRootElement(raisedContainer)).toHaveClass('rc-raised');
+  expect(getRequiredElement(raisedContainer, '.rc-raised__bg')).toBeInTheDocument();
 });
 
 test('Raised can opt into theme-aware tokens for wrappers that do not inherit picker variables', () => {
   const { container } = render(<Raised theme="dark">content</Raised>);
-  const raised = container.firstElementChild as HTMLElement | null;
-  const background = container.querySelector('.rc-raised__bg') as HTMLElement | null;
+  const raised = getRootElement(container);
+  const background = getRequiredElement(container, '.rc-raised__bg');
 
   expect(raised).toHaveClass('rc-raised', 'rc-raised--dark');
-  expect(background?.style.background).toBe('var(--rc-picker-surface, #fff)');
+  expect(background.style.background).toBe('var(--rc-picker-surface, #fff)');
 });
 
 test('styling architecture reserves the rc namespace for all picker and primitive blocks', () => {

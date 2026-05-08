@@ -4,7 +4,13 @@ import { expect, test } from 'vitest';
 import { Sketch } from './Sketch';
 import { SketchFields } from './SketchFields';
 import { SketchPresetColors } from './SketchPresetColors';
-import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
+import {
+  clickFirstSwatch,
+  createColorChangeSpy,
+  getRootElement,
+  hoverFirstSwatch,
+  renderForSnapshot,
+} from '../../../test/helpers';
 
 test('Sketch renders correctly', () => {
   renderForSnapshot(<Sketch {...color.red} />).expectSnapshot();
@@ -33,14 +39,14 @@ test('Sketch with onSwatchHover events correctly', () => {
 test('Sketch renders custom styles correctly', () => {
   const { container } = renderForSnapshot(<Sketch styles={{ default: { picker: { boxShadow: 'none' } } }} />);
 
-  expect(container.firstChild.style.boxShadow).toBe('none');
+  expect(getRootElement(container).style.boxShadow).toBe('none');
 });
 
 test('Sketch applies public theme and root classNames without breaking legacy className', () => {
   const { container } = renderForSnapshot(
     <Sketch theme="light" className="legacy-root" classNames={{ root: 'consumer-root' }} disableAlpha />,
   );
-  const picker = container.firstChild as HTMLElement;
+  const picker = getRootElement(container);
 
   expect(picker.className).toContain('rc-sketch');
   expect(picker.className).toContain('rc-sketch--light');

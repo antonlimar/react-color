@@ -3,7 +3,13 @@ import * as color from '../../helpers/color';
 import { Compact } from './Compact';
 import { CompactColor } from './CompactColor';
 import { CompactFields } from './CompactFields';
-import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
+import {
+  clickFirstSwatch,
+  createColorChangeSpy,
+  getRootElement,
+  hoverFirstSwatch,
+  renderForSnapshot,
+} from '../../../test/helpers';
 
 test('Compact renders correctly', () => {
   renderForSnapshot(<Compact {...color.red} />).expectSnapshot();
@@ -42,5 +48,5 @@ test('Compact renders custom styles correctly', () => {
     <Compact {...color.red} styles={{ default: { wrap: { boxShadow: '0 0 10px red' } } }} />,
   );
 
-  expect(container.firstChild.style.boxShadow).toBe('0 0 10px red');
+  expect(getRootElement(container).style.boxShadow).toBe('0 0 10px red');
 });

@@ -1,7 +1,13 @@
 import * as color from '../../helpers/color';
 
 import { Twitter } from './Twitter';
-import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
+import {
+  clickFirstSwatch,
+  createColorChangeSpy,
+  getRootElement,
+  hoverFirstSwatch,
+  renderForSnapshot,
+} from '../../../test/helpers';
 
 test('Twitter renders correctly', () => {
   renderForSnapshot(<Twitter {...color.red} />).expectSnapshot();
@@ -12,7 +18,7 @@ test('Material renders custom styles correctly', () => {
     <Twitter {...color.red} styles={{ default: { card: { boxShadow: '0 0 10px red' } } }} />,
   );
 
-  expect(container.firstChild.style.boxShadow).toBe('0 0 10px red');
+  expect(getRootElement(container).style.boxShadow).toBe('0 0 10px red');
 });
 
 test('Twitter `triangle="hide"`', () => {

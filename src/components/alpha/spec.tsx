@@ -4,7 +4,7 @@ import * as color from '../../helpers/color';
 
 import { Alpha } from './Alpha';
 import { AlphaPointer } from './AlphaPointer';
-import { createColorChangeSpy, renderForSnapshot } from '../../../test/helpers';
+import { createColorChangeSpy, getRequiredElement, renderForSnapshot } from '../../../test/helpers';
 
 test('Alpha renders correctly', () => {
   renderForSnapshot(<Alpha {...color.red} />).expectSnapshot();
@@ -14,9 +14,7 @@ test('Alpha onChange events correctly', () => {
   const changeSpy = createColorChangeSpy(color);
   const { container } = renderForSnapshot(<Alpha {...color.red} width={20} height={200} onChange={changeSpy} />);
 
-  const alphaContainer = container.querySelector('.rc-alpha-control__container');
-
-  expect(alphaContainer).toBeTruthy();
+  const alphaContainer = getRequiredElement(container, '.rc-alpha-control__container');
   fireEvent.mouseDown(alphaContainer, {
     pageX: 100,
     pageY: 10,

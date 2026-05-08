@@ -3,7 +3,13 @@ import * as color from '../../helpers/color';
 import { Swatches } from './Swatches';
 import { SwatchesColor } from './SwatchesColor';
 import { SwatchesGroup } from './SwatchesGroup';
-import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
+import {
+  clickFirstSwatch,
+  createColorChangeSpy,
+  getRootElement,
+  hoverFirstSwatch,
+  renderForSnapshot,
+} from '../../../test/helpers';
 
 test('Swatches renders correctly', () => {
   renderForSnapshot(<Swatches hex={color.red.hex} colors={[['#fff'], ['#333']]} />).expectSnapshot();
@@ -18,7 +24,7 @@ test('Swatches renders custom styles correctly', () => {
     />,
   );
 
-  expect(container.firstChild.style.boxShadow).toBe('0 0 10px red');
+  expect(getRootElement(container).style.boxShadow).toBe('0 0 10px red');
 });
 
 test('Swatches onChange events correctly', () => {

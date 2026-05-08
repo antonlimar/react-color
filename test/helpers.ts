@@ -8,7 +8,7 @@ type SnapshotRenderResult = RenderResult & {
 };
 
 type ValidColorChecker = {
-  simpleCheckForValidColor: (data: unknown) => boolean;
+  simpleCheckForValidColor: <T>(data: T) => T | false;
 };
 
 export function renderForSnapshot(element: ReactElement): SnapshotRenderResult {
@@ -44,6 +44,26 @@ export function getFirstSwatch(container: HTMLElement): HTMLElement {
   }
 
   return swatch;
+}
+
+export function getRootElement(container: HTMLElement): HTMLElement {
+  const root = container.firstElementChild;
+
+  if (!(root instanceof HTMLElement)) {
+    throw new Error('Expected root element to render');
+  }
+
+  return root;
+}
+
+export function getRequiredElement(container: ParentNode, selector: string): HTMLElement {
+  const element = container.querySelector(selector);
+
+  if (!(element instanceof HTMLElement)) {
+    throw new Error(`Expected element matching "${selector}" to render`);
+  }
+
+  return element;
 }
 
 export function clickFirstSwatch(container: HTMLElement): void {

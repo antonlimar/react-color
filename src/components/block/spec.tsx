@@ -1,7 +1,13 @@
 import { Block } from './Block';
 import { BlockSwatches } from './BlockSwatches';
 import * as color from '../../helpers/color';
-import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
+import {
+  clickFirstSwatch,
+  createColorChangeSpy,
+  getRootElement,
+  hoverFirstSwatch,
+  renderForSnapshot,
+} from '../../../test/helpers';
 
 test('Block renders correctly', () => {
   renderForSnapshot(<Block />).expectSnapshot();
@@ -34,5 +40,5 @@ test('BlockSwatches renders correctly', () => {
 test('Block renders custom styles correctly', () => {
   const { container } = renderForSnapshot(<Block styles={{ default: { card: { boxShadow: 'none' } } }} />);
 
-  expect(container.firstChild.style.boxShadow).toBe('none');
+  expect(getRootElement(container).style.boxShadow).toBe('none');
 });

@@ -2,7 +2,13 @@ import * as color from '../../helpers/color';
 
 import { Github } from './Github';
 import { GithubSwatch } from './GithubSwatch';
-import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
+import {
+  clickFirstSwatch,
+  createColorChangeSpy,
+  getRootElement,
+  hoverFirstSwatch,
+  renderForSnapshot,
+} from '../../../test/helpers';
 
 test('Github renders correctly', () => {
   renderForSnapshot(<Github {...color.red} />).expectSnapshot();
@@ -37,7 +43,7 @@ test('Github renders custom styles correctly', () => {
     <Github {...color.red} styles={{ default: { card: { boxShadow: '0 0 10px red' } } }} />,
   );
 
-  expect(container.firstChild.style.boxShadow).toBe('0 0 10px red');
+  expect(getRootElement(container).style.boxShadow).toBe('0 0 10px red');
 });
 
 test('GithubSwatch renders correctly', () => {

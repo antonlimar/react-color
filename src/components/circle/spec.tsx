@@ -1,7 +1,13 @@
 import { Circle } from './Circle';
 import { CircleSwatch } from './CircleSwatch';
 import * as color from '../../helpers/color';
-import { clickFirstSwatch, createColorChangeSpy, hoverFirstSwatch, renderForSnapshot } from '../../../test/helpers';
+import {
+  clickFirstSwatch,
+  createColorChangeSpy,
+  getRootElement,
+  hoverFirstSwatch,
+  renderForSnapshot,
+} from '../../../test/helpers';
 
 test('Circle renders correctly', () => {
   renderForSnapshot(<Circle />).expectSnapshot();
@@ -26,7 +32,7 @@ test('Circle with onSwatchHover events correctly', () => {
 test('Circle renders custom styles correctly', () => {
   const { container } = renderForSnapshot(<Circle styles={{ default: { card: { boxShadow: 'none' } } }} />);
 
-  expect(container.firstChild.style.boxShadow).toBe('none');
+  expect(getRootElement(container).style.boxShadow).toBe('none');
 });
 
 test('CircleSwatch renders correctly', () => {

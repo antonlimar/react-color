@@ -5,7 +5,7 @@ import { Google } from './Google';
 import { GoogleFields } from './GoogleFields';
 import { GooglePointer } from './GooglePointer';
 import { GooglePointerCircle } from './GooglePointerCircle';
-import { changeInputByLabel, createColorChangeSpy, renderForSnapshot } from '../../../test/helpers';
+import { changeInputByLabel, createColorChangeSpy, getRootElement, renderForSnapshot } from '../../../test/helpers';
 
 test('Google renders correctly', () => {
   renderForSnapshot(<Google {...color.red} />).expectSnapshot();
@@ -34,13 +34,13 @@ test('GooglePointerCircle renders correctly', () => {
 test('Google renders custom styles correctly', () => {
   const { container } = renderForSnapshot(<Google styles={{ default: { picker: { width: '200px' } } }} />);
 
-  expect(container.firstChild.style.width).toBe('200px');
+  expect(getRootElement(container).style.width).toBe('200px');
 });
 
 test('Google renders correctly with width', () => {
   const { container } = renderForSnapshot(<Google width={200} />);
 
-  expect(container.firstChild.style.width).toBe('200px');
+  expect(getRootElement(container).style.width).toBe('200px');
 });
 
 test('Google custom header correctly', () => {
