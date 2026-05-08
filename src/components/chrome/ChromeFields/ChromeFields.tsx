@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import * as color from '@/helpers/color';
-import { isUndefined } from 'lodash-es';
 
 import { EditableInput } from '@/components/common';
 import { getPickerClassName } from '@/components/common/styleArchitecture';
@@ -56,7 +55,7 @@ export function ChromeFields(props: ChromeFieldsProps) {
         },
         event,
       );
-    } else if (!isUndefined(data.a)) {
+    } else if (data.a !== undefined) {
       let alpha = Number(data.a);
       if (alpha < 0) {
         alpha = 0;
@@ -74,12 +73,12 @@ export function ChromeFields(props: ChromeFieldsProps) {
         },
         event,
       );
-    } else if (!isUndefined(data.h) || !isUndefined(data.s) || !isUndefined(data.l)) {
+    } else if (data.h !== undefined || data.s !== undefined || data.l !== undefined) {
       const saturation = typeof data.s === 'string' && data.s.indexOf('%') > -1 ? data.s.replace('%', '') : data.s;
       const lightness = typeof data.l === 'string' && data.l.indexOf('%') > -1 ? data.l.replace('%', '') : data.l;
 
-      let nextSaturation = Number(!isUndefined(saturation) ? saturation : props.hsl.s);
-      let nextLightness = Number(!isUndefined(lightness) ? lightness : props.hsl.l);
+      let nextSaturation = Number(saturation !== undefined ? saturation : props.hsl.s);
+      let nextLightness = Number(lightness !== undefined ? lightness : props.hsl.l);
 
       if (nextSaturation === 1) {
         nextSaturation = 0.01;
@@ -89,7 +88,7 @@ export function ChromeFields(props: ChromeFieldsProps) {
 
       props.onChange(
         {
-          h: Number(!isUndefined(data.h) ? data.h : props.hsl.h),
+          h: Number(data.h !== undefined ? data.h : props.hsl.h),
           s: nextSaturation,
           l: nextLightness,
           source: 'hsl',

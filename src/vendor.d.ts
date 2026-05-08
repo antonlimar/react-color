@@ -10,21 +10,9 @@ declare module 'lodash-es' {
     flush(): ReturnType<T>;
   };
 
-  export function each<T>(
-    collection: ArrayLike<T> | Record<string, T> | null | undefined,
-    iteratee: (value: T, key: number | string) => void,
-  ): void;
-
-  export function map<T, TResult>(
-    collection: ArrayLike<T> | Record<string, T> | null | undefined,
-    iteratee: (value: T, key: number | string) => TResult,
-  ): TResult[];
-
   export function debounce<T extends UnknownFunction>(func: T, wait?: number): Debounced<T>;
 
   export function throttle<T extends UnknownFunction>(func: T, wait?: number): Throttled<T>;
-
-  export function isUndefined(value: unknown): value is undefined;
 }
 
 declare module 'tinycolor2' {
