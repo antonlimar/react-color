@@ -1,3 +1,4 @@
+import { expect, test } from 'vitest';
 import { Block } from './Block';
 import { BlockSwatches } from './BlockSwatches';
 import * as color from '../../helpers/color';

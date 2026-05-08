@@ -95,9 +95,6 @@ export type SwatchHoverHandler = (color: ColorResult, event?: ColorPickerChangeE
 
 export type PickerStyle = CSSProperties & Record<string, unknown>;
 export type PickerStyles = Record<string, PickerStyle | undefined>;
-/**
- * @deprecated Use `className`, `classNames`, `theme`, and CSS custom properties instead.
- */
 export type PickerCustomStyles = PickerStyles;
 export type ClassName = string;
 export type Radius = number | string;
@@ -109,9 +106,6 @@ export interface ColorPickerStylingProps<Slot extends string = string> {
   className?: ClassName;
   classNames?: PickerClassNames<Slot>;
   theme?: PickerTheme;
-  /**
-   * @deprecated Use `className`, `classNames`, `theme`, and CSS custom properties instead.
-   */
   styles?: PickerCustomStyles;
 }
 
