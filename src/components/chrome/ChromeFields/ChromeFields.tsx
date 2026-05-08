@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as color from '@/helpers/color';
-import isUndefined from 'lodash/isUndefined';
+import { isUndefined } from 'lodash-es';
 
 import { EditableInput } from '@/components/common';
 import { getPickerClassName } from '@/components/common/styleArchitecture';

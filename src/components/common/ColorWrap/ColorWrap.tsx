@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash-es';
 import type { ComponentType } from 'react';
 
 import * as color from '@/helpers/color';

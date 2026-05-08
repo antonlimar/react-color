@@ -1,4 +1,4 @@
-import map from 'lodash/map';
+import { map } from 'lodash-es';
 
 import { SwatchesColor } from '@/components/swatches/SwatchesColor';
 import type { KeyboardEvent, MouseEvent } from 'react';

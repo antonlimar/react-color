@@ -1,55 +1,30 @@
-declare module 'lodash/each' {
-  function each<T>(
-    collection: ArrayLike<T> | Record<string, T> | null | undefined,
-    iteratee: (value: T, key: number | string) => void,
-  ): void;
-
-  export default each;
-}
-
-declare module 'lodash/map' {
-  function map<T, TResult>(
-    collection: ArrayLike<T> | Record<string, T> | null | undefined,
-    iteratee: (value: T, key: number | string) => TResult,
-  ): TResult[];
-
-  export default map;
-}
-
-declare module 'lodash/merge' {
-  function merge<TObject, TSource>(object: TObject, source: TSource): TObject & TSource;
-
-  export default merge;
-}
-
-declare module 'lodash/throttle' {
+declare module 'lodash-es' {
   type UnknownFunction = (...args: unknown[]) => unknown;
 
   type Throttled<T extends UnknownFunction> = T & {
     cancel(): void;
   };
 
-  function throttle<T extends UnknownFunction>(func: T, wait?: number): Throttled<T>;
-
-  export default throttle;
-}
-
-declare module 'lodash/debounce' {
-  type UnknownFunction = (...args: unknown[]) => unknown;
-
   type Debounced<T extends UnknownFunction> = T & {
     cancel(): void;
     flush(): ReturnType<T>;
   };
 
-  function debounce<T extends UnknownFunction>(func: T, wait?: number): Debounced<T>;
+  export function each<T>(
+    collection: ArrayLike<T> | Record<string, T> | null | undefined,
+    iteratee: (value: T, key: number | string) => void,
+  ): void;
 
-  export default debounce;
-}
+  export function map<T, TResult>(
+    collection: ArrayLike<T> | Record<string, T> | null | undefined,
+    iteratee: (value: T, key: number | string) => TResult,
+  ): TResult[];
 
-declare module 'lodash/isUndefined' {
-  function isUndefined(value: unknown): value is undefined;
-  export default isUndefined;
+  export function debounce<T extends UnknownFunction>(func: T, wait?: number): Debounced<T>;
+
+  export function throttle<T extends UnknownFunction>(func: T, wait?: number): Throttled<T>;
+
+  export function isUndefined(value: unknown): value is undefined;
 }
 
 declare module 'tinycolor2' {

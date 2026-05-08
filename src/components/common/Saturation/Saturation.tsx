@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import throttle from 'lodash/throttle';
+import { throttle } from 'lodash-es';
 import * as saturation from '@/helpers/saturation';
 import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';

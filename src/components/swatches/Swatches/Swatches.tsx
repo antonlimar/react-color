@@ -1,4 +1,4 @@
-import map from 'lodash/map';
+import { map } from 'lodash-es';
 import material from 'material-colors';
 
 import { ColorWrap, Raised } from '@/components/common';

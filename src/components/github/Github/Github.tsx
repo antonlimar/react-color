@@ -1,4 +1,4 @@
-import map from 'lodash/map';
+import { map } from 'lodash-es';
 
 import { ColorWrap } from '@/components/common';
 import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
