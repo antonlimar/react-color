@@ -1464,11 +1464,13 @@ exports[`CompactColor renders correctly 1`] = `
     <span>
       <div
         class="rc-swatch"
+        style="background: rgb(255, 255, 255);"
         tabindex="0"
+        title="#fff"
       >
         <div
           class="rc-compact__dot"
-          style="background: rgb(255, 255, 255);"
+          style="background: rgb(0, 0, 0);"
         />
       </div>
     </span>

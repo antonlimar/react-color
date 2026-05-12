@@ -253,8 +253,9 @@ exports[`CircleSwatch renders correctly 1`] = `
     <span>
       <div
         class="rc-swatch"
-        style="background: transparent; border-radius: 50%;"
+        style="background: transparent; border-radius: 50%; box-shadow: inset 0 0 0 15px #fff;"
         tabindex="0"
+        title="#fff"
       />
     </span>
   </div>
@@ -270,8 +271,9 @@ exports[`CircleSwatch renders with sizing and spacing 1`] = `
     <span>
       <div
         class="rc-swatch"
-        style="background: transparent; border-radius: 50%;"
+        style="background: transparent; border-radius: 50%; box-shadow: inset 0 0 0 21px #fff;"
         tabindex="0"
+        title="#fff"
       />
     </span>
   </div>

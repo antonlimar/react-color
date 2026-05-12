@@ -10,6 +10,8 @@ import {
   renderForSnapshot,
 } from '@test/helpers';
 
+const noop = () => {};
+
 test('Github renders correctly', () => {
   renderForSnapshot(<Github {...color.red} />).expectSnapshot();
 });
@@ -47,5 +49,5 @@ test('Github renders custom styles correctly', () => {
 });
 
 test('GithubSwatch renders correctly', () => {
-  renderForSnapshot(<GithubSwatch color="#333" />).expectSnapshot();
+  renderForSnapshot(<GithubSwatch color="#333" onClick={noop} />).expectSnapshot();
 });

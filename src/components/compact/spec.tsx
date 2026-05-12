@@ -11,6 +11,8 @@ import {
   renderForSnapshot,
 } from '@test/helpers';
 
+const noop = () => {};
+
 test('Compact renders correctly', () => {
   renderForSnapshot(<Compact {...color.red} />).expectSnapshot();
 });
@@ -36,11 +38,11 @@ test('Compact with onSwatchHover events correctly', () => {
 });
 
 test('CompactColor renders correctly', () => {
-  renderForSnapshot(<CompactColor />).expectSnapshot();
+  renderForSnapshot(<CompactColor color="#fff" />).expectSnapshot();
 });
 
 test('CompactFields renders correctly', () => {
-  renderForSnapshot(<CompactFields {...color.red} />).expectSnapshot();
+  renderForSnapshot(<CompactFields {...color.red} onChange={noop} />).expectSnapshot();
 });
 
 test('Compact renders custom styles correctly', () => {

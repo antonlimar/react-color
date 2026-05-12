@@ -6,6 +6,8 @@ import { SliderSwatch } from './SliderSwatch';
 import { SliderSwatches } from './SliderSwatches';
 import { getRootElement, renderForSnapshot } from '@test/helpers';
 
+const noop = () => {};
+
 test('Slider renders correctly', () => {
   renderForSnapshot(<Slider {...red} />).expectSnapshot();
 });
@@ -21,9 +23,9 @@ test('SliderPointer renders correctly', () => {
 });
 
 test('SliderSwatch renders correctly', () => {
-  renderForSnapshot(<SliderSwatch {...red} />).expectSnapshot();
+  renderForSnapshot(<SliderSwatch {...red} offset={0.5} />).expectSnapshot();
 });
 
 test('SliderSwatches renders correctly', () => {
-  renderForSnapshot(<SliderSwatches {...red} />).expectSnapshot();
+  renderForSnapshot(<SliderSwatches {...red} onClick={noop} />).expectSnapshot();
 });

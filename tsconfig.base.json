@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": false,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "Bundler",
+    "noImplicitAny": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@storybook-utils/*": ["./.storybook/*"],
+      "@test/*": ["./test/*"]
+    },
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "target": "ES2015",
+    "useDefineForClassFields": false
+  }
+}

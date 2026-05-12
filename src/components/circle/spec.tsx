@@ -9,6 +9,8 @@ import {
   renderForSnapshot,
 } from '@test/helpers';
 
+const noop = () => {};
+
 test('Circle renders correctly', () => {
   renderForSnapshot(<Circle />).expectSnapshot();
 });
@@ -36,9 +38,9 @@ test('Circle renders custom styles correctly', () => {
 });
 
 test('CircleSwatch renders correctly', () => {
-  renderForSnapshot(<CircleSwatch />).expectSnapshot();
+  renderForSnapshot(<CircleSwatch color="#fff" onClick={noop} />).expectSnapshot();
 });
 
 test('CircleSwatch renders with sizing and spacing', () => {
-  renderForSnapshot(<CircleSwatch circleSize={40} circleSpacing={40} />).expectSnapshot();
+  renderForSnapshot(<CircleSwatch color="#fff" circleSize={40} circleSpacing={40} onClick={noop} />).expectSnapshot();
 });

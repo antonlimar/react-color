@@ -7,6 +7,8 @@ import { GooglePointer } from './GooglePointer';
 import { GooglePointerCircle } from './GooglePointerCircle';
 import { changeInputByLabel, createColorChangeSpy, getRootElement, renderForSnapshot } from '@test/helpers';
 
+const noop = () => {};
+
 test('Google renders correctly', () => {
   renderForSnapshot(<Google {...color.red} />).expectSnapshot();
 });
@@ -20,7 +22,7 @@ test('Google onChange events correctly', () => {
 });
 
 test('GoogleFields renders correctly', () => {
-  renderForSnapshot(<GoogleFields {...color.red} />).expectSnapshot();
+  renderForSnapshot(<GoogleFields {...color.red} onChange={noop} />).expectSnapshot();
 });
 
 test('GooglePointer renders correctly', () => {

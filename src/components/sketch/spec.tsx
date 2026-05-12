@@ -12,6 +12,8 @@ import {
   renderForSnapshot,
 } from '@test/helpers';
 
+const noop = () => {};
+
 test('Sketch renders correctly', () => {
   renderForSnapshot(<Sketch {...color.red} />).expectSnapshot();
 });
@@ -57,7 +59,7 @@ test('Sketch applies public theme and root classNames without breaking legacy cl
 });
 
 test('SketchFields renders correctly', () => {
-  renderForSnapshot(<SketchFields {...color.red} />).expectSnapshot();
+  renderForSnapshot(<SketchFields {...color.red} onChange={noop} />).expectSnapshot();
 });
 
 test('SketchPresetColors renders correctly', () => {

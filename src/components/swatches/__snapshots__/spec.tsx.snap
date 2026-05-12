@@ -102,12 +102,13 @@ exports[`SwatchesColor renders correctly 1`] = `
     <span>
       <div
         class="rc-swatch"
-        style="overflow: hidden;"
+        style="background: rgb(255, 255, 255); overflow: hidden;"
         tabindex="0"
+        title="#fff"
       >
         <div
           class="rc-swatches__check"
-          style="color: rgb(255, 255, 255);"
+          style="color: rgb(0, 0, 0);"
         >
           <svg
             style="fill: currentcolor; width: 24px; height: 24px;"
@@ -132,12 +133,13 @@ exports[`SwatchesColor renders with props 1`] = `
     <span>
       <div
         class="rc-swatch"
-        style="overflow: hidden; border-radius: 2px 2px 0 0;"
+        style="background: rgb(255, 255, 255); overflow: hidden; border-radius: 2px 2px 0 0;"
         tabindex="0"
+        title="#fff"
       >
         <div
           class="rc-swatches__check"
-          style="color: rgb(255, 255, 255);"
+          style="color: rgb(0, 0, 0);"
         >
           <svg
             style="fill: currentcolor; width: 24px; height: 24px;"

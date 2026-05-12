@@ -94,6 +94,7 @@ exports[`SliderSwatch renders correctly 1`] = `
 <DocumentFragment>
   <div
     class="rc-slider__swatch"
+    style="background: rgb(191, 64, 64);"
   />
 </DocumentFragment>
 `;

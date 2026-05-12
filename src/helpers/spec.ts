@@ -21,7 +21,8 @@ describe('helpers/color', () => {
 
     test('no-op on NaN', () => {
       const data = NaN;
-      expect(isNaN(color.simpleCheckForValidColor(data))).toBeTruthy();
+      const result = color.simpleCheckForValidColor(data);
+      expect(typeof result === 'number' && isNaN(result)).toBeTruthy();
     });
 
     test('no-op on string', () => {
@@ -30,7 +31,7 @@ describe('helpers/color', () => {
     });
 
     test('no-op on array', () => {
-      const data = [];
+      const data: unknown[] = [];
       expect(color.simpleCheckForValidColor(data)).toEqual(data);
     });
 

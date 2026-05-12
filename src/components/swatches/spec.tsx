@@ -11,6 +11,8 @@ import {
   renderForSnapshot,
 } from '@test/helpers';
 
+const noop = () => {};
+
 test('Swatches renders correctly', () => {
   renderForSnapshot(<Swatches hex={color.red.hex} colors={[['#fff'], ['#333']]} />).expectSnapshot();
 });
@@ -44,13 +46,13 @@ test('Swatches with onSwatchHover events correctly', () => {
 });
 
 test('SwatchesColor renders correctly', () => {
-  renderForSnapshot(<SwatchesColor />).expectSnapshot();
+  renderForSnapshot(<SwatchesColor color="#fff" />).expectSnapshot();
 });
 
 test('SwatchesColor renders with props', () => {
-  renderForSnapshot(<SwatchesColor active first last />).expectSnapshot();
+  renderForSnapshot(<SwatchesColor color="#fff" active first last />).expectSnapshot();
 });
 
 test('SwatchesGroup renders correctly', () => {
-  renderForSnapshot(<SwatchesGroup active={color.red.hex} group={['#fff']} />).expectSnapshot();
+  renderForSnapshot(<SwatchesGroup active={color.red.hex} group={['#fff']} onClick={noop} />).expectSnapshot();
 });

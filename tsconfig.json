@@ -1,26 +1,31 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "checkJs": false,
     "declaration": false,
-    "esModuleInterop": true,
-    "jsx": "react-jsx",
-    "moduleResolution": "Bundler",
-    "noImplicitAny": true,
-    "paths": {
-      "@/*": ["./src/*"],
-      "@storybook-utils/*": ["./.storybook/*"],
-      "@test/*": ["./test/*"]
-    },
-    "strictNullChecks": true,
-    "noEmit": false,
-    "rootDir": "./src",
-    "skipLibCheck": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2021"],
+    "module": "ESNext",
+    "noEmit": true,
     "sourceMap": false,
-    "target": "ES2015",
-    "useDefineForClassFields": false
+    "types": ["vite/client", "vitest/globals"]
   },
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
-  "exclude": ["node_modules", "lib", "es", "src/**/spec.*", "src/**/story.*"]
+  "include": [
+    "*.ts",
+    "*.d.ts",
+    ".storybook/**/*.js",
+    ".storybook/**/*.mjs",
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.d.ts",
+    "test/**/*.js",
+    "test/**/*.jsx",
+    "test/**/*.mjs",
+    "test/**/*.ts",
+    "test/**/*.tsx",
+    "test/**/*.d.ts"
+  ],
+  "exclude": ["node_modules", "lib", "es", "site/dist", "test/public-types"]
 }
