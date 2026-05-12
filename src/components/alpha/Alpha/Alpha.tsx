@@ -37,14 +37,9 @@ function AlphaPicker({
   classNames,
   theme,
 }: AlphaPickerProps) {
-  const rootStyle = {
-    width,
-    height,
-  };
-
   return (
     <div
-      style={rootStyle}
+      style={{ width, height }}
       {...getPickerRootProps({
         block: 'alpha',
         theme,
