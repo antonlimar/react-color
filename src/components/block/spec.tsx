@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 import { Block } from './Block';
 import { BlockSwatches } from './BlockSwatches';
-import * as color from '@/helpers/color';
+import { simpleCheckForValidColor } from '@/helpers/color';
 import {
   clickFirstSwatch,
   createColorChangeSpy,
@@ -15,7 +15,7 @@ test('Block renders correctly', () => {
 });
 
 test('Block onChange events correctly', () => {
-  const changeSpy = createColorChangeSpy(color);
+  const changeSpy = createColorChangeSpy({ simpleCheckForValidColor });
   const { container } = renderForSnapshot(<Block onChange={changeSpy} />);
 
   clickFirstSwatch(container);
@@ -23,7 +23,7 @@ test('Block onChange events correctly', () => {
 });
 
 test('Block with onSwatchHover events correctly', () => {
-  const hoverSpy = createColorChangeSpy(color);
+  const hoverSpy = createColorChangeSpy({ simpleCheckForValidColor });
   const { container } = renderForSnapshot(<Block onSwatchHover={hoverSpy} />);
 
   hoverFirstSwatch(container);

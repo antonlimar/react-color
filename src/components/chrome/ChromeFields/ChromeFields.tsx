@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import * as color from '@/helpers/color';
+import { isValidHex } from '@/helpers/color';
 
 import { EditableInput } from '@/components/common';
 import { getPickerClassName } from '@/components/common/styleArchitecture';
@@ -36,7 +36,7 @@ export function ChromeFields(props: ChromeFieldsProps) {
 
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {
     if (data.hex) {
-      if (color.isValidHex(data.hex)) {
+      if (isValidHex(data.hex)) {
         props.onChange(
           {
             hex: data.hex,

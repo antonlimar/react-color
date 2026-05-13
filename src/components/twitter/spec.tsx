@@ -1,4 +1,4 @@
-import * as color from '@/helpers/color';
+import { red, simpleCheckForValidColor } from '@/helpers/color';
 
 import { Twitter } from './Twitter';
 import {
@@ -10,36 +10,36 @@ import {
 } from '@test/helpers';
 
 test('Twitter renders correctly', () => {
-  renderForSnapshot(<Twitter {...color.red} />).expectSnapshot();
+  renderForSnapshot(<Twitter {...red} />).expectSnapshot();
 });
 
 test('Material renders custom styles correctly', () => {
   const { container } = renderForSnapshot(
-    <Twitter {...color.red} styles={{ default: { card: { boxShadow: '0 0 10px red' } } }} />,
+    <Twitter {...red} styles={{ default: { card: { boxShadow: '0 0 10px red' } } }} />,
   );
 
   expect(getRootElement(container).style.boxShadow).toBe('0 0 10px red');
 });
 
 test('Twitter `triangle="hide"`', () => {
-  renderForSnapshot(<Twitter {...color.red} triangle="hide" />).expectSnapshot();
+  renderForSnapshot(<Twitter {...red} triangle="hide" />).expectSnapshot();
 });
 
 test('Twitter `triangle="top-right"`', () => {
-  renderForSnapshot(<Twitter {...color.red} triangle="top-right" />).expectSnapshot();
+  renderForSnapshot(<Twitter {...red} triangle="top-right" />).expectSnapshot();
 });
 
 test('Twitter onChange events correctly', () => {
-  const changeSpy = createColorChangeSpy(color);
-  const { container } = renderForSnapshot(<Twitter {...color.red} onChange={changeSpy} />);
+  const changeSpy = createColorChangeSpy({ simpleCheckForValidColor });
+  const { container } = renderForSnapshot(<Twitter {...red} onChange={changeSpy} />);
 
   clickFirstSwatch(container);
   expect(changeSpy).toHaveBeenCalled();
 });
 
 test('Twitter with onSwatchHover events correctly', () => {
-  const hoverSpy = createColorChangeSpy(color);
-  const { container } = renderForSnapshot(<Twitter {...color.red} onSwatchHover={hoverSpy} />);
+  const hoverSpy = createColorChangeSpy({ simpleCheckForValidColor });
+  const { container } = renderForSnapshot(<Twitter {...red} onSwatchHover={hoverSpy} />);
 
   hoverFirstSwatch(container);
   expect(hoverSpy).toHaveBeenCalled();

@@ -1,4 +1,4 @@
-import * as color from '@/helpers/color';
+import { red, simpleCheckForValidColor } from '@/helpers/color';
 
 import { Github } from './Github';
 import { GithubSwatch } from './GithubSwatch';
@@ -13,11 +13,11 @@ import {
 const noop = () => {};
 
 test('Github renders correctly', () => {
-  renderForSnapshot(<Github {...color.red} />).expectSnapshot();
+  renderForSnapshot(<Github {...red} />).expectSnapshot();
 });
 
 test('Github onChange events correctly', () => {
-  const changeSpy = createColorChangeSpy(color);
+  const changeSpy = createColorChangeSpy({ simpleCheckForValidColor });
   const { container } = renderForSnapshot(<Github onChange={changeSpy} />);
 
   clickFirstSwatch(container);
@@ -25,7 +25,7 @@ test('Github onChange events correctly', () => {
 });
 
 test('Github with onSwatchHover events correctly', () => {
-  const hoverSpy = createColorChangeSpy(color);
+  const hoverSpy = createColorChangeSpy({ simpleCheckForValidColor });
   const { container } = renderForSnapshot(<Github onSwatchHover={hoverSpy} />);
 
   hoverFirstSwatch(container);
@@ -33,16 +33,16 @@ test('Github with onSwatchHover events correctly', () => {
 });
 
 test('Github `triangle="hide"`', () => {
-  renderForSnapshot(<Github {...color.red} triangle="hide" />).expectSnapshot();
+  renderForSnapshot(<Github {...red} triangle="hide" />).expectSnapshot();
 });
 
 test('Github `triangle="top-right"`', () => {
-  renderForSnapshot(<Github {...color.red} triangle="top-right" />).expectSnapshot();
+  renderForSnapshot(<Github {...red} triangle="top-right" />).expectSnapshot();
 });
 
 test('Github renders custom styles correctly', () => {
   const { container } = renderForSnapshot(
-    <Github {...color.red} styles={{ default: { card: { boxShadow: '0 0 10px red' } } }} />,
+    <Github {...red} styles={{ default: { card: { boxShadow: '0 0 10px red' } } }} />,
   );
 
   expect(getRootElement(container).style.boxShadow).toBe('0 0 10px red');

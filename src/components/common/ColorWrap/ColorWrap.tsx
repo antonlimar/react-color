@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { debounce } from 'lodash-es';
 import type { ComponentType } from 'react';
 
-import * as color from '@/helpers/color';
+import { simpleCheckForValidColor, toState } from '@/helpers/color';
 import type {
   Color,
   ColorChangeHandler,
@@ -66,7 +66,7 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
       const resolvedColor = getColorWithDefault(props.color);
 
       return {
-        ...color.toState(resolvedColor, 0),
+        ...toState(resolvedColor, 0),
         colorPropKey: getColorPropKey(resolvedColor),
       };
     });
@@ -89,15 +89,15 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
       nextColorPropKey === state.colorPropKey
         ? state
         : {
-            ...color.toState(getColorWithDefault(props.color), state.oldHue),
+            ...toState(getColorWithDefault(props.color), state.oldHue),
             colorPropKey: nextColorPropKey,
           };
 
     const handleChange = (data: Color | ColorChangeValue, event?: ColorPickerChangeEvent) => {
-      const isValidColor = color.simpleCheckForValidColor(data);
+      const isValidColor = simpleCheckForValidColor(data);
 
       if (isValidColor) {
-        const colors = color.toState(data, getOldHue(data, currentState.oldHue));
+        const colors = toState(data, getOldHue(data, currentState.oldHue));
         setState({
           ...colors,
           colorPropKey: currentState.colorPropKey,
@@ -108,10 +108,10 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
     };
 
     const handleSwatchHover = (data: Color | ColorChangeValue, event?: ColorPickerChangeEvent) => {
-      const isValidColor = color.simpleCheckForValidColor(data);
+      const isValidColor = simpleCheckForValidColor(data);
 
       if (isValidColor) {
-        const colors = color.toState(data, getOldHue(data, currentState.oldHue));
+        const colors = toState(data, getOldHue(data, currentState.oldHue));
         onSwatchHover && onSwatchHover(colors, event);
       }
     };

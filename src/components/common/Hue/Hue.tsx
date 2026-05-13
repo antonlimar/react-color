@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import * as hue from '@/helpers/hue';
+import { calculateChange as calculateHueChange } from '@/helpers/hue';
 import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { HueProps, InternalColorChangeEvent } from '@/types';
@@ -23,7 +23,7 @@ export function Hue(props: HueProps) {
         return;
       }
 
-      const change = hue.calculateChange(event, direction, hsl, containerRef.current);
+      const change = calculateHueChange(event, direction, hsl, containerRef.current);
 
       if (change && typeof onChange === 'function') {
         onChange(change, event);

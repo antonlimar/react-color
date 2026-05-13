@@ -1,4 +1,4 @@
-import * as color from '@/helpers/color';
+import { isValidHex, isvalidColorString } from '@/helpers/color';
 import { EditableInput } from '@/components/common';
 import { getPickerClassName } from '@/components/common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, HSVAColor, RGBAColor } from '@/types';
@@ -17,7 +17,7 @@ const normalizePercentValue = (value: string) => value.replace('%', '');
 export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }: GoogleFieldsProps) => {
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {
     if (typeof data.hex === 'string') {
-      if (color.isValidHex(data.hex)) {
+      if (isValidHex(data.hex)) {
         onChange(
           {
             hex: data.hex,
@@ -28,7 +28,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }: GoogleFieldsProps
       }
     } else if (typeof data.rgb === 'string') {
       const values = data.rgb.split(',');
-      if (color.isvalidColorString(data.rgb, 'rgb')) {
+      if (isvalidColorString(data.rgb, 'rgb')) {
         onChange(
           {
             r: Number(values[0]),
@@ -42,7 +42,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }: GoogleFieldsProps
       }
     } else if (typeof data.hsv === 'string') {
       const values = data.hsv.split(',');
-      if (color.isvalidColorString(data.hsv, 'hsv')) {
+      if (isvalidColorString(data.hsv, 'hsv')) {
         const normalizedHsv = [
           normalizeAngleValue(values[0]),
           normalizePercentValue(values[1]),
@@ -65,7 +65,7 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }: GoogleFieldsProps
       }
     } else if (typeof data.hsl === 'string') {
       const values = data.hsl.split(',');
-      if (color.isvalidColorString(data.hsl, 'hsl')) {
+      if (isvalidColorString(data.hsl, 'hsl')) {
         const normalizedHsl = [
           normalizeAngleValue(values[0]),
           normalizePercentValue(values[1]),

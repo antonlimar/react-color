@@ -1,6 +1,6 @@
 import { cloneElement, isValidElement } from 'react';
 import type { CSSProperties, ReactElement } from 'react';
-import * as checkboard from '@/helpers/checkboard';
+import { get as getCheckboard } from '@/helpers/checkboard';
 import type { CheckboardProps } from '@/types';
 import { getPickerClassName } from '@/components/common/styleArchitecture';
 
@@ -16,7 +16,7 @@ export const Checkboard = ({
   const style: CSSProperties = {
     borderRadius,
     boxShadow,
-    background: `url(${checkboard.get(white!, grey!, size!, renderers?.canvas)}) center left`,
+    background: `url(${getCheckboard(white!, grey!, size!, renderers?.canvas)}) center left`,
   };
   const className = getPickerClassName({ block: 'checkboard' });
 

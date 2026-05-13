@@ -1,4 +1,4 @@
-import * as colorUtils from '@/helpers/color';
+import { getContrastingColor } from '@/helpers/color';
 
 import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
@@ -18,7 +18,7 @@ export const CompactColor = ({ color, onClick = () => {}, onSwatchHover, active 
     boxShadow: color === '#FFFFFF' ? 'inset 0 0 0 1px #ddd' : undefined,
   };
   const dotStyle: PickerStyle = {
-    background: color === '#FFFFFF' || color === 'transparent' ? '#000' : colorUtils.getContrastingColor(color),
+    background: color === '#FFFFFF' || color === 'transparent' ? '#000' : getContrastingColor(color),
   };
 
   return (

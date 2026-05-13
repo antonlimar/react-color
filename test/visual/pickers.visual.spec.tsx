@@ -4,20 +4,20 @@ import { render } from '@testing-library/react';
 import { composeStories } from '@storybook/react-vite';
 import { describe, expect, test } from 'vitest';
 
-import * as alphaStories from '../../src/components/alpha/story';
-import * as blockStories from '../../src/components/block/story';
-import * as chromeStories from '../../src/components/chrome/story';
-import * as circleStories from '../../src/components/circle/story';
-import * as compactStories from '../../src/components/compact/story';
-import * as githubStories from '../../src/components/github/story';
-import * as googleStories from '../../src/components/google/story';
-import * as hueStories from '../../src/components/hue/story';
-import * as materialStories from '../../src/components/material/story';
-import * as photoshopStories from '../../src/components/photoshop/story';
-import * as sketchStories from '../../src/components/sketch/story';
-import * as sliderStories from '../../src/components/slider/story';
-import * as swatchesStories from '../../src/components/swatches/story';
-import * as twitterStories from '../../src/components/twitter/story';
+import alphaMeta, { AlphaPicker } from '../../src/components/alpha/story';
+import blockMeta, { BlockPicker } from '../../src/components/block/story';
+import chromeMeta, { ChromePicker } from '../../src/components/chrome/story';
+import circleMeta, { CirclePicker } from '../../src/components/circle/story';
+import compactMeta, { CompactPicker } from '../../src/components/compact/story';
+import githubMeta, { GithubPicker } from '../../src/components/github/story';
+import googleMeta, { GooglePicker } from '../../src/components/google/story';
+import hueMeta, { HuePicker } from '../../src/components/hue/story';
+import materialMeta, { MaterialPicker } from '../../src/components/material/story';
+import photoshopMeta, { PhotoshopPicker } from '../../src/components/photoshop/story';
+import sketchMeta, { SketchPicker, SketchPickerCustomStyles } from '../../src/components/sketch/story';
+import sliderMeta, { SliderPicker } from '../../src/components/slider/story';
+import swatchesMeta, { SwatchesPicker } from '../../src/components/swatches/story';
+import twitterMeta, { TwitterPicker } from '../../src/components/twitter/story';
 
 type VisualStoryComponent = ComponentType<Record<string, unknown>>;
 type VisualStoryArgs = Record<string, unknown>;
@@ -26,20 +26,20 @@ const composePickerStories = (storiesModule: unknown) =>
   composeStories(storiesModule as never) as Record<string, VisualStoryComponent>;
 
 const storyGroups = [
-  ['alpha', composePickerStories(alphaStories)],
-  ['block', composePickerStories(blockStories)],
-  ['chrome', composePickerStories(chromeStories)],
-  ['circle', composePickerStories(circleStories)],
-  ['compact', composePickerStories(compactStories)],
-  ['github', composePickerStories(githubStories)],
-  ['google', composePickerStories(googleStories)],
-  ['hue', composePickerStories(hueStories)],
-  ['material', composePickerStories(materialStories)],
-  ['photoshop', composePickerStories(photoshopStories)],
-  ['sketch', composePickerStories(sketchStories)],
-  ['slider', composePickerStories(sliderStories)],
-  ['swatches', composePickerStories(swatchesStories)],
-  ['twitter', composePickerStories(twitterStories)],
+  ['alpha', composePickerStories({ default: alphaMeta, AlphaPicker })],
+  ['block', composePickerStories({ default: blockMeta, BlockPicker })],
+  ['chrome', composePickerStories({ default: chromeMeta, ChromePicker })],
+  ['circle', composePickerStories({ default: circleMeta, CirclePicker })],
+  ['compact', composePickerStories({ default: compactMeta, CompactPicker })],
+  ['github', composePickerStories({ default: githubMeta, GithubPicker })],
+  ['google', composePickerStories({ default: googleMeta, GooglePicker })],
+  ['hue', composePickerStories({ default: hueMeta, HuePicker })],
+  ['material', composePickerStories({ default: materialMeta, MaterialPicker })],
+  ['photoshop', composePickerStories({ default: photoshopMeta, PhotoshopPicker })],
+  ['sketch', composePickerStories({ default: sketchMeta, SketchPicker, SketchPickerCustomStyles })],
+  ['slider', composePickerStories({ default: sliderMeta, SliderPicker })],
+  ['swatches', composePickerStories({ default: swatchesMeta, SwatchesPicker })],
+  ['twitter', composePickerStories({ default: twitterMeta, TwitterPicker })],
 ] as const;
 
 const themedVisualCases: Array<{

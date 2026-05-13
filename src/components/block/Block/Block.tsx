@@ -1,4 +1,4 @@
-import * as color from '@/helpers/color';
+import { getContrastingColor, isValidHex } from '@/helpers/color';
 
 import { ColorWrap, EditableInput, Checkboard } from '@/components/common';
 import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
@@ -27,7 +27,7 @@ type BlockProps = ColorPickerInjectedProps & {
 };
 
 const handleHexChange = (onChange: ColorInputChangeHandler, hexCode: string, event?: ColorPickerChangeEvent) => {
-  if (color.isValidHex(hexCode)) {
+  if (isValidHex(hexCode)) {
     onChange(
       {
         hex: hexCode,
@@ -64,7 +64,7 @@ function BlockBase({
     ...getDeprecatedStyleOverride(passedStyles, 'head', BLOCK_STYLE_SLOTS, 'head'),
   };
   const labelStyle = {
-    color: color.getContrastingColor(hex),
+    color: getContrastingColor(hex),
     ...getDeprecatedStyleOverride(passedStyles, 'label', BLOCK_STYLE_SLOTS, 'label'),
   };
   const bodyStyle = getDeprecatedStyleOverride(passedStyles, 'body', BLOCK_STYLE_SLOTS, 'body');

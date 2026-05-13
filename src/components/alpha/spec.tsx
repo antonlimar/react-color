@@ -1,18 +1,18 @@
 import { expect, test } from 'vitest';
 import { fireEvent } from '@testing-library/react';
-import * as color from '@/helpers/color';
+import { red, simpleCheckForValidColor } from '@/helpers/color';
 
 import { Alpha } from './Alpha';
 import { AlphaPointer } from './AlphaPointer';
 import { createColorChangeSpy, getRequiredElement, renderForSnapshot } from '@test/helpers';
 
 test('Alpha renders correctly', () => {
-  renderForSnapshot(<Alpha {...color.red} />).expectSnapshot();
+  renderForSnapshot(<Alpha {...red} />).expectSnapshot();
 });
 
 test('Alpha onChange events correctly', () => {
-  const changeSpy = createColorChangeSpy(color);
-  const { container } = renderForSnapshot(<Alpha {...color.red} width={20} height={200} onChange={changeSpy} />);
+  const changeSpy = createColorChangeSpy({ simpleCheckForValidColor });
+  const { container } = renderForSnapshot(<Alpha {...red} width={20} height={200} onChange={changeSpy} />);
 
   const alphaContainer = getRequiredElement(container, '.rc-alpha-control__container');
   fireEvent.mouseDown(alphaContainer, {
@@ -23,7 +23,7 @@ test('Alpha onChange events correctly', () => {
 });
 
 test('Alpha renders vertically', () => {
-  renderForSnapshot(<Alpha {...color.red} width={20} height={200} direction="vertical" />).expectSnapshot();
+  renderForSnapshot(<Alpha {...red} width={20} height={200} direction="vertical" />).expectSnapshot();
 });
 
 test('AlphaPointer renders correctly', () => {

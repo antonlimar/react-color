@@ -1,4 +1,4 @@
-import * as color from '@/helpers/color';
+import { isValidHex } from '@/helpers/color';
 
 import { ColorWrap, EditableInput, Swatch } from '@/components/common';
 import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
@@ -39,7 +39,7 @@ const DEFAULT_TWITTER_COLORS = [
 ];
 
 const handleHexChange = (onChange: ColorInputChangeHandler, hexCode: string, event?: ColorPickerChangeEvent) => {
-  if (color.isValidHex(hexCode)) {
+  if (isValidHex(hexCode)) {
     onChange(
       {
         hex: hexCode,

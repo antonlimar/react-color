@@ -1,4 +1,4 @@
-import * as color from '@/helpers/color';
+import { isValidHex } from '@/helpers/color';
 
 import { EditableInput } from '@/components/common';
 import { getPickerClassName } from '@/components/common/styleArchitecture';
@@ -15,7 +15,7 @@ type SketchFieldsProps = {
 export const SketchFields = ({ onChange, rgb, hsl, hex, disableAlpha }: SketchFieldsProps) => {
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {
     if (data.hex) {
-      if (color.isValidHex(data.hex)) {
+      if (isValidHex(data.hex)) {
         onChange(
           {
             hex: data.hex,

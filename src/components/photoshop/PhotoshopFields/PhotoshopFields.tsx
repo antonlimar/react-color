@@ -1,4 +1,4 @@
-import * as color from '@/helpers/color';
+import { isValidHex } from '@/helpers/color';
 
 import { EditableInput } from '@/components/common';
 import { getPickerClassName } from '@/components/common/styleArchitecture';
@@ -14,7 +14,7 @@ type PhotoshopFieldsProps = {
 export const PhotoshopFields = ({ onChange, rgb, hsv, hex }: PhotoshopFieldsProps) => {
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {
     if (data['#']) {
-      if (color.isValidHex(data['#'])) {
+      if (isValidHex(data['#'])) {
         onChange(
           {
             hex: data['#'],

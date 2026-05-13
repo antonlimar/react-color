@@ -1,4 +1,4 @@
-import * as color from '@/helpers/color';
+import { red, simpleCheckForValidColor } from '@/helpers/color';
 
 import { Swatches } from './Swatches';
 import { SwatchesColor } from './SwatchesColor';
@@ -14,13 +14,13 @@ import {
 const noop = () => {};
 
 test('Swatches renders correctly', () => {
-  renderForSnapshot(<Swatches hex={color.red.hex} colors={[['#fff'], ['#333']]} />).expectSnapshot();
+  renderForSnapshot(<Swatches hex={red.hex} colors={[['#fff'], ['#333']]} />).expectSnapshot();
 });
 
 test('Swatches renders custom styles correctly', () => {
   const { container } = renderForSnapshot(
     <Swatches
-      hex={color.red.hex}
+      hex={red.hex}
       colors={[['#fff'], ['#333']]}
       styles={{ default: { picker: { boxShadow: '0 0 10px red' } } }}
     />,
@@ -30,7 +30,7 @@ test('Swatches renders custom styles correctly', () => {
 });
 
 test('Swatches onChange events correctly', () => {
-  const changeSpy = createColorChangeSpy(color);
+  const changeSpy = createColorChangeSpy({ simpleCheckForValidColor });
   const { container } = renderForSnapshot(<Swatches onChange={changeSpy} />);
 
   clickFirstSwatch(container);
@@ -38,7 +38,7 @@ test('Swatches onChange events correctly', () => {
 });
 
 test('Swatches with onSwatchHover events correctly', () => {
-  const hoverSpy = createColorChangeSpy(color);
+  const hoverSpy = createColorChangeSpy({ simpleCheckForValidColor });
   const { container } = renderForSnapshot(<Swatches onSwatchHover={hoverSpy} />);
 
   hoverFirstSwatch(container);
@@ -54,5 +54,5 @@ test('SwatchesColor renders with props', () => {
 });
 
 test('SwatchesGroup renders correctly', () => {
-  renderForSnapshot(<SwatchesGroup active={color.red.hex} group={['#fff']} onClick={noop} />).expectSnapshot();
+  renderForSnapshot(<SwatchesGroup active={red.hex} group={['#fff']} onClick={noop} />).expectSnapshot();
 });

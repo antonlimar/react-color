@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { throttle } from 'lodash-es';
-import * as saturation from '@/helpers/saturation';
+import { calculateChange as calculateSaturationChange } from '@/helpers/saturation';
 import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { InternalColorChangeEvent, SaturationProps } from '@/types';
 import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type SaturationChangeHandler = NonNullable<SaturationProps['onChange']>;
-type SaturationChangeData = ReturnType<typeof saturation.calculateChange>;
+type SaturationChangeData = ReturnType<typeof calculateSaturationChange>;
 type ThrottledChange = {
   (fn: SaturationChangeHandler, data: SaturationChangeData, event: InternalColorChangeEvent): void;
   cancel(): void;
@@ -35,7 +35,7 @@ export function Saturation(props: SaturationProps) {
         return;
       }
 
-      throttledChangeRef.current(onChange, saturation.calculateChange(event, hsl, containerRef.current), event);
+      throttledChangeRef.current(onChange, calculateSaturationChange(event, hsl, containerRef.current), event);
     },
     [hsl, onChange],
   );

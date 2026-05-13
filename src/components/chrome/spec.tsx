@@ -1,5 +1,5 @@
 import { fireEvent, waitFor } from '@testing-library/react';
-import * as color from '@/helpers/color';
+import { red, simpleCheckForValidColor } from '@/helpers/color';
 import { expect, test, vi } from 'vitest';
 
 import { Chrome } from './Chrome';
@@ -15,23 +15,23 @@ import {
 } from '@test/helpers';
 
 test('Chrome renders correctly', () => {
-  renderForSnapshot(<Chrome {...color.red} />).expectSnapshot();
+  renderForSnapshot(<Chrome {...red} />).expectSnapshot();
 });
 
 test('Chrome renders correctly in dark theme', () => {
-  renderForSnapshot(<Chrome {...color.red} theme="dark" />).expectSnapshot();
+  renderForSnapshot(<Chrome {...red} theme="dark" />).expectSnapshot();
 });
 
 test('Chrome onChange events correctly', () => {
-  const changeSpy = createColorChangeSpy(color);
-  renderForSnapshot(<Chrome {...color.red} onChange={changeSpy} />);
+  const changeSpy = createColorChangeSpy({ simpleCheckForValidColor });
+  renderForSnapshot(<Chrome {...red} onChange={changeSpy} />);
 
   changeInputByLabel('hex', '#00ff00');
   expect(changeSpy).toHaveBeenCalled();
 });
 
 test('ChromeFields renders correctly', () => {
-  renderForSnapshot(<ChromeFields {...color.red} onChange={() => {}} />).expectSnapshot();
+  renderForSnapshot(<ChromeFields {...red} onChange={() => {}} />).expectSnapshot();
 });
 
 test('ChromePointer renders correctly', () => {
@@ -73,7 +73,7 @@ test('Chrome marks auto theme on the root element', () => {
 
 test('Chrome alpha updates immediately with only onChangeComplete', async () => {
   const onChangeComplete = vi.fn();
-  const { container } = renderForSnapshot(<Chrome color={color.red.hsl} onChangeComplete={onChangeComplete} />);
+  const { container } = renderForSnapshot(<Chrome color={red.hsl} onChangeComplete={onChangeComplete} />);
   const alphaControl = getRequiredElement(container, '.rc-alpha-control__container');
 
   Object.defineProperty(alphaControl, 'clientWidth', {

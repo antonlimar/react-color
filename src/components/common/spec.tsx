@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
 import { red } from '@/helpers/color';
-import * as color from '@/helpers/color';
+import { toState } from '@/helpers/color';
 
 import { Alpha } from './Alpha';
 import { Checkboard } from './Checkboard';
@@ -57,7 +57,7 @@ test('ColorWrap provides the same runtime default color', () => {
   const WrappedPicker = ColorWrap(({ color: passedColor, hex }: ColorPickerInjectedProps & { color?: Color }) => (
     <div data-color-present={String(passedColor !== undefined)} data-hex={hex} />
   ));
-  const defaultHex = color.toState({ h: 250, s: 0.5, l: 0.2, a: 1 }, 0).hex;
+  const defaultHex = toState({ h: 250, s: 0.5, l: 0.2, a: 1 }, 0).hex;
   const { container } = render(<WrappedPicker />);
   const wrapped = getRootElement(container);
 

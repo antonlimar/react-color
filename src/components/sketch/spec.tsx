@@ -1,4 +1,4 @@
-import * as color from '@/helpers/color';
+import { red, simpleCheckForValidColor } from '@/helpers/color';
 import { expect, test } from 'vitest';
 
 import { Sketch } from './Sketch';
@@ -15,15 +15,15 @@ import {
 const noop = () => {};
 
 test('Sketch renders correctly', () => {
-  renderForSnapshot(<Sketch {...color.red} />).expectSnapshot();
+  renderForSnapshot(<Sketch {...red} />).expectSnapshot();
 });
 
 test('Sketch renders correctly in dark theme', () => {
-  renderForSnapshot(<Sketch {...color.red} theme="dark" />).expectSnapshot();
+  renderForSnapshot(<Sketch {...red} theme="dark" />).expectSnapshot();
 });
 
 test('Sketch onChange events correctly', () => {
-  const changeSpy = createColorChangeSpy(color);
+  const changeSpy = createColorChangeSpy({ simpleCheckForValidColor });
   const { container } = renderForSnapshot(<Sketch onChange={changeSpy} />);
 
   clickFirstSwatch(container);
@@ -31,7 +31,7 @@ test('Sketch onChange events correctly', () => {
 });
 
 test('Sketch with onSwatchHover events correctly', () => {
-  const hoverSpy = createColorChangeSpy(color);
+  const hoverSpy = createColorChangeSpy({ simpleCheckForValidColor });
   const { container } = renderForSnapshot(<Sketch onSwatchHover={hoverSpy} />);
 
   hoverFirstSwatch(container);
@@ -59,7 +59,7 @@ test('Sketch applies public theme and root classNames without breaking legacy cl
 });
 
 test('SketchFields renders correctly', () => {
-  renderForSnapshot(<SketchFields {...color.red} onChange={noop} />).expectSnapshot();
+  renderForSnapshot(<SketchFields {...red} onChange={noop} />).expectSnapshot();
 });
 
 test('SketchPresetColors renders correctly', () => {

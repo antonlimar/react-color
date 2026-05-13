@@ -1,6 +1,6 @@
 import { Circle } from './Circle';
 import { CircleSwatch } from './CircleSwatch';
-import * as color from '@/helpers/color';
+import { simpleCheckForValidColor } from '@/helpers/color';
 import {
   clickFirstSwatch,
   createColorChangeSpy,
@@ -16,7 +16,7 @@ test('Circle renders correctly', () => {
 });
 
 test('Circle onChange events correctly', () => {
-  const changeSpy = createColorChangeSpy(color);
+  const changeSpy = createColorChangeSpy({ simpleCheckForValidColor });
   const { container } = renderForSnapshot(<Circle onChange={changeSpy} />);
 
   clickFirstSwatch(container);
@@ -24,7 +24,7 @@ test('Circle onChange events correctly', () => {
 });
 
 test('Circle with onSwatchHover events correctly', () => {
-  const hoverSpy = createColorChangeSpy(color);
+  const hoverSpy = createColorChangeSpy({ simpleCheckForValidColor });
   const { container } = renderForSnapshot(<Circle onSwatchHover={hoverSpy} />);
 
   hoverFirstSwatch(container);

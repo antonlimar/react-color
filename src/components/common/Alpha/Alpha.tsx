@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import * as alpha from '@/helpers/alpha';
+import { calculateChange as calculateAlphaChange } from '@/helpers/alpha';
 import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { AlphaProps, InternalColorChangeEvent } from '@/types';
@@ -20,7 +20,7 @@ export function Alpha(props: AlphaProps) {
         return;
       }
 
-      const change = alpha.calculateChange(event, hsl, direction, a, containerRef.current);
+      const change = calculateAlphaChange(event, hsl, direction, a, containerRef.current);
 
       if (change && typeof onChange === 'function') {
         onChange(change, event);

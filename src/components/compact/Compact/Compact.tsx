@@ -1,4 +1,4 @@
-import * as color from '@/helpers/color';
+import { isValidHex } from '@/helpers/color';
 import { ColorWrap, Raised } from '@/components/common';
 import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
@@ -30,7 +30,7 @@ const handleCompactChange = (
   event?: ColorPickerChangeEvent,
 ) => {
   if (data.hex) {
-    if (color.isValidHex(data.hex)) {
+    if (isValidHex(data.hex)) {
       onChange(
         {
           hex: data.hex,

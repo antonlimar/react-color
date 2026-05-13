@@ -1,4 +1,4 @@
-import * as colorUtils from '@/helpers/color';
+import { getContrastingColor } from '@/helpers/color';
 
 import { Swatch } from '@/components/common';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
@@ -30,7 +30,7 @@ export const SwatchesColor = ({
     boxShadow: color === '#FFFFFF' ? 'inset 0 0 0 1px #ddd' : undefined,
   };
   const checkStyle: PickerStyle = {
-    color: color === '#FFFFFF' || color === 'transparent' ? '#333' : colorUtils.getContrastingColor(color),
+    color: color === '#FFFFFF' || color === 'transparent' ? '#333' : getContrastingColor(color),
   };
 
   return (

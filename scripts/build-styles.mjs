@@ -3,7 +3,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
-import * as sass from 'sass';
+import { compileAsync } from 'sass';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
@@ -41,7 +41,7 @@ function getOutputPath(targetDir, entryPath) {
 
 async function compileEntry(entryPath, targetDir) {
   const outputPath = getOutputPath(targetDir, entryPath);
-  const { css } = await sass.compileAsync(entryPath, {
+  const { css } = await compileAsync(entryPath, {
     loadPaths: [stylesRoot],
     style: 'expanded',
   });

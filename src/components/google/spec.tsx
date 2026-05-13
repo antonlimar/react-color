@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import * as color from '@/helpers/color';
+import { red, simpleCheckForValidColor } from '@/helpers/color';
 
 import { Google } from './Google';
 import { GoogleFields } from './GoogleFields';
@@ -10,19 +10,19 @@ import { changeInputByLabel, createColorChangeSpy, getRootElement, renderForSnap
 const noop = () => {};
 
 test('Google renders correctly', () => {
-  renderForSnapshot(<Google {...color.red} />).expectSnapshot();
+  renderForSnapshot(<Google {...red} />).expectSnapshot();
 });
 
 test('Google onChange events correctly', () => {
-  const changeSpy = createColorChangeSpy(color);
-  renderForSnapshot(<Google {...color.red} onChange={changeSpy} />);
+  const changeSpy = createColorChangeSpy({ simpleCheckForValidColor });
+  renderForSnapshot(<Google {...red} onChange={changeSpy} />);
 
   changeInputByLabel('hex', '#00ff00');
   expect(changeSpy).toHaveBeenCalled();
 });
 
 test('GoogleFields renders correctly', () => {
-  renderForSnapshot(<GoogleFields {...color.red} onChange={noop} />).expectSnapshot();
+  renderForSnapshot(<GoogleFields {...red} onChange={noop} />).expectSnapshot();
 });
 
 test('GooglePointer renders correctly', () => {
