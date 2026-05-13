@@ -1,8 +1,9 @@
 import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '@/components/common';
-import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import { SketchFields } from '@/components/sketch/SketchFields';
 import { SketchPresetColors } from '@/components/sketch/SketchPresetColors';
+
 import type {
   CheckboardRenderers,
   ClassName,
@@ -11,6 +12,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+
+const b = bem('sketch');
 
 type SketchPresetColor = string | { color: string; title?: string };
 
@@ -88,15 +91,12 @@ function SketchBase({
   return (
     <div
       style={rootStyle}
-      {...getPickerRootProps({
-        block: 'sketch',
-        theme,
-        modifiers: [disableAlpha && 'disabled-alpha'],
-        className: `sketch-picker ${className}`,
-        classNames,
-      })}
+      className={b({ 'disabled-alpha': disableAlpha, dark: theme === 'dark', light: theme === 'light' })
+        .mix('sketch-picker', className, classNames?.root)
+        .toString()}
+      {...getThemeDataAttributes(theme)}
     >
-      <div className={getPickerClassName({ block: 'sketch', slot: 'saturation' })} style={saturationStyle}>
+      <div className={b('saturation').toString()} style={saturationStyle}>
         <Saturation
           radius="3px"
           shadow="inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)"
@@ -105,12 +105,9 @@ function SketchBase({
           onChange={onChange}
         />
       </div>
-      <div
-        className={getPickerClassName({ block: 'sketch', slot: 'controls', className: 'flexbox-fix' })}
-        style={controlsStyle}
-      >
-        <div className={getPickerClassName({ block: 'sketch', slot: 'sliders' })} style={slidersStyle}>
-          <div className={getPickerClassName({ block: 'sketch', slot: 'hue' })} style={hueStyle}>
+      <div className={b('controls').toString()} style={controlsStyle}>
+        <div className={b('sliders').toString()} style={slidersStyle}>
+          <div className={b('hue').toString()} style={hueStyle}>
             <Hue
               radius="2px"
               shadow="inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)"
@@ -118,7 +115,7 @@ function SketchBase({
               onChange={onChange}
             />
           </div>
-          <div className={getPickerClassName({ block: 'sketch', slot: 'alpha' })} style={alphaStyle}>
+          <div className={b('alpha').toString()} style={alphaStyle}>
             <Alpha
               radius="2px"
               shadow="inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)"
@@ -129,9 +126,9 @@ function SketchBase({
             />
           </div>
         </div>
-        <div className={getPickerClassName({ block: 'sketch', slot: 'color' })} style={colorStyle}>
+        <div className={b('color').toString()} style={colorStyle}>
           <Checkboard />
-          <div className={getPickerClassName({ block: 'sketch', slot: 'active-color' })} style={activeColorStyle} />
+          <div className={b('active-color').toString()} style={activeColorStyle} />
         </div>
       </div>
 

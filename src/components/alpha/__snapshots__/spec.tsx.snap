@@ -71,7 +71,7 @@ exports[`Alpha renders vertically 1`] = `
           style="left: 0px; top: 100%;"
         >
           <div
-            class="rc-alpha__pointer rc-alpha--vertical"
+            class="rc-alpha__pointer rc-alpha__pointer--vertical"
           />
         </div>
       </div>

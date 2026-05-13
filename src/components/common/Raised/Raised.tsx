@@ -1,6 +1,8 @@
 import type { CSSProperties } from 'react';
 import type { RaisedProps } from '@/types';
-import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
+
+const b = bem('raised');
 
 const isStyleObject = (value: unknown): value is CSSProperties =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -40,9 +42,13 @@ export function Raised({
   };
 
   return (
-    <div style={wrapStyle} {...getPickerRootProps({ block: 'raised', theme })}>
-      <div className={getPickerClassName({ block: 'raised', slot: 'bg' })} style={bgStyle} />
-      <div className={getPickerClassName({ block: 'raised', slot: 'content' })} style={contentStyle}>
+    <div
+      style={wrapStyle}
+      className={b({ dark: theme === 'dark', light: theme === 'light' }).toString()}
+      {...getThemeDataAttributes(theme)}
+    >
+      <div className={b('bg').toString()} style={bgStyle} />
+      <div className={b('content').toString()} style={contentStyle}>
         {children}
       </div>
     </div>

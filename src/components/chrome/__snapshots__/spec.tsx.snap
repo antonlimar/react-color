@@ -116,7 +116,7 @@ exports[`Chrome renders correctly 1`] = `
         </div>
       </div>
       <div
-        class="rc-chrome__fields rc-chrome--hex"
+        class="rc-chrome__fields rc-chrome__fields--hex"
       >
         <div
           class="rc-chrome__fields-grid"
@@ -280,7 +280,7 @@ exports[`Chrome renders correctly in dark theme 1`] = `
         </div>
       </div>
       <div
-        class="rc-chrome__fields rc-chrome--hex"
+        class="rc-chrome__fields rc-chrome__fields--hex"
       >
         <div
           class="rc-chrome__fields-grid"
@@ -331,7 +331,7 @@ exports[`Chrome renders correctly in dark theme 1`] = `
 exports[`ChromeFields renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="rc-chrome__fields rc-chrome--hex"
+    class="rc-chrome__fields rc-chrome__fields--hex"
   >
     <div
       class="rc-chrome__fields-grid"

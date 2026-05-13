@@ -53,7 +53,7 @@ exports[`Compact renders correctly 1`] = `
             </span>
           </div>
           <div
-            class="rc-compact__swatch rc-compact--white"
+            class="rc-compact__swatch rc-compact__swatch--white"
           >
             <span>
               <div
@@ -642,7 +642,7 @@ exports[`Compact renders correctly 1`] = `
             style="background: rgb(34, 25, 77);"
           />
           <div
-            class="rc-compact__field rc-compact--hex"
+            class="rc-compact__field rc-compact__field--hex"
           >
             <div
               class="rc-editable-input"
@@ -662,7 +662,7 @@ exports[`Compact renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="rc-compact__field rc-compact--rgb"
+            class="rc-compact__field rc-compact__field--rgb"
           >
             <div
               class="rc-editable-input"
@@ -682,7 +682,7 @@ exports[`Compact renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="rc-compact__field rc-compact--rgb"
+            class="rc-compact__field rc-compact__field--rgb"
           >
             <div
               class="rc-editable-input"
@@ -702,7 +702,7 @@ exports[`Compact renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="rc-compact__field rc-compact--rgb"
+            class="rc-compact__field rc-compact__field--rgb"
           >
             <div
               class="rc-editable-input"
@@ -781,7 +781,7 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
             </span>
           </div>
           <div
-            class="rc-compact__swatch rc-compact--white"
+            class="rc-compact__swatch rc-compact__swatch--white"
           >
             <span>
               <div
@@ -1370,7 +1370,7 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
             style="background: rgb(34, 25, 77);"
           />
           <div
-            class="rc-compact__field rc-compact--hex"
+            class="rc-compact__field rc-compact__field--hex"
           >
             <div
               class="rc-editable-input"
@@ -1390,7 +1390,7 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="rc-compact__field rc-compact--rgb"
+            class="rc-compact__field rc-compact__field--rgb"
           >
             <div
               class="rc-editable-input"
@@ -1410,7 +1410,7 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="rc-compact__field rc-compact--rgb"
+            class="rc-compact__field rc-compact__field--rgb"
           >
             <div
               class="rc-editable-input"
@@ -1430,7 +1430,7 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="rc-compact__field rc-compact--rgb"
+            class="rc-compact__field rc-compact__field--rgb"
           >
             <div
               class="rc-editable-input"
@@ -1488,7 +1488,7 @@ exports[`CompactFields renders correctly 1`] = `
       style="background: rgb(255, 0, 0);"
     />
     <div
-      class="rc-compact__field rc-compact--hex"
+      class="rc-compact__field rc-compact__field--hex"
     >
       <div
         class="rc-editable-input"
@@ -1508,7 +1508,7 @@ exports[`CompactFields renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="rc-compact__field rc-compact--rgb"
+      class="rc-compact__field rc-compact__field--rgb"
     >
       <div
         class="rc-editable-input"
@@ -1528,7 +1528,7 @@ exports[`CompactFields renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="rc-compact__field rc-compact--rgb"
+      class="rc-compact__field rc-compact__field--rgb"
     >
       <div
         class="rc-editable-input"
@@ -1548,7 +1548,7 @@ exports[`CompactFields renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="rc-compact__field rc-compact--rgb"
+      class="rc-compact__field rc-compact__field--rgb"
     >
       <div
         class="rc-editable-input"

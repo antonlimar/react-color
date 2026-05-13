@@ -1,16 +1,10 @@
 import type { HueProps } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('hue');
 
 type HuePointerProps = Pick<HueProps, 'direction'>;
 
 export function HuePointer({ direction }: HuePointerProps) {
-  return (
-    <div
-      className={getPickerClassName({
-        block: 'hue',
-        slot: 'pointer',
-        modifiers: [direction === 'vertical' && 'vertical'],
-      })}
-    />
-  );
+  return <div className={b('pointer', { vertical: direction === 'vertical' }).toString()} />;
 }

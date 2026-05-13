@@ -47,7 +47,7 @@ exports[`Hue renders vertically 1`] = `
           style="left: 0px; top: 30.55555555555557%;"
         >
           <div
-            class="rc-hue__pointer rc-hue--vertical"
+            class="rc-hue__pointer rc-hue__pointer--vertical"
           />
         </div>
       </div>

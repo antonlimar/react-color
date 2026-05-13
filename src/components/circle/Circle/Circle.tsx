@@ -1,9 +1,11 @@
 import material from 'material-colors';
 import { ColorWrap } from '@/components/common';
-import { getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import { CircleSwatch } from '@/components/circle/CircleSwatch';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+
+const b = bem('circle');
 
 const CIRCLE_STYLE_SLOTS = ['card'] as const;
 
@@ -62,12 +64,10 @@ function CircleBase({
   return (
     <div
       style={rootStyle}
-      {...getPickerRootProps({
-        block: 'circle',
-        theme,
-        className: `circle-picker ${className}`,
-        classNames,
-      })}
+      className={b({ dark: theme === 'dark', light: theme === 'light' })
+        .mix('circle-picker', className, classNames?.root)
+        .toString()}
+      {...getThemeDataAttributes(theme)}
     >
       {colors.map((colorValue: string) => (
         <CircleSwatch

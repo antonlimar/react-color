@@ -1,16 +1,10 @@
 import type { AlphaProps } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('alpha');
 
 type AlphaPointerProps = Pick<AlphaProps, 'direction'>;
 
 export function AlphaPointer({ direction }: AlphaPointerProps) {
-  return (
-    <div
-      className={getPickerClassName({
-        block: 'alpha',
-        slot: 'pointer',
-        modifiers: [direction === 'vertical' && 'vertical'],
-      })}
-    />
-  );
+  return <div className={b('pointer', { vertical: direction === 'vertical' }).toString()} />;
 }

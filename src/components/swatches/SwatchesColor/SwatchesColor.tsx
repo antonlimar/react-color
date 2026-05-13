@@ -3,7 +3,9 @@ import { Swatch } from '@/components/common';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('swatches');
 
 type SwatchesColorProps = {
   color: string;
@@ -27,17 +29,13 @@ export function SwatchesColor({ color, onClick = () => {}, onSwatchHover, first,
 
   return (
     <div
-      className={getPickerClassName({
-        block: 'swatches',
-        slot: 'swatch',
-        modifiers: [
-          first && 'first',
-          last && 'last',
-          active && 'active',
-          color === '#FFFFFF' && 'white',
-          color === 'transparent' && 'transparent',
-        ],
-      })}
+      className={b('swatch', {
+        first,
+        last,
+        active,
+        white: color === '#FFFFFF',
+        transparent: color === 'transparent',
+      }).toString()}
     >
       <Swatch
         color={color}
@@ -46,7 +44,7 @@ export function SwatchesColor({ color, onClick = () => {}, onSwatchHover, first,
         onHover={onSwatchHover as never}
         focusStyle={{ boxShadow: `0 0 4px ${color}` }}
       >
-        <div className={getPickerClassName({ block: 'swatches', slot: 'check' })} style={checkStyle}>
+        <div className={b('check').toString()} style={checkStyle}>
           <CheckIcon />
         </div>
       </Swatch>

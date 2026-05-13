@@ -89,6 +89,6 @@
   cursor: pointer;
 }
 
-.rc-photoshop__button.rc-photoshop--active {
+.rc-photoshop__button.rc-photoshop__button--active {
   box-shadow: 0 0 0 1px var(--rc-picker-border-strong, #878787);
 }

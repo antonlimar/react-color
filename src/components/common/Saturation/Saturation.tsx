@@ -4,7 +4,9 @@ import { calculateChange as calculateSaturationChange } from '@/helpers/saturati
 import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { InternalColorChangeEvent, SaturationProps } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('saturation');
 
 type SaturationChangeHandler = NonNullable<SaturationProps['onChange']>;
 type SaturationChangeData = ReturnType<typeof calculateSaturationChange>;
@@ -105,35 +107,17 @@ export function Saturation(props: SaturationProps) {
 
   return (
     <div
-      className={getPickerClassName({ block: 'saturation' })}
+      className={b().toString()}
       style={rootStyle}
       ref={containerRef}
       onMouseDown={handleMouseDown}
       onTouchMove={handleChange}
       onTouchStart={handleChange}
     >
-      <div
-        className={getPickerClassName({
-          block: 'saturation',
-          slot: 'white',
-          className: 'saturation-white',
-        })}
-        style={whiteStyle}
-      >
-        <div
-          className={getPickerClassName({
-            block: 'saturation',
-            slot: 'black',
-            className: 'saturation-black',
-          })}
-          style={blackStyle}
-        />
-        <div className={getPickerClassName({ block: 'saturation', slot: 'pointer' })} style={controlPointerStyle}>
-          {Pointer ? (
-            <Pointer {...props} />
-          ) : (
-            <div className={getPickerClassName({ block: 'saturation', slot: 'circle' })} style={circleStyle} />
-          )}
+      <div className={b('white').toString()} style={whiteStyle}>
+        <div className={b('black').toString()} style={blackStyle} />
+        <div className={b('pointer').toString()} style={controlPointerStyle}>
+          {Pointer ? <Pointer {...props} /> : <div className={b('circle').toString()} style={circleStyle} />}
         </div>
       </div>
     </div>

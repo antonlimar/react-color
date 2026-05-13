@@ -1,7 +1,9 @@
 import { isValidHex } from '@/helpers/color';
 import { EditableInput } from '@/components/common';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '@/types';
+
+const b = bem('sketch');
 
 type SketchFieldsProps = {
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
@@ -56,7 +58,7 @@ export function SketchFields({ onChange, rgb, hsl, hex, disableAlpha }: SketchFi
   };
 
   const renderInput = (label: string, value: string | number, modifier: string, dragMax?: number) => (
-    <div className={getPickerClassName({ block: 'sketch', slot: 'field', modifiers: [modifier] })}>
+    <div className={b('field', { [modifier]: true }).toString()}>
       <EditableInput
         label={label}
         value={value}
@@ -68,14 +70,7 @@ export function SketchFields({ onChange, rgb, hsl, hex, disableAlpha }: SketchFi
   );
 
   return (
-    <div
-      className={getPickerClassName({
-        block: 'sketch',
-        slot: 'fields',
-        modifiers: [disableAlpha && 'disabled-alpha'],
-        className: 'flexbox-fix',
-      })}
-    >
+    <div className={b('fields', { 'disabled-alpha': disableAlpha }).toString()}>
       {renderInput('hex', hex.replace('#', ''), 'double')}
       {renderInput('r', rgb.r, 'single', 255)}
       {renderInput('g', rgb.g, 'single', 255)}

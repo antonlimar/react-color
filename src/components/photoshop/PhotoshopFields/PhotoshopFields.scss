@@ -13,7 +13,7 @@
   position: relative;
 }
 
-.rc-photoshop__field.rc-photoshop--rgb .rc-editable-input__input {
+.rc-photoshop__field.rc-photoshop__field--rgb .rc-editable-input__input {
   width: 40%;
   height: 18px;
   margin: 0 10px 5px 40%;
@@ -27,7 +27,7 @@
   color: var(--rc-picker-text, #000);
 }
 
-.rc-photoshop__field.rc-photoshop--rgb .rc-editable-input__label {
+.rc-photoshop__field.rc-photoshop__field--rgb .rc-editable-input__label {
   position: absolute;
   top: 0;
   left: 0;
@@ -38,7 +38,7 @@
   font-size: 13px;
 }
 
-.rc-photoshop__field.rc-photoshop--hex .rc-editable-input__input {
+.rc-photoshop__field.rc-photoshop__field--hex .rc-editable-input__input {
   width: 80%;
   height: 18px;
   margin: 0 0 6px 20%;
@@ -52,7 +52,7 @@
   color: var(--rc-picker-text, #000);
 }
 
-.rc-photoshop__field.rc-photoshop--hex .rc-editable-input__label {
+.rc-photoshop__field.rc-photoshop__field--hex .rc-editable-input__label {
   position: absolute;
   top: 0;
   left: 0;

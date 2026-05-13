@@ -1,7 +1,8 @@
 import { isValidHex } from '@/helpers/color';
 import { ColorWrap, EditableInput, Raised } from '@/components/common';
-import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+
 import type {
   ClassName,
   ColorChangeValue,
@@ -12,6 +13,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+
+const b = bem('material');
 
 const MATERIAL_STYLE_SLOTS = [
   'material',
@@ -87,12 +90,10 @@ function MaterialBase({
     <Raised styles={passedStyles} theme={theme}>
       <div
         style={rootStyle}
-        {...getPickerRootProps({
-          block: 'material',
-          theme,
-          className: `material-picker ${className}`,
-          classNames,
-        })}
+        className={b({ dark: theme === 'dark', light: theme === 'light' })
+          .mix('material-picker', className, classNames?.root)
+          .toString()}
+        {...getThemeDataAttributes(theme)}
       >
         <EditableInput
           style={{ wrap: hexWrapStyle, input: hexInputStyle, label: hexLabelStyle }}
@@ -100,11 +101,8 @@ function MaterialBase({
           value={hex}
           onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
         />
-        <div
-          className={getPickerClassName({ block: 'material', slot: 'split', className: 'flexbox-fix' })}
-          style={splitStyle}
-        >
-          <div className={getPickerClassName({ block: 'material', slot: 'third' })} style={thirdStyle}>
+        <div className={b('split').toString()} style={splitStyle}>
+          <div className={b('third').toString()} style={thirdStyle}>
             <EditableInput
               style={{ wrap: rgbWrapStyle, input: rgbInputStyle, label: rgbLabelStyle }}
               label="r"
@@ -112,7 +110,7 @@ function MaterialBase({
               onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
             />
           </div>
-          <div className={getPickerClassName({ block: 'material', slot: 'third' })} style={thirdStyle}>
+          <div className={b('third').toString()} style={thirdStyle}>
             <EditableInput
               style={{ wrap: rgbWrapStyle, input: rgbInputStyle, label: rgbLabelStyle }}
               label="g"
@@ -120,7 +118,7 @@ function MaterialBase({
               onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
             />
           </div>
-          <div className={getPickerClassName({ block: 'material', slot: 'third' })} style={thirdStyle}>
+          <div className={b('third').toString()} style={thirdStyle}>
             <EditableInput
               style={{ wrap: rgbWrapStyle, input: rgbInputStyle, label: rgbLabelStyle }}
               label="b"

@@ -1,6 +1,8 @@
 import { EditableInput } from '@/components/common';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, RGBAColor } from '@/types';
+
+const b = bem('compact');
 
 type CompactFieldsProps = {
   hex: string;
@@ -32,30 +34,30 @@ export function CompactFields({ hex, rgb, onChange }: CompactFieldsProps) {
   };
 
   return (
-    <div className={getPickerClassName({ block: 'compact', slot: 'fields', className: 'flexbox-fix' })}>
-      <div className={getPickerClassName({ block: 'compact', slot: 'active' })} style={{ background: hex }} />
-      <div className={getPickerClassName({ block: 'compact', slot: 'field', modifiers: ['hex'] })}>
+    <div className={b('fields').toString()}>
+      <div className={b('active').toString()} style={{ background: hex }} />
+      <div className={b('field', { hex: true }).toString()}>
         <EditableInput
           label="hex"
           value={hex}
           onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
         />
       </div>
-      <div className={getPickerClassName({ block: 'compact', slot: 'field', modifiers: ['rgb'] })}>
+      <div className={b('field', { rgb: true }).toString()}>
         <EditableInput
           label="r"
           value={rgb.r}
           onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
         />
       </div>
-      <div className={getPickerClassName({ block: 'compact', slot: 'field', modifiers: ['rgb'] })}>
+      <div className={b('field', { rgb: true }).toString()}>
         <EditableInput
           label="g"
           value={rgb.g}
           onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
         />
       </div>
-      <div className={getPickerClassName({ block: 'compact', slot: 'field', modifiers: ['rgb'] })}>
+      <div className={b('field', { rgb: true }).toString()}>
         <EditableInput
           label="b"
           value={rgb.b}

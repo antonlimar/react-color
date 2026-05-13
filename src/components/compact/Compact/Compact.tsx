@@ -1,9 +1,10 @@
 import { isValidHex } from '@/helpers/color';
 import { ColorWrap, Raised } from '@/components/common';
-import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import { CompactColor } from '@/components/compact/CompactColor';
 import { CompactFields } from '@/components/compact/CompactFields';
+
 import type {
   ClassName,
   ColorChangeValue,
@@ -13,6 +14,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+
+const b = bem('compact');
 
 const COMPACT_STYLE_SLOTS = ['Compact', 'compact', 'clear'] as const;
 
@@ -102,14 +105,12 @@ function CompactBase({
     <Raised style={raisedStyle} styles={passedStyles} theme={theme}>
       <div
         style={rootStyle}
-        {...getPickerRootProps({
-          block: 'compact',
-          theme,
-          className: `compact-picker ${className}`,
-          classNames,
-        })}
+        className={b({ dark: theme === 'dark', light: theme === 'light' })
+          .mix('compact-picker', className, classNames?.root)
+          .toString()}
+        {...getThemeDataAttributes(theme)}
       >
-        <div className={getPickerClassName({ block: 'compact', slot: 'swatches' })}>
+        <div className={b('swatches').toString()}>
           {colors.map((colorValue: string) => (
             <CompactColor
               key={colorValue}
@@ -119,7 +120,7 @@ function CompactBase({
               onSwatchHover={onSwatchHover}
             />
           ))}
-          <div className={getPickerClassName({ block: 'compact', slot: 'clear' })} style={clearStyle} />
+          <div className={b('clear').toString()} style={clearStyle} />
         </div>
         <CompactFields hex={hex} rgb={rgb} onChange={(data, event) => handleCompactChange(onChange, data, event)} />
       </div>

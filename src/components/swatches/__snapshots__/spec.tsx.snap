@@ -27,7 +27,7 @@ exports[`Swatches renders correctly 1`] = `
               class="rc-swatches__group"
             >
               <div
-                class="rc-swatches__swatch rc-swatches--first rc-swatches--last"
+                class="rc-swatches__swatch rc-swatches__swatch--first rc-swatches__swatch--last"
               >
                 <span>
                   <div
@@ -57,7 +57,7 @@ exports[`Swatches renders correctly 1`] = `
               class="rc-swatches__group"
             >
               <div
-                class="rc-swatches__swatch rc-swatches--first rc-swatches--last"
+                class="rc-swatches__swatch rc-swatches__swatch--first rc-swatches__swatch--last"
               >
                 <span>
                   <div
@@ -128,7 +128,7 @@ exports[`SwatchesColor renders correctly 1`] = `
 exports[`SwatchesColor renders with props 1`] = `
 <DocumentFragment>
   <div
-    class="rc-swatches__swatch rc-swatches--first rc-swatches--last rc-swatches--active"
+    class="rc-swatches__swatch rc-swatches__swatch--first rc-swatches__swatch--last rc-swatches__swatch--active"
   >
     <span>
       <div
@@ -162,7 +162,7 @@ exports[`SwatchesGroup renders correctly 1`] = `
     class="rc-swatches__group"
   >
     <div
-      class="rc-swatches__swatch rc-swatches--first rc-swatches--last"
+      class="rc-swatches__swatch rc-swatches__swatch--first rc-swatches__swatch--last"
     >
       <span>
         <div

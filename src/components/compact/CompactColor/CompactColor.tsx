@@ -2,7 +2,9 @@ import { getContrastingColor } from '@/helpers/color';
 import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('compact');
 
 type CompactColorProps = {
   color: string;
@@ -22,11 +24,11 @@ export function CompactColor({ color, onClick = () => {}, onSwatchHover, active 
 
   return (
     <div
-      className={getPickerClassName({
-        block: 'compact',
-        slot: 'swatch',
-        modifiers: [active && 'active', color === '#FFFFFF' && 'white', color === 'transparent' && 'transparent'],
-      })}
+      className={b('swatch', {
+        active,
+        white: color === '#FFFFFF',
+        transparent: color === 'transparent',
+      }).toString()}
     >
       <Swatch
         style={swatchStyle}
@@ -35,7 +37,7 @@ export function CompactColor({ color, onClick = () => {}, onSwatchHover, active 
         onHover={onSwatchHover as never}
         focusStyle={{ boxShadow: `0 0 4px ${color}` }}
       >
-        <div className={getPickerClassName({ block: 'compact', slot: 'dot' })} style={dotStyle} />
+        <div className={b('dot').toString()} style={dotStyle} />
       </Swatch>
     </div>
   );

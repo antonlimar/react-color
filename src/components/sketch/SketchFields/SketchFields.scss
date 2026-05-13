@@ -3,12 +3,12 @@
   padding-top: 4px;
 }
 
-.rc-sketch__field.rc-sketch--double {
+.rc-sketch__field.rc-sketch__field--double {
   flex: 2;
 }
 
-.rc-sketch__field.rc-sketch--single,
-.rc-sketch__field.rc-sketch--alpha {
+.rc-sketch__field.rc-sketch__field--single,
+.rc-sketch__field.rc-sketch__field--alpha {
   flex: 1;
   padding-left: 6px;
 }
@@ -33,6 +33,6 @@
   color: var(--rc-picker-text, #222);
 }
 
-.rc-sketch__fields.rc-sketch--disabled-alpha .rc-sketch__field.rc-sketch--alpha {
+.rc-sketch__fields.rc-sketch__fields--disabled-alpha .rc-sketch__field.rc-sketch__field--alpha {
   display: none;
 }

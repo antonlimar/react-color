@@ -1,10 +1,12 @@
 import { ColorWrap, Saturation, Hue } from '@/components/common';
-import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import { GooglePointerCircle } from '@/components/google/GooglePointerCircle';
 import { GooglePointer } from '@/components/google/GooglePointer';
 import { GoogleFields } from '@/components/google/GoogleFields';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+
+const b = bem('google');
 
 const GOOGLE_STYLE_SLOTS = ['picker', 'head', 'saturation', 'swatch', 'body', 'controls', 'hue'] as const;
 
@@ -47,26 +49,21 @@ function GoogleBase({
   return (
     <div
       style={rootStyle}
-      {...getPickerRootProps({
-        block: 'google',
-        theme,
-        className: `google-picker ${className}`,
-        classNames,
-      })}
+      className={b({ dark: theme === 'dark', light: theme === 'light' })
+        .mix('google-picker', className, classNames?.root)
+        .toString()}
+      {...getThemeDataAttributes(theme)}
     >
-      <div className={getPickerClassName({ block: 'google', slot: 'head' })} style={headStyle}>
+      <div className={b('head').toString()} style={headStyle}>
         {header}
       </div>
-      <div className={getPickerClassName({ block: 'google', slot: 'swatch' })} style={swatchStyle} />
-      <div className={getPickerClassName({ block: 'google', slot: 'saturation' })} style={saturationStyle}>
+      <div className={b('swatch').toString()} style={swatchStyle} />
+      <div className={b('saturation').toString()} style={saturationStyle}>
         <Saturation hsl={hsl} hsv={hsv} pointer={GooglePointerCircle} onChange={onChange} />
       </div>
-      <div className={getPickerClassName({ block: 'google', slot: 'body' })} style={bodyStyle}>
-        <div
-          className={getPickerClassName({ block: 'google', slot: 'controls', className: 'flexbox-fix' })}
-          style={controlsStyle}
-        >
-          <div className={getPickerClassName({ block: 'google', slot: 'hue' })} style={hueStyle}>
+      <div className={b('body').toString()} style={bodyStyle}>
+        <div className={b('controls').toString()} style={controlsStyle}>
+          <div className={b('hue').toString()} style={hueStyle}>
             <Hue hsl={hsl} radius="4px" pointer={GooglePointer} onChange={onChange} />
           </div>
         </div>

@@ -1,13 +1,15 @@
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('photoshop');
 
 export function PhotoshopPointer() {
   return (
-    <div className={getPickerClassName({ block: 'photoshop', slot: 'pointer' })}>
-      <div className={getPickerClassName({ block: 'photoshop', slot: 'pointer-side', modifiers: ['left'] })}>
-        <div className={getPickerClassName({ block: 'photoshop', slot: 'pointer-fill' })} />
+    <div className={b('pointer').toString()}>
+      <div className={b('pointer-side', { left: true }).toString()}>
+        <div className={b('pointer-fill').toString()} />
       </div>
-      <div className={getPickerClassName({ block: 'photoshop', slot: 'pointer-side', modifiers: ['right'] })}>
-        <div className={getPickerClassName({ block: 'photoshop', slot: 'pointer-fill' })} />
+      <div className={b('pointer-side', { right: true }).toString()}>
+        <div className={b('pointer-fill').toString()} />
       </div>
     </div>
   );

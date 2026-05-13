@@ -1,7 +1,9 @@
 import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('github');
 
 type GithubSwatchProps = {
   color: string;
@@ -18,7 +20,7 @@ export function GithubSwatch({ color, onClick, onSwatchHover }: GithubSwatchProp
   };
 
   return (
-    <div className={getPickerClassName({ block: 'github', slot: 'swatch' })}>
+    <div className={b('swatch').toString()}>
       <Swatch color={color} onClick={onClick} onHover={onSwatchHover as never} focusStyle={hoverSwatch} />
     </div>
   );

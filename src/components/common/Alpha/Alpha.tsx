@@ -4,8 +4,10 @@ import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { AlphaProps, InternalColorChangeEvent } from '@/types';
 import { Checkboard } from '@/components/common/Checkboard';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
 import { getSlotStyleOverride } from '@/components/common/styleOverrides';
+
+const b = bem('alphaControl');
 
 const ALPHA_STYLE_SLOTS = ['alpha', 'checkboard', 'gradient', 'container', 'pointer', 'slider'] as const;
 
@@ -89,31 +91,21 @@ export function Alpha(props: AlphaProps) {
   const Pointer = pointer;
 
   return (
-    <div
-      className={getPickerClassName({
-        block: 'alphaControl',
-        modifiers: [direction === 'vertical' && 'vertical'],
-      })}
-      style={rootStyle}
-    >
-      <div className={getPickerClassName({ block: 'alphaControl', slot: 'checkboard' })} style={checkboardStyle}>
+    <div className={b({ vertical: direction === 'vertical' }).toString()} style={rootStyle}>
+      <div className={b('checkboard').toString()} style={checkboardStyle}>
         <Checkboard renderers={renderers} />
       </div>
-      <div className={getPickerClassName({ block: 'alphaControl', slot: 'gradient' })} style={gradientStyle} />
+      <div className={b('gradient').toString()} style={gradientStyle} />
       <div
-        className={getPickerClassName({ block: 'alphaControl', slot: 'container' })}
+        className={b('container').toString()}
         style={containerStyle}
         ref={containerRef}
         onMouseDown={handleMouseDown}
         onTouchMove={handleChange}
         onTouchStart={handleChange}
       >
-        <div className={getPickerClassName({ block: 'alphaControl', slot: 'pointer' })} style={pointerStyle}>
-          {Pointer ? (
-            <Pointer {...props} />
-          ) : (
-            <div className={getPickerClassName({ block: 'alphaControl', slot: 'slider' })} style={sliderStyle} />
-          )}
+        <div className={b('pointer').toString()} style={pointerStyle}>
+          {Pointer ? <Pointer {...props} /> : <div className={b('slider').toString()} style={sliderStyle} />}
         </div>
       </div>
     </div>

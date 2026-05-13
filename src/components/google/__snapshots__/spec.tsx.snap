@@ -79,7 +79,7 @@ exports[`Google renders correctly 1`] = `
           class="rc-google__fields-body"
         >
           <div
-            class="rc-google__field-row rc-google--primary"
+            class="rc-google__field-row rc-google__field-row--primary"
           >
             <div
               class="rc-editable-input"
@@ -99,7 +99,7 @@ exports[`Google renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="rc-google__field-row rc-google--secondary"
+            class="rc-google__field-row rc-google__field-row--secondary"
           >
             <div
               class="rc-google__field"
@@ -178,7 +178,7 @@ exports[`GoogleFields renders correctly 1`] = `
       class="rc-google__fields-body"
     >
       <div
-        class="rc-google__field-row rc-google--primary"
+        class="rc-google__field-row rc-google__field-row--primary"
       >
         <div
           class="rc-editable-input"
@@ -198,7 +198,7 @@ exports[`GoogleFields renders correctly 1`] = `
         </div>
       </div>
       <div
-        class="rc-google__field-row rc-google--secondary"
+        class="rc-google__field-row rc-google__field-row--secondary"
       >
         <div
           class="rc-google__field"

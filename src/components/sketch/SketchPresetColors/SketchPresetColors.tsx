@@ -1,7 +1,9 @@
 import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { ColorInputChangeHandler, SwatchHoverHandler } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('sketch');
 
 type PresetColor =
   | string
@@ -28,19 +30,12 @@ export function SketchPresetColors({ colors, onClick = () => {}, onSwatchHover }
   };
 
   return (
-    <div
-      className={getPickerClassName({
-        block: 'sketch',
-        slot: 'preset-colors',
-        modifiers: [(!colors || colors.length === 0) && 'empty'],
-        className: 'flexbox-fix',
-      })}
-    >
+    <div className={b('preset-colors', { empty: !colors || colors.length === 0 }).toString()}>
       {colors.map((colorObjOrString) => {
         const colorValue = typeof colorObjOrString === 'string' ? { color: colorObjOrString } : colorObjOrString;
         const key = `${colorValue.color}${colorValue.title || ''}`;
         return (
-          <div key={key} className={getPickerClassName({ block: 'sketch', slot: 'preset-swatch' })}>
+          <div key={key} className={b('preset-swatch').toString()}>
             <Swatch
               {...colorValue}
               style={{ borderRadius: '3px', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.15)' }}

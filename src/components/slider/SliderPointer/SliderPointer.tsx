@@ -1,5 +1,7 @@
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('slider');
 
 export function SliderPointer() {
-  return <div className={getPickerClassName({ block: 'slider', slot: 'pointer' })} />;
+  return <div className={b('pointer').toString()} />;
 }

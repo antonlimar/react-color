@@ -3,15 +3,15 @@
   cursor: pointer;
 }
 
-.rc-slider__swatch.rc-slider--first {
+.rc-slider__swatch.rc-slider__swatch--first {
   border-radius: 2px 0 0 2px;
 }
 
-.rc-slider__swatch.rc-slider--last {
+.rc-slider__swatch.rc-slider__swatch--last {
   border-radius: 0 2px 2px 0;
 }
 
-.rc-slider__swatch.rc-slider--active {
+.rc-slider__swatch.rc-slider__swatch--active {
   transform: scaleY(1.8);
   border-radius: 3.6px / 2px;
 }

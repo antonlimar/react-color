@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { ColorWrap, Saturation, Hue } from '@/components/common';
-import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import { PhotoshopFields } from '@/components/photoshop/PhotoshopFields';
 import { PhotoshopPointerCircle } from '@/components/photoshop/PhotoshopPointerCircle';
 import { PhotoshopPointer } from '@/components/photoshop/PhotoshopPointer';
 import { PhotoshopButton } from '@/components/photoshop/PhotoshopButton';
 import { PhotoshopPreviews } from '@/components/photoshop/PhotoshopPreviews';
+
 import type {
   ClassName,
   ColorPickerInjectedProps,
@@ -15,6 +16,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+
+const b = bem('photoshop');
 
 type PhotoshopProps = ColorPickerInjectedProps & {
   header?: string;
@@ -62,22 +65,17 @@ function PhotoshopBase(props: PhotoshopProps) {
   return (
     <div
       style={rootStyle}
-      {...getPickerRootProps({
-        block: 'photoshop',
-        theme,
-        className: `photoshop-picker ${className}`,
-        classNames,
-      })}
+      className={b({ dark: theme === 'dark', light: theme === 'light' })
+        .mix('photoshop-picker', className, classNames?.root)
+        .toString()}
+      {...getThemeDataAttributes(theme)}
     >
-      <div className={getPickerClassName({ block: 'photoshop', slot: 'head' })} style={headStyle}>
+      <div className={b('head').toString()} style={headStyle}>
         {resolvedProps.header}
       </div>
 
-      <div
-        className={getPickerClassName({ block: 'photoshop', slot: 'body', className: 'flexbox-fix' })}
-        style={bodyStyle}
-      >
-        <div className={getPickerClassName({ block: 'photoshop', slot: 'saturation' })} style={saturationStyle}>
+      <div className={b('body').toString()} style={bodyStyle}>
+        <div className={b('saturation').toString()} style={saturationStyle}>
           <Saturation
             hsl={resolvedProps.hsl}
             hsv={resolvedProps.hsv}
@@ -85,7 +83,7 @@ function PhotoshopBase(props: PhotoshopProps) {
             onChange={resolvedProps.onChange}
           />
         </div>
-        <div className={getPickerClassName({ block: 'photoshop', slot: 'hue' })} style={hueStyle}>
+        <div className={b('hue').toString()} style={hueStyle}>
           <Hue
             direction="vertical"
             hsl={resolvedProps.hsl}
@@ -93,15 +91,12 @@ function PhotoshopBase(props: PhotoshopProps) {
             onChange={resolvedProps.onChange}
           />
         </div>
-        <div className={getPickerClassName({ block: 'photoshop', slot: 'controls' })} style={controlsStyle}>
-          <div
-            className={getPickerClassName({ block: 'photoshop', slot: 'top', className: 'flexbox-fix' })}
-            style={topStyle}
-          >
-            <div className={getPickerClassName({ block: 'photoshop', slot: 'previews' })} style={previewsStyle}>
+        <div className={b('controls').toString()} style={controlsStyle}>
+          <div className={b('top').toString()} style={topStyle}>
+            <div className={b('previews').toString()} style={previewsStyle}>
               <PhotoshopPreviews rgb={resolvedProps.rgb} currentColor={currentColor} />
             </div>
-            <div className={getPickerClassName({ block: 'photoshop', slot: 'actions' })} style={actionsStyle}>
+            <div className={b('actions').toString()} style={actionsStyle}>
               <PhotoshopButton label="OK" onClick={() => resolvedProps.onAccept?.(resolvedProps, undefined)} active />
               <PhotoshopButton label="Cancel" onClick={resolvedProps.onCancel} />
               <PhotoshopFields

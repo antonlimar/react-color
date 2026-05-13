@@ -1,9 +1,11 @@
 import material from 'material-colors';
 import { ColorWrap, Raised } from '@/components/common';
-import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import { SwatchesGroup } from '@/components/swatches/SwatchesGroup';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+
+const b = bem('swatches');
 
 const SWATCHES_STYLE_SLOTS = ['picker', 'overflow', 'body', 'clear'] as const;
 
@@ -120,16 +122,14 @@ function SwatchesBase({
   return (
     <div
       style={rootStyle}
-      {...getPickerRootProps({
-        block: 'swatches',
-        theme,
-        className: `swatches-picker ${className}`,
-        classNames,
-      })}
+      className={b({ dark: theme === 'dark', light: theme === 'light' })
+        .mix('swatches-picker', className, classNames?.root)
+        .toString()}
+      {...getThemeDataAttributes(theme)}
     >
       <Raised theme={theme}>
-        <div className={getPickerClassName({ block: 'swatches', slot: 'overflow' })} style={overflowStyle}>
-          <div className={getPickerClassName({ block: 'swatches', slot: 'body' })} style={bodyStyle}>
+        <div className={b('overflow').toString()} style={overflowStyle}>
+          <div className={b('body').toString()} style={bodyStyle}>
             {colors.map((group: string[]) => (
               <SwatchesGroup
                 key={group.toString()}
@@ -139,7 +139,7 @@ function SwatchesBase({
                 onSwatchHover={onSwatchHover}
               />
             ))}
-            <div className={getPickerClassName({ block: 'swatches', slot: 'clear' })} style={clearStyle} />
+            <div className={b('clear').toString()} style={clearStyle} />
           </div>
         </div>
       </Raised>

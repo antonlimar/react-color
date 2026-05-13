@@ -11,6 +11,7 @@
 - Root development dependencies for the documentation site and Storybook intentionally stay on a newer React major than the package peer baseline. This is a repository-development constraint, not a published runtime requirement for consumers.
 - The styling system now publishes aggregate and granular CSS entrypoints in `es/styles`; consumers should explicitly import either `react-color/es/styles/index.css` or only the picker/common CSS files they use.
 - `theme` and `classNames` are now the preferred public styling API, while `styles` remains available only as a deprecated compatibility layer for legacy inline overrides.
+- BEM class generation now uses `bem-cn`; element modifiers follow the standard `rc-block__element--modifier` form instead of pairing elements with block modifiers such as `rc-block__element rc-block--modifier`.
 
 ### User-visible DX changes
 

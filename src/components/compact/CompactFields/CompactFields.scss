@@ -15,11 +15,11 @@
   height: 9px;
 }
 
-.rc-compact__field.rc-compact--hex {
+.rc-compact__field.rc-compact__field--hex {
   flex: 6;
 }
 
-.rc-compact__field.rc-compact--rgb {
+.rc-compact__field.rc-compact__field--rgb {
   flex: 3;
 }
 
@@ -27,7 +27,7 @@
   position: relative;
 }
 
-.rc-compact__field.rc-compact--hex .rc-editable-input__input {
+.rc-compact__field.rc-compact__field--hex .rc-editable-input__input {
   width: 80%;
   height: 16px;
   padding: 0 0 0 20%;
@@ -38,11 +38,11 @@
   color: var(--rc-picker-text, #333);
 }
 
-.rc-compact__field.rc-compact--hex .rc-editable-input__label {
+.rc-compact__field.rc-compact__field--hex .rc-editable-input__label {
   display: none;
 }
 
-.rc-compact__field.rc-compact--rgb .rc-editable-input__input {
+.rc-compact__field.rc-compact__field--rgb .rc-editable-input__input {
   width: 70%;
   height: 16px;
   padding: 0 0 0 30%;
@@ -53,7 +53,7 @@
   color: var(--rc-picker-text, #333);
 }
 
-.rc-compact__field.rc-compact--rgb .rc-editable-input__label {
+.rc-compact__field.rc-compact__field--rgb .rc-editable-input__label {
   position: absolute;
   top: 3px;
   left: 0;

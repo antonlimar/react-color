@@ -1,7 +1,8 @@
 import { ColorWrap, Hue as HueControl } from '@/components/common';
-import { getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import { HuePointer } from '@/components/hue/HuePointer';
+
 import type {
   ClassName,
   ColorPickerInjectedProps,
@@ -10,6 +11,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+
+const b = bem('hue');
 
 const HUE_PICKER_STYLE_SLOTS = ['picker'] as const;
 
@@ -49,12 +52,10 @@ export function HuePicker({
   return (
     <div
       style={rootStyle}
-      {...getPickerRootProps({
-        block: 'hue',
-        theme,
-        className: `hue-picker ${className}`,
-        classNames,
-      })}
+      className={b({ dark: theme === 'dark', light: theme === 'light' })
+        .mix('hue-picker', className, classNames?.root)
+        .toString()}
+      {...getThemeDataAttributes(theme)}
     >
       <HueControl hsl={hsl} radius="2px" pointer={pointer} onChange={handleChange} direction={direction} />
     </div>

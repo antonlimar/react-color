@@ -1,7 +1,9 @@
 import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('circle');
 
 type CircleSwatchProps = {
   color: string;
@@ -35,14 +37,7 @@ export function CircleSwatch({
   };
 
   return (
-    <div
-      className={getPickerClassName({
-        block: 'circle',
-        slot: 'swatch',
-        modifiers: [hover && 'hover', active && 'active'],
-      })}
-      style={wrapperStyle}
-    >
+    <div className={b('swatch', { hover, active }).toString()} style={wrapperStyle}>
       <Swatch
         style={circleStyle}
         color={color}

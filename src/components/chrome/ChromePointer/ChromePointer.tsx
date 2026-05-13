@@ -1,5 +1,7 @@
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('chrome');
 
 export function ChromePointer() {
-  return <div className={getPickerClassName({ block: 'chrome', slot: 'pointer' })} />;
+  return <div className={b('pointer').toString()} />;
 }

@@ -1,6 +1,8 @@
 import type { CSSProperties, MouseEvent } from 'react';
 import type { ColorInputChangeHandler, HSLAColor } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('slider');
 
 type SliderSwatchProps = {
   hsl: HSLAColor;
@@ -28,15 +30,5 @@ export function SliderSwatch({ hsl, offset, onClick = () => {}, active, first, l
     );
   };
 
-  return (
-    <div
-      className={getPickerClassName({
-        block: 'slider',
-        slot: 'swatch',
-        modifiers: [active && 'active', first && 'first', last && 'last'],
-      })}
-      style={swatchStyle}
-      onClick={handleClick}
-    />
-  );
+  return <div className={b('swatch', { active, first, last }).toString()} style={swatchStyle} onClick={handleClick} />;
 }

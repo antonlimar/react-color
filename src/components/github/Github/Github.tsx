@@ -1,8 +1,10 @@
 import { ColorWrap } from '@/components/common';
-import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import { GithubSwatch } from '@/components/github/GithubSwatch';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+
+const b = bem('github');
 
 const GITHUB_STYLE_SLOTS = ['card', 'triangle', 'triangleShadow'] as const;
 
@@ -61,16 +63,18 @@ function GithubBase({
   return (
     <div
       style={rootStyle}
-      {...getPickerRootProps({
-        block: 'github',
-        theme,
-        modifiers: [triangle === 'hide' && 'hide-triangle', triangle],
-        className: `github-picker ${className}`,
-        classNames,
-      })}
+      className={b({
+        'hide-triangle': triangle === 'hide',
+        [triangle]: true,
+        dark: theme === 'dark',
+        light: theme === 'light',
+      })
+        .mix('github-picker', className, classNames?.root)
+        .toString()}
+      {...getThemeDataAttributes(theme)}
     >
-      <div className={getPickerClassName({ block: 'github', slot: 'triangle-shadow' })} style={triangleShadowStyle} />
-      <div className={getPickerClassName({ block: 'github', slot: 'triangle' })} style={triangleStyle} />
+      <div className={b('triangle-shadow').toString()} style={triangleShadowStyle} />
+      <div className={b('triangle').toString()} style={triangleStyle} />
       {colors.map((colorValue: string) => (
         <GithubSwatch
           color={colorValue}

@@ -1,6 +1,8 @@
 import type { CSSProperties } from 'react';
 import type { RGBAColor } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('photoshop');
 
 type PhotoshopPreviewsProps = {
   rgb: RGBAColor;
@@ -16,19 +18,13 @@ export function PhotoshopPreviews({ rgb, currentColor }: PhotoshopPreviewsProps)
   };
 
   return (
-    <div className={getPickerClassName({ block: 'photoshop', slot: 'previews' })}>
-      <div className={getPickerClassName({ block: 'photoshop', slot: 'preview-label' })}>new</div>
-      <div className={getPickerClassName({ block: 'photoshop', slot: 'preview-swatches' })}>
-        <div
-          className={getPickerClassName({ block: 'photoshop', slot: 'preview-swatch', modifiers: ['new'] })}
-          style={nextColorStyle}
-        />
-        <div
-          className={getPickerClassName({ block: 'photoshop', slot: 'preview-swatch', modifiers: ['current'] })}
-          style={currentColorStyle}
-        />
+    <div className={b('previews').toString()}>
+      <div className={b('preview-label').toString()}>new</div>
+      <div className={b('preview-swatches').toString()}>
+        <div className={b('preview-swatch', { new: true }).toString()} style={nextColorStyle} />
+        <div className={b('preview-swatch', { current: true }).toString()} style={currentColorStyle} />
       </div>
-      <div className={getPickerClassName({ block: 'photoshop', slot: 'preview-label' })}>current</div>
+      <div className={b('preview-label').toString()}>current</div>
     </div>
   );
 }

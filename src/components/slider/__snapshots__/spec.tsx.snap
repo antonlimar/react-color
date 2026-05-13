@@ -37,7 +37,7 @@ exports[`Slider renders correctly 1`] = `
           class="rc-slider__swatch-wrap"
         >
           <div
-            class="rc-slider__swatch rc-slider--first"
+            class="rc-slider__swatch rc-slider__swatch--first"
             style="background: rgb(187, 179, 230);"
           />
         </div>
@@ -69,7 +69,7 @@ exports[`Slider renders correctly 1`] = `
           class="rc-slider__swatch-wrap"
         >
           <div
-            class="rc-slider__swatch rc-slider--active rc-slider--last"
+            class="rc-slider__swatch rc-slider__swatch--active rc-slider__swatch--last"
             style="background: rgb(34, 26, 77);"
           />
         </div>
@@ -108,7 +108,7 @@ exports[`SliderSwatches renders correctly 1`] = `
       class="rc-slider__swatch-wrap"
     >
       <div
-        class="rc-slider__swatch rc-slider--first"
+        class="rc-slider__swatch rc-slider__swatch--first"
         style="background: rgb(230, 179, 179);"
       />
     </div>
@@ -140,7 +140,7 @@ exports[`SliderSwatches renders correctly 1`] = `
       class="rc-slider__swatch-wrap"
     >
       <div
-        class="rc-slider__swatch rc-slider--last"
+        class="rc-slider__swatch rc-slider__swatch--last"
         style="background: rgb(77, 26, 26);"
       />
     </div>

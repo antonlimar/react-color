@@ -1,6 +1,7 @@
 import { ColorWrap, Alpha as AlphaControl } from '@/components/common';
-import { getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { AlphaPointer } from '@/components/alpha/AlphaPointer';
+
 import type {
   AlphaProps,
   CheckboardRenderers,
@@ -10,6 +11,8 @@ import type {
   PickerStyle,
   PickerTheme,
 } from '@/types';
+
+const b = bem('alpha');
 
 type AlphaPickerProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -40,12 +43,10 @@ function AlphaPicker({
   return (
     <div
       style={{ width, height }}
-      {...getPickerRootProps({
-        block: 'alpha',
-        theme,
-        className: `alpha-picker ${className}`,
-        classNames,
-      })}
+      className={b({ dark: theme === 'dark', light: theme === 'light' })
+        .mix('alpha-picker', className, classNames?.root)
+        .toString()}
+      {...getThemeDataAttributes(theme)}
     >
       <AlphaControl
         rgb={rgb}

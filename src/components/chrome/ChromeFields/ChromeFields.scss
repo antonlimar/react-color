@@ -14,7 +14,7 @@
   padding-left: 6px;
 }
 
-.rc-chrome__field.rc-chrome--alpha {
+.rc-chrome__field.rc-chrome__field--alpha {
   width: 100%;
 }
 
@@ -61,6 +61,6 @@
   text-align: center;
 }
 
-.rc-chrome__fields.rc-chrome--disabled-alpha .rc-chrome__field.rc-chrome--alpha {
+.rc-chrome__fields.rc-chrome__fields--disabled-alpha .rc-chrome__field.rc-chrome__field--alpha {
   display: none;
 }

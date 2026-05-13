@@ -1,8 +1,9 @@
 import { getContrastingColor, isValidHex } from '@/helpers/color';
 import { ColorWrap, EditableInput, Checkboard } from '@/components/common';
-import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import { BlockSwatches } from '@/components/block/BlockSwatches';
+
 import type {
   ClassName,
   ColorInputChangeHandler,
@@ -12,6 +13,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+
+const b = bem('block');
 
 const BLOCK_STYLE_SLOTS = ['card', 'triangle', 'head', 'label', 'body', 'input'] as const;
 
@@ -72,31 +75,25 @@ function BlockBase({
   return (
     <div
       style={rootStyle}
-      {...getPickerRootProps({
-        block: 'block',
-        theme,
-        modifiers: [triangle === 'hide' && 'hide-triangle'],
-        className: `block-picker ${className}`,
-        classNames,
-      })}
+      className={b({
+        'hide-triangle': triangle === 'hide',
+        dark: theme === 'dark',
+        light: theme === 'light',
+      })
+        .mix('block-picker', className, classNames?.root)
+        .toString()}
+      {...getThemeDataAttributes(theme)}
     >
-      <div className={getPickerClassName({ block: 'block', slot: 'triangle' })} style={triangleStyle} />
+      <div className={b('triangle').toString()} style={triangleStyle} />
 
-      <div
-        className={getPickerClassName({
-          block: 'block',
-          slot: 'head',
-          modifiers: [transparent && 'transparent'],
-        })}
-        style={headStyle}
-      >
+      <div className={b('head', { transparent }).toString()} style={headStyle}>
         {transparent ? <Checkboard borderRadius="6px 6px 0 0" /> : null}
-        <div className={getPickerClassName({ block: 'block', slot: 'label' })} style={labelStyle}>
+        <div className={b('label').toString()} style={labelStyle}>
           {hex}
         </div>
       </div>
 
-      <div className={getPickerClassName({ block: 'block', slot: 'body' })} style={bodyStyle}>
+      <div className={b('body').toString()} style={bodyStyle}>
         <BlockSwatches
           colors={colors!}
           onClick={(hexCode, event) => handleHexChange(onChange, hexCode, event)}

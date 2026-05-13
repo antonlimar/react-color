@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('photoshop');
 
 type PhotoshopButtonProps = {
   onClick?: () => void;
@@ -10,10 +12,7 @@ type PhotoshopButtonProps = {
 
 export function PhotoshopButton({ onClick, label, children, active }: PhotoshopButtonProps) {
   return (
-    <div
-      className={getPickerClassName({ block: 'photoshop', slot: 'button', modifiers: [active && 'active'] })}
-      onClick={onClick}
-    >
+    <div className={b('button', { active }).toString()} onClick={onClick}>
       {label || children}
     </div>
   );

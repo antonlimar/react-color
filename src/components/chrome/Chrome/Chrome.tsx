@@ -1,9 +1,10 @@
 import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '@/components/common';
-import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import { ChromeFields } from '@/components/chrome/ChromeFields';
 import { ChromePointer } from '@/components/chrome/ChromePointer';
 import { ChromePointerCircle } from '@/components/chrome/ChromePointerCircle';
+
 import type {
   CheckboardRenderers,
   ClassName,
@@ -12,6 +13,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+
+const b = bem('chrome');
 
 const CHROME_STYLE_SLOTS = [
   'picker',
@@ -72,33 +75,27 @@ function ChromeBase({
   return (
     <div
       style={rootStyle}
-      {...getPickerRootProps({
-        block: 'chrome',
-        theme,
-        modifiers: [disableAlpha && 'disabled-alpha'],
-        className: `chrome-picker ${className}`,
-        classNames,
-      })}
+      className={b({ 'disabled-alpha': disableAlpha, dark: theme === 'dark', light: theme === 'light' })
+        .mix('chrome-picker', className, classNames?.root)
+        .toString()}
+      {...getThemeDataAttributes(theme)}
     >
-      <div className={getPickerClassName({ block: 'chrome', slot: 'saturation' })} style={saturationStyle}>
+      <div className={b('saturation').toString()} style={saturationStyle}>
         <Saturation radius="2px 2px 0 0" hsl={hsl} hsv={hsv} pointer={ChromePointerCircle} onChange={onChange} />
       </div>
-      <div className={getPickerClassName({ block: 'chrome', slot: 'body' })} style={bodyStyle}>
-        <div
-          className={getPickerClassName({ block: 'chrome', slot: 'controls', className: 'flexbox-fix' })}
-          style={controlsStyle}
-        >
-          <div className={getPickerClassName({ block: 'chrome', slot: 'color' })} style={colorStyle}>
-            <div className={getPickerClassName({ block: 'chrome', slot: 'swatch' })} style={swatchStyle}>
-              <div className={getPickerClassName({ block: 'chrome', slot: 'active' })} style={activeStyle} />
+      <div className={b('body').toString()} style={bodyStyle}>
+        <div className={b('controls').toString()} style={controlsStyle}>
+          <div className={b('color').toString()} style={colorStyle}>
+            <div className={b('swatch').toString()} style={swatchStyle}>
+              <div className={b('active').toString()} style={activeStyle} />
               <Checkboard renderers={renderers} />
             </div>
           </div>
-          <div className={getPickerClassName({ block: 'chrome', slot: 'toggles' })} style={togglesStyle}>
-            <div className={getPickerClassName({ block: 'chrome', slot: 'hue' })} style={hueStyle}>
+          <div className={b('toggles').toString()} style={togglesStyle}>
+            <div className={b('hue').toString()} style={hueStyle}>
               <Hue radius="2px" hsl={hsl} pointer={ChromePointer} onChange={onChange} />
             </div>
-            <div className={getPickerClassName({ block: 'chrome', slot: 'alpha' })} style={alphaStyle}>
+            <div className={b('alpha').toString()} style={alphaStyle}>
               <Alpha
                 radius="2px"
                 rgb={rgb}

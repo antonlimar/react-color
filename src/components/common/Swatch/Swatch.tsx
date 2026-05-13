@@ -3,7 +3,9 @@ import type { CSSProperties } from 'react';
 import { handleFocus } from '@/helpers/interaction';
 import type { Radius, SwatchProps } from '@/types';
 import { Checkboard } from '@/components/common/Checkboard';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('swatch');
 
 const ENTER = 13;
 
@@ -32,10 +34,7 @@ function SwatchBase({
 
   return (
     <div
-      className={getPickerClassName({
-        block: 'swatch',
-        modifiers: [transparent && 'transparent', focus && 'active'],
-      })}
+      className={b({ transparent, active: focus }).toString()}
       style={swatchStyle}
       onClick={handleClick}
       title={title}

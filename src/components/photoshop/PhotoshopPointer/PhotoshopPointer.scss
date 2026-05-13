@@ -10,11 +10,11 @@
   border-color: transparent transparent transparent var(--rc-picker-text-subtle, #555);
 }
 
-.rc-photoshop__pointer-side.rc-photoshop--left {
+.rc-photoshop__pointer-side.rc-photoshop__pointer-side--left {
   transform: translate(-13px, -4px);
 }
 
-.rc-photoshop__pointer-side.rc-photoshop--right {
+.rc-photoshop__pointer-side.rc-photoshop__pointer-side--right {
   transform: translate(20px, -14px) rotate(180deg);
 }
 

@@ -1,6 +1,8 @@
 import { SliderSwatch } from '@/components/slider/SliderSwatch';
 import type { ColorInputChangeHandler, HSLAColor } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('slider');
 
 type SliderSwatchesProps = {
   onClick: ColorInputChangeHandler;
@@ -12,9 +14,9 @@ export function SliderSwatches({ onClick, hsl }: SliderSwatchesProps) {
   const offsets = [0.8, 0.65, 0.5, 0.35, 0.2];
 
   return (
-    <div className={getPickerClassName({ block: 'slider', slot: 'swatches' })}>
+    <div className={b('swatches').toString()}>
       {offsets.map((offset, index) => (
-        <div key={offset} className={getPickerClassName({ block: 'slider', slot: 'swatch-wrap' })}>
+        <div key={offset} className={b('swatch-wrap').toString()}>
           <SliderSwatch
             hsl={hsl}
             offset={offset}
@@ -25,7 +27,7 @@ export function SliderSwatches({ onClick, hsl }: SliderSwatchesProps) {
           />
         </div>
       ))}
-      <div className={getPickerClassName({ block: 'slider', slot: 'clear' })} />
+      <div className={b('clear').toString()} />
     </div>
   );
 }

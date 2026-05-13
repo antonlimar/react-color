@@ -7,7 +7,9 @@ import type {
   EditableInputProps,
   EditableInputValue,
 } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('editableInput');
 
 const DEFAULT_ARROW_OFFSET = 1;
 const UP_KEY_CODE = 38;
@@ -158,16 +160,10 @@ export function EditableInput(props: EditableInputProps) {
   };
 
   return (
-    <div
-      className={getPickerClassName({
-        block: 'editableInput',
-        modifiers: [dragLabel && 'drag-label'],
-      })}
-      style={wrapStyle}
-    >
+    <div className={b({ 'drag-label': dragLabel }).toString()} style={wrapStyle}>
       <input
         id={inputId}
-        className={getPickerClassName({ block: 'editableInput', slot: 'input' })}
+        className={b('input').toString()}
         style={inputStyle}
         ref={inputRef}
         value={state.value}
@@ -180,11 +176,7 @@ export function EditableInput(props: EditableInputProps) {
       {label && !hideLabel ? (
         <label
           htmlFor={inputId}
-          className={getPickerClassName({
-            block: 'editableInput',
-            slot: 'label',
-            modifiers: [dragLabel && 'drag-label'],
-          })}
+          className={b('label', { 'drag-label': dragLabel }).toString()}
           style={labelStyle}
           onMouseDown={handleMouseDown}
         >

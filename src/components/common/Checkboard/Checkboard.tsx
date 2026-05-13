@@ -2,7 +2,9 @@ import { cloneElement, isValidElement } from 'react';
 import type { CSSProperties, ReactElement } from 'react';
 import { get as getCheckboard } from '@/helpers/checkboard';
 import type { CheckboardProps } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('checkboard');
 
 export function Checkboard({
   white = 'transparent',
@@ -18,7 +20,7 @@ export function Checkboard({
     boxShadow,
     background: `url(${getCheckboard(white!, grey!, size!, renderers?.canvas)}) center left`,
   };
-  const className = getPickerClassName({ block: 'checkboard' });
+  const className = b().toString();
 
   if (isValidElement(children)) {
     const child = children as ReactElement<{ className?: string; style?: CSSProperties }>;

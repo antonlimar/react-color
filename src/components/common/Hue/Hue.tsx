@@ -3,8 +3,10 @@ import { calculateChange as calculateHueChange } from '@/helpers/hue';
 import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { HueProps, InternalColorChangeEvent } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
 import { getSlotStyleOverride } from '@/components/common/styleOverrides';
+
+const b = bem('hueControl');
 
 const HUE_GRADIENT_HORIZONTAL =
   'linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)';
@@ -80,31 +82,17 @@ export function Hue(props: HueProps) {
   const Pointer = pointer;
 
   return (
-    <div
-      className={getPickerClassName({
-        block: 'hueControl',
-        modifiers: [direction === 'vertical' && 'vertical'],
-      })}
-      style={rootStyle}
-    >
+    <div className={b({ vertical: direction === 'vertical' }).toString()} style={rootStyle}>
       <div
-        className={getPickerClassName({
-          block: 'hueControl',
-          slot: 'container',
-          className: `hue-${direction}`,
-        })}
+        className={b('container').toString()}
         style={containerStyle}
         ref={containerRef}
         onMouseDown={handleMouseDown}
         onTouchMove={handleChange}
         onTouchStart={handleChange}
       >
-        <div className={getPickerClassName({ block: 'hueControl', slot: 'pointer' })} style={pointerStyle}>
-          {Pointer ? (
-            <Pointer {...props} />
-          ) : (
-            <div className={getPickerClassName({ block: 'hueControl', slot: 'slider' })} style={sliderStyle} />
-          )}
+        <div className={b('pointer').toString()} style={pointerStyle}>
+          {Pointer ? <Pointer {...props} /> : <div className={b('slider').toString()} style={sliderStyle} />}
         </div>
       </div>
     </div>

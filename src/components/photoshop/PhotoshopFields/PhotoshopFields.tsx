@@ -1,8 +1,10 @@
 import { isValidHex } from '@/helpers/color';
 
 import { EditableInput } from '@/components/common';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSVAColor, RGBAColor } from '@/types';
+
+const b = bem('photoshop');
 
 type PhotoshopFieldsProps = {
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
@@ -47,7 +49,7 @@ export function PhotoshopFields({ onChange, rgb, hsv, hex }: PhotoshopFieldsProp
   };
 
   const renderField = (label: string, value: string | number, modifier: 'rgb' | 'hex') => (
-    <div className={getPickerClassName({ block: 'photoshop', slot: 'field', modifiers: [modifier] })}>
+    <div className={b('field', { [modifier]: true }).toString()}>
       <EditableInput
         label={label}
         value={value}
@@ -57,20 +59,20 @@ export function PhotoshopFields({ onChange, rgb, hsv, hex }: PhotoshopFieldsProp
   );
 
   return (
-    <div className={getPickerClassName({ block: 'photoshop', slot: 'fields' })}>
+    <div className={b('fields').toString()}>
       {renderField('h', Math.round(hsv.h), 'rgb')}
       {renderField('s', Math.round(hsv.s * 100), 'rgb')}
       {renderField('v', Math.round(hsv.v * 100), 'rgb')}
-      <div className={getPickerClassName({ block: 'photoshop', slot: 'divider' })} />
+      <div className={b('divider').toString()} />
       {renderField('r', rgb.r, 'rgb')}
       {renderField('g', rgb.g, 'rgb')}
       {renderField('b', rgb.b, 'rgb')}
-      <div className={getPickerClassName({ block: 'photoshop', slot: 'divider' })} />
+      <div className={b('divider').toString()} />
       {renderField('#', hex.replace('#', ''), 'hex')}
-      <div className={getPickerClassName({ block: 'photoshop', slot: 'field-symbols' })}>
-        <div className={getPickerClassName({ block: 'photoshop', slot: 'field-symbol' })}>°</div>
-        <div className={getPickerClassName({ block: 'photoshop', slot: 'field-symbol' })}>%</div>
-        <div className={getPickerClassName({ block: 'photoshop', slot: 'field-symbol' })}>%</div>
+      <div className={b('field-symbols').toString()}>
+        <div className={b('field-symbol').toString()}>°</div>
+        <div className={b('field-symbol').toString()}>%</div>
+        <div className={b('field-symbol').toString()}>%</div>
       </div>
     </div>
   );

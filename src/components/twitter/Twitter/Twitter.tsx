@@ -1,7 +1,8 @@
 import { isValidHex } from '@/helpers/color';
 import { ColorWrap, EditableInput, Swatch } from '@/components/common';
-import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+
 import type {
   ClassName,
   ColorInputChangeHandler,
@@ -11,6 +12,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+
+const b = bem('twitter');
 
 const TWITTER_STYLE_SLOTS = ['card', 'body', 'triangle', 'triangleShadow', 'hash', 'input', 'swatch'] as const;
 
@@ -80,20 +83,22 @@ function TwitterBase({
   return (
     <div
       style={rootStyle}
-      {...getPickerRootProps({
-        block: 'twitter',
-        theme,
-        modifiers: [triangle === 'hide' && 'hide-triangle', triangle],
-        className: `twitter-picker ${className}`,
-        classNames,
-      })}
+      className={b({
+        'hide-triangle': triangle === 'hide',
+        [triangle]: true,
+        dark: theme === 'dark',
+        light: theme === 'light',
+      })
+        .mix('twitter-picker', className, classNames?.root)
+        .toString()}
+      {...getThemeDataAttributes(theme)}
     >
-      <div className={getPickerClassName({ block: 'twitter', slot: 'triangle-shadow' })} style={triangleShadowStyle} />
-      <div className={getPickerClassName({ block: 'twitter', slot: 'triangle' })} style={triangleStyle} />
+      <div className={b('triangle-shadow').toString()} style={triangleShadowStyle} />
+      <div className={b('triangle').toString()} style={triangleStyle} />
 
-      <div className={getPickerClassName({ block: 'twitter', slot: 'body' })} style={bodyStyle}>
+      <div className={b('body').toString()} style={bodyStyle}>
         {colors.map((colorValue: string, index: number | string) => (
-          <div key={index} className={getPickerClassName({ block: 'twitter', slot: 'swatch' })}>
+          <div key={index} className={b('swatch').toString()}>
             <Swatch
               color={colorValue}
               style={swatchStyle}
@@ -105,7 +110,7 @@ function TwitterBase({
             />
           </div>
         ))}
-        <div className={getPickerClassName({ block: 'twitter', slot: 'hash' })} style={hashStyle}>
+        <div className={b('hash').toString()} style={hashStyle}>
           #
         </div>
         <EditableInput
@@ -114,7 +119,7 @@ function TwitterBase({
           value={hex.replace('#', '')}
           onChange={(value, event) => handleHexChange(onChange, String(value), event)}
         />
-        <div className={getPickerClassName({ block: 'twitter', slot: 'clear' })} />
+        <div className={b('clear').toString()} />
       </div>
     </div>
   );

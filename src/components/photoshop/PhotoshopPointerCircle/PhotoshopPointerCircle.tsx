@@ -1,18 +1,12 @@
 import type { HSLAColor } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('photoshop');
 
 type PhotoshopPointerCircleProps = {
   hsl: HSLAColor;
 };
 
 export function PhotoshopPointerCircle({ hsl }: PhotoshopPointerCircleProps) {
-  return (
-    <div
-      className={getPickerClassName({
-        block: 'photoshop',
-        slot: 'pointer-circle',
-        modifiers: [hsl.l > 0.5 && 'black-outline'],
-      })}
-    />
-  );
+  return <div className={b('pointer-circle', { 'black-outline': hsl.l > 0.5 }).toString()} />;
 }

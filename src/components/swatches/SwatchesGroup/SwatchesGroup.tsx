@@ -1,7 +1,9 @@
 import { SwatchesColor } from '@/components/swatches/SwatchesColor';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { SwatchHoverHandler } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('swatches');
 
 type SwatchesGroupProps = {
   onClick: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
@@ -12,7 +14,7 @@ type SwatchesGroupProps = {
 
 export function SwatchesGroup({ onClick, onSwatchHover, group, active }: SwatchesGroupProps) {
   return (
-    <div className={getPickerClassName({ block: 'swatches', slot: 'group' })}>
+    <div className={b('group').toString()}>
       {group.map((colorValue: string, index: number | string) => (
         <SwatchesColor
           key={colorValue}

@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { isValidHex } from '@/helpers/color';
 
 import { EditableInput } from '@/components/common';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
 import { UnfoldMoreHorizontalIcon } from '@/components/common/icons/UnfoldMoreHorizontalIcon';
 import type { ReactNode } from 'react';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '@/types';
+
+const b = bem('chrome');
 
 type ChromeFieldsProps = {
   hsl: HSLAColor;
@@ -98,33 +100,27 @@ export function ChromeFields(props: ChromeFieldsProps) {
     }
   };
 
-  const renderField = (label: string, value: string | number, fieldModifier?: string, arrowOffset?: number) => (
-    <div
-      className={getPickerClassName({
-        block: 'chrome',
-        slot: 'field',
-        modifiers: [fieldModifier],
-      })}
-    >
-      <EditableInput
-        label={label}
-        value={value}
-        arrowOffset={arrowOffset}
-        onChange={(nextValue, event) => handleChange(nextValue as ColorChangeValue, event)}
-      />
-    </div>
-  );
+  const renderField = (label: string, value: string | number, fieldModifier?: string, arrowOffset?: number) => {
+    const fieldClassName = fieldModifier ? b('field', { [fieldModifier]: true }).toString() : b('field').toString();
+
+    return (
+      <div className={fieldClassName}>
+        <EditableInput
+          label={label}
+          value={value}
+          arrowOffset={arrowOffset}
+          onChange={(nextValue, event) => handleChange(nextValue as ColorChangeValue, event)}
+        />
+      </div>
+    );
+  };
 
   let fields: ReactNode;
   if (resolvedView === 'hex') {
-    fields = (
-      <div className={getPickerClassName({ block: 'chrome', slot: 'fields-grid', className: 'flexbox-fix' })}>
-        {renderField('hex', props.hex)}
-      </div>
-    );
+    fields = <div className={b('fields-grid').toString()}>{renderField('hex', props.hex)}</div>;
   } else if (resolvedView === 'rgb') {
     fields = (
-      <div className={getPickerClassName({ block: 'chrome', slot: 'fields-grid', className: 'flexbox-fix' })}>
+      <div className={b('fields-grid').toString()}>
         {renderField('r', props.rgb.r)}
         {renderField('g', props.rgb.g)}
         {renderField('b', props.rgb.b)}
@@ -133,7 +129,7 @@ export function ChromeFields(props: ChromeFieldsProps) {
     );
   } else {
     fields = (
-      <div className={getPickerClassName({ block: 'chrome', slot: 'fields-grid', className: 'flexbox-fix' })}>
+      <div className={b('fields-grid').toString()}>
         {renderField('h', Math.round(props.hsl.h))}
         {renderField('s', `${Math.round(props.hsl.s * 100)}%`)}
         {renderField('l', `${Math.round(props.hsl.l * 100)}%`)}
@@ -143,16 +139,10 @@ export function ChromeFields(props: ChromeFieldsProps) {
   }
 
   return (
-    <div
-      className={getPickerClassName({
-        block: 'chrome',
-        slot: 'fields',
-        modifiers: [props.disableAlpha && 'disabled-alpha', resolvedView],
-      })}
-    >
+    <div className={b('fields', { 'disabled-alpha': props.disableAlpha, [resolvedView]: true }).toString()}>
       {fields}
-      <div className={getPickerClassName({ block: 'chrome', slot: 'toggle' })}>
-        <div onClick={toggleViews} className={getPickerClassName({ block: 'chrome', slot: 'toggle-icon' })}>
+      <div className={b('toggle').toString()}>
+        <div onClick={toggleViews} className={b('toggle-icon').toString()}>
           <UnfoldMoreHorizontalIcon />
         </div>
       </div>

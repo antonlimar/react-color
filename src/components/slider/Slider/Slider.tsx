@@ -1,8 +1,9 @@
 import { ColorWrap, Hue } from '@/components/common';
-import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
+import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import { SliderSwatches } from '@/components/slider/SliderSwatches';
 import { SliderPointer } from '@/components/slider/SliderPointer';
+
 import type {
   ClassName,
   ColorPickerInjectedProps,
@@ -11,6 +12,8 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+
+const b = bem('slider');
 
 const SLIDER_STYLE_SLOTS = ['wrap', 'hue', 'swatches'] as const;
 
@@ -38,17 +41,15 @@ function SliderBase({
   return (
     <div
       style={rootStyle}
-      {...getPickerRootProps({
-        block: 'slider',
-        theme,
-        className: `slider-picker ${className}`,
-        classNames,
-      })}
+      className={b({ dark: theme === 'dark', light: theme === 'light' })
+        .mix('slider-picker', className, classNames?.root)
+        .toString()}
+      {...getThemeDataAttributes(theme)}
     >
-      <div className={getPickerClassName({ block: 'slider', slot: 'hue' })} style={hueStyle}>
+      <div className={b('hue').toString()} style={hueStyle}>
         <Hue radius="2px" hsl={hsl} pointer={pointer} onChange={onChange} />
       </div>
-      <div className={getPickerClassName({ block: 'slider', slot: 'swatches-wrap' })} style={swatchesStyle}>
+      <div className={b('swatches-wrap').toString()} style={swatchesStyle}>
         <SliderSwatches hsl={hsl} onClick={onChange} />
       </div>
     </div>

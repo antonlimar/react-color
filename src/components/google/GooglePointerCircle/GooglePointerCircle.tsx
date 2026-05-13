@@ -1,6 +1,8 @@
 import type { CSSProperties } from 'react';
 import type { HSLAColor } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('google');
 
 type GooglePointerCircleProps = {
   hsl?: HSLAColor;
@@ -11,5 +13,5 @@ export function GooglePointerCircle({ hsl = { a: 1, h: 249.94, l: 0.2, s: 0.5 } 
     background: `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%)`,
   };
 
-  return <div className={getPickerClassName({ block: 'google', slot: 'pointer-circle' })} style={pointerStyle} />;
+  return <div className={b('pointer-circle').toString()} style={pointerStyle} />;
 }

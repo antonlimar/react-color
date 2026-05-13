@@ -1,7 +1,9 @@
 import { isValidHex, isValidColorString } from '@/helpers/color';
 import { EditableInput } from '@/components/common';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, HSVAColor, RGBAColor } from '@/types';
+
+const b = bem('google');
 
 type GoogleFieldsProps = {
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
@@ -94,31 +96,31 @@ export function GoogleFields({ onChange, rgb, hsl, hex, hsv }: GoogleFieldsProps
   const hsvValue = `${Math.round(hsv.h)}°, ${Math.round(hsv.s * 100)}%, ${Math.round(hsv.v * 100)}%`;
 
   return (
-    <div className={getPickerClassName({ block: 'google', slot: 'fields', className: 'flexbox-fix' })}>
-      <div className={getPickerClassName({ block: 'google', slot: 'fields-body' })}>
-        <div className={getPickerClassName({ block: 'google', slot: 'field-row', modifiers: ['primary'] })}>
+    <div className={b('fields').toString()}>
+      <div className={b('fields-body').toString()}>
+        <div className={b('field-row', { primary: true }).toString()}>
           <EditableInput
             label="hex"
             value={hex}
             onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
           />
         </div>
-        <div className={getPickerClassName({ block: 'google', slot: 'field-row', modifiers: ['secondary'] })}>
-          <div className={getPickerClassName({ block: 'google', slot: 'field' })}>
+        <div className={b('field-row', { secondary: true }).toString()}>
+          <div className={b('field').toString()}>
             <EditableInput
               label="rgb"
               value={rgbValue}
               onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
             />
           </div>
-          <div className={getPickerClassName({ block: 'google', slot: 'field' })}>
+          <div className={b('field').toString()}>
             <EditableInput
               label="hsv"
               value={hsvValue}
               onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
             />
           </div>
-          <div className={getPickerClassName({ block: 'google', slot: 'field' })}>
+          <div className={b('field').toString()}>
             <EditableInput
               label="hsl"
               value={hslValue}

@@ -10,19 +10,12 @@ import { Hue } from './Hue';
 import { Raised } from './Raised';
 import { Saturation, getSaturationRenderWindow } from './Saturation';
 import { Swatch } from './Swatch';
-import {
-  getArchitectureClassName,
-  getBlockClassName,
-  getElementClassName,
-  getModifierClassName,
-  getPickerClassName,
-  getPickerRootProps,
-  getThemeDataAttributes,
-  getThemeModifier,
-  stylingArchitecture,
-} from './styleArchitecture';
+import { bem, getThemeDataAttributes, stylingArchitecture } from './styleArchitecture';
 import { getRequiredElement, getRootElement, renderForSnapshot } from '@test/helpers';
 import type { Color, ColorPickerInjectedProps } from '@/types';
+
+const chromeBem = bem('chrome');
+const sketchBem = bem('sketch');
 
 test('Alpha renders correctly', () => {
   renderForSnapshot(<Alpha {...red} />).expectSnapshot();
@@ -152,52 +145,34 @@ test('styling architecture reserves the rc namespace for all picker and primitiv
   expect(stylingArchitecture.blocks.saturation).toBe('rc-saturation');
 });
 
-test('styling architecture builds BEM element and modifier class names from block definitions', () => {
-  expect(getBlockClassName('chrome')).toBe('rc-chrome');
-  expect(getElementClassName('chrome', 'body')).toBe('rc-chrome__body');
-  expect(getElementClassName('chrome', 'root')).toBe('rc-chrome');
-  expect(getModifierClassName('chrome', 'dark')).toBe('rc-chrome--dark');
-  expect(getModifierClassName('chrome', 'disabled alpha')).toBe('rc-chrome--disabled-alpha');
-});
-
-test('styling architecture composes root, modifiers, and user classes into one predictable class list', () => {
+test('styling architecture composes elements, modifiers, and user classes through bem-cn', () => {
   expect(
-    getArchitectureClassName({
-      block: 'sketch',
-      element: 'controls',
-      modifiers: ['dark', false, undefined, 'vertical'],
-      className: 'custom-slot another-class',
-    }),
-  ).toBe('rc-sketch__controls rc-sketch--dark rc-sketch--vertical custom-slot another-class');
+    sketchBem('controls', { dark: true, vertical: true })
+      .mix('custom-slot another-class', 'consumer-controls')
+      .toString(),
+  ).toBe(
+    'rc-sketch__controls rc-sketch__controls--dark rc-sketch__controls--vertical custom-slot another-class consumer-controls',
+  );
+
+  expect(chromeBem('body', { 'disabled-alpha': true }).toString()).toBe(
+    'rc-chrome__body rc-chrome__body--disabled-alpha',
+  );
 });
 
-test('styling architecture derives theme modifiers and auto theme data markers for picker roots', () => {
-  expect(getThemeModifier('dark')).toBe('dark');
-  expect(getThemeModifier('light')).toBe('light');
-  expect(getThemeModifier('auto')).toBeUndefined();
+test('styling architecture derives auto theme data markers for picker roots', () => {
   expect(getThemeDataAttributes('auto')).toEqual({ 'data-theme': 'auto' });
   expect(getThemeDataAttributes('dark')).toEqual({});
 });
 
 test('styling architecture merges legacy picker classes with slot-level classNames for public styling API', () => {
-  expect(
-    getPickerClassName({
-      block: 'chrome',
-      slot: 'root',
-      className: 'chrome-picker custom-root',
-      classNames: { root: 'consumer-root' },
-      modifiers: ['dark'],
-    }),
-  ).toBe('rc-chrome rc-chrome--dark chrome-picker custom-root consumer-root');
+  expect(chromeBem({ dark: true }).mix('chrome-picker custom-root', 'consumer-root').toString()).toBe(
+    'rc-chrome rc-chrome--dark chrome-picker custom-root consumer-root',
+  );
 
-  expect(
-    getPickerRootProps({
-      block: 'chrome',
-      theme: 'auto',
-      className: 'chrome-picker custom-root',
-      classNames: { root: 'consumer-root' },
-    }),
-  ).toEqual({
+  expect({
+    className: chromeBem.mix('chrome-picker custom-root', 'consumer-root').toString(),
+    ...getThemeDataAttributes('auto'),
+  }).toEqual({
     className: 'rc-chrome chrome-picker custom-root consumer-root',
     'data-theme': 'auto',
   });

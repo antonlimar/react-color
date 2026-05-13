@@ -1,7 +1,9 @@
 import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { SwatchHoverHandler } from '@/types';
-import { getPickerClassName } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common/styleArchitecture';
+
+const b = bem('block');
 
 type BlockSwatchesProps = {
   colors: string[];
@@ -11,9 +13,9 @@ type BlockSwatchesProps = {
 
 export function BlockSwatches({ colors, onClick, onSwatchHover }: BlockSwatchesProps) {
   return (
-    <div className={getPickerClassName({ block: 'block', slot: 'swatches' })}>
+    <div className={b('swatches').toString()}>
       {colors.map((colorValue: string) => (
-        <div key={colorValue} className={getPickerClassName({ block: 'block', slot: 'swatch' })}>
+        <div key={colorValue} className={b('swatch').toString()}>
           <Swatch
             color={colorValue}
             style={{ borderRadius: '4px' }}
@@ -25,7 +27,7 @@ export function BlockSwatches({ colors, onClick, onSwatchHover }: BlockSwatchesP
           />
         </div>
       ))}
-      <div className={getPickerClassName({ block: 'block', slot: 'clear' })} />
+      <div className={b('clear').toString()} />
     </div>
   );
 }
