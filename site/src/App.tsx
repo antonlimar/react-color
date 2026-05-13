@@ -34,6 +34,9 @@ import {
 } from 'react-color';
 import type { ColorPickerComponent, ColorPickerProps, ColorResult, RGBAColor } from 'react-color';
 import { pickerMetadata, siteSections } from './content';
+import { DocsPage } from './pages/DocsPage';
+import { NotFoundPage as NotFoundPageContent } from './pages/NotFoundPage';
+import { PickerGalleryPage } from './pages/PickerGalleryPage';
 import type {
   ApiProperty,
   CodeBlock,
@@ -198,33 +201,6 @@ const initialColor: RGBAColor = {
   b: 5,
   a: 1,
 };
-
-const heroPickerCards = [
-  {
-    id: 'sketch',
-    title: 'Sketch',
-    description: 'Full controls for hue, alpha, and saved swatches.',
-    component: SketchPicker,
-  },
-  {
-    id: 'chrome',
-    title: 'Chrome',
-    description: 'The classic all-purpose picker for raw color editing.',
-    component: ChromePicker,
-  },
-  {
-    id: 'github',
-    title: 'GitHub',
-    description: 'Fast palette selection when you want decisive defaults.',
-    component: GithubPicker,
-  },
-  {
-    id: 'compact',
-    title: 'Compact',
-    description: 'Dense preset mode for quick iteration in tight layouts.',
-    component: CompactPicker,
-  },
-] as const;
 
 const pickerGalleryComponents: Record<string, ColorPickerComponent> = {
   alpha: AlphaPicker,
@@ -1443,36 +1419,6 @@ function SearchNavigation({ id, query, results, inputRef, onQueryChange, onNavig
   );
 }
 
-function PickerGalleryPage({ color, onChange }: { color: RGBAColor; onChange: (color: ColorResult) => void }) {
-  return (
-    <div className="gallery-page">
-      <nav className="page-breadcrumbs" aria-label="Page navigation">
-        <Link to="/" hash="about">
-          Documentation
-        </Link>
-        <span aria-hidden="true">/</span>
-        <span>Picker Gallery</span>
-      </nav>
-
-      <section className="gallery-page__intro" id="picker-gallery" aria-labelledby="picker-gallery-title">
-        <p className="eyebrow">Picker Gallery</p>
-        <div className="gallery-page__intro-grid">
-          <div>
-            <h2 id="picker-gallery-title">Find the picker that fits the job.</h2>
-            <p>{pickerGalleryIntro}</p>
-          </div>
-          <div className="gallery-page__note">
-            <strong>{pickerMetadata.length} picker exports</strong>
-            <span>{pickerGalleryNote}</span>
-          </div>
-        </div>
-      </section>
-
-      <PickerGallery color={color} onChange={onChange} />
-    </div>
-  );
-}
-
 type SitePage = 'docs' | 'gallery' | 'not-found';
 
 function SiteHeader({ page }: { page: SitePage }) {
@@ -1512,40 +1458,6 @@ function SiteHeader({ page }: { page: SitePage }) {
   );
 }
 
-function NotFoundMain() {
-  return (
-    <main className="not-found-page" id="site-not-found">
-      <section className="not-found-page__panel" aria-labelledby="not-found-title">
-        <div className="not-found-page__copy">
-          <p className="eyebrow">404 / Page not found</p>
-          <h1 id="not-found-title">This color is outside the palette.</h1>
-          <p>
-            The page you tried to open is not part of the documentation site. The docs and picker gallery are still one
-            click away.
-          </p>
-        </div>
-
-        <div className="not-found-page__actions" aria-label="404 recovery links">
-          <Link className="not-found-page__primary-action" to="/">
-            Read the docs
-          </Link>
-          <Link className="not-found-page__secondary-action" to={galleryPagePath}>
-            Open picker gallery
-          </Link>
-        </div>
-
-        <div className="not-found-page__swatches" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
-      </section>
-    </main>
-  );
-}
-
 function NotFoundPage() {
   return (
     <div className="site-shell" style={formatBackground(initialColor)}>
@@ -1557,7 +1469,7 @@ function NotFoundPage() {
       <div className="site-shell__ambient site-shell__ambient--two" aria-hidden="true" />
 
       <SiteHeader page="not-found" />
-      <NotFoundMain />
+      <NotFoundPageContent galleryPagePath={galleryPagePath} />
     </div>
   );
 }
@@ -1899,7 +1811,7 @@ function AppShell() {
 
         <SiteHeader page="not-found" />
         {mobileSectionDrawer}
-        <NotFoundMain />
+        <NotFoundPageContent galleryPagePath={galleryPagePath} />
       </div>
     );
   }
@@ -1916,112 +1828,43 @@ function AppShell() {
       <SiteHeader page={isGalleryPage ? 'gallery' : 'docs'} />
       {mobileSectionDrawer}
 
-      {isGalleryPage ? null : (
-        <>
-          <header className="hero">
-            <div className="hero__backdrop hero__backdrop--left" aria-hidden="true" />
-            <div className="hero__backdrop hero__backdrop--right" aria-hidden="true" />
-
-            <div className="hero__content">
-              <h1>React Color</h1>
-              <p className="hero__lede">
-                A Collection of Color Pickers from Sketch, Photoshop, Chrome, Github, Twitter, Material Design & more
-              </p>
-
-              <div className="hero__metrics" aria-label="Current shared color values">
-                <div className="hero__metric hero__metric--swatch">
-                  <span className="hero__swatch" style={{ backgroundColor: rgbaLabel }} />
-                  <div>
-                    <strong>{colorToHex(color)}</strong>
-                    <span>Current color</span>
-                  </div>
-                </div>
-                <div className="hero__metric">
-                  <strong>{rgbaLabel}</strong>
-                  <span>RGBA value</span>
-                </div>
-              </div>
-
-              <div className="hero__palette" aria-label="Current color family">
-                <span className="hero__palette-label">Current color scale</span>
-                <div className="hero__palette-track">
-                  {paletteStops.map((stop, index) => (
-                    <span className="hero__palette-stop" key={`${stop}-${index}`} style={{ backgroundColor: stop }} />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="hero__demo" aria-label="Synchronized live picker demo">
-              <div className="hero__demo-head">
-                <div>
-                  <span className="hero__demo-label">Synchronized pickers</span>
-                  <p className="hero__demo-copy">Each panel reads and writes the same color value.</p>
-                </div>
-                <div className="hero__demo-actions">
-                  <span className="hero__demo-value">{colorToHex(color)}</span>
-                  <Link className="hero__demo-link" to={galleryPagePath}>
-                    Show more
-                  </Link>
-                </div>
-              </div>
-
-              <div className="hero__picker-grid">
-                {heroPickerCards.map(({ id, title, description, component: PickerComponent }) => (
-                  <article className={`hero__picker-card hero__picker-card--${id}`} key={id}>
-                    <div className="hero__picker-meta">
-                      <div>
-                        <h2>{title}</h2>
-                        <p>{description}</p>
-                      </div>
-                      <span className="hero__picker-chip">{title}</span>
-                    </div>
-
-                    <div className="hero__picker-surface">
-                      <PickerComponent color={color} onChange={handleColorChange} />
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </header>
-        </>
+      {isGalleryPage ? (
+        <PickerGalleryPage
+          gallery={<PickerGallery color={color} onChange={handleColorChange} />}
+          galleryNote={pickerGalleryNote}
+          intro={pickerGalleryIntro}
+          pickerCount={pickerMetadata.length}
+        />
+      ) : (
+        <DocsPage
+          color={color}
+          colorHex={colorToHex(color)}
+          desktopSearch={
+            <SearchNavigation
+              id="desktop-docs-search"
+              inputRef={desktopSearchRef}
+              query={searchQuery}
+              results={searchResults}
+              onQueryChange={handleSearchQueryChange}
+            />
+          }
+          galleryPagePath={galleryPagePath}
+          mobileSearch={
+            <SearchNavigation
+              id="mobile-docs-search"
+              inputRef={mobileSearchRef}
+              query={searchQuery}
+              results={searchResults}
+              onQueryChange={handleSearchQueryChange}
+            />
+          }
+          paletteStops={paletteStops}
+          rgbaLabel={rgbaLabel}
+          sectionNavigation={searchQuery.trim() ? null : renderAnchorNavigation(activeAnchorId)}
+          sections={siteSections.map((section) => renderSection(section, { packageManager, setPackageManager }))}
+          onColorChange={handleColorChange}
+        />
       )}
-
-      <main className={`sections-shell${isGalleryPage ? ' sections-shell--gallery-page' : ''}`} id="site-documentation">
-        {isGalleryPage ? (
-          <PickerGalleryPage color={color} onChange={handleColorChange} />
-        ) : (
-          <>
-            <div className="sections-shell__mobile-search">
-              <SearchNavigation
-                id="mobile-docs-search"
-                inputRef={mobileSearchRef}
-                query={searchQuery}
-                results={searchResults}
-                onQueryChange={handleSearchQueryChange}
-              />
-            </div>
-
-            <div className="sections-layout">
-              <aside className="sections-layout__sidebar">
-                <SearchNavigation
-                  id="desktop-docs-search"
-                  inputRef={desktopSearchRef}
-                  query={searchQuery}
-                  results={searchResults}
-                  onQueryChange={handleSearchQueryChange}
-                />
-                {searchQuery.trim() ? null : renderAnchorNavigation(activeAnchorId)}
-              </aside>
-
-              <div className="sections">
-                {siteSections.map((section) => renderSection(section, { packageManager, setPackageManager }))}
-              </div>
-            </div>
-          </>
-        )}
-      </main>
     </div>
   );
 }
