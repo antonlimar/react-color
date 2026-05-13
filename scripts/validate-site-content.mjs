@@ -169,7 +169,10 @@ function getPublicPickerExports(sourceFile) {
 
     const modulePath = statement.moduleSpecifier.text;
 
-    if (!/^\.\/components\/(?!common\/)[a-z]+\/[A-Z][A-Za-z]*$/.test(modulePath) || !statement.exportClause) {
+    if (
+      !/^\.\/components\/(?!common(?:\/|$))[a-z]+(?:\/[A-Z][A-Za-z]*)?$/.test(modulePath) ||
+      !statement.exportClause
+    ) {
       return;
     }
 
