@@ -7,7 +7,6 @@ import { compileAsync } from 'sass';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
-const stylesRoot = path.join(repoRoot, 'src', 'styles');
 const componentsRoot = path.join(repoRoot, 'src', 'components');
 
 async function collectEntries(currentDir) {
@@ -35,12 +34,6 @@ async function collectEntries(currentDir) {
 }
 
 function getOutputPath(targetDir, entryPath) {
-  if (entryPath.startsWith(stylesRoot)) {
-    const relativePath = path.relative(stylesRoot, entryPath).replace(/\.scss$/u, '.css');
-
-    return path.join(repoRoot, targetDir, 'styles', relativePath);
-  }
-
   const relativePath = path.relative(componentsRoot, entryPath).replace(/\.scss$/u, '.css');
 
   return path.join(repoRoot, targetDir, 'components', relativePath);
@@ -49,7 +42,6 @@ function getOutputPath(targetDir, entryPath) {
 async function compileEntry(entryPath, targetDir) {
   const outputPath = getOutputPath(targetDir, entryPath);
   const { css } = await compileAsync(entryPath, {
-    loadPaths: [stylesRoot],
     style: 'expanded',
   });
 
@@ -64,7 +56,7 @@ async function main() {
     throw new Error('Usage: node scripts/build-styles.mjs <es>');
   }
 
-  const entries = [...(await collectEntries(stylesRoot)), ...(await collectEntries(componentsRoot))];
+  const entries = await collectEntries(componentsRoot);
 
   await Promise.all(entries.map((entryPath) => compileEntry(entryPath, targetDir)));
 

@@ -1,4 +1,8 @@
+@use '../../../styles/theme-tokens' as theme;
+
 .rc-material {
+  @include theme.rc-default-theme-tokens;
+
   width: 98px;
   height: 98px;
   padding: 16px;

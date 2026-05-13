@@ -1,7 +1,10 @@
 @use '../CompactColor/CompactColor';
 @use '../CompactFields/CompactFields';
+@use '../../../styles/theme-tokens' as theme;
 
 .rc-compact {
+  @include theme.rc-default-theme-tokens;
+
   width: 240px;
   padding-top: 5px;
   padding-left: 5px;

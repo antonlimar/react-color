@@ -2,8 +2,11 @@
 @use '../PhotoshopPointer/PhotoshopPointer';
 @use '../PhotoshopPointerCircle/PhotoshopPointerCircle';
 @use '../PhotoshopPreviews/PhotoshopPreviews';
+@use '../../../styles/theme-tokens' as theme;
 
 .rc-photoshop {
+  @include theme.rc-photoshop-theme-tokens;
+
   width: 513px;
   background: var(--rc-picker-surface, #dcdcdc);
   border-radius: 4px;

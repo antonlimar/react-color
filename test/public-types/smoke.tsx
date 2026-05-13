@@ -1,8 +1,4 @@
-import 'react-color/es/styles/pickers/sketch.css';
-import 'react-color/es/styles/common/editable-input.css';
-
 import type { ComponentProps } from 'react';
-import React from 'react';
 import {
   ChromePicker,
   CustomPicker,

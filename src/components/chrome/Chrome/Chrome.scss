@@ -1,8 +1,11 @@
 @use '../ChromeFields/ChromeFields';
 @use '../ChromePointer/ChromePointer';
 @use '../ChromePointerCircle/ChromePointerCircle';
+@use '../../../styles/theme-tokens' as theme;
 
 .rc-chrome {
+  @include theme.rc-default-theme-tokens;
+
   background: var(--rc-picker-surface, #fff);
   border-radius: 2px;
   box-sizing: initial;

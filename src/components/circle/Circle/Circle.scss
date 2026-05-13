@@ -1,6 +1,9 @@
 @use '../CircleSwatch/CircleSwatch';
+@use '../../../styles/theme-tokens' as theme;
 
 .rc-circle {
+  @include theme.rc-default-theme-tokens;
+
   display: flex;
   flex-wrap: wrap;
 }

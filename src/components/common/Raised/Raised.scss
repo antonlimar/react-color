@@ -1,4 +1,8 @@
+@use '../../../styles/theme-tokens' as theme;
+
 .rc-raised {
+  @include theme.rc-default-theme-tokens;
+
   position: relative;
   display: inline-block;
 }

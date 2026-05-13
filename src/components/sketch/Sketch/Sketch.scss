@@ -1,7 +1,10 @@
 @use '../SketchFields/SketchFields';
 @use '../SketchPresetColors/SketchPresetColors';
+@use '../../../styles/theme-tokens' as theme;
 
 .rc-sketch {
+  @include theme.rc-default-theme-tokens;
+
   padding: 10px 10px 0;
   background: var(--rc-picker-surface, #fff);
   border-radius: 4px;

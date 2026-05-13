@@ -89,6 +89,7 @@
 }
 
 @mixin rc-photoshop-light {
+  color-scheme: light;
   --rc-picker-surface: #dcdcdc;
   --rc-picker-surface-muted: #d4d4d4;
   --rc-picker-surface-subtle: #f0f0f0;
@@ -108,6 +109,7 @@
 }
 
 @mixin rc-photoshop-dark {
+  color-scheme: dark;
   --rc-picker-surface: #2b313a;
   --rc-picker-surface-muted: #252b33;
   --rc-picker-surface-subtle: #3a424d;
@@ -126,49 +128,36 @@
   --rc-photoshop-button-shadow: rgba(255, 255, 255, 0.08);
 }
 
-@mixin rc-emit-default-theme-tokens($root) {
-  #{$root},
-  #{$root}--light {
+@mixin rc-default-theme-tokens {
+  &,
+  &--light {
     @include rc-theme-light;
   }
 
-  #{$root}--dark {
+  &--dark {
     @include rc-theme-dark;
   }
 
   @media (prefers-color-scheme: dark) {
-    #{$root}[data-theme='auto'] {
+    &[data-theme='auto'] {
       @include rc-theme-dark;
     }
   }
 }
 
-@mixin rc-emit-photoshop-theme-tokens($root) {
-  #{$root},
-  #{$root}--light {
-    color-scheme: light;
+@mixin rc-photoshop-theme-tokens {
+  &,
+  &--light {
     @include rc-photoshop-light;
   }
 
-  #{$root}--dark {
-    color-scheme: dark;
+  &--dark {
     @include rc-photoshop-dark;
   }
 
   @media (prefers-color-scheme: dark) {
-    #{$root}[data-theme='auto'] {
-      color-scheme: dark;
+    &[data-theme='auto'] {
       @include rc-photoshop-dark;
-    }
-  }
-}
-
-@mixin rc-emit-theme-tokens($roots: ()) {
-  @each $root in $roots {
-    @if $root == '.rc-photoshop' {
-      @include rc-emit-photoshop-theme-tokens($root);
-    } @else {
-      @include rc-emit-default-theme-tokens($root);
     }
   }
 }

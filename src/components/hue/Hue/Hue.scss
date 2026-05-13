@@ -1,6 +1,9 @@
 @use '../HuePointer/HuePointer';
+@use '../../../styles/theme-tokens' as theme;
 
 .rc-hue {
+  @include theme.rc-default-theme-tokens;
+
   position: relative;
   display: block;
 }

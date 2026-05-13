@@ -1,6 +1,9 @@
 @use '../BlockSwatches/BlockSwatches';
+@use '../../../styles/theme-tokens' as theme;
 
 .rc-block {
+  @include theme.rc-default-theme-tokens;
+
   position: relative;
   background: var(--rc-picker-surface, #fff);
   border-radius: 6px;

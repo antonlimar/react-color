@@ -47,7 +47,7 @@ todos:
   - Модификаторы: `--dark`, `--light`, `--disabled-alpha`, `--vertical`, `--active`, `--transparent`.
 - Создать SCSS-слои с co-location:
   - SCSS каждого компонента хранить рядом с компонентом в той же папке, например `Chrome.tsx` + `Chrome.scss`, `EditableInput.tsx` + `EditableInput.scss`.
-  - Общие tokens/mixins/variables вынести в `src/styles/core/`, но не складывать туда стили конкретных компонентов.
+  - Общие tokens/mixins/variables держать в `src/styles`, но не заводить отдельный публичный `src/styles` facade с picker/common entrypoints.
   - Дополнительно публиковать granular CSS entrypoints для выборочного импорта стилей конкретных компонентов или групп компонентов.
   - Optional aggregate entry допустим только как удобный shortcut для сценария "подключить почти всё", но не как основной или обязательный контракт.
 - Публичный API расширить, не ломая текущий:

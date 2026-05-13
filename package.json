@@ -16,8 +16,7 @@
       "types": "./es/components/common/index.d.ts",
       "import": "./es/components/common/index.js",
       "default": "./es/components/common/index.js"
-    },
-    "./es/styles/*.css": "./es/styles/*.css"
+    }
   },
   "repository": {
     "type": "git",

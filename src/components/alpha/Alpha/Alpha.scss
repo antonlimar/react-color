@@ -1,6 +1,9 @@
 @use '../AlphaPointer/AlphaPointer';
+@use '../../../styles/theme-tokens' as theme;
 
 .rc-alpha {
+  @include theme.rc-default-theme-tokens;
+
   position: relative;
   display: block;
 }

@@ -10,7 +10,6 @@ import { build } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
-const stylesSourceRoot = path.join(repoRoot, 'src', 'styles');
 const componentsSourceRoot = path.join(repoRoot, 'src', 'components');
 
 async function collectExpectedStyleArtifacts(sourceRoot, outputRoot, directory = sourceRoot) {
@@ -34,10 +33,7 @@ async function collectExpectedStyleArtifacts(sourceRoot, outputRoot, directory =
 
 async function ensureBuildArtifacts() {
   await access(path.join(repoRoot, 'es', 'index.js'), constants.R_OK);
-  const expectedCssArtifacts = [
-    ...(await collectExpectedStyleArtifacts(stylesSourceRoot, 'styles')),
-    ...(await collectExpectedStyleArtifacts(componentsSourceRoot, 'components')),
-  ];
+  const expectedCssArtifacts = await collectExpectedStyleArtifacts(componentsSourceRoot, 'components');
 
   for (const relativeCssPath of expectedCssArtifacts) {
     await access(path.join(repoRoot, 'es', relativeCssPath), constants.R_OK);
@@ -229,7 +225,7 @@ void reactColor;
         'esm-consumption-check passed:',
         '- Native Node ESM resolved the root entry and documented common component entry through the exports map.',
         '- CommonJS require() no longer consumes the package root.',
-        '- The published package layout exposes granular CSS entrypoints for built styles in es/styles and component-local CSS in es/components.',
+        '- The published package layout exposes component-local CSS in es/components.',
         '- Picker and common component modules pull in their own published CSS side effects for bundlers.',
         '- Vite consumed root default/named imports without bundling unused picker CSS.',
       ].join('\n'),

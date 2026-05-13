@@ -1,6 +1,11 @@
 @use '../SliderPointer/SliderPointer';
 @use '../SliderSwatch/SliderSwatch';
 @use '../SliderSwatches/SliderSwatches';
+@use '../../../styles/theme-tokens' as theme;
+
+.rc-slider {
+  @include theme.rc-default-theme-tokens;
+}
 
 .rc-slider__hue {
   position: relative;

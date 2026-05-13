@@ -1,6 +1,9 @@
 @use '../GithubSwatch/GithubSwatch';
+@use '../../../styles/theme-tokens' as theme;
 
 .rc-github {
+  @include theme.rc-default-theme-tokens;
+
   position: relative;
   display: flex;
   flex-wrap: wrap;

@@ -1,8 +1,11 @@
 @use '../GoogleFields/GoogleFields';
 @use '../GooglePointer/GooglePointer';
 @use '../GooglePointerCircle/GooglePointerCircle';
+@use '../../../styles/theme-tokens' as theme;
 
 .rc-google {
+  @include theme.rc-default-theme-tokens;
+
   display: flex;
   flex-wrap: wrap;
   background: var(--rc-picker-surface, #fff);
