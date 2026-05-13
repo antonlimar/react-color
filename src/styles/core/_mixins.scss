@@ -1,6 +1,61 @@
+@use 'sass:map';
 @use './tokens' as tokens;
+
+$_style-entry-roots: (
+  'common-raised': (
+    '.rc-raised',
+  ),
+  'picker-alpha': (
+    '.rc-alpha',
+  ),
+  'picker-block': (
+    '.rc-block',
+  ),
+  'picker-chrome': (
+    '.rc-chrome',
+  ),
+  'picker-circle': (
+    '.rc-circle',
+  ),
+  'picker-compact': (
+    '.rc-compact',
+  ),
+  'picker-github': (
+    '.rc-github',
+  ),
+  'picker-google': (
+    '.rc-google',
+  ),
+  'picker-hue': (
+    '.rc-hue',
+  ),
+  'picker-material': (
+    '.rc-material',
+  ),
+  'picker-photoshop': (
+    '.rc-photoshop',
+  ),
+  'picker-sketch': (
+    '.rc-sketch',
+  ),
+  'picker-slider': (
+    '.rc-slider',
+  ),
+  'picker-swatches': (
+    '.rc-swatches',
+  ),
+  'picker-twitter': (
+    '.rc-twitter',
+  ),
+);
 
 @mixin rc-style-entry($name) {
   /*! react-color style entry: #{$name} */
-  @include tokens.rc-emit-theme-tokens;
+  $roots: map.get($_style-entry-roots, $name);
+
+  @if $roots == null {
+    $roots: ();
+  }
+
+  @include tokens.rc-emit-theme-tokens($roots);
 }

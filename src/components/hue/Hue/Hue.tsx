@@ -1,6 +1,7 @@
 import { ColorWrap, Hue as HueControl } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import './Hue.scss';
 import { HuePointer } from '@/components/hue/HuePointer';
 
 import type {

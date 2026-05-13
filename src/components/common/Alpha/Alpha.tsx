@@ -6,6 +6,7 @@ import type { AlphaProps, InternalColorChangeEvent } from '@/types';
 import { Checkboard } from '@/components/common/Checkboard';
 import { bem } from '@/components/common/styleArchitecture';
 import { getSlotStyleOverride } from '@/components/common/styleOverrides';
+import './Alpha.scss';
 
 const b = bem('alphaControl');
 

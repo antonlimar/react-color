@@ -2,6 +2,7 @@ import material from 'material-colors';
 import { ColorWrap } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import './Circle.scss';
 import { CircleSwatch } from '@/components/circle/CircleSwatch';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
 

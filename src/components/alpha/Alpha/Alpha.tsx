@@ -1,6 +1,7 @@
 import { ColorWrap, Alpha as AlphaControl } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { AlphaPointer } from '@/components/alpha/AlphaPointer';
+import './Alpha.scss';
 
 import type {
   AlphaProps,

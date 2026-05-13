@@ -2,6 +2,7 @@ import material from 'material-colors';
 import { ColorWrap, Raised } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import './Swatches.scss';
 import { SwatchesGroup } from '@/components/swatches/SwatchesGroup';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
 

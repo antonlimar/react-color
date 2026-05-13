@@ -5,6 +5,7 @@ import type { CSSProperties } from 'react';
 import type { HueProps, InternalColorChangeEvent } from '@/types';
 import { bem } from '@/components/common/styleArchitecture';
 import { getSlotStyleOverride } from '@/components/common/styleOverrides';
+import './Hue.scss';
 
 const b = bem('hueControl');
 

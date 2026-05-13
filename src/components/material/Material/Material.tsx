@@ -2,6 +2,7 @@ import { isValidHex } from '@/helpers/color';
 import { ColorWrap, EditableInput, Raised } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import './Material.scss';
 
 import type {
   ClassName,

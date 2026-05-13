@@ -61,7 +61,6 @@
     "*.{json,md,mdx,html,css,scss,yml,yaml}": "prettier --check"
   },
   "sideEffects": [
-    "es/**/*.js",
     "**/*.css"
   ],
   "homepage": "https://antonlimar.github.io/react-color/",

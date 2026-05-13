@@ -39,21 +39,32 @@ async function ensureBuildArtifacts() {
     await access(path.join(repoRoot, 'es', 'styles', relativeCssPath), constants.R_OK);
   }
 
-  const [esChromeEntry, esSketchEntry, esIndexEntry] = await Promise.all([
-    readFile(path.join(repoRoot, 'es', 'components', 'chrome', 'Chrome', 'index.js'), 'utf8'),
-    readFile(path.join(repoRoot, 'es', 'components', 'sketch', 'Sketch', 'index.js'), 'utf8'),
+  const [esChromeEntry, esSketchEntry, esEditableInputEntry, esIndexEntry] = await Promise.all([
+    readFile(path.join(repoRoot, 'es', 'components', 'chrome', 'index.js'), 'utf8'),
+    readFile(path.join(repoRoot, 'es', 'components', 'sketch', 'index.js'), 'utf8'),
+    readFile(path.join(repoRoot, 'es', 'components', 'common', 'EditableInput', 'index.js'), 'utf8'),
     readFile(path.join(repoRoot, 'es', 'index.js'), 'utf8'),
   ]);
 
   assert.match(
     esChromeEntry,
-    /import '\.\.\/\.\.\/\.\.\/styles\/pickers\/chrome\.css';/u,
-    'es/components/chrome/Chrome/index.js is missing the ESM style side effect.',
+    /import '\.\.\/\.\.\/styles\/pickers\/chrome\.css';/u,
+    'es/components/chrome/index.js is missing the ESM style side effect.',
+  );
+  assert.doesNotMatch(
+    esChromeEntry,
+    /styles\/common\/swatch\.css/u,
+    'es/components/chrome/index.js imports unrelated Swatch CSS.',
   );
   assert.match(
     esSketchEntry,
-    /import '\.\.\/\.\.\/\.\.\/styles\/pickers\/sketch\.css';/u,
-    'es/components/sketch/Sketch/index.js is missing the ESM style side effect.',
+    /import '\.\.\/\.\.\/styles\/pickers\/sketch\.css';/u,
+    'es/components/sketch/index.js is missing the ESM style side effect.',
+  );
+  assert.match(
+    esEditableInputEntry,
+    /import '\.\.\/\.\.\/\.\.\/styles\/common\/editable-input\.css';/u,
+    'es/components/common/EditableInput/index.js is missing the ESM style side effect.',
   );
   assert.match(
     esIndexEntry,
@@ -131,9 +142,9 @@ async function runBundlerFixture(workspace) {
   await writeFixture(
     bundlerRoot,
     'main.ts',
-    `import ReactColorDefault, { EditableInput, HuePicker, SketchPicker } from 'react-color';
+    `import ReactColorDefault, { EditableInput, HuePicker } from 'react-color';
 
-const consumedEntries = [ReactColorDefault, SketchPicker, EditableInput, HuePicker];
+const consumedEntries = [ReactColorDefault, EditableInput, HuePicker];
 
 if (consumedEntries.some((entry) => typeof entry !== 'function')) {
   throw new Error('Bundler consumption smoke imported a non-component export shape.');
@@ -165,6 +176,10 @@ document.body.dataset.reactColorConsumptionCheck = String(consumedEntries.length
   const bundleCss = await readFile(path.join(assetDir, cssAssetName), 'utf8');
 
   assert.ok(bundleCss.length > 0, 'Bundler emitted an empty CSS asset.');
+  assert.match(bundleCss, /\.rc-chrome/u, 'Bundler CSS is missing styles for an imported picker.');
+  assert.match(bundleCss, /\.rc-hue/u, 'Bundler CSS is missing styles for an imported picker.');
+  assert.doesNotMatch(bundleCss, /\.rc-sketch__/u, 'Bundler CSS unexpectedly includes an unused picker.');
+  assert.doesNotMatch(bundleCss, /\.rc-material__/u, 'Bundler CSS unexpectedly includes an unused picker.');
 }
 
 async function main() {
@@ -213,9 +228,9 @@ void reactColor;
         'esm-consumption-check passed:',
         '- Native Node ESM resolved the root entry and documented common component entry through the exports map.',
         '- CommonJS require() no longer consumes the package root.',
-        '- The published package layout exposes aggregate and granular CSS entrypoints for every built stylesheet in es/styles.',
-        '- Picker component modules pull in their own published CSS automatically for bundlers.',
-        '- Vite consumed root default/named imports without any manual CSS imports.',
+        '- The published package layout exposes granular CSS entrypoints for built styles in es/styles.',
+        '- Picker and common component modules pull in only their own published CSS dependencies for bundlers.',
+        '- Vite consumed root default/named imports without bundling unused picker CSS.',
       ].join('\n'),
     );
   } finally {

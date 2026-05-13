@@ -2,6 +2,7 @@ import { isValidHex } from '@/helpers/color';
 import { ColorWrap, EditableInput, Swatch } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import './Twitter.scss';
 
 import type {
   ClassName,

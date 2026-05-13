@@ -598,7 +598,7 @@ export const siteSections: readonly ContentSection[] = [
               'Use theme="light" | "dark" | "auto" to switch built-in token sets.',
               'Use className and classNames to attach custom classes to supported slots.',
               'Override CSS custom properties for token-level tweaks.',
-              'Import published CSS entrypoints manually only when you need aggregate CSS or shared primitive styles.',
+              'Import shared primitive CSS manually only when you compose custom picker UIs from primitives directly.',
               'Prefer CSS variables and classes for new UI; use inline style props only as an escape hatch.',
             ],
           },
@@ -616,13 +616,13 @@ export const siteSections: readonly ContentSection[] = [
           },
           {
             type: 'text',
-            text: 'Manual CSS imports are optional. Use them only when you need the aggregate stylesheet up front or when you compose custom pickers from shared primitives.',
+            text: 'Manual CSS imports are optional. Use them only when you compose custom pickers from shared primitives directly.',
           },
           {
             type: 'code',
             language: 'tsx',
             label: 'Optional CSS imports',
-            code: "import 'react-color/es/styles/index.css';\nimport 'react-color/es/styles/common/editable-input.css';\n",
+            code: "import 'react-color/es/styles/common/editable-input.css';\n",
           },
         ],
       },
@@ -691,7 +691,7 @@ export const siteSections: readonly ContentSection[] = [
               'Use `theme="light" | "dark" | "auto"` when you want a built-in token set that tracks the host page.',
               'Use `className` for the outer wrapper and `classNames` when the picker exposes slot-level hooks.',
               'Override CSS variables for palette-level adjustments, spacing, shadows, or borders instead of rewriting component markup.',
-              'Import CSS manually only when you need aggregate stylesheet control or shared primitive styles for custom compositions.',
+              'Import CSS manually only when you compose custom picker UIs from shared primitives directly.',
             ],
           },
           {

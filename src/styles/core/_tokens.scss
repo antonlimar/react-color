@@ -126,104 +126,49 @@
   --rc-photoshop-button-shadow: rgba(255, 255, 255, 0.08);
 }
 
-@mixin rc-emit-theme-tokens {
-  :where(
-    .rc-raised,
-    .rc-alpha,
-    .rc-block,
-    .rc-chrome,
-    .rc-circle,
-    .rc-compact,
-    .rc-github,
-    .rc-google,
-    .rc-hue,
-    .rc-material,
-    .rc-sketch,
-    .rc-slider,
-    .rc-swatches,
-    .rc-twitter
-  ) {
+@mixin rc-emit-default-theme-tokens($root) {
+  #{$root},
+  #{$root}--light {
     @include rc-theme-light;
   }
 
-  :where(
-    .rc-raised--light,
-    .rc-alpha--light,
-    .rc-block--light,
-    .rc-chrome--light,
-    .rc-circle--light,
-    .rc-compact--light,
-    .rc-github--light,
-    .rc-google--light,
-    .rc-hue--light,
-    .rc-material--light,
-    .rc-sketch--light,
-    .rc-slider--light,
-    .rc-swatches--light,
-    .rc-twitter--light
-  ) {
-    @include rc-theme-light;
-  }
-
-  :where(
-    .rc-raised--dark,
-    .rc-alpha--dark,
-    .rc-block--dark,
-    .rc-chrome--dark,
-    .rc-circle--dark,
-    .rc-compact--dark,
-    .rc-github--dark,
-    .rc-google--dark,
-    .rc-hue--dark,
-    .rc-material--dark,
-    .rc-sketch--dark,
-    .rc-slider--dark,
-    .rc-swatches--dark,
-    .rc-twitter--dark
-  ) {
+  #{$root}--dark {
     @include rc-theme-dark;
   }
 
   @media (prefers-color-scheme: dark) {
-    :where(
-      .rc-raised[data-theme='auto'],
-      .rc-alpha[data-theme='auto'],
-      .rc-block[data-theme='auto'],
-      .rc-chrome[data-theme='auto'],
-      .rc-circle[data-theme='auto'],
-      .rc-compact[data-theme='auto'],
-      .rc-github[data-theme='auto'],
-      .rc-google[data-theme='auto'],
-      .rc-hue[data-theme='auto'],
-      .rc-material[data-theme='auto'],
-      .rc-sketch[data-theme='auto'],
-      .rc-slider[data-theme='auto'],
-      .rc-swatches[data-theme='auto'],
-      .rc-twitter[data-theme='auto']
-    ) {
+    #{$root}[data-theme='auto'] {
       @include rc-theme-dark;
     }
   }
+}
 
-  .rc-photoshop {
+@mixin rc-emit-photoshop-theme-tokens($root) {
+  #{$root},
+  #{$root}--light {
     color-scheme: light;
     @include rc-photoshop-light;
   }
 
-  .rc-photoshop--light {
-    color-scheme: light;
-    @include rc-photoshop-light;
-  }
-
-  .rc-photoshop--dark {
+  #{$root}--dark {
     color-scheme: dark;
     @include rc-photoshop-dark;
   }
 
   @media (prefers-color-scheme: dark) {
-    .rc-photoshop[data-theme='auto'] {
+    #{$root}[data-theme='auto'] {
       color-scheme: dark;
       @include rc-photoshop-dark;
+    }
+  }
+}
+
+@mixin rc-emit-theme-tokens($roots: ()) {
+  @each $root in $roots {
+    @if $root == '.rc-photoshop' {
+      @include rc-emit-photoshop-theme-tokens($root);
+    } @else {
+      @include rc-emit-default-theme-tokens($root);
     }
   }
 }

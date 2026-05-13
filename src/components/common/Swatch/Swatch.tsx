@@ -4,6 +4,7 @@ import { handleFocus } from '@/helpers/interaction';
 import type { Radius, SwatchProps } from '@/types';
 import { Checkboard } from '@/components/common/Checkboard';
 import { bem } from '@/components/common/styleArchitecture';
+import './Swatch.scss';
 
 const b = bem('swatch');
 

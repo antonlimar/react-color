@@ -2,6 +2,7 @@ import { getContrastingColor, isValidHex } from '@/helpers/color';
 import { ColorWrap, EditableInput, Checkboard } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import './Block.scss';
 import { BlockSwatches } from '@/components/block/BlockSwatches';
 
 import type {

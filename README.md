@@ -76,18 +76,11 @@ You can import `AlphaPicker` `BlockPicker` `ChromePicker` `CirclePicker` `Compac
 
 ### Styling
 
-The modernization fork now ships explicit CSS entrypoints instead of relying on default picker UI from inline `reactcss` styles.
+The modernization fork ships picker-scoped CSS automatically with each picker entrypoint instead of relying on default picker UI from inline `reactcss` styles.
 
-Import the aggregate stylesheet:
-
-```js
-import 'react-color/es/styles/index.css';
-```
-
-Or import only the styles you need for a specific picker or shared primitive:
+Root picker imports include the CSS they need. Import shared primitive styles manually only when you compose custom picker UIs from those primitives directly:
 
 ```js
-import 'react-color/es/styles/pickers/sketch.css';
 import 'react-color/es/styles/common/editable-input.css';
 ```
 
@@ -96,8 +89,8 @@ All public pickers keep accepting `className` on the root node and now also supp
 ### Styling migration
 
 - Old approach: rely on default inline styles and override them with the `styles` prop.
-- New approach: import the published CSS, then customize with `className`, `classNames`, `theme`, and CSS custom properties.
-- Aggregate CSS (`react-color/es/styles/index.css`) is optional convenience only; consumers can keep bundle size tighter with granular picker-level imports.
+- New approach: import only the picker components you render, then customize with `className`, `classNames`, `theme`, and CSS custom properties.
+- Picker and shared primitive CSS is published as granular entrypoints under `react-color/es/styles/**` for advanced composition.
 
 [license-image]: http://img.shields.io/npm/l/react-color.svg
 [license-url]: LICENSE

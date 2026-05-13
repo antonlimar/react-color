@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { RaisedProps } from '@/types';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
+import './Raised.scss';
 
 const b = bem('raised');
 

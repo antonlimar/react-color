@@ -1,4 +1,3 @@
-import 'react-color/es/styles/index.css';
 import 'react-color/es/styles/pickers/sketch.css';
 import 'react-color/es/styles/common/editable-input.css';
 
