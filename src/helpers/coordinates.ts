@@ -9,9 +9,7 @@ export const getPageCoordinates = (event: InternalColorChangeEvent): PageCoordin
   }
 
   const touchEvent = event as unknown as TouchLikeEvent;
+  const { pageX, pageY } = touchEvent.touches[0];
 
-  return {
-    pageX: touchEvent.touches[0].pageX,
-    pageY: touchEvent.touches[0].pageY,
-  };
+  return { pageX, pageY };
 };
