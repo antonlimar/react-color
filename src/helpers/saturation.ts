@@ -1,4 +1,5 @@
-import type { HSLAColor, InternalColorChangeEvent, SaturationChange } from '@/types';
+import type { HSLAColor, InternalColorChangeEvent } from '@/types';
+import type { SaturationChange } from '@/components/common/Saturation/types';
 import { getPageCoordinates } from './coordinates';
 import type { SaturationChangeContainer } from './types';
 

@@ -5,14 +5,8 @@ import { SliderSwatches } from '@/components/slider/SliderSwatches';
 import { SliderPointer } from '@/components/slider/SliderPointer';
 import './Slider.scss';
 
-import type {
-  ClassName,
-  ColorPickerInjectedProps,
-  HueProps,
-  PickerClassNames,
-  PickerCustomStyles,
-  PickerTheme,
-} from '@/types';
+import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+import type { HueProps } from '@/components/common/Hue';
 
 const b = bem('slider');
 

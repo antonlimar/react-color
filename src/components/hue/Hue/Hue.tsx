@@ -4,14 +4,8 @@ import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
 import { HuePointer } from '@/components/hue/HuePointer';
 import './Hue.scss';
 
-import type {
-  ClassName,
-  ColorPickerInjectedProps,
-  HueProps,
-  PickerClassNames,
-  PickerCustomStyles,
-  PickerTheme,
-} from '@/types';
+import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+import type { HueProps } from '@/components/common/Hue';
 
 const b = bem('hue');
 

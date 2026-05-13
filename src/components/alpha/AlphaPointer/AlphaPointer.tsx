@@ -1,4 +1,4 @@
-import type { AlphaProps } from '@/types';
+import type { AlphaProps } from '@/components/common/Alpha';
 import { bem } from '@/components/common/styleArchitecture';
 import './AlphaPointer.scss';
 

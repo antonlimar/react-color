@@ -4,7 +4,6 @@ import { AlphaPointer } from '@/components/alpha/AlphaPointer';
 import './Alpha.scss';
 
 import type {
-  AlphaProps,
   CheckboardRenderers,
   ClassName,
   ColorPickerInjectedProps,
@@ -12,6 +11,7 @@ import type {
   PickerStyle,
   PickerTheme,
 } from '@/types';
+import type { AlphaProps } from '@/components/common/Alpha';
 
 const b = bem('alpha');
 

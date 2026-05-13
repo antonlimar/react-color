@@ -6,7 +6,7 @@ import type {
   EditableInputChangeValue,
   EditableInputProps,
   EditableInputValue,
-} from '@/types';
+} from './types';
 import { bem } from '@/components/common/styleArchitecture';
 import './EditableInput.scss';
 

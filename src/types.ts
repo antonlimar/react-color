@@ -1,14 +1,4 @@
-import type {
-  ChangeEvent,
-  ComponentType,
-  CSSProperties,
-  KeyboardEvent,
-  MouseEvent,
-  ReactNode,
-  TouchEvent,
-} from 'react';
-
-export type ColorSource = string;
+import type { ChangeEvent, ComponentType, CSSProperties, KeyboardEvent, MouseEvent, TouchEvent } from 'react';
 
 export interface RGBColor {
   r: number;
@@ -57,7 +47,7 @@ export interface ColorChangeValue {
   s?: number | string;
   l?: number | string;
   v?: number;
-  source?: ColorSource;
+  source?: string;
 }
 
 export interface ColorResult {
@@ -66,7 +56,7 @@ export interface ColorResult {
   hsl: HSLAColor;
   hsv: HSVAColor;
   oldHue: number;
-  source?: ColorSource;
+  source?: string;
 }
 
 export type ColorPickerChangeEvent =
@@ -124,126 +114,16 @@ export interface ColorPickerInjectedProps extends ColorResult {
 
 export type CustomPickerInjectedProps = ColorPickerInjectedProps;
 
-export interface AlphaChange extends HSLAColor {
-  source: ColorSource;
-}
-
-export interface HueChange extends HSLAColor {
-  source: ColorSource;
-}
-
-export interface SaturationChange extends HSVAColor {
-  source: ColorSource;
-}
-
-export interface CheckboardRenderers {
-  canvas?: new () => {
-    width: number;
-    height: number;
-    getContext(contextId: '2d'): {
-      fillStyle: string;
-      fillRect(x: number, y: number, width: number, height: number): void;
-      translate(x: number, y: number): void;
-    } | null;
-    toDataURL(): string;
-  };
-  [key: string]: unknown;
-}
-
-export interface CheckboardProps {
-  white?: string;
-  grey?: string;
-  size?: number;
-  renderers?: CheckboardRenderers;
-  borderRadius?: Radius;
-  boxShadow?: string;
-  children?: ReactNode;
-}
-
-export interface RaisedProps {
-  background?: string;
-  zDepth?: 0 | 1 | 2 | 3 | 4 | 5;
-  radius?: number;
-  style?: PickerStyle;
-  styles?: PickerCustomStyles;
-  theme?: PickerTheme;
-  children?: ReactNode;
-}
-
-export interface SwatchProps {
-  color: string;
-  style?: PickerStyle;
-  onClick?: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
-  onHover?: (color: string, event: MouseEvent<HTMLDivElement>) => void;
-  title?: string;
-  children?: ReactNode;
-  focus?: boolean;
-  focusStyle?: PickerStyle;
-}
-
-export interface EditableInputStyle {
-  wrap?: PickerStyle;
-  input?: PickerStyle;
-  label?: PickerStyle;
-}
-
-export type EditableInputValue = string | number;
-export type EditableInputChangeValue = EditableInputValue | Record<string, EditableInputValue>;
-
-export type EditableInputChangeEvent =
-  | ChangeEvent<HTMLInputElement>
-  | KeyboardEvent<HTMLInputElement>
-  | globalThis.MouseEvent;
-
-export interface EditableInputProps {
-  label?: string | null;
-  value?: EditableInputValue;
-  placeholder?: string;
-  arrowOffset?: number;
-  dragLabel?: boolean;
-  dragMax?: number;
-  style?: EditableInputStyle;
-  hideLabel?: boolean;
-  onChange?: (value: EditableInputChangeValue, event: EditableInputChangeEvent) => void;
-}
-
-export interface AlphaProps {
-  rgb: RGBAColor;
-  hsl: HSLAColor;
-  a?: number;
-  direction?: 'horizontal' | 'vertical';
-  pointer?: PointerComponent<AlphaProps>;
-  renderers?: CheckboardRenderers;
-  style?: PickerStyle;
-  radius?: Radius;
-  shadow?: string;
-  onChange?: (color: AlphaChange, event: InternalColorChangeEvent) => void;
-}
-
-export interface HueProps {
-  hsl: HSLAColor;
-  direction?: 'horizontal' | 'vertical';
-  pointer?: PointerComponent<HueProps>;
-  style?: PickerStyle;
-  radius?: Radius;
-  shadow?: string;
-  onChange?: (color: HueChange, event: InternalColorChangeEvent) => void;
-}
-
-export interface SaturationStyle {
-  color?: PickerStyle;
-  white?: PickerStyle;
-  black?: PickerStyle;
-  pointer?: PickerStyle;
-  circle?: PickerStyle;
-}
-
-export interface SaturationProps {
-  hsl: HSLAColor;
-  hsv: HSVAColor;
-  pointer?: PointerComponent<SaturationProps>;
-  style?: SaturationStyle;
-  radius?: Radius;
-  shadow?: string;
-  onChange?: (color: SaturationChange, event: InternalColorChangeEvent) => void;
-}
+export type { AlphaChange, AlphaProps } from './components/common/Alpha/types';
+export type { CheckboardProps, CheckboardRenderers } from './components/common/Checkboard/types';
+export type {
+  EditableInputChangeEvent,
+  EditableInputChangeValue,
+  EditableInputProps,
+  EditableInputStyle,
+  EditableInputValue,
+} from './components/common/EditableInput/types';
+export type { HueChange, HueProps } from './components/common/Hue/types';
+export type { RaisedProps } from './components/common/Raised/types';
+export type { SaturationChange, SaturationProps, SaturationStyle } from './components/common/Saturation/types';
+export type { SwatchProps } from './components/common/Swatch/types';

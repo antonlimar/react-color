@@ -1,7 +1,8 @@
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
 import { handleFocus } from '@/helpers/interaction';
-import type { Radius, SwatchProps } from '@/types';
+import type { Radius } from '@/types';
+import type { SwatchProps } from './types';
 import { Checkboard } from '@/components/common/Checkboard';
 import { bem } from '@/components/common/styleArchitecture';
 import './Swatch.scss';
