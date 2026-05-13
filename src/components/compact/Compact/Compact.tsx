@@ -2,9 +2,9 @@ import { isValidHex } from '@/helpers/color';
 import { ColorWrap, Raised } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
-import './Compact.scss';
 import { CompactColor } from '@/components/compact/CompactColor';
 import { CompactFields } from '@/components/compact/CompactFields';
+import './Compact.scss';
 
 import type {
   ClassName,

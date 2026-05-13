@@ -11,20 +11,21 @@ import { build } from 'vite';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
 const stylesSourceRoot = path.join(repoRoot, 'src', 'styles');
+const componentsSourceRoot = path.join(repoRoot, 'src', 'components');
 
-async function collectExpectedStyleArtifacts(directory = stylesSourceRoot) {
+async function collectExpectedStyleArtifacts(sourceRoot, outputRoot, directory = sourceRoot) {
   const entries = await readdir(directory, { withFileTypes: true });
   const stylePaths = [];
 
   for (const entry of entries) {
     const absolutePath = path.join(directory, entry.name);
     if (entry.isDirectory()) {
-      stylePaths.push(...(await collectExpectedStyleArtifacts(absolutePath)));
+      stylePaths.push(...(await collectExpectedStyleArtifacts(sourceRoot, outputRoot, absolutePath)));
       continue;
     }
 
     if (entry.isFile() && entry.name.endsWith('.scss') && !entry.name.startsWith('_')) {
-      stylePaths.push(path.relative(stylesSourceRoot, absolutePath).replace(/\.scss$/u, '.css'));
+      stylePaths.push(path.join(outputRoot, path.relative(sourceRoot, absolutePath).replace(/\.scss$/u, '.css')));
     }
   }
 
@@ -33,39 +34,39 @@ async function collectExpectedStyleArtifacts(directory = stylesSourceRoot) {
 
 async function ensureBuildArtifacts() {
   await access(path.join(repoRoot, 'es', 'index.js'), constants.R_OK);
-  const expectedCssArtifacts = await collectExpectedStyleArtifacts();
+  const expectedCssArtifacts = [
+    ...(await collectExpectedStyleArtifacts(stylesSourceRoot, 'styles')),
+    ...(await collectExpectedStyleArtifacts(componentsSourceRoot, 'components')),
+  ];
 
   for (const relativeCssPath of expectedCssArtifacts) {
-    await access(path.join(repoRoot, 'es', 'styles', relativeCssPath), constants.R_OK);
+    await access(path.join(repoRoot, 'es', relativeCssPath), constants.R_OK);
   }
 
-  const [esChromeEntry, esSketchEntry, esEditableInputEntry, esIndexEntry] = await Promise.all([
-    readFile(path.join(repoRoot, 'es', 'components', 'chrome', 'index.js'), 'utf8'),
-    readFile(path.join(repoRoot, 'es', 'components', 'sketch', 'index.js'), 'utf8'),
-    readFile(path.join(repoRoot, 'es', 'components', 'common', 'EditableInput', 'index.js'), 'utf8'),
+  const [esChromeEntry, esAlphaPointerEntry, esEditableInputEntry, esIndexEntry] = await Promise.all([
+    readFile(path.join(repoRoot, 'es', 'components', 'chrome', 'Chrome', 'Chrome.js'), 'utf8'),
+    readFile(path.join(repoRoot, 'es', 'components', 'alpha', 'AlphaPointer', 'AlphaPointer.js'), 'utf8'),
+    readFile(path.join(repoRoot, 'es', 'components', 'common', 'EditableInput', 'EditableInput.js'), 'utf8'),
     readFile(path.join(repoRoot, 'es', 'index.js'), 'utf8'),
   ]);
 
   assert.match(
     esChromeEntry,
-    /import '\.\.\/\.\.\/styles\/pickers\/chrome\.css';/u,
-    'es/components/chrome/index.js is missing the ESM style side effect.',
-  );
-  assert.doesNotMatch(
-    esChromeEntry,
-    /styles\/common\/swatch\.css/u,
-    'es/components/chrome/index.js imports unrelated Swatch CSS.',
+    /import '\.\/Chrome\.css';/u,
+    'es/components/chrome/Chrome/Chrome.js is missing the local CSS side effect.',
   );
   assert.match(
-    esSketchEntry,
-    /import '\.\.\/\.\.\/styles\/pickers\/sketch\.css';/u,
-    'es/components/sketch/index.js is missing the ESM style side effect.',
+    esAlphaPointerEntry,
+    /import '\.\/AlphaPointer\.css';/u,
+    'es/components/alpha/AlphaPointer/AlphaPointer.js is missing the local CSS side effect.',
   );
   assert.match(
     esEditableInputEntry,
-    /import '\.\.\/\.\.\/\.\.\/styles\/common\/editable-input\.css';/u,
-    'es/components/common/EditableInput/index.js is missing the ESM style side effect.',
+    /import '\.\/EditableInput\.css';/u,
+    'es/components/common/EditableInput/EditableInput.js is missing the local CSS side effect.',
   );
+  assert.doesNotMatch(esChromeEntry, /\.scss/u, 'Generated JS should not reference SCSS files.');
+  assert.doesNotMatch(esAlphaPointerEntry, /\.scss/u, 'Generated JS should not reference SCSS files.');
   assert.match(
     esIndexEntry,
     /from '\.\/components\/chrome\/index\.js';/u,
@@ -228,8 +229,8 @@ void reactColor;
         'esm-consumption-check passed:',
         '- Native Node ESM resolved the root entry and documented common component entry through the exports map.',
         '- CommonJS require() no longer consumes the package root.',
-        '- The published package layout exposes granular CSS entrypoints for built styles in es/styles.',
-        '- Picker and common component modules pull in only their own published CSS dependencies for bundlers.',
+        '- The published package layout exposes granular CSS entrypoints for built styles in es/styles and component-local CSS in es/components.',
+        '- Picker and common component modules pull in their own published CSS side effects for bundlers.',
         '- Vite consumed root default/named imports without bundling unused picker CSS.',
       ].join('\n'),
     );

@@ -2,6 +2,7 @@ import { isValidHex, isValidColorString } from '@/helpers/color';
 import { EditableInput } from '@/components/common';
 import { bem } from '@/components/common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, HSVAColor, RGBAColor } from '@/types';
+import './GoogleFields.scss';
 
 const b = bem('google');
 

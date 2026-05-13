@@ -8,8 +8,9 @@ import { compileAsync } from 'sass';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
 const stylesRoot = path.join(repoRoot, 'src', 'styles');
+const componentsRoot = path.join(repoRoot, 'src', 'components');
 
-async function collectEntries(currentDir = stylesRoot) {
+async function collectEntries(currentDir) {
   const entries = await readdir(currentDir, { withFileTypes: true });
   const results = [];
 
@@ -34,9 +35,15 @@ async function collectEntries(currentDir = stylesRoot) {
 }
 
 function getOutputPath(targetDir, entryPath) {
-  const relativePath = path.relative(stylesRoot, entryPath).replace(/\.scss$/u, '.css');
+  if (entryPath.startsWith(stylesRoot)) {
+    const relativePath = path.relative(stylesRoot, entryPath).replace(/\.scss$/u, '.css');
 
-  return path.join(repoRoot, targetDir, 'styles', relativePath);
+    return path.join(repoRoot, targetDir, 'styles', relativePath);
+  }
+
+  const relativePath = path.relative(componentsRoot, entryPath).replace(/\.scss$/u, '.css');
+
+  return path.join(repoRoot, targetDir, 'components', relativePath);
 }
 
 async function compileEntry(entryPath, targetDir) {
@@ -57,11 +64,11 @@ async function main() {
     throw new Error('Usage: node scripts/build-styles.mjs <es>');
   }
 
-  const entries = await collectEntries();
+  const entries = [...(await collectEntries(stylesRoot)), ...(await collectEntries(componentsRoot))];
 
   await Promise.all(entries.map((entryPath) => compileEntry(entryPath, targetDir)));
 
-  console.log(`Built ${entries.length} style entrypoints into ${targetDir}/styles.`);
+  console.log(`Built ${entries.length} style entrypoints into ${targetDir}.`);
 }
 
 await main();

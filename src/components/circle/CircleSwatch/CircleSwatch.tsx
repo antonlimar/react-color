@@ -2,6 +2,7 @@ import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
 import { bem } from '@/components/common/styleArchitecture';
+import './CircleSwatch.scss';
 
 const b = bem('circle');
 

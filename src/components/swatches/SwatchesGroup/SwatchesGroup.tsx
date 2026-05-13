@@ -2,6 +2,7 @@ import { SwatchesColor } from '@/components/swatches/SwatchesColor';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { SwatchHoverHandler } from '@/types';
 import { bem } from '@/components/common/styleArchitecture';
+import './SwatchesGroup.scss';
 
 const b = bem('swatches');
 

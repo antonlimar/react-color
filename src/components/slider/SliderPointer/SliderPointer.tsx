@@ -1,4 +1,5 @@
 import { bem } from '@/components/common/styleArchitecture';
+import './SliderPointer.scss';
 
 const b = bem('slider');
 

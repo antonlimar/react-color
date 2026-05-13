@@ -1,6 +1,7 @@
 import { EditableInput } from '@/components/common';
 import { bem } from '@/components/common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, RGBAColor } from '@/types';
+import './CompactFields.scss';
 
 const b = bem('compact');
 

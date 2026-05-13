@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { ColorWrap, Saturation, Hue } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
-import './Photoshop.scss';
 import { PhotoshopFields } from '@/components/photoshop/PhotoshopFields';
 import { PhotoshopPointerCircle } from '@/components/photoshop/PhotoshopPointerCircle';
 import { PhotoshopPointer } from '@/components/photoshop/PhotoshopPointer';
 import { PhotoshopButton } from '@/components/photoshop/PhotoshopButton';
 import { PhotoshopPreviews } from '@/components/photoshop/PhotoshopPreviews';
+import './Photoshop.scss';
 
 import type {
   ClassName,

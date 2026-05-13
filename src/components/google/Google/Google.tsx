@@ -1,11 +1,11 @@
 import { ColorWrap, Saturation, Hue } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
-import './Google.scss';
 import { GooglePointerCircle } from '@/components/google/GooglePointerCircle';
 import { GooglePointer } from '@/components/google/GooglePointer';
 import { GoogleFields } from '@/components/google/GoogleFields';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+import './Google.scss';
 
 const b = bem('google');
 

@@ -1,4 +1,5 @@
 import { bem } from '@/components/common/styleArchitecture';
+import './ChromePointerCircle.scss';
 
 const b = bem('chrome');
 

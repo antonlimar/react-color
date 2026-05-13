@@ -1,5 +1,6 @@
 import type { HueProps } from '@/types';
 import { bem } from '@/components/common/styleArchitecture';
+import './HuePointer.scss';
 
 const b = bem('hue');
 

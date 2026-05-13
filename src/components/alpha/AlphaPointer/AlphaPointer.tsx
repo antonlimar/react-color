@@ -1,5 +1,6 @@
 import type { AlphaProps } from '@/types';
 import { bem } from '@/components/common/styleArchitecture';
+import './AlphaPointer.scss';
 
 const b = bem('alpha');
 

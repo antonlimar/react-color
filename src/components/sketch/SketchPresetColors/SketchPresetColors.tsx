@@ -2,6 +2,7 @@ import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { ColorInputChangeHandler, SwatchHoverHandler } from '@/types';
 import { bem } from '@/components/common/styleArchitecture';
+import './SketchPresetColors.scss';
 
 const b = bem('sketch');
 

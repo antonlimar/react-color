@@ -1,4 +1,5 @@
 import { bem } from '@/components/common/styleArchitecture';
+import './PhotoshopPointer.scss';
 
 const b = bem('photoshop');
 

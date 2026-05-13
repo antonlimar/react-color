@@ -2,6 +2,7 @@ import { isValidHex } from '@/helpers/color';
 import { EditableInput } from '@/components/common';
 import { bem } from '@/components/common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '@/types';
+import './SketchFields.scss';
 
 const b = bem('sketch');
 

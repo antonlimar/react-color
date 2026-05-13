@@ -1,8 +1,8 @@
 import { isValidHex } from '@/helpers/color';
-
 import { EditableInput } from '@/components/common';
 import { bem } from '@/components/common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSVAColor, RGBAColor } from '@/types';
+import './PhotoshopFields.scss';
 
 const b = bem('photoshop');
 

@@ -1,10 +1,10 @@
 import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
-import './Chrome.scss';
 import { ChromeFields } from '@/components/chrome/ChromeFields';
 import { ChromePointer } from '@/components/chrome/ChromePointer';
 import { ChromePointerCircle } from '@/components/chrome/ChromePointerCircle';
+import './Chrome.scss';
 
 import type {
   CheckboardRenderers,

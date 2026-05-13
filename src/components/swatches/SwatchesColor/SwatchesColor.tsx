@@ -4,6 +4,7 @@ import { CheckIcon } from '@/components/common/icons/CheckIcon';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
 import { bem } from '@/components/common/styleArchitecture';
+import './SwatchesColor.scss';
 
 const b = bem('swatches');
 

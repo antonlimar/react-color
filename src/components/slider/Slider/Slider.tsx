@@ -1,9 +1,9 @@
 import { ColorWrap, Hue } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
-import './Slider.scss';
 import { SliderSwatches } from '@/components/slider/SliderSwatches';
 import { SliderPointer } from '@/components/slider/SliderPointer';
+import './Slider.scss';
 
 import type {
   ClassName,
