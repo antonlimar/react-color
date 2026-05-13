@@ -83,7 +83,7 @@ const DEFAULT_COMPACT_COLORS = [
   '#AB149E',
 ];
 
-const CompactBase = ({
+function CompactBase({
   onChange,
   onSwatchHover,
   colors = DEFAULT_COMPACT_COLORS,
@@ -93,7 +93,7 @@ const CompactBase = ({
   className = '',
   classNames,
   theme,
-}: CompactProps) => {
+}: CompactProps) {
   const raisedStyle = getDeprecatedStyleOverride(passedStyles, 'Compact', COMPACT_STYLE_SLOTS, 'Compact');
   const rootStyle = getDeprecatedStyleOverride(passedStyles, 'compact', COMPACT_STYLE_SLOTS, 'compact');
   const clearStyle = getDeprecatedStyleOverride(passedStyles, 'clear', COMPACT_STYLE_SLOTS, 'clear');
@@ -125,6 +125,6 @@ const CompactBase = ({
       </div>
     </Raised>
   );
-};
+}
 
 export const Compact = ColorWrap(CompactBase);

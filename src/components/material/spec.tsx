@@ -1,5 +1,4 @@
 import { red } from '@/helpers/color';
-
 import { Material } from './Material';
 import { getRootElement, renderForSnapshot } from '@test/helpers';
 

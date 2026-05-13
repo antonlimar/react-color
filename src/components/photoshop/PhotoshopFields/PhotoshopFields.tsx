@@ -11,7 +11,7 @@ type PhotoshopFieldsProps = {
   hex: string;
 };
 
-export const PhotoshopFields = ({ onChange, rgb, hsv, hex }: PhotoshopFieldsProps) => {
+export function PhotoshopFields({ onChange, rgb, hsv, hex }: PhotoshopFieldsProps) {
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {
     if (data['#']) {
       if (isValidHex(data['#'])) {
@@ -74,4 +74,4 @@ export const PhotoshopFields = ({ onChange, rgb, hsv, hex }: PhotoshopFieldsProp
       </div>
     </div>
   );
-};
+}

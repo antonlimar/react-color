@@ -1,5 +1,4 @@
 import { getContrastingColor, isValidHex } from '@/helpers/color';
-
 import { ColorWrap, EditableInput, Checkboard } from '@/components/common';
 import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';

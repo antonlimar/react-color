@@ -5,7 +5,7 @@ type PhotoshopPointerCircleProps = {
   hsl: HSLAColor;
 };
 
-export const PhotoshopPointerCircle = ({ hsl }: PhotoshopPointerCircleProps) => {
+export function PhotoshopPointerCircle({ hsl }: PhotoshopPointerCircleProps) {
   return (
     <div
       className={getPickerClassName({
@@ -15,4 +15,4 @@ export const PhotoshopPointerCircle = ({ hsl }: PhotoshopPointerCircleProps) => 
       })}
     />
   );
-};
+}

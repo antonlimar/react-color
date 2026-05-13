@@ -7,7 +7,7 @@ type SliderSwatchesProps = {
   hsl: HSLAColor;
 };
 
-export const SliderSwatches = ({ onClick, hsl }: SliderSwatchesProps) => {
+export function SliderSwatches({ onClick, hsl }: SliderSwatchesProps) {
   const epsilon = 0.1;
   const offsets = [0.8, 0.65, 0.5, 0.35, 0.2];
 
@@ -28,4 +28,4 @@ export const SliderSwatches = ({ onClick, hsl }: SliderSwatchesProps) => {
       <div className={getPickerClassName({ block: 'slider', slot: 'clear' })} />
     </div>
   );
-};
+}

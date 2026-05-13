@@ -1,5 +1,4 @@
 import { getContrastingColor } from '@/helpers/color';
-
 import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
@@ -12,7 +11,7 @@ type CompactColorProps = {
   active?: boolean;
 };
 
-export const CompactColor = ({ color, onClick = () => {}, onSwatchHover, active }: CompactColorProps) => {
+export function CompactColor({ color, onClick = () => {}, onSwatchHover, active }: CompactColorProps) {
   const swatchStyle: PickerStyle = {
     background: color,
     boxShadow: color === '#FFFFFF' ? 'inset 0 0 0 1px #ddd' : undefined,
@@ -40,4 +39,4 @@ export const CompactColor = ({ color, onClick = () => {}, onSwatchHover, active 
       </Swatch>
     </div>
   );
-};
+}

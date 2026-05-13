@@ -14,7 +14,7 @@ type GoogleFieldsProps = {
 const normalizeAngleValue = (value: string) => value.replace('°', '');
 const normalizePercentValue = (value: string) => value.replace('%', '');
 
-export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }: GoogleFieldsProps) => {
+export function GoogleFields({ onChange, rgb, hsl, hex, hsv }: GoogleFieldsProps) {
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {
     if (typeof data.hex === 'string') {
       if (isValidHex(data.hex)) {
@@ -129,4 +129,4 @@ export const GoogleFields = ({ onChange, rgb, hsl, hex, hsv }: GoogleFieldsProps
       </div>
     </div>
   );
-};
+}

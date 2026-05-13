@@ -54,7 +54,7 @@ const SKETCH_STYLE_SLOTS = [
   'alpha',
 ] as const;
 
-const SketchBase = ({
+function SketchBase({
   width = 200,
   rgb,
   hex,
@@ -69,7 +69,7 @@ const SketchBase = ({
   className = '',
   classNames,
   theme,
-}: SketchProps) => {
+}: SketchProps) {
   const rootStyle = {
     width,
     ...getDeprecatedStyleOverride(passedStyles, 'picker', SKETCH_STYLE_SLOTS, 'picker'),
@@ -139,6 +139,6 @@ const SketchBase = ({
       <SketchPresetColors colors={presetColors!} onClick={onChange} onSwatchHover={onSwatchHover} />
     </div>
   );
-};
+}
 
 export const Sketch = ColorWrap(SketchBase);

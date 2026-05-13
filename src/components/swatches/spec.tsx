@@ -1,5 +1,4 @@
 import { red, simpleCheckForValidColor } from '@/helpers/color';
-
 import { Swatches } from './Swatches';
 import { SwatchesColor } from './SwatchesColor';
 import { SwatchesGroup } from './SwatchesGroup';

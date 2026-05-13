@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import { ColorWrap, Saturation, Hue } from '@/components/common';
 import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
@@ -41,7 +40,7 @@ const PHOTOSHOP_STYLE_SLOTS = [
   'actions',
 ] as const;
 
-const PhotoshopBase = (props: PhotoshopProps) => {
+function PhotoshopBase(props: PhotoshopProps) {
   const [currentColor] = useState(props.hex);
 
   const resolvedProps: PhotoshopProps = {
@@ -117,6 +116,6 @@ const PhotoshopBase = (props: PhotoshopProps) => {
       </div>
     </div>
   );
-};
+}
 
 export const Photoshop = ColorWrap(PhotoshopBase);

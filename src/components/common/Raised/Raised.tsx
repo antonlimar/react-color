@@ -15,7 +15,7 @@ const getRaisedStyle = (styles: RaisedProps['styles'], slot: 'wrap' | 'bg' | 'co
   return isStyleObject(slotStyle) ? slotStyle : {};
 };
 
-export const Raised = ({
+export function Raised({
   zDepth = 1,
   radius = 2,
   background = '#fff',
@@ -23,7 +23,7 @@ export const Raised = ({
   style,
   styles: passedStyles = {},
   theme,
-}: RaisedProps) => {
+}: RaisedProps) {
   const wrapStyle = getRaisedStyle(passedStyles, 'wrap');
   const contentStyle = getRaisedStyle(passedStyles, 'content');
   const bgStyle: CSSProperties = {
@@ -47,4 +47,4 @@ export const Raised = ({
       </div>
     </div>
   );
-};
+}

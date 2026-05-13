@@ -1,5 +1,4 @@
 import { red, simpleCheckForValidColor } from '@/helpers/color';
-
 import { Github } from './Github';
 import { GithubSwatch } from './GithubSwatch';
 import {

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { debounce } from 'lodash-es';
 import type { ComponentType } from 'react';
-
 import { simpleCheckForValidColor, toState } from '@/helpers/color';
 import type {
   Color,
@@ -57,9 +56,9 @@ const getOldHue = (data: Color | ColorChangeValue, oldHue: number): number => {
   return oldHue;
 };
 
-export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
+export function ColorWrap<PickerProps extends ColorPickerInjectedProps>(
   Picker: PickerComponent<PickerProps>,
-): WrappedColorPickerComponent<PickerProps> => {
+): WrappedColorPickerComponent<PickerProps> {
   const ColorPicker = (props: WrappedColorPickerProps<PickerProps>) => {
     const { onChange, onChangeComplete, onSwatchHover } = props;
     const [state, setState] = useState<ColorWrapState>(() => {
@@ -130,4 +129,4 @@ export const ColorWrap = <PickerProps extends ColorPickerInjectedProps>(
   };
 
   return ColorPicker as WrappedColorPickerComponent<PickerProps>;
-};
+}

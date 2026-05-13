@@ -8,7 +8,7 @@ type PhotoshopButtonProps = {
   active?: boolean;
 };
 
-export const PhotoshopButton = ({ onClick, label, children, active }: PhotoshopButtonProps) => {
+export function PhotoshopButton({ onClick, label, children, active }: PhotoshopButtonProps) {
   return (
     <div
       className={getPickerClassName({ block: 'photoshop', slot: 'button', modifiers: [active && 'active'] })}
@@ -17,4 +17,4 @@ export const PhotoshopButton = ({ onClick, label, children, active }: PhotoshopB
       {label || children}
     </div>
   );
-};
+}

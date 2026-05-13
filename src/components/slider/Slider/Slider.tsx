@@ -22,7 +22,7 @@ type SliderProps = ColorPickerInjectedProps & {
   theme?: PickerTheme;
 };
 
-const SliderBase = ({
+function SliderBase({
   hsl,
   onChange,
   pointer = SliderPointer,
@@ -30,7 +30,7 @@ const SliderBase = ({
   className = '',
   classNames,
   theme,
-}: SliderProps) => {
+}: SliderProps) {
   const rootStyle = getDeprecatedStyleOverride(passedStyles, 'wrap', SLIDER_STYLE_SLOTS, 'wrap');
   const hueStyle = getDeprecatedStyleOverride(passedStyles, 'hue', SLIDER_STYLE_SLOTS, 'hue');
   const swatchesStyle = getDeprecatedStyleOverride(passedStyles, 'swatches', SLIDER_STYLE_SLOTS, 'swatches');
@@ -53,6 +53,6 @@ const SliderBase = ({
       </div>
     </div>
   );
-};
+}
 
 export const Slider = ColorWrap(SliderBase);

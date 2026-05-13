@@ -4,7 +4,7 @@ import { get as getCheckboard } from '@/helpers/checkboard';
 import type { CheckboardProps } from '@/types';
 import { getPickerClassName } from '@/components/common/styleArchitecture';
 
-export const Checkboard = ({
+export function Checkboard({
   white = 'transparent',
   grey = 'rgba(0,0,0,.08)',
   size = 8,
@@ -12,7 +12,7 @@ export const Checkboard = ({
   borderRadius,
   boxShadow,
   children,
-}: CheckboardProps) => {
+}: CheckboardProps) {
   const style: CSSProperties = {
     borderRadius,
     boxShadow,
@@ -31,4 +31,4 @@ export const Checkboard = ({
   }
 
   return <div className={className} style={style} />;
-};
+}

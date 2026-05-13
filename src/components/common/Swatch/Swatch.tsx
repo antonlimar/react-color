@@ -7,7 +7,7 @@ import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 const ENTER = 13;
 
-const SwatchBase = ({
+function SwatchBase({
   color,
   style,
   onClick = () => {},
@@ -16,7 +16,7 @@ const SwatchBase = ({
   children,
   focus,
   focusStyle = {},
-}: SwatchProps) => {
+}: SwatchProps) {
   const transparent = color === 'transparent';
   const swatchStyle: CSSProperties = {
     background: color,
@@ -49,6 +49,6 @@ const SwatchBase = ({
       )}
     </div>
   );
-};
+}
 
 export const Swatch = handleFocus(SwatchBase);

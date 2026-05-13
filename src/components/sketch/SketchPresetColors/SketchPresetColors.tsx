@@ -16,7 +16,7 @@ type SketchPresetColorsProps = {
   onSwatchHover?: SwatchHoverHandler;
 };
 
-export const SketchPresetColors = ({ colors, onClick = () => {}, onSwatchHover }: SketchPresetColorsProps) => {
+export function SketchPresetColors({ colors, onClick = () => {}, onSwatchHover }: SketchPresetColorsProps) {
   const handleClick = (hex: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => {
     onClick(
       {
@@ -55,4 +55,4 @@ export const SketchPresetColors = ({ colors, onClick = () => {}, onSwatchHover }
       })}
     </div>
   );
-};
+}

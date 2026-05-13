@@ -9,7 +9,7 @@ type GithubSwatchProps = {
   onSwatchHover?: SwatchHoverHandler;
 };
 
-export const GithubSwatch = ({ color, onClick, onSwatchHover }: GithubSwatchProps) => {
+export function GithubSwatch({ color, onClick, onSwatchHover }: GithubSwatchProps) {
   const hoverSwatch: PickerStyle = {
     position: 'relative',
     zIndex: '2',
@@ -22,4 +22,4 @@ export const GithubSwatch = ({ color, onClick, onSwatchHover }: GithubSwatchProp
       <Swatch color={color} onClick={onClick} onHover={onSwatchHover as never} focusStyle={hoverSwatch} />
     </div>
   );
-};
+}

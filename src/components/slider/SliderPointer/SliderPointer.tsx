@@ -1,5 +1,5 @@
 import { getPickerClassName } from '@/components/common/styleArchitecture';
 
-export const SliderPointer = () => {
+export function SliderPointer() {
   return <div className={getPickerClassName({ block: 'slider', slot: 'pointer' })} />;
-};
+}

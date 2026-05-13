@@ -1,5 +1,4 @@
 import { red, simpleCheckForValidColor } from '@/helpers/color';
-
 import { Compact } from './Compact';
 import { CompactColor } from './CompactColor';
 import { CompactFields } from './CompactFields';

@@ -17,7 +17,7 @@ type GoogleProps = ColorPickerInjectedProps & {
   theme?: PickerTheme;
 };
 
-const GoogleBase = ({
+function GoogleBase({
   width = 652,
   onChange,
   rgb,
@@ -29,7 +29,7 @@ const GoogleBase = ({
   className = '',
   classNames,
   theme,
-}: GoogleProps) => {
+}: GoogleProps) {
   const rootStyle = {
     width,
     ...getDeprecatedStyleOverride(passedStyles, 'picker', GOOGLE_STYLE_SLOTS, 'picker'),
@@ -74,6 +74,6 @@ const GoogleBase = ({
       </div>
     </div>
   );
-};
+}
 
 export const Google = ColorWrap(GoogleBase);

@@ -7,7 +7,7 @@ type PhotoshopPreviewsProps = {
   currentColor: string;
 };
 
-export const PhotoshopPreviews = ({ rgb, currentColor }: PhotoshopPreviewsProps) => {
+export function PhotoshopPreviews({ rgb, currentColor }: PhotoshopPreviewsProps) {
   const nextColorStyle: CSSProperties = {
     background: `rgb(${rgb.r},${rgb.g}, ${rgb.b})`,
   };
@@ -31,4 +31,4 @@ export const PhotoshopPreviews = ({ rgb, currentColor }: PhotoshopPreviewsProps)
       <div className={getPickerClassName({ block: 'photoshop', slot: 'preview-label' })}>current</div>
     </div>
   );
-};
+}

@@ -1,5 +1,4 @@
 import { getContrastingColor } from '@/helpers/color';
-
 import { Swatch } from '@/components/common';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
 import type { KeyboardEvent, MouseEvent } from 'react';
@@ -15,14 +14,7 @@ type SwatchesColorProps = {
   active?: boolean;
 };
 
-export const SwatchesColor = ({
-  color,
-  onClick = () => {},
-  onSwatchHover,
-  first,
-  last,
-  active,
-}: SwatchesColorProps) => {
+export function SwatchesColor({ color, onClick = () => {}, onSwatchHover, first, last, active }: SwatchesColorProps) {
   const swatchStyle: PickerStyle = {
     background: color,
     overflow: 'hidden',
@@ -60,4 +52,4 @@ export const SwatchesColor = ({
       </Swatch>
     </div>
   );
-};
+}

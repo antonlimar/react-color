@@ -11,7 +11,7 @@ type SliderSwatchProps = {
   last?: boolean;
 };
 
-export const SliderSwatch = ({ hsl, offset, onClick = () => {}, active, first, last }: SliderSwatchProps) => {
+export function SliderSwatch({ hsl, offset, onClick = () => {}, active, first, last }: SliderSwatchProps) {
   const swatchStyle: CSSProperties = {
     background: `hsl(${hsl.h}, 50%, ${offset * 100}%)`,
   };
@@ -39,4 +39,4 @@ export const SliderSwatch = ({ hsl, offset, onClick = () => {}, active, first, l
       onClick={handleClick}
     />
   );
-};
+}

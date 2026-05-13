@@ -1,5 +1,4 @@
 import { isValidHex } from '@/helpers/color';
-
 import { ColorWrap, EditableInput, Swatch } from '@/components/common';
 import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
@@ -50,7 +49,7 @@ const handleHexChange = (onChange: ColorInputChangeHandler, hexCode: string, eve
   }
 };
 
-const TwitterBase = ({
+function TwitterBase({
   onChange,
   onSwatchHover,
   hex,
@@ -61,7 +60,7 @@ const TwitterBase = ({
   className = '',
   classNames,
   theme,
-}: TwitterProps) => {
+}: TwitterProps) {
   const rootStyle = {
     width,
     ...getDeprecatedStyleOverride(passedStyles, 'card', TWITTER_STYLE_SLOTS, 'card'),
@@ -119,6 +118,6 @@ const TwitterBase = ({
       </div>
     </div>
   );
-};
+}
 
 export const Twitter = ColorWrap(TwitterBase);

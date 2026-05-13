@@ -1,6 +1,6 @@
 import { getPickerClassName } from '@/components/common/styleArchitecture';
 
-export const PhotoshopPointer = () => {
+export function PhotoshopPointer() {
   return (
     <div className={getPickerClassName({ block: 'photoshop', slot: 'pointer' })}>
       <div className={getPickerClassName({ block: 'photoshop', slot: 'pointer-side', modifiers: ['left'] })}>
@@ -11,4 +11,4 @@ export const PhotoshopPointer = () => {
       </div>
     </div>
   );
-};
+}

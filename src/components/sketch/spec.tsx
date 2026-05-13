@@ -1,6 +1,5 @@
 import { red, simpleCheckForValidColor } from '@/helpers/color';
 import { expect, test } from 'vitest';
-
 import { Sketch } from './Sketch';
 import { SketchFields } from './SketchFields';
 import { SketchPresetColors } from './SketchPresetColors';

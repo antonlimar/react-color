@@ -1,5 +1,4 @@
 import { red, simpleCheckForValidColor } from '@/helpers/color';
-
 import { Twitter } from './Twitter';
 import {
   clickFirstSwatch,

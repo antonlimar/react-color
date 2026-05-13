@@ -1,5 +1,4 @@
 import { red } from '@/helpers/color';
-
 import { Slider } from './Slider';
 import { SliderPointer } from './SliderPointer';
 import { SliderSwatch } from './SliderSwatch';

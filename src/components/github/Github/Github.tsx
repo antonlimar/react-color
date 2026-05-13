@@ -35,7 +35,7 @@ const DEFAULT_GITHUB_COLORS = [
   '#D4C4FB',
 ];
 
-const GithubBase = ({
+function GithubBase({
   width = 200,
   colors = DEFAULT_GITHUB_COLORS,
   onChange,
@@ -45,7 +45,7 @@ const GithubBase = ({
   className = '',
   classNames,
   theme,
-}: GithubProps) => {
+}: GithubProps) {
   const rootStyle = {
     width,
     ...getDeprecatedStyleOverride(passedStyles, 'card', GITHUB_STYLE_SLOTS, 'card'),
@@ -81,6 +81,6 @@ const GithubBase = ({
       ))}
     </div>
   );
-};
+}
 
 export const Github = ColorWrap(GithubBase);

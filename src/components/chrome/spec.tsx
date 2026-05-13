@@ -1,7 +1,6 @@
 import { fireEvent, waitFor } from '@testing-library/react';
 import { red, simpleCheckForValidColor } from '@/helpers/color';
 import { expect, test, vi } from 'vitest';
-
 import { Chrome } from './Chrome';
 import { ChromeFields } from './ChromeFields';
 import { ChromePointer } from './ChromePointer';

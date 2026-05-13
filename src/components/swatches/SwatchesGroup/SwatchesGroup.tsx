@@ -10,7 +10,7 @@ type SwatchesGroupProps = {
   active: string;
 };
 
-export const SwatchesGroup = ({ onClick, onSwatchHover, group, active }: SwatchesGroupProps) => {
+export function SwatchesGroup({ onClick, onSwatchHover, group, active }: SwatchesGroupProps) {
   return (
     <div className={getPickerClassName({ block: 'swatches', slot: 'group' })}>
       {group.map((colorValue: string, index: number | string) => (
@@ -26,4 +26,4 @@ export const SwatchesGroup = ({ onClick, onSwatchHover, group, active }: Swatche
       ))}
     </div>
   );
-};
+}

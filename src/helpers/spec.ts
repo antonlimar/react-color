@@ -1,5 +1,3 @@
-/* global test, expect, describe */
-
 import { getContrastingColor, isValidHex, isvalidColorString, simpleCheckForValidColor, toState } from './color';
 
 describe('helpers/color', () => {

@@ -8,7 +8,7 @@ type CompactFieldsProps = {
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
 };
 
-export const CompactFields = ({ hex, rgb, onChange }: CompactFieldsProps) => {
+export function CompactFields({ hex, rgb, onChange }: CompactFieldsProps) {
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {
     if (data.r || data.g || data.b) {
       onChange(
@@ -64,4 +64,4 @@ export const CompactFields = ({ hex, rgb, onChange }: CompactFieldsProps) => {
       </div>
     </div>
   );
-};
+}

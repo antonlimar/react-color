@@ -1,5 +1,4 @@
 import material from 'material-colors';
-
 import { ColorWrap, Raised } from '@/components/common';
 import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
@@ -94,7 +93,7 @@ const DEFAULT_SWATCH_GROUPS = [
   ['#000000', '#525252', '#969696', '#D9D9D9', '#FFFFFF'],
 ];
 
-const SwatchesBase = ({
+function SwatchesBase({
   width = 320,
   height = 240,
   onChange,
@@ -105,7 +104,7 @@ const SwatchesBase = ({
   className = '',
   classNames,
   theme,
-}: SwatchesProps) => {
+}: SwatchesProps) {
   const rootStyle = {
     width,
     height,
@@ -146,6 +145,6 @@ const SwatchesBase = ({
       </Raised>
     </div>
   );
-};
+}
 
 export const Swatches = ColorWrap(SwatchesBase);

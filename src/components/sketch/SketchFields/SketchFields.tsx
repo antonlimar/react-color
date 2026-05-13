@@ -1,5 +1,4 @@
 import { isValidHex } from '@/helpers/color';
-
 import { EditableInput } from '@/components/common';
 import { getPickerClassName } from '@/components/common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '@/types';
@@ -12,7 +11,7 @@ type SketchFieldsProps = {
   disableAlpha?: boolean;
 };
 
-export const SketchFields = ({ onChange, rgb, hsl, hex, disableAlpha }: SketchFieldsProps) => {
+export function SketchFields({ onChange, rgb, hsl, hex, disableAlpha }: SketchFieldsProps) {
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {
     if (data.hex) {
       if (isValidHex(data.hex)) {
@@ -84,4 +83,4 @@ export const SketchFields = ({ onChange, rgb, hsl, hex, disableAlpha }: SketchFi
       {renderInput('a', Math.round(rgb.a * 100), 'alpha', 100)}
     </div>
   );
-};
+}

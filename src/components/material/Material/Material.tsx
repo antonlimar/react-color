@@ -1,5 +1,4 @@
 import { isValidHex } from '@/helpers/color';
-
 import { ColorWrap, EditableInput, Raised } from '@/components/common';
 import { getPickerClassName, getPickerRootProps } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
@@ -62,7 +61,7 @@ const handleMaterialChange = (
   }
 };
 
-const MaterialBase = ({
+function MaterialBase({
   onChange,
   hex,
   rgb,
@@ -70,7 +69,7 @@ const MaterialBase = ({
   className = '',
   classNames,
   theme,
-}: MaterialProps) => {
+}: MaterialProps) {
   const rootStyle = {
     ['--rc-material-accent' as const]: hex,
     ...getDeprecatedStyleOverride(passedStyles, 'material', MATERIAL_STYLE_SLOTS, 'material'),
@@ -133,6 +132,6 @@ const MaterialBase = ({
       </div>
     </Raised>
   );
-};
+}
 
 export const Material = ColorWrap(MaterialBase);

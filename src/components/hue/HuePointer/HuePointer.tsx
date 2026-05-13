@@ -3,7 +3,7 @@ import { getPickerClassName } from '@/components/common/styleArchitecture';
 
 type HuePointerProps = Pick<HueProps, 'direction'>;
 
-export const HuePointer = ({ direction }: HuePointerProps) => {
+export function HuePointer({ direction }: HuePointerProps) {
   return (
     <div
       className={getPickerClassName({
@@ -13,4 +13,4 @@ export const HuePointer = ({ direction }: HuePointerProps) => {
       })}
     />
   );
-};
+}

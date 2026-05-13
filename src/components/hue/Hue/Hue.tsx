@@ -24,7 +24,7 @@ type HuePickerProps = ColorPickerInjectedProps & {
   theme?: PickerTheme;
 };
 
-export const HuePicker = ({
+export function HuePicker({
   width = '316px',
   height = '16px',
   onChange,
@@ -35,7 +35,7 @@ export const HuePicker = ({
   className = '',
   classNames,
   theme,
-}: HuePickerProps) => {
+}: HuePickerProps) {
   const handleChange: HueProps['onChange'] = (data) => {
     onChange({ a: 1, h: data.h, l: 0.5, s: 1 });
   };
@@ -59,6 +59,6 @@ export const HuePicker = ({
       <HueControl hsl={hsl} radius="2px" pointer={pointer} onChange={handleChange} direction={direction} />
     </div>
   );
-};
+}
 
 export const Hue = ColorWrap(HuePicker);
