@@ -1,5 +1,5 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { red } from '@/helpers/color';
+import { red } from '@/helpers';
 import { expect, test, vi } from 'vitest';
 import { Photoshop } from './Photoshop';
 import { PhotoshopButton } from './PhotoshopButton';

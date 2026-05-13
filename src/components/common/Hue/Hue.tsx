@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { calculateChange as calculateHueChange } from '@/helpers/hue';
+import { calculateHueChange } from '@/helpers';
 import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { InternalColorChangeEvent } from '@/types';

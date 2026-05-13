@@ -1,4 +1,4 @@
-import { isValidHex } from '@/helpers/color';
+import { isValidHex } from '@/helpers';
 import { ColorWrap, Raised } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';

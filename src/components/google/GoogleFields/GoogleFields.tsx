@@ -1,4 +1,4 @@
-import { isValidHex, isValidColorString } from '@/helpers/color';
+import { isValidColorString, isValidHex } from '@/helpers';
 import { EditableInput } from '@/components/common';
 import { bem } from '@/components/common/styleArchitecture';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, HSVAColor, RGBAColor } from '@/types';

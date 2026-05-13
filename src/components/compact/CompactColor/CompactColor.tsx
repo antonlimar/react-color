@@ -1,4 +1,4 @@
-import { getContrastingColor } from '@/helpers/color';
+import { getContrastingColor } from '@/helpers';
 import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';

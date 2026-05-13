@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 import { Block } from './Block';
 import { BlockSwatches } from './BlockSwatches';
-import { simpleCheckForValidColor } from '@/helpers/color';
+import { simpleCheckForValidColor } from '@/helpers';
 import {
   clickFirstSwatch,
   createColorChangeSpy,

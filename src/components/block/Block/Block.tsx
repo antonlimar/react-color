@@ -1,4 +1,4 @@
-import { getContrastingColor, isValidHex } from '@/helpers/color';
+import { getContrastingColor, isValidHex } from '@/helpers';
 import { ColorWrap, EditableInput, Checkboard } from '@/components/common';
 import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
 import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';

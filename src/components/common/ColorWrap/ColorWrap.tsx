@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { debounce } from 'lodash-es';
 import type { ComponentType } from 'react';
-import { simpleCheckForValidColor, toState } from '@/helpers/color';
+import { simpleCheckForValidColor, toState } from '@/helpers';
 import type {
   Color,
   ColorChangeHandler,

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { throttle } from 'lodash-es';
-import { calculateChange as calculateSaturationChange } from '@/helpers/saturation';
+import { calculateSaturationChange } from '@/helpers';
 import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { InternalColorChangeEvent } from '@/types';

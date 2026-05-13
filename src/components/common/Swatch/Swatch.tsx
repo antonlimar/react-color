@@ -1,6 +1,6 @@
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
-import { handleFocus } from '@/helpers/interaction';
+import { handleFocus } from '@/helpers';
 import type { Radius } from '@/types';
 import type { SwatchProps } from './types';
 import { Checkboard } from '@/components/common/Checkboard';

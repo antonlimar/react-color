@@ -1,4 +1,4 @@
-import { getContrastingColor } from '@/helpers/color';
+import { getContrastingColor } from '@/helpers';
 import { Swatch } from '@/components/common';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
 import type { KeyboardEvent, MouseEvent } from 'react';

@@ -1,4 +1,4 @@
-import { red, simpleCheckForValidColor } from '@/helpers/color';
+import { red, simpleCheckForValidColor } from '@/helpers';
 import { expect, test } from 'vitest';
 import { Sketch } from './Sketch';
 import { SketchFields } from './SketchFields';

@@ -1,4 +1,4 @@
-import { red } from '@/helpers/color';
+import { red } from '@/helpers';
 import { Hue } from './Hue';
 import { HuePointer } from './HuePointer';
 import { getRootElement, renderForSnapshot } from '@test/helpers';

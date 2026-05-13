@@ -1,6 +1,6 @@
 import { Circle } from './Circle';
 import { CircleSwatch } from './CircleSwatch';
-import { simpleCheckForValidColor } from '@/helpers/color';
+import { simpleCheckForValidColor } from '@/helpers';
 import {
   clickFirstSwatch,
   createColorChangeSpy,

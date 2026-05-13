@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { red, simpleCheckForValidColor } from '@/helpers/color';
+import { red, simpleCheckForValidColor } from '@/helpers';
 import { Google } from './Google';
 import { GoogleFields } from './GoogleFields';
 import { GooglePointer } from './GooglePointer';

@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import { fireEvent } from '@testing-library/react';
-import { red, simpleCheckForValidColor } from '@/helpers/color';
+import { red, simpleCheckForValidColor } from '@/helpers';
 
 import { Alpha } from './Alpha';
 import { AlphaPointer } from './AlphaPointer';

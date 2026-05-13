@@ -1,7 +1,6 @@
 import { render } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
-import { red } from '@/helpers/color';
-import { toState } from '@/helpers/color';
+import { red, toState } from '@/helpers';
 import { Alpha } from './Alpha';
 import { Checkboard } from './Checkboard';
 import { ColorWrap } from './ColorWrap';

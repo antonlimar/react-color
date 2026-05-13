@@ -1,4 +1,4 @@
-import { red, simpleCheckForValidColor } from '@/helpers/color';
+import { red, simpleCheckForValidColor } from '@/helpers';
 import { Twitter } from './Twitter';
 import {
   clickFirstSwatch,

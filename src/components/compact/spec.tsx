@@ -1,4 +1,4 @@
-import { red, simpleCheckForValidColor } from '@/helpers/color';
+import { red, simpleCheckForValidColor } from '@/helpers';
 import { Compact } from './Compact';
 import { CompactColor } from './CompactColor';
 import { CompactFields } from './CompactFields';

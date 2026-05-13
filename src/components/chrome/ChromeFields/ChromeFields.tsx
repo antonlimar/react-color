@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { isValidHex } from '@/helpers/color';
+import { isValidHex } from '@/helpers';
 import { EditableInput } from '@/components/common';
 import { bem } from '@/components/common/styleArchitecture';
 import { UnfoldMoreHorizontalIcon } from '@/components/common/icons/UnfoldMoreHorizontalIcon';
