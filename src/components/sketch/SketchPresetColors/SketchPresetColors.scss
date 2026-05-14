@@ -5,10 +5,10 @@
   margin: 0 -10px;
   padding: 10px 0 0 10px;
   border-top: 1px solid var(--rc-picker-border, #eee);
-}
 
-.rc-sketch__preset-colors.rc-sketch__preset-colors--empty {
-  display: none;
+  &#{&}--empty {
+    display: none;
+  }
 }
 
 .rc-sketch__preset-swatch {

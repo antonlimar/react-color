@@ -2,12 +2,14 @@
   width: 25px;
   height: 25px;
   font-size: 0;
-}
 
-.rc-github__swatch:hover .rc-swatch,
-.rc-github__swatch:focus-within .rc-swatch {
-  position: relative;
-  z-index: 2;
-  outline: 2px solid var(--rc-picker-contrast-surface, #fff);
-  box-shadow: 0 0 5px 2px var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.25));
+  &:hover,
+  &:focus-within {
+    .rc-swatch {
+      position: relative;
+      z-index: 2;
+      outline: 2px solid var(--rc-picker-contrast-surface, #fff);
+      box-shadow: 0 0 5px 2px var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.25));
+    }
+  }
 }

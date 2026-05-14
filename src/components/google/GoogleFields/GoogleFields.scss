@@ -8,85 +8,87 @@
   width: 100%;
 }
 
-.rc-google__field-row.rc-google__field-row--primary {
-  padding: 0 4.4px;
-  box-sizing: border-box;
-}
+.rc-google__field-row {
+  .rc-editable-input {
+    position: relative;
+  }
 
-.rc-google__field-row.rc-google__field-row--secondary {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 10px;
+  &#{&}--primary {
+    padding: 0 4.4px;
+    box-sizing: border-box;
+
+    .rc-editable-input__input {
+      width: 100%;
+      height: 38px;
+      box-sizing: border-box;
+      padding: 4px 10% 3px;
+      text-align: center;
+      border: 1px solid var(--rc-picker-border, #dadce0);
+      border-radius: 5px;
+      outline: none;
+      background: var(--rc-picker-input-surface, #fff);
+      font-size: 11px;
+      color: var(--rc-picker-text, #3c4043);
+      text-transform: lowercase;
+      font-family: Roboto, Arial, sans-serif;
+    }
+
+    .rc-editable-input__label {
+      position: absolute;
+      top: -6px;
+      left: 0;
+      right: 0;
+      width: 35px;
+      margin: 0 auto;
+      background: var(--rc-picker-surface, #fff);
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: var(--rc-picker-text, #3c4043);
+      font-family: Roboto, Arial, sans-serif;
+    }
+  }
+
+  &#{&}--secondary {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+
+    .rc-editable-input {
+      position: relative;
+    }
+
+    .rc-editable-input__input {
+      width: 100%;
+      height: 38px;
+      box-sizing: border-box;
+      padding-left: 10px;
+      border: 1px solid var(--rc-picker-border, #dadce0);
+      border-radius: 5px;
+      outline: none;
+      background: var(--rc-picker-input-surface, #fff);
+      font-size: 11px;
+      color: var(--rc-picker-text, #3c4043);
+      text-transform: lowercase;
+      font-family: Roboto, Arial, sans-serif;
+    }
+
+    .rc-editable-input__label {
+      position: absolute;
+      top: -6px;
+      left: 10px;
+      width: 32px;
+      background: var(--rc-picker-surface, #fff);
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: var(--rc-picker-text, #3c4043);
+      font-family: Roboto, Arial, sans-serif;
+    }
+  }
 }
 
 .rc-google__field {
   flex-grow: 1;
   margin: 0 4.4px;
-}
-
-.rc-google__field-row .rc-editable-input {
-  position: relative;
-}
-
-.rc-google__field-row.rc-google__field-row--primary .rc-editable-input__input {
-  width: 100%;
-  height: 38px;
-  box-sizing: border-box;
-  padding: 4px 10% 3px;
-  text-align: center;
-  border: 1px solid var(--rc-picker-border, #dadce0);
-  border-radius: 5px;
-  outline: none;
-  background: var(--rc-picker-input-surface, #fff);
-  font-size: 11px;
-  color: var(--rc-picker-text, #3c4043);
-  text-transform: lowercase;
-  font-family: Roboto, Arial, sans-serif;
-}
-
-.rc-google__field-row.rc-google__field-row--primary .rc-editable-input__label {
-  position: absolute;
-  top: -6px;
-  left: 0;
-  right: 0;
-  width: 35px;
-  margin: 0 auto;
-  background: var(--rc-picker-surface, #fff);
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: var(--rc-picker-text, #3c4043);
-  font-family: Roboto, Arial, sans-serif;
-}
-
-.rc-google__field-row.rc-google__field-row--secondary .rc-editable-input {
-  position: relative;
-}
-
-.rc-google__field-row.rc-google__field-row--secondary .rc-editable-input__input {
-  width: 100%;
-  height: 38px;
-  box-sizing: border-box;
-  padding-left: 10px;
-  border: 1px solid var(--rc-picker-border, #dadce0);
-  border-radius: 5px;
-  outline: none;
-  background: var(--rc-picker-input-surface, #fff);
-  font-size: 11px;
-  color: var(--rc-picker-text, #3c4043);
-  text-transform: lowercase;
-  font-family: Roboto, Arial, sans-serif;
-}
-
-.rc-google__field-row.rc-google__field-row--secondary .rc-editable-input__label {
-  position: absolute;
-  top: -6px;
-  left: 10px;
-  width: 32px;
-  background: var(--rc-picker-surface, #fff);
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: var(--rc-picker-text, #3c4043);
-  font-family: Roboto, Arial, sans-serif;
 }

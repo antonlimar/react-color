@@ -5,6 +5,12 @@
   margin-right: 5px;
   margin-bottom: 5px;
   position: relative;
+
+  &#{&}--active {
+    .rc-compact__dot {
+      opacity: 1;
+    }
+  }
 }
 
 .rc-compact__dot {
@@ -12,8 +18,4 @@
   inset: 5px;
   border-radius: 50%;
   opacity: 0;
-}
-
-.rc-compact__swatch.rc-compact__swatch--active .rc-compact__dot {
-  opacity: 1;
 }

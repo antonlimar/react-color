@@ -5,8 +5,8 @@
   transform: translate(-9px, -1px);
   background-color: var(--rc-picker-surface-subtle, rgb(248, 248, 248));
   box-shadow: var(--rc-picker-shadow-control, 0 1px 4px 0 rgba(0, 0, 0, 0.37));
-}
 
-.rc-hue__pointer.rc-hue__pointer--vertical {
-  transform: translate(-3px, -9px);
+  &#{&}--vertical {
+    transform: translate(-3px, -9px);
+  }
 }

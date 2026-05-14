@@ -15,50 +15,52 @@
   height: 9px;
 }
 
-.rc-compact__field.rc-compact__field--hex {
-  flex: 6;
-}
+.rc-compact__field {
+  .rc-editable-input {
+    position: relative;
+  }
 
-.rc-compact__field.rc-compact__field--rgb {
-  flex: 3;
-}
+  &#{&}--hex {
+    flex: 6;
 
-.rc-compact__field .rc-editable-input {
-  position: relative;
-}
+    .rc-editable-input__input {
+      width: 80%;
+      height: 16px;
+      padding: 0 0 0 20%;
+      border: none;
+      outline: none;
+      background: none;
+      font-size: 12px;
+      color: var(--rc-picker-text, #333);
+    }
 
-.rc-compact__field.rc-compact__field--hex .rc-editable-input__input {
-  width: 80%;
-  height: 16px;
-  padding: 0 0 0 20%;
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 12px;
-  color: var(--rc-picker-text, #333);
-}
+    .rc-editable-input__label {
+      display: none;
+    }
+  }
 
-.rc-compact__field.rc-compact__field--hex .rc-editable-input__label {
-  display: none;
-}
+  &#{&}--rgb {
+    flex: 3;
 
-.rc-compact__field.rc-compact__field--rgb .rc-editable-input__input {
-  width: 70%;
-  height: 16px;
-  padding: 0 0 0 30%;
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 12px;
-  color: var(--rc-picker-text, #333);
-}
+    .rc-editable-input__input {
+      width: 70%;
+      height: 16px;
+      padding: 0 0 0 30%;
+      border: none;
+      outline: none;
+      background: none;
+      font-size: 12px;
+      color: var(--rc-picker-text, #333);
+    }
 
-.rc-compact__field.rc-compact__field--rgb .rc-editable-input__label {
-  position: absolute;
-  top: 3px;
-  left: 0;
-  line-height: 16px;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: var(--rc-picker-text-subtle, #999);
+    .rc-editable-input__label {
+      position: absolute;
+      top: 3px;
+      left: 0;
+      line-height: 16px;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: var(--rc-picker-text-subtle, #999);
+    }
+  }
 }

@@ -90,8 +90,8 @@
   text-align: center;
   color: var(--rc-picker-text, #000);
   cursor: pointer;
-}
 
-.rc-photoshop__button.rc-photoshop__button--active {
-  box-shadow: 0 0 0 1px var(--rc-picker-border-strong, #878787);
+  &#{&}--active {
+    box-shadow: 0 0 0 1px var(--rc-picker-border-strong, #878787);
+  }
 }

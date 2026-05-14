@@ -12,18 +12,18 @@
 
 .rc-photoshop__preview-swatch {
   height: 34px;
-}
 
-.rc-photoshop__preview-swatch.rc-photoshop__preview-swatch--new {
-  box-shadow:
-    inset 1px 0 0 var(--rc-picker-contrast-shadow, #000),
-    inset -1px 0 0 var(--rc-picker-contrast-shadow, #000),
-    inset 0 1px 0 var(--rc-picker-contrast-shadow, #000);
-}
+  &#{&}--new {
+    box-shadow:
+      inset 1px 0 0 var(--rc-picker-contrast-shadow, #000),
+      inset -1px 0 0 var(--rc-picker-contrast-shadow, #000),
+      inset 0 1px 0 var(--rc-picker-contrast-shadow, #000);
+  }
 
-.rc-photoshop__preview-swatch.rc-photoshop__preview-swatch--current {
-  box-shadow:
-    inset 1px 0 0 var(--rc-picker-contrast-shadow, #000),
-    inset -1px 0 0 var(--rc-picker-contrast-shadow, #000),
-    inset 0 -1px 0 var(--rc-picker-contrast-shadow, #000);
+  &#{&}--current {
+    box-shadow:
+      inset 1px 0 0 var(--rc-picker-contrast-shadow, #000),
+      inset -1px 0 0 var(--rc-picker-contrast-shadow, #000),
+      inset 0 -1px 0 var(--rc-picker-contrast-shadow, #000);
+  }
 }

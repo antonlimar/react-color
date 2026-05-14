@@ -2,7 +2,9 @@
   position: relative;
 }
 
-.rc-editable-input__label.rc-editable-input__label--drag-label,
-.rc-editable-input__label--drag-label {
-  cursor: ew-resize;
+.rc-editable-input__label {
+  &#{&}--drag-label,
+  &--drag-label {
+    cursor: ew-resize;
+  }
 }

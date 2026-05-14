@@ -14,6 +14,65 @@
   box-sizing: initial;
   box-shadow: var(--rc-picker-shadow-popover, 0 3px 12px rgba(0, 0, 0, 0.15));
   color: var(--rc-picker-text, #333);
+
+  &#{&}--hide-triangle {
+    .rc-github__triangle,
+    .rc-github__triangle-shadow {
+      display: none;
+    }
+  }
+
+  &#{&}--top-left {
+    .rc-github__triangle {
+      top: -14px;
+      left: 10px;
+    }
+
+    .rc-github__triangle-shadow {
+      top: -16px;
+      left: 9px;
+    }
+  }
+
+  &#{&}--top-right {
+    .rc-github__triangle {
+      top: -14px;
+      right: 10px;
+    }
+
+    .rc-github__triangle-shadow {
+      top: -16px;
+      right: 9px;
+    }
+  }
+
+  &#{&}--bottom-left {
+    .rc-github__triangle {
+      top: 35px;
+      left: 10px;
+      transform: rotate(180deg);
+    }
+
+    .rc-github__triangle-shadow {
+      top: 37px;
+      left: 9px;
+      transform: rotate(180deg);
+    }
+  }
+
+  &#{&}--bottom-right {
+    .rc-github__triangle {
+      top: 35px;
+      right: 10px;
+      transform: rotate(180deg);
+    }
+
+    .rc-github__triangle-shadow {
+      top: 37px;
+      right: 9px;
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .rc-github__triangle,
@@ -35,53 +94,4 @@
   border-width: 8px;
   border-color: transparent;
   border-bottom-color: var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.15));
-}
-
-.rc-github.rc-github--hide-triangle .rc-github__triangle,
-.rc-github.rc-github--hide-triangle .rc-github__triangle-shadow {
-  display: none;
-}
-
-.rc-github.rc-github--top-left .rc-github__triangle {
-  top: -14px;
-  left: 10px;
-}
-
-.rc-github.rc-github--top-left .rc-github__triangle-shadow {
-  top: -16px;
-  left: 9px;
-}
-
-.rc-github.rc-github--top-right .rc-github__triangle {
-  top: -14px;
-  right: 10px;
-}
-
-.rc-github.rc-github--top-right .rc-github__triangle-shadow {
-  top: -16px;
-  right: 9px;
-}
-
-.rc-github.rc-github--bottom-left .rc-github__triangle {
-  top: 35px;
-  left: 10px;
-  transform: rotate(180deg);
-}
-
-.rc-github.rc-github--bottom-left .rc-github__triangle-shadow {
-  top: 37px;
-  left: 9px;
-  transform: rotate(180deg);
-}
-
-.rc-github.rc-github--bottom-right .rc-github__triangle {
-  top: 35px;
-  right: 10px;
-  transform: rotate(180deg);
-}
-
-.rc-github.rc-github--bottom-right .rc-github__triangle-shadow {
-  top: 37px;
-  right: 9px;
-  transform: rotate(180deg);
 }

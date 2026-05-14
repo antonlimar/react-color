@@ -1,17 +1,17 @@
 .rc-slider__swatch {
   height: 12px;
   cursor: pointer;
-}
 
-.rc-slider__swatch.rc-slider__swatch--first {
-  border-radius: 2px 0 0 2px;
-}
+  &#{&}--first {
+    border-radius: 2px 0 0 2px;
+  }
 
-.rc-slider__swatch.rc-slider__swatch--last {
-  border-radius: 0 2px 2px 0;
-}
+  &#{&}--last {
+    border-radius: 0 2px 2px 0;
+  }
 
-.rc-slider__swatch.rc-slider__swatch--active {
-  transform: scaleY(1.8);
-  border-radius: 3.6px / 2px;
+  &#{&}--active {
+    transform: scaleY(1.8);
+    border-radius: 3.6px / 2px;
+  }
 }
