@@ -1,70 +1,72 @@
-.rc-chrome__fields {
-  display: flex;
-  padding-top: 16px;
+.rc-chrome {
+  &__fields {
+    display: flex;
+    padding-top: 16px;
 
-  &#{&}--disabled-alpha {
-    .rc-chrome__field {
-      &#{&}--alpha {
-        display: none;
+    &#{&}--disabled-alpha {
+      .rc-chrome__field {
+        &#{&}--alpha {
+          display: none;
+        }
       }
     }
   }
-}
 
-.rc-chrome__fields-grid {
-  flex: 1;
-  display: flex;
-  margin-left: -6px;
-}
-
-.rc-chrome__field {
-  width: 100%;
-  padding-left: 6px;
-
-  &#{&}--alpha {
-    width: 100%;
+  &__fields-grid {
+    flex: 1;
+    display: flex;
+    margin-left: -6px;
   }
 
-  .rc-editable-input__input {
+  &__field {
     width: 100%;
-    height: 21px;
-    border: none;
-    border-radius: 2px;
-    background: var(--rc-picker-input-surface, #fff);
-    box-shadow: inset 0 0 0 1px var(--rc-picker-border, #dadada);
-    font-size: 11px;
-    color: var(--rc-picker-text, #333);
-    text-align: center;
+    padding-left: 6px;
+
+    &#{&}--alpha {
+      width: 100%;
+    }
+
+    .rc-editable-input__input {
+      width: 100%;
+      height: 21px;
+      border: none;
+      border-radius: 2px;
+      background: var(--rc-picker-input-surface, #fff);
+      box-shadow: inset 0 0 0 1px var(--rc-picker-border, #dadada);
+      font-size: 11px;
+      color: var(--rc-picker-text, #333);
+      text-align: center;
+    }
+
+    .rc-editable-input__label {
+      display: block;
+      margin-top: 12px;
+      text-transform: uppercase;
+      font-size: 11px;
+      line-height: 11px;
+      color: var(--rc-picker-text-subtle, #969696);
+      text-align: center;
+    }
   }
 
-  .rc-editable-input__label {
-    display: block;
+  &__toggle {
+    position: relative;
+    width: 32px;
+    text-align: right;
+  }
+
+  &__toggle-icon {
+    position: relative;
     margin-top: 12px;
-    text-transform: uppercase;
-    font-size: 11px;
-    line-height: 11px;
-    color: var(--rc-picker-text-subtle, #969696);
-    text-align: center;
-  }
-}
+    margin-right: -4px;
+    cursor: pointer;
 
-.rc-chrome__toggle {
-  position: relative;
-  width: 32px;
-  text-align: right;
-}
-
-.rc-chrome__toggle-icon {
-  position: relative;
-  margin-top: 12px;
-  margin-right: -4px;
-  cursor: pointer;
-
-  svg {
-    width: 24px;
-    height: 24px;
-    fill: var(--rc-picker-icon, #333);
-    border: 1px solid transparent;
-    border-radius: 5px;
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--rc-picker-icon, #333);
+      border: 1px solid transparent;
+      border-radius: 5px;
+    }
   }
 }
