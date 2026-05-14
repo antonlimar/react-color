@@ -5,13 +5,13 @@
 
 .rc-slider {
   @include theme.rc-default-theme-tokens;
-}
 
-.rc-slider__hue {
-  position: relative;
-  height: 12px;
-}
+  &__hue {
+    position: relative;
+    height: 12px;
+  }
 
-.rc-slider__swatches-wrap {
-  position: relative;
+  &__swatches-wrap {
+    position: relative;
+  }
 }

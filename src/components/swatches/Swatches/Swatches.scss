@@ -4,16 +4,16 @@
 
 .rc-swatches {
   @include theme.rc-default-theme-tokens;
-}
 
-.rc-swatches__overflow {
-  overflow-y: scroll;
-}
+  &__overflow {
+    overflow-y: scroll;
+  }
 
-.rc-swatches__body {
-  padding: 16px 0 6px 16px;
-}
+  &__body {
+    padding: 16px 0 6px 16px;
+  }
 
-.rc-swatches__clear {
-  clear: both;
+  &__clear {
+    clear: both;
+  }
 }

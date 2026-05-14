@@ -1,18 +1,20 @@
-.rc-sketch__preset-colors {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -10px;
-  padding: 10px 0 0 10px;
-  border-top: 1px solid var(--rc-picker-border, #eee);
+.rc-sketch {
+  &__preset-colors {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+    padding: 10px 0 0 10px;
+    border-top: 1px solid var(--rc-picker-border, #eee);
 
-  &#{&}--empty {
-    display: none;
+    &#{&}--empty {
+      display: none;
+    }
   }
-}
 
-.rc-sketch__preset-swatch {
-  width: 16px;
-  height: 16px;
-  margin: 0 10px 10px 0;
+  &__preset-swatch {
+    width: 16px;
+    height: 16px;
+    margin: 0 10px 10px 0;
+  }
 }

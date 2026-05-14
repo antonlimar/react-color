@@ -1,17 +1,19 @@
-.rc-slider__swatch {
-  height: 12px;
-  cursor: pointer;
+.rc-slider {
+  &__swatch {
+    height: 12px;
+    cursor: pointer;
 
-  &#{&}--first {
-    border-radius: 2px 0 0 2px;
-  }
+    &#{&}--first {
+      border-radius: 2px 0 0 2px;
+    }
 
-  &#{&}--last {
-    border-radius: 0 2px 2px 0;
-  }
+    &#{&}--last {
+      border-radius: 0 2px 2px 0;
+    }
 
-  &#{&}--active {
-    transform: scaleY(1.8);
-    border-radius: 3.6px / 2px;
+    &#{&}--active {
+      transform: scaleY(1.8);
+      border-radius: 3.6px / 2px;
+    }
   }
 }

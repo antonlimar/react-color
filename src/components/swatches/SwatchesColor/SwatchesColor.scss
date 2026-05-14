@@ -1,16 +1,20 @@
-.rc-swatches__swatch {
-  width: 40px;
-  height: 24px;
-  margin-bottom: 1px;
+.rc-swatches {
+  $root: &;
 
-  &#{&}--active {
-    .rc-swatches__check {
-      display: block;
+  &__swatch {
+    width: 40px;
+    height: 24px;
+    margin-bottom: 1px;
+
+    &#{&}--active {
+      #{$root}__check {
+        display: block;
+      }
     }
   }
-}
 
-.rc-swatches__check {
-  display: none;
-  margin-left: 8px;
+  &__check {
+    display: none;
+    margin-left: 8px;
+  }
 }
