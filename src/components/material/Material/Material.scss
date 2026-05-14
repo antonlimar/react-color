@@ -11,53 +11,57 @@
 
   .rc-editable-input {
     position: relative;
-  }
 
-  .rc-editable-input__label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 11px;
-    color: var(--rc-picker-text-subtle, #999);
-    text-transform: capitalize;
+    &__label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 11px;
+      color: var(--rc-picker-text-subtle, #999);
+      text-transform: capitalize;
+    }
   }
 
   > .rc-editable-input {
-    .rc-editable-input__input {
-      width: 100%;
-      height: 30px;
-      margin-top: 12px;
-      padding: 0;
-      background: transparent;
-      border: 0;
-      border-bottom: 2px solid var(--rc-material-accent, #000);
-      outline: none;
-      font-size: 15px;
-      color: var(--rc-picker-text, #333);
+    .rc-editable-input {
+      &__input {
+        width: 100%;
+        height: 30px;
+        margin-top: 12px;
+        padding: 0;
+        background: transparent;
+        border: 0;
+        border-bottom: 2px solid var(--rc-material-accent, #000);
+        outline: none;
+        font-size: 15px;
+        color: var(--rc-picker-text, #333);
+      }
     }
   }
-}
 
-.rc-material__split {
-  display: flex;
-  margin-right: -10px;
-  padding-top: 11px;
-}
+  &__split {
+    display: flex;
+    margin-right: -10px;
+    padding-top: 11px;
+  }
 
-.rc-material__third {
-  flex: 1;
-  padding-right: 10px;
+  &__third {
+    flex: 1;
+    padding-right: 10px;
 
-  .rc-editable-input__input {
-    width: 100%;
-    height: 30px;
-    margin-top: 12px;
-    padding: 0;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid var(--rc-picker-border, #eee);
-    outline: none;
-    font-size: 15px;
-    color: var(--rc-picker-text, #333);
+    .rc-editable-input {
+      &__input {
+        width: 100%;
+        height: 30px;
+        margin-top: 12px;
+        padding: 0;
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid var(--rc-picker-border, #eee);
+        outline: none;
+        font-size: 15px;
+        color: var(--rc-picker-text, #333);
+      }
+    }
   }
 }

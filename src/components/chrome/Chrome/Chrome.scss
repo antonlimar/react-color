@@ -4,6 +4,8 @@
 @use '../../../styles/theme-tokens' as theme;
 
 .rc-chrome {
+  $root: &;
+
   @include theme.rc-default-theme-tokens;
 
   background: var(--rc-picker-surface, #fff);
@@ -14,21 +16,21 @@
   font-family: Menlo, monospace;
 
   &#{&}--disabled-alpha {
-    .rc-chrome__color {
+    #{$root}__color {
       width: 22px;
     }
 
-    .rc-chrome__swatch {
+    #{$root}__swatch {
       width: 10px;
       height: 10px;
       margin-top: 0;
     }
 
-    .rc-chrome__hue {
+    #{$root}__hue {
       margin-bottom: 0;
     }
 
-    .rc-chrome__alpha {
+    #{$root}__alpha {
       display: none;
     }
   }

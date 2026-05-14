@@ -1,10 +1,12 @@
 .rc-chrome {
+  $root: &;
+
   &__fields {
     display: flex;
     padding-top: 16px;
 
     &#{&}--disabled-alpha {
-      .rc-chrome__field {
+      #{$root}__field {
         &#{&}--alpha {
           display: none;
         }
@@ -26,26 +28,28 @@
       width: 100%;
     }
 
-    .rc-editable-input__input {
-      width: 100%;
-      height: 21px;
-      border: none;
-      border-radius: 2px;
-      background: var(--rc-picker-input-surface, #fff);
-      box-shadow: inset 0 0 0 1px var(--rc-picker-border, #dadada);
-      font-size: 11px;
-      color: var(--rc-picker-text, #333);
-      text-align: center;
-    }
+    .rc-editable-input {
+      &__input {
+        width: 100%;
+        height: 21px;
+        border: none;
+        border-radius: 2px;
+        background: var(--rc-picker-input-surface, #fff);
+        box-shadow: inset 0 0 0 1px var(--rc-picker-border, #dadada);
+        font-size: 11px;
+        color: var(--rc-picker-text, #333);
+        text-align: center;
+      }
 
-    .rc-editable-input__label {
-      display: block;
-      margin-top: 12px;
-      text-transform: uppercase;
-      font-size: 11px;
-      line-height: 11px;
-      color: var(--rc-picker-text-subtle, #969696);
-      text-align: center;
+      &__label {
+        display: block;
+        margin-top: 12px;
+        text-transform: uppercase;
+        font-size: 11px;
+        line-height: 11px;
+        color: var(--rc-picker-text-subtle, #969696);
+        text-align: center;
+      }
     }
   }
 

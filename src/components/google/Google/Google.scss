@@ -13,45 +13,45 @@
   border-radius: 8px 8px 0 0;
   box-sizing: initial;
   color: var(--rc-picker-text, #333);
-}
 
-.rc-google__head {
-  box-sizing: border-box;
-  width: 100%;
-  height: 57px;
-  padding: 16px 0 16px 16px;
-  font-size: 20px;
-  font-family: Roboto-Regular, HelveticaNeue, Arial, sans-serif;
-}
+  &__head {
+    box-sizing: border-box;
+    width: 100%;
+    height: 57px;
+    padding: 16px 0 16px 16px;
+    font-size: 20px;
+    font-family: Roboto-Regular, HelveticaNeue, Arial, sans-serif;
+  }
 
-.rc-google__swatch {
-  position: relative;
-  width: 30%;
-  height: 228px;
-  overflow: hidden;
-}
+  &__swatch {
+    position: relative;
+    width: 30%;
+    height: 228px;
+    overflow: hidden;
+  }
 
-.rc-google__saturation {
-  position: relative;
-  width: 70%;
-  overflow: hidden;
-}
+  &__saturation {
+    position: relative;
+    width: 70%;
+    overflow: hidden;
+  }
 
-.rc-google__body {
-  width: 95%;
-  margin: auto;
-}
+  &__body {
+    width: 95%;
+    margin: auto;
+  }
 
-.rc-google__controls {
-  display: flex;
-  box-sizing: border-box;
-  height: 52px;
-  padding-top: 22px;
-}
+  &__controls {
+    display: flex;
+    box-sizing: border-box;
+    height: 52px;
+    padding-top: 22px;
+  }
 
-.rc-google__hue {
-  position: relative;
-  width: 100%;
-  height: 8px;
-  margin: 0 16px;
+  &__hue {
+    position: relative;
+    width: 100%;
+    height: 8px;
+    margin: 0 16px;
+  }
 }

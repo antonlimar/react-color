@@ -2,6 +2,8 @@
 @use '../../../styles/theme-tokens' as theme;
 
 .rc-github {
+  $root: &;
+
   @include theme.rc-default-theme-tokens;
 
   position: relative;
@@ -16,44 +18,44 @@
   color: var(--rc-picker-text, #333);
 
   &#{&}--hide-triangle {
-    .rc-github__triangle,
-    .rc-github__triangle-shadow {
+    #{$root}__triangle,
+    #{$root}__triangle-shadow {
       display: none;
     }
   }
 
   &#{&}--top-left {
-    .rc-github__triangle {
+    #{$root}__triangle {
       top: -14px;
       left: 10px;
     }
 
-    .rc-github__triangle-shadow {
+    #{$root}__triangle-shadow {
       top: -16px;
       left: 9px;
     }
   }
 
   &#{&}--top-right {
-    .rc-github__triangle {
+    #{$root}__triangle {
       top: -14px;
       right: 10px;
     }
 
-    .rc-github__triangle-shadow {
+    #{$root}__triangle-shadow {
       top: -16px;
       right: 9px;
     }
   }
 
   &#{&}--bottom-left {
-    .rc-github__triangle {
+    #{$root}__triangle {
       top: 35px;
       left: 10px;
       transform: rotate(180deg);
     }
 
-    .rc-github__triangle-shadow {
+    #{$root}__triangle-shadow {
       top: 37px;
       left: 9px;
       transform: rotate(180deg);
@@ -61,37 +63,37 @@
   }
 
   &#{&}--bottom-right {
-    .rc-github__triangle {
+    #{$root}__triangle {
       top: 35px;
       right: 10px;
       transform: rotate(180deg);
     }
 
-    .rc-github__triangle-shadow {
+    #{$root}__triangle-shadow {
       top: 37px;
       right: 9px;
       transform: rotate(180deg);
     }
   }
-}
 
-.rc-github__triangle,
-.rc-github__triangle-shadow {
-  position: absolute;
-  display: block;
-  width: 0;
-  height: 0;
-  border-style: solid;
-}
+  &__triangle,
+  &__triangle-shadow {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
 
-.rc-github__triangle {
-  border-width: 7px;
-  border-color: transparent;
-  border-bottom-color: var(--rc-picker-triangle-surface, #fff);
-}
+  &__triangle {
+    border-width: 7px;
+    border-color: transparent;
+    border-bottom-color: var(--rc-picker-triangle-surface, #fff);
+  }
 
-.rc-github__triangle-shadow {
-  border-width: 8px;
-  border-color: transparent;
-  border-bottom-color: var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.15));
+  &__triangle-shadow {
+    border-width: 8px;
+    border-color: transparent;
+    border-bottom-color: var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.15));
+  }
 }

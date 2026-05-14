@@ -2,6 +2,8 @@
 @use '../../../styles/theme-tokens' as theme;
 
 .rc-block {
+  $root: &;
+
   @include theme.rc-default-theme-tokens;
 
   position: relative;
@@ -11,7 +13,7 @@
   color: var(--rc-picker-text, #333);
 
   &#{&}--hide-triangle {
-    .rc-block__triangle {
+    #{$root}__triangle {
       display: none;
     }
   }
