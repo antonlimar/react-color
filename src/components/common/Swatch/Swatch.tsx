@@ -1,8 +1,9 @@
 import { noop } from 'lodash-es';
 import type { CSSProperties, KeyboardEvent, MouseEvent } from 'react';
-import { Checkboard, bem } from '@/components/common';
 import { handleFocus } from '@/helpers';
 import type { Radius } from '@/types';
+import { Checkboard } from '../Checkboard';
+import { bem } from '../styleArchitecture';
 import type { SwatchProps } from './types';
 import './Swatch.scss';
 

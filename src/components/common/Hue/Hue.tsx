@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CSSProperties, MouseEvent } from 'react';
-import { bem, getSlotStyleOverride } from '@/components/common';
 import { calculateHueChange } from '@/helpers';
 import type { InternalColorChangeEvent } from '@/types';
+import { bem } from '../styleArchitecture';
+import { getSlotStyleOverride } from '../styleOverrides';
 import type { HueProps } from './types';
 import './Hue.scss';
 

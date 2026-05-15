@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CSSProperties, ChangeEvent, KeyboardEvent, MouseEvent } from 'react';
-import { bem } from '@/components/common';
+import { bem } from '../styleArchitecture';
 import type {
   EditableInputChangeEvent,
   EditableInputChangeValue,

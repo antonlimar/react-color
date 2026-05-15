@@ -1,9 +1,9 @@
 import { throttle } from 'lodash-es';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CSSProperties, MouseEvent } from 'react';
-import { bem } from '@/components/common';
 import { calculateSaturationChange } from '@/helpers';
 import type { InternalColorChangeEvent } from '@/types';
+import { bem } from '../styleArchitecture';
 import type { SaturationProps } from './types';
 import './Saturation.scss';
 

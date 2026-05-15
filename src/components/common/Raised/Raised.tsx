@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { bem, getThemeDataAttributes } from '@/components/common';
+import { bem, getThemeDataAttributes } from '../styleArchitecture';
 import type { RaisedProps } from './types';
 import './Raised.scss';
 
