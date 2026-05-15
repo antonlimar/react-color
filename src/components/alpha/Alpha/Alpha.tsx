@@ -1,4 +1,3 @@
-import { AlphaPointer } from '@/components/alpha/AlphaPointer';
 import { ColorWrap, Alpha as AlphaControl, bem, getThemeDataAttributes } from '@/components/common';
 import type { AlphaProps } from '@/components/common';
 import type {
@@ -9,6 +8,7 @@ import type {
   PickerStyle,
   PickerTheme,
 } from '@/types';
+import { AlphaPointer } from '../AlphaPointer';
 import './Alpha.scss';
 
 type AlphaPickerProps = ColorPickerInjectedProps & {

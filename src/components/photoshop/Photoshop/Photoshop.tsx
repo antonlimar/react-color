@@ -7,11 +7,6 @@ import {
   getThemeDataAttributes,
   getDeprecatedStyleOverride,
 } from '@/components/common';
-import { PhotoshopButton } from '@/components/photoshop/PhotoshopButton';
-import { PhotoshopFields } from '@/components/photoshop/PhotoshopFields';
-import { PhotoshopPointer } from '@/components/photoshop/PhotoshopPointer';
-import { PhotoshopPointerCircle } from '@/components/photoshop/PhotoshopPointerCircle';
-import { PhotoshopPreviews } from '@/components/photoshop/PhotoshopPreviews';
 import type {
   ClassName,
   ColorPickerInjectedProps,
@@ -20,9 +15,12 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+import { PhotoshopButton } from '../PhotoshopButton';
+import { PhotoshopFields } from '../PhotoshopFields';
+import { PhotoshopPointer } from '../PhotoshopPointer';
+import { PhotoshopPointerCircle } from '../PhotoshopPointerCircle';
+import { PhotoshopPreviews } from '../PhotoshopPreviews';
 import './Photoshop.scss';
-
-const b = bem('photoshop');
 
 type PhotoshopProps = ColorPickerInjectedProps & {
   header?: string;
@@ -33,6 +31,8 @@ type PhotoshopProps = ColorPickerInjectedProps & {
   onAccept?: ColorPickerProps['onChange'];
   onCancel?: () => void;
 };
+
+const b = bem('photoshop');
 
 const defaultHeader = 'Color Picker';
 const defaultStyles: PickerCustomStyles = {};

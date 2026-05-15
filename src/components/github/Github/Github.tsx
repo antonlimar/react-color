@@ -1,11 +1,7 @@
 import { ColorWrap, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
-import { GithubSwatch } from '@/components/github/GithubSwatch';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+import { GithubSwatch } from '../GithubSwatch';
 import './Github.scss';
-
-const b = bem('github');
-
-const GITHUB_STYLE_SLOTS = ['card', 'triangle', 'triangleShadow'] as const;
 
 type GithubProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -16,6 +12,10 @@ type GithubProps = ColorPickerInjectedProps & {
   classNames?: PickerClassNames;
   theme?: PickerTheme;
 };
+
+const b = bem('github');
+
+const GITHUB_STYLE_SLOTS = ['card', 'triangle', 'triangleShadow'] as const;
 
 const DEFAULT_GITHUB_COLORS = [
   '#B80000',

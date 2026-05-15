@@ -1,6 +1,4 @@
 import { ColorWrap, Raised, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
-import { CompactColor } from '@/components/compact/CompactColor';
-import { CompactFields } from '@/components/compact/CompactFields';
 import { isValidHex } from '@/helpers';
 import type {
   ClassName,
@@ -11,11 +9,9 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+import { CompactColor } from '../CompactColor';
+import { CompactFields } from '../CompactFields';
 import './Compact.scss';
-
-const b = bem('compact');
-
-const COMPACT_STYLE_SLOTS = ['Compact', 'compact', 'clear'] as const;
 
 type CompactProps = ColorPickerInjectedProps & {
   colors?: string[];
@@ -24,6 +20,10 @@ type CompactProps = ColorPickerInjectedProps & {
   classNames?: PickerClassNames;
   theme?: PickerTheme;
 };
+
+const b = bem('compact');
+
+const COMPACT_STYLE_SLOTS = ['Compact', 'compact', 'clear'] as const;
 
 const handleCompactChange = (
   onChange: CompactProps['onChange'],

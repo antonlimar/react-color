@@ -4,8 +4,6 @@ import { Swatch, bem } from '@/components/common';
 import type { ColorInputChangeHandler, SwatchHoverHandler } from '@/types';
 import './SketchPresetColors.scss';
 
-const b = bem('sketch');
-
 type PresetColor =
   | string
   | {
@@ -18,6 +16,8 @@ type SketchPresetColorsProps = {
   onClick?: ColorInputChangeHandler;
   onSwatchHover?: SwatchHoverHandler;
 };
+
+const b = bem('sketch');
 
 export function SketchPresetColors({ colors, onClick = noop, onSwatchHover }: SketchPresetColorsProps) {
   const handleClick = (hex: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => {

@@ -8,8 +8,6 @@ import {
   getThemeDataAttributes,
   getDeprecatedStyleOverride,
 } from '@/components/common';
-import { SketchFields } from '@/components/sketch/SketchFields';
-import { SketchPresetColors } from '@/components/sketch/SketchPresetColors';
 import type {
   CheckboardRenderers,
   ClassName,
@@ -18,9 +16,9 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+import { SketchFields } from '../SketchFields';
+import { SketchPresetColors } from '../SketchPresetColors';
 import './Sketch.scss';
-
-const b = bem('sketch');
 
 type SketchPresetColor = string | { color: string; title?: string };
 
@@ -34,6 +32,8 @@ type SketchProps = ColorPickerInjectedProps & {
   classNames?: PickerClassNames;
   theme?: PickerTheme;
 };
+
+const b = bem('sketch');
 
 const DEFAULT_SKETCH_PRESET_COLORS = [
   '#D0021B',

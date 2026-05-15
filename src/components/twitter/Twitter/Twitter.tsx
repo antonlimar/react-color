@@ -18,10 +18,6 @@ import type {
 } from '@/types';
 import './Twitter.scss';
 
-const b = bem('twitter');
-
-const TWITTER_STYLE_SLOTS = ['card', 'body', 'triangle', 'triangleShadow', 'hash', 'input', 'swatch'] as const;
-
 type TwitterProps = ColorPickerInjectedProps & {
   colors?: string[];
   width?: string | number;
@@ -31,6 +27,10 @@ type TwitterProps = ColorPickerInjectedProps & {
   classNames?: PickerClassNames;
   theme?: PickerTheme;
 };
+
+const b = bem('twitter');
+
+const TWITTER_STYLE_SLOTS = ['card', 'body', 'triangle', 'triangleShadow', 'hash', 'input', 'swatch'] as const;
 
 const DEFAULT_TWITTER_COLORS = [
   '#FF6900',

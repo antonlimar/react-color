@@ -3,14 +3,14 @@ import { isValidHex } from '@/helpers';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSVAColor, RGBAColor } from '@/types';
 import './PhotoshopFields.scss';
 
-const b = bem('photoshop');
-
 type PhotoshopFieldsProps = {
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
   rgb: RGBAColor;
   hsv: HSVAColor;
   hex: string;
 };
+
+const b = bem('photoshop');
 
 export function PhotoshopFields({ onChange, rgb, hsv, hex }: PhotoshopFieldsProps) {
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {

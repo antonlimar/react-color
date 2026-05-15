@@ -3,8 +3,6 @@ import { isValidColorString, isValidHex } from '@/helpers';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, HSVAColor, RGBAColor } from '@/types';
 import './GoogleFields.scss';
 
-const b = bem('google');
-
 type GoogleFieldsProps = {
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
   rgb: RGBAColor;
@@ -12,6 +10,8 @@ type GoogleFieldsProps = {
   hex: string;
   hsv: HSVAColor;
 };
+
+const b = bem('google');
 
 const normalizeAngleValue = (value: string) => value.replace('°', '');
 const normalizePercentValue = (value: string) => value.replace('%', '');

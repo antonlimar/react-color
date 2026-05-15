@@ -4,8 +4,6 @@ import { bem } from '@/components/common';
 import type { ColorInputChangeHandler, HSLAColor } from '@/types';
 import './SliderSwatch.scss';
 
-const b = bem('slider');
-
 type SliderSwatchProps = {
   hsl: HSLAColor;
   offset: number;
@@ -14,6 +12,8 @@ type SliderSwatchProps = {
   first?: boolean;
   last?: boolean;
 };
+
+const b = bem('slider');
 
 export function SliderSwatch({ hsl, offset, onClick = noop, active, first, last }: SliderSwatchProps) {
   const swatchStyle: CSSProperties = {

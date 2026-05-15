@@ -1,10 +1,8 @@
 import type { KeyboardEvent, MouseEvent } from 'react';
 import { bem } from '@/components/common';
-import { SwatchesColor } from '@/components/swatches/SwatchesColor';
 import type { SwatchHoverHandler } from '@/types';
+import { SwatchesColor } from '../SwatchesColor';
 import './SwatchesGroup.scss';
-
-const b = bem('swatches');
 
 type SwatchesGroupProps = {
   onClick: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
@@ -12,6 +10,8 @@ type SwatchesGroupProps = {
   group: string[];
   active: string;
 };
+
+const b = bem('swatches');
 
 export function SwatchesGroup({ onClick, onSwatchHover, group, active }: SwatchesGroupProps) {
   return (

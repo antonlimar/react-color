@@ -6,13 +6,9 @@ import {
   getDeprecatedStyleOverride,
 } from '@/components/common';
 import type { HueProps } from '@/components/common';
-import { HuePointer } from '@/components/hue/HuePointer';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+import { HuePointer } from '../HuePointer';
 import './Hue.scss';
-
-const b = bem('hue');
-
-const HUE_PICKER_STYLE_SLOTS = ['picker'] as const;
 
 type HuePickerProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -24,6 +20,10 @@ type HuePickerProps = ColorPickerInjectedProps & {
   classNames?: PickerClassNames;
   theme?: PickerTheme;
 };
+
+const b = bem('hue');
+
+const HUE_PICKER_STYLE_SLOTS = ['picker'] as const;
 
 export function HuePicker({
   width = '316px',

@@ -1,6 +1,3 @@
-import { ChromeFields } from '@/components/chrome/ChromeFields';
-import { ChromePointer } from '@/components/chrome/ChromePointer';
-import { ChromePointerCircle } from '@/components/chrome/ChromePointerCircle';
 import {
   ColorWrap,
   Saturation,
@@ -19,6 +16,9 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+import { ChromeFields } from '../ChromeFields';
+import { ChromePointer } from '../ChromePointer';
+import { ChromePointerCircle } from '../ChromePointerCircle';
 import './Chrome.scss';
 
 type ChromeProps = ColorPickerInjectedProps & {

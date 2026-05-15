@@ -5,14 +5,14 @@ import { getContrastingColor } from '@/helpers';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
 import './CompactColor.scss';
 
-const b = bem('compact');
-
 type CompactColorProps = {
   color: string;
   onClick?: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
   onSwatchHover?: SwatchHoverHandler;
   active?: boolean;
 };
+
+const b = bem('compact');
 
 export function CompactColor({ color, onClick = noop, onSwatchHover, active }: CompactColorProps) {
   const swatchStyle: PickerStyle = {

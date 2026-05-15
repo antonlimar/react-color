@@ -3,11 +3,11 @@ import { bem } from '@/components/common';
 import type { HSLAColor } from '@/types';
 import './GooglePointer.scss';
 
-const b = bem('google');
-
 type GooglePointerProps = {
   hsl?: HSLAColor;
 };
+
+const b = bem('google');
 
 export function GooglePointer({ hsl = { a: 1, h: 249.94, l: 0.2, s: 0.5 } }: GooglePointerProps) {
   const pointerStyle: CSSProperties = {

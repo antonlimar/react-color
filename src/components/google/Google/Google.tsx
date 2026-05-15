@@ -6,15 +6,11 @@ import {
   getThemeDataAttributes,
   getDeprecatedStyleOverride,
 } from '@/components/common';
-import { GoogleFields } from '@/components/google/GoogleFields';
-import { GooglePointer } from '@/components/google/GooglePointer';
-import { GooglePointerCircle } from '@/components/google/GooglePointerCircle';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+import { GoogleFields } from '../GoogleFields';
+import { GooglePointer } from '../GooglePointer';
+import { GooglePointerCircle } from '../GooglePointerCircle';
 import './Google.scss';
-
-const b = bem('google');
-
-const GOOGLE_STYLE_SLOTS = ['picker', 'head', 'saturation', 'swatch', 'body', 'controls', 'hue'] as const;
 
 type GoogleProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -24,6 +20,10 @@ type GoogleProps = ColorPickerInjectedProps & {
   classNames?: PickerClassNames;
   theme?: PickerTheme;
 };
+
+const b = bem('google');
+
+const GOOGLE_STYLE_SLOTS = ['picker', 'head', 'saturation', 'swatch', 'body', 'controls', 'hue'] as const;
 
 function GoogleBase({
   width = 652,

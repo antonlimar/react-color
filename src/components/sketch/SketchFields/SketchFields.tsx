@@ -3,8 +3,6 @@ import { isValidHex } from '@/helpers';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '@/types';
 import './SketchFields.scss';
 
-const b = bem('sketch');
-
 type SketchFieldsProps = {
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
   rgb: RGBAColor;
@@ -12,6 +10,8 @@ type SketchFieldsProps = {
   hex: string;
   disableAlpha?: boolean;
 };
+
+const b = bem('sketch');
 
 export function SketchFields({ onChange, rgb, hsl, hex, disableAlpha }: SketchFieldsProps) {
   const handleChange = (data: ColorChangeValue, event?: ColorPickerChangeEvent) => {

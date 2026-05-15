@@ -1,8 +1,8 @@
 /* eslint-disable import-x/no-named-as-default-member */
 import material from 'material-colors';
-import { CircleSwatch } from '@/components/circle/CircleSwatch';
 import { ColorWrap, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+import { CircleSwatch } from '../CircleSwatch';
 import './Circle.scss';
 
 type CircleProps = ColorPickerInjectedProps & {

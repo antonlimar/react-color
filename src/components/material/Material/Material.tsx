@@ -19,6 +19,13 @@ import type {
 } from '@/types';
 import './Material.scss';
 
+type MaterialProps = ColorPickerInjectedProps & {
+  styles?: PickerCustomStyles;
+  className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
+};
+
 const b = bem('material');
 
 const MATERIAL_STYLE_SLOTS = [
@@ -32,13 +39,6 @@ const MATERIAL_STYLE_SLOTS = [
   'RGBinput',
   'RGBlabel',
 ] as const;
-
-type MaterialProps = ColorPickerInjectedProps & {
-  styles?: PickerCustomStyles;
-  className?: ClassName;
-  classNames?: PickerClassNames;
-  theme?: PickerTheme;
-};
 
 const handleMaterialChange = (
   onChange: ColorInputChangeHandler,

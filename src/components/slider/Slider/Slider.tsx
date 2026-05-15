@@ -1,13 +1,9 @@
 import { ColorWrap, Hue, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
 import type { HueProps } from '@/components/common';
-import { SliderPointer } from '@/components/slider/SliderPointer';
-import { SliderSwatches } from '@/components/slider/SliderSwatches';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+import { SliderPointer } from '../SliderPointer';
+import { SliderSwatches } from '../SliderSwatches';
 import './Slider.scss';
-
-const b = bem('slider');
-
-const SLIDER_STYLE_SLOTS = ['wrap', 'hue', 'swatches'] as const;
 
 type SliderProps = ColorPickerInjectedProps & {
   pointer?: HueProps['pointer'];
@@ -16,6 +12,10 @@ type SliderProps = ColorPickerInjectedProps & {
   classNames?: PickerClassNames;
   theme?: PickerTheme;
 };
+
+const b = bem('slider');
+
+const SLIDER_STYLE_SLOTS = ['wrap', 'hue', 'swatches'] as const;
 
 function SliderBase({
   hsl,

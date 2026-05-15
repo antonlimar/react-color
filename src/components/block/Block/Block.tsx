@@ -1,4 +1,3 @@
-import { BlockSwatches } from '@/components/block/BlockSwatches';
 import {
   ColorWrap,
   EditableInput,
@@ -17,6 +16,7 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+import { BlockSwatches } from '../BlockSwatches';
 import './Block.scss';
 
 type BlockProps = ColorPickerInjectedProps & {

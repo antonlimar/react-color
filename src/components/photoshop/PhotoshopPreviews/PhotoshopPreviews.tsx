@@ -3,12 +3,12 @@ import { bem } from '@/components/common';
 import type { RGBAColor } from '@/types';
 import './PhotoshopPreviews.scss';
 
-const b = bem('photoshop');
-
 type PhotoshopPreviewsProps = {
   rgb: RGBAColor;
   currentColor: string;
 };
+
+const b = bem('photoshop');
 
 export function PhotoshopPreviews({ rgb, currentColor }: PhotoshopPreviewsProps) {
   const nextColorStyle: CSSProperties = {

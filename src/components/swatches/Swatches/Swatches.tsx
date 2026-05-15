@@ -1,13 +1,9 @@
 /* eslint-disable import-x/no-named-as-default-member */
 import material from 'material-colors';
 import { ColorWrap, Raised, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
-import { SwatchesGroup } from '@/components/swatches/SwatchesGroup';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+import { SwatchesGroup } from '../SwatchesGroup';
 import './Swatches.scss';
-
-const b = bem('swatches');
-
-const SWATCHES_STYLE_SLOTS = ['picker', 'overflow', 'body', 'clear'] as const;
 
 type SwatchesProps = ColorPickerInjectedProps & {
   width?: string | number;
@@ -18,6 +14,10 @@ type SwatchesProps = ColorPickerInjectedProps & {
   classNames?: PickerClassNames;
   theme?: PickerTheme;
 };
+
+const b = bem('swatches');
+
+const SWATCHES_STYLE_SLOTS = ['picker', 'overflow', 'body', 'clear'] as const;
 
 const DEFAULT_SWATCH_GROUPS = [
   [material.red['900'], material.red['700'], material.red['500'], material.red['300'], material.red['100']],

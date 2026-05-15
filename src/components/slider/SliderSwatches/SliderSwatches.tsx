@@ -1,14 +1,14 @@
 import { bem } from '@/components/common';
-import { SliderSwatch } from '@/components/slider/SliderSwatch';
 import type { ColorInputChangeHandler, HSLAColor } from '@/types';
+import { SliderSwatch } from '../SliderSwatch';
 import './SliderSwatches.scss';
-
-const b = bem('slider');
 
 type SliderSwatchesProps = {
   onClick: ColorInputChangeHandler;
   hsl: HSLAColor;
 };
+
+const b = bem('slider');
 
 export function SliderSwatches({ onClick, hsl }: SliderSwatchesProps) {
   const epsilon = 0.1;
