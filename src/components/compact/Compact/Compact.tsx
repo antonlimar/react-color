@@ -1,7 +1,5 @@
 import { isValidHex } from '@/helpers';
-import { ColorWrap, Raised } from '@/components/common';
-import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { ColorWrap, Raised, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
 import { CompactColor } from '@/components/compact/CompactColor';
 import { CompactFields } from '@/components/compact/CompactFields';
 import './Compact.scss';

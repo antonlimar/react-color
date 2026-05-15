@@ -1,5 +1,4 @@
-import { EditableInput } from '@/components/common';
-import { bem } from '@/components/common/styleArchitecture';
+import { EditableInput, bem } from '@/components/common';
 import type { ColorChangeValue, ColorPickerChangeEvent, RGBAColor } from '@/types';
 import './CompactFields.scss';
 

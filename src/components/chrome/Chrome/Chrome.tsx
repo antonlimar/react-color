@@ -1,6 +1,13 @@
-import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '@/components/common';
-import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import {
+  ColorWrap,
+  Saturation,
+  Hue,
+  Alpha,
+  Checkboard,
+  bem,
+  getThemeDataAttributes,
+  getDeprecatedStyleOverride,
+} from '@/components/common';
 import { ChromeFields } from '@/components/chrome/ChromeFields';
 import { ChromePointer } from '@/components/chrome/ChromePointer';
 import { ChromePointerCircle } from '@/components/chrome/ChromePointerCircle';

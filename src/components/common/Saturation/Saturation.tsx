@@ -5,7 +5,7 @@ import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { InternalColorChangeEvent } from '@/types';
 import type { SaturationProps } from './types';
-import { bem } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common';
 import './Saturation.scss';
 
 const b = bem('saturation');

@@ -1,9 +1,8 @@
 import { noop } from 'lodash-es';
 import { getContrastingColor } from '@/helpers';
-import { Swatch } from '@/components/common';
+import { Swatch, bem } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
-import { bem } from '@/components/common/styleArchitecture';
 import './CompactColor.scss';
 
 const b = bem('compact');

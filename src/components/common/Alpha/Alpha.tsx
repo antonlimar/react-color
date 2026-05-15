@@ -4,9 +4,7 @@ import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { InternalColorChangeEvent } from '@/types';
 import type { AlphaProps } from './types';
-import { Checkboard } from '@/components/common/Checkboard';
-import { bem } from '@/components/common/styleArchitecture';
-import { getSlotStyleOverride } from '@/components/common/styleOverrides';
+import { Checkboard, bem, getSlotStyleOverride } from '@/components/common';
 import './Alpha.scss';
 
 const b = bem('alphaControl');

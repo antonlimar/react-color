@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import type { HSLAColor } from '@/types';
-import { bem } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common';
 import './GooglePointer.scss';
 
 const b = bem('google');

@@ -1,7 +1,12 @@
 import { getContrastingColor, isValidHex } from '@/helpers';
-import { ColorWrap, EditableInput, Checkboard } from '@/components/common';
-import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import {
+  ColorWrap,
+  EditableInput,
+  Checkboard,
+  bem,
+  getThemeDataAttributes,
+  getDeprecatedStyleOverride,
+} from '@/components/common';
 import { BlockSwatches } from '@/components/block/BlockSwatches';
 import './Block.scss';
 

@@ -1,7 +1,5 @@
 import material from 'material-colors';
-import { ColorWrap } from '@/components/common';
-import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import { ColorWrap, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
 import { CircleSwatch } from '@/components/circle/CircleSwatch';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
 import './Circle.scss';

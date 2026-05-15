@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { bem } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common';
 
 const b = bem('photoshop');
 

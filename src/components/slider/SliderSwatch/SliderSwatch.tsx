@@ -1,7 +1,7 @@
 import type { CSSProperties, MouseEvent } from 'react';
 import { noop } from 'lodash-es';
 import type { ColorInputChangeHandler, HSLAColor } from '@/types';
-import { bem } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common';
 import './SliderSwatch.scss';
 
 const b = bem('slider');

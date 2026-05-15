@@ -4,8 +4,7 @@ import { noop } from 'lodash-es';
 import { handleFocus } from '@/helpers';
 import type { Radius } from '@/types';
 import type { SwatchProps } from './types';
-import { Checkboard } from '@/components/common/Checkboard';
-import { bem } from '@/components/common/styleArchitecture';
+import { Checkboard, bem } from '@/components/common';
 import './Swatch.scss';
 
 const b = bem('swatch');

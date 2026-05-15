@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import type { RGBAColor } from '@/types';
-import { bem } from '@/components/common/styleArchitecture';
+import { bem } from '@/components/common';
 import './PhotoshopPreviews.scss';
 
 const b = bem('photoshop');

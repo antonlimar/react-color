@@ -1,6 +1,5 @@
 import { isValidHex } from '@/helpers';
-import { EditableInput } from '@/components/common';
-import { bem } from '@/components/common/styleArchitecture';
+import { EditableInput, bem } from '@/components/common';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSVAColor, RGBAColor } from '@/types';
 import './PhotoshopFields.scss';
 

@@ -1,6 +1,13 @@
-import { ColorWrap, Saturation, Hue, Alpha, Checkboard } from '@/components/common';
-import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import {
+  ColorWrap,
+  Saturation,
+  Hue,
+  Alpha,
+  Checkboard,
+  bem,
+  getThemeDataAttributes,
+  getDeprecatedStyleOverride,
+} from '@/components/common';
 import { SketchFields } from '@/components/sketch/SketchFields';
 import { SketchPresetColors } from '@/components/sketch/SketchPresetColors';
 import './Sketch.scss';

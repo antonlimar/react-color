@@ -4,8 +4,7 @@ import type { MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
 import type { InternalColorChangeEvent } from '@/types';
 import type { HueProps } from './types';
-import { bem } from '@/components/common/styleArchitecture';
-import { getSlotStyleOverride } from '@/components/common/styleOverrides';
+import { bem, getSlotStyleOverride } from '@/components/common';
 import './Hue.scss';
 
 const b = bem('hueControl');

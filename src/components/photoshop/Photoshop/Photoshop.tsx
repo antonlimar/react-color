@@ -1,7 +1,12 @@
 import { useState } from 'react';
-import { ColorWrap, Saturation, Hue } from '@/components/common';
-import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import {
+  ColorWrap,
+  Saturation,
+  Hue,
+  bem,
+  getThemeDataAttributes,
+  getDeprecatedStyleOverride,
+} from '@/components/common';
 import { PhotoshopFields } from '@/components/photoshop/PhotoshopFields';
 import { PhotoshopPointerCircle } from '@/components/photoshop/PhotoshopPointerCircle';
 import { PhotoshopPointer } from '@/components/photoshop/PhotoshopPointer';

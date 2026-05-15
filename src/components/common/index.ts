@@ -14,8 +14,17 @@ export { Hue } from './Hue';
 export type { HueChange, HueProps } from './Hue';
 export { Raised } from './Raised';
 export type { RaisedProps } from './Raised';
-export { Saturation } from './Saturation';
+export { Saturation, getSaturationRenderWindow } from './Saturation';
 export type { SaturationChange, SaturationProps, SaturationStyle } from './Saturation';
 export { ColorWrap } from './ColorWrap';
 export { Swatch } from './Swatch';
 export type { SwatchProps } from './Swatch';
+export { CheckIcon } from './icons/CheckIcon';
+export { UnfoldMoreHorizontalIcon } from './icons/UnfoldMoreHorizontalIcon';
+export { bem, getThemeDataAttributes, stylingArchitecture } from './styleArchitecture';
+export type {
+  StylingArchitectureBlock,
+  StylingArchitectureElement,
+  StylingArchitectureModifier,
+} from './styleArchitecture';
+export { getDeprecatedStyleOverride, getSlotStyleOverride } from './styleOverrides';

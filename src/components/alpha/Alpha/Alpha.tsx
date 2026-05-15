@@ -1,8 +1,6 @@
-import { ColorWrap, Alpha as AlphaControl } from '@/components/common';
-import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
+import { ColorWrap, Alpha as AlphaControl, bem, getThemeDataAttributes } from '@/components/common';
+import type { AlphaProps } from '@/components/common';
 import { AlphaPointer } from '@/components/alpha/AlphaPointer';
-import './Alpha.scss';
-
 import type {
   CheckboardRenderers,
   ClassName,
@@ -11,7 +9,7 @@ import type {
   PickerStyle,
   PickerTheme,
 } from '@/types';
-import type { AlphaProps } from '@/components/common/Alpha';
+import './Alpha.scss';
 
 const b = bem('alpha');
 

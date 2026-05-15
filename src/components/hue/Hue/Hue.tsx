@@ -1,11 +1,15 @@
-import { ColorWrap, Hue as HueControl } from '@/components/common';
-import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import {
+  ColorWrap,
+  Hue as HueControl,
+  bem,
+  getThemeDataAttributes,
+  getDeprecatedStyleOverride,
+  type HueProps,
+} from '@/components/common';
 import { HuePointer } from '@/components/hue/HuePointer';
 import './Hue.scss';
 
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
-import type { HueProps } from '@/components/common/Hue';
 
 const b = bem('hue');
 

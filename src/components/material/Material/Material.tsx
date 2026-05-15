@@ -1,7 +1,12 @@
 import { isValidHex } from '@/helpers';
-import { ColorWrap, EditableInput, Raised } from '@/components/common';
-import { bem, getThemeDataAttributes } from '@/components/common/styleArchitecture';
-import { getDeprecatedStyleOverride } from '@/components/common/styleOverrides';
+import {
+  ColorWrap,
+  EditableInput,
+  Raised,
+  bem,
+  getThemeDataAttributes,
+  getDeprecatedStyleOverride,
+} from '@/components/common';
 import './Material.scss';
 
 import type {
