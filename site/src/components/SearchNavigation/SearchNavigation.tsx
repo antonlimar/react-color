@@ -1,4 +1,5 @@
 import type { PointerEvent as ReactPointerEvent, RefObject } from 'react';
+import './SearchNavigation.scss';
 
 export type SearchResultKind = 'section' | 'prop' | 'picker' | 'example';
 

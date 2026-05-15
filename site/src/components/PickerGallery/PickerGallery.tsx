@@ -22,6 +22,7 @@ import { highlightCode } from '../../utils/highlightCode';
 import { useCodeCopy } from '../CodeFigure';
 import type { PickerMetadata } from '../../content';
 import type { ColorPickerComponent, ColorPickerProps, ColorResult, RGBAColor } from 'react-color';
+import './PickerGallery.scss';
 
 export const pickerGalleryComponents: Record<string, ColorPickerComponent> = {
   alpha: AlphaPicker,

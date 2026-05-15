@@ -12,6 +12,7 @@ import type {
   PropertyGroup,
   SectionBlock,
 } from '../../content';
+import './DocsSection.scss';
 
 export interface DocsSectionProps {
   packageManager: PackageManager;

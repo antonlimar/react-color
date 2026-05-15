@@ -2,6 +2,7 @@ import type { PointerEvent as ReactPointerEvent } from 'react';
 import { siteSections } from '../../content';
 import { createPropertyGroupAnchorId } from '../../utils/docsSections';
 import type { ContentSection, ContentSubsection, PropertyGroup } from '../../content';
+import './SectionNavigation.scss';
 
 interface NavSubsection extends ContentSubsection {
   children: Array<{

@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import './NotFoundPage.css';
+import './NotFoundPage.scss';
 
 interface NotFoundPageProps {
   galleryPagePath: string;

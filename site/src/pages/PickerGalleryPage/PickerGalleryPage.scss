@@ -1,0 +1,94 @@
+.sections-shell.sections-shell--gallery-page {
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.gallery-page {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.page-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+  color: rgba(16, 32, 58, 0.56);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.page-breadcrumbs a {
+  color: var(--site-text);
+}
+
+.gallery-page__intro {
+  scroll-margin-top: var(--site-anchor-offset);
+  padding: clamp(1.35rem, 2.8vw, 2.2rem);
+  border: 1px solid var(--site-border);
+  border-radius: var(--site-radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.68)),
+    linear-gradient(135deg, var(--site-accent-wash), rgba(255, 255, 255, 0.1));
+  box-shadow: var(--site-shadow-soft);
+}
+
+.gallery-page__intro .eyebrow {
+  margin-bottom: 0.75rem;
+}
+
+.gallery-page__intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 24rem);
+  gap: 1rem;
+  align-items: end;
+}
+
+.gallery-page__intro h2 {
+  max-width: 13ch;
+  margin: 0;
+  color: var(--site-text-strong);
+  font-family: var(--site-font-display);
+  font-size: clamp(2.4rem, 5.2vw, 4.6rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+
+.gallery-page__intro p {
+  max-width: 40rem;
+  margin: 1rem 0 0;
+  color: var(--site-text-muted);
+  font-size: 1rem;
+}
+
+.gallery-page__note {
+  display: grid;
+  gap: 0.42rem;
+  padding: 1rem 1.05rem;
+  border: 1px solid rgba(16, 32, 58, 0.08);
+  border-radius: var(--site-radius-md);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.gallery-page__note strong {
+  color: var(--site-text-strong);
+  font-size: 1rem;
+}
+
+.gallery-page__note span {
+  color: var(--site-text-muted);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 920px) {
+  .sections-shell.sections-shell--gallery-page {
+    padding-top: 0.75rem;
+  }
+}
+
+@media (max-width: 920px) {
+  .gallery-page__intro-grid {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}

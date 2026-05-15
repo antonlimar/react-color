@@ -1,5 +1,6 @@
 import type { RefObject } from 'react';
 import { SectionNavigation } from '../SectionNavigation';
+import './MobileSectionDrawer.scss';
 
 interface MobileSectionDrawerProps {
   activeAnchorId: string;

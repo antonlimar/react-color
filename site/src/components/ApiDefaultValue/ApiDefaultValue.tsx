@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './ApiDefaultValue.scss';
 
 interface ApiDefaultValueProps {
   value?: string;

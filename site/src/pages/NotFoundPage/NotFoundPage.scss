@@ -145,11 +145,15 @@
   .not-found-page {
     width: min(calc(100% - 1.25rem), var(--site-content-max));
   }
+}
 
+@media (max-width: 640px) {
   .not-found-page__actions {
     display: grid;
   }
+}
 
+@media (max-width: 640px) {
   .not-found-page__primary-action,
   .not-found-page__secondary-action {
     width: 100%;

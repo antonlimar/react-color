@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { highlightCode } from '../../utils/highlightCode';
 import { copyText } from './clipboard';
 import type { CodeBlock } from '../../content';
+import './CodeFigure.scss';
 
 interface CodeFigureProps {
   code: string;

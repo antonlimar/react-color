@@ -1,8 +1,8 @@
 import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 import { ChromePicker, CompactPicker, GithubPicker, SketchPicker } from 'react-color';
-import './DocsPage.css';
 import type { ColorResult, RGBAColor } from 'react-color';
+import './DocsPage.scss';
 
 interface DocsPageProps {
   color: RGBAColor;
