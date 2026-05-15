@@ -5,13 +5,13 @@
 
   position: relative;
   display: inline-block;
-}
 
-.rc-raised__bg {
-  position: absolute;
-  inset: 0;
-}
+  &__bg {
+    position: absolute;
+    inset: 0;
+  }
 
-.rc-raised__content {
-  position: relative;
+  &__content {
+    position: relative;
+  }
 }

@@ -1,10 +1,10 @@
 .rc-editable-input {
   position: relative;
-}
 
-.rc-editable-input__label {
-  &#{&}--drag-label,
-  &--drag-label {
-    cursor: ew-resize;
+  &__label {
+    &#{&}--drag-label,
+    &--drag-label {
+      cursor: ew-resize;
+    }
   }
 }

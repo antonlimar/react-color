@@ -1,26 +1,26 @@
 .rc-saturation {
   position: absolute;
   inset: 0;
-}
 
-.rc-saturation__white,
-.rc-saturation__black {
-  position: absolute;
-  inset: 0;
-}
+  &__white,
+  &__black {
+    position: absolute;
+    inset: 0;
+  }
 
-.rc-saturation__pointer {
-  position: absolute;
-  cursor: default;
-}
+  &__pointer {
+    position: absolute;
+    cursor: default;
+  }
 
-.rc-saturation__circle {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 1.5px var(--rc-picker-contrast-surface, #fff),
-    inset 0 0 1px 1px rgba(0, 0, 0, 0.3),
-    0 0 1px 2px var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.4));
-  transform: translate(-2px, -2px);
+  &__circle {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 1.5px var(--rc-picker-contrast-surface, #fff),
+      inset 0 0 1px 1px rgba(0, 0, 0, 0.3),
+      0 0 1px 2px var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.4));
+    transform: translate(-2px, -2px);
+  }
 }

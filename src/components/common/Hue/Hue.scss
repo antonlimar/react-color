@@ -1,24 +1,24 @@
 .rc-hue-control {
   position: absolute;
   inset: 0;
-}
 
-.rc-hue-control__container {
-  position: relative;
-  height: 100%;
-  padding: 0 2px;
-}
+  &__container {
+    position: relative;
+    height: 100%;
+    padding: 0 2px;
+  }
 
-.rc-hue-control__pointer {
-  position: absolute;
-}
+  &__pointer {
+    position: absolute;
+  }
 
-.rc-hue-control__slider {
-  width: 4px;
-  height: 8px;
-  margin-top: 1px;
-  background: var(--rc-picker-contrast-surface, #fff);
-  border-radius: 1px;
-  box-shadow: 0 0 2px var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.6));
-  transform: translateX(-2px);
+  &__slider {
+    width: 4px;
+    height: 8px;
+    margin-top: 1px;
+    background: var(--rc-picker-contrast-surface, #fff);
+    border-radius: 1px;
+    box-shadow: 0 0 2px var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.6));
+    transform: translateX(-2px);
+  }
 }
