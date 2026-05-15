@@ -1,8 +1,8 @@
 import { noop } from 'lodash-es';
 import type { KeyboardEvent, MouseEvent } from 'react';
+import './SketchPresetColors.scss';
 import { Swatch, bem } from '@/components/common';
 import type { ColorInputChangeHandler, SwatchHoverHandler } from '@/types';
-import './SketchPresetColors.scss';
 
 const b = bem('sketch');
 

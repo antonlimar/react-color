@@ -1,3 +1,4 @@
+import './Alpha.scss';
 import { AlphaPointer } from '@/components/alpha/AlphaPointer';
 import { ColorWrap, Alpha as AlphaControl, bem, getThemeDataAttributes } from '@/components/common';
 import type { AlphaProps } from '@/components/common';
@@ -9,7 +10,6 @@ import type {
   PickerStyle,
   PickerTheme,
 } from '@/types';
-import './Alpha.scss';
 
 const b = bem('alpha');
 

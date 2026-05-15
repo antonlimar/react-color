@@ -6,8 +6,8 @@ import type {
   EditableInputProps,
   EditableInputValue,
 } from './types';
-import { bem } from '@/components/common';
 import './EditableInput.scss';
+import { bem } from '@/components/common';
 
 const b = bem('editableInput');
 

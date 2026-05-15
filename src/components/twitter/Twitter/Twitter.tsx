@@ -1,3 +1,4 @@
+import './Twitter.scss';
 import {
   ColorWrap,
   EditableInput,
@@ -7,7 +8,6 @@ import {
   getDeprecatedStyleOverride,
 } from '@/components/common';
 import { isValidHex } from '@/helpers';
-import './Twitter.scss';
 import type {
   ClassName,
   ColorInputChangeHandler,

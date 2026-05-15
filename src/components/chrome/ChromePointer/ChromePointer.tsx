@@ -1,5 +1,5 @@
-import { bem } from '@/components/common';
 import './ChromePointer.scss';
+import { bem } from '@/components/common';
 
 const b = bem('chrome');
 

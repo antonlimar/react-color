@@ -1,3 +1,4 @@
+import './Block.scss';
 import { BlockSwatches } from '@/components/block/BlockSwatches';
 import {
   ColorWrap,
@@ -8,7 +9,6 @@ import {
   getDeprecatedStyleOverride,
 } from '@/components/common';
 import { getContrastingColor, isValidHex } from '@/helpers';
-import './Block.scss';
 import type {
   ClassName,
   ColorInputChangeHandler,

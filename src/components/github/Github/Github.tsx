@@ -1,7 +1,7 @@
+import './Github.scss';
 import { ColorWrap, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
 import { GithubSwatch } from '@/components/github/GithubSwatch';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
-import './Github.scss';
 
 const b = bem('github');
 

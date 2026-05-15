@@ -1,3 +1,4 @@
+import './Chrome.scss';
 import { ChromeFields } from '@/components/chrome/ChromeFields';
 import { ChromePointer } from '@/components/chrome/ChromePointer';
 import { ChromePointerCircle } from '@/components/chrome/ChromePointerCircle';
@@ -11,7 +12,6 @@ import {
   getThemeDataAttributes,
   getDeprecatedStyleOverride,
 } from '@/components/common';
-import './Chrome.scss';
 import type {
   CheckboardRenderers,
   ClassName,

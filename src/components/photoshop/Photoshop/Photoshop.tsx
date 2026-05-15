@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Photoshop.scss';
 import {
   ColorWrap,
   Saturation,
@@ -12,7 +13,6 @@ import { PhotoshopFields } from '@/components/photoshop/PhotoshopFields';
 import { PhotoshopPointer } from '@/components/photoshop/PhotoshopPointer';
 import { PhotoshopPointerCircle } from '@/components/photoshop/PhotoshopPointerCircle';
 import { PhotoshopPreviews } from '@/components/photoshop/PhotoshopPreviews';
-import './Photoshop.scss';
 import type {
   ClassName,
   ColorPickerInjectedProps,

@@ -1,3 +1,4 @@
+import './Sketch.scss';
 import {
   ColorWrap,
   Saturation,
@@ -10,7 +11,6 @@ import {
 } from '@/components/common';
 import { SketchFields } from '@/components/sketch/SketchFields';
 import { SketchPresetColors } from '@/components/sketch/SketchPresetColors';
-import './Sketch.scss';
 import type {
   CheckboardRenderers,
   ClassName,

@@ -1,8 +1,8 @@
 import type { KeyboardEvent, MouseEvent } from 'react';
+import './SwatchesGroup.scss';
 import { bem } from '@/components/common';
 import { SwatchesColor } from '@/components/swatches/SwatchesColor';
 import type { SwatchHoverHandler } from '@/types';
-import './SwatchesGroup.scss';
 
 const b = bem('swatches');
 

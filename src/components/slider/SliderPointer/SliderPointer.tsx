@@ -1,5 +1,5 @@
-import { bem } from '@/components/common';
 import './SliderPointer.scss';
+import { bem } from '@/components/common';
 
 const b = bem('slider');
 

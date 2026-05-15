@@ -1,3 +1,4 @@
+import './Material.scss';
 import {
   ColorWrap,
   EditableInput,
@@ -7,7 +8,6 @@ import {
   getDeprecatedStyleOverride,
 } from '@/components/common';
 import { isValidHex } from '@/helpers';
-import './Material.scss';
 import type {
   ClassName,
   ColorChangeValue,

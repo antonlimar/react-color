@@ -1,3 +1,4 @@
+import './Google.scss';
 import {
   ColorWrap,
   Saturation,
@@ -10,7 +11,6 @@ import { GoogleFields } from '@/components/google/GoogleFields';
 import { GooglePointer } from '@/components/google/GooglePointer';
 import { GooglePointerCircle } from '@/components/google/GooglePointerCircle';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
-import './Google.scss';
 
 const b = bem('google');
 

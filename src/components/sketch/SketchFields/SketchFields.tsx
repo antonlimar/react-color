@@ -1,7 +1,7 @@
+import './SketchFields.scss';
 import { EditableInput, bem } from '@/components/common';
 import { isValidHex } from '@/helpers';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '@/types';
-import './SketchFields.scss';
 
 const b = bem('sketch');
 

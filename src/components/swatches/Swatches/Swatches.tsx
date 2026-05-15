@@ -1,9 +1,9 @@
 /* eslint-disable import-x/no-named-as-default-member */
 import material from 'material-colors';
+import './Swatches.scss';
 import { ColorWrap, Raised, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
 import { SwatchesGroup } from '@/components/swatches/SwatchesGroup';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
-import './Swatches.scss';
 
 const b = bem('swatches');
 

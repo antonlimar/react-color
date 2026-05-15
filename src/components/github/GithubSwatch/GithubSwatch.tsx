@@ -1,7 +1,7 @@
 import type { KeyboardEvent, MouseEvent } from 'react';
+import './GithubSwatch.scss';
 import { Swatch, bem } from '@/components/common';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
-import './GithubSwatch.scss';
 
 const b = bem('github');
 

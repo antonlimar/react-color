@@ -1,8 +1,8 @@
+import './Compact.scss';
 import { ColorWrap, Raised, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
 import { CompactColor } from '@/components/compact/CompactColor';
 import { CompactFields } from '@/components/compact/CompactFields';
 import { isValidHex } from '@/helpers';
-import './Compact.scss';
 import type {
   ClassName,
   ColorChangeValue,

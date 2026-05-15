@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import type { ReactNode } from 'react';
+import './ChromeFields.scss';
 import { EditableInput, bem, UnfoldMoreHorizontalIcon } from '@/components/common';
 import { isValidHex } from '@/helpers';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '@/types';
-import './ChromeFields.scss';
 
 const b = bem('chrome');
 

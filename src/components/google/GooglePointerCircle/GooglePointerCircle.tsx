@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
+import './GooglePointerCircle.scss';
 import { bem } from '@/components/common';
 import type { HSLAColor } from '@/types';
-import './GooglePointerCircle.scss';
 
 const b = bem('google');
 

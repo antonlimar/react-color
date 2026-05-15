@@ -1,22 +1,4 @@
 import {
-  Link,
-  RouterProvider,
-  createRootRoute,
-  createRoute,
-  createRouter,
-  useRouterState,
-} from '@tanstack/react-router';
-import Prism from 'prismjs';
-import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
-import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactNode, RefObject } from 'react';
-import 'prismjs/components/prism-bash';
-import 'prismjs/components/prism-clike';
-import 'prismjs/components/prism-css';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-jsx';
-import 'prismjs/components/prism-tsx';
-import 'prismjs/components/prism-typescript';
-import {
   AlphaPicker,
   BlockPicker,
   ChromePicker,
@@ -33,6 +15,24 @@ import {
   TwitterPicker,
 } from 'react-color';
 import type { ColorPickerComponent, ColorPickerProps, ColorResult, RGBAColor } from 'react-color';
+import {
+  Link,
+  RouterProvider,
+  createRootRoute,
+  createRoute,
+  createRouter,
+  useRouterState,
+} from '@tanstack/react-router';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-tsx';
+import 'prismjs/components/prism-typescript';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactNode, RefObject } from 'react';
 import { pickerMetadata, siteSections } from './content';
 import type {
   ApiProperty,
