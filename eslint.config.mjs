@@ -62,11 +62,10 @@ export default defineConfig([
       'import-x/order': [
         'error',
         {
-          groups: ['builtin', 'external', 'internal', 'parent', 'index', 'sibling', 'object', 'unknown'],
+          groups: ['builtin', 'external', 'internal', 'parent', 'index', 'sibling', 'object', 'type', 'unknown'],
           pathGroups: [
-            { pattern: 'react*', group: 'external', position: 'before' },
-            { pattern: '*', group: 'external', position: 'before' },
-            { pattern: 'type *', group: 'external', position: 'before' },
+            { pattern: 'react', group: 'external', position: 'after' },
+            { pattern: '@/**', group: 'internal', position: 'after' },
             { pattern: './*.scss', group: 'unknown', position: 'after' },
             { pattern: '../*.scss', group: 'unknown', position: 'after' },
           ],

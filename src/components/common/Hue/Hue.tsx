@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CSSProperties, MouseEvent } from 'react';
-import type { HueProps } from './types';
 import { bem, getSlotStyleOverride } from '@/components/common';
 import { calculateHueChange } from '@/helpers';
 import type { InternalColorChangeEvent } from '@/types';
+import type { HueProps } from './types';
 import './Hue.scss';
 
 const b = bem('hueControl');

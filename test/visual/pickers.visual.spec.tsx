@@ -1,8 +1,8 @@
 import { composeStories } from '@storybook/react-vite';
 import { render } from '@testing-library/react';
 import { createElement } from 'react';
-import type { ComponentType, ReactElement } from 'react';
 import { describe, expect, test } from 'vitest';
+import type { ComponentType, ReactElement } from 'react';
 import alphaMeta, { AlphaPicker } from '../../src/components/alpha/story';
 import blockMeta, { BlockPicker } from '../../src/components/block/story';
 import chromeMeta, { ChromePicker } from '../../src/components/chrome/story';

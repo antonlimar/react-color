@@ -5,8 +5,8 @@ import {
   hoverFirstSwatch,
   renderForSnapshot,
 } from '@test/helpers';
-import { Twitter } from './Twitter';
 import { red, simpleCheckForValidColor } from '@/helpers';
+import { Twitter } from './Twitter';
 
 test('Twitter renders correctly', () => {
   renderForSnapshot(<Twitter {...red} />).expectSnapshot();

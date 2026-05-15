@@ -1,13 +1,13 @@
 import { getRootElement, renderForSnapshot } from '@test/helpers';
 import { fireEvent, screen } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
+import { red } from '@/helpers';
 import { Photoshop } from './Photoshop';
 import { PhotoshopButton } from './PhotoshopButton';
 import { PhotoshopFields } from './PhotoshopFields';
 import { PhotoshopPointer } from './PhotoshopPointer';
 import { PhotoshopPointerCircle } from './PhotoshopPointerCircle';
 import { PhotoshopPreviews } from './PhotoshopPreviews';
-import { red } from '@/helpers';
 
 test('Photoshop renders correctly', () => {
   renderForSnapshot(<Photoshop {...red} onAccept={() => {}} onCancel={() => {}} />).expectSnapshot();

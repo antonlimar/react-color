@@ -1,3 +1,4 @@
+import type { ComponentProps } from 'react';
 import { ChromePicker, CustomPicker, EditableInput, GooglePicker, HuePicker, SketchPicker } from 'react-color';
 import type {
   PickerClassNames,
@@ -8,7 +9,6 @@ import type {
   HSLAColor,
   RGBAColor,
 } from 'react-color';
-import type { ComponentProps } from 'react';
 
 const rgba: RGBAColor = { r: 255, g: 0, b: 0, a: 1 };
 const hsl: HSLAColor = { h: 0, s: 1, l: 0.5, a: 1 };

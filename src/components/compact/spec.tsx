@@ -6,10 +6,10 @@ import {
   renderForSnapshot,
 } from '@test/helpers';
 import { noop } from 'lodash-es';
+import { red, simpleCheckForValidColor } from '@/helpers';
 import { Compact } from './Compact';
 import { CompactColor } from './CompactColor';
 import { CompactFields } from './CompactFields';
-import { red, simpleCheckForValidColor } from '@/helpers';
 
 test('Compact renders correctly', () => {
   renderForSnapshot(<Compact {...red} />).expectSnapshot();

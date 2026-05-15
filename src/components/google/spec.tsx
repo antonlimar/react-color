@@ -1,11 +1,11 @@
 import { changeInputByLabel, createColorChangeSpy, getRootElement, renderForSnapshot } from '@test/helpers';
 import { screen } from '@testing-library/react';
 import { noop } from 'lodash-es';
+import { red, simpleCheckForValidColor } from '@/helpers';
 import { Google } from './Google';
 import { GoogleFields } from './GoogleFields';
 import { GooglePointer } from './GooglePointer';
 import { GooglePointerCircle } from './GooglePointerCircle';
-import { red, simpleCheckForValidColor } from '@/helpers';
 
 test('Google renders correctly', () => {
   renderForSnapshot(<Google {...red} />).expectSnapshot();

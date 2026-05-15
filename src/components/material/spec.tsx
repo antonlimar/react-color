@@ -1,6 +1,6 @@
 import { getRootElement, renderForSnapshot } from '@test/helpers';
-import { Material } from './Material';
 import { red } from '@/helpers';
+import { Material } from './Material';
 
 test('Material renders correctly', () => {
   renderForSnapshot(<Material {...red} />).expectSnapshot();

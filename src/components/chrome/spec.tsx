@@ -7,11 +7,11 @@ import {
 } from '@test/helpers';
 import { fireEvent, waitFor } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
+import { red, simpleCheckForValidColor } from '@/helpers';
 import { Chrome } from './Chrome';
 import { ChromeFields } from './ChromeFields';
 import { ChromePointer } from './ChromePointer';
 import { ChromePointerCircle } from './ChromePointerCircle';
-import { red, simpleCheckForValidColor } from '@/helpers';
 
 test('Chrome renders correctly', () => {
   renderForSnapshot(<Chrome {...red} />).expectSnapshot();

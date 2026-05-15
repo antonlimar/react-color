@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import type { RenderResult } from '@testing-library/react';
-import type { ReactElement, ElementType, ReactNode } from 'react';
 import { createElement } from 'react';
 import { expect, vi } from 'vitest';
+import type { ReactElement, ElementType, ReactNode } from 'react';
+import type { RenderResult } from '@testing-library/react';
 
 type SnapshotRenderResult = RenderResult & {
   expectSnapshot: () => void;

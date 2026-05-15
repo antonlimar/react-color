@@ -6,9 +6,9 @@ import {
   renderForSnapshot,
 } from '@test/helpers';
 import { noop } from 'lodash-es';
+import { simpleCheckForValidColor } from '@/helpers';
 import { Circle } from './Circle';
 import { CircleSwatch } from './CircleSwatch';
-import { simpleCheckForValidColor } from '@/helpers';
 
 test('Circle renders correctly', () => {
   renderForSnapshot(<Circle />).expectSnapshot();

@@ -1,6 +1,8 @@
 import { getRequiredElement, getRootElement, renderForSnapshot } from '@test/helpers';
 import { render } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
+import { red, toState } from '@/helpers';
+import type { Color, ColorPickerInjectedProps } from '@/types';
 import { Alpha } from './Alpha';
 import { Checkboard } from './Checkboard';
 import { ColorWrap } from './ColorWrap';
@@ -10,8 +12,6 @@ import { Raised } from './Raised';
 import { Saturation, getSaturationRenderWindow } from './Saturation';
 import { bem, getThemeDataAttributes, stylingArchitecture } from './styleArchitecture';
 import { Swatch } from './Swatch';
-import { red, toState } from '@/helpers';
-import type { Color, ColorPickerInjectedProps } from '@/types';
 
 const chromeBem = bem('chrome');
 const sketchBem = bem('sketch');

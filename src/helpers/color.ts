@@ -1,6 +1,6 @@
 import tinycolor from 'tinycolor2';
-import type { BasicColorState, ColorDataKey, ColorDataRecord, ValidColorStringType } from './types';
 import type { Color, ColorChangeValue, ColorResult } from '@/types';
+import type { BasicColorState, ColorDataKey, ColorDataRecord, ValidColorStringType } from './types';
 
 type TinyColorInput = Parameters<typeof tinycolor>[0];
 

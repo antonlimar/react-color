@@ -1,21 +1,4 @@
 import {
-  AlphaPicker,
-  BlockPicker,
-  ChromePicker,
-  CirclePicker,
-  CompactPicker,
-  GithubPicker,
-  GooglePicker,
-  HuePicker,
-  MaterialPicker,
-  PhotoshopPicker,
-  SketchPicker,
-  SliderPicker,
-  SwatchesPicker,
-  TwitterPicker,
-} from 'react-color';
-import type { ColorPickerComponent, ColorPickerProps, ColorResult, RGBAColor } from 'react-color';
-import {
   Link,
   RouterProvider,
   createRootRoute,
@@ -33,7 +16,26 @@ import 'prismjs/components/prism-tsx';
 import 'prismjs/components/prism-typescript';
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactNode, RefObject } from 'react';
+import {
+  AlphaPicker,
+  BlockPicker,
+  ChromePicker,
+  CirclePicker,
+  CompactPicker,
+  GithubPicker,
+  GooglePicker,
+  HuePicker,
+  MaterialPicker,
+  PhotoshopPicker,
+  SketchPicker,
+  SliderPicker,
+  SwatchesPicker,
+  TwitterPicker,
+} from 'react-color';
 import { pickerMetadata, siteSections } from './content';
+import { DocsPage } from './pages/DocsPage';
+import { NotFoundPage as NotFoundPageContent } from './pages/NotFoundPage';
+import { PickerGalleryPage } from './pages/PickerGalleryPage';
 import type {
   ApiProperty,
   CodeBlock,
@@ -44,9 +46,7 @@ import type {
   PropertyGroup,
   SectionBlock,
 } from './content';
-import { DocsPage } from './pages/DocsPage';
-import { NotFoundPage as NotFoundPageContent } from './pages/NotFoundPage';
-import { PickerGalleryPage } from './pages/PickerGalleryPage';
+import type { ColorPickerComponent, ColorPickerProps, ColorResult, RGBAColor } from 'react-color';
 
 interface NavSubsection extends ContentSubsection {
   children: Array<{
