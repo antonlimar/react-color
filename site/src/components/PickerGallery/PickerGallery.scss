@@ -1,4 +1,6 @@
 .picker-gallery {
+  $block: &;
+
   display: grid;
   grid-template-columns: repeat(2, minmax(min(100%, 30rem), 1fr));
   gap: 1.1rem;
@@ -41,7 +43,7 @@
       align-items: stretch;
       padding: 1.35rem 1rem;
 
-      .picker-gallery__live {
+      #{$block}__live {
         align-items: center;
         width: 100%;
       }

@@ -1,4 +1,7 @@
 .docs-search {
+  $block: &;
+  $scrollbar: '.docs-search-scrollbar';
+
   --docs-search-scrollbar-size: 1rem;
   --docs-search-scrollbar-thumb: rgba(16, 32, 58, 0.26);
   --docs-search-scrollbar-thumb-hover: rgba(16, 32, 58, 0.42);
@@ -24,7 +27,7 @@
     min-height: 0;
     overflow: hidden;
 
-    .docs-search__results-shell {
+    #{$block}__results-shell {
       flex: 1 1 auto;
     }
   }
@@ -99,24 +102,24 @@
     min-height: 0;
 
     &--scrollable {
-      .docs-search-scrollbar {
+      #{$scrollbar} {
         opacity: 1;
         pointer-events: auto;
       }
 
       &:hover {
-        .docs-search-scrollbar__thumb {
+        #{$scrollbar}__thumb {
           background: var(--docs-search-scrollbar-thumb-hover);
         }
       }
     }
 
     &--dragging {
-      .docs-search-scrollbar {
+      #{$scrollbar} {
         cursor: grabbing;
       }
 
-      .docs-search-scrollbar__thumb {
+      #{$scrollbar}__thumb {
         background: var(--docs-search-scrollbar-thumb-hover);
       }
     }

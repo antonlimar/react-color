@@ -1,4 +1,6 @@
 .anchor-heading {
+  $block: &;
+
   &__icon {
     display: inline-flex;
     align-items: center;
@@ -19,7 +21,7 @@
   &__link {
     &:hover,
     &:focus-visible {
-      .anchor-heading__icon {
+      #{$block}__icon {
         color: var(--site-accent);
       }
     }
