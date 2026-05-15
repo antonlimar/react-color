@@ -1,6 +1,6 @@
-import { AnchorHeading } from './AnchorHeading';
-import { ApiDefaultValue } from './ApiDefaultValue';
-import { CodeFigure } from './CodeFigure';
+import { AnchorHeading } from '../components/AnchorHeading';
+import { ApiDefaultValue } from '../components/ApiDefaultValue';
+import { CodeFigure } from '../components/CodeFigure';
 import { renderInlineCode } from './inlineContent';
 import type {
   ApiProperty,

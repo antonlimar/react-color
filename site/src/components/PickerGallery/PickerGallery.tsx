@@ -16,11 +16,11 @@ import {
   SwatchesPicker,
   TwitterPicker,
 } from 'react-color';
-import { pickerMetadata } from '../content';
-import { useCodeCopy } from './CodeFigure';
-import { colorToHex } from './colorUtils';
-import { highlightCode } from './highlightCode';
-import type { PickerMetadata } from '../content';
+import { pickerMetadata } from '../../content';
+import { colorToHex } from '../../utils/colorUtils';
+import { highlightCode } from '../../utils/highlightCode';
+import { useCodeCopy } from '../CodeFigure';
+import type { PickerMetadata } from '../../content';
 import type { ColorPickerComponent, ColorPickerProps, ColorResult, RGBAColor } from 'react-color';
 
 export const pickerGalleryComponents: Record<string, ColorPickerComponent> = {
@@ -52,15 +52,13 @@ const pickerGalleryPreviewProps: Record<string, ColorPickerProps> = {
   swatches: { width: 320, height: 220 },
 };
 
-function LivePickerPreview({
-  picker,
-  color,
-  onChange,
-}: {
+interface LivePickerPreviewProps {
   picker: PickerMetadata;
   color: RGBAColor;
   onChange: (color: ColorResult) => void;
-}) {
+}
+
+function LivePickerPreview({ picker, color, onChange }: LivePickerPreviewProps) {
   const PickerComponent = pickerGalleryComponents[picker.id];
 
   if (!PickerComponent) {
@@ -84,7 +82,12 @@ function LivePickerPreview({
   );
 }
 
-function PickerImportSnippet({ picker, code }: { picker: PickerMetadata; code: string }) {
+interface PickerImportSnippetProps {
+  picker: PickerMetadata;
+  code: string;
+}
+
+function PickerImportSnippet({ picker, code }: PickerImportSnippetProps) {
   const { buttonLabel, copyState, handleCopy, statusLabel } = useCodeCopy(code);
 
   return (
@@ -110,7 +113,12 @@ function PickerImportSnippet({ picker, code }: { picker: PickerMetadata; code: s
   );
 }
 
-export function PickerGallery({ color, onChange }: { color: RGBAColor; onChange: (color: ColorResult) => void }) {
+interface PickerGalleryProps {
+  color: RGBAColor;
+  onChange: (color: ColorResult) => void;
+}
+
+export function PickerGallery({ color, onChange }: PickerGalleryProps) {
   const handleGalleryColorChange = useCallback(
     (nextColor: ColorResult) => {
       onChange(nextColor);

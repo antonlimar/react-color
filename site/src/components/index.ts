@@ -12,16 +12,3 @@ export {
 } from './SectionNavigation';
 export { SiteHeader } from './SiteHeader';
 export type { SitePage } from './SiteHeader';
-export { createPaletteStops, colorToHex, clampColorChannel, formatBackground, initialColor } from './colorUtils';
-export {
-  createPropertyAnchorId,
-  createPropertyGroupAnchorId,
-  getPropertyAnchorId,
-  getPropertyGroupAnchorId,
-  getSearchableBlockText,
-  packageManagers,
-  renderSection,
-  stripSearchText,
-} from './docsSections';
-export { highlightCode } from './highlightCode';
-export { renderInlineCode } from './inlineContent';

@@ -1,5 +1,15 @@
 import type { RefObject } from 'react';
-import { SectionNavigation } from './SectionNavigation';
+import { SectionNavigation } from '../SectionNavigation';
+
+interface MobileSectionDrawerProps {
+  activeAnchorId: string;
+  anchorNavigationPath: string;
+  drawerPanelRef: RefObject<HTMLDivElement | null>;
+  drawerToggleRef: RefObject<HTMLButtonElement | null>;
+  isOpen: boolean;
+  onClose: () => void;
+  onToggle: () => void;
+}
 
 export function MobileSectionDrawer({
   activeAnchorId,
@@ -9,15 +19,7 @@ export function MobileSectionDrawer({
   isOpen,
   onClose,
   onToggle,
-}: {
-  activeAnchorId: string;
-  anchorNavigationPath: string;
-  drawerPanelRef: RefObject<HTMLDivElement | null>;
-  drawerToggleRef: RefObject<HTMLButtonElement | null>;
-  isOpen: boolean;
-  onClose: () => void;
-  onToggle: () => void;
-}) {
+}: MobileSectionDrawerProps) {
   return (
     <>
       <div className="sections-shell__toolbar">

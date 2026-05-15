@@ -3,15 +3,13 @@ import type { ReactNode } from 'react';
 
 export type AnchorHeadingLevel = 2 | 3 | 4;
 
-export function AnchorHeading({
-  anchorId,
-  children,
-  level,
-}: {
+interface AnchorHeadingProps {
   anchorId: string;
   children: ReactNode;
   level: AnchorHeadingLevel;
-}) {
+}
+
+export function AnchorHeading({ anchorId, children, level }: AnchorHeadingProps) {
   const Heading = `h${level}` as const;
   const anchor = `#${anchorId}`;
 

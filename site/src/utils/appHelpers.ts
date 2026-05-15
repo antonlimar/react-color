@@ -1,3 +1,4 @@
+import { pickerMetadata, siteSections } from '../content';
 import {
   createPropertyAnchorId,
   createPropertyGroupAnchorId,
@@ -6,8 +7,7 @@ import {
   getSearchableBlockText,
   packageManagers,
   stripSearchText,
-} from '../components';
-import { pickerMetadata, siteSections } from '../content';
+} from './docsSections';
 import type { SearchIndexEntry, SearchResult } from '../components';
 import type { PackageManager, SectionBlock } from '../content';
 

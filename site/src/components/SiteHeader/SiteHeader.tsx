@@ -2,7 +2,12 @@ import { Link } from '@tanstack/react-router';
 
 export type SitePage = 'docs' | 'gallery' | 'not-found';
 
-export function SiteHeader({ galleryPagePath, page }: { galleryPagePath: string; page: SitePage }) {
+interface SiteHeaderProps {
+  galleryPagePath: string;
+  page: SitePage;
+}
+
+export function SiteHeader({ galleryPagePath, page }: SiteHeaderProps) {
   const isDocsPage = page === 'docs';
   const isGalleryPage = page === 'gallery';
 

@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
+import { highlightCode } from '../../utils/highlightCode';
 import { copyText } from './clipboard';
-import { highlightCode } from './highlightCode';
-import type { CodeBlock } from '../content';
+import type { CodeBlock } from '../../content';
 
 interface CodeFigureProps {
   code: string;

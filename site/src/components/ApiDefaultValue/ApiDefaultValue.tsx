@@ -1,6 +1,10 @@
 import { useState } from 'react';
 
-export function ApiDefaultValue({ value }: { value?: string }) {
+interface ApiDefaultValueProps {
+  value?: string;
+}
+
+export function ApiDefaultValue({ value }: ApiDefaultValueProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   if (!value) {

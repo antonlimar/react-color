@@ -14,6 +14,15 @@ export interface SearchResult extends SearchIndexEntry {
   snippet: string;
 }
 
+interface SearchNavigationProps {
+  id: string;
+  query: string;
+  results: SearchResult[];
+  inputRef?: RefObject<HTMLInputElement | null>;
+  onQueryChange: (query: string) => void;
+  onNavigate?: () => void;
+}
+
 const docsSearchScrollbarTrackInset = 8;
 const docsSearchScrollbarMinThumbHeight = 44;
 
@@ -128,21 +137,7 @@ function handleDocsSearchScrollbarDrag(event: ReactPointerEvent<HTMLElement>) {
   }
 }
 
-export function SearchNavigation({
-  id,
-  query,
-  results,
-  inputRef,
-  onQueryChange,
-  onNavigate,
-}: {
-  id: string;
-  query: string;
-  results: SearchResult[];
-  inputRef?: RefObject<HTMLInputElement | null>;
-  onQueryChange: (query: string) => void;
-  onNavigate?: () => void;
-}) {
+export function SearchNavigation({ id, query, results, inputRef, onQueryChange, onNavigate }: SearchNavigationProps) {
   const hasQuery = query.trim().length > 0;
 
   return (

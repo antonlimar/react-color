@@ -1,13 +1,20 @@
 import type { PointerEvent as ReactPointerEvent } from 'react';
-import { siteSections } from '../content';
-import { createPropertyGroupAnchorId } from './docsSections';
-import type { ContentSection, ContentSubsection, PropertyGroup } from '../content';
+import { siteSections } from '../../content';
+import { createPropertyGroupAnchorId } from '../../utils/docsSections';
+import type { ContentSection, ContentSubsection, PropertyGroup } from '../../content';
 
 interface NavSubsection extends ContentSubsection {
   children: Array<{
     id: string;
     title: string;
   }>;
+}
+
+interface SectionNavigationProps {
+  activeAnchorId: string;
+  anchorPath?: string;
+  className?: string;
+  onNavigate?: () => void;
 }
 
 function createNavItems(section: ContentSection) {
@@ -210,12 +217,7 @@ export function SectionNavigation({
   anchorPath = '',
   className = 'section-nav',
   onNavigate,
-}: {
-  activeAnchorId: string;
-  anchorPath?: string;
-  className?: string;
-  onNavigate?: () => void;
-}) {
+}: SectionNavigationProps) {
   const navSections = siteSections.map(createNavItems);
   const isDrawerNavigation = className.split(' ').includes('section-nav--drawer');
 

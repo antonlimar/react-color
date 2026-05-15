@@ -6,12 +6,6 @@ import {
   SearchNavigation,
   SectionNavigation,
   SiteHeader,
-  clampColorChannel,
-  colorToHex,
-  createPaletteStops,
-  formatBackground,
-  initialColor,
-  renderSection,
   syncDesktopAnchorNavigationScroll,
   syncDocsSearchScrollbars,
   syncSectionNavigationScrollbars,
@@ -19,6 +13,11 @@ import {
 import { pickerMetadata, siteSections } from './content';
 import { DocsPage, NotFoundPage as NotFoundPageContent, PickerGalleryPage } from './pages';
 import {
+  clampColorChannel,
+  colorToHex,
+  createPaletteStops,
+  formatBackground,
+  initialColor,
   findNearestAnchorId,
   getAnchorIds,
   getInitialPackageManager,
@@ -27,6 +26,7 @@ import {
   isTextEntryTarget,
   normalizeRouterBasepath,
   packageManagerStorageKey,
+  renderSection,
   searchDocs,
 } from './utils';
 import type { PackageManager } from './content';
