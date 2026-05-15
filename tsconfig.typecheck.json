@@ -12,7 +12,7 @@
       "react-color/es/*": ["./es/*"]
     },
     "target": "ES2021",
-    "types": ["vite/client", "vitest/globals"]
+    "types": ["node", "vite/client", "vitest/globals"]
   },
   "include": [
     "*.ts",
