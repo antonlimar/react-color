@@ -1,21 +1,27 @@
-.anchor-heading__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 0.78em;
-  height: 0.78em;
-  color: rgba(16, 32, 58, 0.32);
-  transform: translateY(0.08em);
-  transition: color 160ms ease;
-}
+.anchor-heading {
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.78em;
+    height: 0.78em;
+    color: rgba(16, 32, 58, 0.32);
+    transform: translateY(0.08em);
+    transition: color 160ms ease;
 
-.anchor-heading__icon svg {
-  width: 100%;
-  height: 100%;
-  fill: currentColor;
-}
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+  }
 
-.anchor-heading__link:hover .anchor-heading__icon,
-.anchor-heading__link:focus-visible .anchor-heading__icon {
-  color: var(--site-accent);
+  &__link {
+    &:hover,
+    &:focus-visible {
+      .anchor-heading__icon {
+        color: var(--site-accent);
+      }
+    }
+  }
 }
