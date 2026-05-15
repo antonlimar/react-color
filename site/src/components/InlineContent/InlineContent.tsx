@@ -1,7 +1,10 @@
 import { Fragment } from 'react';
-import type { ReactNode } from 'react';
 
-export function renderInlineCode(text: string): ReactNode {
+interface InlineContentProps {
+  text: string;
+}
+
+export function InlineContent({ text }: InlineContentProps) {
   const segments = text.split(/(`[^`]+`|\[[^\]]+\]\(https?:\/\/[^)\s]+\))/g);
 
   if (segments.length === 1) {

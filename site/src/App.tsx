@@ -2,6 +2,7 @@ import { RouterProvider, createRootRoute, createRoute, createRouter, useRouterSt
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   MobileSectionDrawer,
+  DocsSection,
   PickerGallery,
   SearchNavigation,
   SectionNavigation,
@@ -26,7 +27,6 @@ import {
   isTextEntryTarget,
   normalizeRouterBasepath,
   packageManagerStorageKey,
-  renderSection,
   searchDocs,
 } from './utils';
 import type { PackageManager } from './content';
@@ -402,7 +402,14 @@ function AppShell() {
           paletteStops={paletteStops}
           rgbaLabel={rgbaLabel}
           sectionNavigation={searchQuery.trim() ? null : <SectionNavigation activeAnchorId={activeAnchorId} />}
-          sections={siteSections.map((section) => renderSection(section, { packageManager, setPackageManager }))}
+          sections={siteSections.map((section) => (
+            <DocsSection
+              key={section.id}
+              packageManager={packageManager}
+              section={section}
+              setPackageManager={setPackageManager}
+            />
+          ))}
           onColorChange={handleColorChange}
         />
       )}

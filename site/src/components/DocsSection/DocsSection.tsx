@@ -1,7 +1,8 @@
-import { AnchorHeading } from '../components/AnchorHeading';
-import { ApiDefaultValue } from '../components/ApiDefaultValue';
-import { CodeFigure } from '../components/CodeFigure';
-import { renderInlineCode } from './inlineContent';
+import { createPropertyGroupAnchorId, packageManagers } from '../../utils/docsSections';
+import { AnchorHeading } from '../AnchorHeading';
+import { ApiDefaultValue } from '../ApiDefaultValue';
+import { CodeFigure } from '../CodeFigure';
+import { InlineContent } from '../InlineContent';
 import type {
   ApiProperty,
   CodeBlock,
@@ -10,95 +11,53 @@ import type {
   PackageManager,
   PropertyGroup,
   SectionBlock,
-} from '../content';
+} from '../../content';
 
-export const packageManagers: PackageManager[] = ['npm', 'pnpm', 'yarn', 'bun'];
-
-export function createPropertyGroupAnchorId(subsection: ContentSubsection, group: PropertyGroup) {
-  return `${subsection.id}-${group.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+export interface DocsSectionProps {
+  packageManager: PackageManager;
+  section: ContentSection;
+  setPackageManager: (manager: PackageManager) => void;
 }
 
-function createAnchorSlug(value: string) {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
-}
-
-export function createPropertyAnchorId(subsection: ContentSubsection, group: PropertyGroup, property: ApiProperty) {
-  return `${createPropertyGroupAnchorId(subsection, group)}-${createAnchorSlug(property.name)}`;
-}
-
-export function getPropertyGroupAnchorId(subsection: ContentSubsection, group: PropertyGroup) {
-  return subsection.id === 'picker-specific-props' ? createPropertyGroupAnchorId(subsection, group) : undefined;
-}
-
-export function getPropertyAnchorId(subsection: ContentSubsection, group: PropertyGroup, property: ApiProperty) {
-  return subsection.id === 'picker-specific-props' ? createPropertyAnchorId(subsection, group, property) : undefined;
-}
-
-export function stripSearchText(value: string) {
-  return value
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-    .replace(/`([^`]+)`/g, '$1')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-export function getSearchableBlockText(block: SectionBlock) {
-  if (block.type === 'text') {
-    return block.text;
-  }
-
-  if (block.type === 'bullets') {
-    return block.items.join(' ');
-  }
-
-  if (block.type === 'package-manager') {
-    return [block.label, ...Object.values(block.commands)].filter(Boolean).join(' ');
-  }
-
-  return [block.label, block.code].filter(Boolean).join(' ');
-}
-
-export interface RenderBlockOptions {
+interface SectionBlockViewProps {
+  block: SectionBlock;
   packageManager: PackageManager;
   setPackageManager: (manager: PackageManager) => void;
 }
 
-function renderBlock(block: SectionBlock, index: number, options: RenderBlockOptions) {
+function SectionBlockView({ block, packageManager, setPackageManager }: SectionBlockViewProps) {
   if (block.type === 'text') {
     return (
-      <p className="content-text" key={`text-${index}`}>
-        {renderInlineCode(block.text)}
+      <p className="content-text">
+        <InlineContent text={block.text} />
       </p>
     );
   }
 
   if (block.type === 'bullets') {
     return (
-      <ul className="content-list" key={`bullets-${index}`}>
+      <ul className="content-list">
         {block.items.map((item) => (
-          <li key={item}>{renderInlineCode(item)}</li>
+          <li key={item}>
+            <InlineContent text={item} />
+          </li>
         ))}
       </ul>
     );
   }
 
   if (block.type === 'package-manager') {
-    const command = block.commands[options.packageManager];
+    const command = block.commands[packageManager];
     const tabs = (
       <div className="package-manager-tabs" role="tablist" aria-label="Package manager">
         {packageManagers.map((manager) => (
           <button
-            className={`package-manager-tabs__tab${
-              options.packageManager === manager ? ' package-manager-tabs__tab--active' : ''
-            }`}
+            className={`package-manager-tabs__tab${packageManager === manager ? ' package-manager-tabs__tab--active' : ''}`}
             key={manager}
             type="button"
             role="tab"
-            aria-selected={options.packageManager === manager}
-            onClick={() => options.setPackageManager(manager)}
+            aria-selected={packageManager === manager}
+            onClick={() => setPackageManager(manager)}
           >
             {manager}
           </button>
@@ -106,15 +65,7 @@ function renderBlock(block: SectionBlock, index: number, options: RenderBlockOpt
       </div>
     );
 
-    return (
-      <CodeFigure
-        code={command}
-        key={`package-manager-${index}-${block.label ?? 'snippet'}`}
-        language="bash"
-        label={block.label}
-        packageManagerControls={tabs}
-      />
-    );
+    return <CodeFigure code={command} language="bash" label={block.label} packageManagerControls={tabs} />;
   }
 
   const codeBlock = block as CodeBlock;
@@ -123,15 +74,20 @@ function renderBlock(block: SectionBlock, index: number, options: RenderBlockOpt
     <CodeFigure
       code={codeBlock.code}
       copyValue={codeBlock.copyValue}
-      key={`code-${index}-${codeBlock.label ?? 'snippet'}`}
       language={codeBlock.language}
       label={codeBlock.label}
     />
   );
 }
 
+function createSectionBlockKey(block: SectionBlock, index: number) {
+  const label = block.type === 'code' || block.type === 'package-manager' ? block.label : undefined;
+
+  return `${block.type}-${index}-${label ?? 'block'}`;
+}
+
 function ApiPropertyName({ property }: { property: ApiProperty }) {
-  return <>{renderInlineCode(property.name)}</>;
+  return <InlineContent text={property.name} />;
 }
 
 function ApiPropertyCards({ group }: { group: PropertyGroup; subsection: ContentSubsection }) {
@@ -159,7 +115,9 @@ function ApiPropertyCards({ group }: { group: PropertyGroup; subsection: Content
           </div>
           <div>
             <span>Description</span>
-            <p>{renderInlineCode(property.description)}</p>
+            <p>
+              <InlineContent text={property.description} />
+            </p>
           </div>
         </article>
       ))}
@@ -167,16 +125,27 @@ function ApiPropertyCards({ group }: { group: PropertyGroup; subsection: Content
   );
 }
 
-export function renderSection(section: ContentSection, options: RenderBlockOptions) {
+export function DocsSection({ section, packageManager, setPackageManager }: DocsSectionProps) {
   return (
-    <section className="section" id={section.id} key={section.id}>
+    <section className="section" id={section.id}>
       <div className="section__panel">
         <div className="section__body">
           <AnchorHeading anchorId={section.id} level={2}>
             {section.title}
           </AnchorHeading>
-          {section.intro ? <p className="section__intro">{renderInlineCode(section.intro)}</p> : null}
-          {section.blocks.map((block, index) => renderBlock(block, index, options))}
+          {section.intro ? (
+            <p className="section__intro">
+              <InlineContent text={section.intro} />
+            </p>
+          ) : null}
+          {section.blocks.map((block, index) => (
+            <SectionBlockView
+              block={block}
+              key={createSectionBlockKey(block, index)}
+              packageManager={packageManager}
+              setPackageManager={setPackageManager}
+            />
+          ))}
 
           {section.subsections?.map((subsection) => (
             <div className="section__subsection" id={subsection.id} key={subsection.id}>
@@ -184,9 +153,18 @@ export function renderSection(section: ContentSection, options: RenderBlockOptio
                 {subsection.title}
               </AnchorHeading>
               {subsection.intro ? (
-                <p className="section__intro section__intro--subsection">{renderInlineCode(subsection.intro)}</p>
+                <p className="section__intro section__intro--subsection">
+                  <InlineContent text={subsection.intro} />
+                </p>
               ) : null}
-              {subsection.blocks?.map((block, index) => renderBlock(block, index, options))}
+              {subsection.blocks?.map((block, index) => (
+                <SectionBlockView
+                  block={block}
+                  key={createSectionBlockKey(block, index)}
+                  packageManager={packageManager}
+                  setPackageManager={setPackageManager}
+                />
+              ))}
 
               {subsection.propertyGroups?.map((group) => {
                 const groupAnchorId = createPropertyGroupAnchorId(subsection, group);
@@ -197,7 +175,11 @@ export function renderSection(section: ContentSection, options: RenderBlockOptio
                       <AnchorHeading anchorId={groupAnchorId} level={4}>
                         {group.title}
                       </AnchorHeading>
-                      {group.summary ? <p>{renderInlineCode(group.summary)}</p> : null}
+                      {group.summary ? (
+                        <p>
+                          <InlineContent text={group.summary} />
+                        </p>
+                      ) : null}
                     </div>
 
                     {group.properties.length > 0 ? (
@@ -222,7 +204,9 @@ export function renderSection(section: ContentSection, options: RenderBlockOptio
                               <td>
                                 <ApiDefaultValue value={property.defaultValue} />
                               </td>
-                              <td>{renderInlineCode(property.description)}</td>
+                              <td>
+                                <InlineContent text={property.description} />
+                              </td>
                             </tr>
                           ))}
                         </tbody>

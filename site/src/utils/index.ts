@@ -17,8 +17,6 @@ export {
   getPropertyGroupAnchorId,
   getSearchableBlockText,
   packageManagers,
-  renderSection,
   stripSearchText,
 } from './docsSections';
 export { highlightCode } from './highlightCode';
-export { renderInlineCode } from './inlineContent';
