@@ -1,5 +1,5 @@
-import { Compact } from './Compact';
 import { renderPickerStory } from '@storybook-utils/renderPickerStory';
+import { Compact } from './Compact';
 
 export default {
   title: 'Pickers',

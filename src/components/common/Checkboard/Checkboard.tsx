@@ -1,8 +1,8 @@
 import { cloneElement, isValidElement } from 'react';
 import type { CSSProperties, ReactElement } from 'react';
-import { getCheckboard } from '@/helpers';
 import type { CheckboardProps } from './types';
 import { bem } from '@/components/common';
+import { getCheckboard } from '@/helpers';
 import './Checkboard.scss';
 
 const b = bem('checkboard');

@@ -1,7 +1,7 @@
 import { noop } from 'lodash-es';
-import { getContrastingColor } from '@/helpers';
-import { Swatch, CheckIcon, bem } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
+import { Swatch, CheckIcon, bem } from '@/components/common';
+import { getContrastingColor } from '@/helpers';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
 import './SwatchesColor.scss';
 

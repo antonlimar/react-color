@@ -1,9 +1,3 @@
-import { noop } from 'lodash-es';
-import { red, simpleCheckForValidColor } from '@/helpers';
-import { expect, test } from 'vitest';
-import { Sketch } from './Sketch';
-import { SketchFields } from './SketchFields';
-import { SketchPresetColors } from './SketchPresetColors';
 import {
   clickFirstSwatch,
   createColorChangeSpy,
@@ -11,6 +5,12 @@ import {
   hoverFirstSwatch,
   renderForSnapshot,
 } from '@test/helpers';
+import { noop } from 'lodash-es';
+import { expect, test } from 'vitest';
+import { Sketch } from './Sketch';
+import { SketchFields } from './SketchFields';
+import { SketchPresetColors } from './SketchPresetColors';
+import { red, simpleCheckForValidColor } from '@/helpers';
 
 test('Sketch renders correctly', () => {
   renderForSnapshot(<Sketch {...red} />).expectSnapshot();

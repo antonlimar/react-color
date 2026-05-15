@@ -1,5 +1,4 @@
 import { createElement } from 'react';
-
 import SyncColorField from './SyncColorField';
 
 export const renderPickerStory = (Component) => {

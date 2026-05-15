@@ -1,5 +1,5 @@
-import { Swatch, bem } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
+import { Swatch, bem } from '@/components/common';
 import type { SwatchHoverHandler } from '@/types';
 import './BlockSwatches.scss';
 

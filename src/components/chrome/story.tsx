@@ -1,5 +1,5 @@
-import { Chrome } from './Chrome';
 import { renderPickerStory } from '@storybook-utils/renderPickerStory';
+import { Chrome } from './Chrome';
 
 export default {
   title: 'Pickers',

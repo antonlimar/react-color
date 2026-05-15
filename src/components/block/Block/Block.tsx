@@ -1,4 +1,4 @@
-import { getContrastingColor, isValidHex } from '@/helpers';
+import { BlockSwatches } from '@/components/block/BlockSwatches';
 import {
   ColorWrap,
   EditableInput,
@@ -7,9 +7,8 @@ import {
   getThemeDataAttributes,
   getDeprecatedStyleOverride,
 } from '@/components/common';
-import { BlockSwatches } from '@/components/block/BlockSwatches';
+import { getContrastingColor, isValidHex } from '@/helpers';
 import './Block.scss';
-
 import type {
   ClassName,
   ColorInputChangeHandler,

@@ -1,5 +1,5 @@
-import { Circle } from './Circle';
 import { renderPickerStory } from '@storybook-utils/renderPickerStory';
+import { Circle } from './Circle';
 
 export default {
   title: 'Pickers',

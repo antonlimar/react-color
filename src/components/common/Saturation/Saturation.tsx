@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { throttle } from 'lodash-es';
-import { calculateSaturationChange } from '@/helpers';
-import type { MouseEvent } from 'react';
-import type { CSSProperties } from 'react';
-import type { InternalColorChangeEvent } from '@/types';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import type { CSSProperties, MouseEvent } from 'react';
 import type { SaturationProps } from './types';
 import { bem } from '@/components/common';
+import { calculateSaturationChange } from '@/helpers';
+import type { InternalColorChangeEvent } from '@/types';
 import './Saturation.scss';
 
 const b = bem('saturation');

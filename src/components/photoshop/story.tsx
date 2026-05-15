@@ -1,5 +1,5 @@
-import { Photoshop } from './Photoshop';
 import { renderPickerStory } from '@storybook-utils/renderPickerStory';
+import { Photoshop } from './Photoshop';
 
 export default {
   title: 'Pickers',

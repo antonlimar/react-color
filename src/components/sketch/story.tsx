@@ -1,5 +1,5 @@
-import { Sketch } from './Sketch';
 import { renderPickerStory } from '@storybook-utils/renderPickerStory';
+import { Sketch } from './Sketch';
 
 export default {
   title: 'Pickers',

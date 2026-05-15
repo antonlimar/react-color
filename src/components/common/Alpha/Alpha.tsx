@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { calculateAlphaChange } from '@/helpers';
-import type { MouseEvent } from 'react';
-import type { CSSProperties } from 'react';
-import type { InternalColorChangeEvent } from '@/types';
+import type { CSSProperties, MouseEvent } from 'react';
 import type { AlphaProps } from './types';
 import { Checkboard, bem, getSlotStyleOverride } from '@/components/common';
+import { calculateAlphaChange } from '@/helpers';
+import type { InternalColorChangeEvent } from '@/types';
 import './Alpha.scss';
 
 const b = bem('alphaControl');

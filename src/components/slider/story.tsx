@@ -1,5 +1,5 @@
-import { Slider } from './Slider';
 import { renderPickerStory } from '@storybook-utils/renderPickerStory';
+import { Slider } from './Slider';
 
 export default {
   title: 'Pickers',

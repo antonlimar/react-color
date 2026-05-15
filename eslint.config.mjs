@@ -1,10 +1,11 @@
 import js from '@eslint/js';
-import globals from 'globals';
 import { defineConfig } from 'eslint/config';
+import { createNodeResolver, importX } from 'eslint-plugin-import-x';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import storybook from 'eslint-plugin-storybook';
+import { configs as storybookConfigs } from 'eslint-plugin-storybook';
+import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
@@ -23,7 +24,7 @@ export default defineConfig([
       'test-results/**',
     ],
   },
-  ...storybook.configs['flat/recommended'],
+  ...storybookConfigs['flat/recommended'],
   {
     files: ['**/*.{js,jsx,ts,tsx,mjs}'],
     extends: [
@@ -31,6 +32,8 @@ export default defineConfig([
       ...tseslint.configs.recommended,
       react.configs.flat.recommended,
       reactHooks.configs.flat.recommended,
+      importX.flatConfigs.recommended,
+      importX.flatConfigs.typescript,
     ],
     languageOptions: {
       parser: tseslint.parser,
@@ -47,11 +50,25 @@ export default defineConfig([
       },
     },
     settings: {
+      'import-x/extensions': ['.js', '.jsx', '.ts', '.tsx', '.mjs'],
+      'import-x/resolver-next': [createNodeResolver({ extensions: ['.js', '.jsx', '.ts', '.tsx', '.mjs'] })],
       react: {
         version: 'detect',
       },
     },
     rules: {
+      'import-x/no-unresolved': ['error', { ignore: ['^@/', '^@test/', '^@storybook-utils/'] }],
+      'import-x/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+      'import-x/order': [
+        'error',
+        {
+          groups: ['builtin', 'external', 'internal', 'parent', 'index', 'sibling', 'object'],
+          'newlines-between': 'never',
+          alphabetize: { order: 'asc', caseInsensitive: true },
+          warnOnUnassignedImports: false,
+        },
+      ],
+      'import-x/no-duplicates': 'error',
       'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
       '@typescript-eslint/no-unused-expressions': 'off',
       '@typescript-eslint/no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],

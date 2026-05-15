@@ -1,5 +1,5 @@
-import { Github } from './Github';
 import { renderPickerStory } from '@storybook-utils/renderPickerStory';
+import { Github } from './Github';
 
 export default {
   title: 'Pickers',

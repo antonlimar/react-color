@@ -1,5 +1,3 @@
-import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
-import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactNode, RefObject } from 'react';
 import {
   Link,
   RouterProvider,
@@ -9,13 +7,15 @@ import {
   useRouterState,
 } from '@tanstack/react-router';
 import Prism from 'prismjs';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactNode, RefObject } from 'react';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-jsx';
-import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-tsx';
+import 'prismjs/components/prism-typescript';
 import {
   AlphaPicker,
   BlockPicker,
@@ -34,9 +34,6 @@ import {
 } from 'react-color';
 import type { ColorPickerComponent, ColorPickerProps, ColorResult, RGBAColor } from 'react-color';
 import { pickerMetadata, siteSections } from './content';
-import { DocsPage } from './pages/DocsPage';
-import { NotFoundPage as NotFoundPageContent } from './pages/NotFoundPage';
-import { PickerGalleryPage } from './pages/PickerGalleryPage';
 import type {
   ApiProperty,
   CodeBlock,
@@ -47,6 +44,9 @@ import type {
   PropertyGroup,
   SectionBlock,
 } from './content';
+import { DocsPage } from './pages/DocsPage';
+import { NotFoundPage as NotFoundPageContent } from './pages/NotFoundPage';
+import { PickerGalleryPage } from './pages/PickerGalleryPage';
 
 interface NavSubsection extends ContentSubsection {
   children: Array<{

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { isValidHex } from '@/helpers';
-import { EditableInput, bem, UnfoldMoreHorizontalIcon } from '@/components/common';
 import type { ReactNode } from 'react';
+import { EditableInput, bem, UnfoldMoreHorizontalIcon } from '@/components/common';
+import { isValidHex } from '@/helpers';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '@/types';
 import './ChromeFields.scss';
 

@@ -6,9 +6,9 @@ import {
   getThemeDataAttributes,
   getDeprecatedStyleOverride,
 } from '@/components/common';
-import { GooglePointerCircle } from '@/components/google/GooglePointerCircle';
-import { GooglePointer } from '@/components/google/GooglePointer';
 import { GoogleFields } from '@/components/google/GoogleFields';
+import { GooglePointer } from '@/components/google/GooglePointer';
+import { GooglePointerCircle } from '@/components/google/GooglePointerCircle';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
 import './Google.scss';
 

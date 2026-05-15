@@ -1,4 +1,5 @@
-import { bem, type HueProps } from '@/components/common';
+import { bem } from '@/components/common';
+import type { HueProps } from '@/components/common';
 import './HuePointer.scss';
 
 const b = bem('hue');

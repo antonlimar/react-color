@@ -2,7 +2,6 @@ import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
-
 import { compileAsync } from 'sass';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

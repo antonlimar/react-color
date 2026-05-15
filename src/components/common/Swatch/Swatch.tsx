@@ -1,10 +1,9 @@
-import type { KeyboardEvent, MouseEvent } from 'react';
-import type { CSSProperties } from 'react';
 import { noop } from 'lodash-es';
-import { handleFocus } from '@/helpers';
-import type { Radius } from '@/types';
+import type { CSSProperties, KeyboardEvent, MouseEvent } from 'react';
 import type { SwatchProps } from './types';
 import { Checkboard, bem } from '@/components/common';
+import { handleFocus } from '@/helpers';
+import type { Radius } from '@/types';
 import './Swatch.scss';
 
 const b = bem('swatch');

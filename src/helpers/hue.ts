@@ -1,7 +1,7 @@
-import type { HSLAColor, InternalColorChangeEvent } from '@/types';
-import type { HueChange } from '@/components/common/Hue/types';
 import { getPageCoordinates } from './coordinates';
 import type { SliderChangeContainer, SliderDirection } from './types';
+import type { HueChange } from '@/components/common/Hue/types';
+import type { HSLAColor, InternalColorChangeEvent } from '@/types';
 
 export const calculateChange = (
   event: InternalColorChangeEvent,

@@ -1,6 +1,6 @@
+import { AlphaPointer } from '@/components/alpha/AlphaPointer';
 import { ColorWrap, Alpha as AlphaControl, bem, getThemeDataAttributes } from '@/components/common';
 import type { AlphaProps } from '@/components/common';
-import { AlphaPointer } from '@/components/alpha/AlphaPointer';
 import type {
   CheckboardRenderers,
   ClassName,

@@ -5,7 +5,6 @@ import { access, mkdtemp, mkdir, readdir, readFile, rm, symlink, writeFile } fro
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-
 import { build } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

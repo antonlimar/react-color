@@ -1,5 +1,5 @@
-import { Material } from './Material';
 import { renderPickerStory } from '@storybook-utils/renderPickerStory';
+import { Material } from './Material';
 
 export default {
   title: 'Pickers',

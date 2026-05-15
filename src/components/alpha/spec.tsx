@@ -1,10 +1,9 @@
-import { expect, test } from 'vitest';
+import { createColorChangeSpy, getRequiredElement, renderForSnapshot } from '@test/helpers';
 import { fireEvent } from '@testing-library/react';
-import { red, simpleCheckForValidColor } from '@/helpers';
-
+import { expect, test } from 'vitest';
 import { Alpha } from './Alpha';
 import { AlphaPointer } from './AlphaPointer';
-import { createColorChangeSpy, getRequiredElement, renderForSnapshot } from '@test/helpers';
+import { red, simpleCheckForValidColor } from '@/helpers';
 
 test('Alpha renders correctly', () => {
   renderForSnapshot(<Alpha {...red} />).expectSnapshot();

@@ -1,6 +1,6 @@
+import { getRequiredElement, getRootElement, renderForSnapshot } from '@test/helpers';
 import { render } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
-import { red, toState } from '@/helpers';
 import { Alpha } from './Alpha';
 import { Checkboard } from './Checkboard';
 import { ColorWrap } from './ColorWrap';
@@ -8,9 +8,9 @@ import { EditableInput } from './EditableInput';
 import { Hue } from './Hue';
 import { Raised } from './Raised';
 import { Saturation, getSaturationRenderWindow } from './Saturation';
-import { Swatch } from './Swatch';
 import { bem, getThemeDataAttributes, stylingArchitecture } from './styleArchitecture';
-import { getRequiredElement, getRootElement, renderForSnapshot } from '@test/helpers';
+import { Swatch } from './Swatch';
+import { red, toState } from '@/helpers';
 import type { Color, ColorPickerInjectedProps } from '@/types';
 
 const chromeBem = bem('chrome');

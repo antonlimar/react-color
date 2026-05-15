@@ -1,5 +1,5 @@
-import { Block } from './Block';
 import { renderPickerStory } from '@storybook-utils/renderPickerStory';
+import { Block } from './Block';
 
 export default {
   title: 'Pickers',

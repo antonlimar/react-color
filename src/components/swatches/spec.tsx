@@ -1,8 +1,3 @@
-import { noop } from 'lodash-es';
-import { red, simpleCheckForValidColor } from '@/helpers';
-import { Swatches } from './Swatches';
-import { SwatchesColor } from './SwatchesColor';
-import { SwatchesGroup } from './SwatchesGroup';
 import {
   clickFirstSwatch,
   createColorChangeSpy,
@@ -10,6 +5,11 @@ import {
   hoverFirstSwatch,
   renderForSnapshot,
 } from '@test/helpers';
+import { noop } from 'lodash-es';
+import { Swatches } from './Swatches';
+import { SwatchesColor } from './SwatchesColor';
+import { SwatchesGroup } from './SwatchesGroup';
+import { red, simpleCheckForValidColor } from '@/helpers';
 
 test('Swatches renders correctly', () => {
   renderForSnapshot(<Swatches hex={red.hex} colors={[['#fff'], ['#333']]} />).expectSnapshot();

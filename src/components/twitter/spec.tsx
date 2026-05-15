@@ -1,5 +1,3 @@
-import { red, simpleCheckForValidColor } from '@/helpers';
-import { Twitter } from './Twitter';
 import {
   clickFirstSwatch,
   createColorChangeSpy,
@@ -7,6 +5,8 @@ import {
   hoverFirstSwatch,
   renderForSnapshot,
 } from '@test/helpers';
+import { Twitter } from './Twitter';
+import { red, simpleCheckForValidColor } from '@/helpers';
 
 test('Twitter renders correctly', () => {
   renderForSnapshot(<Twitter {...red} />).expectSnapshot();

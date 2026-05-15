@@ -1,7 +1,3 @@
-import { expect, test } from 'vitest';
-import { Block } from './Block';
-import { BlockSwatches } from './BlockSwatches';
-import { simpleCheckForValidColor } from '@/helpers';
 import {
   clickFirstSwatch,
   createColorChangeSpy,
@@ -9,6 +5,10 @@ import {
   hoverFirstSwatch,
   renderForSnapshot,
 } from '@test/helpers';
+import { expect, test } from 'vitest';
+import { Block } from './Block';
+import { BlockSwatches } from './BlockSwatches';
+import { simpleCheckForValidColor } from '@/helpers';
 
 test('Block renders correctly', () => {
   renderForSnapshot(<Block />).expectSnapshot();

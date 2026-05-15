@@ -7,13 +7,12 @@ import {
   getThemeDataAttributes,
   getDeprecatedStyleOverride,
 } from '@/components/common';
-import { PhotoshopFields } from '@/components/photoshop/PhotoshopFields';
-import { PhotoshopPointerCircle } from '@/components/photoshop/PhotoshopPointerCircle';
-import { PhotoshopPointer } from '@/components/photoshop/PhotoshopPointer';
 import { PhotoshopButton } from '@/components/photoshop/PhotoshopButton';
+import { PhotoshopFields } from '@/components/photoshop/PhotoshopFields';
+import { PhotoshopPointer } from '@/components/photoshop/PhotoshopPointer';
+import { PhotoshopPointerCircle } from '@/components/photoshop/PhotoshopPointerCircle';
 import { PhotoshopPreviews } from '@/components/photoshop/PhotoshopPreviews';
 import './Photoshop.scss';
-
 import type {
   ClassName,
   ColorPickerInjectedProps,

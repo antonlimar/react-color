@@ -1,5 +1,5 @@
-import { Google } from './Google';
 import { renderPickerStory } from '@storybook-utils/renderPickerStory';
+import { Google } from './Google';
 
 export default {
   title: 'Pickers',

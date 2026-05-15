@@ -1,18 +1,13 @@
 import type { ComponentProps } from 'react';
-import {
-  ChromePicker,
-  CustomPicker,
-  EditableInput,
-  GooglePicker,
-  HuePicker,
-  type PickerClassNames,
-  type PickerTheme,
-  SketchPicker,
-  type ColorPickerProps,
-  type ColorResult,
-  type CustomPickerInjectedProps,
-  type HSLAColor,
-  type RGBAColor,
+import { ChromePicker, CustomPicker, EditableInput, GooglePicker, HuePicker, SketchPicker } from 'react-color';
+import type {
+  PickerClassNames,
+  PickerTheme,
+  ColorPickerProps,
+  ColorResult,
+  CustomPickerInjectedProps,
+  HSLAColor,
+  RGBAColor,
 } from 'react-color';
 
 const rgba: RGBAColor = { r: 255, g: 0, b: 0, a: 1 };

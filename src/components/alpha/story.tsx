@@ -1,5 +1,5 @@
-import { Alpha } from './Alpha';
 import { renderPickerStory } from '@storybook-utils/renderPickerStory';
+import { Alpha } from './Alpha';
 
 export default {
   title: 'Pickers',

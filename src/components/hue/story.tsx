@@ -1,5 +1,5 @@
-import { Hue } from './Hue';
 import { renderPickerStory } from '@storybook-utils/renderPickerStory';
+import { Hue } from './Hue';
 
 export default {
   title: 'Pickers',

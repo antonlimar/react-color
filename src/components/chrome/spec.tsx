@@ -1,10 +1,3 @@
-import { fireEvent, waitFor } from '@testing-library/react';
-import { red, simpleCheckForValidColor } from '@/helpers';
-import { expect, test, vi } from 'vitest';
-import { Chrome } from './Chrome';
-import { ChromeFields } from './ChromeFields';
-import { ChromePointer } from './ChromePointer';
-import { ChromePointerCircle } from './ChromePointerCircle';
 import {
   changeInputByLabel,
   createColorChangeSpy,
@@ -12,6 +5,13 @@ import {
   getRootElement,
   renderForSnapshot,
 } from '@test/helpers';
+import { fireEvent, waitFor } from '@testing-library/react';
+import { expect, test, vi } from 'vitest';
+import { Chrome } from './Chrome';
+import { ChromeFields } from './ChromeFields';
+import { ChromePointer } from './ChromePointer';
+import { ChromePointerCircle } from './ChromePointerCircle';
+import { red, simpleCheckForValidColor } from '@/helpers';
 
 test('Chrome renders correctly', () => {
   renderForSnapshot(<Chrome {...red} />).expectSnapshot();

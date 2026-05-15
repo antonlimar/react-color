@@ -1,5 +1,5 @@
-import type { HSLAColor } from '@/types';
 import { bem } from '@/components/common';
+import type { HSLAColor } from '@/types';
 import './PhotoshopPointerCircle.scss';
 
 const b = bem('photoshop');

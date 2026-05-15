@@ -1,15 +1,8 @@
-import {
-  ColorWrap,
-  Hue,
-  bem,
-  getThemeDataAttributes,
-  getDeprecatedStyleOverride,
-  type HueProps,
-} from '@/components/common';
-import { SliderSwatches } from '@/components/slider/SliderSwatches';
+import { ColorWrap, Hue, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
+import type { HueProps } from '@/components/common';
 import { SliderPointer } from '@/components/slider/SliderPointer';
+import { SliderSwatches } from '@/components/slider/SliderSwatches';
 import './Slider.scss';
-
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
 
 const b = bem('slider');

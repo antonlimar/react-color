@@ -1,3 +1,4 @@
+/* eslint-disable import-x/no-named-as-default-member */
 import material from 'material-colors';
 import { ColorWrap, Raised, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
 import { SwatchesGroup } from '@/components/swatches/SwatchesGroup';

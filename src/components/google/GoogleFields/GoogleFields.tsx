@@ -1,5 +1,5 @@
-import { isValidColorString, isValidHex } from '@/helpers';
 import { EditableInput, bem } from '@/components/common';
+import { isValidColorString, isValidHex } from '@/helpers';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, HSVAColor, RGBAColor } from '@/types';
 import './GoogleFields.scss';
 
