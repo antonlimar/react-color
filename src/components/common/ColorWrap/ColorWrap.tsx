@@ -101,8 +101,12 @@ export function ColorWrap<PickerProps extends ColorPickerInjectedProps>(
           ...colors,
           colorPropKey: currentState.colorPropKey,
         });
-        onChangeComplete && debounceRef.current(onChangeComplete, colors, event);
-        onChange && onChange(colors, event);
+        if (onChangeComplete) {
+          debounceRef.current(onChangeComplete, colors, event);
+        }
+        if (onChange) {
+          onChange(colors, event);
+        }
       }
     };
 
@@ -111,7 +115,9 @@ export function ColorWrap<PickerProps extends ColorPickerInjectedProps>(
 
       if (isValidColor) {
         const colors = toState(data, getOldHue(data, currentState.oldHue));
-        onSwatchHover && onSwatchHover(colors, event);
+        if (onSwatchHover) {
+          onSwatchHover(colors, event);
+        }
       }
     };
 

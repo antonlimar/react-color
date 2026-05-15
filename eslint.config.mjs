@@ -78,36 +78,8 @@ export default defineConfig([
       'import-x/no-cycle': 'error',
       'import-x/no-duplicates': 'error',
       'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
-      '@typescript-eslint/no-unused-expressions': 'off',
       '@typescript-eslint/no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
-      'no-magic-numbers': 'off',
       'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off',
-    },
-  },
-  {
-    files: ['**/*.d.ts'],
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-    },
-  },
-  {
-    files: ['src/**/*.spec.{js,jsx,ts,tsx}', 'src/**/spec.{js,jsx,ts,tsx}', 'src/**/story.{js,jsx,ts,tsx}'],
-    languageOptions: {
-      globals: {
-        ...globals.jest,
-      },
-    },
-    rules: {
-      'no-redeclare': 'off',
-    },
-  },
-  {
-    files: ['test/**/*.{js,jsx,ts,tsx,mjs}'],
-    languageOptions: {
-      globals: {
-        ...globals.jest,
-      },
     },
   },
   eslintPluginPrettierRecommended,
