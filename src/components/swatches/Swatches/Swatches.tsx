@@ -1,4 +1,3 @@
-/* eslint-disable import-x/no-named-as-default-member */
 import material from 'material-colors';
 import { ColorWrap, Raised, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
@@ -19,6 +18,7 @@ const b = bem('swatches');
 
 const SWATCHES_STYLE_SLOTS = ['picker', 'overflow', 'body', 'clear'] as const;
 
+/* eslint-disable import-x/no-named-as-default-member */
 const DEFAULT_SWATCH_GROUPS = [
   [material.red['900'], material.red['700'], material.red['500'], material.red['300'], material.red['100']],
   [material.pink['900'], material.pink['700'], material.pink['500'], material.pink['300'], material.pink['100']],
@@ -94,6 +94,7 @@ const DEFAULT_SWATCH_GROUPS = [
   ],
   ['#000000', '#525252', '#969696', '#D9D9D9', '#FFFFFF'],
 ];
+/* eslint-enable import-x/no-named-as-default-member */
 
 function SwatchesBase({
   width = 320,

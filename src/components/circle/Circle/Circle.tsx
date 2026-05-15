@@ -1,4 +1,3 @@
-/* eslint-disable import-x/no-named-as-default-member */
 import material from 'material-colors';
 import { ColorWrap, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
@@ -20,6 +19,7 @@ const b = bem('circle');
 
 const CIRCLE_STYLE_SLOTS = ['card'] as const;
 
+/* eslint-disable import-x/no-named-as-default-member */
 const DEFAULT_CIRCLE_COLORS = [
   material.red['500'],
   material.pink['500'],
@@ -40,6 +40,7 @@ const DEFAULT_CIRCLE_COLORS = [
   material.brown['500'],
   material.blueGrey['500'],
 ];
+/* eslint-enable import-x/no-named-as-default-member */
 
 function CircleBase({
   width = 252,
