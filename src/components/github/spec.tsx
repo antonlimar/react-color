@@ -1,3 +1,4 @@
+import { noop } from 'lodash-es';
 import { red, simpleCheckForValidColor } from '@/helpers';
 import { Github } from './Github';
 import { GithubSwatch } from './GithubSwatch';
@@ -8,8 +9,6 @@ import {
   hoverFirstSwatch,
   renderForSnapshot,
 } from '@test/helpers';
-
-const noop = () => {};
 
 test('Github renders correctly', () => {
   renderForSnapshot(<Github {...red} />).expectSnapshot();

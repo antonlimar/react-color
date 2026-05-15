@@ -1,3 +1,4 @@
+import { noop } from 'lodash-es';
 import { getContrastingColor } from '@/helpers';
 import { Swatch } from '@/components/common';
 import { CheckIcon } from '@/components/common/icons/CheckIcon';
@@ -17,7 +18,7 @@ type SwatchesColorProps = {
   active?: boolean;
 };
 
-export function SwatchesColor({ color, onClick = () => {}, onSwatchHover, first, last, active }: SwatchesColorProps) {
+export function SwatchesColor({ color, onClick = noop, onSwatchHover, first, last, active }: SwatchesColorProps) {
   const swatchStyle: PickerStyle = {
     background: color,
     overflow: 'hidden',

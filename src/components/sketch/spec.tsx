@@ -1,3 +1,4 @@
+import { noop } from 'lodash-es';
 import { red, simpleCheckForValidColor } from '@/helpers';
 import { expect, test } from 'vitest';
 import { Sketch } from './Sketch';
@@ -10,8 +11,6 @@ import {
   hoverFirstSwatch,
   renderForSnapshot,
 } from '@test/helpers';
-
-const noop = () => {};
 
 test('Sketch renders correctly', () => {
   renderForSnapshot(<Sketch {...red} />).expectSnapshot();

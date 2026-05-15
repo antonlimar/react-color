@@ -1,3 +1,4 @@
+import { noop } from 'lodash-es';
 import { Circle } from './Circle';
 import { CircleSwatch } from './CircleSwatch';
 import { simpleCheckForValidColor } from '@/helpers';
@@ -8,8 +9,6 @@ import {
   hoverFirstSwatch,
   renderForSnapshot,
 } from '@test/helpers';
-
-const noop = () => {};
 
 test('Circle renders correctly', () => {
   renderForSnapshot(<Circle />).expectSnapshot();

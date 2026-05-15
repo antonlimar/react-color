@@ -1,11 +1,10 @@
+import { noop } from 'lodash-es';
 import { red } from '@/helpers';
 import { Slider } from './Slider';
 import { SliderPointer } from './SliderPointer';
 import { SliderSwatch } from './SliderSwatch';
 import { SliderSwatches } from './SliderSwatches';
 import { getRootElement, renderForSnapshot } from '@test/helpers';
-
-const noop = () => {};
 
 test('Slider renders correctly', () => {
   renderForSnapshot(<Slider {...red} />).expectSnapshot();

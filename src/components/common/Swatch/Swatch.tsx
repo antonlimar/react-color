@@ -1,5 +1,6 @@
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { CSSProperties } from 'react';
+import { noop } from 'lodash-es';
 import { handleFocus } from '@/helpers';
 import type { Radius } from '@/types';
 import type { SwatchProps } from './types';
@@ -14,7 +15,7 @@ const ENTER = 13;
 function SwatchBase({
   color,
   style,
-  onClick = () => {},
+  onClick = noop,
   onHover,
   title = color,
   children,

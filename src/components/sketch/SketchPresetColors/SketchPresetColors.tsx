@@ -1,3 +1,4 @@
+import { noop } from 'lodash-es';
 import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
 import type { ColorInputChangeHandler, SwatchHoverHandler } from '@/types';
@@ -19,7 +20,7 @@ type SketchPresetColorsProps = {
   onSwatchHover?: SwatchHoverHandler;
 };
 
-export function SketchPresetColors({ colors, onClick = () => {}, onSwatchHover }: SketchPresetColorsProps) {
+export function SketchPresetColors({ colors, onClick = noop, onSwatchHover }: SketchPresetColorsProps) {
   const handleClick = (hex: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => {
     onClick(
       {

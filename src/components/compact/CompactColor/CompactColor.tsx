@@ -1,3 +1,4 @@
+import { noop } from 'lodash-es';
 import { getContrastingColor } from '@/helpers';
 import { Swatch } from '@/components/common';
 import type { KeyboardEvent, MouseEvent } from 'react';
@@ -14,7 +15,7 @@ type CompactColorProps = {
   active?: boolean;
 };
 
-export function CompactColor({ color, onClick = () => {}, onSwatchHover, active }: CompactColorProps) {
+export function CompactColor({ color, onClick = noop, onSwatchHover, active }: CompactColorProps) {
   const swatchStyle: PickerStyle = {
     background: color,
     boxShadow: color === '#FFFFFF' ? 'inset 0 0 0 1px #ddd' : undefined,

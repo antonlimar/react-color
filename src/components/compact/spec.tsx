@@ -1,3 +1,4 @@
+import { noop } from 'lodash-es';
 import { red, simpleCheckForValidColor } from '@/helpers';
 import { Compact } from './Compact';
 import { CompactColor } from './CompactColor';
@@ -9,8 +10,6 @@ import {
   hoverFirstSwatch,
   renderForSnapshot,
 } from '@test/helpers';
-
-const noop = () => {};
 
 test('Compact renders correctly', () => {
   renderForSnapshot(<Compact {...red} />).expectSnapshot();

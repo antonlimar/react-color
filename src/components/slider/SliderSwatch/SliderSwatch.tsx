@@ -1,4 +1,5 @@
 import type { CSSProperties, MouseEvent } from 'react';
+import { noop } from 'lodash-es';
 import type { ColorInputChangeHandler, HSLAColor } from '@/types';
 import { bem } from '@/components/common/styleArchitecture';
 import './SliderSwatch.scss';
@@ -14,7 +15,7 @@ type SliderSwatchProps = {
   last?: boolean;
 };
 
-export function SliderSwatch({ hsl, offset, onClick = () => {}, active, first, last }: SliderSwatchProps) {
+export function SliderSwatch({ hsl, offset, onClick = noop, active, first, last }: SliderSwatchProps) {
   const swatchStyle: CSSProperties = {
     background: `hsl(${hsl.h}, 50%, ${offset * 100}%)`,
   };

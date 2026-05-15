@@ -1,3 +1,4 @@
+import { noop } from 'lodash-es';
 import { red, simpleCheckForValidColor } from '@/helpers';
 import { Swatches } from './Swatches';
 import { SwatchesColor } from './SwatchesColor';
@@ -9,8 +10,6 @@ import {
   hoverFirstSwatch,
   renderForSnapshot,
 } from '@test/helpers';
-
-const noop = () => {};
 
 test('Swatches renders correctly', () => {
   renderForSnapshot(<Swatches hex={red.hex} colors={[['#fff'], ['#333']]} />).expectSnapshot();
