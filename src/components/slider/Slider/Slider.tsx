@@ -33,15 +33,17 @@ function SliderBase({
   return (
     <div
       style={rootStyle}
-      className={b({ dark: theme === 'dark', light: theme === 'light' })
-        .mix('slider-picker', className, classNames?.root)
-        .toString()}
+      className={b({ dark: theme === 'dark', light: theme === 'light' }).mix(
+        'slider-picker',
+        className,
+        classNames?.root,
+      )}
       {...getThemeDataAttributes(theme)}
     >
-      <div className={b('hue').toString()} style={hueStyle}>
+      <div className={b('hue')} style={hueStyle}>
         <Hue radius="2px" hsl={hsl} pointer={pointer} onChange={onChange} />
       </div>
-      <div className={b('swatches-wrap').toString()} style={swatchesStyle}>
+      <div className={b('swatches-wrap')} style={swatchesStyle}>
         <SliderSwatches hsl={hsl} onClick={onChange} />
       </div>
     </div>

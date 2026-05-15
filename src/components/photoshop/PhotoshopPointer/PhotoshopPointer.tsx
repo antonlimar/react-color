@@ -5,12 +5,12 @@ const b = bem('photoshop');
 
 export function PhotoshopPointer() {
   return (
-    <div className={b('pointer').toString()}>
-      <div className={b('pointer-side', { left: true }).toString()}>
-        <div className={b('pointer-fill').toString()} />
+    <div className={b('pointer')}>
+      <div className={b('pointer-side', { left: true })}>
+        <div className={b('pointer-fill')} />
       </div>
-      <div className={b('pointer-side', { right: true }).toString()}>
-        <div className={b('pointer-fill').toString()} />
+      <div className={b('pointer-side', { right: true })}>
+        <div className={b('pointer-fill')} />
       </div>
     </div>
   );

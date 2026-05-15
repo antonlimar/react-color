@@ -58,7 +58,7 @@ export function SketchFields({ onChange, rgb, hsl, hex, disableAlpha }: SketchFi
   };
 
   const renderInput = (label: string, value: string | number, modifier: string, dragMax?: number) => (
-    <div className={b('field', { [modifier]: true }).toString()}>
+    <div className={b('field', { [modifier]: true })}>
       <EditableInput
         label={label}
         value={value}
@@ -70,7 +70,7 @@ export function SketchFields({ onChange, rgb, hsl, hex, disableAlpha }: SketchFi
   );
 
   return (
-    <div className={b('fields', { 'disabled-alpha': disableAlpha }).toString()}>
+    <div className={b('fields', { 'disabled-alpha': disableAlpha })}>
       {renderInput('hex', hex.replace('#', ''), 'double')}
       {renderInput('r', rgb.r, 'single', 255)}
       {renderInput('g', rgb.g, 'single', 255)}

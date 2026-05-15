@@ -84,19 +84,17 @@ function BlockBase({
         'hide-triangle': triangle === 'hide',
         dark: theme === 'dark',
         light: theme === 'light',
-      })
-        .mix('block-picker', className, classNames?.root)
-        .toString()}
+      }).mix('block-picker', className, classNames?.root)}
       {...getThemeDataAttributes(theme)}
     >
-      <div className={b('triangle').toString()} style={triangleStyle} />
-      <div className={b('head', { transparent }).toString()} style={headStyle}>
+      <div className={b('triangle')} style={triangleStyle} />
+      <div className={b('head', { transparent })} style={headStyle}>
         {transparent ? <Checkboard borderRadius="6px 6px 0 0" /> : null}
-        <div className={b('label').toString()} style={labelStyle}>
+        <div className={b('label')} style={labelStyle}>
           {hex}
         </div>
       </div>
-      <div className={b('body').toString()} style={bodyStyle}>
+      <div className={b('body')} style={bodyStyle}>
         <BlockSwatches
           colors={colors!}
           onClick={(hexCode, event) => handleHexChange(onChange, hexCode, event)}

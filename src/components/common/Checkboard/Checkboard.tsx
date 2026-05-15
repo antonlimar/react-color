@@ -21,7 +21,7 @@ export function Checkboard({
     boxShadow,
     background: `url(${getCheckboard(white!, grey!, size!, renderers?.canvas)}) center left`,
   };
-  const className = b().toString();
+  const className = b();
 
   if (isValidElement(children)) {
     const child = children as ReactElement<{ className?: string; style?: CSSProperties }>;

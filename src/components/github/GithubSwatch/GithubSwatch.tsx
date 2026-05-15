@@ -20,7 +20,7 @@ export function GithubSwatch({ color, onClick, onSwatchHover }: GithubSwatchProp
   };
 
   return (
-    <div className={b('swatch').toString()}>
+    <div className={b('swatch')}>
       <Swatch color={color} onClick={onClick} onHover={onSwatchHover as never} focusStyle={hoverSwatch} />
     </div>
   );

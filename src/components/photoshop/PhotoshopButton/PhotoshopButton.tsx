@@ -12,7 +12,7 @@ const b = bem('photoshop');
 
 export function PhotoshopButton({ onClick, label, children, active }: PhotoshopButtonProps) {
   return (
-    <div className={b('button', { active }).toString()} onClick={onClick}>
+    <div className={b('button', { active })} onClick={onClick}>
       {label || children}
     </div>
   );

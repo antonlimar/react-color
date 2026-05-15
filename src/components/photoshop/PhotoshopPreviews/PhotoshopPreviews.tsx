@@ -19,13 +19,13 @@ export function PhotoshopPreviews({ rgb, currentColor }: PhotoshopPreviewsProps)
   };
 
   return (
-    <div className={b('previews').toString()}>
-      <div className={b('preview-label').toString()}>new</div>
-      <div className={b('preview-swatches').toString()}>
-        <div className={b('preview-swatch', { new: true }).toString()} style={nextColorStyle} />
-        <div className={b('preview-swatch', { current: true }).toString()} style={currentColorStyle} />
+    <div className={b('previews')}>
+      <div className={b('preview-label')}>new</div>
+      <div className={b('preview-swatches')}>
+        <div className={b('preview-swatch', { new: true })} style={nextColorStyle} />
+        <div className={b('preview-swatch', { current: true })} style={currentColorStyle} />
       </div>
-      <div className={b('preview-label').toString()}>current</div>
+      <div className={b('preview-label')}>current</div>
     </div>
   );
 }

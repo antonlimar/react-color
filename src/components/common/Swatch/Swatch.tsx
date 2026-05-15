@@ -36,7 +36,7 @@ function SwatchBase({
 
   return (
     <div
-      className={b({ transparent, active: focus }).toString()}
+      className={b({ transparent, active: focus })}
       style={swatchStyle}
       onClick={handleClick}
       title={title}

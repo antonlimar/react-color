@@ -55,21 +55,23 @@ function GoogleBase({
   return (
     <div
       style={rootStyle}
-      className={b({ dark: theme === 'dark', light: theme === 'light' })
-        .mix('google-picker', className, classNames?.root)
-        .toString()}
+      className={b({ dark: theme === 'dark', light: theme === 'light' }).mix(
+        'google-picker',
+        className,
+        classNames?.root,
+      )}
       {...getThemeDataAttributes(theme)}
     >
-      <div className={b('head').toString()} style={headStyle}>
+      <div className={b('head')} style={headStyle}>
         {header}
       </div>
-      <div className={b('swatch').toString()} style={swatchStyle} />
-      <div className={b('saturation').toString()} style={saturationStyle}>
+      <div className={b('swatch')} style={swatchStyle} />
+      <div className={b('saturation')} style={saturationStyle}>
         <Saturation hsl={hsl} hsv={hsv} pointer={GooglePointerCircle} onChange={onChange} />
       </div>
-      <div className={b('body').toString()} style={bodyStyle}>
-        <div className={b('controls').toString()} style={controlsStyle}>
-          <div className={b('hue').toString()} style={hueStyle}>
+      <div className={b('body')} style={bodyStyle}>
+        <div className={b('controls')} style={controlsStyle}>
+          <div className={b('hue')} style={hueStyle}>
             <Hue hsl={hsl} radius="4px" pointer={GooglePointer} onChange={onChange} />
           </div>
         </div>

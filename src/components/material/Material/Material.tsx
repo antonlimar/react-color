@@ -95,9 +95,11 @@ function MaterialBase({
     <Raised styles={passedStyles} theme={theme}>
       <div
         style={rootStyle}
-        className={b({ dark: theme === 'dark', light: theme === 'light' })
-          .mix('material-picker', className, classNames?.root)
-          .toString()}
+        className={b({ dark: theme === 'dark', light: theme === 'light' }).mix(
+          'material-picker',
+          className,
+          classNames?.root,
+        )}
         {...getThemeDataAttributes(theme)}
       >
         <EditableInput
@@ -106,8 +108,8 @@ function MaterialBase({
           value={hex}
           onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
         />
-        <div className={b('split').toString()} style={splitStyle}>
-          <div className={b('third').toString()} style={thirdStyle}>
+        <div className={b('split')} style={splitStyle}>
+          <div className={b('third')} style={thirdStyle}>
             <EditableInput
               style={{ wrap: rgbWrapStyle, input: rgbInputStyle, label: rgbLabelStyle }}
               label="r"
@@ -115,7 +117,7 @@ function MaterialBase({
               onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
             />
           </div>
-          <div className={b('third').toString()} style={thirdStyle}>
+          <div className={b('third')} style={thirdStyle}>
             <EditableInput
               style={{ wrap: rgbWrapStyle, input: rgbInputStyle, label: rgbLabelStyle }}
               label="g"
@@ -123,7 +125,7 @@ function MaterialBase({
               onChange={(value, event) => handleMaterialChange(onChange, rgb, value as ColorChangeValue, event)}
             />
           </div>
-          <div className={b('third').toString()} style={thirdStyle}>
+          <div className={b('third')} style={thirdStyle}>
             <EditableInput
               style={{ wrap: rgbWrapStyle, input: rgbInputStyle, label: rgbLabelStyle }}
               label="b"

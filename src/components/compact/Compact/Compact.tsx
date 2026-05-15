@@ -103,12 +103,14 @@ function CompactBase({
     <Raised style={raisedStyle} styles={passedStyles} theme={theme}>
       <div
         style={rootStyle}
-        className={b({ dark: theme === 'dark', light: theme === 'light' })
-          .mix('compact-picker', className, classNames?.root)
-          .toString()}
+        className={b({ dark: theme === 'dark', light: theme === 'light' }).mix(
+          'compact-picker',
+          className,
+          classNames?.root,
+        )}
         {...getThemeDataAttributes(theme)}
       >
-        <div className={b('swatches').toString()}>
+        <div className={b('swatches')}>
           {colors.map((colorValue: string) => (
             <CompactColor
               key={colorValue}
@@ -118,7 +120,7 @@ function CompactBase({
               onSwatchHover={onSwatchHover}
             />
           ))}
-          <div className={b('clear').toString()} style={clearStyle} />
+          <div className={b('clear')} style={clearStyle} />
         </div>
         <CompactFields hex={hex} rgb={rgb} onChange={(data, event) => handleCompactChange(onChange, data, event)} />
       </div>

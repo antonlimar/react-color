@@ -123,14 +123,16 @@ function SwatchesBase({
   return (
     <div
       style={rootStyle}
-      className={b({ dark: theme === 'dark', light: theme === 'light' })
-        .mix('swatches-picker', className, classNames?.root)
-        .toString()}
+      className={b({ dark: theme === 'dark', light: theme === 'light' }).mix(
+        'swatches-picker',
+        className,
+        classNames?.root,
+      )}
       {...getThemeDataAttributes(theme)}
     >
       <Raised theme={theme}>
-        <div className={b('overflow').toString()} style={overflowStyle}>
-          <div className={b('body').toString()} style={bodyStyle}>
+        <div className={b('overflow')} style={overflowStyle}>
+          <div className={b('body')} style={bodyStyle}>
             {colors.map((group: string[]) => (
               <SwatchesGroup
                 key={group.toString()}
@@ -140,7 +142,7 @@ function SwatchesBase({
                 onSwatchHover={onSwatchHover}
               />
             ))}
-            <div className={b('clear').toString()} style={clearStyle} />
+            <div className={b('clear')} style={clearStyle} />
           </div>
         </div>
       </Raised>

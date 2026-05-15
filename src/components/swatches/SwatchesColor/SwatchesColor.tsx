@@ -35,7 +35,7 @@ export function SwatchesColor({ color, onClick = noop, onSwatchHover, first, las
         active,
         white: color === '#FFFFFF',
         transparent: color === 'transparent',
-      }).toString()}
+      })}
     >
       <Swatch
         color={color}
@@ -44,7 +44,7 @@ export function SwatchesColor({ color, onClick = noop, onSwatchHover, first, las
         onHover={onSwatchHover as never}
         focusStyle={{ boxShadow: `0 0 4px ${color}` }}
       >
-        <div className={b('check').toString()} style={checkStyle}>
+        <div className={b('check')} style={checkStyle}>
           <CheckIcon />
         </div>
       </Swatch>

@@ -65,9 +65,11 @@ function CircleBase({
   return (
     <div
       style={rootStyle}
-      className={b({ dark: theme === 'dark', light: theme === 'light' })
-        .mix('circle-picker', className, classNames?.root)
-        .toString()}
+      className={b({ dark: theme === 'dark', light: theme === 'light' }).mix(
+        'circle-picker',
+        className,
+        classNames?.root,
+      )}
       {...getThemeDataAttributes(theme)}
     >
       {colors.map((colorValue: string) => (

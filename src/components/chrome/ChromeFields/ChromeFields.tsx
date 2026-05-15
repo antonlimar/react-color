@@ -99,7 +99,7 @@ export function ChromeFields(props: ChromeFieldsProps) {
   };
 
   const renderField = (label: string, value: string | number, fieldModifier?: string, arrowOffset?: number) => {
-    const fieldClassName = fieldModifier ? b('field', { [fieldModifier]: true }).toString() : b('field').toString();
+    const fieldClassName = fieldModifier ? b('field', { [fieldModifier]: true }) : b('field');
 
     return (
       <div className={fieldClassName}>
@@ -115,10 +115,10 @@ export function ChromeFields(props: ChromeFieldsProps) {
 
   let fields: ReactNode;
   if (resolvedView === 'hex') {
-    fields = <div className={b('fields-grid').toString()}>{renderField('hex', props.hex)}</div>;
+    fields = <div className={b('fields-grid')}>{renderField('hex', props.hex)}</div>;
   } else if (resolvedView === 'rgb') {
     fields = (
-      <div className={b('fields-grid').toString()}>
+      <div className={b('fields-grid')}>
         {renderField('r', props.rgb.r)}
         {renderField('g', props.rgb.g)}
         {renderField('b', props.rgb.b)}
@@ -127,7 +127,7 @@ export function ChromeFields(props: ChromeFieldsProps) {
     );
   } else {
     fields = (
-      <div className={b('fields-grid').toString()}>
+      <div className={b('fields-grid')}>
         {renderField('h', Math.round(props.hsl.h))}
         {renderField('s', `${Math.round(props.hsl.s * 100)}%`)}
         {renderField('l', `${Math.round(props.hsl.l * 100)}%`)}
@@ -137,10 +137,10 @@ export function ChromeFields(props: ChromeFieldsProps) {
   }
 
   return (
-    <div className={b('fields', { 'disabled-alpha': props.disableAlpha, [resolvedView]: true }).toString()}>
+    <div className={b('fields', { 'disabled-alpha': props.disableAlpha, [resolvedView]: true })}>
       {fields}
-      <div className={b('toggle').toString()}>
-        <div onClick={toggleViews} className={b('toggle-icon').toString()}>
+      <div className={b('toggle')}>
+        <div onClick={toggleViews} className={b('toggle-icon')}>
           <UnfoldMoreHorizontalIcon />
         </div>
       </div>

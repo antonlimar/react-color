@@ -29,7 +29,7 @@ export function CompactColor({ color, onClick = noop, onSwatchHover, active }: C
         active,
         white: color === '#FFFFFF',
         transparent: color === 'transparent',
-      }).toString()}
+      })}
     >
       <Swatch
         style={swatchStyle}
@@ -38,7 +38,7 @@ export function CompactColor({ color, onClick = noop, onSwatchHover, active }: C
         onHover={onSwatchHover as never}
         focusStyle={{ boxShadow: `0 0 4px ${color}` }}
       >
-        <div className={b('dot').toString()} style={dotStyle} />
+        <div className={b('dot')} style={dotStyle} />
       </Swatch>
     </div>
   );

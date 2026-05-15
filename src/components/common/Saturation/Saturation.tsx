@@ -108,17 +108,17 @@ export function Saturation(props: SaturationProps) {
 
   return (
     <div
-      className={b().toString()}
+      className={b()}
       style={rootStyle}
       ref={containerRef}
       onMouseDown={handleMouseDown}
       onTouchMove={handleChange}
       onTouchStart={handleChange}
     >
-      <div className={b('white').toString()} style={whiteStyle}>
-        <div className={b('black').toString()} style={blackStyle} />
-        <div className={b('pointer').toString()} style={controlPointerStyle}>
-          {Pointer ? <Pointer {...props} /> : <div className={b('circle').toString()} style={circleStyle} />}
+      <div className={b('white')} style={whiteStyle}>
+        <div className={b('black')} style={blackStyle} />
+        <div className={b('pointer')} style={controlPointerStyle}>
+          {Pointer ? <Pointer {...props} /> : <div className={b('circle')} style={circleStyle} />}
         </div>
       </div>
     </div>

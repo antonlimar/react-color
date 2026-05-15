@@ -34,30 +34,30 @@ export function CompactFields({ hex, rgb, onChange }: CompactFieldsProps) {
   };
 
   return (
-    <div className={b('fields').toString()}>
-      <div className={b('active').toString()} style={{ background: hex }} />
-      <div className={b('field', { hex: true }).toString()}>
+    <div className={b('fields')}>
+      <div className={b('active')} style={{ background: hex }} />
+      <div className={b('field', { hex: true })}>
         <EditableInput
           label="hex"
           value={hex}
           onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
         />
       </div>
-      <div className={b('field', { rgb: true }).toString()}>
+      <div className={b('field', { rgb: true })}>
         <EditableInput
           label="r"
           value={rgb.r}
           onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
         />
       </div>
-      <div className={b('field', { rgb: true }).toString()}>
+      <div className={b('field', { rgb: true })}>
         <EditableInput
           label="g"
           value={rgb.g}
           onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
         />
       </div>
-      <div className={b('field', { rgb: true }).toString()}>
+      <div className={b('field', { rgb: true })}>
         <EditableInput
           label="b"
           value={rgb.b}

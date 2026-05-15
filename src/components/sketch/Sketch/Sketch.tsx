@@ -98,12 +98,14 @@ function SketchBase({
   return (
     <div
       style={rootStyle}
-      className={b({ 'disabled-alpha': disableAlpha, dark: theme === 'dark', light: theme === 'light' })
-        .mix('sketch-picker', className, classNames?.root)
-        .toString()}
+      className={b({ 'disabled-alpha': disableAlpha, dark: theme === 'dark', light: theme === 'light' }).mix(
+        'sketch-picker',
+        className,
+        classNames?.root,
+      )}
       {...getThemeDataAttributes(theme)}
     >
-      <div className={b('saturation').toString()} style={saturationStyle}>
+      <div className={b('saturation')} style={saturationStyle}>
         <Saturation
           radius="3px"
           shadow="inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)"
@@ -112,9 +114,9 @@ function SketchBase({
           onChange={onChange}
         />
       </div>
-      <div className={b('controls').toString()} style={controlsStyle}>
-        <div className={b('sliders').toString()} style={slidersStyle}>
-          <div className={b('hue').toString()} style={hueStyle}>
+      <div className={b('controls')} style={controlsStyle}>
+        <div className={b('sliders')} style={slidersStyle}>
+          <div className={b('hue')} style={hueStyle}>
             <Hue
               radius="2px"
               shadow="inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)"
@@ -122,7 +124,7 @@ function SketchBase({
               onChange={onChange}
             />
           </div>
-          <div className={b('alpha').toString()} style={alphaStyle}>
+          <div className={b('alpha')} style={alphaStyle}>
             <Alpha
               radius="2px"
               shadow="inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)"
@@ -133,9 +135,9 @@ function SketchBase({
             />
           </div>
         </div>
-        <div className={b('color').toString()} style={colorStyle}>
+        <div className={b('color')} style={colorStyle}>
           <Checkboard />
-          <div className={b('active-color').toString()} style={activeColorStyle} />
+          <div className={b('active-color')} style={activeColorStyle} />
         </div>
       </div>
 

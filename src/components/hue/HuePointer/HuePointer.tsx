@@ -7,5 +7,5 @@ type HuePointerProps = Pick<HueProps, 'direction'>;
 const b = bem('hue');
 
 export function HuePointer({ direction }: HuePointerProps) {
-  return <div className={b('pointer', { vertical: direction === 'vertical' }).toString()} />;
+  return <div className={b('pointer', { vertical: direction === 'vertical' })} />;
 }

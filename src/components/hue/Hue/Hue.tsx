@@ -50,9 +50,7 @@ export function HuePicker({
   return (
     <div
       style={rootStyle}
-      className={b({ dark: theme === 'dark', light: theme === 'light' })
-        .mix('hue-picker', className, classNames?.root)
-        .toString()}
+      className={b({ dark: theme === 'dark', light: theme === 'light' }).mix('hue-picker', className, classNames?.root)}
       {...getThemeDataAttributes(theme)}
     >
       <HueControl hsl={hsl} radius="2px" pointer={pointer} onChange={handleChange} direction={direction} />

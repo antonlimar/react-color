@@ -15,7 +15,7 @@ const b = bem('swatches');
 
 export function SwatchesGroup({ onClick, onSwatchHover, group, active }: SwatchesGroupProps) {
   return (
-    <div className={b('group').toString()}>
+    <div className={b('group')}>
       {group.map((colorValue: string, index: number | string) => (
         <SwatchesColor
           key={colorValue}

@@ -160,10 +160,10 @@ export function EditableInput(props: EditableInputProps) {
   };
 
   return (
-    <div className={b({ 'drag-label': dragLabel }).toString()} style={wrapStyle}>
+    <div className={b({ 'drag-label': dragLabel })} style={wrapStyle}>
       <input
         id={inputId}
-        className={b('input').toString()}
+        className={b('input')}
         style={inputStyle}
         ref={inputRef}
         value={state.value}
@@ -176,7 +176,7 @@ export function EditableInput(props: EditableInputProps) {
       {label && !hideLabel ? (
         <label
           htmlFor={inputId}
-          className={b('label', { 'drag-label': dragLabel }).toString()}
+          className={b('label', { 'drag-label': dragLabel })}
           style={labelStyle}
           onMouseDown={handleMouseDown}
         >

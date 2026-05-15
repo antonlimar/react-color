@@ -4,5 +4,5 @@ import './SliderPointer.scss';
 const b = bem('slider');
 
 export function SliderPointer() {
-  return <div className={b('pointer').toString()} />;
+  return <div className={b('pointer')} />;
 }

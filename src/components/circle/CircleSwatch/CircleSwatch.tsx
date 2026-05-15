@@ -38,7 +38,7 @@ export function CircleSwatch({
   };
 
   return (
-    <div className={b('swatch', { hover, active }).toString()} style={wrapperStyle}>
+    <div className={b('swatch', { hover, active })} style={wrapperStyle}>
       <Swatch
         style={circleStyle}
         color={color}

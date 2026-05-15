@@ -13,9 +13,9 @@ const b = bem('block');
 
 export function BlockSwatches({ colors, onClick, onSwatchHover }: BlockSwatchesProps) {
   return (
-    <div className={b('swatches').toString()}>
+    <div className={b('swatches')}>
       {colors.map((colorValue: string) => (
-        <div key={colorValue} className={b('swatch').toString()}>
+        <div key={colorValue} className={b('swatch')}>
           <Swatch
             color={colorValue}
             style={{ borderRadius: '4px' }}
@@ -27,7 +27,7 @@ export function BlockSwatches({ colors, onClick, onSwatchHover }: BlockSwatchesP
           />
         </div>
       ))}
-      <div className={b('clear').toString()} />
+      <div className={b('clear')} />
     </div>
   );
 }

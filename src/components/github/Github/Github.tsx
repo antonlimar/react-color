@@ -67,13 +67,11 @@ function GithubBase({
         [triangle]: true,
         dark: theme === 'dark',
         light: theme === 'light',
-      })
-        .mix('github-picker', className, classNames?.root)
-        .toString()}
+      }).mix('github-picker', className, classNames?.root)}
       {...getThemeDataAttributes(theme)}
     >
-      <div className={b('triangle-shadow').toString()} style={triangleShadowStyle} />
-      <div className={b('triangle').toString()} style={triangleStyle} />
+      <div className={b('triangle-shadow')} style={triangleShadowStyle} />
+      <div className={b('triangle')} style={triangleStyle} />
       {colors.map((colorValue: string) => (
         <GithubSwatch
           color={colorValue}

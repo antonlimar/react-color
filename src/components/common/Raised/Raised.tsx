@@ -45,11 +45,11 @@ export function Raised({
   return (
     <div
       style={wrapStyle}
-      className={b({ dark: theme === 'dark', light: theme === 'light' }).toString()}
+      className={b({ dark: theme === 'dark', light: theme === 'light' })}
       {...getThemeDataAttributes(theme)}
     >
-      <div className={b('bg').toString()} style={bgStyle} />
-      <div className={b('content').toString()} style={contentStyle}>
+      <div className={b('bg')} style={bgStyle} />
+      <div className={b('content')} style={contentStyle}>
         {children}
       </div>
     </div>

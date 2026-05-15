@@ -9,5 +9,5 @@ type PhotoshopPointerCircleProps = {
 const b = bem('photoshop');
 
 export function PhotoshopPointerCircle({ hsl }: PhotoshopPointerCircleProps) {
-  return <div className={b('pointer-circle', { 'black-outline': hsl.l > 0.5 }).toString()} />;
+  return <div className={b('pointer-circle', { 'black-outline': hsl.l > 0.5 })} />;
 }

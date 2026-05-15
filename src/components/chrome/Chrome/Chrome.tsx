@@ -82,27 +82,29 @@ function ChromeBase({
   return (
     <div
       style={rootStyle}
-      className={b({ 'disabled-alpha': disableAlpha, dark: theme === 'dark', light: theme === 'light' })
-        .mix('chrome-picker', className, classNames?.root)
-        .toString()}
+      className={b({ 'disabled-alpha': disableAlpha, dark: theme === 'dark', light: theme === 'light' }).mix(
+        'chrome-picker',
+        className,
+        classNames?.root,
+      )}
       {...getThemeDataAttributes(theme)}
     >
-      <div className={b('saturation').toString()} style={saturationStyle}>
+      <div className={b('saturation')} style={saturationStyle}>
         <Saturation radius="2px 2px 0 0" hsl={hsl} hsv={hsv} pointer={ChromePointerCircle} onChange={onChange} />
       </div>
-      <div className={b('body').toString()} style={bodyStyle}>
-        <div className={b('controls').toString()} style={controlsStyle}>
-          <div className={b('color').toString()} style={colorStyle}>
-            <div className={b('swatch').toString()} style={swatchStyle}>
-              <div className={b('active').toString()} style={activeStyle} />
+      <div className={b('body')} style={bodyStyle}>
+        <div className={b('controls')} style={controlsStyle}>
+          <div className={b('color')} style={colorStyle}>
+            <div className={b('swatch')} style={swatchStyle}>
+              <div className={b('active')} style={activeStyle} />
               <Checkboard renderers={renderers} />
             </div>
           </div>
-          <div className={b('toggles').toString()} style={togglesStyle}>
-            <div className={b('hue').toString()} style={hueStyle}>
+          <div className={b('toggles')} style={togglesStyle}>
+            <div className={b('hue')} style={hueStyle}>
               <Hue radius="2px" hsl={hsl} pointer={ChromePointer} onChange={onChange} />
             </div>
-            <div className={b('alpha').toString()} style={alphaStyle}>
+            <div className={b('alpha')} style={alphaStyle}>
               <Alpha
                 radius="2px"
                 rgb={rgb}

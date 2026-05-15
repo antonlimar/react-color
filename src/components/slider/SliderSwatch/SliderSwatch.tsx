@@ -32,5 +32,5 @@ export function SliderSwatch({ hsl, offset, onClick = noop, active, first, last 
     );
   };
 
-  return <div className={b('swatch', { active, first, last }).toString()} style={swatchStyle} onClick={handleClick} />;
+  return <div className={b('swatch', { active, first, last })} style={swatchStyle} onClick={handleClick} />;
 }

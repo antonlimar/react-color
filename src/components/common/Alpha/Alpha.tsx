@@ -92,21 +92,21 @@ export function Alpha(props: AlphaProps) {
   const Pointer = pointer;
 
   return (
-    <div className={b({ vertical: direction === 'vertical' }).toString()} style={rootStyle}>
-      <div className={b('checkboard').toString()} style={checkboardStyle}>
+    <div className={b({ vertical: direction === 'vertical' })} style={rootStyle}>
+      <div className={b('checkboard')} style={checkboardStyle}>
         <Checkboard renderers={renderers} />
       </div>
-      <div className={b('gradient').toString()} style={gradientStyle} />
+      <div className={b('gradient')} style={gradientStyle} />
       <div
-        className={b('container').toString()}
+        className={b('container')}
         style={containerStyle}
         ref={containerRef}
         onMouseDown={handleMouseDown}
         onTouchMove={handleChange}
         onTouchStart={handleChange}
       >
-        <div className={b('pointer').toString()} style={pointerStyle}>
-          {Pointer ? <Pointer {...props} /> : <div className={b('slider').toString()} style={sliderStyle} />}
+        <div className={b('pointer')} style={pointerStyle}>
+          {Pointer ? <Pointer {...props} /> : <div className={b('slider')} style={sliderStyle} />}
         </div>
       </div>
     </div>

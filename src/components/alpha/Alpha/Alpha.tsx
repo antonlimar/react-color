@@ -42,9 +42,11 @@ function AlphaPicker({
   return (
     <div
       style={{ width, height }}
-      className={b({ dark: theme === 'dark', light: theme === 'light' })
-        .mix('alpha-picker', className, classNames?.root)
-        .toString()}
+      className={b({ dark: theme === 'dark', light: theme === 'light' }).mix(
+        'alpha-picker',
+        className,
+        classNames?.root,
+      )}
       {...getThemeDataAttributes(theme)}
     >
       <AlphaControl

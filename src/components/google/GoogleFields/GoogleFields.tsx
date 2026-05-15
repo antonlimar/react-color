@@ -96,31 +96,31 @@ export function GoogleFields({ onChange, rgb, hsl, hex, hsv }: GoogleFieldsProps
   const hsvValue = `${Math.round(hsv.h)}°, ${Math.round(hsv.s * 100)}%, ${Math.round(hsv.v * 100)}%`;
 
   return (
-    <div className={b('fields').toString()}>
-      <div className={b('fields-body').toString()}>
-        <div className={b('field-row', { primary: true }).toString()}>
+    <div className={b('fields')}>
+      <div className={b('fields-body')}>
+        <div className={b('field-row', { primary: true })}>
           <EditableInput
             label="hex"
             value={hex}
             onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
           />
         </div>
-        <div className={b('field-row', { secondary: true }).toString()}>
-          <div className={b('field').toString()}>
+        <div className={b('field-row', { secondary: true })}>
+          <div className={b('field')}>
             <EditableInput
               label="rgb"
               value={rgbValue}
               onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
             />
           </div>
-          <div className={b('field').toString()}>
+          <div className={b('field')}>
             <EditableInput
               label="hsv"
               value={hsvValue}
               onChange={(value, event) => handleChange(value as ColorChangeValue, event)}
             />
           </div>
-          <div className={b('field').toString()}>
+          <div className={b('field')}>
             <EditableInput
               label="hsl"
               value={hslValue}

@@ -15,9 +15,9 @@ export function SliderSwatches({ onClick, hsl }: SliderSwatchesProps) {
   const offsets = [0.8, 0.65, 0.5, 0.35, 0.2];
 
   return (
-    <div className={b('swatches').toString()}>
+    <div className={b('swatches')}>
       {offsets.map((offset, index) => (
-        <div key={offset} className={b('swatch-wrap').toString()}>
+        <div key={offset} className={b('swatch-wrap')}>
           <SliderSwatch
             hsl={hsl}
             offset={offset}
@@ -28,7 +28,7 @@ export function SliderSwatches({ onClick, hsl }: SliderSwatchesProps) {
           />
         </div>
       ))}
-      <div className={b('clear').toString()} />
+      <div className={b('clear')} />
     </div>
   );
 }

@@ -70,17 +70,19 @@ function PhotoshopBase(props: PhotoshopProps) {
   return (
     <div
       style={rootStyle}
-      className={b({ dark: theme === 'dark', light: theme === 'light' })
-        .mix('photoshop-picker', className, classNames?.root)
-        .toString()}
+      className={b({ dark: theme === 'dark', light: theme === 'light' }).mix(
+        'photoshop-picker',
+        className,
+        classNames?.root,
+      )}
       {...getThemeDataAttributes(theme)}
     >
-      <div className={b('head').toString()} style={headStyle}>
+      <div className={b('head')} style={headStyle}>
         {resolvedProps.header}
       </div>
 
-      <div className={b('body').toString()} style={bodyStyle}>
-        <div className={b('saturation').toString()} style={saturationStyle}>
+      <div className={b('body')} style={bodyStyle}>
+        <div className={b('saturation')} style={saturationStyle}>
           <Saturation
             hsl={resolvedProps.hsl}
             hsv={resolvedProps.hsv}
@@ -88,7 +90,7 @@ function PhotoshopBase(props: PhotoshopProps) {
             onChange={resolvedProps.onChange}
           />
         </div>
-        <div className={b('hue').toString()} style={hueStyle}>
+        <div className={b('hue')} style={hueStyle}>
           <Hue
             direction="vertical"
             hsl={resolvedProps.hsl}
@@ -96,12 +98,12 @@ function PhotoshopBase(props: PhotoshopProps) {
             onChange={resolvedProps.onChange}
           />
         </div>
-        <div className={b('controls').toString()} style={controlsStyle}>
-          <div className={b('top').toString()} style={topStyle}>
-            <div className={b('previews').toString()} style={previewsStyle}>
+        <div className={b('controls')} style={controlsStyle}>
+          <div className={b('top')} style={topStyle}>
+            <div className={b('previews')} style={previewsStyle}>
               <PhotoshopPreviews rgb={resolvedProps.rgb} currentColor={currentColor} />
             </div>
-            <div className={b('actions').toString()} style={actionsStyle}>
+            <div className={b('actions')} style={actionsStyle}>
               <PhotoshopButton label="OK" onClick={() => resolvedProps.onAccept?.(resolvedProps, undefined)} active />
               <PhotoshopButton label="Cancel" onClick={resolvedProps.onCancel} />
               <PhotoshopFields
