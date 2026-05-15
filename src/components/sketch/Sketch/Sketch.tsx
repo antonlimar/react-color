@@ -1,4 +1,3 @@
-import './Sketch.scss';
 import {
   ColorWrap,
   Saturation,
@@ -19,6 +18,7 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+import './Sketch.scss';
 
 const b = bem('sketch');
 

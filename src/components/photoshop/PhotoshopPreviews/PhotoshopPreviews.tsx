@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
-import './PhotoshopPreviews.scss';
 import { bem } from '@/components/common';
 import type { RGBAColor } from '@/types';
+import './PhotoshopPreviews.scss';
 
 const b = bem('photoshop');
 

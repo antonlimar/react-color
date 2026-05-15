@@ -1,7 +1,7 @@
-import './SliderSwatches.scss';
 import { bem } from '@/components/common';
 import { SliderSwatch } from '@/components/slider/SliderSwatch';
 import type { ColorInputChangeHandler, HSLAColor } from '@/types';
+import './SliderSwatches.scss';
 
 const b = bem('slider');
 

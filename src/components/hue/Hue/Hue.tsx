@@ -1,4 +1,3 @@
-import './Hue.scss';
 import {
   ColorWrap,
   Hue as HueControl,
@@ -9,6 +8,7 @@ import {
 import type { HueProps } from '@/components/common';
 import { HuePointer } from '@/components/hue/HuePointer';
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
+import './Hue.scss';
 
 const b = bem('hue');
 

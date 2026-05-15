@@ -1,4 +1,3 @@
-import './Block.scss';
 import { BlockSwatches } from '@/components/block/BlockSwatches';
 import {
   ColorWrap,
@@ -18,6 +17,7 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+import './Block.scss';
 
 const b = bem('block');
 

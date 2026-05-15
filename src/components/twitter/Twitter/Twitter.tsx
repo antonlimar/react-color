@@ -1,4 +1,3 @@
-import './Twitter.scss';
 import {
   ColorWrap,
   EditableInput,
@@ -17,6 +16,7 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+import './Twitter.scss';
 
 const b = bem('twitter');
 

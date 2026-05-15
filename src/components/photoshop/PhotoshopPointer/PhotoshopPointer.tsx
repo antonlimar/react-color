@@ -1,5 +1,5 @@
-import './PhotoshopPointer.scss';
 import { bem } from '@/components/common';
+import './PhotoshopPointer.scss';
 
 const b = bem('photoshop');
 

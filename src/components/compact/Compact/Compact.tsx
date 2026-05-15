@@ -1,4 +1,3 @@
-import './Compact.scss';
 import { ColorWrap, Raised, bem, getThemeDataAttributes, getDeprecatedStyleOverride } from '@/components/common';
 import { CompactColor } from '@/components/compact/CompactColor';
 import { CompactFields } from '@/components/compact/CompactFields';
@@ -12,6 +11,7 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+import './Compact.scss';
 
 const b = bem('compact');
 

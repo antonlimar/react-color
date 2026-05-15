@@ -1,4 +1,3 @@
-import './Chrome.scss';
 import { ChromeFields } from '@/components/chrome/ChromeFields';
 import { ChromePointer } from '@/components/chrome/ChromePointer';
 import { ChromePointerCircle } from '@/components/chrome/ChromePointerCircle';
@@ -20,6 +19,7 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+import './Chrome.scss';
 
 const b = bem('chrome');
 

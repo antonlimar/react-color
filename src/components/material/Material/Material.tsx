@@ -1,4 +1,3 @@
-import './Material.scss';
 import {
   ColorWrap,
   EditableInput,
@@ -18,6 +17,7 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+import './Material.scss';
 
 const b = bem('material');
 

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './Photoshop.scss';
 import {
   ColorWrap,
   Saturation,
@@ -21,6 +20,7 @@ import type {
   PickerCustomStyles,
   PickerTheme,
 } from '@/types';
+import './Photoshop.scss';
 
 const b = bem('photoshop');
 
