@@ -5,10 +5,6 @@ import { ColorWrap, bem, getThemeDataAttributes, getDeprecatedStyleOverride } fr
 import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCustomStyles, PickerTheme } from '@/types';
 import './Circle.scss';
 
-const b = bem('circle');
-
-const CIRCLE_STYLE_SLOTS = ['card'] as const;
-
 type CircleProps = ColorPickerInjectedProps & {
   width?: string | number;
   circleSize?: number;
@@ -19,6 +15,10 @@ type CircleProps = ColorPickerInjectedProps & {
   classNames?: PickerClassNames;
   theme?: PickerTheme;
 };
+
+const b = bem('circle');
+
+const CIRCLE_STYLE_SLOTS = ['card'] as const;
 
 const DEFAULT_CIRCLE_COLORS = [
   material.red['500'],

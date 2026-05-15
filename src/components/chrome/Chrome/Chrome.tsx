@@ -21,6 +21,17 @@ import type {
 } from '@/types';
 import './Chrome.scss';
 
+type ChromeProps = ColorPickerInjectedProps & {
+  width?: string | number;
+  disableAlpha?: boolean;
+  renderers?: CheckboardRenderers;
+  styles?: PickerCustomStyles;
+  className?: ClassName;
+  classNames?: PickerClassNames;
+  theme?: PickerTheme;
+  defaultView?: 'hex' | 'rgb' | 'hsl';
+};
+
 const b = bem('chrome');
 
 const CHROME_STYLE_SLOTS = [
@@ -35,17 +46,6 @@ const CHROME_STYLE_SLOTS = [
   'hue',
   'alpha',
 ] as const;
-
-type ChromeProps = ColorPickerInjectedProps & {
-  width?: string | number;
-  disableAlpha?: boolean;
-  renderers?: CheckboardRenderers;
-  styles?: PickerCustomStyles;
-  className?: ClassName;
-  classNames?: PickerClassNames;
-  theme?: PickerTheme;
-  defaultView?: 'hex' | 'rgb' | 'hsl';
-};
 
 function ChromeBase({
   width = 225,

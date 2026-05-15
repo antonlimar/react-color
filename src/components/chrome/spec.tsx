@@ -79,10 +79,12 @@ test('Chrome alpha updates immediately with only onChangeComplete', async () => 
     configurable: true,
     value: 200,
   });
+
   Object.defineProperty(alphaControl, 'clientHeight', {
     configurable: true,
     value: 10,
   });
+
   alphaControl.getBoundingClientRect = () =>
     ({
       width: 200,

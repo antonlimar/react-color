@@ -14,10 +14,12 @@ test('Alpha onChange events correctly', () => {
   const { container } = renderForSnapshot(<Alpha {...red} width={20} height={200} onChange={changeSpy} />);
 
   const alphaContainer = getRequiredElement(container, '.rc-alpha-control__container');
+
   fireEvent.mouseDown(alphaContainer, {
     pageX: 100,
     pageY: 10,
   });
+
   expect(changeSpy).toHaveBeenCalled();
 });
 

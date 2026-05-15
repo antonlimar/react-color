@@ -19,10 +19,6 @@ import type {
 } from '@/types';
 import './Block.scss';
 
-const b = bem('block');
-
-const BLOCK_STYLE_SLOTS = ['card', 'triangle', 'head', 'label', 'body', 'input'] as const;
-
 type BlockProps = ColorPickerInjectedProps & {
   colors?: string[];
   width?: string | number;
@@ -32,6 +28,10 @@ type BlockProps = ColorPickerInjectedProps & {
   classNames?: PickerClassNames;
   theme?: PickerTheme;
 };
+
+const b = bem('block');
+
+const BLOCK_STYLE_SLOTS = ['card', 'triangle', 'head', 'label', 'body', 'input'] as const;
 
 const handleHexChange = (onChange: ColorInputChangeHandler, hexCode: string, event?: ColorPickerChangeEvent) => {
   if (isValidHex(hexCode)) {
@@ -90,14 +90,12 @@ function BlockBase({
       {...getThemeDataAttributes(theme)}
     >
       <div className={b('triangle').toString()} style={triangleStyle} />
-
       <div className={b('head', { transparent }).toString()} style={headStyle}>
         {transparent ? <Checkboard borderRadius="6px 6px 0 0" /> : null}
         <div className={b('label').toString()} style={labelStyle}>
           {hex}
         </div>
       </div>
-
       <div className={b('body').toString()} style={bodyStyle}>
         <BlockSwatches
           colors={colors!}
