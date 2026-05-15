@@ -2,6 +2,8 @@ import tinycolor from 'tinycolor2';
 import type { Color, ColorChangeValue, ColorResult } from '@/types';
 import type { BasicColorState, ColorDataKey, ColorDataRecord, ValidColorStringType } from './types';
 
+type TinyColorInput = Parameters<typeof tinycolor>[0];
+
 const keysToCheck: ColorDataKey[] = ['r', 'g', 'b', 'a', 'h', 's', 'l', 'v'];
 
 export const simpleCheckForValidColor = <T>(data: T): T | false => {
@@ -32,7 +34,7 @@ export const simpleCheckForValidColor = <T>(data: T): T | false => {
 
 export const toState = (data: Color | ColorChangeValue, oldHue = 0): ColorResult => {
   const colorData = data as ColorChangeValue;
-  const color = colorData.hex ? tinycolor(colorData.hex) : tinycolor(data);
+  const color = colorData.hex ? tinycolor(colorData.hex) : tinycolor(data as TinyColorInput);
   const hsl = color.toHsl();
   const hsv = color.toHsv();
   const rgb = color.toRgb();
