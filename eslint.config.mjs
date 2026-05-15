@@ -79,6 +79,13 @@ export default defineConfig([
       'import-x/no-duplicates': 'error',
       'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
       '@typescript-eslint/no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {
+          prefer: 'type-imports',
+          fixStyle: 'separate-type-imports',
+        },
+      ],
       'react/react-in-jsx-scope': 'off',
     },
   },
