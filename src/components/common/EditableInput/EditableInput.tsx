@@ -9,6 +9,11 @@ import type {
 import { bem } from '@/components/common';
 import './EditableInput.scss';
 
+type EditableInputState = {
+  value: EditableInputValue;
+  blurValue: EditableInputValue | null;
+};
+
 const b = bem('editableInput');
 
 const DEFAULT_ARROW_OFFSET = 1;
@@ -18,11 +23,6 @@ const VALID_KEY_CODES = [UP_KEY_CODE, DOWN_KEY_CODE];
 
 const isValidKeyCode = (keyCode: number) => VALID_KEY_CODES.indexOf(keyCode) > -1;
 const getNumberValue = (value: EditableInputValue) => Number(String(value).replace(/%/g, ''));
-
-type EditableInputState = {
-  value: EditableInputValue;
-  blurValue: EditableInputValue | null;
-};
 
 let idCounter = 1;
 

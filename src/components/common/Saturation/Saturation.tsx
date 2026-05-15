@@ -7,14 +7,14 @@ import { calculateSaturationChange } from '@/helpers';
 import type { InternalColorChangeEvent } from '@/types';
 import './Saturation.scss';
 
-const b = bem('saturation');
-
 type SaturationChangeHandler = NonNullable<SaturationProps['onChange']>;
 type SaturationChangeData = ReturnType<typeof calculateSaturationChange>;
 type ThrottledChange = {
   (fn: SaturationChangeHandler, data: SaturationChangeData, event: InternalColorChangeEvent): void;
   cancel(): void;
 };
+
+const b = bem('saturation');
 
 const SATURATION_WHITE_GRADIENT = 'linear-gradient(to right, #fff, rgba(255,255,255,0))';
 const SATURATION_BLACK_GRADIENT = 'linear-gradient(to top, #000, rgba(0,0,0,0))';
