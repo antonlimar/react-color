@@ -1,0 +1,168 @@
+.picker-gallery {
+  &__preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 18.5rem;
+    padding: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border: 1px solid rgba(16, 32, 58, 0.08);
+    border-radius: 18px;
+    background:
+      radial-gradient(circle at 16% 18%, var(--site-accent-wash), transparent 38%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(246, 248, 252, 0.72));
+
+    &--alpha,
+    &--hue,
+    &--slider {
+      min-height: 6.75rem;
+      align-items: stretch;
+      padding: 1.35rem 1rem;
+
+      .picker-gallery__live {
+        align-items: center;
+        width: 100%;
+      }
+    }
+
+    &--slider {
+      .rc-slider {
+        min-width: 100%;
+      }
+    }
+
+    &--block,
+    &--circle,
+    &--compact,
+    &--github,
+    &--twitter {
+      min-height: 13.5rem;
+    }
+
+    &--material {
+      min-height: 13.5rem;
+      overflow-y: visible;
+
+      .rc-material {
+        box-sizing: content-box;
+        overflow: visible;
+      }
+    }
+
+    &--google {
+      min-height: 25rem;
+    }
+
+    &--photoshop {
+      min-height: 22.25rem;
+    }
+
+    &--swatches {
+      min-height: 17.75rem;
+    }
+
+    .chrome-picker,
+    .sketch-picker,
+    .google-picker,
+    .swatches-picker,
+    .twitter-picker,
+    .github-picker,
+    .block-picker,
+    .compact-picker {
+      box-shadow: var(--site-picker-gallery-shadow);
+    }
+  }
+
+  &__live {
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    min-width: min(100%, 12rem);
+
+    > * {
+      flex: 0 0 auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    &__preview {
+      justify-content: flex-start;
+      min-height: 16rem;
+      overflow: hidden;
+
+      &--alpha,
+      &--hue,
+      &--slider {
+        min-height: 6.25rem;
+      }
+
+      &--google {
+        min-height: 22rem;
+      }
+
+      &--photoshop {
+        min-height: 24rem;
+
+        .rc-photoshop {
+          &__body {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 1.45rem;
+            gap: 10px;
+            padding: 0.75rem;
+          }
+
+          &__saturation {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+          }
+
+          &__hue {
+            width: 19px;
+            height: auto;
+            margin-left: 0;
+          }
+
+          &__controls {
+            grid-column: 1 / -1;
+            width: 100%;
+            margin-left: 0;
+          }
+
+          &__actions {
+            margin-left: 12px;
+          }
+        }
+      }
+
+      .rc-raised,
+      .rc-compact,
+      .circle-picker,
+      .google-picker,
+      .photoshop-picker,
+      .swatches-picker,
+      .twitter-picker,
+      .github-picker,
+      .block-picker {
+        max-width: 100%;
+      }
+
+      .rc-compact {
+        box-sizing: border-box;
+      }
+    }
+
+    &__live {
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+
+      > * {
+        flex: 0 1 auto;
+        max-width: 100%;
+      }
+    }
+  }
+}

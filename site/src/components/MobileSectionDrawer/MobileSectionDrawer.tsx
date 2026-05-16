@@ -38,7 +38,6 @@ export function MobileSectionDrawer({
           <span aria-hidden="true" />
         </button>
       </div>
-
       <div
         className={`sections-shell__drawer${isOpen ? ' sections-shell__drawer--open' : ''}`}
         hidden={!isOpen}

@@ -1,1 +1,2 @@
-export { PickerGallery, pickerGalleryComponents } from './PickerGallery';
+export { PickerGallery } from './PickerGallery';
+export { pickerGalleryComponents } from './pickerGalleryComponents';

@@ -1,0 +1,111 @@
+.picker-gallery {
+  &__imports {
+    display: grid;
+    gap: 0.48rem;
+    min-width: 0;
+    padding: 0.7rem;
+    border: 1px solid rgba(16, 32, 58, 0.08);
+    border-radius: 12px;
+    background: var(--site-surface-dark);
+    box-shadow: var(--site-shadow-code);
+
+    pre {
+      overflow-x: auto;
+      margin: 0;
+      max-width: 100%;
+      color: #f7fbff;
+      line-height: 1.55;
+      scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+    }
+
+    code {
+      display: block;
+      min-width: max-content;
+      color: #f7fbff;
+      font-family: var(--site-font-mono);
+      font-size: 0.78rem;
+      overflow-wrap: anywhere;
+    }
+
+    .token {
+      &.keyword,
+      &.selector,
+      &.atrule,
+      &.rule,
+      &.property,
+      &.class-name {
+        color: #ff8f70;
+      }
+
+      &.string,
+      &.attr-value,
+      &.template-string,
+      &.regex {
+        color: #b8f07a;
+      }
+
+      &.tag,
+      &.attr-name,
+      &.function,
+      &.builtin,
+      &.constant,
+      &.namespace {
+        color: #7fd6ff;
+      }
+
+      &.comment,
+      &.prolog,
+      &.doctype,
+      &.cdata {
+        color: rgba(214, 225, 244, 0.52);
+      }
+
+      &.number,
+      &.boolean,
+      &.symbol,
+      &.unit {
+        color: #ffd166;
+      }
+
+      &.parameter,
+      &.script,
+      &.operator,
+      &.punctuation,
+      &.plain-text {
+        color: #f7fbff;
+      }
+    }
+  }
+
+  &__imports-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.65rem;
+    align-items: center;
+    min-width: 0;
+
+    span {
+      color: rgba(255, 255, 255, 0.64);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  }
+
+  &__copy {
+    min-height: 1.75rem;
+    padding: 0.25rem 0.58rem;
+  }
+
+  &__status {
+    color: rgba(255, 255, 255, 0.54);
+    font-size: 0.72rem;
+  }
+
+  @media (max-width: 640px) {
+    &__copy {
+      min-height: 2.25rem;
+    }
+  }
+}

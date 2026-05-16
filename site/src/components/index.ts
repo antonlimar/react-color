@@ -6,11 +6,10 @@ export { InlineContent } from './InlineContent';
 export { MobileSectionDrawer } from './MobileSectionDrawer';
 export { PickerGallery, pickerGalleryComponents } from './PickerGallery';
 export { SearchNavigation, syncDocsSearchScrollbars } from './SearchNavigation';
-export type { SearchIndexEntry, SearchResult, SearchResultKind } from './SearchNavigation';
+export type { SearchIndexEntry, SearchResult } from './SearchNavigation';
 export {
   SectionNavigation,
   syncDesktopAnchorNavigationScroll,
   syncSectionNavigationScrollbars,
 } from './SectionNavigation';
 export { SiteHeader } from './SiteHeader';
-export type { SitePage } from './SiteHeader';

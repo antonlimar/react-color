@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import './SiteHeader.scss';
 
-export type SitePage = 'docs' | 'gallery' | 'not-found';
+type SitePage = 'docs' | 'gallery' | 'not-found';
 
 interface SiteHeaderProps {
   galleryPagePath: string;
