@@ -1,0 +1,1 @@
+export { ApiPropertyGroup } from './ApiPropertyGroup';

@@ -1,0 +1,45 @@
+.package-manager-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  min-width: 0;
+  margin: -0.1rem 0 0.75rem;
+
+  &__tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2rem;
+    padding: 0.32rem 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--site-radius-pill);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease;
+
+    &:hover,
+    &--active {
+      border-color: rgba(127, 214, 255, 0.36);
+      background: rgba(127, 214, 255, 0.14);
+      color: #d9f3ff;
+    }
+  }
+
+  @media (max-width: 640px) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    &__tab {
+      width: 100%;
+      min-height: 2.25rem;
+    }
+  }
+}
