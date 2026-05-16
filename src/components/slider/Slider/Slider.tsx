@@ -5,13 +5,13 @@ import { SliderPointer } from '../SliderPointer';
 import { SliderSwatches } from '../SliderSwatches';
 import './Slider.scss';
 
-type SliderProps = ColorPickerInjectedProps & {
+interface SliderProps extends ColorPickerInjectedProps {
   pointer?: HueProps['pointer'];
   styles?: PickerCustomStyles;
   className?: ClassName;
   classNames?: PickerClassNames;
   theme?: PickerTheme;
-};
+}
 
 const b = bem('slider');
 

@@ -3,7 +3,7 @@ import { Swatch, bem } from '@/components/common';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
 import './CircleSwatch.scss';
 
-type CircleSwatchProps = {
+interface CircleSwatchProps {
   color: string;
   onClick: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
   onSwatchHover?: SwatchHoverHandler;
@@ -11,7 +11,7 @@ type CircleSwatchProps = {
   active?: boolean;
   circleSize?: number;
   circleSpacing?: number;
-};
+}
 
 const b = bem('circle');
 

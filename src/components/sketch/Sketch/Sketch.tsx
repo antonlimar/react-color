@@ -22,7 +22,7 @@ import './Sketch.scss';
 
 type SketchPresetColor = string | { color: string; title?: string };
 
-type SketchProps = ColorPickerInjectedProps & {
+interface SketchProps extends ColorPickerInjectedProps {
   disableAlpha?: boolean;
   width?: string | number;
   styles?: PickerCustomStyles;
@@ -31,7 +31,7 @@ type SketchProps = ColorPickerInjectedProps & {
   className?: ClassName;
   classNames?: PickerClassNames;
   theme?: PickerTheme;
-};
+}
 
 const b = bem('sketch');
 

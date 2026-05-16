@@ -3,11 +3,11 @@ import { Swatch, bem } from '@/components/common';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
 import './GithubSwatch.scss';
 
-type GithubSwatchProps = {
+interface GithubSwatchProps {
   color: string;
   onClick: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
   onSwatchHover?: SwatchHoverHandler;
-};
+}
 
 const b = bem('github');
 

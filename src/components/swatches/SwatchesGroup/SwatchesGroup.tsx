@@ -4,12 +4,12 @@ import type { SwatchHoverHandler } from '@/types';
 import { SwatchesColor } from '../SwatchesColor';
 import './SwatchesGroup.scss';
 
-type SwatchesGroupProps = {
+interface SwatchesGroupProps {
   onClick: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
   onSwatchHover?: SwatchHoverHandler;
   group: string[];
   active: string;
-};
+}
 
 const b = bem('swatches');
 

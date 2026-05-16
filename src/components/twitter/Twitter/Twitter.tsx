@@ -18,7 +18,7 @@ import type {
 } from '@/types';
 import './Twitter.scss';
 
-type TwitterProps = ColorPickerInjectedProps & {
+interface TwitterProps extends ColorPickerInjectedProps {
   colors?: string[];
   width?: string | number;
   triangle?: 'hide' | 'top-left' | 'top-right';
@@ -26,7 +26,7 @@ type TwitterProps = ColorPickerInjectedProps & {
   className?: ClassName;
   classNames?: PickerClassNames;
   theme?: PickerTheme;
-};
+}
 
 const b = bem('twitter');
 

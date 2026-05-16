@@ -11,11 +11,11 @@ type PresetColor =
       title?: string;
     };
 
-type SketchPresetColorsProps = {
+interface SketchPresetColorsProps {
   colors: PresetColor[];
   onClick?: ColorInputChangeHandler;
   onSwatchHover?: SwatchHoverHandler;
-};
+}
 
 const b = bem('sketch');
 

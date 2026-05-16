@@ -4,7 +4,7 @@ import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCusto
 import { SwatchesGroup } from '../SwatchesGroup';
 import './Swatches.scss';
 
-type SwatchesProps = ColorPickerInjectedProps & {
+interface SwatchesProps extends ColorPickerInjectedProps {
   width?: string | number;
   height?: string | number;
   colors?: string[][];
@@ -12,7 +12,7 @@ type SwatchesProps = ColorPickerInjectedProps & {
   className?: ClassName;
   classNames?: PickerClassNames;
   theme?: PickerTheme;
-};
+}
 
 const b = bem('swatches');
 

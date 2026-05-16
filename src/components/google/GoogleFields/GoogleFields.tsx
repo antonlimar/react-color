@@ -3,13 +3,13 @@ import { isValidColorString, isValidHex } from '@/helpers';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, HSVAColor, RGBAColor } from '@/types';
 import './GoogleFields.scss';
 
-type GoogleFieldsProps = {
+interface GoogleFieldsProps {
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
   rgb: RGBAColor;
   hsl: HSLAColor;
   hex: string;
   hsv: HSVAColor;
-};
+}
 
 const b = bem('google');
 

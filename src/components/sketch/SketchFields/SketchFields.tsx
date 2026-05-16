@@ -3,13 +3,13 @@ import { isValidHex } from '@/helpers';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '@/types';
 import './SketchFields.scss';
 
-type SketchFieldsProps = {
+interface SketchFieldsProps {
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
   rgb: RGBAColor;
   hsl: HSLAColor;
   hex: string;
   disableAlpha?: boolean;
-};
+}
 
 const b = bem('sketch');
 

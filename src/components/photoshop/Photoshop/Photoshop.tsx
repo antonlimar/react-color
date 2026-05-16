@@ -22,7 +22,7 @@ import { PhotoshopPointerCircle } from '../PhotoshopPointerCircle';
 import { PhotoshopPreviews } from '../PhotoshopPreviews';
 import './Photoshop.scss';
 
-type PhotoshopProps = ColorPickerInjectedProps & {
+interface PhotoshopProps extends ColorPickerInjectedProps {
   header?: string;
   styles?: PickerCustomStyles;
   className?: ClassName;
@@ -30,7 +30,7 @@ type PhotoshopProps = ColorPickerInjectedProps & {
   theme?: PickerTheme;
   onAccept?: ColorPickerProps['onChange'];
   onCancel?: () => void;
-};
+}
 
 const b = bem('photoshop');
 

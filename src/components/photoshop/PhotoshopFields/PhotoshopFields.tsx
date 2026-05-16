@@ -3,12 +3,12 @@ import { isValidHex } from '@/helpers';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSVAColor, RGBAColor } from '@/types';
 import './PhotoshopFields.scss';
 
-type PhotoshopFieldsProps = {
+interface PhotoshopFieldsProps {
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
   rgb: RGBAColor;
   hsv: HSVAColor;
   hex: string;
-};
+}
 
 const b = bem('photoshop');
 

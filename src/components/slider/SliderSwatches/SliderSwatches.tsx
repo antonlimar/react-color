@@ -3,10 +3,10 @@ import type { ColorInputChangeHandler, HSLAColor } from '@/types';
 import { SliderSwatch } from '../SliderSwatch';
 import './SliderSwatches.scss';
 
-type SliderSwatchesProps = {
+interface SliderSwatchesProps {
   onClick: ColorInputChangeHandler;
   hsl: HSLAColor;
-};
+}
 
 const b = bem('slider');
 

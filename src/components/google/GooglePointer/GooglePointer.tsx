@@ -3,9 +3,9 @@ import { bem } from '@/components/common';
 import type { HSLAColor } from '@/types';
 import './GooglePointer.scss';
 
-type GooglePointerProps = {
+interface GooglePointerProps {
   hsl?: HSLAColor;
-};
+}
 
 const b = bem('google');
 

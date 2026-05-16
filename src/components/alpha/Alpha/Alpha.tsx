@@ -11,7 +11,7 @@ import type {
 import { AlphaPointer } from '../AlphaPointer';
 import './Alpha.scss';
 
-type AlphaPickerProps = ColorPickerInjectedProps & {
+interface AlphaPickerProps extends ColorPickerInjectedProps {
   width?: string | number;
   height?: string | number;
   direction?: AlphaProps['direction'];
@@ -21,7 +21,7 @@ type AlphaPickerProps = ColorPickerInjectedProps & {
   className?: ClassName;
   classNames?: PickerClassNames;
   theme?: PickerTheme;
-};
+}
 
 const b = bem('alpha');
 

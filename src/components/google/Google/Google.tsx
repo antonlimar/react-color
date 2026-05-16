@@ -12,14 +12,14 @@ import { GooglePointer } from '../GooglePointer';
 import { GooglePointerCircle } from '../GooglePointerCircle';
 import './Google.scss';
 
-type GoogleProps = ColorPickerInjectedProps & {
+interface GoogleProps extends ColorPickerInjectedProps {
   width?: string | number;
   styles?: PickerCustomStyles;
   header?: string;
   className?: ClassName;
   classNames?: PickerClassNames;
   theme?: PickerTheme;
-};
+}
 
 const b = bem('google');
 

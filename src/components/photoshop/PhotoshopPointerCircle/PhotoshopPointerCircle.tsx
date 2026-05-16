@@ -2,9 +2,9 @@ import { bem } from '@/components/common';
 import type { HSLAColor } from '@/types';
 import './PhotoshopPointerCircle.scss';
 
-type PhotoshopPointerCircleProps = {
+interface PhotoshopPointerCircleProps {
   hsl: HSLAColor;
-};
+}
 
 const b = bem('photoshop');
 

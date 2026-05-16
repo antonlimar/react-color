@@ -3,7 +3,7 @@ import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCusto
 import { GithubSwatch } from '../GithubSwatch';
 import './Github.scss';
 
-type GithubProps = ColorPickerInjectedProps & {
+interface GithubProps extends ColorPickerInjectedProps {
   width?: string | number;
   colors?: string[];
   triangle?: 'hide' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
@@ -11,7 +11,7 @@ type GithubProps = ColorPickerInjectedProps & {
   className?: ClassName;
   classNames?: PickerClassNames;
   theme?: PickerTheme;
-};
+}
 
 const b = bem('github');
 

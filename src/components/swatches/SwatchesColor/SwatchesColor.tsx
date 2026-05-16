@@ -5,14 +5,14 @@ import { getContrastingColor } from '@/helpers';
 import type { PickerStyle, SwatchHoverHandler } from '@/types';
 import './SwatchesColor.scss';
 
-type SwatchesColorProps = {
+interface SwatchesColorProps {
   color: string;
   onClick?: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
   onSwatchHover?: SwatchHoverHandler;
   first?: boolean;
   last?: boolean;
   active?: boolean;
-};
+}
 
 const b = bem('swatches');
 

@@ -5,14 +5,14 @@ import { isValidHex } from '@/helpers';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '@/types';
 import './ChromeFields.scss';
 
-type ChromeFieldsProps = {
+interface ChromeFieldsProps {
   hsl: HSLAColor;
   rgb: RGBAColor;
   hex: string;
   view?: 'hex' | 'rgb' | 'hsl';
   disableAlpha?: boolean;
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
-};
+}
 
 const b = bem('chrome');
 

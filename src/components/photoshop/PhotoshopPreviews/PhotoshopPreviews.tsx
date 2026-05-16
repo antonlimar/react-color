@@ -3,10 +3,10 @@ import { bem } from '@/components/common';
 import type { RGBAColor } from '@/types';
 import './PhotoshopPreviews.scss';
 
-type PhotoshopPreviewsProps = {
+interface PhotoshopPreviewsProps {
   rgb: RGBAColor;
   currentColor: string;
-};
+}
 
 const b = bem('photoshop');
 

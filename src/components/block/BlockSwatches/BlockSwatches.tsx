@@ -3,11 +3,11 @@ import { Swatch, bem } from '@/components/common';
 import type { SwatchHoverHandler } from '@/types';
 import './BlockSwatches.scss';
 
-type BlockSwatchesProps = {
+interface BlockSwatchesProps {
   colors: string[];
   onClick?: (color: string, event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => void;
   onSwatchHover?: SwatchHoverHandler;
-};
+}
 
 const b = bem('block');
 

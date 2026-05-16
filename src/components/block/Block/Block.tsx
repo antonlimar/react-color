@@ -19,7 +19,7 @@ import type {
 import { BlockSwatches } from '../BlockSwatches';
 import './Block.scss';
 
-type BlockProps = ColorPickerInjectedProps & {
+interface BlockProps extends ColorPickerInjectedProps {
   colors?: string[];
   width?: string | number;
   triangle?: 'top' | 'hide';
@@ -27,7 +27,7 @@ type BlockProps = ColorPickerInjectedProps & {
   className?: ClassName;
   classNames?: PickerClassNames;
   theme?: PickerTheme;
-};
+}
 
 const b = bem('block');
 

@@ -19,12 +19,12 @@ import type {
 } from '@/types';
 import './Material.scss';
 
-type MaterialProps = ColorPickerInjectedProps & {
+interface MaterialProps extends ColorPickerInjectedProps {
   styles?: PickerCustomStyles;
   className?: ClassName;
   classNames?: PickerClassNames;
   theme?: PickerTheme;
-};
+}
 
 const b = bem('material');
 

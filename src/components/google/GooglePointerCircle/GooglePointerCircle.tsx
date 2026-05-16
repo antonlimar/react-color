@@ -3,9 +3,9 @@ import { bem } from '@/components/common';
 import type { HSLAColor } from '@/types';
 import './GooglePointerCircle.scss';
 
-type GooglePointerCircleProps = {
+interface GooglePointerCircleProps {
   hsl?: HSLAColor;
-};
+}
 
 const b = bem('google');
 

@@ -4,14 +4,14 @@ import { bem } from '@/components/common';
 import type { ColorInputChangeHandler, HSLAColor } from '@/types';
 import './SliderSwatch.scss';
 
-type SliderSwatchProps = {
+interface SliderSwatchProps {
   hsl: HSLAColor;
   offset: number;
   onClick?: ColorInputChangeHandler;
   active?: boolean;
   first?: boolean;
   last?: boolean;
-};
+}
 
 const b = bem('slider');
 

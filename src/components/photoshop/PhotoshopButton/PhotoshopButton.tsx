@@ -1,12 +1,12 @@
 import type { ReactNode } from 'react';
 import { bem } from '@/components/common';
 
-type PhotoshopButtonProps = {
+interface PhotoshopButtonProps {
   onClick?: () => void;
   label?: string;
   children?: ReactNode;
   active?: boolean;
-};
+}
 
 const b = bem('photoshop');
 

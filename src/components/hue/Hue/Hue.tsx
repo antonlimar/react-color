@@ -10,7 +10,7 @@ import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCusto
 import { HuePointer } from '../HuePointer';
 import './Hue.scss';
 
-type HuePickerProps = ColorPickerInjectedProps & {
+interface HuePickerProps extends ColorPickerInjectedProps {
   width?: string | number;
   height?: string | number;
   direction?: HueProps['direction'];
@@ -19,7 +19,7 @@ type HuePickerProps = ColorPickerInjectedProps & {
   className?: ClassName;
   classNames?: PickerClassNames;
   theme?: PickerTheme;
-};
+}
 
 const b = bem('hue');
 

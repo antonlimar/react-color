@@ -21,7 +21,7 @@ import { ChromePointer } from '../ChromePointer';
 import { ChromePointerCircle } from '../ChromePointerCircle';
 import './Chrome.scss';
 
-type ChromeProps = ColorPickerInjectedProps & {
+interface ChromeProps extends ColorPickerInjectedProps {
   width?: string | number;
   disableAlpha?: boolean;
   renderers?: CheckboardRenderers;
@@ -30,7 +30,7 @@ type ChromeProps = ColorPickerInjectedProps & {
   classNames?: PickerClassNames;
   theme?: PickerTheme;
   defaultView?: 'hex' | 'rgb' | 'hsl';
-};
+}
 
 const b = bem('chrome');
 

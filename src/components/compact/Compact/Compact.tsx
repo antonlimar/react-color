@@ -13,13 +13,13 @@ import { CompactColor } from '../CompactColor';
 import { CompactFields } from '../CompactFields';
 import './Compact.scss';
 
-type CompactProps = ColorPickerInjectedProps & {
+interface CompactProps extends ColorPickerInjectedProps {
   colors?: string[];
   styles?: PickerCustomStyles;
   className?: ClassName;
   classNames?: PickerClassNames;
   theme?: PickerTheme;
-};
+}
 
 const b = bem('compact');
 

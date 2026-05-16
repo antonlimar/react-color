@@ -2,11 +2,11 @@ import { EditableInput, bem } from '@/components/common';
 import type { ColorChangeValue, ColorPickerChangeEvent, RGBAColor } from '@/types';
 import './CompactFields.scss';
 
-type CompactFieldsProps = {
+interface CompactFieldsProps {
   hex: string;
   rgb: RGBAColor;
   onChange: (data: ColorChangeValue, event?: ColorPickerChangeEvent) => void;
-};
+}
 
 const b = bem('compact');
 

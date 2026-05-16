@@ -4,7 +4,7 @@ import type { ClassName, ColorPickerInjectedProps, PickerClassNames, PickerCusto
 import { CircleSwatch } from '../CircleSwatch';
 import './Circle.scss';
 
-type CircleProps = ColorPickerInjectedProps & {
+interface CircleProps extends ColorPickerInjectedProps {
   width?: string | number;
   circleSize?: number;
   circleSpacing?: number;
@@ -13,7 +13,7 @@ type CircleProps = ColorPickerInjectedProps & {
   className?: ClassName;
   classNames?: PickerClassNames;
   theme?: PickerTheme;
-};
+}
 
 const b = bem('circle');
 
