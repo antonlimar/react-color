@@ -1,5 +1,2 @@
-export {
-  SectionNavigation,
-  syncDesktopAnchorNavigationScroll,
-  syncSectionNavigationScrollbars,
-} from './SectionNavigation';
+export { SectionNavigation } from './SectionNavigation';
+export { syncDesktopAnchorNavigationScroll, syncSectionNavigationScrollbars } from './utils';
