@@ -399,6 +399,13 @@
         width: 200px !important;
       }
     }
+
+    &--compact {
+      .hero__picker-surface > .rc-raised {
+        width: max-content !important;
+        max-width: 100%;
+      }
+    }
   }
 
   &__picker-meta {
