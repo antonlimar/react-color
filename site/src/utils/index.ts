@@ -20,3 +20,4 @@ export {
   stripSearchText,
 } from './docsSections';
 export { highlightCode } from './highlightCode';
+export { siteBem } from './siteBem';

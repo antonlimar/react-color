@@ -1,3 +1,4 @@
+import { siteBem } from '../../utils/siteBem';
 import { AnchorHeading } from '../AnchorHeading';
 import { InlineContent } from '../InlineContent';
 import { ApiPropertyGroup } from './ApiPropertyGroup';
@@ -12,15 +13,17 @@ interface DocsSectionProps {
 }
 
 export function DocsSection({ section, packageManager, setPackageManager }: DocsSectionProps) {
+  const b = siteBem('section');
+
   return (
-    <section className="section" id={section.id}>
-      <div className="section__panel">
-        <div className="section__body">
+    <section className={b()} id={section.id}>
+      <div className={b('panel')}>
+        <div className={b('body')}>
           <AnchorHeading anchorId={section.id} level={2}>
             {section.title}
           </AnchorHeading>
           {section.intro ? (
-            <p className="section__intro">
+            <p className={b('intro')}>
               <InlineContent text={section.intro} />
             </p>
           ) : null}
@@ -33,12 +36,12 @@ export function DocsSection({ section, packageManager, setPackageManager }: Docs
             />
           ))}
           {section.subsections?.map((subsection) => (
-            <div className="section__subsection" id={subsection.id} key={subsection.id}>
+            <div className={b('subsection')} id={subsection.id} key={subsection.id}>
               <AnchorHeading anchorId={subsection.id} level={3}>
                 {subsection.title}
               </AnchorHeading>
               {subsection.intro ? (
-                <p className="section__intro section__intro--subsection">
+                <p className={b('intro', { subsection: true })}>
                   <InlineContent text={subsection.intro} />
                 </p>
               ) : null}

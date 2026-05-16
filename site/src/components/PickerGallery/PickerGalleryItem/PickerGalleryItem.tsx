@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router';
+import { siteBem } from '../../../utils/siteBem';
 import { LivePickerPreview } from '../LivePickerPreview';
 import { PickerImportSnippet } from '../PickerImportSnippet';
 import type { PickerMetadata } from '../../../content';
@@ -14,26 +15,27 @@ interface PickerGalleryItemProps {
 
 export function PickerGalleryItem({ color, colorLabel, onChange, picker }: PickerGalleryItemProps) {
   const importSnippet = `import { ${picker.exportName} } from 'react-color';`;
+  const b = siteBem('picker-gallery');
 
   return (
-    <article className="picker-gallery__item" id={`picker-${picker.id}`}>
+    <article className={b('item')} id={`picker-${picker.id}`}>
       <LivePickerPreview picker={picker} color={color} onChange={onChange} />
-      <div className="picker-gallery__content">
-        <div className="picker-gallery__head">
+      <div className={b('content')}>
+        <div className={b('head')}>
           <h3>{picker.title}</h3>
-          <div className="picker-gallery__meta">
+          <div className={b('meta')}>
             <code>{picker.exportName}</code>
             <span>{colorLabel}</span>
           </div>
         </div>
         <p>{picker.summary}</p>
-        <div className="picker-gallery__badges" aria-label={`${picker.title} capabilities`}>
+        <div className={b('badges')} aria-label={`${picker.title} capabilities`}>
           {picker.badges.map((badge) => (
             <span key={`${picker.id}-${badge}`}>{badge}</span>
           ))}
         </div>
         <PickerImportSnippet picker={picker} code={importSnippet} />
-        <Link className="picker-gallery__api-link" to="/" hash={picker.apiAnchor}>
+        <Link className={b('api-link')} to="/" hash={picker.apiAnchor}>
           API props
         </Link>
       </div>

@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { pickerMetadata } from '../../content';
 import { colorToHex } from '../../utils/colorUtils';
+import { siteBem } from '../../utils/siteBem';
 import { PickerGalleryItem } from './PickerGalleryItem';
 import type { ColorResult, RGBAColor } from 'react-color';
 import './PickerGallery.scss';
@@ -19,9 +20,10 @@ export function PickerGallery({ color, onChange }: PickerGalleryProps) {
   );
 
   const galleryColorLabel = colorToHex(color);
+  const b = siteBem('picker-gallery');
 
   return (
-    <div className="picker-gallery" aria-label="Public picker components">
+    <div className={b()} aria-label="Public picker components">
       {pickerMetadata.map((picker) => (
         <PickerGalleryItem
           color={color}

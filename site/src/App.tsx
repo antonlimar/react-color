@@ -28,11 +28,14 @@ import {
   normalizeRouterBasepath,
   packageManagerStorageKey,
   searchDocs,
+  siteBem,
 } from './utils';
 import type { PackageManager } from './content';
 import type { ColorResult, RGBAColor } from 'react-color';
 
 const galleryPagePath = '/gallery' as const;
+const siteShell = siteBem('site-shell');
+const skipLink = siteBem('skip-link');
 
 const pickerGalleryIntro =
   'Use this gallery to compare the bundled picker layouts side by side: full editors for precise input, palette pickers for presets, and sliders for focused hue or alpha controls.';
@@ -42,13 +45,13 @@ const pickerGalleryNote =
 
 function NotFoundRoute() {
   return (
-    <div className="site-shell" style={formatBackground(initialColor)}>
-      <a className="skip-link" href="#site-not-found">
+    <div className={siteShell()} style={formatBackground(initialColor)}>
+      <a className={skipLink()} href="#site-not-found">
         Skip to 404 message
       </a>
-      <div className="site-shell__ambient site-shell__ambient--grid" aria-hidden="true" />
-      <div className="site-shell__ambient site-shell__ambient--one" aria-hidden="true" />
-      <div className="site-shell__ambient site-shell__ambient--two" aria-hidden="true" />
+      <div className={siteShell('ambient', { grid: true })} aria-hidden="true" />
+      <div className={siteShell('ambient', { one: true })} aria-hidden="true" />
+      <div className={siteShell('ambient', { two: true })} aria-hidden="true" />
 
       <SiteHeader galleryPagePath={galleryPagePath} page="not-found" />
       <NotFoundPageContent galleryPagePath={galleryPagePath} />
@@ -344,13 +347,13 @@ function AppShell() {
 
   if (isNotFoundPage) {
     return (
-      <div className="site-shell" style={formatBackground(color)}>
-        <a className="skip-link" href="#site-not-found">
+      <div className={siteShell()} style={formatBackground(color)}>
+        <a className={skipLink()} href="#site-not-found">
           Skip to 404 message
         </a>
-        <div className="site-shell__ambient site-shell__ambient--grid" aria-hidden="true" />
-        <div className="site-shell__ambient site-shell__ambient--one" aria-hidden="true" />
-        <div className="site-shell__ambient site-shell__ambient--two" aria-hidden="true" />
+        <div className={siteShell('ambient', { grid: true })} aria-hidden="true" />
+        <div className={siteShell('ambient', { one: true })} aria-hidden="true" />
+        <div className={siteShell('ambient', { two: true })} aria-hidden="true" />
 
         <SiteHeader galleryPagePath={galleryPagePath} page="not-found" />
         {mobileSectionDrawer}
@@ -360,13 +363,13 @@ function AppShell() {
   }
 
   return (
-    <div className="site-shell" style={formatBackground(color)}>
-      <a className="skip-link" href="#site-documentation">
+    <div className={siteShell()} style={formatBackground(color)}>
+      <a className={skipLink()} href="#site-documentation">
         Skip to documentation
       </a>
-      <div className="site-shell__ambient site-shell__ambient--grid" aria-hidden="true" />
-      <div className="site-shell__ambient site-shell__ambient--one" aria-hidden="true" />
-      <div className="site-shell__ambient site-shell__ambient--two" aria-hidden="true" />
+      <div className={siteShell('ambient', { grid: true })} aria-hidden="true" />
+      <div className={siteShell('ambient', { one: true })} aria-hidden="true" />
+      <div className={siteShell('ambient', { two: true })} aria-hidden="true" />
       <SiteHeader galleryPagePath={galleryPagePath} page={isGalleryPage ? 'gallery' : 'docs'} />
       {mobileSectionDrawer}
       {isGalleryPage ? (

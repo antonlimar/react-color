@@ -1,3 +1,4 @@
+import { siteBem } from '../../../utils/siteBem';
 import { ApiDefaultValue } from '../../ApiDefaultValue';
 import { InlineContent } from '../../InlineContent';
 import { ApiPropertyName } from '../ApiPropertyName';
@@ -13,10 +14,13 @@ export function ApiPropertyCards({ group }: ApiPropertyCardsProps) {
     return null;
   }
 
+  const cards = siteBem('api-prop-cards');
+  const card = siteBem('api-prop-card');
+
   return (
-    <div className="api-prop-cards" aria-label={`${group.title} props`}>
+    <div className={cards()} aria-label={`${group.title} props`}>
       {group.properties.map((property) => (
-        <article className="api-prop-card" key={`${group.title}-${property.name}-card`}>
+        <article className={card()} key={`${group.title}-${property.name}-card`}>
           <div>
             <span>Prop</span>
             <strong>

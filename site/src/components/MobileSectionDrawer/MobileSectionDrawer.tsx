@@ -1,4 +1,5 @@
 import type { RefObject } from 'react';
+import { siteBem } from '../../utils/siteBem';
 import { SectionNavigation } from '../SectionNavigation';
 import './MobileSectionDrawer.scss';
 
@@ -21,11 +22,13 @@ export function MobileSectionDrawer({
   onClose,
   onToggle,
 }: MobileSectionDrawerProps) {
+  const b = siteBem('sections-shell');
+
   return (
     <>
-      <div className="sections-shell__toolbar">
+      <div className={b('toolbar')}>
         <button
-          className="sections-shell__drawer-toggle"
+          className={b('drawer-toggle')}
           ref={drawerToggleRef}
           type="button"
           aria-label="Browse sections"
@@ -38,19 +41,15 @@ export function MobileSectionDrawer({
           <span aria-hidden="true" />
         </button>
       </div>
-      <div
-        className={`sections-shell__drawer${isOpen ? ' sections-shell__drawer--open' : ''}`}
-        hidden={!isOpen}
-        aria-hidden={!isOpen}
-      >
+      <div className={b('drawer', { open: isOpen })} hidden={!isOpen} aria-hidden={!isOpen}>
         <button
-          className="sections-shell__drawer-backdrop"
+          className={b('drawer-backdrop')}
           type="button"
           aria-label="Close section navigation"
           onClick={onClose}
         />
         <div
-          className="sections-shell__drawer-panel"
+          className={b('drawer-panel')}
           id="mobile-section-nav"
           ref={drawerPanelRef}
           role="dialog"
@@ -58,21 +57,16 @@ export function MobileSectionDrawer({
           aria-labelledby="mobile-section-nav-title"
           tabIndex={-1}
         >
-          <div className="sections-shell__drawer-head">
+          <div className={b('drawer-head')}>
             <strong id="mobile-section-nav-title">Sections</strong>
-            <button
-              className="sections-shell__drawer-close"
-              type="button"
-              aria-label="Close section navigation"
-              onClick={onClose}
-            >
+            <button className={b('drawer-close')} type="button" aria-label="Close section navigation" onClick={onClose}>
               Close
             </button>
           </div>
           <SectionNavigation
             activeAnchorId={activeAnchorId}
             anchorPath={anchorNavigationPath}
-            className="section-nav section-nav--drawer"
+            isDrawer
             onNavigate={onClose}
           />
         </div>

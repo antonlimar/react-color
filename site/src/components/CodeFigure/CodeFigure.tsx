@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { highlightCode } from '../../utils/highlightCode';
+import { siteBem } from '../../utils/siteBem';
 import { copyText } from './clipboard';
 import type { CodeBlock } from '../../content';
 import './CodeFigure.scss';
@@ -61,16 +62,18 @@ export function useCodeCopy(valueToCopy: string) {
 export function CodeFigure({ code, language, label, copyValue, packageManagerControls }: CodeFigureProps) {
   const valueToCopy = copyValue ?? code;
   const { buttonLabel, copyState, handleCopy, statusLabel } = useCodeCopy(valueToCopy);
+  const b = siteBem('content-code');
+  const languageClassName = siteBem(`language-${language}`);
 
   return (
-    <figure className="content-code">
-      <div className="content-code__header">
-        <div className="content-code__meta">
+    <figure className={b()}>
+      <div className={b('header')}>
+        <div className={b('meta')}>
           {label ? <figcaption>{label}</figcaption> : null}
-          <span className="content-code__language">{language}</span>
+          <span className={b('language')}>{language}</span>
         </div>
         <button
-          className={`content-code__copy content-code__copy--${copyState}`}
+          className={b('copy', { [copyState]: true })}
           type="button"
           onClick={handleCopy}
           aria-label={`${buttonLabel}: ${label ?? `${language} snippet`}`}
@@ -82,9 +85,9 @@ export function CodeFigure({ code, language, label, copyValue, packageManagerCon
       {packageManagerControls}
 
       <pre>
-        <code className={`language-${language}`} dangerouslySetInnerHTML={{ __html: highlightCode(code, language) }} />
+        <code className={languageClassName()} dangerouslySetInnerHTML={{ __html: highlightCode(code, language) }} />
       </pre>
-      <span className="content-code__status" aria-live="polite">
+      <span className={b('status')} aria-live="polite">
         {statusLabel}
       </span>
     </figure>

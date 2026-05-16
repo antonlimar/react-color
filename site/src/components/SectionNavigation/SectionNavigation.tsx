@@ -1,55 +1,56 @@
 import { siteSections } from '../../content';
+import { siteBem } from '../../utils/siteBem';
 import { createNavItems, handleSectionNavigationScrollbarDrag, isSubsectionActive } from './utils';
 import './SectionNavigation.scss';
 
 interface SectionNavigationProps {
   activeAnchorId: string;
   anchorPath?: string;
-  className?: string;
+  isDrawer?: boolean;
   onNavigate?: () => void;
 }
 
 export function SectionNavigation({
   activeAnchorId,
   anchorPath = '',
-  className = 'section-nav',
+  isDrawer = false,
   onNavigate,
 }: SectionNavigationProps) {
   const navSections = siteSections.map(createNavItems);
-  const isDrawerNavigation = className.split(' ').includes('section-nav--drawer');
+  const b = siteBem('section-nav');
+  const shell = siteBem('section-nav-shell');
+  const scrollbar = siteBem('section-nav-scrollbar');
 
   return (
-    <div className={`section-nav-shell${isDrawerNavigation ? ' section-nav-shell--drawer' : ''}`}>
-      <nav className={className} aria-label="Section navigation">
-        <ul className="section-nav__list">
+    <div className={shell({ drawer: isDrawer })}>
+      <nav className={b({ drawer: isDrawer })} aria-label="Section navigation">
+        <ul className={b('list')}>
           {navSections.map((section) => {
             const isSectionActive =
               activeAnchorId === section.id ||
               section.subsections.some((subsection) => isSubsectionActive(subsection, activeAnchorId));
 
             return (
-              <li className="section-nav__item" key={section.id}>
+              <li className={b('item')} key={section.id}>
                 <a
-                  className={`section-nav__link${isSectionActive ? ' section-nav__link--active' : ''}`}
+                  className={b('link', { active: isSectionActive })}
                   href={`${anchorPath}#${section.id}`}
                   data-anchor-id={section.id}
                   aria-current={activeAnchorId === section.id ? 'location' : undefined}
                   onClick={onNavigate}
                 >
-                  <span className="section-nav__index">
+                  <span className={b('index')}>
                     {String(siteSections.findIndex((entry) => entry.id === section.id) + 1).padStart(2, '0')}
                   </span>
                   <span>{section.title}</span>
                 </a>
 
                 {section.subsections.length > 0 ? (
-                  <ul className="section-nav__sublist">
+                  <ul className={b('sublist')}>
                     {section.subsections.map((subsection) => (
                       <li key={subsection.id}>
                         <a
-                          className={`section-nav__sublink${
-                            isSubsectionActive(subsection, activeAnchorId) ? ' section-nav__sublink--active' : ''
-                          }`}
+                          className={b('sublink', { active: isSubsectionActive(subsection, activeAnchorId) })}
                           href={`${anchorPath}#${subsection.id}`}
                           data-anchor-id={subsection.id}
                           aria-current={activeAnchorId === subsection.id ? 'location' : undefined}
@@ -58,15 +59,13 @@ export function SectionNavigation({
                           {subsection.title}
                         </a>
                         {subsection.children.length > 0 ? (
-                          <ul className="section-nav__childlist">
+                          <ul className={b('childlist')}>
                             {subsection.children.map((child) => (
                               <li key={child.id}>
                                 <a
-                                  className={`section-nav__childlink${
-                                    activeAnchorId === child.id || activeAnchorId.startsWith(`${child.id}-`)
-                                      ? ' section-nav__childlink--active'
-                                      : ''
-                                  }`}
+                                  className={b('childlink', {
+                                    active: activeAnchorId === child.id || activeAnchorId.startsWith(`${child.id}-`),
+                                  })}
                                   href={`${anchorPath}#${child.id}`}
                                   data-anchor-id={child.id}
                                   aria-current={activeAnchorId === child.id ? 'location' : undefined}
@@ -87,8 +86,8 @@ export function SectionNavigation({
           })}
         </ul>
       </nav>
-      <span className="section-nav-scrollbar" aria-hidden="true" onPointerDown={handleSectionNavigationScrollbarDrag}>
-        <span className="section-nav-scrollbar__thumb" />
+      <span className={scrollbar()} aria-hidden="true" onPointerDown={handleSectionNavigationScrollbarDrag}>
+        <span className={scrollbar('thumb')} />
       </span>
     </div>
   );

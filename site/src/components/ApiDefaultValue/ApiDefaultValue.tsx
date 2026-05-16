@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { siteBem } from '../../utils/siteBem';
 import './ApiDefaultValue.scss';
 
 interface ApiDefaultValueProps {
@@ -7,23 +8,24 @@ interface ApiDefaultValueProps {
 
 export function ApiDefaultValue({ value }: ApiDefaultValueProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const b = siteBem('api-default');
 
   if (!value) {
-    return <span className="api-default api-default--empty">None</span>;
+    return <span className={b({ empty: true })}>None</span>;
   }
 
   const isLongDefault = value.length > 48;
 
   if (!isLongDefault) {
-    return <code className="api-default">{value}</code>;
+    return <code className={b()}>{value}</code>;
   }
 
   return (
-    <div className={`api-default api-default--long${isExpanded ? ' api-default--expanded' : ''}`}>
-      <button className="api-default__toggle" type="button" onClick={() => setIsExpanded((current) => !current)}>
+    <div className={b({ long: true, expanded: isExpanded })}>
+      <button className={b('toggle')} type="button" onClick={() => setIsExpanded((current) => !current)}>
         {isExpanded ? 'Hide default' : 'Show default'}
       </button>
-      {isExpanded ? <code className="api-default__value">{value}</code> : null}
+      {isExpanded ? <code className={b('value')}>{value}</code> : null}
     </div>
   );
 }

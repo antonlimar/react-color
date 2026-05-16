@@ -1,4 +1,5 @@
 import { highlightCode } from '../../../utils/highlightCode';
+import { siteBem } from '../../../utils/siteBem';
 import { useCodeCopy } from '../../CodeFigure';
 import type { PickerMetadata } from '../../../content';
 import './PickerImportSnippet.scss';
@@ -10,13 +11,16 @@ interface PickerImportSnippetProps {
 
 export function PickerImportSnippet({ picker, code }: PickerImportSnippetProps) {
   const { buttonLabel, copyState, handleCopy, statusLabel } = useCodeCopy(code);
+  const gallery = siteBem('picker-gallery');
+  const contentCode = siteBem('content-code');
+  const languageTsx = siteBem('language-tsx');
 
   return (
-    <div className="picker-gallery__imports">
-      <div className="picker-gallery__imports-header">
+    <div className={gallery('imports')}>
+      <div className={gallery('imports-header')}>
         <span>Import</span>
         <button
-          className={`content-code__copy content-code__copy--${copyState} picker-gallery__copy`}
+          className={contentCode('copy', { [copyState]: true }).mix(gallery('copy'))}
           type="button"
           onClick={handleCopy}
           aria-label={`${buttonLabel}: ${picker.title} import`}
@@ -25,9 +29,9 @@ export function PickerImportSnippet({ picker, code }: PickerImportSnippetProps) 
         </button>
       </div>
       <pre>
-        <code className="language-tsx" dangerouslySetInnerHTML={{ __html: highlightCode(code, 'tsx') }} />
+        <code className={languageTsx()} dangerouslySetInnerHTML={{ __html: highlightCode(code, 'tsx') }} />
       </pre>
-      <span className="picker-gallery__status" aria-live="polite">
+      <span className={gallery('status')} aria-live="polite">
         {statusLabel}
       </span>
     </div>

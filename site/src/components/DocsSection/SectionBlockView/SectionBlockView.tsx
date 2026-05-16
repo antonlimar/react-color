@@ -1,3 +1,4 @@
+import { siteBem } from '../../../utils/siteBem';
 import { CodeFigure } from '../../CodeFigure';
 import { InlineContent } from '../../InlineContent';
 import { PackageManagerTabs } from '../PackageManagerTabs';
@@ -11,9 +12,12 @@ interface SectionBlockViewProps {
 }
 
 export function SectionBlockView({ block, packageManager, setPackageManager }: SectionBlockViewProps) {
+  const text = siteBem('content-text');
+  const list = siteBem('content-list');
+
   if (block.type === 'text') {
     return (
-      <p className="content-text">
+      <p className={text()}>
         <InlineContent text={block.text} />
       </p>
     );
@@ -21,7 +25,7 @@ export function SectionBlockView({ block, packageManager, setPackageManager }: S
 
   if (block.type === 'bullets') {
     return (
-      <ul className="content-list">
+      <ul className={list()}>
         {block.items.map((item) => (
           <li key={item}>
             <InlineContent text={item} />

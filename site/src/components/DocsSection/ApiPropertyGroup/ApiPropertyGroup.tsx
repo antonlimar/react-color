@@ -1,4 +1,5 @@
 import { createPropertyGroupAnchorId } from '../../../utils/docsSections';
+import { siteBem } from '../../../utils/siteBem';
 import { AnchorHeading } from '../../AnchorHeading';
 import { ApiDefaultValue } from '../../ApiDefaultValue';
 import { InlineContent } from '../../InlineContent';
@@ -14,10 +15,13 @@ interface ApiPropertyGroupProps {
 
 export function ApiPropertyGroup({ group, subsection }: ApiPropertyGroupProps) {
   const groupAnchorId = createPropertyGroupAnchorId(subsection, group);
+  const b = siteBem('api-group');
+  const table = siteBem('api-table');
+  const type = siteBem('api-type');
 
   return (
-    <div className="api-group" id={groupAnchorId}>
-      <div className="api-group__head">
+    <div className={b()} id={groupAnchorId}>
+      <div className={b('head')}>
         <AnchorHeading anchorId={groupAnchorId} level={4}>
           {group.title}
         </AnchorHeading>
@@ -27,9 +31,8 @@ export function ApiPropertyGroup({ group, subsection }: ApiPropertyGroupProps) {
           </p>
         ) : null}
       </div>
-
       {group.properties.length > 0 ? (
-        <table className="api-table">
+        <table className={table()}>
           <thead>
             <tr>
               <th>Prop</th>
@@ -45,7 +48,7 @@ export function ApiPropertyGroup({ group, subsection }: ApiPropertyGroupProps) {
                   <ApiPropertyName property={property} />
                 </th>
                 <td>
-                  <code className="api-type">{property.type}</code>
+                  <code className={type()}>{property.type}</code>
                 </td>
                 <td>
                   <ApiDefaultValue value={property.defaultValue} />
@@ -58,7 +61,6 @@ export function ApiPropertyGroup({ group, subsection }: ApiPropertyGroupProps) {
           </tbody>
         </table>
       ) : null}
-
       <ApiPropertyCards group={group} />
     </div>
   );

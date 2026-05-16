@@ -1,3 +1,4 @@
+import { siteBem } from '../../../utils/siteBem';
 import { pickerGalleryComponents, pickerGalleryPreviewProps } from '../pickerGalleryComponents';
 import type { PickerMetadata } from '../../../content';
 import type { ColorResult, RGBAColor } from 'react-color';
@@ -16,12 +17,11 @@ export function LivePickerPreview({ picker, color, onChange }: LivePickerPreview
     return null;
   }
 
+  const b = siteBem('picker-gallery');
+
   return (
-    <div
-      className={`picker-gallery__preview picker-gallery__preview--${picker.id}`}
-      aria-label={`${picker.title} live demo`}
-    >
-      <div className="picker-gallery__live">
+    <div className={b('preview', { [picker.id]: true })} aria-label={`${picker.title} live demo`}>
+      <div className={b('live')}>
         <PickerComponent
           color={color}
           onChange={onChange}
