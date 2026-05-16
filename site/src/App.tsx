@@ -159,8 +159,10 @@ function AppShell() {
       anchorNavigationPath={anchorNavigationPath}
       drawerPanelRef={drawerPanelRef}
       drawerToggleRef={drawerToggleRef}
+      isDarkTheme={isDarkTheme}
       isOpen={isNavDrawerOpen}
       onClose={closeNavDrawer}
+      onThemeToggle={toggleSiteTheme}
       onToggle={() => setIsNavDrawerOpen((current) => !current)}
     />
   );

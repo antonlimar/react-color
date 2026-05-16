@@ -203,6 +203,10 @@
       justify-content: flex-start;
     }
 
+    &__theme-toggle {
+      display: none;
+    }
+
     &__status {
       width: fit-content;
     }
@@ -222,11 +226,6 @@
     }
 
     &__link {
-      width: 100%;
-      min-height: 2.75rem;
-    }
-
-    &__theme-toggle {
       width: 100%;
       min-height: 2.75rem;
     }

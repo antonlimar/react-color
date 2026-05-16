@@ -30,6 +30,12 @@ async function renderApp() {
   return view;
 }
 
+function getHeaderThemeToggle() {
+  const primaryNav = screen.getByRole('navigation', { name: /primary navigation/i });
+
+  return within(primaryNav).getByRole('button', { name: /switch to (dark|light) theme/i });
+}
+
 describe('site app', () => {
   afterEach(async () => {
     await act(async () => {});
@@ -125,6 +131,17 @@ describe('site app', () => {
       'aria-pressed',
       'false',
     );
+    expect(Array.from(primaryNav.children)[3]).toBe(
+      within(primaryNav).getByRole('button', { name: /switch to dark theme/i }),
+    );
+
+    const mobileToolbar = container.querySelector('.sections-shell__toolbar') as HTMLElement;
+    expect(Array.from(mobileToolbar.children)[0]).toBe(
+      within(mobileToolbar).getByRole('button', { name: /switch to dark theme/i }),
+    );
+    expect(Array.from(mobileToolbar.children)[1]).toBe(
+      within(mobileToolbar).getByRole('button', { name: /browse sections/i }),
+    );
 
     await waitFor(() => {
       expect(container.querySelector('.site-shell')).toBeInstanceOf(HTMLElement);
@@ -133,7 +150,7 @@ describe('site app', () => {
 
   test('toggles and persists the documentation theme from the header', async () => {
     const { container } = await renderApp();
-    const themeToggle = screen.getByRole('button', { name: /switch to dark theme/i });
+    const themeToggle = getHeaderThemeToggle();
     const siteShell = container.querySelector('.site-shell') as HTMLElement;
 
     expect(siteShell).toHaveAttribute('data-site-theme', 'light');
@@ -144,13 +161,13 @@ describe('site app', () => {
     expect(siteShell).toHaveAttribute('data-site-theme', 'dark');
     expect(document.documentElement).toHaveAttribute('data-site-theme', 'dark');
     expect(window.localStorage.getItem('react-color-docs-theme')).toBe('dark');
-    expect(screen.getByRole('button', { name: /switch to light theme/i })).toHaveAttribute('aria-pressed', 'true');
+    expect(getHeaderThemeToggle()).toHaveAttribute('aria-pressed', 'true');
   });
 
   test('applies the selected site theme to homepage picker demos', async () => {
     const { container } = await renderApp();
 
-    fireEvent.click(screen.getByRole('button', { name: /switch to dark theme/i }));
+    fireEvent.click(getHeaderThemeToggle());
 
     await waitFor(() => {
       expect(container.querySelector('.site-shell')).toHaveAttribute('data-site-theme', 'dark');
@@ -629,7 +646,7 @@ describe('site app', () => {
 
     const { container } = await renderApp();
 
-    fireEvent.click(screen.getByRole('button', { name: /switch to dark theme/i }));
+    fireEvent.click(getHeaderThemeToggle());
 
     await waitFor(() => {
       expect(container.querySelector('.site-shell')).toHaveAttribute('data-site-theme', 'dark');
@@ -666,7 +683,7 @@ describe('site app', () => {
 
     const { container } = await renderApp();
 
-    fireEvent.click(screen.getByRole('button', { name: /switch to dark theme/i }));
+    fireEvent.click(getHeaderThemeToggle());
 
     await waitFor(() => {
       expect(container.querySelector('.site-shell')).toHaveAttribute('data-site-theme', 'dark');

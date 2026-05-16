@@ -27,7 +27,37 @@
     }
   }
 
-  .site-shell[data-site-theme='dark'] &__drawer-toggle {
+  &__theme-toggle {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: 1px solid var(--site-border);
+    border-radius: var(--site-radius-pill);
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(29, 43, 71, 0.08);
+    color: var(--site-text);
+    backdrop-filter: blur(16px);
+  }
+
+  &__theme-icon {
+    grid-area: 1 / 1;
+    width: 1.12rem;
+    height: 1.12rem;
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+
+    &--sun {
+      opacity: 0;
+      transform: rotate(-24deg) scale(0.72);
+    }
+  }
+
+  .site-shell[data-site-theme='dark'] &__drawer-toggle,
+  .site-shell[data-site-theme='dark'] &__theme-toggle {
     border-color: rgba(230, 238, 250, 0.18);
     background: rgba(14, 24, 40, 0.88);
     color: var(--site-text-strong);
@@ -37,6 +67,16 @@
       border-color: rgba(230, 238, 250, 0.28);
       background: rgba(24, 38, 60, 0.92);
     }
+  }
+
+  .site-shell[data-site-theme='dark'] &__theme-icon--sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .site-shell[data-site-theme='dark'] &__theme-icon--moon {
+    opacity: 0;
+    transform: rotate(24deg) scale(0.72);
   }
 
   &__drawer-eyebrow {
@@ -54,14 +94,12 @@
 
   @media (max-width: 920px) {
     &__toolbar {
-      display: contents;
-    }
-
-    &__drawer-toggle {
       position: fixed;
       top: max(0.75rem, env(safe-area-inset-top));
       right: max(0.75rem, env(safe-area-inset-right));
       z-index: 90;
+      display: flex;
+      gap: 0.5rem;
     }
 
     &__drawer {

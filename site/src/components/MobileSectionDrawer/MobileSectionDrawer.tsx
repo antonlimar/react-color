@@ -1,6 +1,7 @@
 import type { RefObject } from 'react';
 import { siteBem } from '../../utils/siteBem';
 import { SectionNavigation } from '../SectionNavigation';
+import { ThemeToggleButton } from '../SiteHeader/SiteHeader';
 import './MobileSectionDrawer.scss';
 
 interface MobileSectionDrawerProps {
@@ -8,8 +9,10 @@ interface MobileSectionDrawerProps {
   anchorNavigationPath: string;
   drawerPanelRef: RefObject<HTMLDivElement | null>;
   drawerToggleRef: RefObject<HTMLButtonElement | null>;
+  isDarkTheme: boolean;
   isOpen: boolean;
   onClose: () => void;
+  onThemeToggle: () => void;
   onToggle: () => void;
 }
 
@@ -18,8 +21,10 @@ export function MobileSectionDrawer({
   anchorNavigationPath,
   drawerPanelRef,
   drawerToggleRef,
+  isDarkTheme,
   isOpen,
   onClose,
+  onThemeToggle,
   onToggle,
 }: MobileSectionDrawerProps) {
   const b = siteBem('sections-shell');
@@ -27,6 +32,12 @@ export function MobileSectionDrawer({
   return (
     <>
       <div className={b('toolbar')}>
+        <ThemeToggleButton
+          className={b('theme-toggle')}
+          iconClassName={(modifier) => b('theme-icon', { [modifier]: true })}
+          isDarkTheme={isDarkTheme}
+          onThemeToggle={onThemeToggle}
+        />
         <button
           className={b('drawer-toggle')}
           ref={drawerToggleRef}
