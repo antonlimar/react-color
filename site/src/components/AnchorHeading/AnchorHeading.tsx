@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import type { ReactNode } from 'react';
 import './AnchorHeading.scss';
 
-export type AnchorHeadingLevel = 2 | 3 | 4;
+type AnchorHeadingLevel = 2 | 3 | 4;
 
 interface AnchorHeadingProps {
   anchorId: string;

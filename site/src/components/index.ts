@@ -2,7 +2,6 @@ export { ApiDefaultValue } from './ApiDefaultValue';
 export { AnchorHeading } from './AnchorHeading';
 export { CodeFigure, useCodeCopy } from './CodeFigure';
 export { DocsSection } from './DocsSection';
-export type { DocsSectionProps } from './DocsSection';
 export { InlineContent } from './InlineContent';
 export { MobileSectionDrawer } from './MobileSectionDrawer';
 export { PickerGallery, pickerGalleryComponents } from './PickerGallery';

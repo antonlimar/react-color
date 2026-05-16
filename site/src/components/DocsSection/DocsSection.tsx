@@ -14,7 +14,7 @@ import type {
 } from '../../content';
 import './DocsSection.scss';
 
-export interface DocsSectionProps {
+interface DocsSectionProps {
   packageManager: PackageManager;
   section: ContentSection;
   setPackageManager: (manager: PackageManager) => void;
