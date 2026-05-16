@@ -1,16 +1,17 @@
 import { siteBem } from '../../../utils/siteBem';
 import { pickerGalleryComponents, pickerGalleryPreviewProps } from '../pickerGalleryComponents';
 import type { PickerMetadata } from '../../../content';
-import type { ColorResult, RGBAColor } from 'react-color';
+import type { ColorResult, PickerTheme, RGBAColor } from 'react-color';
 import './LivePickerPreview.scss';
 
 interface LivePickerPreviewProps {
   picker: PickerMetadata;
   color: RGBAColor;
+  theme: PickerTheme;
   onChange: (color: ColorResult) => void;
 }
 
-export function LivePickerPreview({ picker, color, onChange }: LivePickerPreviewProps) {
+export function LivePickerPreview({ picker, color, theme, onChange }: LivePickerPreviewProps) {
   const PickerComponent = pickerGalleryComponents[picker.id];
 
   if (!PickerComponent) {
@@ -24,6 +25,7 @@ export function LivePickerPreview({ picker, color, onChange }: LivePickerPreview
       <div className={b('live')}>
         <PickerComponent
           color={color}
+          theme={theme}
           onChange={onChange}
           onAccept={onChange}
           {...(pickerGalleryPreviewProps[picker.id] ?? {})}

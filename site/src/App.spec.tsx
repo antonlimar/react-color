@@ -121,10 +121,45 @@ describe('site app', () => {
       'href',
       'https://github.com/antonlimar/react-color',
     );
+    expect(within(primaryNav).getByRole('button', { name: /switch to dark theme/i })).toHaveAttribute(
+      'aria-pressed',
+      'false',
+    );
 
     await waitFor(() => {
       expect(container.querySelector('.site-shell')).toBeInstanceOf(HTMLElement);
     });
+  });
+
+  test('toggles and persists the documentation theme from the header', async () => {
+    const { container } = await renderApp();
+    const themeToggle = screen.getByRole('button', { name: /switch to dark theme/i });
+    const siteShell = container.querySelector('.site-shell') as HTMLElement;
+
+    expect(siteShell).toHaveAttribute('data-site-theme', 'light');
+    expect(document.documentElement).toHaveAttribute('data-site-theme', 'light');
+
+    fireEvent.click(themeToggle);
+
+    expect(siteShell).toHaveAttribute('data-site-theme', 'dark');
+    expect(document.documentElement).toHaveAttribute('data-site-theme', 'dark');
+    expect(window.localStorage.getItem('react-color-docs-theme')).toBe('dark');
+    expect(screen.getByRole('button', { name: /switch to light theme/i })).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  test('applies the selected site theme to homepage picker demos', async () => {
+    const { container } = await renderApp();
+
+    fireEvent.click(screen.getByRole('button', { name: /switch to dark theme/i }));
+
+    await waitFor(() => {
+      expect(container.querySelector('.site-shell')).toHaveAttribute('data-site-theme', 'dark');
+    });
+
+    expect(container.querySelector('.hero__picker-card--sketch .sketch-picker')).toHaveClass('rc-sketch--dark');
+    expect(container.querySelector('.hero__picker-card--chrome .chrome-picker')).toHaveClass('rc-chrome--dark');
+    expect(container.querySelector('.hero__picker-card--github .github-picker')).toHaveClass('rc-github--dark');
+    expect(container.querySelector('.hero__picker-card--compact .compact-picker')).toHaveClass('rc-compact--dark');
   });
 
   test('starts section navigation numbering at 01', async () => {
@@ -589,6 +624,21 @@ describe('site app', () => {
     expect(container.querySelector('#picker-specific-props-material')).not.toBeInTheDocument();
   });
 
+  test('applies the selected site theme to live picker gallery demos', async () => {
+    window.history.replaceState(null, '', '/gallery');
+
+    const { container } = await renderApp();
+
+    fireEvent.click(screen.getByRole('button', { name: /switch to dark theme/i }));
+
+    await waitFor(() => {
+      expect(container.querySelector('.site-shell')).toHaveAttribute('data-site-theme', 'dark');
+    });
+
+    expect(container.querySelector('#picker-alpha .alpha-picker')).toHaveClass('rc-alpha--dark');
+    expect(container.querySelector('#picker-block .block-picker')).toHaveClass('rc-block--dark');
+  });
+
   test('renders a dedicated not found page for unknown routes', async () => {
     window.history.replaceState(null, '', '/missing-picker');
 
@@ -609,6 +659,25 @@ describe('site app', () => {
       screen.getAllByRole('link', { name: 'Read the docs' }).some((link) => link.getAttribute('href') === '/'),
     ).toBe(true);
     expect(screen.getByRole('link', { name: 'Open picker gallery' })).toHaveAttribute('href', '/gallery');
+  });
+
+  test('applies the selected site theme to the not found page', async () => {
+    window.history.replaceState(null, '', '/missing-picker');
+
+    const { container } = await renderApp();
+
+    fireEvent.click(screen.getByRole('button', { name: /switch to dark theme/i }));
+
+    await waitFor(() => {
+      expect(container.querySelector('.site-shell')).toHaveAttribute('data-site-theme', 'dark');
+    });
+
+    const notFoundPanel = container.querySelector('.not-found-page__panel') as HTMLElement;
+    const secondaryAction = screen.getByRole('link', { name: 'Open picker gallery' });
+
+    expect(notFoundPanel).toBeInstanceOf(HTMLElement);
+    expect(getComputedStyle(notFoundPanel).backgroundImage).not.toContain('255, 255, 255');
+    expect(secondaryAction).toHaveClass('not-found-page__secondary-action');
   });
 
   test('copies highlighted picker gallery import snippets', async () => {

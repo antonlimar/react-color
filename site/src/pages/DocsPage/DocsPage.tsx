@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 import { ChromePicker, CompactPicker, GithubPicker, SketchPicker } from 'react-color';
 import { siteBem } from '../../utils/siteBem';
-import type { ColorResult, RGBAColor } from 'react-color';
+import type { ColorResult, PickerTheme, RGBAColor } from 'react-color';
 import './DocsPage.scss';
 
 interface DocsPageProps {
@@ -15,6 +15,7 @@ interface DocsPageProps {
   rgbaLabel: string;
   sectionNavigation: ReactNode;
   sections: ReactNode;
+  theme: PickerTheme;
   onColorChange: (color: ColorResult) => void;
 }
 
@@ -55,6 +56,7 @@ export function DocsPage({
   rgbaLabel,
   sectionNavigation,
   sections,
+  theme,
   onColorChange,
 }: DocsPageProps) {
   const hero = siteBem('hero');
@@ -118,7 +120,7 @@ export function DocsPage({
                   <span className={hero('picker-chip')}>{title}</span>
                 </div>
                 <div className={hero('picker-surface')}>
-                  <PickerComponent color={color} onChange={onColorChange} />
+                  <PickerComponent color={color} theme={theme} onChange={onColorChange} />
                 </div>
               </article>
             ))}

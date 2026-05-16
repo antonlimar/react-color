@@ -3,15 +3,16 @@ import { pickerMetadata } from '../../content';
 import { colorToHex } from '../../utils/colorUtils';
 import { siteBem } from '../../utils/siteBem';
 import { PickerGalleryItem } from './PickerGalleryItem';
-import type { ColorResult, RGBAColor } from 'react-color';
+import type { ColorResult, PickerTheme, RGBAColor } from 'react-color';
 import './PickerGallery.scss';
 
 interface PickerGalleryProps {
   color: RGBAColor;
+  theme: PickerTheme;
   onChange: (color: ColorResult) => void;
 }
 
-export function PickerGallery({ color, onChange }: PickerGalleryProps) {
+export function PickerGallery({ color, theme, onChange }: PickerGalleryProps) {
   const handleGalleryColorChange = useCallback(
     (nextColor: ColorResult) => {
       onChange(nextColor);
@@ -29,6 +30,7 @@ export function PickerGallery({ color, onChange }: PickerGalleryProps) {
           color={color}
           colorLabel={galleryColorLabel}
           key={picker.id}
+          theme={theme}
           onChange={handleGalleryColorChange}
           picker={picker}
         />

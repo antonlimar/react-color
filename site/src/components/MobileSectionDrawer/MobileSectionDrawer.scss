@@ -27,6 +27,18 @@
     }
   }
 
+  .site-shell[data-site-theme='dark'] &__drawer-toggle {
+    border-color: rgba(230, 238, 250, 0.18);
+    background: rgba(14, 24, 40, 0.88);
+    color: var(--site-text-strong);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34);
+
+    &:hover {
+      border-color: rgba(230, 238, 250, 0.28);
+      background: rgba(24, 38, 60, 0.92);
+    }
+  }
+
   &__drawer-eyebrow {
     margin: 0;
     color: rgba(16, 32, 58, 0.48);
@@ -106,6 +118,35 @@
       border-radius: var(--site-radius-pill);
       background: #fff;
       color: var(--site-text);
+    }
+
+    .site-shell[data-site-theme='dark'] & {
+      &__drawer-backdrop {
+        background: rgba(5, 10, 19, 0.68);
+      }
+
+      &__drawer-panel {
+        background:
+          radial-gradient(circle at 16% 8%, color-mix(in srgb, var(--site-accent) 18%, transparent), transparent 34%),
+          linear-gradient(180deg, rgb(12, 22, 38), rgb(7, 13, 24));
+      }
+
+      &__drawer-head {
+        strong {
+          color: var(--site-text-strong);
+        }
+      }
+
+      &__drawer-close {
+        border-color: rgba(230, 238, 250, 0.16);
+        background: rgba(230, 238, 250, 0.08);
+        color: var(--site-text-strong);
+
+        &:hover {
+          border-color: rgba(230, 238, 250, 0.28);
+          background: rgba(230, 238, 250, 0.12);
+        }
+      }
     }
   }
 }

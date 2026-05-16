@@ -34,8 +34,10 @@ import type { PackageManager } from './content';
 import type { ColorResult, RGBAColor } from 'react-color';
 
 const galleryPagePath = '/gallery' as const;
+const siteThemeStorageKey = 'react-color-docs-theme';
 const siteShell = siteBem('site-shell');
 const skipLink = siteBem('skip-link');
+type SiteTheme = 'light' | 'dark';
 
 const pickerGalleryIntro =
   'Use this gallery to compare the bundled picker layouts side by side: full editors for precise input, palette pickers for presets, and sliders for focused hue or alpha controls.';
@@ -43,9 +45,40 @@ const pickerGalleryIntro =
 const pickerGalleryNote =
   'Every card shows the named package import and links to the picker-specific props, so you can copy the component shape without digging through the API reference.';
 
+function getInitialSiteTheme(): SiteTheme {
+  if (typeof window === 'undefined') {
+    return 'light';
+  }
+
+  return window.localStorage.getItem(siteThemeStorageKey) === 'dark' ? 'dark' : 'light';
+}
+
+function useSiteTheme() {
+  const [siteTheme, setSiteTheme] = useState<SiteTheme>(getInitialSiteTheme);
+  const isDarkTheme = siteTheme === 'dark';
+
+  const toggleSiteTheme = useCallback(() => {
+    setSiteTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'));
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(siteThemeStorageKey, siteTheme);
+    }
+
+    if (typeof document !== 'undefined') {
+      document.documentElement.dataset.siteTheme = siteTheme;
+    }
+  }, [siteTheme]);
+
+  return { isDarkTheme, siteTheme, toggleSiteTheme };
+}
+
 function NotFoundRoute() {
+  const { isDarkTheme, siteTheme, toggleSiteTheme } = useSiteTheme();
+
   return (
-    <div className={siteShell()} style={formatBackground(initialColor)}>
+    <div className={siteShell()} data-site-theme={siteTheme} style={formatBackground(initialColor)}>
       <a className={skipLink()} href="#site-not-found">
         Skip to 404 message
       </a>
@@ -53,13 +86,19 @@ function NotFoundRoute() {
       <div className={siteShell('ambient', { one: true })} aria-hidden="true" />
       <div className={siteShell('ambient', { two: true })} aria-hidden="true" />
 
-      <SiteHeader galleryPagePath={galleryPagePath} page="not-found" />
+      <SiteHeader
+        galleryPagePath={galleryPagePath}
+        isDarkTheme={isDarkTheme}
+        page="not-found"
+        onThemeToggle={toggleSiteTheme}
+      />
       <NotFoundPageContent galleryPagePath={galleryPagePath} />
     </div>
   );
 }
 
 function AppShell() {
+  const { isDarkTheme, siteTheme, toggleSiteTheme } = useSiteTheme();
   const [color, setColor] = useState<RGBAColor>(initialColor);
   const [packageManager, setPackageManagerState] = useState<PackageManager>(getInitialPackageManager);
   const drawerToggleRef = useRef<HTMLButtonElement>(null);
@@ -347,7 +386,7 @@ function AppShell() {
 
   if (isNotFoundPage) {
     return (
-      <div className={siteShell()} style={formatBackground(color)}>
+      <div className={siteShell()} data-site-theme={siteTheme} style={formatBackground(color)}>
         <a className={skipLink()} href="#site-not-found">
           Skip to 404 message
         </a>
@@ -355,7 +394,12 @@ function AppShell() {
         <div className={siteShell('ambient', { one: true })} aria-hidden="true" />
         <div className={siteShell('ambient', { two: true })} aria-hidden="true" />
 
-        <SiteHeader galleryPagePath={galleryPagePath} page="not-found" />
+        <SiteHeader
+          galleryPagePath={galleryPagePath}
+          isDarkTheme={isDarkTheme}
+          page="not-found"
+          onThemeToggle={toggleSiteTheme}
+        />
         {mobileSectionDrawer}
         <NotFoundPageContent galleryPagePath={galleryPagePath} />
       </div>
@@ -363,18 +407,23 @@ function AppShell() {
   }
 
   return (
-    <div className={siteShell()} style={formatBackground(color)}>
+    <div className={siteShell()} data-site-theme={siteTheme} style={formatBackground(color)}>
       <a className={skipLink()} href="#site-documentation">
         Skip to documentation
       </a>
       <div className={siteShell('ambient', { grid: true })} aria-hidden="true" />
       <div className={siteShell('ambient', { one: true })} aria-hidden="true" />
       <div className={siteShell('ambient', { two: true })} aria-hidden="true" />
-      <SiteHeader galleryPagePath={galleryPagePath} page={isGalleryPage ? 'gallery' : 'docs'} />
+      <SiteHeader
+        galleryPagePath={galleryPagePath}
+        isDarkTheme={isDarkTheme}
+        page={isGalleryPage ? 'gallery' : 'docs'}
+        onThemeToggle={toggleSiteTheme}
+      />
       {mobileSectionDrawer}
       {isGalleryPage ? (
         <PickerGalleryPage
-          gallery={<PickerGallery color={color} onChange={handleColorChange} />}
+          gallery={<PickerGallery color={color} theme={siteTheme} onChange={handleColorChange} />}
           galleryNote={pickerGalleryNote}
           intro={pickerGalleryIntro}
           pickerCount={pickerMetadata.length}
@@ -413,6 +462,7 @@ function AppShell() {
               setPackageManager={setPackageManager}
             />
           ))}
+          theme={siteTheme}
           onColorChange={handleColorChange}
         />
       )}

@@ -3,23 +3,24 @@ import { siteBem } from '../../../utils/siteBem';
 import { LivePickerPreview } from '../LivePickerPreview';
 import { PickerImportSnippet } from '../PickerImportSnippet';
 import type { PickerMetadata } from '../../../content';
-import type { ColorResult, RGBAColor } from 'react-color';
+import type { ColorResult, PickerTheme, RGBAColor } from 'react-color';
 import './PickerGalleryItem.scss';
 
 interface PickerGalleryItemProps {
   color: RGBAColor;
   colorLabel: string;
+  theme: PickerTheme;
   onChange: (color: ColorResult) => void;
   picker: PickerMetadata;
 }
 
-export function PickerGalleryItem({ color, colorLabel, onChange, picker }: PickerGalleryItemProps) {
+export function PickerGalleryItem({ color, colorLabel, theme, onChange, picker }: PickerGalleryItemProps) {
   const importSnippet = `import { ${picker.exportName} } from 'react-color';`;
   const b = siteBem('picker-gallery');
 
   return (
     <article className={b('item')} id={`picker-${picker.id}`}>
-      <LivePickerPreview picker={picker} color={color} onChange={onChange} />
+      <LivePickerPreview picker={picker} color={color} theme={theme} onChange={onChange} />
       <div className={b('content')}>
         <div className={b('head')}>
           <h3>{picker.title}</h3>

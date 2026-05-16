@@ -97,6 +97,45 @@
     }
   }
 
+  &__theme-toggle {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 2.55rem;
+    min-width: 2.55rem;
+    height: 2.55rem;
+    border: 1px solid var(--site-border);
+    border-radius: var(--site-radius-pill);
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--site-text);
+    backdrop-filter: blur(16px);
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      border-color: rgba(16, 32, 58, 0.22);
+      background: rgba(255, 255, 255, 0.82);
+    }
+  }
+
+  &__theme-icon {
+    grid-area: 1 / 1;
+    width: 1.12rem;
+    height: 1.12rem;
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+
+    &--sun {
+      opacity: 0;
+      transform: rotate(-24deg) scale(0.72);
+    }
+  }
+
   &__status {
     display: inline-flex;
     align-items: center;
@@ -111,6 +150,48 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     backdrop-filter: blur(16px);
+  }
+
+  .site-shell[data-site-theme='dark'] & {
+    &__brand-mark {
+      border-color: rgba(230, 238, 250, 0.24);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.34), transparent 42%),
+        linear-gradient(135deg, var(--site-accent), rgba(7, 12, 21, 0.96));
+      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.32);
+    }
+
+    &__link,
+    &__theme-toggle,
+    &__status {
+      background: rgba(14, 24, 40, 0.62);
+    }
+
+    &__link:hover,
+    &__theme-toggle:hover {
+      border-color: rgba(230, 238, 250, 0.28);
+      background: rgba(24, 38, 60, 0.86);
+    }
+
+    &__link--active {
+      background: linear-gradient(135deg, #f7fbff 0%, var(--site-accent) 100%);
+      color: #07101d;
+
+      &:hover {
+        color: #07101d;
+        background: linear-gradient(135deg, #f7fbff 0%, var(--site-accent) 100%);
+      }
+    }
+
+    &__theme-icon--sun {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+
+    &__theme-icon--moon {
+      opacity: 0;
+      transform: rotate(24deg) scale(0.72);
+    }
   }
 
   @media (max-width: 920px) {
@@ -141,6 +222,11 @@
     }
 
     &__link {
+      width: 100%;
+      min-height: 2.75rem;
+    }
+
+    &__theme-toggle {
       width: 100%;
       min-height: 2.75rem;
     }
