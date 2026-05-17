@@ -224,6 +224,16 @@
       color: var(--site-text-strong);
     }
 
+    .content-code pre,
+    .content-code code,
+    .picker-gallery__imports pre,
+    .picker-gallery__imports code {
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
     .section__subsection {
       border-top-color: var(--site-border);
     }

@@ -13,6 +13,7 @@
       overflow-x: auto;
       margin: 0;
       max-width: 100%;
+      background: transparent;
       color: #f7fbff;
       line-height: 1.55;
       scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
@@ -21,6 +22,7 @@
     code {
       display: block;
       min-width: max-content;
+      background: transparent;
       color: #f7fbff;
       font-family: var(--site-font-mono);
       font-size: 0.78rem;
