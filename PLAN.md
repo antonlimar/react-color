@@ -104,13 +104,11 @@ flowchart LR
 
 Статус: завершена как отдельный follow-up после основной модернизации `src`, toolchain и legacy cleanup.
 
-Примечание: legacy-приложение `docs/` удалено после появления актуального сайта в [`site/`](site/). Исторические детали фазы сохранены в [`plans/phase-5-docs-typescript.md`](plans/phase-5-docs-typescript.md).
+Примечание: legacy-приложение `docs/` удалено после появления актуального сайта в [`site/`](site/).
 
 - Цель фазы была выполнена до удаления legacy docs: runtime-код документационного сайта был переведён на TypeScript без непреднамеренных изменений публичного API пакета.
 - После удаления `docs/` отдельные legacy-команды документационного приложения и docs-specific typecheck больше не являются актуальной частью workflow.
 - Текущий documentation workflow: `npm run site:dev`, `npm run site:build`, `npm run site:verify`.
-
-Подробный план ведётся в [`plans/phase-5-docs-typescript.md`](plans/phase-5-docs-typescript.md).
 
 ---
 
@@ -125,8 +123,6 @@ flowchart LR
 
 Проверки и notes синхронизированы в [`README.md`](README.md) и [`package.json`](package.json), включая `npm run test:esm-consumption`.
 
-Подробный план ведётся в [`plans/phase-6-upstream-issues-follow-up.md`](plans/phase-6-upstream-issues-follow-up.md).
-
 ---
 
 ## Фаза 7 — Styling modernization после завершения core modernization
@@ -138,8 +134,6 @@ flowchart LR
 - Публикация CSS должна поддерживать выборочный импорт только нужных пикеров или общих примитивов. Общий aggregate entry допустим только как optional convenience-path, а не как обязательный контракт.
 - Публичная кастомизация должна опираться на `className`, новый `classNames`, CSS custom properties и `theme`, при этом текущий `styles` остаётся как deprecated compatibility layer на переходный период.
 - Темная тема входит в scope фазы и реализуется через root BEM-модификаторы и CSS variables, без завязки на CSS Modules.
-
-Подробный план ведётся в [`plans/phase-7-styling-modernization.md`](plans/phase-7-styling-modernization.md).
 
 ---
 
@@ -159,11 +153,8 @@ flowchart LR
 5. Storybook и docs на современном bundler.
    На Storybook держать отдельный хвост: если для совместимости временно отключён `reactDocgen`, включить его обратно после удаления legacy Babel 6-конфига.
 6. Follow-up после phase 5: дальнейшие ужесточения сверх `strictNullChecks` и любые новые несовместимости документировать отдельными маленькими шагами.
-   Актуальный статус уже закрытых post-migration задач ведётся в [`plans/phase-4-dependencies-and-legacy.md`](plans/phase-4-dependencies-and-legacy.md).
 7. Product/runtime follow-up после завершения модернизации: закрыть наиболее ценные открытые issues апстрима по CSP, `defaultProps`, runtime icons, iframe-safe drag behavior и interop.
-   Детальный план этой волны ведётся в [`plans/phase-6-upstream-issues-follow-up.md`](plans/phase-6-upstream-issues-follow-up.md).
 8. Styling follow-up после завершения core/runtime modernization: убрать `reactcss`, перевести пикеры на co-located SCSS и BEM-классы, добавить dark theme и granular CSS imports.
-   Детальный план этой волны ведётся в [`plans/phase-7-styling-modernization.md`](plans/phase-7-styling-modernization.md).
 
 ---
 
@@ -176,7 +167,7 @@ flowchart LR
 - [x] Поэтапно перевести `src` на `.ts`/`.tsx`, типы публичного API, d.ts в публикации
 - [x] Обновить Storybook и пайплайн docs (убрать Webpack 1); после удаления legacy Babel вернуть `reactDocgen`, если он был временно отключён
 - [x] Обновить peer deps, почистить devDependencies, примеры, CI
-- [x] Усилить TS-строгость и закрыть follow-up cleanup legacy docs/dev tooling; migration notes синхронизированы в `CHANGELOG.md`, `README.md` и `plans/phase-4-dependencies-and-legacy.md`
+- [x] Усилить TS-строгость и закрыть follow-up cleanup legacy docs/dev tooling; migration notes синхронизированы в `CHANGELOG.md` и `README.md`
 - [x] Заменить legacy `docs/` workflow актуальным сайтом в `site/`; текущие проверки документации идут через `npm run site:verify`
-- [x] Закрыть следующую волну upstream/runtime follow-up задач без breaking changes: CSP-safe градиенты, удаление `defaultProps`, локальные runtime-иконки, iframe-safe `Saturation` и проверка ESM/CJS interop; подробности в `plans/phase-6-upstream-issues-follow-up.md`
-- [ ] Убрать `reactcss` и перевести styling-систему на co-located SCSS, BEM-классы, dark theme и granular CSS imports; подробности в `plans/phase-7-styling-modernization.md`
+- [x] Закрыть следующую волну upstream/runtime follow-up задач без breaking changes: CSP-safe градиенты, удаление `defaultProps`, локальные runtime-иконки, iframe-safe `Saturation` и проверка ESM/CJS interop
+- [ ] Убрать `reactcss` и перевести styling-систему на co-located SCSS, BEM-классы, dark theme и granular CSS imports
