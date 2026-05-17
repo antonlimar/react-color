@@ -12,8 +12,12 @@ const screenshotRoot = path.join(repoRoot, 'test/visual/__screenshots__/site');
 const diffRoot = path.join(screenshotRoot, '__diffs__');
 const shouldUpdate = process.argv.includes('--update');
 const browserName = 'chromium';
-const allowedMismatchedPixelRatio = 0.002;
+const allowedMismatchedPixels = 50;
+const allowedMismatchedPixelRatio = 0.0002;
 const pixelmatchThreshold = 0.1;
+const siteThemeStorageKey = 'react-color-docs-theme';
+
+const siteThemes = ['light', 'dark'];
 
 const sitePages = [
   {
@@ -56,12 +60,16 @@ const siteViewports = [
 
 const drawerOpenViewports = siteViewports.filter((viewport) => ['tablet', 'mobile'].includes(viewport.name));
 
-function createScreenshotName(sitePage, viewport) {
-  return `${sitePage.name}-${viewport.name}-full-${browserName}.png`;
+function createThemeNameSegment(theme) {
+  return theme === 'dark' ? '-dark' : '';
 }
 
-function createDrawerOpenScreenshotName(viewport) {
-  return `home-${viewport.name}-drawer-open-${browserName}.png`;
+function createScreenshotName(sitePage, viewport, theme) {
+  return `${sitePage.name}-${viewport.name}${createThemeNameSegment(theme)}-full-${browserName}.png`;
+}
+
+function createDrawerOpenScreenshotName(viewport, theme) {
+  return `home-${viewport.name}${createThemeNameSegment(theme)}-drawer-open-${browserName}.png`;
 }
 
 async function fileExists(filePath) {
@@ -90,7 +98,7 @@ function compareScreenshots(actualBuffer, expectedBuffer, diffPath) {
   });
   const mismatchedPixelRatio = mismatchedPixels / (actual.width * actual.height);
 
-  if (mismatchedPixelRatio <= allowedMismatchedPixelRatio) {
+  if (mismatchedPixels <= allowedMismatchedPixels && mismatchedPixelRatio <= allowedMismatchedPixelRatio) {
     return {
       passed: true,
       message: `${mismatchedPixels} mismatched pixels`,
@@ -129,16 +137,24 @@ async function main() {
   const failures = [];
 
   try {
-    for (const viewport of siteViewports) {
-      const page = await browser.newPage({
-        viewport: {
-          width: viewport.width,
-          height: viewport.height,
-        },
-      });
+    for (const theme of siteThemes) {
+      for (const viewport of siteViewports) {
+        const page = await browser.newPage({
+          viewport: {
+            width: viewport.width,
+            height: viewport.height,
+          },
+        });
 
-      await page.addStyleTag({
-        content: `
+        await page.addInitScript(
+          ({ storageKey, themeName }) => {
+            window.localStorage.setItem(storageKey, themeName);
+          },
+          { storageKey: siteThemeStorageKey, themeName: theme },
+        );
+
+        await page.addStyleTag({
+          content: `
           *,
           *::before,
           *::after {
@@ -148,60 +164,35 @@ async function main() {
             transition-delay: 0s !important;
           }
         `,
-      });
-
-      for (const sitePage of sitePages) {
-        const screenshotName = createScreenshotName(sitePage, viewport);
-        const screenshotPath = path.join(screenshotRoot, screenshotName);
-        const diffPath = path.join(diffRoot, screenshotName);
-
-        await page.goto(new URL(sitePage.path, baseUrl).href, { waitUntil: 'networkidle' });
-        await page.locator(sitePage.readySelector, { hasText: sitePage.readyText }).first().waitFor();
-        await page.evaluate(() => window.scrollTo(0, 0));
-
-        const screenshot = await page.screenshot({
-          fullPage: true,
-          animations: 'disabled',
         });
 
-        if (shouldUpdate || !(await fileExists(screenshotPath))) {
-          await fs.writeFile(screenshotPath, screenshot);
-          console.log(`Updated ${path.relative(repoRoot, screenshotPath)}`);
-          continue;
-        }
+        for (const sitePage of sitePages) {
+          const screenshotName = createScreenshotName(sitePage, viewport, theme);
+          const screenshotPath = path.join(screenshotRoot, screenshotName);
+          const diffPath = path.join(diffRoot, screenshotName);
 
-        const expected = await fs.readFile(screenshotPath);
-        const result = compareScreenshots(screenshot, expected, diffPath);
+          await page.goto(new URL(sitePage.path, baseUrl).href, { waitUntil: 'networkidle' });
+          await page.locator(sitePage.readySelector, { hasText: sitePage.readyText }).first().waitFor();
+          await page.evaluate(() => window.scrollTo(0, 0));
 
-        if (!result.passed) {
-          if (result.diffBuffer) {
-            await fs.mkdir(diffRoot, { recursive: true });
-            await fs.writeFile(diffPath, result.diffBuffer);
+          const screenshot = await page.screenshot({
+            fullPage: true,
+            animations: 'disabled',
+          });
+
+          const hasScreenshot = await fileExists(screenshotPath);
+
+          if (shouldUpdate || !hasScreenshot) {
+            if (!shouldUpdate && !hasScreenshot) {
+              failures.push(`${screenshotName}: missing baseline screenshot; run npm run test:visual:update`);
+              continue;
+            }
+
+            await fs.writeFile(screenshotPath, screenshot);
+            console.log(`Updated ${path.relative(repoRoot, screenshotPath)}`);
+            continue;
           }
 
-          failures.push(`${screenshotName}: ${result.message}`);
-        }
-      }
-
-      if (drawerOpenViewports.includes(viewport)) {
-        const screenshotName = createDrawerOpenScreenshotName(viewport);
-        const screenshotPath = path.join(screenshotRoot, screenshotName);
-        const diffPath = path.join(diffRoot, screenshotName);
-
-        await page.goto(new URL('/', baseUrl).href, { waitUntil: 'networkidle' });
-        await page.locator('h1', { hasText: 'React Color' }).first().waitFor();
-        await page.evaluate(() => window.scrollTo(0, 0));
-        await page.getByRole('button', { name: 'Browse sections' }).click();
-        await page.getByRole('dialog', { name: 'Sections' }).waitFor();
-
-        const screenshot = await page.screenshot({
-          animations: 'disabled',
-        });
-
-        if (shouldUpdate || !(await fileExists(screenshotPath))) {
-          await fs.writeFile(screenshotPath, screenshot);
-          console.log(`Updated ${path.relative(repoRoot, screenshotPath)}`);
-        } else {
           const expected = await fs.readFile(screenshotPath);
           const result = compareScreenshots(screenshot, expected, diffPath);
 
@@ -214,9 +205,49 @@ async function main() {
             failures.push(`${screenshotName}: ${result.message}`);
           }
         }
-      }
 
-      await page.close();
+        if (drawerOpenViewports.includes(viewport)) {
+          const screenshotName = createDrawerOpenScreenshotName(viewport, theme);
+          const screenshotPath = path.join(screenshotRoot, screenshotName);
+          const diffPath = path.join(diffRoot, screenshotName);
+
+          await page.goto(new URL('/', baseUrl).href, { waitUntil: 'networkidle' });
+          await page.locator('h1', { hasText: 'React Color' }).first().waitFor();
+          await page.evaluate(() => window.scrollTo(0, 0));
+          await page.getByRole('button', { name: 'Browse sections' }).click();
+          await page.getByRole('dialog', { name: 'Sections' }).waitFor();
+
+          const screenshot = await page.screenshot({
+            animations: 'disabled',
+          });
+
+          const hasScreenshot = await fileExists(screenshotPath);
+
+          if (shouldUpdate || !hasScreenshot) {
+            if (!shouldUpdate && !hasScreenshot) {
+              failures.push(`${screenshotName}: missing baseline screenshot; run npm run test:visual:update`);
+              continue;
+            }
+
+            await fs.writeFile(screenshotPath, screenshot);
+            console.log(`Updated ${path.relative(repoRoot, screenshotPath)}`);
+          } else {
+            const expected = await fs.readFile(screenshotPath);
+            const result = compareScreenshots(screenshot, expected, diffPath);
+
+            if (!result.passed) {
+              if (result.diffBuffer) {
+                await fs.mkdir(diffRoot, { recursive: true });
+                await fs.writeFile(diffPath, result.diffBuffer);
+              }
+
+              failures.push(`${screenshotName}: ${result.message}`);
+            }
+          }
+        }
+
+        await page.close();
+      }
     }
   } finally {
     await browser.close();
