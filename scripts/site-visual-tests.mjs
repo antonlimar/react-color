@@ -18,6 +18,14 @@ const pixelmatchThreshold = 0.1;
 const siteThemeStorageKey = 'react-color-docs-theme';
 
 const siteThemes = ['light', 'dark'];
+const shouldColorizeOutput = Boolean(process.stdout.isTTY) && !process.env.NO_COLOR;
+const colorCodes = {
+  cyan: 36,
+  dim: 2,
+  green: 32,
+  red: 31,
+  yellow: 33,
+};
 
 const sitePages = [
   {
@@ -72,6 +80,34 @@ function createDrawerOpenScreenshotName(viewport, theme) {
   return `home-${viewport.name}${createThemeNameSegment(theme)}-drawer-open-${browserName}.png`;
 }
 
+function createCaseName(pageName, viewport, theme, state) {
+  return `${theme}/${pageName}/${viewport.name}/${state}`;
+}
+
+function colorize(color, text) {
+  if (!shouldColorizeOutput) {
+    return text;
+  }
+
+  return `\u001B[${colorCodes[color]}m${text}\u001B[0m`;
+}
+
+function formatDuration(startTime) {
+  return colorize('green', `${Math.round(performance.now() - startTime)}ms`);
+}
+
+function formatCaseResult(status, caseName, startTime, message) {
+  const statusMark = status === 'passed' ? colorize('green', '✓') : colorize('red', 'x');
+  const result = `  ${statusMark} ${caseName} ${formatDuration(startTime)}`;
+
+  if (!message) {
+    return result;
+  }
+
+  const messageColor = status === 'passed' ? 'yellow' : 'red';
+  return `${result} ${colorize('dim', '-')} ${colorize(messageColor, message)}`;
+}
+
 async function fileExists(filePath) {
   try {
     await fs.access(filePath);
@@ -113,6 +149,47 @@ function compareScreenshots(actualBuffer, expectedBuffer, diffPath) {
   };
 }
 
+async function checkScreenshot({
+  caseName,
+  diffPath,
+  failures,
+  screenshot,
+  screenshotName,
+  screenshotPath,
+  startTime,
+}) {
+  const hasScreenshot = await fileExists(screenshotPath);
+
+  if (shouldUpdate || !hasScreenshot) {
+    if (!shouldUpdate && !hasScreenshot) {
+      const message = 'missing baseline screenshot; run npm run test:visual:update';
+      failures.push(`${screenshotName}: ${message}`);
+      console.log(formatCaseResult('failed', caseName, startTime, message));
+      return;
+    }
+
+    await fs.writeFile(screenshotPath, screenshot);
+    console.log(formatCaseResult('passed', caseName, startTime, 'updated'));
+    return;
+  }
+
+  const expected = await fs.readFile(screenshotPath);
+  const result = compareScreenshots(screenshot, expected, diffPath);
+
+  if (!result.passed) {
+    if (result.diffBuffer) {
+      await fs.mkdir(diffRoot, { recursive: true });
+      await fs.writeFile(diffPath, result.diffBuffer);
+    }
+
+    failures.push(`${screenshotName}: ${result.message}`);
+    console.log(formatCaseResult('failed', caseName, startTime, result.message));
+    return;
+  }
+
+  console.log(formatCaseResult('passed', caseName, startTime));
+}
+
 async function main() {
   await fs.mkdir(screenshotRoot, { recursive: true });
 
@@ -135,6 +212,10 @@ async function main() {
 
   const browser = await chromium.launch();
   const failures = [];
+  const expectedScreenshotCount =
+    siteThemes.length * (sitePages.length * siteViewports.length + drawerOpenViewports.length);
+
+  console.log(`\n${colorize('cyan', 'Site visual screenshots')} ${colorize('dim', `(${expectedScreenshotCount})`)}`);
 
   try {
     for (const theme of siteThemes) {
@@ -170,6 +251,8 @@ async function main() {
           const screenshotName = createScreenshotName(sitePage, viewport, theme);
           const screenshotPath = path.join(screenshotRoot, screenshotName);
           const diffPath = path.join(diffRoot, screenshotName);
+          const caseName = createCaseName(sitePage.name, viewport, theme, 'full');
+          const startTime = performance.now();
 
           await page.goto(new URL(sitePage.path, baseUrl).href, { waitUntil: 'networkidle' });
           await page.locator(sitePage.readySelector, { hasText: sitePage.readyText }).first().waitFor();
@@ -180,36 +263,23 @@ async function main() {
             animations: 'disabled',
           });
 
-          const hasScreenshot = await fileExists(screenshotPath);
-
-          if (shouldUpdate || !hasScreenshot) {
-            if (!shouldUpdate && !hasScreenshot) {
-              failures.push(`${screenshotName}: missing baseline screenshot; run npm run test:visual:update`);
-              continue;
-            }
-
-            await fs.writeFile(screenshotPath, screenshot);
-            console.log(`Updated ${path.relative(repoRoot, screenshotPath)}`);
-            continue;
-          }
-
-          const expected = await fs.readFile(screenshotPath);
-          const result = compareScreenshots(screenshot, expected, diffPath);
-
-          if (!result.passed) {
-            if (result.diffBuffer) {
-              await fs.mkdir(diffRoot, { recursive: true });
-              await fs.writeFile(diffPath, result.diffBuffer);
-            }
-
-            failures.push(`${screenshotName}: ${result.message}`);
-          }
+          await checkScreenshot({
+            caseName,
+            diffPath,
+            failures,
+            screenshot,
+            screenshotName,
+            screenshotPath,
+            startTime,
+          });
         }
 
         if (drawerOpenViewports.includes(viewport)) {
           const screenshotName = createDrawerOpenScreenshotName(viewport, theme);
           const screenshotPath = path.join(screenshotRoot, screenshotName);
           const diffPath = path.join(diffRoot, screenshotName);
+          const caseName = createCaseName('home', viewport, theme, 'drawer-open');
+          const startTime = performance.now();
 
           await page.goto(new URL('/', baseUrl).href, { waitUntil: 'networkidle' });
           await page.locator('h1', { hasText: 'React Color' }).first().waitFor();
@@ -221,29 +291,15 @@ async function main() {
             animations: 'disabled',
           });
 
-          const hasScreenshot = await fileExists(screenshotPath);
-
-          if (shouldUpdate || !hasScreenshot) {
-            if (!shouldUpdate && !hasScreenshot) {
-              failures.push(`${screenshotName}: missing baseline screenshot; run npm run test:visual:update`);
-              continue;
-            }
-
-            await fs.writeFile(screenshotPath, screenshot);
-            console.log(`Updated ${path.relative(repoRoot, screenshotPath)}`);
-          } else {
-            const expected = await fs.readFile(screenshotPath);
-            const result = compareScreenshots(screenshot, expected, diffPath);
-
-            if (!result.passed) {
-              if (result.diffBuffer) {
-                await fs.mkdir(diffRoot, { recursive: true });
-                await fs.writeFile(diffPath, result.diffBuffer);
-              }
-
-              failures.push(`${screenshotName}: ${result.message}`);
-            }
-          }
+          await checkScreenshot({
+            caseName,
+            diffPath,
+            failures,
+            screenshot,
+            screenshotName,
+            screenshotPath,
+            startTime,
+          });
         }
 
         await page.close();
@@ -258,7 +314,12 @@ async function main() {
     throw new Error(`Site visual screenshots failed:\n${failures.join('\n')}`);
   }
 
-  console.log('Site visual screenshots passed.');
+  console.log(
+    `${colorize('green', 'Site visual screenshots passed')} ${colorize(
+      'dim',
+      `(${expectedScreenshotCount} screenshots).`,
+    )}`,
+  );
 }
 
 main().catch((error) => {
