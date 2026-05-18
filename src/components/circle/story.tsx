@@ -2,7 +2,7 @@ import { renderPickerStory } from '@storybook-utils/renderPickerStory';
 import { Circle } from './Circle';
 
 export default {
-  title: 'Pickers',
+  title: 'Pickers/Circle Picker',
   component: Circle,
   render: renderPickerStory(Circle),
   argTypes: {
@@ -25,6 +25,7 @@ export default {
 };
 
 export const CirclePicker = {
+  name: 'Light Theme',
   args: {
     width: 252,
     circleSize: 28,
@@ -49,6 +50,15 @@ export const CirclePicker = {
       '#795548',
       '#607D8B',
     ],
+    theme: 'light',
     styles: {},
+  },
+};
+
+export const CirclePickerDark = {
+  name: 'Dark Theme',
+  args: {
+    ...CirclePicker.args,
+    theme: 'dark',
   },
 };

@@ -2,7 +2,7 @@ import { renderPickerStory } from '@storybook-utils/renderPickerStory';
 import { Sketch } from './Sketch';
 
 export default {
-  title: 'Pickers',
+  title: 'Pickers/Sketch Picker',
   component: Sketch,
   render: renderPickerStory(Sketch),
   argTypes: {
@@ -22,6 +22,7 @@ export default {
 };
 
 export const SketchPicker = {
+  name: 'Light Theme',
   args: {
     width: 200,
     disableAlpha: false,
@@ -42,12 +43,21 @@ export const SketchPicker = {
       '#9B9B9B',
       '#FFFFFF',
     ],
+    theme: 'light',
     styles: {},
   },
 };
 
+export const SketchPickerDark = {
+  name: 'Dark Theme',
+  args: {
+    ...SketchPicker.args,
+    theme: 'dark',
+  },
+};
+
 export const SketchPickerCustomStyles = {
-  name: 'SketchPicker Custom Styles',
+  name: 'Custom Styles',
   args: {
     ...SketchPicker.args,
     styles: {

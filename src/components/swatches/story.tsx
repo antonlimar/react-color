@@ -2,7 +2,7 @@ import { renderPickerStory } from '@storybook-utils/renderPickerStory';
 import { Swatches } from './Swatches';
 
 export default {
-  title: 'Pickers',
+  title: 'Pickers/Swatches Picker',
   component: Swatches,
   render: renderPickerStory(Swatches),
   argTypes: {
@@ -22,6 +22,7 @@ export default {
 };
 
 export const SwatchesPicker = {
+  name: 'Light Theme',
   args: {
     width: 320,
     height: 240,
@@ -46,6 +47,15 @@ export const SwatchesPicker = {
       ['#263238', '#455A64', '#607D8B', '#90A4AE', '#CFD8DC'],
       ['#000000', '#525252', '#969696', '#D9D9D9', '#FFFFFF'],
     ],
+    theme: 'light',
     styles: {},
+  },
+};
+
+export const SwatchesPickerDark = {
+  name: 'Dark Theme',
+  args: {
+    ...SwatchesPicker.args,
+    theme: 'dark',
   },
 };

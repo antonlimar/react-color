@@ -2,7 +2,7 @@ import { renderPickerStory } from '@storybook-utils/renderPickerStory';
 import { Alpha } from './Alpha';
 
 export default {
-  title: 'Pickers',
+  title: 'Pickers/Alpha Picker',
   component: Alpha,
   render: renderPickerStory(Alpha),
   argTypes: {
@@ -23,10 +23,20 @@ export default {
 };
 
 export const AlphaPicker = {
+  name: 'Light Theme',
   args: {
     width: 316,
     height: 16,
     direction: 'horizontal',
+    theme: 'light',
     style: {},
+  },
+};
+
+export const AlphaPickerDark = {
+  name: 'Dark Theme',
+  args: {
+    ...AlphaPicker.args,
+    theme: 'dark',
   },
 };

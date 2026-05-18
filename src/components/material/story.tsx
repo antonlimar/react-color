@@ -2,7 +2,7 @@ import { renderPickerStory } from '@storybook-utils/renderPickerStory';
 import { Material } from './Material';
 
 export default {
-  title: 'Pickers',
+  title: 'Pickers/Material Picker',
   component: Material,
   render: renderPickerStory(Material),
   argTypes: {
@@ -13,7 +13,17 @@ export default {
 };
 
 export const MaterialPicker = {
+  name: 'Light Theme',
   args: {
+    theme: 'light',
     styles: {},
+  },
+};
+
+export const MaterialPickerDark = {
+  name: 'Dark Theme',
+  args: {
+    ...MaterialPicker.args,
+    theme: 'dark',
   },
 };

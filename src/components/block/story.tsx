@@ -2,7 +2,7 @@ import { renderPickerStory } from '@storybook-utils/renderPickerStory';
 import { Block } from './Block';
 
 export default {
-  title: 'Pickers',
+  title: 'Pickers/Block Picker',
   component: Block,
   render: renderPickerStory(Block),
   argTypes: {
@@ -23,10 +23,20 @@ export default {
 };
 
 export const BlockPicker = {
+  name: 'Light Theme',
   args: {
     width: 170,
     triangle: 'top',
     colors: ['#D9E3F0', '#F47373', '#697689', '#37D67A', '#2CCCE4', '#555555', '#dce775', '#ff8a65', '#ba68c8'],
+    theme: 'light',
     styles: {},
+  },
+};
+
+export const BlockPickerDark = {
+  name: 'Dark Theme',
+  args: {
+    ...BlockPicker.args,
+    theme: 'dark',
   },
 };

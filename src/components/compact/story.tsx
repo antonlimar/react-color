@@ -2,7 +2,7 @@ import { renderPickerStory } from '@storybook-utils/renderPickerStory';
 import { Compact } from './Compact';
 
 export default {
-  title: 'Pickers',
+  title: 'Pickers/Compact Picker',
   component: Compact,
   render: renderPickerStory(Compact),
   argTypes: {
@@ -16,6 +16,7 @@ export default {
 };
 
 export const CompactPicker = {
+  name: 'Light Theme',
   args: {
     colors: [
       '#4D4D4D',
@@ -55,6 +56,15 @@ export const CompactPicker = {
       '#653294',
       '#AB149E',
     ],
+    theme: 'light',
     styles: {},
+  },
+};
+
+export const CompactPickerDark = {
+  name: 'Dark Theme',
+  args: {
+    ...CompactPicker.args,
+    theme: 'dark',
   },
 };

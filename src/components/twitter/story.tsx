@@ -2,7 +2,7 @@ import { renderPickerStory } from '@storybook-utils/renderPickerStory';
 import { Twitter } from './Twitter';
 
 export default {
-  title: 'Pickers',
+  title: 'Pickers/Twitter Picker',
   component: Twitter,
   render: renderPickerStory(Twitter),
   argTypes: {
@@ -23,6 +23,7 @@ export default {
 };
 
 export const TwitterPicker = {
+  name: 'Light Theme',
   args: {
     width: 276,
     triangle: 'top-left',
@@ -38,6 +39,15 @@ export const TwitterPicker = {
       '#F78DA7',
       '#9900EF',
     ],
+    theme: 'light',
     styles: {},
+  },
+};
+
+export const TwitterPickerDark = {
+  name: 'Dark Theme',
+  args: {
+    ...TwitterPicker.args,
+    theme: 'dark',
   },
 };

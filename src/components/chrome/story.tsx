@@ -2,7 +2,7 @@ import { renderPickerStory } from '@storybook-utils/renderPickerStory';
 import { Chrome } from './Chrome';
 
 export default {
-  title: 'Pickers',
+  title: 'Pickers/Chrome Picker',
   component: Chrome,
   render: renderPickerStory(Chrome),
   argTypes: {
@@ -23,9 +23,19 @@ export default {
 };
 
 export const ChromePicker = {
+  name: 'Light Theme',
   args: {
     width: 225,
     disableAlpha: false,
+    theme: 'light',
     styles: {},
+  },
+};
+
+export const ChromePickerDark = {
+  name: 'Dark Theme',
+  args: {
+    ...ChromePicker.args,
+    theme: 'dark',
   },
 };

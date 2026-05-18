@@ -2,7 +2,7 @@ import { renderPickerStory } from '@storybook-utils/renderPickerStory';
 import { Github } from './Github';
 
 export default {
-  title: 'Pickers',
+  title: 'Pickers/Github Picker',
   component: Github,
   render: renderPickerStory(Github),
   argTypes: {
@@ -23,6 +23,7 @@ export default {
 };
 
 export const GithubPicker = {
+  name: 'Light Theme',
   args: {
     width: 200,
     triangle: 'top-left',
@@ -44,6 +45,15 @@ export const GithubPicker = {
       '#BED3F3',
       '#D4C4FB',
     ],
+    theme: 'light',
     styles: {},
+  },
+};
+
+export const GithubPickerDark = {
+  name: 'Dark Theme',
+  args: {
+    ...GithubPicker.args,
+    theme: 'dark',
   },
 };
