@@ -69,11 +69,30 @@ function githubPagesSpaFallbackPlugin() {
   };
 }
 
+function prismLanguageEsmPlugin() {
+  const languageModulePattern = /[/\\]node_modules[/\\]prismjs[/\\]components[/\\]prism-[^/\\]+\.js$/;
+
+  return {
+    name: 'site-prism-language-esm',
+    enforce: 'pre' as const,
+    transform(code: string, id: string) {
+      if (!languageModulePattern.test(id)) {
+        return null;
+      }
+
+      return {
+        code: `import Prism from 'prismjs';\n${code}`,
+        map: null,
+      };
+    },
+  };
+}
+
 export default defineConfig(({ command }) => ({
   root: siteRoot,
   base: getSiteBase(command),
   publicDir: false,
-  plugins: [react({ jsxRuntime: 'automatic' }), githubPagesSpaFallbackPlugin()],
+  plugins: [prismLanguageEsmPlugin(), react({ jsxRuntime: 'automatic' }), githubPagesSpaFallbackPlugin()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

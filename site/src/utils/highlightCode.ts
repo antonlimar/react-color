@@ -4,8 +4,9 @@ import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-jsx';
-import 'prismjs/components/prism-tsx';
 import 'prismjs/components/prism-typescript';
+// eslint-disable-next-line import-x/order -- prism-tsx depends on prism-typescript being loaded first.
+import 'prismjs/components/prism-tsx';
 import type { CodeBlock } from '../content';
 
 function escapeHtml(code: string) {
