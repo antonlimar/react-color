@@ -1,5 +1,5 @@
-import type { ComponentProps } from 'react';
 import { ChromePicker, CustomPicker, EditableInput, GooglePicker, HuePicker, SketchPicker } from 'react-color-x';
+import type { ComponentProps } from 'react';
 import type {
   PickerClassNames,
   PickerTheme,
