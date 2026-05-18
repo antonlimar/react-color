@@ -1,4 +1,4 @@
-# [React Color](https://antonlimar.github.io/react-color/)
+# [React Color X](https://antonlimar.github.io/react-color-x/)
 
 [![Npm Version][npm-version-image]][npm-version-url]
 [![License][license-image]][license-url]
@@ -45,27 +45,27 @@ Published package artifacts are ESM-only. The package exposes `main` and `module
 
 The package ships an ESM-only `main`/`module` contract and an `exports` map for the root entry, shared common components, and published CSS entrypoints.
 
-- Bundlers and TypeScript toolchains should use root named imports such as `import { SketchPicker } from 'react-color'`.
+- Bundlers and TypeScript toolchains should use root named imports such as `import { SketchPicker } from 'react-color-x'`.
 - Native Node ESM can resolve the root entry through the package `exports` map; plain Node execution still needs a CSS-aware loader because picker component modules import CSS side effects.
-- CommonJS `require('react-color')` and `require('react-color/lib/...')` are no longer supported.
+- CommonJS `require('react-color-x')` and `require('react-color-x/lib/...')` are no longer supported.
 
 ## Demo
 
 ![Demo](https://media.giphy.com/media/26FfggT53qE304CwE/giphy.gif)
 
-[**Live Demo**](https://antonlimar.github.io/react-color/)
+[**Live Demo**](https://antonlimar.github.io/react-color-x/)
 
 ## Installation & Usage
 
 ```sh
-npm install react-color --save
+npm install react-color-x --save
 ```
 
 ### Include the Component
 
 ```js
 import React from 'react';
-import { SketchPicker } from 'react-color';
+import { SketchPicker } from 'react-color-x';
 
 function Component() {
   return <SketchPicker />;
@@ -87,9 +87,9 @@ All public pickers keep accepting `className` on the root node and now also supp
 - Old approach: rely on default inline styles and override them with the `styles` prop.
 - New approach: import only the picker components you render, then customize with `className`, `classNames`, `theme`, and CSS custom properties.
 
-[license-image]: http://img.shields.io/npm/l/react-color.svg
+[license-image]: http://img.shields.io/npm/l/react-color-x.svg
 [license-url]: LICENSE
-[downloads-image]: http://img.shields.io/npm/dm/react-color.svg
-[downloads-url]: http://npm-stat.com/charts.html?package=react-color
-[npm-version-image]: https://img.shields.io/npm/v/react-color.svg
-[npm-version-url]: https://www.npmjs.com/package/react-color
+[downloads-image]: http://img.shields.io/npm/dm/react-color-x.svg
+[downloads-url]: http://npm-stat.com/charts.html?package=react-color-x
+[npm-version-image]: https://img.shields.io/npm/v/react-color-x.svg
+[npm-version-url]: https://www.npmjs.com/package/react-color-x

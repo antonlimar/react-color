@@ -53,7 +53,7 @@ flowchart LR
 - [x] Исправить barrel entrypoint-а (исторически [`src/index.js`](src/index.js), теперь [`src/index.ts`](src/index.ts)): отдельные `export { default as ChromePicker }` и `export { default }` из `./components/chrome/Chrome`.
 - [x] Зафиксировать решения в [`AGENTS.md`](AGENTS.md) и кратко в [`README.md`](README.md):
   - **Минимальная версия React (цель модернизации):** 16.8+; peer в `package.json` — в фазе 4.
-  - **Имя пакета:** пока `react-color`; смена scope/имени — только с major и CHANGELOG.
+  - **Имя пакета:** переименован в `react-color-x`; смена scope/имени зафиксирована как breaking change в CHANGELOG.
 
 ---
 

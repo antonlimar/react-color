@@ -99,11 +99,11 @@ function runNode(args, cwd) {
 }
 
 async function createConsumerWorkspace() {
-  const workspace = await mkdtemp(path.join(os.tmpdir(), 'react-color-consumption-'));
+  const workspace = await mkdtemp(path.join(os.tmpdir(), 'react-color-x-consumption-'));
   const nodeModulesDir = path.join(workspace, 'node_modules');
 
   await mkdir(nodeModulesDir, { recursive: true });
-  await symlink(repoRoot, path.join(nodeModulesDir, 'react-color'), 'dir');
+  await symlink(repoRoot, path.join(nodeModulesDir, 'react-color-x'), 'dir');
 
   return workspace;
 }
@@ -125,7 +125,7 @@ async function runBundlerFixture(workspace) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>react-color consumption check</title>
+    <title>react-color-x consumption check</title>
   </head>
   <body>
     <div id="app"></div>
@@ -138,7 +138,7 @@ async function runBundlerFixture(workspace) {
   await writeFixture(
     bundlerRoot,
     'main.ts',
-    `import ReactColorDefault, { EditableInput, HuePicker } from 'react-color';
+    `import ReactColorDefault, { EditableInput, HuePicker } from 'react-color-x';
 
 const consumedEntries = [ReactColorDefault, EditableInput, HuePicker];
 
@@ -189,15 +189,15 @@ async function main() {
       'resolve-node-esm.mjs',
       `import assert from 'node:assert/strict';
 
-assert.match(import.meta.resolve('react-color'), /\\/es\\/index\\.js$/);
-assert.match(import.meta.resolve('react-color/es/components/common'), /\\/es\\/components\\/common\\/index\\.js$/);
+assert.match(import.meta.resolve('react-color-x'), /\\/es\\/index\\.js$/);
+assert.match(import.meta.resolve('react-color-x/es/components/common'), /\\/es\\/components\\/common\\/index\\.js$/);
 `,
     );
 
     await writeFixture(
       workspace,
       'consumer.cjs',
-      `const reactColor = require('react-color');
+      `const reactColor = require('react-color-x');
 void reactColor;
 `,
     );

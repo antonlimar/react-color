@@ -8,8 +8,8 @@
     "moduleResolution": "Bundler",
     "noEmit": true,
     "paths": {
-      "react-color": ["./index.d.ts"],
-      "react-color/es/*": ["./es/*"]
+      "react-color-x": ["./index.d.ts"],
+      "react-color-x/es/*": ["./es/*"]
     },
     "skipLibCheck": true,
     "strict": true,

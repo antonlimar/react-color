@@ -3,7 +3,7 @@ import { siteBem } from '../../../utils/siteBem';
 import { LivePickerPreview } from '../LivePickerPreview';
 import { PickerImportSnippet } from '../PickerImportSnippet';
 import type { PickerMetadata } from '../../../content';
-import type { ColorResult, PickerTheme, RGBAColor } from 'react-color';
+import type { ColorResult, PickerTheme, RGBAColor } from 'react-color-x';
 import './PickerGalleryItem.scss';
 
 interface PickerGalleryItemProps {
@@ -15,7 +15,7 @@ interface PickerGalleryItemProps {
 }
 
 export function PickerGalleryItem({ color, colorLabel, theme, onChange, picker }: PickerGalleryItemProps) {
-  const importSnippet = `import { ${picker.exportName} } from 'react-color';`;
+  const importSnippet = `import { ${picker.exportName} } from 'react-color-x';`;
   const b = siteBem('picker-gallery');
 
   return (

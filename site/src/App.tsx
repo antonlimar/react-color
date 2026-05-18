@@ -31,10 +31,10 @@ import {
   siteBem,
 } from './utils';
 import type { PackageManager } from './content';
-import type { ColorResult, RGBAColor } from 'react-color';
+import type { ColorResult, RGBAColor } from 'react-color-x';
 
 const galleryPagePath = '/gallery' as const;
-const siteThemeStorageKey = 'react-color-docs-theme';
+const siteThemeStorageKey = 'react-color-x-docs-theme';
 const siteShell = siteBem('site-shell');
 const skipLink = siteBem('skip-link');
 type SiteTheme = 'light' | 'dark';

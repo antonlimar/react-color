@@ -8,13 +8,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
       '@storybook-utils': path.resolve(__dirname, '.storybook'),
       '@test': path.resolve(__dirname, 'test'),
-      'react-color': path.resolve(__dirname, 'src/index.ts'),
+      'react-color-x': path.resolve(__dirname, 'src/index.ts'),
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json'],
   },
   plugins: [
     {
-      name: 'react-color-jsx-pretransform',
+      name: 'react-color-x-jsx-pretransform',
       enforce: 'pre',
       async transform(code, id) {
         if (!/\/(src|test)\/.*\.(js|jsx)$/.test(id)) {

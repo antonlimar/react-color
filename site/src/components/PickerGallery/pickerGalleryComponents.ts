@@ -13,8 +13,8 @@ import {
   SliderPicker,
   SwatchesPicker,
   TwitterPicker,
-} from 'react-color';
-import type { ColorPickerComponent, ColorPickerProps } from 'react-color';
+} from 'react-color-x';
+import type { ColorPickerComponent, ColorPickerProps } from 'react-color-x';
 
 export const pickerGalleryComponents: Record<string, ColorPickerComponent> = {
   alpha: AlphaPicker,

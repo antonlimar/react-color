@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function jsxInJsPlugin() {
   return {
-    name: 'react-color-storybook-jsx-in-js',
+    name: 'react-color-x-storybook-jsx-in-js',
     enforce: 'pre',
     async transform(code, id) {
       if (!/\/(src|\.storybook)\/.*\.js$/.test(id)) {

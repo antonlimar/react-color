@@ -1,5 +1,5 @@
 {
-  "name": "react-color",
+  "name": "react-color-x",
   "version": "2.19.3",
   "description": "A Collection of Color Pickers from Sketch, Photoshop, Chrome & more",
   "type": "module",
@@ -20,12 +20,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/casesandberg/react-color.git"
+    "url": "git+https://github.com/antonlimar/react-color-x.git"
   },
   "author": "case <case@casesandberg.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/antonlimar/react-color/issues"
+    "url": "https://github.com/antonlimar/react-color-x/issues"
   },
   "scripts": {
     "build": "npm run clean-es && tsc -p tsconfig.es.json && node scripts/build-styles.mjs es && node scripts/attach-picker-style-imports.mjs es && node scripts/rewrite-esm-import-specifiers.mjs es",
@@ -62,7 +62,7 @@
   "sideEffects": [
     "**/*.css"
   ],
-  "homepage": "https://antonlimar.github.io/react-color/",
+  "homepage": "https://antonlimar.github.io/react-color-x/",
   "keywords": [
     "react",
     "color picker",

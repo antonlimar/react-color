@@ -73,10 +73,10 @@ export function SiteHeader({ galleryPagePath, isDarkTheme, page, onThemeToggle }
 
   return (
     <header className={b()}>
-      <Link className={b('brand')} to="/" aria-label="react-color documentation home">
+      <Link className={b('brand')} to="/" aria-label="react-color-x documentation home">
         <span className={b('brand-mark')} aria-hidden="true" />
         <span className={b('brand-copy')}>
-          <strong>react-color</strong>
+          <strong>react-color-x</strong>
           <span>Modern React color pickers</span>
         </span>
       </Link>
@@ -91,7 +91,7 @@ export function SiteHeader({ galleryPagePath, isDarkTheme, page, onThemeToggle }
         >
           Picker Gallery
         </Link>
-        <a className={b('link')} href="https://github.com/antonlimar/react-color">
+        <a className={b('link')} href="https://github.com/antonlimar/react-color-x">
           View repository
         </a>
         <ThemeToggleButton

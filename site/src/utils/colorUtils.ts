@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import type { RGBAColor } from 'react-color';
+import type { RGBAColor } from 'react-color-x';
 
 export const initialColor: RGBAColor = {
   r: 65,

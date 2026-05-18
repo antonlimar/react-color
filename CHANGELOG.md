@@ -4,7 +4,8 @@
 
 ### Compatibility and migration notes
 
-- Published package output is now ESM-only: `main` and `module` point at `es/index.js`, `lib/` CommonJS artifacts are no longer built or published, and `react-color/lib/*` deep imports are no longer supported.
+- The published package name is now `react-color-x`; consumers should install and import from `react-color-x`.
+- Published package output is now ESM-only: `main` and `module` point at `es/index.js`, `lib/` CommonJS artifacts are no longer built or published, and `react-color-x/lib/*` deep imports are no longer supported.
 - The package now publishes an `exports` map for the root entry and shared common components.
 - Picker modules now use named exports only; the legacy root default export has been removed.
 - Library peer compatibility is now explicitly documented and enforced as `react >=16.8.0`.
