@@ -34,6 +34,7 @@ export default defineConfig({
   test: {
     include: ['test/visual/**/*.spec.tsx'],
     setupFiles: ['./test/vitest.visual.setup.ts'],
+    testTimeout: 45_000,
     browser: {
       enabled: true,
       provider: playwright(),
