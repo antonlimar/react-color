@@ -62,7 +62,6 @@ npm install react-color-x --save
 ### Include the Component
 
 ```js
-import React from 'react';
 import { SketchPicker } from 'react-color-x';
 
 function Component() {
