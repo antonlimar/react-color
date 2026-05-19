@@ -89,7 +89,7 @@ flowchart LR
 
 Статус: основная цель фазы завершена.
 
-- **React**: `peerDependencies.react` зафиксирован на `>=16.8.0`; корневые `devDependencies.react` / `react-dom` остаются на современном major для сайта документации и Storybook.
+- **React**: `peerDependencies.react` зафиксирован на `>=18.3.1`; корневые `devDependencies.react` / `react-dom` остаются на современном major для сайта документации и Storybook.
 - **Примеры**: старые standalone example-приложения из `examples/` удалены; актуальные демонстрации и developer docs живут в [`site/`](site/) и Storybook.
 - **lodash / lodash-es**: зафиксирована промежуточная стратегия без лишнего рефакторинга: path-imports в исходниках и post-build rewrite импортов на `lodash-es` для ESM-сборки.
 - **Cleanup**: прямые legacy `devDependencies`, старые standalone examples и legacy docs toolchain убраны из корня репозитория.

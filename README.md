@@ -12,7 +12,7 @@
 
 This tree is maintained as a modernization fork. Source layout, npm export names, and agent-oriented conventions are documented in [`AGENTS.md`](AGENTS.md). Roadmap (TypeScript, toolchain, tests): [`PLAN.md`](PLAN.md). Do not edit generated `es/` by hand; use the build scripts from `package.json`.
 
-**Library compatibility baseline:** published `peerDependencies.react` is `>=16.8.0`, matching the modernization track minimum documented in `AGENTS.md`.
+**Library compatibility baseline:** published `peerDependencies.react` is `>=18.3.1`, matching the modernization track minimum documented in `AGENTS.md`.
 
 **Local development baseline:** the documentation site and Storybook run on the newer root `devDependencies.react` / `react-dom`. Minimum React compatibility for the library itself is validated separately from the root dev environment.
 

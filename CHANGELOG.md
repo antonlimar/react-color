@@ -1,14 +1,14 @@
 # Changelog
 
-## Unreleased
+## 3.0.0 - 2026-05-19
 
 ### Compatibility and migration notes
 
 - The published package name is now `react-color-x`; consumers should install and import from `react-color-x`.
 - Published package output is now ESM-only: `main` and `module` point at `es/index.js`, `lib/` CommonJS artifacts are no longer built or published, and `react-color-x/lib/*` deep imports are no longer supported.
 - The package now publishes an `exports` map for the root entry and shared common components.
-- Picker modules now use named exports only; the legacy root default export has been removed.
-- Library peer compatibility is now explicitly documented and enforced as `react >=16.8.0`.
+- Picker modules now use named exports while preserving the legacy root default export as `Chrome`.
+- Library peer compatibility is now explicitly documented and enforced as `react >=18.3.1`.
 - Root development dependencies for the documentation site and Storybook intentionally stay on a newer React major than the package peer baseline. This is a repository-development constraint, not a published runtime requirement for consumers.
 - Component modules now import their own CSS side effects, so consumers do not need separate package-level CSS entrypoints.
 - `theme` and `classNames` are now the preferred public styling API, while `styles` remains available only as a deprecated compatibility layer for legacy inline overrides.

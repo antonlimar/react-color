@@ -56,7 +56,7 @@ Default export:
 - библиотека и tooling уже переведены на TypeScript-совместимый стек;
 - тестовый стек: Vitest + Testing Library + jsdom;
 - сайт документации в `site/` и Storybook работают на современном пайплайне;
-- `peerDependencies.react` рассчитан на совместимость с React `>=16.8.0`;
+- `peerDependencies.react` рассчитан на совместимость с React `>=18.3.1`;
 
 ## Рабочие соглашения
 
