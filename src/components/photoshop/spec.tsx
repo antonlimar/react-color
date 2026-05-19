@@ -27,6 +27,19 @@ test('PhotoshopButton renders correctly', () => {
   renderForSnapshot(<PhotoshopButton label="accept" onClick={() => {}} />).expectSnapshot();
 });
 
+test('PhotoshopButton is keyboard operable', () => {
+  const onClick = vi.fn();
+  renderForSnapshot(<PhotoshopButton label="accept" onClick={onClick} />);
+  const button = screen.getByRole('button', { name: 'accept' });
+
+  expect(button).toHaveAttribute('tabindex', '0');
+
+  fireEvent.keyDown(button, { key: 'Enter' });
+  fireEvent.keyDown(button, { key: ' ' });
+
+  expect(onClick).toHaveBeenCalledTimes(2);
+});
+
 test('PhotoshopFields renders correctly', () => {
   renderForSnapshot(<PhotoshopFields {...red} onChange={() => {}} />).expectSnapshot();
 });

@@ -160,7 +160,10 @@ exports[`Chrome renders correctly 1`] = `
           class="rc-chrome__toggle"
         >
           <div
+            aria-label="Toggle color input mode"
             class="rc-chrome__toggle-icon"
+            role="button"
+            tabindex="0"
           >
             <svg
               style="fill: currentcolor; width: 24px; height: 24px;"
@@ -338,7 +341,10 @@ exports[`Chrome renders correctly in dark theme 1`] = `
           class="rc-chrome__toggle"
         >
           <div
+            aria-label="Toggle color input mode"
             class="rc-chrome__toggle-icon"
+            role="button"
+            tabindex="0"
           >
             <svg
               style="fill: currentcolor; width: 24px; height: 24px;"
@@ -389,7 +395,10 @@ exports[`ChromeFields renders correctly 1`] = `
       class="rc-chrome__toggle"
     >
       <div
+        aria-label="Toggle color input mode"
         class="rc-chrome__toggle-icon"
+        role="button"
+        tabindex="0"
       >
         <svg
           style="fill: currentcolor; width: 24px; height: 24px;"

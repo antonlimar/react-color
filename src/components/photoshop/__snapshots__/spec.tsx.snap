@@ -124,11 +124,15 @@ exports[`Photoshop renders correctly 1`] = `
           >
             <div
               class="rc-photoshop__button rc-photoshop__button--active"
+              role="button"
+              tabindex="0"
             >
               OK
             </div>
             <div
               class="rc-photoshop__button"
+              role="button"
+              tabindex="0"
             >
               Cancel
             </div>
@@ -313,6 +317,8 @@ exports[`PhotoshopButton renders correctly 1`] = `
 <DocumentFragment>
   <div
     class="rc-photoshop__button"
+    role="button"
+    tabindex="0"
   >
     accept
   </div>

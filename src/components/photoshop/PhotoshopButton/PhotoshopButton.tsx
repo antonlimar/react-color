@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { KeyboardEvent, ReactNode } from 'react';
 import { bem } from '@/components/common';
 
 interface PhotoshopButtonProps {
@@ -10,9 +10,25 @@ interface PhotoshopButtonProps {
 
 const b = bem('photoshop');
 
+const ENTER = 13;
+const SPACE = 32;
+
 export function PhotoshopButton({ onClick, label, children, active }: PhotoshopButtonProps) {
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (
+      event.key === 'Enter' ||
+      event.key === ' ' ||
+      event.key === 'Spacebar' ||
+      event.keyCode === ENTER ||
+      event.keyCode === SPACE
+    ) {
+      event.preventDefault();
+      onClick?.();
+    }
+  };
+
   return (
-    <div className={b('button', { active })} onClick={onClick}>
+    <div className={b('button', { active })} role="button" tabIndex={0} onClick={onClick} onKeyDown={handleKeyDown}>
       {label || children}
     </div>
   );

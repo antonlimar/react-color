@@ -75,7 +75,7 @@ https://www.w3.org/WAI/ARIA/apg/patterns/slider/
 - [x] Добавить focusability и минимальный ARIA-label для `Saturation`.
 - [x] Добавить keyboard support для `Saturation`.
 - [x] Расширить keyboard activation и ARIA для `Swatch`.
-- [ ] Проверить и исправить вторичные кликабельные `div`: `PhotoshopButton`, `ChromeFields` toggle, `SliderSwatch`.
+- [x] Проверить и исправить вторичные кликабельные `div`: `PhotoshopButton`, `ChromeFields` toggle, `SliderSwatch`.
 - [x] Покрыть изменения unit-тестами.
 - [x] Запустить `npm run test:unit`.
 - [x] Запустить `npm run typecheck`.

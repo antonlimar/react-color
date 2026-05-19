@@ -5,7 +5,7 @@ import {
   getRootElement,
   renderForSnapshot,
 } from '@test/helpers';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
 import { red, simpleCheckForValidColor } from '@/helpers';
 import { Chrome } from './Chrome';
@@ -31,6 +31,20 @@ test('Chrome onChange events correctly', () => {
 
 test('ChromeFields renders correctly', () => {
   renderForSnapshot(<ChromeFields {...red} onChange={() => {}} />).expectSnapshot();
+});
+
+test('ChromeFields toggle is keyboard operable', () => {
+  renderForSnapshot(<ChromeFields {...red} onChange={() => {}} />);
+  const toggle = screen.getByRole('button', { name: 'Toggle color input mode' });
+
+  expect(toggle).toHaveAttribute('tabindex', '0');
+  expect(screen.getByLabelText('hex')).toBeInTheDocument();
+
+  fireEvent.keyDown(toggle, { key: 'Enter' });
+  expect(screen.getByLabelText('r')).toBeInTheDocument();
+
+  fireEvent.keyDown(toggle, { key: ' ' });
+  expect(screen.getByLabelText('h')).toBeInTheDocument();
 });
 
 test('ChromePointer renders correctly', () => {

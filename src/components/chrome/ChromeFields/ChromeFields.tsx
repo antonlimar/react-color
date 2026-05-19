@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { ReactNode } from 'react';
+import type { KeyboardEvent, ReactNode } from 'react';
 import { EditableInput, bem, UnfoldMoreHorizontalIcon } from '@/components/common';
 import { isValidHex } from '@/helpers';
 import type { ColorChangeValue, ColorPickerChangeEvent, HSLAColor, RGBAColor } from '@/types';
@@ -15,6 +15,8 @@ interface ChromeFieldsProps {
 }
 
 const b = bem('chrome');
+const ENTER = 13;
+const SPACE = 32;
 
 export function ChromeFields(props: ChromeFieldsProps) {
   const [view, setView] = useState<'hex' | 'rgb' | 'hsl'>(() =>
@@ -31,6 +33,19 @@ export function ChromeFields(props: ChromeFieldsProps) {
       setView('hex');
     } else {
       setView('rgb');
+    }
+  };
+
+  const handleToggleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (
+      event.key === 'Enter' ||
+      event.key === ' ' ||
+      event.key === 'Spacebar' ||
+      event.keyCode === ENTER ||
+      event.keyCode === SPACE
+    ) {
+      event.preventDefault();
+      toggleViews();
     }
   };
 
@@ -140,7 +155,14 @@ export function ChromeFields(props: ChromeFieldsProps) {
     <div className={b('fields', { 'disabled-alpha': props.disableAlpha, [resolvedView]: true })}>
       {fields}
       <div className={b('toggle')}>
-        <div onClick={toggleViews} className={b('toggle-icon')}>
+        <div
+          aria-label="Toggle color input mode"
+          className={b('toggle-icon')}
+          role="button"
+          tabIndex={0}
+          onClick={toggleViews}
+          onKeyDown={handleToggleKeyDown}
+        >
           <UnfoldMoreHorizontalIcon />
         </div>
       </div>

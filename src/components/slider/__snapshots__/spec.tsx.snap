@@ -43,40 +43,56 @@ exports[`Slider renders correctly 1`] = `
           class="rc-slider__swatch-wrap"
         >
           <div
+            aria-label="Select 80% lightness"
             class="rc-slider__swatch rc-slider__swatch--first"
+            role="button"
             style="background: rgb(187, 179, 230);"
+            tabindex="0"
           />
         </div>
         <div
           class="rc-slider__swatch-wrap"
         >
           <div
+            aria-label="Select 65% lightness"
             class="rc-slider__swatch"
+            role="button"
             style="background: rgb(136, 121, 210);"
+            tabindex="0"
           />
         </div>
         <div
           class="rc-slider__swatch-wrap"
         >
           <div
+            aria-label="Select 50% lightness"
             class="rc-slider__swatch"
+            role="button"
             style="background: rgb(85, 64, 191);"
+            tabindex="0"
           />
         </div>
         <div
           class="rc-slider__swatch-wrap"
         >
           <div
+            aria-label="Select 35% lightness"
             class="rc-slider__swatch"
+            role="button"
             style="background: rgb(60, 45, 134);"
+            tabindex="0"
           />
         </div>
         <div
           class="rc-slider__swatch-wrap"
         >
           <div
+            aria-label="Select 20% lightness"
+            aria-pressed="true"
             class="rc-slider__swatch rc-slider__swatch--active rc-slider__swatch--last"
+            role="button"
             style="background: rgb(34, 26, 77);"
+            tabindex="0"
           />
         </div>
         <div
@@ -99,8 +115,11 @@ exports[`SliderPointer renders correctly 1`] = `
 exports[`SliderSwatch renders correctly 1`] = `
 <DocumentFragment>
   <div
+    aria-label="Select 50% lightness"
     class="rc-slider__swatch"
+    role="button"
     style="background: rgb(191, 64, 64);"
+    tabindex="0"
   />
 </DocumentFragment>
 `;
@@ -114,40 +133,55 @@ exports[`SliderSwatches renders correctly 1`] = `
       class="rc-slider__swatch-wrap"
     >
       <div
+        aria-label="Select 80% lightness"
         class="rc-slider__swatch rc-slider__swatch--first"
+        role="button"
         style="background: rgb(230, 179, 179);"
+        tabindex="0"
       />
     </div>
     <div
       class="rc-slider__swatch-wrap"
     >
       <div
+        aria-label="Select 65% lightness"
         class="rc-slider__swatch"
+        role="button"
         style="background: rgb(210, 121, 121);"
+        tabindex="0"
       />
     </div>
     <div
       class="rc-slider__swatch-wrap"
     >
       <div
+        aria-label="Select 50% lightness"
         class="rc-slider__swatch"
+        role="button"
         style="background: rgb(191, 64, 64);"
+        tabindex="0"
       />
     </div>
     <div
       class="rc-slider__swatch-wrap"
     >
       <div
+        aria-label="Select 35% lightness"
         class="rc-slider__swatch"
+        role="button"
         style="background: rgb(134, 45, 45);"
+        tabindex="0"
       />
     </div>
     <div
       class="rc-slider__swatch-wrap"
     >
       <div
+        aria-label="Select 20% lightness"
         class="rc-slider__swatch rc-slider__swatch--last"
+        role="button"
         style="background: rgb(77, 26, 26);"
+        tabindex="0"
       />
     </div>
     <div
