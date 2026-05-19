@@ -77,12 +77,7 @@ The modernization fork ships component-scoped CSS automatically with each compon
 
 Root picker and shared primitive imports include the CSS they need.
 
-All public pickers keep accepting `className` on the root node and now also support `theme`, `classNames`, and CSS custom properties for styling. The legacy `styles` prop is still available as a deprecated compatibility layer for runtime inline overrides, but new customizations should prefer `classNames`, CSS variables, and the published `rc-*` BEM hooks.
-
-### Styling migration
-
-- Old approach: rely on default inline styles and override them with the `styles` prop.
-- New approach: import only the picker components you render, then customize with `className`, `classNames`, `theme`, and CSS custom properties.
+All public pickers keep accepting `className` on the root node and still support the `styles` prop for runtime inline overrides. They now also support `theme`, `classNames`, and CSS custom properties for styling; new customizations should prefer `classNames`, CSS variables, and the published `rc-*` BEM hooks when possible.
 
 [license-image]: http://img.shields.io/npm/l/react-color-x.svg
 [license-url]: LICENSE
