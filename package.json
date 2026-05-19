@@ -1,6 +1,6 @@
 {
   "name": "react-color-x",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A Collection of Color Pickers from Sketch, Photoshop, Chrome & more",
   "type": "module",
   "main": "es/index.js",
