@@ -1,74 +1,74 @@
-# Контекст для агентов и контрибьюторов
+# Context for Agents and Contributors
 
-## Назначение репозитория
+## Repository Purpose
 
-Это поддерживаемый форк `react-color`, публикуемый как `react-color-x`: библиотека приведена к современному состоянию, работает на TypeScript-совместимом стеке, имеет актуальные сборку/тесты/Storybook/доки и сохраняет совместимость публичного API там, где это возможно.
+This is a maintained fork of `react-color`, published as `react-color-x`: the library has been modernized, runs on a TypeScript-compatible stack, has up-to-date build/tests/Storybook/docs, and preserves public API compatibility where possible.
 
-`AGENTS.md` хранит только актуальные и постоянные правила.
+`AGENTS.md` stores only current and long-lived rules.
 
-## Карта каталогов
+## Directory Map
 
-| Путь          | Назначение                                                      |
-| ------------- | --------------------------------------------------------------- |
-| `src/`        | Исходники библиотеки, публичные экспорты, компоненты и хелперы. |
-| `.storybook/` | Конфигурация Storybook.                                         |
-| `site/`       | Актуальный сайт документации для GitHub Pages.                  |
-| `test/`       | Тесты и test helpers.                                           |
-| `scripts/`    | Скрипты сборки, проверки и repo tooling.                        |
+| Path          | Purpose                                                   |
+| ------------- | --------------------------------------------------------- |
+| `src/`        | Library source code, public exports, components, helpers. |
+| `.storybook/` | Storybook configuration.                                  |
+| `site/`       | Current GitHub Pages documentation site.                  |
+| `test/`       | Tests and test helpers.                                   |
+| `scripts/`    | Build, validation, and repo tooling scripts.              |
 
-Сгенерированные артефакты `es/`, `.out/` и `site/dist/` не править вручную.
+Do not edit generated artifacts `es/`, `.out/`, or `site/dist/` manually.
 
-## Основные команды
+## Main Commands
 
-| Команда                   | Назначение                                           |
-| ------------------------- | ---------------------------------------------------- |
-| `npm run test:unit`       | Только unit/UI-тесты через Vitest.                   |
-| `npm run eslint`          | Линт репозитория.                                    |
-| `npm run typecheck`       | TypeScript-проверка без эмита.                       |
-| `npm run build`           | Полная ESM-сборка пакета в `es/`.                    |
-| `npm run storybook`       | Dev Storybook на `http://localhost:6006/`.           |
-| `npm run build-storybook` | Статическая сборка Storybook в `.out/`.              |
-| `npm run site:dev`        | Dev-сервер документации на `http://localhost:4173/`. |
-| `npm run site:build`      | Production-сборка документации в `site/dist/`.       |
-| `npm run site:verify`     | Проверка тестов, сборки и метаданных сайта.          |
+| Command                   | Purpose                                               |
+| ------------------------- | ----------------------------------------------------- |
+| `npm run test:unit`       | Unit/UI tests only, via Vitest.                       |
+| `npm run eslint`          | Repository linting.                                   |
+| `npm run typecheck`       | TypeScript check without emit.                        |
+| `npm run build`           | Full ESM package build into `es/`.                    |
+| `npm run storybook`       | Dev Storybook at `http://localhost:6006/`.            |
+| `npm run build-storybook` | Static Storybook build into `.out/`.                  |
+| `npm run site:dev`        | Documentation dev server at `http://localhost:4173/`. |
+| `npm run site:build`      | Production documentation build into `site/dist/`.     |
+| `npm run site:verify`     | Validate site tests, build, and metadata.             |
 
-## Публичный API
+## Public API
 
-Точка входа: [`src/index.ts`](src/index.ts).
+Entry point: [`src/index.ts`](src/index.ts).
 
-Основной поддерживаемый способ импорта — именованные экспорты из корня пакета.
-Default import не продвигать в новой документации и примерах; если он сохраняется в коде, считать его legacy-совместимостью.
+The primary supported import style is named exports from the package root.
+Do not promote default imports in new documentation or examples; if they remain in code, treat them as legacy compatibility.
 
-Именованные экспорты пикеров:
+Named picker exports:
 `AlphaPicker`, `BlockPicker`, `CirclePicker`, `ChromePicker`, `CompactPicker`, `GithubPicker`, `HuePicker`, `MaterialPicker`, `PhotoshopPicker`, `SketchPicker`, `SliderPicker`, `SwatchesPicker`, `TwitterPicker`, `GooglePicker`.
 
-Именованные общие экспорты:
+Named shared exports:
 `CustomPicker`, `Alpha`, `Checkboard`, `EditableInput`, `Hue`, `Raised`, `Saturation`, `Swatch`.
 
-Правила:
+Rules:
 
-- не переименовывать и не удалять эти экспорты без major-релиза;
-- не ломать deep imports и структуру публикации `es/` без явного решения;
-- изменения `main` / `module` / `types` / `exports` считать высокорисковыми и делать только осознанно.
+- do not rename or remove these exports without a major release;
+- do not break deep imports or the `es/` publishing structure without an explicit decision;
+- treat changes to `main` / `module` / `types` / `exports` as high risk and make them only deliberately.
 
-## Текущее состояние проекта
+## Current Project State
 
-- библиотека и tooling уже переведены на TypeScript-совместимый стек;
-- тестовый стек: Vitest + Testing Library + jsdom;
-- сайт документации в `site/` и Storybook работают на современном пайплайне;
-- `peerDependencies.react` рассчитан на совместимость с React `>=18.3.1`;
+- the library and tooling have already been moved to a TypeScript-compatible stack;
+- the test stack is Vitest + Testing Library + jsdom;
+- the documentation site in `site/` and Storybook run on a modern pipeline;
+- `peerDependencies.react` targets compatibility with React `>=18.3.1`;
 
-## Рабочие соглашения
+## Working Agreements
 
-- Менять только то, что нужно для текущей задачи; не делать несвязанный рефакторинг.
-- Runtime-совместимость важнее косметических улучшений.
-- Если меняется публичное поведение, типы или packaging contract, синхронизировать это с `README.md`.
-- Предпочитать точечные изменения в существующем стиле кода.
-- Не заменять массово текущую систему стилизации в рамках случайной задачи.
-- Для актуальной документации сторонних библиотек и инструментов предпочтительно использовать Context7, а не память модели.
+- Change only what is needed for the current task; do not do unrelated refactoring.
+- Runtime compatibility matters more than cosmetic improvements.
+- If public behavior, types, or the packaging contract changes, synchronize that with `README.md`.
+- Prefer targeted changes in the existing code style.
+- Do not replace the current styling system wholesale as part of an incidental task.
+- For current documentation of third-party libraries and tools, prefer Context7 over model memory.
 
-## Тесты
+## Tests
 
-- Новые и переписанные тесты писать в формате `*.spec.ts` / `*.spec.tsx`.
-- Предпочитать паттерны Testing Library и пользовательские сценарии вместо implementation-detail тестов.
-- При рефакторинге сохранять поведенческие проверки.
+- Write new and rewritten tests as `*.spec.ts` / `*.spec.tsx`.
+- Prefer Testing Library patterns and user scenarios over implementation-detail tests.
+- Preserve behavioral checks when refactoring.
