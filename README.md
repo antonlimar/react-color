@@ -4,7 +4,7 @@
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
 
-- **13 Different Pickers** - Sketch, Photoshop, Chrome and many more
+- **14 Different Pickers** - Sketch, Photoshop, Chrome, Google and many more
 
 - **Make Your Own** - Use the building block components to make your own
 
@@ -41,7 +41,7 @@ Published package artifacts are ESM-only. The package exposes `main` and `module
 
 ### Packaging interop notes
 
-The package ships an ESM-only `main`/`module` contract and an `exports` map for the root entry, shared common components, and published CSS entrypoints.
+The package ships an ESM-only `main`/`module` contract and an `exports` map for the root entry and shared common components. Generated component-local CSS artifacts are published under `es/components` and are pulled in by the component modules that need them.
 
 - Bundlers and TypeScript toolchains should use root named imports such as `import { SketchPicker } from 'react-color-x'`.
 - Native Node ESM can resolve the root entry through the package `exports` map; plain Node execution still needs a CSS-aware loader because picker component modules import CSS side effects.

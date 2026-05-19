@@ -1,14 +1,14 @@
-## Описание
+## Description
 
-Кратко: что меняется и зачем.
+Briefly describe what changed and why.
 
 ## Breaking / non-breaking
 
-- [ ] **Non-breaking** — публичные имена экспортов из `AGENTS.md` не менялись; peer-диапазоны не сужались необоснованно.
-- [ ] **Breaking** — есть запись в CHANGELOG и подготовка к major / согласование с мейнтейнерами.
+- [ ] **Non-breaking** — public export names listed in `AGENTS.md` did not change; peer ranges were not narrowed without a clear reason.
+- [ ] **Breaking** — CHANGELOG entry added and major-release preparation / maintainer alignment completed.
 
-## Чеклист
+## Checklist
 
-- [ ] Сборка/тесты/линт (актуальные команды из `AGENTS.md`) проходят локально.
-- [ ] Не правил `es/` вручную.
-- [ ] Для UI: стили — в духе текущего подхода (reactcss + inline), без массовой смены системы стилей в этом PR.
+- [ ] Build/tests/lint pass locally using the current commands from `AGENTS.md`.
+- [ ] I did not edit `es/` manually.
+- [ ] For UI changes: styles follow the current component-scoped CSS, CSS hooks / variables, and targeted inline override approach, without a broad styling-system change in this PR.
