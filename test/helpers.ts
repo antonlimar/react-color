@@ -38,7 +38,7 @@ export function createColorChangeSpy(color: ValidColorChecker) {
 }
 
 export function getFirstSwatch(container: HTMLElement): HTMLElement {
-  const swatch = container.querySelector('[tabindex="0"]');
+  const swatch = container.querySelector('.rc-swatch[tabindex="0"], [data-testid="swatch"][tabindex="0"]');
 
   if (!(swatch instanceof HTMLElement)) {
     throw new Error('Expected a swatch element with tabindex="0"');

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { CSSProperties, MouseEvent } from 'react';
+import type { CSSProperties, KeyboardEvent, MouseEvent } from 'react';
 import { calculateHueChange } from '@/helpers';
 import type { InternalColorChangeEvent } from '@/types';
 import { bem } from '../styleArchitecture';
@@ -14,6 +14,10 @@ const HUE_GRADIENT_HORIZONTAL =
 const HUE_GRADIENT_VERTICAL =
   'linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)';
 const HUE_STYLE_SLOTS = ['hue', 'container', 'pointer', 'slider'] as const;
+const HUE_MIN = 0;
+const HUE_MAX = 359;
+
+const clampHue = (value: number) => Math.min(HUE_MAX, Math.max(HUE_MIN, value));
 
 export function Hue(props: HueProps) {
   const { direction = 'horizontal', hsl, onChange, pointer, radius, shadow } = props;
@@ -38,6 +42,53 @@ export function Hue(props: HueProps) {
   const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
     handleChange(event);
     setIsDragging(true);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    let nextHue: number | undefined;
+    const currentHue = clampHue(Math.round(hsl.h));
+
+    switch (event.key) {
+      case 'ArrowLeft':
+      case 'ArrowDown':
+        nextHue = currentHue - 1;
+        break;
+      case 'ArrowRight':
+      case 'ArrowUp':
+        nextHue = currentHue + 1;
+        break;
+      case 'PageDown':
+        nextHue = currentHue - 10;
+        break;
+      case 'PageUp':
+        nextHue = currentHue + 10;
+        break;
+      case 'Home':
+        nextHue = HUE_MIN;
+        break;
+      case 'End':
+        nextHue = HUE_MAX;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+
+    const h = clampHue(nextHue);
+
+    if (h !== hsl.h && typeof onChange === 'function') {
+      onChange(
+        {
+          h,
+          s: hsl.s,
+          l: hsl.l,
+          a: hsl.a,
+          source: 'hsl',
+        },
+        event as unknown as InternalColorChangeEvent,
+      );
+    }
   };
 
   useEffect(() => {
@@ -81,16 +132,24 @@ export function Hue(props: HueProps) {
   };
 
   const Pointer = pointer;
+  const ariaValueNow = clampHue(Math.round(hsl.h));
 
   return (
     <div className={b({ vertical: direction === 'vertical' })} style={rootStyle}>
       <div
+        aria-orientation={direction}
+        aria-valuemax={HUE_MAX}
+        aria-valuemin={HUE_MIN}
+        aria-valuenow={ariaValueNow}
         className={b('container')}
-        style={containerStyle}
-        ref={containerRef}
         onMouseDown={handleMouseDown}
+        onKeyDown={handleKeyDown}
         onTouchMove={handleChange}
         onTouchStart={handleChange}
+        ref={containerRef}
+        role="slider"
+        style={containerStyle}
+        tabIndex={0}
       >
         <div className={b('pointer')} style={pointerStyle}>
           {Pointer ? <Pointer {...props} /> : <div className={b('slider')} style={sliderStyle} />}

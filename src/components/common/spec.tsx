@@ -1,5 +1,5 @@
 import { getRequiredElement, getRootElement, renderForSnapshot } from '@test/helpers';
-import { render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
 import { red, toState } from '@/helpers';
 import type { Color, ColorPickerInjectedProps } from '@/types';
@@ -40,8 +40,102 @@ test('Hue renders correctly', () => {
   renderForSnapshot(<Hue {...red} />).expectSnapshot();
 });
 
+test('Hue exposes slider semantics and keyboard controls', () => {
+  const onChange = vi.fn();
+  render(<Hue {...red} hsl={{ ...red.hsl, h: 120 }} onChange={onChange} />);
+
+  const slider = screen.getByRole('slider');
+  expect(slider).toHaveAttribute('tabindex', '0');
+  expect(slider).toHaveAttribute('aria-valuemin', '0');
+  expect(slider).toHaveAttribute('aria-valuemax', '359');
+  expect(slider).toHaveAttribute('aria-valuenow', '120');
+  expect(slider).toHaveAttribute('aria-orientation', 'horizontal');
+
+  fireEvent.keyDown(slider, { key: 'ArrowRight' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: 121, s: red.hsl.s, l: red.hsl.l, a: red.hsl.a, source: 'hsl' },
+    expect.objectContaining({ key: 'ArrowRight' }),
+  );
+
+  fireEvent.keyDown(slider, { key: 'PageDown' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: 110, s: red.hsl.s, l: red.hsl.l, a: red.hsl.a, source: 'hsl' },
+    expect.objectContaining({ key: 'PageDown' }),
+  );
+
+  fireEvent.keyDown(slider, { key: 'End' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: 359, s: red.hsl.s, l: red.hsl.l, a: red.hsl.a, source: 'hsl' },
+    expect.objectContaining({ key: 'End' }),
+  );
+});
+
+test('Hue keyboard controls clamp values and preserve vertical arrow direction', () => {
+  const onChange = vi.fn();
+  render(<Hue {...red} hsl={{ ...red.hsl, h: 359 }} direction="vertical" onChange={onChange} />);
+
+  const slider = screen.getByRole('slider');
+  expect(slider).toHaveAttribute('aria-orientation', 'vertical');
+
+  fireEvent.keyDown(slider, { key: 'ArrowUp' });
+  expect(onChange).not.toHaveBeenCalled();
+
+  fireEvent.keyDown(slider, { key: 'Home' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: 0, s: red.hsl.s, l: red.hsl.l, a: red.hsl.a, source: 'hsl' },
+    expect.objectContaining({ key: 'Home' }),
+  );
+});
+
 test('Saturation renders correctly', () => {
   renderForSnapshot(<Saturation {...red} />).expectSnapshot();
+});
+
+test('Alpha exposes slider semantics and keyboard controls', () => {
+  const onChange = vi.fn();
+  render(<Alpha {...red} hsl={{ ...red.hsl, a: 0.5 }} rgb={{ ...red.rgb, a: 0.5 }} a={0.5} onChange={onChange} />);
+
+  const slider = screen.getByRole('slider');
+  expect(slider).toHaveAttribute('tabindex', '0');
+  expect(slider).toHaveAttribute('aria-valuemin', '0');
+  expect(slider).toHaveAttribute('aria-valuemax', '100');
+  expect(slider).toHaveAttribute('aria-valuenow', '50');
+  expect(slider).toHaveAttribute('aria-orientation', 'horizontal');
+
+  fireEvent.keyDown(slider, { key: 'ArrowRight' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: red.hsl.h, s: red.hsl.s, l: red.hsl.l, a: 0.51, source: 'rgb' },
+    expect.objectContaining({ key: 'ArrowRight' }),
+  );
+
+  fireEvent.keyDown(slider, { key: 'PageDown' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: red.hsl.h, s: red.hsl.s, l: red.hsl.l, a: 0.4, source: 'rgb' },
+    expect.objectContaining({ key: 'PageDown' }),
+  );
+
+  fireEvent.keyDown(slider, { key: 'Home' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: red.hsl.h, s: red.hsl.s, l: red.hsl.l, a: 0, source: 'rgb' },
+    expect.objectContaining({ key: 'Home' }),
+  );
+});
+
+test('Alpha keyboard controls clamp values', () => {
+  const onChange = vi.fn();
+  render(<Alpha {...red} direction="vertical" onChange={onChange} />);
+
+  const slider = screen.getByRole('slider');
+  expect(slider).toHaveAttribute('aria-orientation', 'vertical');
+
+  fireEvent.keyDown(slider, { key: 'ArrowUp' });
+  expect(onChange).not.toHaveBeenCalled();
+
+  fireEvent.keyDown(slider, { key: 'PageDown' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: red.hsl.h, s: red.hsl.s, l: red.hsl.l, a: 0.9, source: 'rgb' },
+    expect.objectContaining({ key: 'PageDown' }),
+  );
 });
 
 test('ColorWrap provides the same runtime default color', () => {

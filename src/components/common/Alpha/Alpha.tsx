@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { CSSProperties, MouseEvent } from 'react';
+import type { CSSProperties, KeyboardEvent, MouseEvent } from 'react';
 import { calculateAlphaChange } from '@/helpers';
 import type { InternalColorChangeEvent } from '@/types';
 import { Checkboard } from '../Checkboard';
@@ -11,6 +11,10 @@ import './Alpha.scss';
 const b = bem('alphaControl');
 
 const ALPHA_STYLE_SLOTS = ['alpha', 'checkboard', 'gradient', 'container', 'pointer', 'slider'] as const;
+const ALPHA_MIN = 0;
+const ALPHA_MAX = 100;
+
+const clampAlphaPercent = (value: number) => Math.min(ALPHA_MAX, Math.max(ALPHA_MIN, value));
 
 export function Alpha(props: AlphaProps) {
   const { a, direction, hsl, onChange, pointer, radius, renderers, rgb, shadow, style } = props;
@@ -35,6 +39,53 @@ export function Alpha(props: AlphaProps) {
   const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
     handleChange(event);
     setIsDragging(true);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    let nextAlpha: number | undefined;
+    const currentAlpha = clampAlphaPercent(Math.round((a ?? rgb.a) * 100));
+
+    switch (event.key) {
+      case 'ArrowLeft':
+      case 'ArrowDown':
+        nextAlpha = currentAlpha - 1;
+        break;
+      case 'ArrowRight':
+      case 'ArrowUp':
+        nextAlpha = currentAlpha + 1;
+        break;
+      case 'PageDown':
+        nextAlpha = currentAlpha - 10;
+        break;
+      case 'PageUp':
+        nextAlpha = currentAlpha + 10;
+        break;
+      case 'Home':
+        nextAlpha = ALPHA_MIN;
+        break;
+      case 'End':
+        nextAlpha = ALPHA_MAX;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+
+    const alpha = clampAlphaPercent(nextAlpha) / 100;
+
+    if (alpha !== (a ?? rgb.a) && typeof onChange === 'function') {
+      onChange(
+        {
+          h: hsl.h,
+          s: hsl.s,
+          l: hsl.l,
+          a: alpha,
+          source: 'rgb',
+        },
+        event as unknown as InternalColorChangeEvent,
+      );
+    }
   };
 
   useEffect(() => {
@@ -90,6 +141,7 @@ export function Alpha(props: AlphaProps) {
   };
 
   const Pointer = pointer;
+  const ariaValueNow = clampAlphaPercent(Math.round((a ?? rgb.a) * 100));
 
   return (
     <div className={b({ vertical: direction === 'vertical' })} style={rootStyle}>
@@ -98,12 +150,19 @@ export function Alpha(props: AlphaProps) {
       </div>
       <div className={b('gradient')} style={gradientStyle} />
       <div
+        aria-orientation={direction ?? 'horizontal'}
+        aria-valuemax={ALPHA_MAX}
+        aria-valuemin={ALPHA_MIN}
+        aria-valuenow={ariaValueNow}
         className={b('container')}
-        style={containerStyle}
-        ref={containerRef}
         onMouseDown={handleMouseDown}
+        onKeyDown={handleKeyDown}
         onTouchMove={handleChange}
         onTouchStart={handleChange}
+        ref={containerRef}
+        role="slider"
+        style={containerStyle}
+        tabIndex={0}
       >
         <div className={b('pointer')} style={pointerStyle}>
           {Pointer ? <Pointer {...props} /> : <div className={b('slider')} style={sliderStyle} />}
