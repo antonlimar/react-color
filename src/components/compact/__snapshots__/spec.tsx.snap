@@ -23,7 +23,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#4D4D4D"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(77, 77, 77);"
                 tabindex="0"
                 title="#4D4D4D"
@@ -40,7 +42,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#999999"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(153, 153, 153);"
                 tabindex="0"
                 title="#999999"
@@ -57,7 +61,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FFFFFF"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(255, 255, 255); box-shadow: inset 0 0 0 1px #ddd;"
                 tabindex="0"
                 title="#FFFFFF"
@@ -74,7 +80,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#F44E3B"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(244, 78, 59);"
                 tabindex="0"
                 title="#F44E3B"
@@ -91,7 +99,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FE9200"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(254, 146, 0);"
                 tabindex="0"
                 title="#FE9200"
@@ -108,7 +118,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FCDC00"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(252, 220, 0);"
                 tabindex="0"
                 title="#FCDC00"
@@ -125,7 +137,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#DBDF00"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(219, 223, 0);"
                 tabindex="0"
                 title="#DBDF00"
@@ -142,7 +156,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#A4DD00"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(164, 221, 0);"
                 tabindex="0"
                 title="#A4DD00"
@@ -159,7 +175,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#68CCCA"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(104, 204, 202);"
                 tabindex="0"
                 title="#68CCCA"
@@ -176,7 +194,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#73D8FF"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(115, 216, 255);"
                 tabindex="0"
                 title="#73D8FF"
@@ -193,7 +213,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#AEA1FF"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(174, 161, 255);"
                 tabindex="0"
                 title="#AEA1FF"
@@ -210,7 +232,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FDA1FF"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(253, 161, 255);"
                 tabindex="0"
                 title="#FDA1FF"
@@ -227,7 +251,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#333333"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(51, 51, 51);"
                 tabindex="0"
                 title="#333333"
@@ -244,7 +270,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#808080"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(128, 128, 128);"
                 tabindex="0"
                 title="#808080"
@@ -261,7 +289,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#cccccc"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(204, 204, 204);"
                 tabindex="0"
                 title="#cccccc"
@@ -278,7 +308,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#D33115"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(211, 49, 21);"
                 tabindex="0"
                 title="#D33115"
@@ -295,7 +327,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#E27300"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(226, 115, 0);"
                 tabindex="0"
                 title="#E27300"
@@ -312,7 +346,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FCC400"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(252, 196, 0);"
                 tabindex="0"
                 title="#FCC400"
@@ -329,7 +365,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#B0BC00"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(176, 188, 0);"
                 tabindex="0"
                 title="#B0BC00"
@@ -346,7 +384,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#68BC00"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(104, 188, 0);"
                 tabindex="0"
                 title="#68BC00"
@@ -363,7 +403,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#16A5A5"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(22, 165, 165);"
                 tabindex="0"
                 title="#16A5A5"
@@ -380,7 +422,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#009CE0"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(0, 156, 224);"
                 tabindex="0"
                 title="#009CE0"
@@ -397,7 +441,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#7B64FF"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(123, 100, 255);"
                 tabindex="0"
                 title="#7B64FF"
@@ -414,7 +460,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FA28FF"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(250, 40, 255);"
                 tabindex="0"
                 title="#FA28FF"
@@ -431,7 +479,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#000000"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(0, 0, 0);"
                 tabindex="0"
                 title="#000000"
@@ -448,7 +498,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#666666"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(102, 102, 102);"
                 tabindex="0"
                 title="#666666"
@@ -465,7 +517,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#B3B3B3"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(179, 179, 179);"
                 tabindex="0"
                 title="#B3B3B3"
@@ -482,7 +536,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#9F0500"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(159, 5, 0);"
                 tabindex="0"
                 title="#9F0500"
@@ -499,7 +555,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#C45100"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(196, 81, 0);"
                 tabindex="0"
                 title="#C45100"
@@ -516,7 +574,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FB9E00"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(251, 158, 0);"
                 tabindex="0"
                 title="#FB9E00"
@@ -533,7 +593,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#808900"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(128, 137, 0);"
                 tabindex="0"
                 title="#808900"
@@ -550,7 +612,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#194D33"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(25, 77, 51);"
                 tabindex="0"
                 title="#194D33"
@@ -567,7 +631,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#0C797D"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(12, 121, 125);"
                 tabindex="0"
                 title="#0C797D"
@@ -584,7 +650,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#0062B1"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(0, 98, 177);"
                 tabindex="0"
                 title="#0062B1"
@@ -601,7 +669,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#653294"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(101, 50, 148);"
                 tabindex="0"
                 title="#653294"
@@ -618,7 +688,9 @@ exports[`Compact renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#AB149E"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(171, 20, 158);"
                 tabindex="0"
                 title="#AB149E"
@@ -751,7 +823,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#4D4D4D"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(77, 77, 77);"
                 tabindex="0"
                 title="#4D4D4D"
@@ -768,7 +842,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#999999"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(153, 153, 153);"
                 tabindex="0"
                 title="#999999"
@@ -785,7 +861,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FFFFFF"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(255, 255, 255); box-shadow: inset 0 0 0 1px #ddd;"
                 tabindex="0"
                 title="#FFFFFF"
@@ -802,7 +880,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#F44E3B"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(244, 78, 59);"
                 tabindex="0"
                 title="#F44E3B"
@@ -819,7 +899,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FE9200"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(254, 146, 0);"
                 tabindex="0"
                 title="#FE9200"
@@ -836,7 +918,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FCDC00"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(252, 220, 0);"
                 tabindex="0"
                 title="#FCDC00"
@@ -853,7 +937,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#DBDF00"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(219, 223, 0);"
                 tabindex="0"
                 title="#DBDF00"
@@ -870,7 +956,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#A4DD00"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(164, 221, 0);"
                 tabindex="0"
                 title="#A4DD00"
@@ -887,7 +975,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#68CCCA"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(104, 204, 202);"
                 tabindex="0"
                 title="#68CCCA"
@@ -904,7 +994,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#73D8FF"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(115, 216, 255);"
                 tabindex="0"
                 title="#73D8FF"
@@ -921,7 +1013,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#AEA1FF"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(174, 161, 255);"
                 tabindex="0"
                 title="#AEA1FF"
@@ -938,7 +1032,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FDA1FF"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(253, 161, 255);"
                 tabindex="0"
                 title="#FDA1FF"
@@ -955,7 +1051,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#333333"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(51, 51, 51);"
                 tabindex="0"
                 title="#333333"
@@ -972,7 +1070,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#808080"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(128, 128, 128);"
                 tabindex="0"
                 title="#808080"
@@ -989,7 +1089,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#cccccc"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(204, 204, 204);"
                 tabindex="0"
                 title="#cccccc"
@@ -1006,7 +1108,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#D33115"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(211, 49, 21);"
                 tabindex="0"
                 title="#D33115"
@@ -1023,7 +1127,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#E27300"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(226, 115, 0);"
                 tabindex="0"
                 title="#E27300"
@@ -1040,7 +1146,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FCC400"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(252, 196, 0);"
                 tabindex="0"
                 title="#FCC400"
@@ -1057,7 +1165,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#B0BC00"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(176, 188, 0);"
                 tabindex="0"
                 title="#B0BC00"
@@ -1074,7 +1184,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#68BC00"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(104, 188, 0);"
                 tabindex="0"
                 title="#68BC00"
@@ -1091,7 +1203,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#16A5A5"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(22, 165, 165);"
                 tabindex="0"
                 title="#16A5A5"
@@ -1108,7 +1222,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#009CE0"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(0, 156, 224);"
                 tabindex="0"
                 title="#009CE0"
@@ -1125,7 +1241,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#7B64FF"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(123, 100, 255);"
                 tabindex="0"
                 title="#7B64FF"
@@ -1142,7 +1260,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FA28FF"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(250, 40, 255);"
                 tabindex="0"
                 title="#FA28FF"
@@ -1159,7 +1279,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#000000"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(0, 0, 0);"
                 tabindex="0"
                 title="#000000"
@@ -1176,7 +1298,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#666666"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(102, 102, 102);"
                 tabindex="0"
                 title="#666666"
@@ -1193,7 +1317,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#B3B3B3"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(179, 179, 179);"
                 tabindex="0"
                 title="#B3B3B3"
@@ -1210,7 +1336,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#9F0500"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(159, 5, 0);"
                 tabindex="0"
                 title="#9F0500"
@@ -1227,7 +1355,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#C45100"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(196, 81, 0);"
                 tabindex="0"
                 title="#C45100"
@@ -1244,7 +1374,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#FB9E00"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(251, 158, 0);"
                 tabindex="0"
                 title="#FB9E00"
@@ -1261,7 +1393,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#808900"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(128, 137, 0);"
                 tabindex="0"
                 title="#808900"
@@ -1278,7 +1412,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#194D33"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(25, 77, 51);"
                 tabindex="0"
                 title="#194D33"
@@ -1295,7 +1431,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#0C797D"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(12, 121, 125);"
                 tabindex="0"
                 title="#0C797D"
@@ -1312,7 +1450,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#0062B1"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(0, 98, 177);"
                 tabindex="0"
                 title="#0062B1"
@@ -1329,7 +1469,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#653294"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(101, 50, 148);"
                 tabindex="0"
                 title="#653294"
@@ -1346,7 +1488,9 @@ exports[`Compact with onSwatchHover renders correctly 1`] = `
           >
             <span>
               <div
+                aria-label="#AB149E"
                 class="rc-swatch"
+                role="button"
                 style="background: rgb(171, 20, 158);"
                 tabindex="0"
                 title="#AB149E"
@@ -1463,7 +1607,9 @@ exports[`CompactColor renders correctly 1`] = `
   >
     <span>
       <div
+        aria-label="#fff"
         class="rc-swatch"
+        role="button"
         style="background: rgb(255, 255, 255);"
         tabindex="0"
         title="#fff"

@@ -91,6 +91,62 @@ test('Saturation renders correctly', () => {
   renderForSnapshot(<Saturation {...red} />).expectSnapshot();
 });
 
+test('Saturation exposes focusability and minimal ARIA labeling', () => {
+  render(<Saturation {...red} />);
+
+  const control = screen.getByLabelText('Color saturation and brightness');
+  expect(control).toHaveAttribute('tabindex', '0');
+  expect(control).not.toHaveAttribute('role', 'slider');
+});
+
+test('Saturation keyboard controls update saturation and brightness', () => {
+  const onChange = vi.fn();
+  const hsv = { h: 120, s: 0.5, v: 0.5, a: 0.75 };
+  render(<Saturation {...red} hsl={{ ...red.hsl, h: 120, a: 0.75 }} hsv={hsv} onChange={onChange} />);
+
+  const control = screen.getByLabelText('Color saturation and brightness');
+
+  fireEvent.keyDown(control, { key: 'ArrowRight' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: 120, s: 0.51, v: 0.5, a: 0.75, source: 'hsv' },
+    expect.objectContaining({ key: 'ArrowRight' }),
+  );
+
+  fireEvent.keyDown(control, { key: 'ArrowLeft' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: 120, s: 0.49, v: 0.5, a: 0.75, source: 'hsv' },
+    expect.objectContaining({ key: 'ArrowLeft' }),
+  );
+
+  fireEvent.keyDown(control, { key: 'ArrowUp' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: 120, s: 0.5, v: 0.51, a: 0.75, source: 'hsv' },
+    expect.objectContaining({ key: 'ArrowUp' }),
+  );
+
+  fireEvent.keyDown(control, { key: 'PageDown' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: 120, s: 0.5, v: 0.4, a: 0.75, source: 'hsv' },
+    expect.objectContaining({ key: 'PageDown' }),
+  );
+});
+
+test('Saturation keyboard controls clamp values', () => {
+  const onChange = vi.fn();
+  render(<Saturation {...red} hsv={{ ...red.hsv, s: 1, v: 1 }} onChange={onChange} />);
+
+  const control = screen.getByLabelText('Color saturation and brightness');
+
+  fireEvent.keyDown(control, { key: 'ArrowRight' });
+  expect(onChange).not.toHaveBeenCalled();
+
+  fireEvent.keyDown(control, { key: 'ArrowDown' });
+  expect(onChange).toHaveBeenLastCalledWith(
+    { h: red.hsv.h, s: 1, v: 0.99, a: red.hsv.a, source: 'hsv' },
+    expect.objectContaining({ key: 'ArrowDown' }),
+  );
+});
+
 test('Alpha exposes slider semantics and keyboard controls', () => {
   const onChange = vi.fn();
   render(<Alpha {...red} hsl={{ ...red.hsl, a: 0.5 }} rgb={{ ...red.rgb, a: 0.5 }} a={0.5} onChange={onChange} />);
@@ -193,6 +249,24 @@ test('Swatch renders custom title correctly', () => {
 
 test('Swatch renders with an onMouseOver handler correctly', () => {
   renderForSnapshot(<Swatch color="#fff" title="white" onHover={() => {}} />).expectSnapshot();
+});
+
+test('Swatch exposes button semantics and activates from Enter or Space', () => {
+  const onClick = vi.fn();
+  render(<Swatch color="#333" onClick={onClick} />);
+
+  const swatch = screen.getByRole('button', { name: '#333' });
+  expect(swatch).toHaveAttribute('tabindex', '0');
+  expect(swatch).not.toHaveAttribute('aria-pressed');
+
+  fireEvent.keyDown(swatch, { key: 'Enter' });
+  expect(onClick).toHaveBeenLastCalledWith('#333', expect.objectContaining({ key: 'Enter' }));
+
+  fireEvent.keyDown(swatch, { key: ' ' });
+  expect(onClick).toHaveBeenLastCalledWith('#333', expect.objectContaining({ key: ' ' }));
+
+  fireEvent.focus(swatch);
+  expect(swatch).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('common primitives expose the expected BEM classes after styling modernization', () => {

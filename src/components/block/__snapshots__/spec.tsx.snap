@@ -32,7 +32,9 @@ exports[`Block \`triangle="hide"\` 1`] = `
         >
           <span>
             <div
+              aria-label="#D9E3F0"
               class="rc-swatch"
+              role="button"
               style="background: rgb(217, 227, 240); border-radius: 4px;"
               tabindex="0"
               title="#D9E3F0"
@@ -44,7 +46,9 @@ exports[`Block \`triangle="hide"\` 1`] = `
         >
           <span>
             <div
+              aria-label="#F47373"
               class="rc-swatch"
+              role="button"
               style="background: rgb(244, 115, 115); border-radius: 4px;"
               tabindex="0"
               title="#F47373"
@@ -56,7 +60,9 @@ exports[`Block \`triangle="hide"\` 1`] = `
         >
           <span>
             <div
+              aria-label="#697689"
               class="rc-swatch"
+              role="button"
               style="background: rgb(105, 118, 137); border-radius: 4px;"
               tabindex="0"
               title="#697689"
@@ -68,7 +74,9 @@ exports[`Block \`triangle="hide"\` 1`] = `
         >
           <span>
             <div
+              aria-label="#37D67A"
               class="rc-swatch"
+              role="button"
               style="background: rgb(55, 214, 122); border-radius: 4px;"
               tabindex="0"
               title="#37D67A"
@@ -80,7 +88,9 @@ exports[`Block \`triangle="hide"\` 1`] = `
         >
           <span>
             <div
+              aria-label="#2CCCE4"
               class="rc-swatch"
+              role="button"
               style="background: rgb(44, 204, 228); border-radius: 4px;"
               tabindex="0"
               title="#2CCCE4"
@@ -92,7 +102,9 @@ exports[`Block \`triangle="hide"\` 1`] = `
         >
           <span>
             <div
+              aria-label="#555555"
               class="rc-swatch"
+              role="button"
               style="background: rgb(85, 85, 85); border-radius: 4px;"
               tabindex="0"
               title="#555555"
@@ -104,7 +116,9 @@ exports[`Block \`triangle="hide"\` 1`] = `
         >
           <span>
             <div
+              aria-label="#dce775"
               class="rc-swatch"
+              role="button"
               style="background: rgb(220, 231, 117); border-radius: 4px;"
               tabindex="0"
               title="#dce775"
@@ -116,7 +130,9 @@ exports[`Block \`triangle="hide"\` 1`] = `
         >
           <span>
             <div
+              aria-label="#ff8a65"
               class="rc-swatch"
+              role="button"
               style="background: rgb(255, 138, 101); border-radius: 4px;"
               tabindex="0"
               title="#ff8a65"
@@ -128,7 +144,9 @@ exports[`Block \`triangle="hide"\` 1`] = `
         >
           <span>
             <div
+              aria-label="#ba68c8"
               class="rc-swatch"
+              role="button"
               style="background: rgb(186, 104, 200); border-radius: 4px;"
               tabindex="0"
               title="#ba68c8"
@@ -186,7 +204,9 @@ exports[`Block renders correctly 1`] = `
         >
           <span>
             <div
+              aria-label="#D9E3F0"
               class="rc-swatch"
+              role="button"
               style="background: rgb(217, 227, 240); border-radius: 4px;"
               tabindex="0"
               title="#D9E3F0"
@@ -198,7 +218,9 @@ exports[`Block renders correctly 1`] = `
         >
           <span>
             <div
+              aria-label="#F47373"
               class="rc-swatch"
+              role="button"
               style="background: rgb(244, 115, 115); border-radius: 4px;"
               tabindex="0"
               title="#F47373"
@@ -210,7 +232,9 @@ exports[`Block renders correctly 1`] = `
         >
           <span>
             <div
+              aria-label="#697689"
               class="rc-swatch"
+              role="button"
               style="background: rgb(105, 118, 137); border-radius: 4px;"
               tabindex="0"
               title="#697689"
@@ -222,7 +246,9 @@ exports[`Block renders correctly 1`] = `
         >
           <span>
             <div
+              aria-label="#37D67A"
               class="rc-swatch"
+              role="button"
               style="background: rgb(55, 214, 122); border-radius: 4px;"
               tabindex="0"
               title="#37D67A"
@@ -234,7 +260,9 @@ exports[`Block renders correctly 1`] = `
         >
           <span>
             <div
+              aria-label="#2CCCE4"
               class="rc-swatch"
+              role="button"
               style="background: rgb(44, 204, 228); border-radius: 4px;"
               tabindex="0"
               title="#2CCCE4"
@@ -246,7 +274,9 @@ exports[`Block renders correctly 1`] = `
         >
           <span>
             <div
+              aria-label="#555555"
               class="rc-swatch"
+              role="button"
               style="background: rgb(85, 85, 85); border-radius: 4px;"
               tabindex="0"
               title="#555555"
@@ -258,7 +288,9 @@ exports[`Block renders correctly 1`] = `
         >
           <span>
             <div
+              aria-label="#dce775"
               class="rc-swatch"
+              role="button"
               style="background: rgb(220, 231, 117); border-radius: 4px;"
               tabindex="0"
               title="#dce775"
@@ -270,7 +302,9 @@ exports[`Block renders correctly 1`] = `
         >
           <span>
             <div
+              aria-label="#ff8a65"
               class="rc-swatch"
+              role="button"
               style="background: rgb(255, 138, 101); border-radius: 4px;"
               tabindex="0"
               title="#ff8a65"
@@ -282,7 +316,9 @@ exports[`Block renders correctly 1`] = `
         >
           <span>
             <div
+              aria-label="#ba68c8"
               class="rc-swatch"
+              role="button"
               style="background: rgb(186, 104, 200); border-radius: 4px;"
               tabindex="0"
               title="#ba68c8"
@@ -318,7 +354,9 @@ exports[`BlockSwatches renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#fff"
           class="rc-swatch"
+          role="button"
           style="background: rgb(255, 255, 255); border-radius: 4px;"
           tabindex="0"
           title="#fff"
@@ -330,7 +368,9 @@ exports[`BlockSwatches renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#999"
           class="rc-swatch"
+          role="button"
           style="background: rgb(153, 153, 153); border-radius: 4px;"
           tabindex="0"
           title="#999"
@@ -342,7 +382,9 @@ exports[`BlockSwatches renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#000"
           class="rc-swatch"
+          role="button"
           style="background: rgb(0, 0, 0); border-radius: 4px;"
           tabindex="0"
           title="#000"

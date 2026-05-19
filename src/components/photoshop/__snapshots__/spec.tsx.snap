@@ -17,8 +17,10 @@ exports[`Photoshop renders correctly 1`] = `
         class="rc-photoshop__saturation"
       >
         <div
+          aria-label="Color saturation and brightness"
           class="rc-saturation"
           style="background: rgb(43, 0, 255);"
+          tabindex="0"
         >
           <div
             class="rc-saturation__white"

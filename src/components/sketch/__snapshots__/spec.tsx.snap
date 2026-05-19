@@ -10,8 +10,10 @@ exports[`Sketch renders correctly 1`] = `
       class="rc-sketch__saturation"
     >
       <div
+        aria-label="Color saturation and brightness"
         class="rc-saturation"
         style="background: rgb(43, 0, 255); border-radius: 3px;"
+        tabindex="0"
       >
         <div
           class="rc-saturation__white"
@@ -232,7 +234,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#D0021B"
             class="rc-swatch"
+            role="button"
             style="background: rgb(208, 2, 27); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#D0021B"
@@ -244,7 +248,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#F5A623"
             class="rc-swatch"
+            role="button"
             style="background: rgb(245, 166, 35); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#F5A623"
@@ -256,7 +262,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#F8E71C"
             class="rc-swatch"
+            role="button"
             style="background: rgb(248, 231, 28); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#F8E71C"
@@ -268,7 +276,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#8B572A"
             class="rc-swatch"
+            role="button"
             style="background: rgb(139, 87, 42); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#8B572A"
@@ -280,7 +290,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#7ED321"
             class="rc-swatch"
+            role="button"
             style="background: rgb(126, 211, 33); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#7ED321"
@@ -292,7 +304,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#417505"
             class="rc-swatch"
+            role="button"
             style="background: rgb(65, 117, 5); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#417505"
@@ -304,7 +318,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#BD10E0"
             class="rc-swatch"
+            role="button"
             style="background: rgb(189, 16, 224); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#BD10E0"
@@ -316,7 +332,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#9013FE"
             class="rc-swatch"
+            role="button"
             style="background: rgb(144, 19, 254); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#9013FE"
@@ -328,7 +346,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#4A90E2"
             class="rc-swatch"
+            role="button"
             style="background: rgb(74, 144, 226); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#4A90E2"
@@ -340,7 +360,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#50E3C2"
             class="rc-swatch"
+            role="button"
             style="background: rgb(80, 227, 194); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#50E3C2"
@@ -352,7 +374,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#B8E986"
             class="rc-swatch"
+            role="button"
             style="background: rgb(184, 233, 134); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#B8E986"
@@ -364,7 +388,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#000000"
             class="rc-swatch"
+            role="button"
             style="background: rgb(0, 0, 0); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#000000"
@@ -376,7 +402,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#4A4A4A"
             class="rc-swatch"
+            role="button"
             style="background: rgb(74, 74, 74); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#4A4A4A"
@@ -388,7 +416,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#9B9B9B"
             class="rc-swatch"
+            role="button"
             style="background: rgb(155, 155, 155); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#9B9B9B"
@@ -400,7 +430,9 @@ exports[`Sketch renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#FFFFFF"
             class="rc-swatch"
+            role="button"
             style="background: rgb(255, 255, 255); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#FFFFFF"
@@ -422,8 +454,10 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       class="rc-sketch__saturation"
     >
       <div
+        aria-label="Color saturation and brightness"
         class="rc-saturation"
         style="background: rgb(43, 0, 255); border-radius: 3px;"
+        tabindex="0"
       >
         <div
           class="rc-saturation__white"
@@ -644,7 +678,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#D0021B"
             class="rc-swatch"
+            role="button"
             style="background: rgb(208, 2, 27); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#D0021B"
@@ -656,7 +692,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#F5A623"
             class="rc-swatch"
+            role="button"
             style="background: rgb(245, 166, 35); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#F5A623"
@@ -668,7 +706,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#F8E71C"
             class="rc-swatch"
+            role="button"
             style="background: rgb(248, 231, 28); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#F8E71C"
@@ -680,7 +720,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#8B572A"
             class="rc-swatch"
+            role="button"
             style="background: rgb(139, 87, 42); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#8B572A"
@@ -692,7 +734,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#7ED321"
             class="rc-swatch"
+            role="button"
             style="background: rgb(126, 211, 33); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#7ED321"
@@ -704,7 +748,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#417505"
             class="rc-swatch"
+            role="button"
             style="background: rgb(65, 117, 5); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#417505"
@@ -716,7 +762,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#BD10E0"
             class="rc-swatch"
+            role="button"
             style="background: rgb(189, 16, 224); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#BD10E0"
@@ -728,7 +776,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#9013FE"
             class="rc-swatch"
+            role="button"
             style="background: rgb(144, 19, 254); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#9013FE"
@@ -740,7 +790,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#4A90E2"
             class="rc-swatch"
+            role="button"
             style="background: rgb(74, 144, 226); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#4A90E2"
@@ -752,7 +804,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#50E3C2"
             class="rc-swatch"
+            role="button"
             style="background: rgb(80, 227, 194); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#50E3C2"
@@ -764,7 +818,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#B8E986"
             class="rc-swatch"
+            role="button"
             style="background: rgb(184, 233, 134); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#B8E986"
@@ -776,7 +832,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#000000"
             class="rc-swatch"
+            role="button"
             style="background: rgb(0, 0, 0); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#000000"
@@ -788,7 +846,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#4A4A4A"
             class="rc-swatch"
+            role="button"
             style="background: rgb(74, 74, 74); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#4A4A4A"
@@ -800,7 +860,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#9B9B9B"
             class="rc-swatch"
+            role="button"
             style="background: rgb(155, 155, 155); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#9B9B9B"
@@ -812,7 +874,9 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <span>
           <div
+            aria-label="#FFFFFF"
             class="rc-swatch"
+            role="button"
             style="background: rgb(255, 255, 255); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
             tabindex="0"
             title="#FFFFFF"
@@ -943,7 +1007,9 @@ exports[`SketchPresetColors renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#fff"
           class="rc-swatch"
+          role="button"
           style="background: rgb(255, 255, 255); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="#fff"
@@ -955,7 +1021,9 @@ exports[`SketchPresetColors renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#999"
           class="rc-swatch"
+          role="button"
           style="background: rgb(153, 153, 153); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="#999"
@@ -967,7 +1035,9 @@ exports[`SketchPresetColors renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#000"
           class="rc-swatch"
+          role="button"
           style="background: rgb(0, 0, 0); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="#000"
@@ -988,7 +1058,9 @@ exports[`SketchPresetColors with custom titles renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="white"
           class="rc-swatch"
+          role="button"
           style="background: rgb(255, 255, 255); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="white"
@@ -1000,7 +1072,9 @@ exports[`SketchPresetColors with custom titles renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="gray"
           class="rc-swatch"
+          role="button"
           style="background: rgb(153, 153, 153); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="gray"
@@ -1012,7 +1086,9 @@ exports[`SketchPresetColors with custom titles renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#000"
           class="rc-swatch"
+          role="button"
           style="background: rgb(0, 0, 0); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="#000"
@@ -1024,7 +1100,9 @@ exports[`SketchPresetColors with custom titles renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#f00"
           class="rc-swatch"
+          role="button"
           style="background: rgb(255, 0, 0); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);"
           tabindex="0"
           title="#f00"

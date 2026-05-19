@@ -112,8 +112,10 @@ exports[`Hue renders correctly 1`] = `
 exports[`Saturation renders correctly 1`] = `
 <DocumentFragment>
   <div
+    aria-label="Color saturation and brightness"
     class="rc-saturation"
     style="background: rgb(255, 0, 0);"
+    tabindex="0"
   >
     <div
       class="rc-saturation__white"
@@ -140,7 +142,9 @@ exports[`Swatch renders correctly 1`] = `
 <DocumentFragment>
   <span>
     <div
+      aria-label="#333"
       class="rc-swatch"
+      role="button"
       style="background: rgb(51, 51, 51); opacity: 0.4;"
       tabindex="0"
       title="#333"
@@ -153,7 +157,9 @@ exports[`Swatch renders custom title correctly 1`] = `
 <DocumentFragment>
   <span>
     <div
+      aria-label="white"
       class="rc-swatch"
+      role="button"
       style="background: rgb(255, 255, 255);"
       tabindex="0"
       title="white"
@@ -166,7 +172,9 @@ exports[`Swatch renders with an onMouseOver handler correctly 1`] = `
 <DocumentFragment>
   <span>
     <div
+      aria-label="white"
       class="rc-swatch"
+      role="button"
       style="background: rgb(255, 255, 255);"
       tabindex="0"
       title="white"

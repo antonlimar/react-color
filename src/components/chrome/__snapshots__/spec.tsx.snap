@@ -10,8 +10,10 @@ exports[`Chrome renders correctly 1`] = `
       class="rc-chrome__saturation"
     >
       <div
+        aria-label="Color saturation and brightness"
         class="rc-saturation"
         style="background: rgb(43, 0, 255); border-radius: 2px 2px 0 0;"
+        tabindex="0"
       >
         <div
           class="rc-saturation__white"
@@ -186,8 +188,10 @@ exports[`Chrome renders correctly in dark theme 1`] = `
       class="rc-chrome__saturation"
     >
       <div
+        aria-label="Color saturation and brightness"
         class="rc-saturation"
         style="background: rgb(43, 0, 255); border-radius: 2px 2px 0 0;"
+        tabindex="0"
       >
         <div
           class="rc-saturation__white"

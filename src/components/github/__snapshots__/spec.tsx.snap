@@ -17,7 +17,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#B80000"
           class="rc-swatch"
+          role="button"
           style="background: rgb(184, 0, 0);"
           tabindex="0"
           title="#B80000"
@@ -29,7 +31,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#DB3E00"
           class="rc-swatch"
+          role="button"
           style="background: rgb(219, 62, 0);"
           tabindex="0"
           title="#DB3E00"
@@ -41,7 +45,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#FCCB00"
           class="rc-swatch"
+          role="button"
           style="background: rgb(252, 203, 0);"
           tabindex="0"
           title="#FCCB00"
@@ -53,7 +59,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#008B02"
           class="rc-swatch"
+          role="button"
           style="background: rgb(0, 139, 2);"
           tabindex="0"
           title="#008B02"
@@ -65,7 +73,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#006B76"
           class="rc-swatch"
+          role="button"
           style="background: rgb(0, 107, 118);"
           tabindex="0"
           title="#006B76"
@@ -77,7 +87,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#1273DE"
           class="rc-swatch"
+          role="button"
           style="background: rgb(18, 115, 222);"
           tabindex="0"
           title="#1273DE"
@@ -89,7 +101,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#004DCF"
           class="rc-swatch"
+          role="button"
           style="background: rgb(0, 77, 207);"
           tabindex="0"
           title="#004DCF"
@@ -101,7 +115,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#5300EB"
           class="rc-swatch"
+          role="button"
           style="background: rgb(83, 0, 235);"
           tabindex="0"
           title="#5300EB"
@@ -113,7 +129,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#EB9694"
           class="rc-swatch"
+          role="button"
           style="background: rgb(235, 150, 148);"
           tabindex="0"
           title="#EB9694"
@@ -125,7 +143,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#FAD0C3"
           class="rc-swatch"
+          role="button"
           style="background: rgb(250, 208, 195);"
           tabindex="0"
           title="#FAD0C3"
@@ -137,7 +157,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#FEF3BD"
           class="rc-swatch"
+          role="button"
           style="background: rgb(254, 243, 189);"
           tabindex="0"
           title="#FEF3BD"
@@ -149,7 +171,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#C1E1C5"
           class="rc-swatch"
+          role="button"
           style="background: rgb(193, 225, 197);"
           tabindex="0"
           title="#C1E1C5"
@@ -161,7 +185,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#BEDADC"
           class="rc-swatch"
+          role="button"
           style="background: rgb(190, 218, 220);"
           tabindex="0"
           title="#BEDADC"
@@ -173,7 +199,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#C4DEF6"
           class="rc-swatch"
+          role="button"
           style="background: rgb(196, 222, 246);"
           tabindex="0"
           title="#C4DEF6"
@@ -185,7 +213,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#BED3F3"
           class="rc-swatch"
+          role="button"
           style="background: rgb(190, 211, 243);"
           tabindex="0"
           title="#BED3F3"
@@ -197,7 +227,9 @@ exports[`Github \`triangle="hide"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#D4C4FB"
           class="rc-swatch"
+          role="button"
           style="background: rgb(212, 196, 251);"
           tabindex="0"
           title="#D4C4FB"
@@ -225,7 +257,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#B80000"
           class="rc-swatch"
+          role="button"
           style="background: rgb(184, 0, 0);"
           tabindex="0"
           title="#B80000"
@@ -237,7 +271,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#DB3E00"
           class="rc-swatch"
+          role="button"
           style="background: rgb(219, 62, 0);"
           tabindex="0"
           title="#DB3E00"
@@ -249,7 +285,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#FCCB00"
           class="rc-swatch"
+          role="button"
           style="background: rgb(252, 203, 0);"
           tabindex="0"
           title="#FCCB00"
@@ -261,7 +299,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#008B02"
           class="rc-swatch"
+          role="button"
           style="background: rgb(0, 139, 2);"
           tabindex="0"
           title="#008B02"
@@ -273,7 +313,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#006B76"
           class="rc-swatch"
+          role="button"
           style="background: rgb(0, 107, 118);"
           tabindex="0"
           title="#006B76"
@@ -285,7 +327,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#1273DE"
           class="rc-swatch"
+          role="button"
           style="background: rgb(18, 115, 222);"
           tabindex="0"
           title="#1273DE"
@@ -297,7 +341,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#004DCF"
           class="rc-swatch"
+          role="button"
           style="background: rgb(0, 77, 207);"
           tabindex="0"
           title="#004DCF"
@@ -309,7 +355,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#5300EB"
           class="rc-swatch"
+          role="button"
           style="background: rgb(83, 0, 235);"
           tabindex="0"
           title="#5300EB"
@@ -321,7 +369,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#EB9694"
           class="rc-swatch"
+          role="button"
           style="background: rgb(235, 150, 148);"
           tabindex="0"
           title="#EB9694"
@@ -333,7 +383,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#FAD0C3"
           class="rc-swatch"
+          role="button"
           style="background: rgb(250, 208, 195);"
           tabindex="0"
           title="#FAD0C3"
@@ -345,7 +397,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#FEF3BD"
           class="rc-swatch"
+          role="button"
           style="background: rgb(254, 243, 189);"
           tabindex="0"
           title="#FEF3BD"
@@ -357,7 +411,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#C1E1C5"
           class="rc-swatch"
+          role="button"
           style="background: rgb(193, 225, 197);"
           tabindex="0"
           title="#C1E1C5"
@@ -369,7 +425,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#BEDADC"
           class="rc-swatch"
+          role="button"
           style="background: rgb(190, 218, 220);"
           tabindex="0"
           title="#BEDADC"
@@ -381,7 +439,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#C4DEF6"
           class="rc-swatch"
+          role="button"
           style="background: rgb(196, 222, 246);"
           tabindex="0"
           title="#C4DEF6"
@@ -393,7 +453,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#BED3F3"
           class="rc-swatch"
+          role="button"
           style="background: rgb(190, 211, 243);"
           tabindex="0"
           title="#BED3F3"
@@ -405,7 +467,9 @@ exports[`Github \`triangle="top-right"\` 1`] = `
     >
       <span>
         <div
+          aria-label="#D4C4FB"
           class="rc-swatch"
+          role="button"
           style="background: rgb(212, 196, 251);"
           tabindex="0"
           title="#D4C4FB"
@@ -433,7 +497,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#B80000"
           class="rc-swatch"
+          role="button"
           style="background: rgb(184, 0, 0);"
           tabindex="0"
           title="#B80000"
@@ -445,7 +511,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#DB3E00"
           class="rc-swatch"
+          role="button"
           style="background: rgb(219, 62, 0);"
           tabindex="0"
           title="#DB3E00"
@@ -457,7 +525,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#FCCB00"
           class="rc-swatch"
+          role="button"
           style="background: rgb(252, 203, 0);"
           tabindex="0"
           title="#FCCB00"
@@ -469,7 +539,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#008B02"
           class="rc-swatch"
+          role="button"
           style="background: rgb(0, 139, 2);"
           tabindex="0"
           title="#008B02"
@@ -481,7 +553,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#006B76"
           class="rc-swatch"
+          role="button"
           style="background: rgb(0, 107, 118);"
           tabindex="0"
           title="#006B76"
@@ -493,7 +567,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#1273DE"
           class="rc-swatch"
+          role="button"
           style="background: rgb(18, 115, 222);"
           tabindex="0"
           title="#1273DE"
@@ -505,7 +581,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#004DCF"
           class="rc-swatch"
+          role="button"
           style="background: rgb(0, 77, 207);"
           tabindex="0"
           title="#004DCF"
@@ -517,7 +595,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#5300EB"
           class="rc-swatch"
+          role="button"
           style="background: rgb(83, 0, 235);"
           tabindex="0"
           title="#5300EB"
@@ -529,7 +609,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#EB9694"
           class="rc-swatch"
+          role="button"
           style="background: rgb(235, 150, 148);"
           tabindex="0"
           title="#EB9694"
@@ -541,7 +623,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#FAD0C3"
           class="rc-swatch"
+          role="button"
           style="background: rgb(250, 208, 195);"
           tabindex="0"
           title="#FAD0C3"
@@ -553,7 +637,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#FEF3BD"
           class="rc-swatch"
+          role="button"
           style="background: rgb(254, 243, 189);"
           tabindex="0"
           title="#FEF3BD"
@@ -565,7 +651,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#C1E1C5"
           class="rc-swatch"
+          role="button"
           style="background: rgb(193, 225, 197);"
           tabindex="0"
           title="#C1E1C5"
@@ -577,7 +665,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#BEDADC"
           class="rc-swatch"
+          role="button"
           style="background: rgb(190, 218, 220);"
           tabindex="0"
           title="#BEDADC"
@@ -589,7 +679,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#C4DEF6"
           class="rc-swatch"
+          role="button"
           style="background: rgb(196, 222, 246);"
           tabindex="0"
           title="#C4DEF6"
@@ -601,7 +693,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#BED3F3"
           class="rc-swatch"
+          role="button"
           style="background: rgb(190, 211, 243);"
           tabindex="0"
           title="#BED3F3"
@@ -613,7 +707,9 @@ exports[`Github renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#D4C4FB"
           class="rc-swatch"
+          role="button"
           style="background: rgb(212, 196, 251);"
           tabindex="0"
           title="#D4C4FB"
@@ -631,7 +727,9 @@ exports[`GithubSwatch renders correctly 1`] = `
   >
     <span>
       <div
+        aria-label="#333"
         class="rc-swatch"
+        role="button"
         style="background: rgb(51, 51, 51);"
         tabindex="0"
         title="#333"

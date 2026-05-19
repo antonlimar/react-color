@@ -31,7 +31,9 @@ exports[`Swatches renders correctly 1`] = `
               >
                 <span>
                   <div
+                    aria-label="#fff"
                     class="rc-swatch"
+                    role="button"
                     style="background: rgb(255, 255, 255); overflow: hidden; border-radius: 2px 2px 0 0;"
                     tabindex="0"
                     title="#fff"
@@ -61,7 +63,9 @@ exports[`Swatches renders correctly 1`] = `
               >
                 <span>
                   <div
+                    aria-label="#333"
                     class="rc-swatch"
+                    role="button"
                     style="background: rgb(51, 51, 51); overflow: hidden; border-radius: 2px 2px 0 0;"
                     tabindex="0"
                     title="#333"
@@ -101,7 +105,9 @@ exports[`SwatchesColor renders correctly 1`] = `
   >
     <span>
       <div
+        aria-label="#fff"
         class="rc-swatch"
+        role="button"
         style="background: rgb(255, 255, 255); overflow: hidden;"
         tabindex="0"
         title="#fff"
@@ -132,7 +138,9 @@ exports[`SwatchesColor renders with props 1`] = `
   >
     <span>
       <div
+        aria-label="#fff"
         class="rc-swatch"
+        role="button"
         style="background: rgb(255, 255, 255); overflow: hidden; border-radius: 2px 2px 0 0;"
         tabindex="0"
         title="#fff"
@@ -166,7 +174,9 @@ exports[`SwatchesGroup renders correctly 1`] = `
     >
       <span>
         <div
+          aria-label="#fff"
           class="rc-swatch"
+          role="button"
           style="background: rgb(255, 255, 255); overflow: hidden; border-radius: 2px 2px 0 0;"
           tabindex="0"
           title="#fff"

@@ -20,7 +20,9 @@ exports[`Twitter \`triangle="hide"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#FF6900"
             class="rc-swatch"
+            role="button"
             style="background: rgb(255, 105, 0);"
             tabindex="0"
             title="#FF6900"
@@ -32,7 +34,9 @@ exports[`Twitter \`triangle="hide"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#FCB900"
             class="rc-swatch"
+            role="button"
             style="background: rgb(252, 185, 0);"
             tabindex="0"
             title="#FCB900"
@@ -44,7 +48,9 @@ exports[`Twitter \`triangle="hide"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#7BDCB5"
             class="rc-swatch"
+            role="button"
             style="background: rgb(123, 220, 181);"
             tabindex="0"
             title="#7BDCB5"
@@ -56,7 +62,9 @@ exports[`Twitter \`triangle="hide"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#00D084"
             class="rc-swatch"
+            role="button"
             style="background: rgb(0, 208, 132);"
             tabindex="0"
             title="#00D084"
@@ -68,7 +76,9 @@ exports[`Twitter \`triangle="hide"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#8ED1FC"
             class="rc-swatch"
+            role="button"
             style="background: rgb(142, 209, 252);"
             tabindex="0"
             title="#8ED1FC"
@@ -80,7 +90,9 @@ exports[`Twitter \`triangle="hide"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#0693E3"
             class="rc-swatch"
+            role="button"
             style="background: rgb(6, 147, 227);"
             tabindex="0"
             title="#0693E3"
@@ -92,7 +104,9 @@ exports[`Twitter \`triangle="hide"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#ABB8C3"
             class="rc-swatch"
+            role="button"
             style="background: rgb(171, 184, 195);"
             tabindex="0"
             title="#ABB8C3"
@@ -104,7 +118,9 @@ exports[`Twitter \`triangle="hide"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#EB144C"
             class="rc-swatch"
+            role="button"
             style="background: rgb(235, 20, 76);"
             tabindex="0"
             title="#EB144C"
@@ -116,7 +132,9 @@ exports[`Twitter \`triangle="hide"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#F78DA7"
             class="rc-swatch"
+            role="button"
             style="background: rgb(247, 141, 167);"
             tabindex="0"
             title="#F78DA7"
@@ -128,7 +146,9 @@ exports[`Twitter \`triangle="hide"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#9900EF"
             class="rc-swatch"
+            role="button"
             style="background: rgb(153, 0, 239);"
             tabindex="0"
             title="#9900EF"
@@ -178,7 +198,9 @@ exports[`Twitter \`triangle="top-right"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#FF6900"
             class="rc-swatch"
+            role="button"
             style="background: rgb(255, 105, 0);"
             tabindex="0"
             title="#FF6900"
@@ -190,7 +212,9 @@ exports[`Twitter \`triangle="top-right"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#FCB900"
             class="rc-swatch"
+            role="button"
             style="background: rgb(252, 185, 0);"
             tabindex="0"
             title="#FCB900"
@@ -202,7 +226,9 @@ exports[`Twitter \`triangle="top-right"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#7BDCB5"
             class="rc-swatch"
+            role="button"
             style="background: rgb(123, 220, 181);"
             tabindex="0"
             title="#7BDCB5"
@@ -214,7 +240,9 @@ exports[`Twitter \`triangle="top-right"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#00D084"
             class="rc-swatch"
+            role="button"
             style="background: rgb(0, 208, 132);"
             tabindex="0"
             title="#00D084"
@@ -226,7 +254,9 @@ exports[`Twitter \`triangle="top-right"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#8ED1FC"
             class="rc-swatch"
+            role="button"
             style="background: rgb(142, 209, 252);"
             tabindex="0"
             title="#8ED1FC"
@@ -238,7 +268,9 @@ exports[`Twitter \`triangle="top-right"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#0693E3"
             class="rc-swatch"
+            role="button"
             style="background: rgb(6, 147, 227);"
             tabindex="0"
             title="#0693E3"
@@ -250,7 +282,9 @@ exports[`Twitter \`triangle="top-right"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#ABB8C3"
             class="rc-swatch"
+            role="button"
             style="background: rgb(171, 184, 195);"
             tabindex="0"
             title="#ABB8C3"
@@ -262,7 +296,9 @@ exports[`Twitter \`triangle="top-right"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#EB144C"
             class="rc-swatch"
+            role="button"
             style="background: rgb(235, 20, 76);"
             tabindex="0"
             title="#EB144C"
@@ -274,7 +310,9 @@ exports[`Twitter \`triangle="top-right"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#F78DA7"
             class="rc-swatch"
+            role="button"
             style="background: rgb(247, 141, 167);"
             tabindex="0"
             title="#F78DA7"
@@ -286,7 +324,9 @@ exports[`Twitter \`triangle="top-right"\` 1`] = `
       >
         <span>
           <div
+            aria-label="#9900EF"
             class="rc-swatch"
+            role="button"
             style="background: rgb(153, 0, 239);"
             tabindex="0"
             title="#9900EF"
@@ -336,7 +376,9 @@ exports[`Twitter renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#FF6900"
             class="rc-swatch"
+            role="button"
             style="background: rgb(255, 105, 0);"
             tabindex="0"
             title="#FF6900"
@@ -348,7 +390,9 @@ exports[`Twitter renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#FCB900"
             class="rc-swatch"
+            role="button"
             style="background: rgb(252, 185, 0);"
             tabindex="0"
             title="#FCB900"
@@ -360,7 +404,9 @@ exports[`Twitter renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#7BDCB5"
             class="rc-swatch"
+            role="button"
             style="background: rgb(123, 220, 181);"
             tabindex="0"
             title="#7BDCB5"
@@ -372,7 +418,9 @@ exports[`Twitter renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#00D084"
             class="rc-swatch"
+            role="button"
             style="background: rgb(0, 208, 132);"
             tabindex="0"
             title="#00D084"
@@ -384,7 +432,9 @@ exports[`Twitter renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#8ED1FC"
             class="rc-swatch"
+            role="button"
             style="background: rgb(142, 209, 252);"
             tabindex="0"
             title="#8ED1FC"
@@ -396,7 +446,9 @@ exports[`Twitter renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#0693E3"
             class="rc-swatch"
+            role="button"
             style="background: rgb(6, 147, 227);"
             tabindex="0"
             title="#0693E3"
@@ -408,7 +460,9 @@ exports[`Twitter renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#ABB8C3"
             class="rc-swatch"
+            role="button"
             style="background: rgb(171, 184, 195);"
             tabindex="0"
             title="#ABB8C3"
@@ -420,7 +474,9 @@ exports[`Twitter renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#EB144C"
             class="rc-swatch"
+            role="button"
             style="background: rgb(235, 20, 76);"
             tabindex="0"
             title="#EB144C"
@@ -432,7 +488,9 @@ exports[`Twitter renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#F78DA7"
             class="rc-swatch"
+            role="button"
             style="background: rgb(247, 141, 167);"
             tabindex="0"
             title="#F78DA7"
@@ -444,7 +502,9 @@ exports[`Twitter renders correctly 1`] = `
       >
         <span>
           <div
+            aria-label="#9900EF"
             class="rc-swatch"
+            role="button"
             style="background: rgb(153, 0, 239);"
             tabindex="0"
             title="#9900EF"

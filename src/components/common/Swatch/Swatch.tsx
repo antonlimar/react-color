@@ -10,6 +10,7 @@ import './Swatch.scss';
 const b = bem('swatch');
 
 const ENTER = 13;
+const SPACE = 32;
 
 function SwatchBase({
   color,
@@ -29,14 +30,28 @@ function SwatchBase({
   };
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => onClick(color, event);
-  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => event.keyCode === ENTER && onClick(color, event);
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (
+      event.key === 'Enter' ||
+      event.key === ' ' ||
+      event.key === 'Spacebar' ||
+      event.keyCode === ENTER ||
+      event.keyCode === SPACE
+    ) {
+      event.preventDefault();
+      onClick(color, event);
+    }
+  };
   const handleHover = (event: MouseEvent<HTMLDivElement>) => onHover?.(color, event);
 
   const optionalEvents = onHover ? { onMouseOver: handleHover } : {};
 
   return (
     <div
+      aria-label={title || color}
+      aria-pressed={focus ? true : undefined}
       className={b({ transparent, active: focus })}
+      role="button"
       style={swatchStyle}
       onClick={handleClick}
       title={title}
