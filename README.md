@@ -79,9 +79,9 @@ Root picker and shared primitive imports include the CSS they need.
 
 All public pickers keep accepting `className` on the root node and still support the `styles` prop for runtime inline overrides. They now also support `theme`, `classNames`, and CSS custom properties for styling; new customizations should prefer `classNames`, CSS variables, and the published `rc-*` BEM hooks when possible.
 
-[license-image]: http://img.shields.io/npm/l/react-color-x.svg
+[license-image]: https://img.shields.io/npm/l/react-color-x.svg
 [license-url]: LICENSE
-[downloads-image]: http://img.shields.io/npm/dm/react-color-x.svg
-[downloads-url]: http://npm-stat.com/charts.html?package=react-color-x
+[downloads-image]: https://img.shields.io/npm/dm/react-color-x.svg
+[downloads-url]: https://npm-stat.com/charts.html?package=react-color-x
 [npm-version-image]: https://img.shields.io/npm/v/react-color-x.svg
 [npm-version-url]: https://www.npmjs.com/package/react-color-x
