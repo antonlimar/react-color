@@ -1,12 +1,13 @@
 import js from '@eslint/js';
 import { defineConfig } from 'eslint/config';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import { createNodeResolver, importX } from 'eslint-plugin-import-x';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import { configs as storybookConfigs } from 'eslint-plugin-storybook';
 import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import { configs as tseslintConfigs, parser as tseslintParser } from 'typescript-eslint';
 
 export default defineConfig([
   {
@@ -29,7 +30,7 @@ export default defineConfig([
     files: ['**/*.{js,jsx,ts,tsx,mjs}'],
     extends: [
       js.configs.recommended,
-      ...tseslint.configs.recommended,
+      ...tseslintConfigs.recommended,
       react.configs.flat.recommended,
       react.configs.flat['jsx-runtime'],
       reactHooks.configs.flat['recommended-latest'],
@@ -37,7 +38,7 @@ export default defineConfig([
       importX.flatConfigs.typescript,
     ],
     languageOptions: {
-      parser: tseslint.parser,
+      parser: tseslintParser,
       ecmaVersion: 'latest',
       sourceType: 'module',
       parserOptions: {
@@ -52,7 +53,13 @@ export default defineConfig([
     },
     settings: {
       'import-x/extensions': ['.js', '.jsx', '.ts', '.tsx', '.mjs'],
-      'import-x/resolver-next': [createNodeResolver({ extensions: ['.js', '.jsx', '.ts', '.tsx', '.mjs'] })],
+      'import-x/resolver-next': [
+        createTypeScriptImportResolver({
+          alwaysTryTypes: true,
+          project: './tsconfig.public-types.json',
+        }),
+        createNodeResolver({ extensions: ['.js', '.jsx', '.ts', '.tsx', '.mjs'] }),
+      ],
       react: {
         version: 'detect',
       },
