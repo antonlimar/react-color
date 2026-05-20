@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import react from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -92,7 +93,12 @@ export default defineConfig(({ command }) => ({
   root: siteRoot,
   base: getSiteBase(command),
   publicDir: false,
-  plugins: [prismLanguageEsmPlugin(), react({ jsxRuntime: 'automatic' }), githubPagesSpaFallbackPlugin()],
+  plugins: [
+    prismLanguageEsmPlugin(),
+    react({ jsxRuntime: 'automatic' }),
+    babel({ presets: [reactCompilerPreset()] }),
+    githubPagesSpaFallbackPlugin(),
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
