@@ -3,7 +3,8 @@
   grid-template-columns: repeat(2, minmax(min(100%, 30rem), 1fr));
   gap: 1.1rem;
   min-width: 0;
-  --site-picker-gallery-shadow: 0 1px 2px rgba(16, 32, 58, 0.06), 0 14px 28px rgba(16, 32, 58, 0.12);
+
+  --site-picker-gallery-shadow: 0 1px 2px rgb(16 32 58 / 6%), 0 14px 28px rgb(16 32 58 / 12%);
 
   @media (max-width: 920px) {
     grid-template-columns: 1fr;

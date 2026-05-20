@@ -2,7 +2,7 @@
   margin: 0;
   min-width: 0;
   padding: 0.9rem 1rem 0.9rem;
-  border: 1px solid rgba(16, 32, 58, 0.08);
+  border: 1px solid rgb(16 32 58 / 8%);
   border-radius: var(--site-radius-sm);
   background: var(--site-surface-dark);
   box-shadow: var(--site-shadow-code);
@@ -27,7 +27,7 @@
 
   figcaption {
     margin: 0;
-    color: rgba(255, 255, 255, 0.72);
+    color: rgb(255 255 255 / 72%);
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -50,16 +50,16 @@
 
   &__language {
     padding: 0.3rem 0.62rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.64);
+    border: 1px solid rgb(255 255 255 / 10%);
+    background: rgb(255 255 255 / 8%);
+    color: rgb(255 255 255 / 64%);
   }
 
   &__copy {
     flex: 0 0 auto;
     padding: 0.35rem 0.72rem;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgb(255 255 255 / 14%);
+    background: rgb(255 255 255 / 10%);
     color: #f7fbff;
     transition:
       background-color 160ms ease,
@@ -68,19 +68,19 @@
 
     &:hover {
       transform: translateY(-1px);
-      border-color: rgba(255, 255, 255, 0.28);
-      background: rgba(255, 255, 255, 0.16);
+      border-color: rgb(255 255 255 / 28%);
+      background: rgb(255 255 255 / 16%);
     }
 
     &--copied {
-      border-color: rgba(184, 240, 122, 0.36);
-      background: rgba(184, 240, 122, 0.16);
+      border-color: rgb(184 240 122 / 36%);
+      background: rgb(184 240 122 / 16%);
       color: #d8ffae;
     }
 
     &--error {
-      border-color: rgba(255, 143, 112, 0.46);
-      background: rgba(255, 143, 112, 0.16);
+      border-color: rgb(255 143 112 / 46%);
+      background: rgb(255 143 112 / 16%);
       color: #ffc2b3;
     }
   }
@@ -93,7 +93,7 @@
     color: #f7fbff;
     font-size: 0.92rem;
     line-height: 1.55;
-    scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+    scrollbar-color: rgb(255 255 255 / 28%) transparent;
   }
 
   code {
@@ -106,7 +106,7 @@
   &__status {
     display: block;
     margin-top: 0.65rem;
-    color: rgba(255, 255, 255, 0.54);
+    color: rgb(255 255 255 / 54%);
     font-size: 0.78rem;
   }
 
@@ -140,7 +140,7 @@
     &.prolog,
     &.doctype,
     &.cdata {
-      color: rgba(214, 225, 244, 0.52);
+      color: rgb(214 225 244 / 52%);
     }
 
     &.number,

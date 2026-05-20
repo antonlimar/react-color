@@ -3,6 +3,6 @@
   height: 14px;
   border-radius: 6px;
   transform: translate(-7px, -1px);
-  background-color: var(--rc-picker-surface-subtle, rgb(248, 248, 248));
-  box-shadow: var(--rc-picker-shadow-control, 0 1px 4px 0 rgba(0, 0, 0, 0.37));
+  background-color: var(--rc-picker-surface-subtle, rgb(248 248 248));
+  box-shadow: var(--rc-picker-shadow-control, 0 1px 4px 0 rgb(0 0 0 / 37%));
 }

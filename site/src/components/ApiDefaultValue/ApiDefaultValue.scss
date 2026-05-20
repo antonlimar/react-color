@@ -2,7 +2,7 @@
   font-family: var(--site-font-mono);
 
   &--empty {
-    color: rgba(16, 32, 58, 0.46);
+    color: rgb(16 32 58 / 46%);
     font-family: var(--site-font-sans);
   }
 
@@ -16,10 +16,10 @@
     width: fit-content;
     min-height: 2rem;
     padding: 0.32rem 0.68rem;
-    border: 1px solid rgba(16, 32, 58, 0.12);
+    border: 1px solid rgb(16 32 58 / 12%);
     border-radius: var(--site-radius-pill);
-    background: rgba(255, 255, 255, 0.78);
-    color: rgba(16, 32, 58, 0.72);
+    background: rgb(255 255 255 / 78%);
+    color: rgb(16 32 58 / 72%);
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.08em;

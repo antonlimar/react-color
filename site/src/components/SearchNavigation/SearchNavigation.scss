@@ -3,8 +3,8 @@
   $scrollbar: '.docs-search-scrollbar';
 
   --docs-search-scrollbar-size: 1rem;
-  --docs-search-scrollbar-thumb: rgba(16, 32, 58, 0.26);
-  --docs-search-scrollbar-thumb-hover: rgba(16, 32, 58, 0.42);
+  --docs-search-scrollbar-thumb: rgb(16 32 58 / 26%);
+  --docs-search-scrollbar-thumb-hover: rgb(16 32 58 / 42%);
   --docs-search-scrollbar-thumb-height: 2rem;
   --docs-search-scrollbar-thumb-offset: 0.5rem;
 
@@ -17,7 +17,7 @@
   padding: 1rem;
   border: 1px solid var(--site-border);
   border-radius: var(--site-radius-md);
-  background: rgba(255, 255, 255, 0.72);
+  background: rgb(255 255 255 / 72%);
   box-shadow: var(--site-shadow-soft);
   backdrop-filter: blur(16px);
 
@@ -33,7 +33,7 @@
   }
 
   &__label {
-    color: rgba(16, 32, 58, 0.48);
+    color: rgb(16 32 58 / 48%);
     font-size: 0.76rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -46,9 +46,9 @@
     align-items: center;
     min-width: 0;
     padding: 0.45rem;
-    border: 1px solid rgba(16, 32, 58, 0.1);
+    border: 1px solid rgb(16 32 58 / 10%);
     border-radius: 18px;
-    background: rgba(255, 255, 255, 0.82);
+    background: rgb(255 255 255 / 82%);
 
     &:focus-within {
       outline: 3px solid var(--site-accent);
@@ -70,7 +70,7 @@
     }
 
     &::placeholder {
-      color: rgba(16, 32, 58, 0.42);
+      color: rgb(16 32 58 / 42%);
     }
 
     &::-webkit-search-cancel-button,
@@ -84,10 +84,10 @@
     flex: 0 0 auto;
     min-height: 1.9rem;
     padding: 0.3rem 0.58rem;
-    border: 1px solid rgba(16, 32, 58, 0.1);
+    border: 1px solid rgb(16 32 58 / 10%);
     border-radius: var(--site-radius-pill);
-    background: rgba(255, 255, 255, 0.82);
-    color: rgba(16, 32, 58, 0.68);
+    background: rgb(255 255 255 / 82%);
+    color: rgb(16 32 58 / 68%);
     font-size: 0.76rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -99,9 +99,9 @@
 
     &:hover,
     &:focus-visible {
-      border-color: rgba(16, 32, 58, 0.16);
-      background: rgba(255, 255, 255, 0.96);
-      color: rgba(16, 32, 58, 0.82);
+      border-color: rgb(16 32 58 / 16%);
+      background: rgb(255 255 255 / 96%);
+      color: rgb(16 32 58 / 82%);
     }
   }
 
@@ -162,9 +162,9 @@
     gap: 0.34rem;
     min-width: 0;
     padding: 0.7rem;
-    border: 1px solid rgba(16, 32, 58, 0.08);
+    border: 1px solid rgb(16 32 58 / 8%);
     border-radius: 16px;
-    background: rgba(255, 255, 255, 0.66);
+    background: rgb(255 255 255 / 66%);
     transition:
       background-color 160ms ease,
       border-color 160ms ease,
@@ -172,8 +172,8 @@
 
     &:hover {
       transform: translateY(-1px);
-      border-color: rgba(16, 32, 58, 0.16);
-      background: rgba(255, 255, 255, 0.9);
+      border-color: rgb(16 32 58 / 16%);
+      background: rgb(255 255 255 / 90%);
     }
   }
 
@@ -197,32 +197,32 @@
     flex: 0 0 auto;
     padding: 0.18rem 0.42rem;
     border-radius: var(--site-radius-pill);
-    background: rgba(16, 32, 58, 0.06);
-    color: rgba(16, 32, 58, 0.58);
+    background: rgb(16 32 58 / 6%);
+    color: rgb(16 32 58 / 58%);
     font-size: 0.64rem;
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 
     &--prop {
-      background: rgba(255, 143, 112, 0.16);
-      color: rgba(136, 54, 31, 0.9);
+      background: rgb(255 143 112 / 16%);
+      color: rgb(136 54 31 / 90%);
     }
 
     &--picker {
-      background: rgba(127, 214, 255, 0.2);
-      color: rgba(20, 88, 120, 0.9);
+      background: rgb(127 214 255 / 20%);
+      color: rgb(20 88 120 / 90%);
     }
 
     &--example {
-      background: rgba(184, 240, 122, 0.18);
-      color: rgba(58, 98, 23, 0.9);
+      background: rgb(184 240 122 / 18%);
+      color: rgb(58 98 23 / 90%);
     }
   }
 
   &__snippet,
   &__empty span {
-    color: rgba(16, 32, 58, 0.62);
+    color: rgb(16 32 58 / 62%);
     font-size: 0.82rem;
     overflow-wrap: anywhere;
   }
@@ -231,9 +231,9 @@
     display: grid;
     gap: 0.28rem;
     padding: 0.8rem;
-    border: 1px dashed rgba(16, 32, 58, 0.16);
+    border: 1px dashed rgb(16 32 58 / 16%);
     border-radius: 16px;
-    background: rgba(255, 255, 255, 0.52);
+    background: rgb(255 255 255 / 52%);
 
     strong {
       color: var(--site-text-strong);

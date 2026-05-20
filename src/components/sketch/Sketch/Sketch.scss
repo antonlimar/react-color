@@ -11,7 +11,7 @@
   background: var(--rc-picker-surface, #fff);
   border-radius: 4px;
   box-sizing: initial;
-  box-shadow: var(--rc-picker-shadow-popover, 0 0 0 1px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.15));
+  box-shadow: var(--rc-picker-shadow-popover, 0 0 0 1px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 15%));
   color: var(--rc-picker-text, #333);
 
   &#{&}--disabled-alpha {
@@ -54,8 +54,8 @@
     inset: 0;
     border-radius: 2px;
     box-shadow:
-      inset 0 0 0 1px var(--rc-picker-border, rgba(0, 0, 0, 0.15)),
-      inset 0 0 4px rgba(0, 0, 0, 0.25);
+      inset 0 0 0 1px var(--rc-picker-border, rgb(0 0 0 / 15%)),
+      inset 0 0 4px rgb(0 0 0 / 25%);
   }
 
   &__hue {

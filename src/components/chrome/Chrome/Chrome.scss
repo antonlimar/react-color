@@ -11,7 +11,7 @@
   background: var(--rc-picker-surface, #fff);
   border-radius: 2px;
   box-sizing: initial;
-  box-shadow: var(--rc-picker-shadow-popover, 0 0 2px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.3));
+  box-shadow: var(--rc-picker-shadow-popover, 0 0 2px rgb(0 0 0 / 30%), 0 4px 8px rgb(0 0 0 / 30%));
   color: var(--rc-picker-text, #333);
   font-family: Menlo, monospace;
 
@@ -69,7 +69,7 @@
     inset: 0;
     z-index: 2;
     border-radius: 8px;
-    box-shadow: inset 0 0 0 1px var(--rc-picker-focus-outline, rgba(0, 0, 0, 0.1));
+    box-shadow: inset 0 0 0 1px var(--rc-picker-focus-outline, rgb(0 0 0 / 10%));
   }
 
   &__toggles {

@@ -7,9 +7,9 @@
 
   position: relative;
   background: var(--rc-picker-surface, #fff);
-  border: 0 solid var(--rc-picker-border-strong, rgba(0, 0, 0, 0.25));
+  border: 0 solid var(--rc-picker-border-strong, rgb(0 0 0 / 25%));
   border-radius: 4px;
-  box-shadow: var(--rc-picker-shadow-popover, 0 1px 4px rgba(0, 0, 0, 0.25));
+  box-shadow: var(--rc-picker-shadow-popover, 0 1px 4px rgb(0 0 0 / 25%));
   color: var(--rc-picker-text, #333);
 
   &#{&}--hide-triangle {
@@ -57,7 +57,7 @@
   }
 
   &__triangle-shadow {
-    border-color: transparent transparent var(--rc-picker-triangle-shadow, rgba(0, 0, 0, 0.1));
+    border-color: transparent transparent var(--rc-picker-triangle-shadow, rgb(0 0 0 / 10%));
   }
 
   &__body {

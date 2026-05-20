@@ -11,10 +11,10 @@
     justify-content: center;
     min-height: 2rem;
     padding: 0.32rem 0.7rem;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgb(255 255 255 / 12%);
     border-radius: var(--site-radius-pill);
     background: transparent;
-    color: rgba(255, 255, 255, 0.62);
+    color: rgb(255 255 255 / 62%);
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -27,8 +27,8 @@
 
     &:hover,
     &--active {
-      border-color: rgba(127, 214, 255, 0.36);
-      background: rgba(127, 214, 255, 0.14);
+      border-color: rgb(127 214 255 / 36%);
+      background: rgb(127 214 255 / 14%);
       color: #d9f3ff;
     }
   }

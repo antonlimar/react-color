@@ -20,6 +20,7 @@
   $contrast-shadow
 ) {
   color-scheme: $color-scheme;
+
   --rc-picker-surface: #{$surface};
   --rc-picker-surface-muted: #{$surface-muted};
   --rc-picker-surface-subtle: #{$surface-subtle};
@@ -90,6 +91,7 @@
 
 @mixin rc-photoshop-light {
   color-scheme: light;
+
   --rc-picker-surface: #dcdcdc;
   --rc-picker-surface-muted: #d4d4d4;
   --rc-picker-surface-subtle: #f0f0f0;
@@ -101,8 +103,8 @@
   --rc-picker-text-muted: #4d4d4d;
   --rc-picker-text-subtle: #555;
   --rc-picker-icon: #4d4d4d;
-  --rc-picker-shadow-popover: 0 0 0 1px rgba(0, 0, 0, 0.25), 0 8px 16px rgba(0, 0, 0, 0.15);
-  --rc-picker-focus-outline: rgba(255, 255, 255, 0.2);
+  --rc-picker-shadow-popover: 0 0 0 1px rgb(0 0 0 / 25%), 0 8px 16px rgb(0 0 0 / 15%);
+  --rc-picker-focus-outline: rgb(255 255 255 / 20%);
   --rc-photoshop-head-start: #f0f0f0;
   --rc-photoshop-head-end: #d4d4d4;
   --rc-photoshop-button-shadow: #eaeaea;
@@ -110,6 +112,7 @@
 
 @mixin rc-photoshop-dark {
   color-scheme: dark;
+
   --rc-picker-surface: #2b313a;
   --rc-picker-surface-muted: #252b33;
   --rc-picker-surface-subtle: #3a424d;
@@ -121,11 +124,11 @@
   --rc-picker-text-muted: #d0d7de;
   --rc-picker-text-subtle: #9da7b3;
   --rc-picker-icon: #d0d7de;
-  --rc-picker-shadow-popover: 0 0 0 1px rgba(0, 0, 0, 0.45), 0 16px 32px rgba(0, 0, 0, 0.4);
-  --rc-picker-focus-outline: rgba(255, 255, 255, 0.12);
+  --rc-picker-shadow-popover: 0 0 0 1px rgb(0 0 0 / 45%), 0 16px 32px rgb(0 0 0 / 40%);
+  --rc-picker-focus-outline: rgb(255 255 255 / 12%);
   --rc-photoshop-head-start: #404955;
   --rc-photoshop-head-end: #252c34;
-  --rc-photoshop-button-shadow: rgba(255, 255, 255, 0.08);
+  --rc-photoshop-button-shadow: rgb(255 255 255 / 8%);
 }
 
 @mixin rc-default-theme-tokens {

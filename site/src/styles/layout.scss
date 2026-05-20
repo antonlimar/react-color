@@ -1,46 +1,43 @@
 .site-shell {
-  --site-accent: rgba(65, 117, 5, 1);
-  --site-accent-page: rgba(65, 117, 5, 0.18);
-  --site-accent-floor: rgba(65, 117, 5, 0.42);
-  --site-accent-soft: rgba(65, 117, 5, 0.24);
-  --site-accent-wash: rgba(65, 117, 5, 0.1);
+  --site-accent: rgb(65 117 5 / 100%);
+  --site-accent-page: rgb(65 117 5 / 18%);
+  --site-accent-floor: rgb(65 117 5 / 42%);
+  --site-accent-soft: rgb(65 117 5 / 24%);
+  --site-accent-wash: rgb(65 117 5 / 10%);
+
   position: relative;
   min-height: 100vh;
   color: var(--site-text);
   background:
     radial-gradient(circle at 50% 18%, var(--site-accent-wash), transparent 34%),
     radial-gradient(circle at 12% 18%, var(--site-accent-soft), transparent 28%),
-    radial-gradient(circle at 88% 12%, rgba(255, 255, 255, 0.95), transparent 32%),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.88) 0%,
-      rgba(255, 255, 255, 0.66) 42%,
-      rgba(255, 255, 255, 0.48) 100%
-    ),
+    radial-gradient(circle at 88% 12%, rgb(255 255 255 / 95%), transparent 32%),
+    linear-gradient(180deg, rgb(255 255 255 / 88%) 0%, rgb(255 255 255 / 66%) 42%, rgb(255 255 255 / 48%) 100%),
     linear-gradient(180deg, var(--site-accent-wash) 0%, var(--site-accent-page) 48%, var(--site-accent-floor) 100%);
   overflow: clip;
 
   &[data-site-theme='dark'] {
-    --site-text: rgba(233, 239, 248, 0.88);
+    --site-text: rgb(233 239 248 / 88%);
     --site-text-strong: #f7fbff;
-    --site-text-muted: rgba(218, 227, 240, 0.72);
-    --site-text-subtle: rgba(205, 216, 232, 0.58);
-    --site-surface: rgba(14, 24, 40, 0.76);
-    --site-surface-strong: rgba(18, 31, 50, 0.9);
-    --site-surface-dark: rgba(5, 10, 19, 0.98);
-    --site-border: rgba(230, 238, 250, 0.14);
-    --site-border-strong: rgba(230, 238, 250, 0.22);
-    --site-shadow-soft: 0 16px 36px rgba(0, 0, 0, 0.22);
-    --site-shadow-panel: 0 30px 80px rgba(0, 0, 0, 0.34), 0 10px 24px rgba(0, 0, 0, 0.2);
-    --site-shadow-code: 0 16px 30px rgba(0, 0, 0, 0.34);
-    --site-shadow-elevated: 0 30px 80px rgba(0, 0, 0, 0.44);
+    --site-text-muted: rgb(218 227 240 / 72%);
+    --site-text-subtle: rgb(205 216 232 / 58%);
+    --site-surface: rgb(14 24 40 / 76%);
+    --site-surface-strong: rgb(18 31 50 / 90%);
+    --site-surface-dark: rgb(5 10 19 / 98%);
+    --site-border: rgb(230 238 250 / 14%);
+    --site-border-strong: rgb(230 238 250 / 22%);
+    --site-shadow-soft: 0 16px 36px rgb(0 0 0 / 22%);
+    --site-shadow-panel: 0 30px 80px rgb(0 0 0 / 34%), 0 10px 24px rgb(0 0 0 / 20%);
+    --site-shadow-code: 0 16px 30px rgb(0 0 0 / 34%);
+    --site-shadow-elevated: 0 30px 80px rgb(0 0 0 / 44%);
+
     color-scheme: dark;
     background:
       radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--site-accent) 18%, transparent), transparent 36%),
       radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--site-accent) 26%, transparent), transparent 30%),
-      radial-gradient(circle at 88% 12%, rgba(68, 85, 112, 0.28), transparent 32%),
-      linear-gradient(180deg, rgba(11, 18, 31, 0.94) 0%, rgba(8, 14, 25, 0.92) 48%, rgba(5, 9, 17, 0.96) 100%),
-      linear-gradient(180deg, rgba(16, 30, 48, 0.82) 0%, var(--site-accent-page) 56%, var(--site-accent-floor) 100%);
+      radial-gradient(circle at 88% 12%, rgb(68 85 112 / 28%), transparent 32%),
+      linear-gradient(180deg, rgb(11 18 31 / 94%) 0%, rgb(8 14 25 / 92%) 48%, rgb(5 9 17 / 96%) 100%),
+      linear-gradient(180deg, rgb(16 30 48 / 82%) 0%, var(--site-accent-page) 56%, var(--site-accent-floor) 100%);
   }
 
   &__ambient {
@@ -51,10 +48,10 @@
       inset: 0;
       opacity: 0.32;
       background-image:
-        linear-gradient(rgba(16, 32, 58, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(16, 32, 58, 0.05) 1px, transparent 1px);
+        linear-gradient(rgb(16 32 58 / 5%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(16 32 58 / 5%) 1px, transparent 1px);
       background-size: 72px 72px;
-      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.25), transparent 72%);
+      mask-image: linear-gradient(180deg, rgb(0 0 0 / 25%), transparent 72%);
     }
 
     &--one,
@@ -68,7 +65,7 @@
       left: -10rem;
       width: 28rem;
       height: 28rem;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.78), transparent 72%);
+      background: radial-gradient(circle, rgb(255 255 255 / 78%), transparent 72%);
     }
 
     &--two {
@@ -84,12 +81,12 @@
     &--grid {
       opacity: 0.22;
       background-image:
-        linear-gradient(rgba(230, 238, 250, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(230, 238, 250, 0.05) 1px, transparent 1px);
+        linear-gradient(rgb(230 238 250 / 5%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(230 238 250 / 5%) 1px, transparent 1px);
     }
 
     &--one {
-      background: radial-gradient(circle, rgba(138, 156, 186, 0.18), transparent 72%);
+      background: radial-gradient(circle, rgb(138 156 186 / 18%), transparent 72%);
     }
 
     &--two {
@@ -100,21 +97,21 @@
   &[data-site-theme='dark'] {
     .hero::before {
       background:
-        linear-gradient(135deg, rgba(14, 24, 40, 0.62), rgba(14, 24, 40, 0) 48%),
-        radial-gradient(circle at 50% 22%, rgba(124, 143, 176, 0.18), transparent 62%),
-        linear-gradient(180deg, rgba(8, 14, 25, 0.28) 0%, rgba(8, 14, 25, 0.72) 100%);
+        linear-gradient(135deg, rgb(14 24 40 / 62%), rgb(14 24 40 / 0%) 48%),
+        radial-gradient(circle at 50% 22%, rgb(124 143 176 / 18%), transparent 62%),
+        linear-gradient(180deg, rgb(8 14 25 / 28%) 0%, rgb(8 14 25 / 72%) 100%);
     }
 
     .hero__backdrop--right {
-      background: radial-gradient(circle, rgba(138, 156, 186, 0.2), transparent 70%);
+      background: radial-gradient(circle, rgb(138 156 186 / 20%), transparent 70%);
     }
 
     .hero__brand-mark {
-      border-color: rgba(230, 238, 250, 0.24);
+      border-color: rgb(230 238 250 / 24%);
       background:
-        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.34), transparent 42%),
-        linear-gradient(135deg, var(--site-accent), rgba(7, 12, 21, 0.96));
-      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.32);
+        radial-gradient(circle at 30% 30%, rgb(255 255 255 / 34%), transparent 42%),
+        linear-gradient(135deg, var(--site-accent), rgb(7 12 21 / 96%));
+      box-shadow: 0 18px 32px rgb(0 0 0 / 32%);
     }
 
     .hero__status,
@@ -122,7 +119,7 @@
     .hero__button:not(.hero__button--primary),
     .hero__demo-link,
     .picker-gallery-page__meta {
-      background: rgba(14, 24, 40, 0.72);
+      background: rgb(14 24 40 / 72%);
       color: var(--site-text);
     }
 
@@ -134,25 +131,25 @@
     .not-found-page__panel {
       border-color: var(--site-border);
       background:
-        linear-gradient(180deg, rgba(18, 31, 50, 0.94), rgba(12, 22, 38, 0.88)),
-        linear-gradient(135deg, rgba(230, 238, 250, 0.05), color-mix(in srgb, var(--site-accent) 16%, transparent));
+        linear-gradient(180deg, rgb(18 31 50 / 94%), rgb(12 22 38 / 88%)),
+        linear-gradient(135deg, rgb(230 238 250 / 5%), color-mix(in srgb, var(--site-accent) 16%, transparent));
       box-shadow: var(--site-shadow-panel);
     }
 
     .not-found-page__panel .not-found-page__secondary-action {
-      border-color: rgba(230, 238, 250, 0.14);
-      background: rgba(230, 238, 250, 0.08);
+      border-color: rgb(230 238 250 / 14%);
+      background: rgb(230 238 250 / 8%);
       color: var(--site-text-strong);
     }
 
     .not-found-page__swatches span {
-      border-color: rgba(230, 238, 250, 0.28);
-      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.32);
+      border-color: rgb(230 238 250 / 28%);
+      box-shadow: 0 18px 30px rgb(0 0 0 / 32%);
     }
 
     .gallery-page__note {
-      border-color: rgba(230, 238, 250, 0.14);
-      background: rgba(230, 238, 250, 0.08);
+      border-color: rgb(230 238 250 / 14%);
+      background: rgb(230 238 250 / 8%);
     }
 
     .page-breadcrumbs {
@@ -164,20 +161,20 @@
     }
 
     .picker-gallery {
-      --site-picker-gallery-shadow: 0 1px 2px rgba(0, 0, 0, 0.24), 0 14px 28px rgba(0, 0, 0, 0.34);
+      --site-picker-gallery-shadow: 0 1px 2px rgb(0 0 0 / 24%), 0 14px 28px rgb(0 0 0 / 34%);
     }
 
     .picker-gallery__preview {
-      border-color: rgba(230, 238, 250, 0.12);
+      border-color: rgb(230 238 250 / 12%);
       background:
         radial-gradient(circle at 16% 18%, color-mix(in srgb, var(--site-accent) 20%, transparent), transparent 38%),
-        linear-gradient(135deg, rgba(25, 40, 62, 0.92), rgba(12, 22, 38, 0.96));
+        linear-gradient(135deg, rgb(25 40 62 / 92%), rgb(12 22 38 / 96%));
     }
 
     .hero__picker-chip,
     .picker-gallery__badges span,
     .docs-search__kind {
-      background: rgba(230, 238, 250, 0.08);
+      background: rgb(230 238 250 / 8%);
       color: var(--site-text-muted);
     }
 
@@ -187,21 +184,21 @@
     }
 
     .picker-gallery__api-link {
-      border-color: rgba(230, 238, 250, 0.14);
-      background: rgba(230, 238, 250, 0.08);
+      border-color: rgb(230 238 250 / 14%);
+      background: rgb(230 238 250 / 8%);
       color: var(--site-text-strong);
     }
 
     .picker-gallery__api-link:hover {
-      border-color: rgba(230, 238, 250, 0.24);
-      background: rgba(230, 238, 250, 0.12);
+      border-color: rgb(230 238 250 / 24%);
+      background: rgb(230 238 250 / 12%);
     }
 
     .hero__demo-link:hover,
     .hero__button:not(.hero__button--primary):hover,
     .not-found-page__panel .not-found-page__secondary-action:hover {
-      border-color: rgba(230, 238, 250, 0.28);
-      background: rgba(24, 38, 60, 0.88);
+      border-color: rgb(230 238 250 / 28%);
+      background: rgb(24 38 60 / 88%);
     }
 
     .section__body a:not(.anchor-heading__link) {
@@ -219,8 +216,8 @@
     .content-list code,
     .api-group__head p code,
     .api-table code {
-      border-color: rgba(230, 238, 250, 0.14);
-      background: rgba(230, 238, 250, 0.08);
+      border-color: rgb(230 238 250 / 14%);
+      background: rgb(230 238 250 / 8%);
       color: var(--site-text-strong);
     }
 
@@ -239,17 +236,17 @@
     }
 
     .anchor-heading__icon {
-      color: rgba(218, 227, 240, 0.48);
+      color: rgb(218 227 240 / 48%);
     }
 
     .section-nav-shell {
-      --section-nav-scrollbar-thumb: rgba(230, 238, 250, 0.28);
-      --section-nav-scrollbar-thumb-hover: rgba(230, 238, 250, 0.44);
+      --section-nav-scrollbar-thumb: rgb(230 238 250 / 28%);
+      --section-nav-scrollbar-thumb-hover: rgb(230 238 250 / 44%);
     }
 
     .section-nav,
     .docs-search {
-      background: rgba(14, 24, 40, 0.76);
+      background: rgb(14 24 40 / 76%);
       box-shadow: var(--site-shadow-soft);
     }
 
@@ -268,22 +265,22 @@
     .section-nav__link:hover,
     .section-nav__sublink:hover,
     .section-nav__childlink:hover {
-      background: rgba(230, 238, 250, 0.07);
+      background: rgb(230 238 250 / 7%);
     }
 
     .section-nav__link--active,
     .section-nav__sublink--active,
     .section-nav__childlink--active {
       background:
-        linear-gradient(135deg, rgba(230, 238, 250, 0.14), rgba(230, 238, 250, 0.08)),
-        linear-gradient(135deg, color-mix(in srgb, var(--site-accent) 24%, transparent), rgba(230, 238, 250, 0.04));
+        linear-gradient(135deg, rgb(230 238 250 / 14%), rgb(230 238 250 / 8%)),
+        linear-gradient(135deg, color-mix(in srgb, var(--site-accent) 24%, transparent), rgb(230 238 250 / 4%));
       color: var(--site-text-strong);
-      box-shadow: inset 0 0 0 1px rgba(230, 238, 250, 0.1);
+      box-shadow: inset 0 0 0 1px rgb(230 238 250 / 10%);
     }
 
     .docs-search {
-      --docs-search-scrollbar-thumb: rgba(230, 238, 250, 0.28);
-      --docs-search-scrollbar-thumb-hover: rgba(230, 238, 250, 0.44);
+      --docs-search-scrollbar-thumb: rgb(230 238 250 / 28%);
+      --docs-search-scrollbar-thumb-hover: rgb(230 238 250 / 44%);
     }
 
     .docs-search__field,
@@ -291,8 +288,8 @@
     .docs-search__result,
     .docs-search__empty,
     .api-default__toggle {
-      border-color: rgba(230, 238, 250, 0.14);
-      background: rgba(230, 238, 250, 0.08);
+      border-color: rgb(230 238 250 / 14%);
+      background: rgb(230 238 250 / 8%);
       color: var(--site-text);
     }
 
@@ -317,8 +314,8 @@
     .docs-search__clear:hover,
     .docs-search__clear:focus-visible,
     .docs-search__result:hover {
-      border-color: rgba(230, 238, 250, 0.24);
-      background: rgba(230, 238, 250, 0.12);
+      border-color: rgb(230 238 250 / 24%);
+      background: rgb(230 238 250 / 12%);
       color: var(--site-text-strong);
     }
 
@@ -334,7 +331,7 @@
 
     .api-table {
       border-color: var(--site-border);
-      background: rgba(12, 22, 38, 0.9);
+      background: rgb(12 22 38 / 90%);
       box-shadow: var(--site-shadow-soft);
 
       th,
@@ -345,19 +342,19 @@
       thead th {
         border-bottom-color: var(--site-border-strong);
         background:
-          linear-gradient(rgba(230, 238, 250, 0.08), rgba(230, 238, 250, 0.08)),
+          linear-gradient(rgb(230 238 250 / 8%), rgb(230 238 250 / 8%)),
           color-mix(in srgb, var(--site-accent) 18%, #101f35);
         color: var(--site-text-muted);
       }
 
       tbody tr:nth-child(even) {
-        background: rgba(230, 238, 250, 0.04);
+        background: rgb(230 238 250 / 4%);
       }
     }
 
     .api-prop-card {
       border-color: var(--site-border);
-      background: rgba(230, 238, 250, 0.07);
+      background: rgb(230 238 250 / 7%);
 
       span {
         color: var(--site-text-subtle);
@@ -378,7 +375,7 @@
   padding: 0.75rem 1rem;
   border: 1px solid var(--site-border-strong);
   border-radius: var(--site-radius-pill);
-  background: #ffffff;
+  background: #fff;
   color: var(--site-text-strong);
   font-weight: 700;
   box-shadow: var(--site-shadow-elevated);

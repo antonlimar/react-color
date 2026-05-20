@@ -21,14 +21,14 @@
     p {
       max-width: 46rem;
       margin: 0;
-      color: rgba(16, 32, 58, 0.66);
+      color: rgb(16 32 58 / 66%);
       font-size: 0.92rem;
 
       code {
         padding: 0.08rem 0.38rem;
-        border: 1px solid rgba(16, 32, 58, 0.1);
+        border: 1px solid rgb(16 32 58 / 10%);
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.9);
+        background: rgb(255 255 255 / 90%);
         color: var(--site-text-strong);
         font-family: var(--site-font-mono);
         font-size: 0.92em;
@@ -42,18 +42,18 @@
   margin-bottom: 0.75rem;
   border-collapse: separate;
   border-spacing: 0;
-  border: 1px solid rgba(16, 32, 58, 0.16);
+  border: 1px solid rgb(16 32 58 / 16%);
   border-radius: var(--site-radius-sm);
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.86);
+  background: rgb(255 255 255 / 86%);
   box-shadow:
-    0 18px 44px rgba(29, 43, 71, 0.12),
-    0 2px 10px rgba(29, 43, 71, 0.06);
+    0 18px 44px rgb(29 43 71 / 12%),
+    0 2px 10px rgb(29 43 71 / 6%);
 
   th,
   td {
     padding: 0.85rem;
-    border-bottom: 1px solid rgba(16, 32, 58, 0.11);
+    border-bottom: 1px solid rgb(16 32 58 / 11%);
     vertical-align: top;
     text-align: left;
     font-size: 0.9rem;
@@ -61,9 +61,9 @@
 
   thead {
     th {
-      border-bottom-color: rgba(16, 32, 58, 0.16);
-      background: linear-gradient(rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.58)), var(--site-accent-soft);
-      color: rgba(16, 32, 58, 0.66);
+      border-bottom-color: rgb(16 32 58 / 16%);
+      background: linear-gradient(rgb(255 255 255 / 58%), rgb(255 255 255 / 58%)), var(--site-accent-soft);
+      color: rgb(16 32 58 / 66%);
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -74,7 +74,7 @@
   tbody {
     tr {
       &:nth-child(even) {
-        background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), var(--site-accent-wash);
+        background: linear-gradient(rgb(255 255 255 / 70%), rgb(255 255 255 / 70%)), var(--site-accent-wash);
       }
 
       &:last-child {
@@ -99,16 +99,16 @@
       &:nth-child(2),
       &:nth-child(3) {
         width: 15rem;
-        color: rgba(16, 32, 58, 0.72);
+        color: rgb(16 32 58 / 72%);
       }
     }
   }
 
   code {
     padding: 0.08rem 0.38rem;
-    border: 1px solid rgba(16, 32, 58, 0.1);
+    border: 1px solid rgb(16 32 58 / 10%);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgb(255 255 255 / 90%);
     color: var(--site-text-strong);
     font-family: var(--site-font-mono);
     font-size: 0.92em;

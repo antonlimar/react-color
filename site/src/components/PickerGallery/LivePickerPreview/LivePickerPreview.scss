@@ -8,11 +8,11 @@
     padding: 1rem;
     overflow-x: auto;
     overflow-y: hidden;
-    border: 1px solid rgba(16, 32, 58, 0.08);
+    border: 1px solid rgb(16 32 58 / 8%);
     border-radius: 18px;
     background:
       radial-gradient(circle at 16% 18%, var(--site-accent-wash), transparent 38%),
-      linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(246, 248, 252, 0.72));
+      linear-gradient(135deg, rgb(255 255 255 / 90%), rgb(246 248 252 / 72%));
 
     &--alpha,
     &--hue,

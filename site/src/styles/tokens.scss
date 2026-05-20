@@ -2,37 +2,31 @@
   --site-font-sans: 'Satoshi', 'Avenir Next', 'Segoe UI', sans-serif;
   --site-font-display: 'Avenir Next Condensed', 'Arial Narrow', 'Avenir Next', sans-serif;
   --site-font-mono: 'SFMono-Regular', 'SF Mono', 'Consolas', 'Liberation Mono', monospace;
-
   --site-page-background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.78), transparent 42%),
+    radial-gradient(circle at top, rgb(255 255 255 / 78%), transparent 42%),
     linear-gradient(180deg, #f4efe8 0%, #edf2fb 46%, #f7f8fc 100%);
-
   --site-text: #10203a;
   --site-text-strong: #0d1726;
-  --site-text-muted: rgba(16, 32, 58, 0.72);
-  --site-text-subtle: rgba(16, 32, 58, 0.52);
-  --site-surface: rgba(255, 255, 255, 0.68);
-  --site-surface-strong: rgba(255, 255, 255, 0.84);
-  --site-surface-dark: rgba(9, 18, 32, 0.96);
-  --site-border: rgba(16, 32, 58, 0.1);
-  --site-border-strong: rgba(16, 32, 58, 0.16);
-
-  --site-shadow-soft: 0 16px 36px rgba(29, 43, 71, 0.08);
-  --site-shadow-panel: 0 30px 80px rgba(29, 43, 71, 0.12), 0 10px 24px rgba(29, 43, 71, 0.08);
-  --site-shadow-code: 0 16px 30px rgba(29, 43, 71, 0.12);
-  --site-shadow-elevated: 0 30px 80px rgba(9, 18, 32, 0.22);
-
+  --site-text-muted: rgb(16 32 58 / 72%);
+  --site-text-subtle: rgb(16 32 58 / 52%);
+  --site-surface: rgb(255 255 255 / 68%);
+  --site-surface-strong: rgb(255 255 255 / 84%);
+  --site-surface-dark: rgb(9 18 32 / 96%);
+  --site-border: rgb(16 32 58 / 10%);
+  --site-border-strong: rgb(16 32 58 / 16%);
+  --site-shadow-soft: 0 16px 36px rgb(29 43 71 / 8%);
+  --site-shadow-panel: 0 30px 80px rgb(29 43 71 / 12%), 0 10px 24px rgb(29 43 71 / 8%);
+  --site-shadow-code: 0 16px 30px rgb(29 43 71 / 12%);
+  --site-shadow-elevated: 0 30px 80px rgb(9 18 32 / 22%);
   --site-radius-sm: 18px;
   --site-radius-md: 24px;
   --site-radius-lg: 32px;
   --site-radius-pill: 999px;
-
   --site-space-page-x: clamp(1.5rem, 5vw, 5rem);
   --site-space-page-y: clamp(1.5rem, 3vw, 3rem);
   --site-space-section: clamp(1.5rem, 3vw, 2rem);
   --site-space-stack: 1rem;
   --site-hero-gap: clamp(2.5rem, 5vw, 5rem);
-
   --site-anchor-offset: 6rem;
   --site-content-max: 86rem;
   --site-reading-max: 56rem;

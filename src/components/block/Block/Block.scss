@@ -9,7 +9,7 @@
   position: relative;
   background: var(--rc-picker-surface, #fff);
   border-radius: 6px;
-  box-shadow: 0 1px var(--rc-picker-focus-outline, rgba(0, 0, 0, 0.1));
+  box-shadow: 0 1px var(--rc-picker-focus-outline, rgb(0 0 0 / 10%));
   color: var(--rc-picker-text, #333);
 
   &#{&}--hide-triangle {
