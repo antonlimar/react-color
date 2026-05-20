@@ -131,7 +131,7 @@
     }
   }
 
-  @media (max-width: 920px) {
+  @media (width <= 920px) {
     &__swatches {
       position: static;
       grid-template-columns: repeat(5, minmax(1.5rem, 1fr));
@@ -139,7 +139,7 @@
     }
   }
 
-  @media (max-width: 640px) {
+  @media (width <= 640px) {
     width: min(calc(100% - 1.25rem), var(--site-content-max));
 
     &__actions {

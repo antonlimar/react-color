@@ -407,19 +407,19 @@
   margin: 0 auto;
   padding: 0 0 4rem;
 
-  @media (max-width: 920px) {
+  @media (width <= 920px) {
     width: min(calc(100% - 2rem), var(--site-content-max));
     padding-top: 0.75rem;
     padding-bottom: 1.5rem;
     z-index: 70;
   }
 
-  @media (max-width: 640px) {
+  @media (width <= 640px) {
     width: min(calc(100% - 1.25rem), var(--site-content-max));
   }
 }
 
-@media (max-width: 640px) {
+@media (width <= 640px) {
   :root {
     --site-anchor-offset: 5rem;
   }

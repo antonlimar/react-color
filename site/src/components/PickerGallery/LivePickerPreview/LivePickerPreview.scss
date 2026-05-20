@@ -85,7 +85,7 @@
     }
   }
 
-  @media (max-width: 640px) {
+  @media (width <= 640px) {
     &__preview {
       justify-content: flex-start;
       min-height: 16rem;

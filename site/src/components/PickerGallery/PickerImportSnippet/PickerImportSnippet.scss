@@ -105,7 +105,7 @@
     font-size: 0.72rem;
   }
 
-  @media (max-width: 640px) {
+  @media (width <= 640px) {
     &__copy {
       min-height: 2.25rem;
     }

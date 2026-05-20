@@ -159,7 +159,7 @@
     }
   }
 
-  @media (max-width: 640px) {
+  @media (width <= 640px) {
     padding: 0.9rem 0.85rem 0.8rem;
 
     &__header {

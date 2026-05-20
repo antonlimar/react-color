@@ -124,11 +124,11 @@
     }
   }
 
-  @media (max-width: 920px) {
+  @media (width <= 920px) {
     grid-template-columns: 1fr;
   }
 
-  @media (max-width: 640px) {
+  @media (width <= 640px) {
     &__body {
       h2 .anchor-heading__link {
         font-size: 0.9em;

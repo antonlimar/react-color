@@ -129,7 +129,7 @@
     background: transparent;
   }
 
-  @media (max-width: 640px) {
+  @media (width <= 640px) {
     display: none;
   }
 }

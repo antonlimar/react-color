@@ -241,7 +241,7 @@
     }
   }
 
-  @media (max-width: 640px) {
+  @media (width <= 640px) {
     &__field {
       align-items: stretch;
     }

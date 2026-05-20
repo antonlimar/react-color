@@ -92,7 +92,7 @@
     display: none;
   }
 
-  @media (max-width: 920px) {
+  @media (width <= 920px) {
     &__toolbar {
       position: fixed;
       top: max(0.75rem, env(safe-area-inset-top));

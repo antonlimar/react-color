@@ -103,7 +103,7 @@
     text-transform: uppercase;
   }
 
-  @media (max-width: 640px) {
+  @media (width <= 640px) {
     &__head {
       flex-direction: column;
     }

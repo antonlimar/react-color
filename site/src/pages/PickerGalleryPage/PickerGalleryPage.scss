@@ -80,13 +80,13 @@
   font-size: 0.92rem;
 }
 
-@media (max-width: 920px) {
+@media (width <= 920px) {
   .sections-shell.sections-shell--gallery-page {
     padding-top: 0.75rem;
   }
 }
 
-@media (max-width: 920px) {
+@media (width <= 920px) {
   .gallery-page__intro-grid {
     grid-template-columns: 1fr;
     align-items: start;

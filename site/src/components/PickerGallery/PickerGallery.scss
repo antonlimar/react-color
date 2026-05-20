@@ -6,7 +6,7 @@
 
   --site-picker-gallery-shadow: 0 1px 2px rgb(16 32 58 / 6%), 0 14px 28px rgb(16 32 58 / 12%);
 
-  @media (max-width: 920px) {
+  @media (width <= 920px) {
     grid-template-columns: 1fr;
   }
 }
