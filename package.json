@@ -39,9 +39,12 @@
     "test:visual": "vitest run -c vitest.visual.config.ts && node ./scripts/site-visual-tests.mjs",
     "test:visual:update": "vitest run -c vitest.visual.config.ts --update && node ./scripts/site-visual-tests.mjs --update",
     "test:watch": "vitest -c vitest.config.ts",
+    "lint": "npm run eslint && npm run stylelint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "eslint": "eslint src site scripts test .storybook vite.site.config.ts vitest.config.ts vitest.visual.config.ts eslint.config.mjs",
+    "stylelint": "stylelint \"src/**/*.scss\" \"site/src/**/*.scss\"",
+    "stylelint:fix": "stylelint \"src/**/*.scss\" \"site/src/**/*.scss\" --fix",
     "clean-es": "rm -rf es && mkdir es",
     "prepack": "npm run build",
     "site:dev": "vite --config vite.site.config.ts --open",
@@ -57,7 +60,8 @@
       "prettier --check",
       "eslint --max-warnings=0 --no-warn-ignored"
     ],
-    "*.{json,md,mdx,html,css,scss,yml,yaml}": "prettier --check"
+    "*.{json,md,mdx,html,css,scss,yml,yaml}": "prettier --check",
+    "*.scss": "stylelint"
   },
   "sideEffects": [
     "**/*.css"
@@ -123,6 +127,9 @@
     "react-dom": "^19.2.6",
     "sass": "^1.99.0",
     "storybook": "^10.4.0",
+    "stylelint": "^17.11.1",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-config-standard-scss": "^17.0.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.4",
     "vite": "^8.0.13",
