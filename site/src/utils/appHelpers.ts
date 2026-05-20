@@ -1,4 +1,6 @@
+import type { SearchIndexEntry, SearchResult } from '../components';
 import { pickerMetadata, siteSections } from '../content';
+import type { PackageManager, SectionBlock } from '../content';
 import {
   createPropertyAnchorId,
   createPropertyGroupAnchorId,
@@ -8,8 +10,6 @@ import {
   packageManagers,
   stripSearchText,
 } from './docsSections';
-import type { SearchIndexEntry, SearchResult } from '../components';
-import type { PackageManager, SectionBlock } from '../content';
 
 export const packageManagerStorageKey = 'react-color-x-docs-package-manager';
 

@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
+import type { CodeBlock } from '../../content';
 import { highlightCode } from '../../utils/highlightCode';
 import { siteBem } from '../../utils/siteBem';
 import { copyText } from './clipboard';
-import type { CodeBlock } from '../../content';
 import './CodeFigure.scss';
 
 interface CodeFigureProps {

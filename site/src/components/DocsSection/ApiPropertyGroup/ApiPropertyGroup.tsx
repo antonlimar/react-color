@@ -1,3 +1,4 @@
+import type { ContentSubsection, PropertyGroup } from '../../../content';
 import { createPropertyGroupAnchorId } from '../../../utils/docsSections';
 import { siteBem } from '../../../utils/siteBem';
 import { AnchorHeading } from '../../AnchorHeading';
@@ -5,7 +6,6 @@ import { ApiDefaultValue } from '../../ApiDefaultValue';
 import { InlineContent } from '../../InlineContent';
 import { ApiPropertyCards } from '../ApiPropertyCards';
 import { ApiPropertyName } from '../ApiPropertyName';
-import type { ContentSubsection, PropertyGroup } from '../../../content';
 import './ApiPropertyGroup.scss';
 
 interface ApiPropertyGroupProps {

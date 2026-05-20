@@ -1,5 +1,5 @@
-import { InlineContent } from '../../InlineContent';
 import type { ApiProperty } from '../../../content';
+import { InlineContent } from '../../InlineContent';
 
 interface ApiPropertyNameProps {
   property: ApiProperty;

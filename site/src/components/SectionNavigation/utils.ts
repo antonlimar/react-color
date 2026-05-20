@@ -1,6 +1,6 @@
 import type { PointerEvent as ReactPointerEvent } from 'react';
-import { createPropertyGroupAnchorId } from '../../utils/docsSections';
 import type { ContentSection, ContentSubsection, PropertyGroup } from '../../content';
+import { createPropertyGroupAnchorId } from '../../utils/docsSections';
 
 export interface NavSubsection extends ContentSubsection {
   children: Array<{

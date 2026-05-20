@@ -1,8 +1,8 @@
+import type { CodeBlock, PackageManager, SectionBlock } from '../../../content';
 import { siteBem } from '../../../utils/siteBem';
 import { CodeFigure } from '../../CodeFigure';
 import { InlineContent } from '../../InlineContent';
 import { PackageManagerTabs } from '../PackageManagerTabs';
-import type { CodeBlock, PackageManager, SectionBlock } from '../../../content';
 import './SectionBlockView.scss';
 
 interface SectionBlockViewProps {

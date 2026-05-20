@@ -1,6 +1,6 @@
+import type { PackageManager } from '../../../content';
 import { packageManagers } from '../../../utils/docsSections';
 import { siteBem } from '../../../utils/siteBem';
-import type { PackageManager } from '../../../content';
 import './PackageManagerTabs.scss';
 
 interface PackageManagerTabsProps {

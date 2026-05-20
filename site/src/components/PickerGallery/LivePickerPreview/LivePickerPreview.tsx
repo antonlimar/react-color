@@ -1,7 +1,7 @@
+import type { ColorResult, PickerTheme, RGBAColor } from 'react-color-x';
+import type { PickerMetadata } from '../../../content';
 import { siteBem } from '../../../utils/siteBem';
 import { pickerGalleryComponents, pickerGalleryPreviewProps } from '../pickerGalleryComponents';
-import type { PickerMetadata } from '../../../content';
-import type { ColorResult, PickerTheme, RGBAColor } from 'react-color-x';
 import './LivePickerPreview.scss';
 
 interface LivePickerPreviewProps {

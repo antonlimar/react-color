@@ -1,5 +1,6 @@
 import { RouterProvider, createRootRoute, createRoute, createRouter, useRouterState } from '@tanstack/react-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type { ColorResult, RGBAColor } from 'react-color-x';
 import {
   MobileSectionDrawer,
   DocsSection,
@@ -12,6 +13,7 @@ import {
   syncSectionNavigationScrollbars,
 } from './components';
 import { pickerMetadata, siteSections } from './content';
+import type { PackageManager } from './content';
 import { DocsPage, NotFoundPage as NotFoundPageContent, PickerGalleryPage } from './pages';
 import {
   clampColorChannel,
@@ -30,8 +32,6 @@ import {
   searchDocs,
   siteBem,
 } from './utils';
-import type { PackageManager } from './content';
-import type { ColorResult, RGBAColor } from 'react-color-x';
 
 const galleryPagePath = '/gallery' as const;
 const siteThemeStorageKey = 'react-color-x-docs-theme';

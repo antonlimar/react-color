@@ -1,7 +1,7 @@
+import type { PickerMetadata } from '../../../content';
 import { highlightCode } from '../../../utils/highlightCode';
 import { siteBem } from '../../../utils/siteBem';
 import { useCodeCopy } from '../../CodeFigure';
-import type { PickerMetadata } from '../../../content';
 import './PickerImportSnippet.scss';
 
 interface PickerImportSnippetProps {

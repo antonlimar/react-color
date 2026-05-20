@@ -1,9 +1,9 @@
+import type { ContentSection, PackageManager } from '../../content';
 import { siteBem } from '../../utils/siteBem';
 import { AnchorHeading } from '../AnchorHeading';
 import { InlineContent } from '../InlineContent';
 import { ApiPropertyGroup } from './ApiPropertyGroup';
 import { SectionBlockView, createSectionBlockKey } from './SectionBlockView';
-import type { ContentSection, PackageManager } from '../../content';
 import './DocsSection.scss';
 
 interface DocsSectionProps {

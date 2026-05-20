@@ -1,8 +1,8 @@
+import type { PropertyGroup } from '../../../content';
 import { siteBem } from '../../../utils/siteBem';
 import { ApiDefaultValue } from '../../ApiDefaultValue';
 import { InlineContent } from '../../InlineContent';
 import { ApiPropertyName } from '../ApiPropertyName';
-import type { PropertyGroup } from '../../../content';
 import './ApiPropertyCards.scss';
 
 interface ApiPropertyCardsProps {

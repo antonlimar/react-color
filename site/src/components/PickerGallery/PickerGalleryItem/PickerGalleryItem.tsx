@@ -1,9 +1,9 @@
 import { Link } from '@tanstack/react-router';
+import type { ColorResult, PickerTheme, RGBAColor } from 'react-color-x';
+import type { PickerMetadata } from '../../../content';
 import { siteBem } from '../../../utils/siteBem';
 import { LivePickerPreview } from '../LivePickerPreview';
 import { PickerImportSnippet } from '../PickerImportSnippet';
-import type { PickerMetadata } from '../../../content';
-import type { ColorResult, PickerTheme, RGBAColor } from 'react-color-x';
 import './PickerGalleryItem.scss';
 
 interface PickerGalleryItemProps {
