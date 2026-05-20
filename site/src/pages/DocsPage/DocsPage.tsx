@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
-import { ChromePicker, CompactPicker, GithubPicker, SketchPicker } from 'react-color-x';
-import type { ColorResult, PickerTheme, RGBAColor } from 'react-color-x';
+import { ChromePicker, CompactPicker, GithubPicker, SketchPicker } from '@antonlimar/react-color';
+import type { ColorResult, PickerTheme, RGBAColor } from '@antonlimar/react-color';
 import { siteBem } from '../../utils/siteBem';
 import './DocsPage.scss';
 

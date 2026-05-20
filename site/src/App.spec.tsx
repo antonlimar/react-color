@@ -125,7 +125,7 @@ describe('site app', () => {
     expect(within(primaryNav).getByRole('link', { name: 'Picker Gallery' })).toHaveAttribute('href', '/gallery');
     expect(within(primaryNav).getByRole('link', { name: 'View repository' })).toHaveAttribute(
       'href',
-      'https://github.com/antonlimar/react-color-x',
+      'https://github.com/antonlimar/react-color',
     );
     expect(within(primaryNav).getByRole('button', { name: /switch to dark theme/i })).toHaveAttribute(
       'aria-pressed',
@@ -160,7 +160,7 @@ describe('site app', () => {
 
     expect(siteShell).toHaveAttribute('data-site-theme', 'dark');
     expect(document.documentElement).toHaveAttribute('data-site-theme', 'dark');
-    expect(window.localStorage.getItem('react-color-x-docs-theme')).toBe('dark');
+    expect(window.localStorage.getItem('react-color-docs-theme')).toBe('dark');
     expect(getHeaderThemeToggle()).toHaveAttribute('aria-pressed', 'true');
   });
 
@@ -237,7 +237,7 @@ describe('site app', () => {
 
     expect(codeElement).toHaveClass('language-tsx');
     expect(codeElement?.innerHTML).toContain('token keyword');
-    expect(codeElement).toHaveTextContent("import { SketchPicker } from 'react-color-x';");
+    expect(codeElement).toHaveTextContent("import { SketchPicker } from '@antonlimar/react-color';");
     expect(container).not.toHaveTextContent("import React from 'react';");
   });
 
@@ -257,7 +257,7 @@ describe('site app', () => {
 
     await waitFor(() => {
       expect(writeText).toHaveBeenCalledWith(
-        'import { SketchPicker } from \'react-color-x\';\n\nexport function Example() {\n  return <SketchPicker theme="auto" />;\n}\n',
+        'import { SketchPicker } from \'@antonlimar/react-color\';\n\nexport function Example() {\n  return <SketchPicker theme="auto" />;\n}\n',
       );
       expect(copyButton).toHaveTextContent('Copied');
       expect(within(codeFigure).getByText('Code copied to clipboard.')).toHaveAttribute('aria-live', 'polite');
@@ -290,20 +290,20 @@ describe('site app', () => {
     const yarnTab = within(installFigure).getByRole('tab', { name: 'yarn' });
 
     expect(within(installFigure).getByRole('tab', { name: 'npm' })).toHaveAttribute('aria-selected', 'true');
-    expect(installFigure.querySelector('code')).toHaveTextContent('npm install react-color-x --save');
+    expect(installFigure.querySelector('code')).toHaveTextContent('npm install @antonlimar/react-color --save');
 
     fireEvent.click(yarnTab);
 
     expect(yarnTab).toHaveAttribute('aria-selected', 'true');
-    expect(window.localStorage.getItem('react-color-x-docs-package-manager')).toBe('yarn');
-    expect(installFigure.querySelector('code')).toHaveTextContent('yarn add react-color-x');
+    expect(window.localStorage.getItem('react-color-docs-package-manager')).toBe('yarn');
+    expect(installFigure.querySelector('code')).toHaveTextContent('yarn add @antonlimar/react-color');
 
     unmount();
     await renderApp();
 
     const persistedInstallFigure = screen.getByText('Install package').closest('.content-code') as HTMLElement;
     expect(within(persistedInstallFigure).getByRole('tab', { name: 'yarn' })).toHaveAttribute('aria-selected', 'true');
-    expect(persistedInstallFigure.querySelector('code')).toHaveTextContent('yarn add react-color-x');
+    expect(persistedInstallFigure.querySelector('code')).toHaveTextContent('yarn add @antonlimar/react-color');
   });
 
   test('highlights JSX inside tsx return statements', async () => {
@@ -626,13 +626,13 @@ describe('site app', () => {
     expect(galleryCards).toHaveLength(14);
     expect(within(gallery).getByRole('heading', { name: 'Sketch' })).toBeInTheDocument();
     const sketchImport = Array.from(gallery.querySelectorAll('.picker-gallery__imports code')).find(
-      (code) => code.textContent === "import { SketchPicker } from 'react-color-x';",
+      (code) => code.textContent === "import { SketchPicker } from '@antonlimar/react-color';",
     );
     expect(sketchImport).toBeInstanceOf(HTMLElement);
     expect(sketchImport).toHaveClass('language-tsx');
     expect(sketchImport?.innerHTML).toContain('token keyword');
     expect(within(gallery).getByRole('button', { name: 'Copy: Sketch import' })).toBeInTheDocument();
-    expect(within(gallery).queryByText(/react-color-x\/es\//)).not.toBeInTheDocument();
+    expect(within(gallery).queryByText(/@antonlimar\/react-color\/es\//)).not.toBeInTheDocument();
     expect(within(gallery).getAllByRole('link', { name: 'API props' })).toHaveLength(14);
     expect(within(gallery).getAllByRole('link', { name: 'API props' })[0]).toHaveAttribute(
       'href',
@@ -712,7 +712,7 @@ describe('site app', () => {
     fireEvent.click(copyButton);
 
     await waitFor(() => {
-      expect(writeText).toHaveBeenCalledWith("import { SketchPicker } from 'react-color-x';");
+      expect(writeText).toHaveBeenCalledWith("import { SketchPicker } from '@antonlimar/react-color';");
       expect(copyButton).toHaveTextContent('Copied');
       expect(within(importSnippet).getByText('Code copied to clipboard.')).toHaveAttribute('aria-live', 'polite');
     });

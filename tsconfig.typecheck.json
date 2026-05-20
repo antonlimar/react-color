@@ -8,8 +8,8 @@
       "@/*": ["./src/*"],
       "@storybook-utils/*": ["./.storybook/*"],
       "@test/*": ["./test/*"],
-      "react-color-x": ["./src/index.ts"],
-      "react-color-x/es/*": ["./es/*"]
+      "@antonlimar/react-color": ["./src/index.ts"],
+      "@antonlimar/react-color/es/*": ["./es/*"]
     },
     "target": "ES2021",
     "types": ["node", "vite/client", "vitest/globals"]

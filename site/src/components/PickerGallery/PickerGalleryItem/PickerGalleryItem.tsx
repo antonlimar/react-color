@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import type { ColorResult, PickerTheme, RGBAColor } from 'react-color-x';
+import type { ColorResult, PickerTheme, RGBAColor } from '@antonlimar/react-color';
 import type { PickerMetadata } from '../../../content';
 import { siteBem } from '../../../utils/siteBem';
 import { LivePickerPreview } from '../LivePickerPreview';
@@ -15,7 +15,7 @@ interface PickerGalleryItemProps {
 }
 
 export function PickerGalleryItem({ color, colorLabel, theme, onChange, picker }: PickerGalleryItemProps) {
-  const importSnippet = `import { ${picker.exportName} } from 'react-color-x';`;
+  const importSnippet = `import { ${picker.exportName} } from '@antonlimar/react-color';`;
   const b = siteBem('picker-gallery');
 
   return (

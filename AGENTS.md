@@ -2,7 +2,7 @@
 
 ## Repository Purpose
 
-This is a maintained fork of `react-color`, published as `react-color-x`: the library has been modernized, runs on a TypeScript-compatible stack, has up-to-date build/tests/Storybook/docs, and preserves public API compatibility where possible.
+This is a maintained fork of `react-color`, published as `@antonlimar/react-color`: the library has been modernized, runs on a TypeScript-compatible stack, has up-to-date build/tests/Storybook/docs, and preserves public API compatibility where possible.
 
 `AGENTS.md` stores only current and long-lived rules.
 

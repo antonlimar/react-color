@@ -1,4 +1,4 @@
-# [React Color X](https://antonlimar.github.io/react-color-x/)
+# [React Color](https://antonlimar.github.io/react-color/)
 
 [![Npm Version][npm-version-image]][npm-version-url]
 [![License][license-image]][license-url]
@@ -43,26 +43,26 @@ Published package artifacts are ESM-only. The package exposes `main` and `module
 
 The package ships an ESM-only `main`/`module` contract and an `exports` map for the root entry and shared common components. Generated component-local CSS artifacts are published under `es/components` and are pulled in by the component modules that need them.
 
-- Bundlers and TypeScript toolchains should use root named imports such as `import { SketchPicker } from 'react-color-x'`.
+- Bundlers and TypeScript toolchains should use root named imports such as `import { SketchPicker } from '@antonlimar/react-color'`.
 - Native Node ESM can resolve the root entry through the package `exports` map; plain Node execution still needs a CSS-aware loader because picker component modules import CSS side effects.
-- CommonJS `require('react-color-x')` and `require('react-color-x/lib/...')` are no longer supported.
+- CommonJS `require('@antonlimar/react-color')` and `require('@antonlimar/react-color/lib/...')` are no longer supported.
 
 ## Demo
 
 ![Demo](https://media.giphy.com/media/26FfggT53qE304CwE/giphy.gif)
 
-[**Live Demo**](https://antonlimar.github.io/react-color-x/)
+[**Live Demo**](https://antonlimar.github.io/react-color/)
 
 ## Installation & Usage
 
 ```sh
-npm install react-color-x --save
+npm install @antonlimar/react-color --save
 ```
 
 ### Include the Component
 
 ```js
-import { SketchPicker } from 'react-color-x';
+import { SketchPicker } from '@antonlimar/react-color';
 
 function Component() {
   return <SketchPicker />;
@@ -79,9 +79,9 @@ Root picker and shared primitive imports include the CSS they need.
 
 All public pickers keep accepting `className` on the root node and still support the `styles` prop for runtime inline overrides. They now also support `theme`, `classNames`, and CSS custom properties for styling; new customizations should prefer `classNames`, CSS variables, and the published `rc-*` BEM hooks when possible.
 
-[license-image]: https://img.shields.io/npm/l/react-color-x.svg
+[license-image]: https://img.shields.io/npm/l/@antonlimar/react-color.svg
 [license-url]: LICENSE
-[downloads-image]: https://img.shields.io/npm/dm/react-color-x.svg
-[downloads-url]: https://npm-stat.com/charts.html?package=react-color-x
-[npm-version-image]: https://img.shields.io/npm/v/react-color-x.svg
-[npm-version-url]: https://www.npmjs.com/package/react-color-x
+[downloads-image]: https://img.shields.io/npm/dm/@antonlimar/react-color.svg
+[downloads-url]: https://npm-stat.com/charts.html?package=%40antonlimar%2Freact-color
+[npm-version-image]: https://img.shields.io/npm/v/@antonlimar/react-color.svg
+[npm-version-url]: https://www.npmjs.com/package/@antonlimar/react-color

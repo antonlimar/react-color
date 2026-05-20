@@ -58,7 +58,7 @@ export default defineConfig([
       },
     },
     rules: {
-      'import-x/no-unresolved': ['error', { ignore: ['^@/', '^@test/', '^@storybook-utils/', '^react-color-x$'] }],
+      'import-x/no-unresolved': ['error', { ignore: ['^@/', '^@test/', '^@storybook-utils/'] }],
       'import-x/consistent-type-specifier-style': ['error', 'prefer-top-level'],
       'import-x/order': [
         'error',

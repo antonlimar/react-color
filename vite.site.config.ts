@@ -104,7 +104,7 @@ export default defineConfig(({ command }) => ({
       '@': path.resolve(__dirname, 'src'),
       '@storybook-utils': path.resolve(__dirname, '.storybook'),
       '@test': path.resolve(__dirname, 'test'),
-      'react-color-x': path.resolve(__dirname, 'src/index.ts'),
+      '@antonlimar/react-color': path.resolve(__dirname, 'src/index.ts'),
     },
   },
   server: {

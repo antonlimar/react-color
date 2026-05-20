@@ -1,4 +1,4 @@
-import type { ColorResult, PickerTheme, RGBAColor } from 'react-color-x';
+import type { ColorResult, PickerTheme, RGBAColor } from '@antonlimar/react-color';
 import type { PickerMetadata } from '../../../content';
 import { siteBem } from '../../../utils/siteBem';
 import { pickerGalleryComponents, pickerGalleryPreviewProps } from '../pickerGalleryComponents';

@@ -1,6 +1,6 @@
 import { RouterProvider, createRootRoute, createRoute, createRouter, useRouterState } from '@tanstack/react-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { ColorResult, RGBAColor } from 'react-color-x';
+import type { ColorResult, RGBAColor } from '@antonlimar/react-color';
 import {
   MobileSectionDrawer,
   DocsSection,
@@ -34,7 +34,7 @@ import {
 } from './utils';
 
 const galleryPagePath = '/gallery' as const;
-const siteThemeStorageKey = 'react-color-x-docs-theme';
+const siteThemeStorageKey = 'react-color-docs-theme';
 const siteShell = siteBem('site-shell');
 const skipLink = siteBem('skip-link');
 type SiteTheme = 'light' | 'dark';

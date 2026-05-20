@@ -11,7 +11,7 @@ import {
   stripSearchText,
 } from './docsSections';
 
-export const packageManagerStorageKey = 'react-color-x-docs-package-manager';
+export const packageManagerStorageKey = 'react-color-docs-package-manager';
 
 export function normalizeRouterBasepath(baseUrl: string) {
   if (!baseUrl || baseUrl === '/') {

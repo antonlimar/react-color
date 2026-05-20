@@ -15,7 +15,7 @@ const browserName = 'chromium';
 const allowedMismatchedPixels = 50;
 const allowedMismatchedPixelRatio = 0.0002;
 const pixelmatchThreshold = 0.1;
-const siteThemeStorageKey = 'react-color-x-docs-theme';
+const siteThemeStorageKey = 'react-color-docs-theme';
 
 const siteThemes = ['light', 'dark'];
 const shouldColorizeOutput = Boolean(process.stdout.isTTY) && !process.env.NO_COLOR;

@@ -99,11 +99,12 @@ function runNode(args, cwd) {
 }
 
 async function createConsumerWorkspace() {
-  const workspace = await mkdtemp(path.join(os.tmpdir(), 'react-color-x-consumption-'));
+  const workspace = await mkdtemp(path.join(os.tmpdir(), 'react-color-consumption-'));
   const nodeModulesDir = path.join(workspace, 'node_modules');
+  const scopeDir = path.join(nodeModulesDir, '@antonlimar');
 
-  await mkdir(nodeModulesDir, { recursive: true });
-  await symlink(repoRoot, path.join(nodeModulesDir, 'react-color-x'), 'dir');
+  await mkdir(scopeDir, { recursive: true });
+  await symlink(repoRoot, path.join(scopeDir, 'react-color'), 'dir');
 
   return workspace;
 }
@@ -125,7 +126,7 @@ async function runBundlerFixture(workspace) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>react-color-x consumption check</title>
+    <title>@antonlimar/react-color consumption check</title>
   </head>
   <body>
     <div id="app"></div>
@@ -138,7 +139,7 @@ async function runBundlerFixture(workspace) {
   await writeFixture(
     bundlerRoot,
     'main.ts',
-    `import ReactColorDefault, { EditableInput, HuePicker } from 'react-color-x';
+    `import ReactColorDefault, { EditableInput, HuePicker } from '@antonlimar/react-color';
 
 const consumedEntries = [ReactColorDefault, EditableInput, HuePicker];
 
@@ -189,15 +190,15 @@ async function main() {
       'resolve-node-esm.mjs',
       `import assert from 'node:assert/strict';
 
-assert.match(import.meta.resolve('react-color-x'), /\\/es\\/index\\.js$/);
-assert.match(import.meta.resolve('react-color-x/es/components/common'), /\\/es\\/components\\/common\\/index\\.js$/);
+assert.match(import.meta.resolve('@antonlimar/react-color'), /\\/es\\/index\\.js$/);
+assert.match(import.meta.resolve('@antonlimar/react-color/es/components/common'), /\\/es\\/components\\/common\\/index\\.js$/);
 `,
     );
 
     await writeFixture(
       workspace,
       'consumer.cjs',
-      `const reactColor = require('react-color-x');
+      `const reactColor = require('@antonlimar/react-color');
 void reactColor;
 `,
     );

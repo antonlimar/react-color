@@ -11,7 +11,7 @@
     "noEmit": true,
     "noImplicitAny": true,
     "paths": {
-      "react-color-x": ["../src/index.ts"]
+      "@antonlimar/react-color": ["../src/index.ts"]
     },
     "skipLibCheck": true,
     "strictNullChecks": true,

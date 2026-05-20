@@ -16,7 +16,7 @@ export default defineConfig({
   },
   plugins: [
     {
-      name: 'react-color-x-visual-jsx-pretransform',
+      name: 'react-color-visual-jsx-pretransform',
       enforce: 'pre',
       async transform(code, id) {
         if (!/\/(src|test|\.storybook)\/.*\.(js|jsx)$/.test(id)) {
