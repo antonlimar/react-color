@@ -1,9 +1,6 @@
 {
-  "extends": ["stylelint-config-standard-scss"],
+  "extends": ["stylelint-config-standard", "stylelint-config-standard-scss"],
   "rules": {
-    "property-no-vendor-prefix": null,
-    "selector-class-pattern": null,
-    "shorthand-property-no-redundant-values": null,
-    "value-keyword-case": null
+    "selector-class-pattern": null
   }
 }
