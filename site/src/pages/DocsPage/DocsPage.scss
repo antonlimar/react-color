@@ -53,10 +53,7 @@
   &::before {
     content: '';
     position: absolute;
-    top: -7rem;
-    right: 50%;
-    bottom: -5.5rem;
-    left: 50%;
+    inset: -7rem 50% -5.5rem 50%;
     width: 100vw;
     transform: translateX(-50%);
     background:
