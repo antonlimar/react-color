@@ -144,6 +144,13 @@ export function createSearchIndex(): SearchIndexEntry[] {
 
 const searchIndex = createSearchIndex();
 
+const kindScoreByKind: Record<SearchResult['kind'], number> = {
+  example: 0,
+  picker: 1,
+  prop: 2,
+  section: 0,
+};
+
 export function getInitialSearchQuery() {
   if (typeof window === 'undefined') {
     return '';
@@ -190,7 +197,7 @@ export function searchDocs(query: string): SearchResult[] {
       }
 
       const titleMatchScore = terms.filter((term) => entry.title.toLowerCase().includes(term)).length * 3;
-      const kindScore = entry.kind === 'prop' ? 2 : entry.kind === 'picker' ? 1 : 0;
+      const kindScore = kindScoreByKind[entry.kind];
 
       return {
         ...entry,

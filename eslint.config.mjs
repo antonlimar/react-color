@@ -76,6 +76,7 @@ export default defineConfig([
       ],
       'import-x/no-cycle': 'error',
       'import-x/no-duplicates': 'error',
+      'no-nested-ternary': 'error',
       'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
       '@typescript-eslint/no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
       '@typescript-eslint/consistent-type-imports': [

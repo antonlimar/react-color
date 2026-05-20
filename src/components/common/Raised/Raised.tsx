@@ -8,6 +8,18 @@ const b = bem('raised');
 const isStyleObject = (value: unknown): value is CSSProperties =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
 
+const getBoxShadow = (zDepth: number) => {
+  if (zDepth === 0) {
+    return 'none';
+  }
+
+  if (zDepth === 1) {
+    return '0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)';
+  }
+
+  return `0 ${zDepth}px ${zDepth * 4}px rgba(0,0,0,.24)`;
+};
+
 const getRaisedStyle = (styles: RaisedProps['styles'], slot: 'wrap' | 'bg' | 'content'): CSSProperties => {
   const defaultStyles =
     typeof styles?.default === 'object' && styles.default !== null
@@ -30,12 +42,7 @@ export function Raised({
   const wrapStyle = getRaisedStyle(passedStyles, 'wrap');
   const contentStyle = getRaisedStyle(passedStyles, 'content');
   const bgStyle: CSSProperties = {
-    boxShadow:
-      zDepth === 0
-        ? 'none'
-        : zDepth === 1
-          ? '0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)'
-          : `0 ${zDepth}px ${zDepth * 4}px rgba(0,0,0,.24)`,
+    boxShadow: getBoxShadow(zDepth),
     borderRadius: radius,
     background: theme ? 'var(--rc-picker-surface, #fff)' : background,
     ...(style || {}),

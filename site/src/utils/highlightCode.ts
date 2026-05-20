@@ -9,6 +9,15 @@ import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-tsx';
 import type { CodeBlock } from '../content';
 
+const prismLanguageByLanguage = {
+  bash: Prism.languages.bash,
+  css: Prism.languages.css,
+  js: Prism.languages.javascript,
+  jsx: Prism.languages.jsx,
+  ts: Prism.languages.typescript,
+  tsx: Prism.languages.tsx,
+} satisfies Partial<Record<CodeBlock['language'], Prism.Grammar>>;
+
 function escapeHtml(code: string) {
   return code
     .replaceAll('&', '&amp;')
@@ -19,20 +28,7 @@ function escapeHtml(code: string) {
 }
 
 export function highlightCode(code: string, language: CodeBlock['language']) {
-  const prismLanguage =
-    language === 'tsx'
-      ? Prism.languages.tsx
-      : language === 'ts'
-        ? Prism.languages.typescript
-        : language === 'jsx'
-          ? Prism.languages.jsx
-          : language === 'js'
-            ? Prism.languages.javascript
-            : language === 'css'
-              ? Prism.languages.css
-              : language === 'bash'
-                ? Prism.languages.bash
-                : undefined;
+  const prismLanguage = prismLanguageByLanguage[language];
 
   if (!prismLanguage) {
     return escapeHtml(code);

@@ -16,16 +16,30 @@ interface CodeFigureProps {
 
 type CodeCopyState = 'idle' | 'copied' | 'error';
 
+function getCopyLabels(copyState: CodeCopyState) {
+  switch (copyState) {
+    case 'copied':
+      return {
+        buttonLabel: 'Copied',
+        statusLabel: 'Code copied to clipboard.',
+      };
+    case 'error':
+      return {
+        buttonLabel: 'Retry Copy',
+        statusLabel: 'Copy failed. Try again.',
+      };
+    case 'idle':
+      return {
+        buttonLabel: 'Copy',
+        statusLabel: 'Copy code to clipboard.',
+      };
+  }
+}
+
 export function useCodeCopy(valueToCopy: string) {
   const [copyState, setCopyState] = useState<CodeCopyState>('idle');
   const timeoutRef = useRef<number | undefined>(undefined);
-  const buttonLabel = copyState === 'copied' ? 'Copied' : copyState === 'error' ? 'Retry Copy' : 'Copy';
-  const statusLabel =
-    copyState === 'copied'
-      ? 'Code copied to clipboard.'
-      : copyState === 'error'
-        ? 'Copy failed. Try again.'
-        : 'Copy code to clipboard.';
+  const { buttonLabel, statusLabel } = getCopyLabels(copyState);
 
   useEffect(() => {
     return () => {
