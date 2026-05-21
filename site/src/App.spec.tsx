@@ -290,7 +290,7 @@ describe('site app', () => {
     const yarnTab = within(installFigure).getByRole('tab', { name: 'yarn' });
 
     expect(within(installFigure).getByRole('tab', { name: 'npm' })).toHaveAttribute('aria-selected', 'true');
-    expect(installFigure.querySelector('code')).toHaveTextContent('npm install @antonlimar/react-color --save');
+    expect(installFigure.querySelector('code')).toHaveTextContent('npm install @antonlimar/react-color');
 
     fireEvent.click(yarnTab);
 

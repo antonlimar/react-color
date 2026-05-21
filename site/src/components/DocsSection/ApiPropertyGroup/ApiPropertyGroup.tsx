@@ -1,6 +1,5 @@
 import type { ContentSubsection, PropertyGroup } from '../../../content';
-import { createPropertyGroupAnchorId } from '../../../utils/docsSections';
-import { siteBem } from '../../../utils/siteBem';
+import { createPropertyGroupAnchorId, siteBem } from '../../../utils';
 import { AnchorHeading } from '../../AnchorHeading';
 import { ApiDefaultValue } from '../../ApiDefaultValue';
 import { InlineContent } from '../../InlineContent';

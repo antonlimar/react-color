@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import type { ReactNode } from 'react';
-import { siteBem } from '../../utils/siteBem';
+import { siteBem } from '../../utils';
 import './AnchorHeading.scss';
 
 type AnchorHeadingLevel = 2 | 3 | 4;

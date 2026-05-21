@@ -1,8 +1,7 @@
 import { useCallback } from 'react';
 import type { ColorResult, PickerTheme, RGBAColor } from '@antonlimar/react-color';
 import { pickerMetadata } from '../../content';
-import { colorToHex } from '../../utils/colorUtils';
-import { siteBem } from '../../utils/siteBem';
+import { colorToHex, siteBem } from '../../utils';
 import { PickerGalleryItem } from './PickerGalleryItem';
 import './PickerGallery.scss';
 

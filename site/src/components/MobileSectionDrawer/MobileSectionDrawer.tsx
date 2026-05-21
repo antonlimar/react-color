@@ -1,5 +1,5 @@
 import type { RefObject } from 'react';
-import { siteBem } from '../../utils/siteBem';
+import { siteBem } from '../../utils';
 import { SectionNavigation } from '../SectionNavigation';
 import { ThemeToggleButton } from '../SiteHeader/SiteHeader';
 import './MobileSectionDrawer.scss';

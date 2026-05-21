@@ -56,7 +56,7 @@ The package ships an ESM-only `main`/`module` contract and an `exports` map for 
 ## Installation & Usage
 
 ```sh
-npm install @antonlimar/react-color --save
+npm install @antonlimar/react-color
 ```
 
 ### Include the Component

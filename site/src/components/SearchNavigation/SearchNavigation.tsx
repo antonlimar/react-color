@@ -1,5 +1,5 @@
 import type { RefObject } from 'react';
-import { siteBem } from '../../utils/siteBem';
+import { siteBem } from '../../utils';
 import { handleDocsSearchScrollbarDrag } from './utils';
 import './SearchNavigation.scss';
 

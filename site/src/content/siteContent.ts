@@ -162,7 +162,7 @@ export const siteSections: readonly ContentSection[] = [
             type: 'package-manager',
             label: 'Install package',
             commands: {
-              npm: 'npm install @antonlimar/react-color --save',
+              npm: 'npm install @antonlimar/react-color',
               pnpm: 'pnpm add @antonlimar/react-color',
               yarn: 'yarn add @antonlimar/react-color',
               bun: 'bun add @antonlimar/react-color',

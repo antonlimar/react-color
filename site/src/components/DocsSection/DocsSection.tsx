@@ -1,5 +1,5 @@
 import type { ContentSection, PackageManager } from '../../content';
-import { siteBem } from '../../utils/siteBem';
+import { siteBem } from '../../utils';
 import { AnchorHeading } from '../AnchorHeading';
 import { InlineContent } from '../InlineContent';
 import { ApiPropertyGroup } from './ApiPropertyGroup';

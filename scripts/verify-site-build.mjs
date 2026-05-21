@@ -8,10 +8,12 @@ const repoRoot = path.resolve(__dirname, '..');
 const packageJsonPath = path.join(repoRoot, 'package.json');
 const siteIndexPath = path.join(repoRoot, 'site', 'dist', 'index.html');
 const siteFallbackPath = path.join(repoRoot, 'site', 'dist', '404.html');
+const siteGalleryIndexPath = path.join(repoRoot, 'site', 'dist', 'gallery', 'index.html');
 
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 const html = fs.readFileSync(siteIndexPath, 'utf8');
 const fallbackHtml = fs.readFileSync(siteFallbackPath, 'utf8');
+const galleryHtml = fs.readFileSync(siteGalleryIndexPath, 'utf8');
 const homepage = packageJson.homepage;
 const homepageUrl = new URL(homepage);
 const basePath = homepageUrl.pathname.endsWith('/') ? homepageUrl.pathname : `${homepageUrl.pathname}/`;
@@ -50,6 +52,10 @@ if (!html.includes(`src="${basePath}assets/`) && !html.includes(`href="${basePat
 
 if (fallbackHtml !== html) {
   throw new Error('Expected site/dist/404.html to match index.html for GitHub Pages SPA routing.');
+}
+
+if (galleryHtml !== html) {
+  throw new Error('Expected site/dist/gallery/index.html to match index.html for direct GitHub Pages routing.');
 }
 
 console.log(`Verified site build metadata, SPA fallback, and GitHub Pages asset paths for ${homepage}.`);

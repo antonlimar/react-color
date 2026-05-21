@@ -56,6 +56,8 @@ function getSiteBase(command: 'serve' | 'build') {
 }
 
 function githubPagesSpaFallbackPlugin() {
+  const routedPages = ['gallery'];
+
   return {
     name: 'site-github-pages-spa-fallback',
     apply: 'build' as const,
@@ -65,6 +67,12 @@ function githubPagesSpaFallbackPlugin() {
 
       if (fs.existsSync(indexPath)) {
         fs.copyFileSync(indexPath, fallbackPath);
+
+        routedPages.forEach((page) => {
+          const pageDirectory = path.resolve(siteRoot, 'dist', page);
+          fs.mkdirSync(pageDirectory, { recursive: true });
+          fs.copyFileSync(indexPath, path.join(pageDirectory, 'index.html'));
+        });
       }
     },
   };

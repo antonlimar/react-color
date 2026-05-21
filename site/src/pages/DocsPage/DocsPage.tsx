@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 import { ChromePicker, CompactPicker, GithubPicker, SketchPicker } from '@antonlimar/react-color';
 import type { ColorResult, PickerTheme, RGBAColor } from '@antonlimar/react-color';
-import { siteBem } from '../../utils/siteBem';
+import { siteBem } from '../../utils';
 import './DocsPage.scss';
 
 interface DocsPageProps {

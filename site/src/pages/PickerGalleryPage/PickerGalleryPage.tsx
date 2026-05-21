@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
-import { siteBem } from '../../utils/siteBem';
+import { siteBem } from '../../utils';
 import './PickerGalleryPage.scss';
 
 interface PickerGalleryPageProps {

@@ -1,6 +1,6 @@
 import type { ColorResult, PickerTheme, RGBAColor } from '@antonlimar/react-color';
 import type { PickerMetadata } from '../../../content';
-import { siteBem } from '../../../utils/siteBem';
+import { siteBem } from '../../../utils';
 import { pickerGalleryComponents, pickerGalleryPreviewProps } from '../pickerGalleryComponents';
 import './LivePickerPreview.scss';
 

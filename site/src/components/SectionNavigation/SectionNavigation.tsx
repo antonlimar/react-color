@@ -1,5 +1,5 @@
 import { siteSections } from '../../content';
-import { siteBem } from '../../utils/siteBem';
+import { siteBem } from '../../utils';
 import { createNavItems, handleSectionNavigationScrollbarDrag, isSubsectionActive } from './utils';
 import './SectionNavigation.scss';
 

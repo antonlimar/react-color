@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { siteBem } from '../../utils/siteBem';
+import { siteBem } from '../../utils';
 import './ApiDefaultValue.scss';
 
 interface ApiDefaultValueProps {

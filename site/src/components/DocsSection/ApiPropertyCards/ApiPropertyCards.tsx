@@ -1,5 +1,5 @@
 import type { PropertyGroup } from '../../../content';
-import { siteBem } from '../../../utils/siteBem';
+import { siteBem } from '../../../utils';
 import { ApiDefaultValue } from '../../ApiDefaultValue';
 import { InlineContent } from '../../InlineContent';
 import { ApiPropertyName } from '../ApiPropertyName';

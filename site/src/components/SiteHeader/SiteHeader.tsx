@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { siteBem } from '../../utils/siteBem';
+import { siteBem } from '../../utils';
 import './SiteHeader.scss';
 
 type SitePage = 'docs' | 'gallery' | 'not-found';
@@ -76,7 +76,7 @@ export function SiteHeader({ galleryPagePath, isDarkTheme, page, onThemeToggle }
       <Link className={b('brand')} to="/" aria-label="@antonlimar/react-color documentation home">
         <span className={b('brand-mark')} aria-hidden="true" />
         <span className={b('brand-copy')}>
-          <strong>@antonlimar/react-color</strong>
+          <strong>React-color</strong>
           <span>Modern React color pickers</span>
         </span>
       </Link>

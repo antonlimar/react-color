@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { siteBem } from '../../utils/siteBem';
+import { siteBem } from '../../utils';
 import './NotFoundPage.scss';
 
 interface NotFoundPageProps {
