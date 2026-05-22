@@ -49,6 +49,7 @@
     "prepack": "npm run build",
     "site:dev": "vite --config vite.site.config.ts --open",
     "site:build": "vite build --config vite.site.config.ts",
+    "site:llms": "node ./scripts/generate-llms-docs.mjs",
     "site:preview": "SITE_BASE_PATH=/ npm run site:build && vite preview --config vite.site.config.ts --open",
     "site:content": "node ./scripts/validate-site-content.mjs",
     "site:verify": "npm run test:site && npm run site:content && npm run site:build && node ./scripts/verify-site-build.mjs",

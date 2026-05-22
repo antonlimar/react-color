@@ -9,14 +9,19 @@ const packageJsonPath = path.join(repoRoot, 'package.json');
 const siteIndexPath = path.join(repoRoot, 'site', 'dist', 'index.html');
 const siteFallbackPath = path.join(repoRoot, 'site', 'dist', '404.html');
 const siteGalleryIndexPath = path.join(repoRoot, 'site', 'dist', 'gallery', 'index.html');
+const llmsTxtPath = path.join(repoRoot, 'site', 'dist', 'llms.txt');
+const llmsFullTxtPath = path.join(repoRoot, 'site', 'dist', 'llms-full.txt');
 
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 const html = fs.readFileSync(siteIndexPath, 'utf8');
 const fallbackHtml = fs.readFileSync(siteFallbackPath, 'utf8');
 const galleryHtml = fs.readFileSync(siteGalleryIndexPath, 'utf8');
+const llmsTxt = fs.readFileSync(llmsTxtPath, 'utf8');
+const llmsFullTxt = fs.readFileSync(llmsFullTxtPath, 'utf8');
 const homepage = packageJson.homepage;
 const homepageUrl = new URL(homepage);
 const basePath = homepageUrl.pathname.endsWith('/') ? homepageUrl.pathname : `${homepageUrl.pathname}/`;
+const llmsFullUrl = new URL('llms-full.txt', homepage).toString();
 
 const requiredPatterns = [
   /<meta[^>]+name="description"/,
@@ -58,4 +63,12 @@ if (galleryHtml !== html) {
   throw new Error('Expected site/dist/gallery/index.html to match index.html for direct GitHub Pages routing.');
 }
 
-console.log(`Verified site build metadata, SPA fallback, and GitHub Pages asset paths for ${homepage}.`);
+if (!llmsTxt.includes(llmsFullUrl)) {
+  throw new Error('Expected site/dist/llms.txt to link to the generated llms-full.txt file.');
+}
+
+if (!llmsFullTxt.includes(packageJson.name) || !llmsFullTxt.includes('## Documentation Site Content')) {
+  throw new Error('Expected site/dist/llms-full.txt to include generated package and site documentation content.');
+}
+
+console.log(`Verified site build metadata, SPA fallback, LLM docs, and GitHub Pages asset paths for ${homepage}.`);

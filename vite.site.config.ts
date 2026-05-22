@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import babel from '@rolldown/plugin-babel';
 import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import { generateLlmsDocs } from './scripts/generate-llms-docs.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -78,6 +79,16 @@ function githubPagesSpaFallbackPlugin() {
   };
 }
 
+function llmsDocsPlugin() {
+  return {
+    name: 'site-llms-docs',
+    apply: 'build' as const,
+    closeBundle() {
+      generateLlmsDocs({ outDir: path.resolve(siteRoot, 'dist') });
+    },
+  };
+}
+
 function prismLanguageEsmPlugin() {
   const languageModulePattern = /[/\\]node_modules[/\\]prismjs[/\\]components[/\\]prism-[^/\\]+\.js$/;
 
@@ -106,6 +117,7 @@ export default defineConfig(({ command }) => ({
     react({ jsxRuntime: 'automatic' }),
     babel({ presets: [reactCompilerPreset()] }),
     githubPagesSpaFallbackPlugin(),
+    llmsDocsPlugin(),
   ],
   resolve: {
     alias: {
