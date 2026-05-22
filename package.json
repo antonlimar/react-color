@@ -1,6 +1,6 @@
 {
   "name": "@antonlimar/react-color",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "description": "A Collection of Color Pickers from Sketch, Photoshop, Chrome & more",
   "type": "module",
   "main": "es/index.js",
@@ -85,7 +85,7 @@
     "tinycolor2": "^1.6.0"
   },
   "peerDependencies": {
-    "react": ">=18.3.1"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
