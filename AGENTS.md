@@ -56,7 +56,6 @@ Rules:
 - the library and tooling have already been moved to a TypeScript-compatible stack;
 - the test stack is Vitest + Testing Library + jsdom;
 - the documentation site in `site/` and Storybook run on a modern pipeline;
-- `peerDependencies.react` targets compatibility with React `>=18.3.1`;
 
 ## Working Agreements
 

@@ -12,10 +12,6 @@
 
 This tree is maintained as a modernization fork. Source layout, npm export names, and agent-oriented conventions are documented in [`AGENTS.md`](AGENTS.md). Do not edit generated `es/` by hand; use the build scripts from `package.json`.
 
-**Library compatibility baseline:** published `peerDependencies.react` is `>=18.3.1`, matching the modernization track minimum documented in `AGENTS.md`.
-
-**Local development baseline:** the documentation site and Storybook run on the newer root `devDependencies.react` / `react-dom`. Minimum React compatibility for the library itself is validated separately from the root dev environment.
-
 **Compatibility notes:** the published API remains intentionally stable where practical, but repository internals have been modernized. In particular, runtime `propTypes` are no longer emitted, so JavaScript consumers should rely on docs and TypeScript typings rather than `prop-types` warnings during development.
 
 ### Development workflow
