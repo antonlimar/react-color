@@ -3,12 +3,10 @@ coverage
 dist
 es
 lib
-node_modules
 playwright-report
 site/dist
 test-results
 *.tgz
-
 *.tsbuildinfo
 .vite
 .cache

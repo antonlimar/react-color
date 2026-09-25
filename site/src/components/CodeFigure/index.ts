@@ -1,1 +1,2 @@
-export { CodeFigure, useCodeCopy } from './CodeFigure';
+export { CodeFigure } from './CodeFigure';
+export { useCodeCopy } from './useCodeCopy';

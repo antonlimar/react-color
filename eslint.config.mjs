@@ -5,6 +5,7 @@ import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescrip
 import { createNodeResolver, importX } from 'eslint-plugin-import-x';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import refreshPlugin from 'eslint-plugin-react-refresh';
 import { configs as storybookConfigs } from 'eslint-plugin-storybook';
 import globals from 'globals';
 import { configs as tsEslintConfigs, parser as tseslintParser } from 'typescript-eslint';
@@ -103,5 +104,9 @@ export default defineConfig([
   {
     files: ['**/*.{ts,tsx}'],
     extends: [...tsEslintConfigs.recommendedTypeChecked, ...tsEslintConfigs.stylisticTypeChecked],
+  },
+  {
+    files: ['site/src/**/*.{js,jsx,ts,tsx}'],
+    ...refreshPlugin.configs.vite,
   },
 ]);

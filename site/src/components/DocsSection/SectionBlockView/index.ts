@@ -1,1 +1,2 @@
-export { SectionBlockView, createSectionBlockKey } from './SectionBlockView';
+export { SectionBlockView } from './SectionBlockView';
+export { createSectionBlockKey } from './createSectionBlockKey';

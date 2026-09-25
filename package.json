@@ -2,6 +2,25 @@
   "name": "@antonlimar/react-color",
   "version": "3.0.8",
   "description": "A Collection of Color Pickers from Sketch, Photoshop, Chrome & more",
+  "keywords": [
+    "react",
+    "color picker",
+    "react-component",
+    "picker",
+    "sketch",
+    "chrome",
+    "photoshop",
+    "material design",
+    "popup"
+  ],
+  "author": {
+    "name": "Anton Limar",
+    "email": "antonreal93@gmail.com"
+  },
+  "homepage": "https://antonlimar.github.io/react-color/",
+  "repository": "github:antonlimar/react-color",
+  "license": "MIT",
+  "bugs": "https://github.com/antonlimar/react-color/issues",
   "type": "module",
   "main": "es/index.js",
   "module": "es/index.js",
@@ -17,15 +36,6 @@
       "import": "./es/components/common/index.js",
       "default": "./es/components/common/index.js"
     }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/antonlimar/react-color.git"
-  },
-  "author": "Anton Limar <antonreal93@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/antonlimar/react-color/issues"
   },
   "scripts": {
     "build": "npm run clean-es && tsc -p tsconfig.es.json && node scripts/build-styles.mjs es && node scripts/attach-picker-style-imports.mjs es && node scripts/rewrite-esm-import-specifiers.mjs es",
@@ -58,26 +68,17 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
-      "prettier --check",
-      "eslint --max-warnings=0 --no-warn-ignored"
+      "eslint --fix --max-warnings=0 --no-warn-ignored",
+      "prettier --write --log-level silent"
     ],
-    "*.{json,md,mdx,html,css,scss,yml,yaml}": "prettier --check",
-    "*.scss": "stylelint"
+    "*.{json,md,mdx,html,css,scss,yml,yaml}": "prettier --write --log-level silent",
+    "*.scss": [
+      "stylelint",
+      "prettier --write --log-level silent"
+    ]
   },
   "sideEffects": [
     "**/*.css"
-  ],
-  "homepage": "https://antonlimar.github.io/react-color/",
-  "keywords": [
-    "react",
-    "color picker",
-    "react-component",
-    "picker",
-    "sketch",
-    "chrome",
-    "photoshop",
-    "material design",
-    "popup"
   ],
   "dependencies": {
     "bem-cn": "^3.0.1",
@@ -114,6 +115,7 @@
     "eslint-plugin-import-x": "^4.17.1",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
     "eslint-plugin-storybook": "^10.6.0",
     "globals": "^17.12.0",
     "husky": "^9.1.7",
