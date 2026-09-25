@@ -16,7 +16,7 @@ exports[`Alpha renders correctly 1`] = `
       >
         <div
           class="rc-checkboard"
-          style="background: url("null");"
+          style="background: url("null") left center;"
         />
       </div>
       <div
@@ -62,7 +62,7 @@ exports[`Alpha renders vertically 1`] = `
       >
         <div
           class="rc-checkboard"
-          style="background: url("null");"
+          style="background: url("null") left center;"
         />
       </div>
       <div

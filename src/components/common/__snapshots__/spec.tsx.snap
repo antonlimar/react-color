@@ -10,7 +10,7 @@ exports[`Alpha renders correctly 1`] = `
     >
       <div
         class="rc-checkboard"
-        style="background: url("null");"
+        style="background: url("null") left center;"
       />
     </div>
     <div
@@ -43,7 +43,7 @@ exports[`Checkboard renders children correctly 1`] = `
 <DocumentFragment>
   <button
     class="rc-checkboard"
-    style="background: url("null");"
+    style="background: url("null") left center;"
   >
     Click
   </button>
@@ -54,7 +54,7 @@ exports[`Checkboard renders correctly 1`] = `
 <DocumentFragment>
   <div
     class="rc-checkboard"
-    style="background: url("null");"
+    style="background: url("null") left center;"
   />
 </DocumentFragment>
 `;

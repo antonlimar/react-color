@@ -81,7 +81,7 @@ exports[`Sketch renders correctly 1`] = `
             >
               <div
                 class="rc-checkboard"
-                style="background: url("null");"
+                style="background: url("null") left center;"
               />
             </div>
             <div
@@ -114,7 +114,7 @@ exports[`Sketch renders correctly 1`] = `
       >
         <div
           class="rc-checkboard"
-          style="background: url("null");"
+          style="background: url("null") left center;"
         />
         <div
           class="rc-sketch__active-color"
@@ -525,7 +525,7 @@ exports[`Sketch renders correctly in dark theme 1`] = `
             >
               <div
                 class="rc-checkboard"
-                style="background: url("null");"
+                style="background: url("null") left center;"
               />
             </div>
             <div
@@ -558,7 +558,7 @@ exports[`Sketch renders correctly in dark theme 1`] = `
       >
         <div
           class="rc-checkboard"
-          style="background: url("null");"
+          style="background: url("null") left center;"
         />
         <div
           class="rc-sketch__active-color"

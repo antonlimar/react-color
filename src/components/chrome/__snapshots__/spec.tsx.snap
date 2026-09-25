@@ -52,7 +52,7 @@ exports[`Chrome renders correctly 1`] = `
             />
             <div
               class="rc-checkboard"
-              style="background: url("null");"
+              style="background: url("null") left center;"
             />
           </div>
         </div>
@@ -100,7 +100,7 @@ exports[`Chrome renders correctly 1`] = `
               >
                 <div
                   class="rc-checkboard"
-                  style="background: url("null");"
+                  style="background: url("null") left center;"
                 />
               </div>
               <div
@@ -233,7 +233,7 @@ exports[`Chrome renders correctly in dark theme 1`] = `
             />
             <div
               class="rc-checkboard"
-              style="background: url("null");"
+              style="background: url("null") left center;"
             />
           </div>
         </div>
@@ -281,7 +281,7 @@ exports[`Chrome renders correctly in dark theme 1`] = `
               >
                 <div
                   class="rc-checkboard"
-                  style="background: url("null");"
+                  style="background: url("null") left center;"
                 />
               </div>
               <div
