@@ -44,6 +44,8 @@ export default defineConfig([
       ecmaVersion: 'latest',
       sourceType: 'module',
       parserOptions: {
+        project: ['./tsconfig.typecheck.json', './tsconfig.public-types.json'],
+        tsconfigRootDir: import.meta.dirname,
         ecmaFeatures: {
           jsx: true,
         },
@@ -69,7 +71,6 @@ export default defineConfig([
     rules: {
       'react/prop-types': 'off',
       'no-nested-ternary': 'error',
-      'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
       'import-x/no-unresolved': ['error', { ignore: ['^@/', '^@test/', '^@storybook-utils/'] }],
       'import-x/consistent-type-specifier-style': 'error',
       'import-x/order': [
@@ -89,7 +90,7 @@ export default defineConfig([
       ],
       'import-x/no-cycle': 'error',
       'import-x/no-duplicates': 'error',
-      '@typescript-eslint/no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
+      '@typescript-eslint/no-deprecated': 'error',
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {

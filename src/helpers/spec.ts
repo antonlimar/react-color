@@ -4,12 +4,12 @@ describe('helpers/color', () => {
   describe('simpleCheckForValidColor', () => {
     test('throws on null', () => {
       const data = null;
-      expect(() => simpleCheckForValidColor(data)).toThrowError(TypeError);
+      expect(() => simpleCheckForValidColor(data)).toThrow(TypeError);
     });
 
     test('throws on undefined', () => {
       const data = undefined;
-      expect(() => simpleCheckForValidColor(data)).toThrowError(TypeError);
+      expect(() => simpleCheckForValidColor(data)).toThrow(TypeError);
     });
 
     test('no-op on number', () => {

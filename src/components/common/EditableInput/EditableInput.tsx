@@ -17,11 +17,6 @@ interface EditableInputState {
 const b = bem('editableInput');
 
 const DEFAULT_ARROW_OFFSET = 1;
-const UP_KEY_CODE = 38;
-const DOWN_KEY_CODE = 40;
-const VALID_KEY_CODES = [UP_KEY_CODE, DOWN_KEY_CODE];
-
-const isValidKeyCode = (keyCode: number) => VALID_KEY_CODES.indexOf(keyCode) > -1;
 const getNumberValue = (value: EditableInputValue) => Number(String(value).replace(/%/g, ''));
 
 let idCounter = 1;
@@ -100,9 +95,9 @@ export function EditableInput(props: EditableInputProps) {
     (event: KeyboardEvent<HTMLInputElement>) => {
       const value = getNumberValue(event.currentTarget.value);
 
-      if (!isNaN(value) && isValidKeyCode(event.keyCode)) {
+      if (!isNaN(value) && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
         const offset = arrowOffset || DEFAULT_ARROW_OFFSET;
-        const updatedValue = event.keyCode === UP_KEY_CODE ? value + offset : value - offset;
+        const updatedValue = event.key === 'ArrowUp' ? value + offset : value - offset;
 
         setUpdatedValue(updatedValue, event);
       }

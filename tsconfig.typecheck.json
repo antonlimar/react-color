@@ -15,6 +15,7 @@
     "types": ["node", "vite/client", "vitest/globals"]
   },
   "include": [
+    "eslint.config.mjs",
     "*.ts",
     "*.d.ts",
     "src/**/*.js",

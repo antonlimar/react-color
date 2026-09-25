@@ -208,7 +208,14 @@ export function searchDocs(query: string): SearchResult[] {
     .filter((entry): entry is SearchResult & { score: number } => Boolean(entry))
     .sort((left, right) => right.score - left.score || left.title.localeCompare(right.title))
     .slice(0, 12)
-    .map(({ score: _score, ...entry }) => entry);
+    .map(({ id, anchorId, title, kind, content, snippet }) => ({
+      id,
+      anchorId,
+      title,
+      kind,
+      content,
+      snippet,
+    }));
 }
 
 export function isTextEntryTarget(target: EventTarget | null) {

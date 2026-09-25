@@ -9,9 +9,6 @@ import './Swatch.scss';
 
 const b = bem('swatch');
 
-const ENTER = 13;
-const SPACE = 32;
-
 function SwatchBase({
   color,
   style,
@@ -31,13 +28,7 @@ function SwatchBase({
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => onClick(color, event);
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (
-      event.key === 'Enter' ||
-      event.key === ' ' ||
-      event.key === 'Spacebar' ||
-      event.keyCode === ENTER ||
-      event.keyCode === SPACE
-    ) {
+    if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
       event.preventDefault();
       onClick(color, event);
     }

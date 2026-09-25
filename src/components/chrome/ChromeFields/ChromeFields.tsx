@@ -15,9 +15,6 @@ interface ChromeFieldsProps {
 }
 
 const b = bem('chrome');
-const ENTER = 13;
-const SPACE = 32;
-
 export function ChromeFields(props: ChromeFieldsProps) {
   const [view, setView] = useState<'hex' | 'rgb' | 'hsl'>(() =>
     props.hsl.a !== 1 && props.view === 'hex' ? 'rgb' : props.view || 'hex',
@@ -37,13 +34,7 @@ export function ChromeFields(props: ChromeFieldsProps) {
   };
 
   const handleToggleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (
-      event.key === 'Enter' ||
-      event.key === ' ' ||
-      event.key === 'Spacebar' ||
-      event.keyCode === ENTER ||
-      event.keyCode === SPACE
-    ) {
+    if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
       event.preventDefault();
       toggleViews();
     }

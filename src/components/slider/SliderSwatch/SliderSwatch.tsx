@@ -14,9 +14,6 @@ interface SliderSwatchProps {
 }
 
 const b = bem('slider');
-const ENTER = 13;
-const SPACE = 32;
-
 export function SliderSwatch({ hsl, offset, onClick = noop, active, first, last }: SliderSwatchProps) {
   const swatchStyle: CSSProperties = {
     background: `hsl(${hsl.h}, 50%, ${offset * 100}%)`,
@@ -35,13 +32,7 @@ export function SliderSwatch({ hsl, offset, onClick = noop, active, first, last 
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (
-      event.key === 'Enter' ||
-      event.key === ' ' ||
-      event.key === 'Spacebar' ||
-      event.keyCode === ENTER ||
-      event.keyCode === SPACE
-    ) {
+    if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
       event.preventDefault();
       onClick(
         {

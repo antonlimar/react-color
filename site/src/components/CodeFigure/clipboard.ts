@@ -15,7 +15,8 @@ function copyWithTextareaFallback(value: string) {
   textarea.select();
 
   try {
-    const didCopy = document.execCommand?.('copy') ?? false;
+    const legacyDocument = document as unknown as { execCommand(command: string): boolean };
+    const didCopy = legacyDocument.execCommand('copy');
 
     if (!didCopy) {
       throw new Error('Copy command failed.');
