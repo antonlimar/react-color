@@ -15,10 +15,10 @@ export const getSlotStyleOverride = (
 
   if (knownSlots.some((knownSlot) => knownSlot in style)) {
     const slotStyle = style[slot];
-    return isRecord(slotStyle) ? (slotStyle as PickerStyle) : undefined;
+    return isRecord(slotStyle) ? slotStyle : undefined;
   }
 
-  return slot === rootSlot ? (style as PickerStyle) : undefined;
+  return slot === rootSlot ? style : undefined;
 };
 
 export const getDeprecatedStyleOverride = (

@@ -1,4 +1,4 @@
-import type { CodeBlock, PackageManager, SectionBlock } from '../../../content';
+import type { PackageManager, SectionBlock } from '../../../content';
 import { siteBem } from '../../../utils';
 import { CodeFigure } from '../../CodeFigure';
 import { InlineContent } from '../../InlineContent';
@@ -50,7 +50,7 @@ export function SectionBlockView({ block, packageManager, setPackageManager }: S
     );
   }
 
-  const codeBlock = block as CodeBlock;
+  const codeBlock = block;
 
   return (
     <CodeFigure

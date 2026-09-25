@@ -45,7 +45,7 @@ export function Raised({
     boxShadow: getBoxShadow(zDepth),
     borderRadius: radius,
     background: theme ? 'var(--rc-picker-surface, #fff)' : background,
-    ...(style || {}),
+    ...(style ?? {}),
     ...getRaisedStyle(passedStyles, 'bg'),
   };
 

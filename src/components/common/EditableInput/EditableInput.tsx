@@ -96,7 +96,7 @@ export function EditableInput(props: EditableInputProps) {
       const value = getNumberValue(event.currentTarget.value);
 
       if (!isNaN(value) && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
-        const offset = arrowOffset || DEFAULT_ARROW_OFFSET;
+        const offset = arrowOffset ?? DEFAULT_ARROW_OFFSET;
         const updatedValue = event.key === 'ArrowUp' ? value + offset : value - offset;
 
         setUpdatedValue(updatedValue, event);
@@ -114,7 +114,7 @@ export function EditableInput(props: EditableInputProps) {
       } else {
         setState((currentState) => ({
           value: nextValue,
-          blurValue: currentState.blurValue ? currentState.blurValue : nextValue,
+          blurValue: currentState.blurValue ?? nextValue,
         }));
       }
     }

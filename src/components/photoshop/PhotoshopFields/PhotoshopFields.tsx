@@ -27,9 +27,9 @@ export function PhotoshopFields({ onChange, rgb, hsv, hex }: PhotoshopFieldsProp
     } else if (data.r || data.g || data.b) {
       onChange(
         {
-          r: data.r || rgb.r,
-          g: data.g || rgb.g,
-          b: data.b || rgb.b,
+          r: data.r ?? rgb.r,
+          g: data.g ?? rgb.g,
+          b: data.b ?? rgb.b,
           source: 'rgb',
         },
         event,
@@ -37,9 +37,9 @@ export function PhotoshopFields({ onChange, rgb, hsv, hex }: PhotoshopFieldsProp
     } else if (data.h || data.s || data.v) {
       onChange(
         {
-          h: data.h || hsv.h,
-          s: data.s || hsv.s,
-          v: data.v || hsv.v,
+          h: data.h ?? hsv.h,
+          s: data.s ?? hsv.s,
+          v: data.v ?? hsv.v,
           source: 'hsv',
         },
         event,

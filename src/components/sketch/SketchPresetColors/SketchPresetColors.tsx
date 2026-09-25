@@ -34,7 +34,7 @@ export function SketchPresetColors({ colors, onClick = noop, onSwatchHover }: Sk
     <div className={b('preset-colors', { empty: !colors || colors.length === 0 })}>
       {colors.map((colorObjOrString) => {
         const colorValue = typeof colorObjOrString === 'string' ? { color: colorObjOrString } : colorObjOrString;
-        const key = `${colorValue.color}${colorValue.title || ''}`;
+        const key = `${colorValue.color}${colorValue.title ?? ''}`;
         return (
           <div key={key} className={b('preset-swatch')}>
             <Swatch

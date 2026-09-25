@@ -99,18 +99,17 @@ test('Chrome alpha updates immediately with only onChangeComplete', async () => 
     value: 10,
   });
 
-  alphaControl.getBoundingClientRect = () =>
-    ({
-      width: 200,
-      height: 10,
-      top: 0,
-      left: 0,
-      right: 200,
-      bottom: 10,
-      x: 0,
-      y: 0,
-      toJSON: () => '',
-    }) as DOMRect;
+  alphaControl.getBoundingClientRect = () => ({
+    width: 200,
+    height: 10,
+    top: 0,
+    left: 0,
+    right: 200,
+    bottom: 10,
+    x: 0,
+    y: 0,
+    toJSON: () => '',
+  });
 
   fireEvent.mouseDown(alphaControl, {
     pageX: 50,

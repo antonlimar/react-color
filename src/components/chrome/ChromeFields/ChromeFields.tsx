@@ -17,7 +17,7 @@ interface ChromeFieldsProps {
 const b = bem('chrome');
 export function ChromeFields(props: ChromeFieldsProps) {
   const [view, setView] = useState<'hex' | 'rgb' | 'hsl'>(() =>
-    props.hsl.a !== 1 && props.view === 'hex' ? 'rgb' : props.view || 'hex',
+    props.hsl.a !== 1 && props.view === 'hex' ? 'rgb' : (props.view ?? 'hex'),
   );
   const resolvedView = props.hsl.a !== 1 && view === 'hex' ? 'rgb' : view;
 
@@ -54,9 +54,9 @@ export function ChromeFields(props: ChromeFieldsProps) {
     } else if (data.r || data.g || data.b) {
       props.onChange(
         {
-          r: data.r || props.rgb.r,
-          g: data.g || props.rgb.g,
-          b: data.b || props.rgb.b,
+          r: data.r ?? props.rgb.r,
+          g: data.g ?? props.rgb.g,
+          b: data.b ?? props.rgb.b,
           source: 'rgb',
         },
         event,
@@ -80,11 +80,11 @@ export function ChromeFields(props: ChromeFieldsProps) {
         event,
       );
     } else if (data.h !== undefined || data.s !== undefined || data.l !== undefined) {
-      const saturation = typeof data.s === 'string' && data.s.indexOf('%') > -1 ? data.s.replace('%', '') : data.s;
-      const lightness = typeof data.l === 'string' && data.l.indexOf('%') > -1 ? data.l.replace('%', '') : data.l;
+      const saturation = typeof data.s === 'string' && data.s.includes('%') ? data.s.replace('%', '') : data.s;
+      const lightness = typeof data.l === 'string' && data.l.includes('%') ? data.l.replace('%', '') : data.l;
 
-      let nextSaturation = Number(saturation !== undefined ? saturation : props.hsl.s);
-      let nextLightness = Number(lightness !== undefined ? lightness : props.hsl.l);
+      let nextSaturation = Number(saturation ?? props.hsl.s);
+      let nextLightness = Number(lightness ?? props.hsl.l);
 
       if (nextSaturation === 1) {
         nextSaturation = 0.01;
@@ -94,7 +94,7 @@ export function ChromeFields(props: ChromeFieldsProps) {
 
       props.onChange(
         {
-          h: Number(data.h !== undefined ? data.h : props.hsl.h),
+          h: Number(data.h ?? props.hsl.h),
           s: nextSaturation,
           l: nextLightness,
           source: 'hsl',

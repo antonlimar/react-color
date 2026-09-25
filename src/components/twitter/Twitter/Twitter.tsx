@@ -120,7 +120,11 @@ function TwitterBase({
           label={null}
           style={{ input: inputStyle }}
           value={hex.replace('#', '')}
-          onChange={(value, event) => handleHexChange(onChange, String(value), event)}
+          onChange={(value, event) => {
+            if (typeof value === 'string' || typeof value === 'number') {
+              handleHexChange(onChange, String(value), event);
+            }
+          }}
         />
         <div className={b('clear')} />
       </div>

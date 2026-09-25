@@ -194,9 +194,7 @@ export function syncDesktopAnchorNavigationScroll(activeAnchorId: string) {
     (navigation.clientHeight - activeLink.clientHeight) / 2;
 
   const clampedScrollTop = Math.max(0, nextScrollTop);
-  const scrollTo = navigation.scrollTo;
-
-  if (typeof scrollTo === 'function') {
+  if (typeof navigation.scrollTo === 'function') {
     navigation.scrollTo({ top: clampedScrollTop, behavior: 'smooth' });
     return;
   }

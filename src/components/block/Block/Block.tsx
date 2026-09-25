@@ -96,14 +96,18 @@ function BlockBase({
       </div>
       <div className={b('body')} style={bodyStyle}>
         <BlockSwatches
-          colors={colors!}
+          colors={colors}
           onClick={(hexCode, event) => handleHexChange(onChange, hexCode, event)}
           onSwatchHover={onSwatchHover}
         />
         <EditableInput
           style={{ input: inputStyle }}
           value={hex}
-          onChange={(value, event) => handleHexChange(onChange, String(value), event)}
+          onChange={(value, event) => {
+            if (typeof value === 'string' || typeof value === 'number') {
+              handleHexChange(onChange, String(value), event);
+            }
+          }}
         />
       </div>
     </div>

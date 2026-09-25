@@ -52,7 +52,7 @@ export const toState = (data: Color | ColorChangeValue, oldHue = 0): ColorResult
     hex: transparent ? 'transparent' : `#${hex}`,
     rgb,
     hsv,
-    oldHue: colorData.h || oldHue || hsl.h,
+    oldHue: colorData.h ?? oldHue ?? hsl.h,
     source: colorData.source,
   };
 };
@@ -65,7 +65,7 @@ export const isValidHex = (hex: unknown): boolean => {
   const hexString = String(hex);
 
   // disable hex4 and hex8
-  const lh = hexString.charAt(0) === '#' ? 1 : 0;
+  const lh = hexString.startsWith('#') ? 1 : 0;
   return hexString.length !== 4 + lh && hexString.length < 7 + lh && tinycolor(hexString).isValid();
 };
 

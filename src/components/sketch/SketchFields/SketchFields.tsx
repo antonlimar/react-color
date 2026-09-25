@@ -28,9 +28,9 @@ export function SketchFields({ onChange, rgb, hsl, hex, disableAlpha }: SketchFi
     } else if (data.r || data.g || data.b) {
       onChange(
         {
-          r: data.r || rgb.r,
-          g: data.g || rgb.g,
-          b: data.b || rgb.b,
+          r: data.r ?? rgb.r,
+          g: data.g ?? rgb.g,
+          b: data.b ?? rgb.b,
           a: rgb.a,
           source: 'rgb',
         },

@@ -1,7 +1,6 @@
 import { noop } from 'lodash-es';
 import type { CSSProperties, KeyboardEvent, MouseEvent } from 'react';
 import { handleFocus } from '@/helpers';
-import type { Radius } from '@/types';
 import { Checkboard } from '../Checkboard';
 import { bem } from '../styleArchitecture';
 import type { SwatchProps } from './types';
@@ -52,7 +51,7 @@ function SwatchBase({
     >
       {children}
       {transparent && (
-        <Checkboard borderRadius={swatchStyle.borderRadius as Radius} boxShadow="inset 0 0 0 1px rgba(0,0,0,0.1)" />
+        <Checkboard borderRadius={swatchStyle.borderRadius} boxShadow="inset 0 0 0 1px rgba(0,0,0,0.1)" />
       )}
     </div>
   );

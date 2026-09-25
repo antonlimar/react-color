@@ -59,9 +59,9 @@ const handleMaterialChange = (
   } else if (data.r || data.g || data.b) {
     onChange(
       {
-        r: data.r || rgb.r,
-        g: data.g || rgb.g,
-        b: data.b || rgb.b,
+        r: data.r ?? rgb.r,
+        g: data.g ?? rgb.g,
+        b: data.b ?? rgb.b,
         source: 'rgb',
       },
       event,

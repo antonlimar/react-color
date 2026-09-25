@@ -88,7 +88,9 @@ export function CodeFigure({ code, language, label, copyValue, packageManagerCon
         <button
           className={b('copy', { [copyState]: true })}
           type="button"
-          onClick={handleCopy}
+          onClick={() => {
+            void handleCopy();
+          }}
           aria-label={`${buttonLabel}: ${label ?? `${language} snippet`}`}
         >
           {buttonLabel}

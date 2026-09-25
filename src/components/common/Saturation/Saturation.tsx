@@ -129,7 +129,7 @@ export function Saturation(props: SaturationProps) {
     };
   }, [handleChange, isDragging]);
 
-  const { color, white, black, pointer: pointerStyle, circle } = style || {};
+  const { color, white, black, pointer: pointerStyle, circle } = style ?? {};
   const rootStyle: CSSProperties = {
     background: `hsl(${hsl.h},100%, 50%)`,
     borderRadius: radius,

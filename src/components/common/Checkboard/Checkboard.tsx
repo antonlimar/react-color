@@ -19,7 +19,7 @@ export function Checkboard({
   const style: CSSProperties = {
     borderRadius,
     boxShadow,
-    background: `url(${getCheckboard(white!, grey!, size!, renderers?.canvas)}) center left`,
+    background: `url(${getCheckboard(white, grey, size, renderers?.canvas)}) center left`,
   };
   const className = b();
 

@@ -20,7 +20,7 @@ export function PhotoshopButton({ onClick, label, children, active }: PhotoshopB
 
   return (
     <div className={b('button', { active })} role="button" tabIndex={0} onClick={onClick} onKeyDown={handleKeyDown}>
-      {label || children}
+      {label ?? children}
     </div>
   );
 }

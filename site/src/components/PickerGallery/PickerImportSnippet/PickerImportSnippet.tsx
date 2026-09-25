@@ -21,7 +21,9 @@ export function PickerImportSnippet({ picker, code }: PickerImportSnippetProps) 
         <button
           className={contentCode('copy', { [copyState]: true }).mix(gallery('copy'))}
           type="button"
-          onClick={handleCopy}
+          onClick={() => {
+            void handleCopy();
+          }}
           aria-label={`${buttonLabel}: ${picker.title} import`}
         >
           {buttonLabel}

@@ -90,7 +90,6 @@ export default defineConfig([
       ],
       'import-x/no-cycle': 'error',
       'import-x/no-duplicates': 'error',
-      '@typescript-eslint/no-deprecated': 'error',
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {
@@ -98,6 +97,11 @@ export default defineConfig([
           fixStyle: 'separate-type-imports',
         },
       ],
+      '@typescript-eslint/no-deprecated': 'error',
     },
+  },
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [...tsEslintConfigs.recommendedTypeChecked, ...tsEslintConfigs.stylisticTypeChecked],
   },
 ]);

@@ -37,8 +37,8 @@ function getHeaderThemeToggle() {
 }
 
 describe('site app', () => {
-  afterEach(async () => {
-    await act(async () => undefined);
+  afterEach(() => {
+    act(() => undefined);
   });
 
   beforeEach(() => {
@@ -60,10 +60,10 @@ describe('site app', () => {
       expect(container.querySelector('.site-shell')).toBeInstanceOf(HTMLElement);
     });
 
-    const siteShell = container.querySelector('.site-shell') as HTMLElement;
+    const siteShell = container.querySelector('.site-shell')!;
     const githubSwatch = container.querySelector('.hero__picker-card--github [tabindex="0"]');
     const heroDemoValue = container.querySelector('.hero__demo-value');
-    const heroDemo = container.querySelector('.hero__demo') as HTMLElement;
+    const heroDemo = container.querySelector<HTMLElement>('.hero__demo')!;
 
     expect(siteShell).toHaveStyle('--site-accent: rgba(65, 117, 5, 1)');
     expect(siteShell).toHaveStyle('--site-accent-page: rgba(65, 117, 5, 0.18)');
@@ -90,7 +90,7 @@ describe('site app', () => {
     expect(drawerToggle).toHaveAttribute('aria-expanded', 'true');
     expect(drawerNav?.closest('.sections-shell__drawer')).not.toHaveAttribute('hidden');
 
-    await act(async () => {
+    act(() => {
       window.location.hash = '#install';
       window.dispatchEvent(new Event('hashchange'));
     });
@@ -135,7 +135,7 @@ describe('site app', () => {
       within(primaryNav).getByRole('button', { name: /switch to dark theme/i }),
     );
 
-    const mobileToolbar = container.querySelector('.sections-shell__toolbar') as HTMLElement;
+    const mobileToolbar = container.querySelector<HTMLElement>('.sections-shell__toolbar')!;
     expect(Array.from(mobileToolbar.children)[0]).toBe(
       within(mobileToolbar).getByRole('button', { name: /switch to dark theme/i }),
     );
@@ -151,7 +151,7 @@ describe('site app', () => {
   test('toggles and persists the documentation theme from the header', async () => {
     const { container } = await renderApp();
     const themeToggle = getHeaderThemeToggle();
-    const siteShell = container.querySelector('.site-shell') as HTMLElement;
+    const siteShell = container.querySelector('.site-shell')!;
 
     expect(siteShell).toHaveAttribute('data-site-theme', 'light');
     expect(document.documentElement).toHaveAttribute('data-site-theme', 'light');
@@ -181,7 +181,7 @@ describe('site app', () => {
 
   test('starts section navigation numbering at 01', async () => {
     const { container } = await renderApp();
-    const sidebar = container.querySelector('.sections-layout__sidebar') as HTMLElement;
+    const sidebar = container.querySelector('.sections-layout__sidebar')!;
     const indexes = Array.from(sidebar.querySelectorAll('.section-nav__index')).map((index) => index.textContent);
 
     expect(indexes.slice(0, 3)).toEqual(['01', '02', '03']);
@@ -218,7 +218,7 @@ describe('site app', () => {
     expect(drawer).toHaveAttribute('aria-modal', 'true');
     expect(document.body).toHaveStyle({ overflow: 'hidden' });
 
-    await act(async () => {
+    act(() => {
       fireEvent.keyDown(window, { key: 'Escape' });
     });
 
@@ -250,7 +250,7 @@ describe('site app', () => {
 
     await renderApp();
     const inlineUsageCaption = screen.getByText('Inline usage');
-    const codeFigure = inlineUsageCaption.closest('.content-code') as HTMLElement;
+    const codeFigure = inlineUsageCaption.closest<HTMLElement>('.content-code')!;
     const copyButton = within(codeFigure).getByRole('button', { name: /copy: inline usage/i });
 
     fireEvent.click(copyButton);
@@ -272,7 +272,7 @@ describe('site app', () => {
 
     await renderApp();
     const inlineUsageCaption = screen.getByText('Inline usage');
-    const codeFigure = inlineUsageCaption.closest('.content-code') as HTMLElement;
+    const codeFigure = inlineUsageCaption.closest<HTMLElement>('.content-code')!;
     const copyButton = within(codeFigure).getByRole('button', { name: /copy: inline usage/i });
 
     fireEvent.click(copyButton);
@@ -286,7 +286,7 @@ describe('site app', () => {
   test('switches package-manager tabs and persists the selected install command', async () => {
     const { unmount } = await renderApp();
     const installCaption = screen.getByText('Install package');
-    const installFigure = installCaption.closest('.content-code') as HTMLElement;
+    const installFigure = installCaption.closest<HTMLElement>('.content-code')!;
     const yarnTab = within(installFigure).getByRole('tab', { name: 'yarn' });
 
     expect(within(installFigure).getByRole('tab', { name: 'npm' })).toHaveAttribute('aria-selected', 'true');
@@ -301,7 +301,7 @@ describe('site app', () => {
     unmount();
     await renderApp();
 
-    const persistedInstallFigure = screen.getByText('Install package').closest('.content-code') as HTMLElement;
+    const persistedInstallFigure = screen.getByText('Install package').closest<HTMLElement>('.content-code')!;
     expect(within(persistedInstallFigure).getByRole('tab', { name: 'yarn' })).toHaveAttribute('aria-selected', 'true');
     expect(persistedInstallFigure.querySelector('code')).toHaveTextContent('yarn add @antonlimar/react-color');
   });
@@ -341,9 +341,9 @@ describe('site app', () => {
 
   test('renders an acknowledgement section after Create Your Own and in navigation', async () => {
     const { container } = await renderApp();
-    const sidebar = container.querySelector('.sections-layout__sidebar') as HTMLElement;
-    const createYourOwn = container.querySelector('#create-your-own') as HTMLElement;
-    const acknowledgement = container.querySelector('#acknowledgement') as HTMLElement;
+    const sidebar = container.querySelector<HTMLElement>('.sections-layout__sidebar')!;
+    const createYourOwn = container.querySelector('#create-your-own')!;
+    const acknowledgement = container.querySelector('#acknowledgement')!;
 
     expect(screen.getByRole('heading', { name: 'Acknowledgement' })).toBeInTheDocument();
     expect(within(sidebar).getByRole('link', { name: /Acknowledgement/ })).toHaveAttribute('href', '#acknowledgement');
@@ -415,7 +415,7 @@ describe('site app', () => {
   test('scrolls the desktop section navigation to the active anchor', async () => {
     setViewportWidth(1024);
     const { container } = await renderApp();
-    const navigation = container.querySelector('.sections-layout__sidebar .section-nav') as HTMLElement;
+    const navigation = container.querySelector<HTMLElement>('.sections-layout__sidebar .section-nav')!;
     const sketchLink = within(navigation).getByRole('link', { name: 'Sketch' });
     const scrollTo = vi.fn();
 
@@ -434,7 +434,7 @@ describe('site app', () => {
     vi.spyOn(navigation, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 0, 240, 100));
     vi.spyOn(sketchLink, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 220, 240, 20));
 
-    await act(async () => {
+    act(() => {
       window.location.hash = '#picker-specific-props-sketch';
       window.dispatchEvent(new Event('hashchange'));
     });
@@ -447,10 +447,10 @@ describe('site app', () => {
   test('drags the custom desktop section navigation scrollbar thumb', async () => {
     setViewportWidth(1024);
     const { container } = await renderApp();
-    const navigation = container.querySelector('.sections-layout__sidebar .section-nav') as HTMLElement;
-    const scrollbar = container.querySelector('.sections-layout__sidebar .section-nav-scrollbar') as HTMLElement;
-    const thumb = container.querySelector('.sections-layout__sidebar .section-nav-scrollbar__thumb') as HTMLElement;
-    const shell = container.querySelector('.sections-layout__sidebar .section-nav-shell') as HTMLElement;
+    const navigation = container.querySelector<HTMLElement>('.sections-layout__sidebar .section-nav')!;
+    const scrollbar = container.querySelector('.sections-layout__sidebar .section-nav-scrollbar')!;
+    const thumb = container.querySelector('.sections-layout__sidebar .section-nav-scrollbar__thumb')!;
+    const shell = container.querySelector('.sections-layout__sidebar .section-nav-shell')!;
 
     Object.defineProperty(navigation, 'clientHeight', {
       configurable: true,
@@ -476,8 +476,8 @@ describe('site app', () => {
   test('keeps hash navigation from bouncing through intermediate active anchors', async () => {
     setViewportWidth(1024);
     const { container } = await renderApp();
-    const navigation = container.querySelector('.sections-layout__sidebar .section-nav') as HTMLElement;
-    const targetSection = container.querySelector('#picker-specific-props-sketch') as HTMLElement;
+    const navigation = container.querySelector<HTMLElement>('.sections-layout__sidebar .section-nav')!;
+    const targetSection = container.querySelector('#picker-specific-props-sketch')!;
 
     vi.spyOn(targetSection, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 1000, 240, 120));
 
@@ -502,7 +502,7 @@ describe('site app', () => {
     fireEvent.click(drawerToggle);
     expect(drawerToggle).toHaveAttribute('aria-expanded', 'true');
 
-    await act(async () => {
+    act(() => {
       setViewportWidth(1280);
       window.dispatchEvent(new Event('resize'));
     });
@@ -514,7 +514,7 @@ describe('site app', () => {
 
   test('searches props, examples, and picker metadata while syncing the URL query', async () => {
     const { container } = await renderApp();
-    const searchInput = container.querySelector('#desktop-docs-search') as HTMLInputElement;
+    const searchInput = container.querySelector<HTMLInputElement>('#desktop-docs-search')!;
 
     fireEvent.change(searchInput, { target: { value: 'presetColors' } });
 
@@ -539,7 +539,7 @@ describe('site app', () => {
         .some((link) => link.getAttribute('href') === '#picker-specific-props-sketch'),
     ).toBe(true);
 
-    await act(async () => {
+    act(() => {
       fireEvent.keyDown(window, { key: 'Escape' });
     });
 
@@ -549,15 +549,15 @@ describe('site app', () => {
 
   test('focuses search with slash unless the user is already typing', async () => {
     const { container } = await renderApp();
-    const searchInput = container.querySelector('#mobile-docs-search') as HTMLInputElement;
+    const searchInput = container.querySelector<HTMLInputElement>('#mobile-docs-search')!;
 
-    await act(async () => {
+    act(() => {
       fireEvent.keyDown(window, { key: '/' });
     });
 
     expect(searchInput).toHaveFocus();
 
-    await act(async () => {
+    act(() => {
       fireEvent.change(searchInput, { target: { value: 'Sketch' } });
       fireEvent.keyDown(window, { key: '/' });
     });
@@ -615,9 +615,9 @@ describe('site app', () => {
     const { container } = await renderApp();
 
     const gallery = await waitFor(() => {
-      const element = container.querySelector('.picker-gallery') as HTMLElement | null;
+      const element = container.querySelector<HTMLElement>('.picker-gallery');
       expect(element).toBeInstanceOf(HTMLElement);
-      return element as HTMLElement;
+      return element!;
     });
     const galleryCards = gallery.querySelectorAll('.picker-gallery__item');
 
@@ -689,7 +689,7 @@ describe('site app', () => {
       expect(container.querySelector('.site-shell')).toHaveAttribute('data-site-theme', 'dark');
     });
 
-    const notFoundPanel = container.querySelector('.not-found-page__panel') as HTMLElement;
+    const notFoundPanel = container.querySelector('.not-found-page__panel')!;
     const secondaryAction = screen.getByRole('link', { name: 'Open picker gallery' });
 
     expect(notFoundPanel).toBeInstanceOf(HTMLElement);
@@ -707,7 +707,7 @@ describe('site app', () => {
 
     await renderApp();
     const copyButton = await screen.findByRole('button', { name: 'Copy: Sketch import' });
-    const importSnippet = copyButton.closest('.picker-gallery__imports') as HTMLElement;
+    const importSnippet = copyButton.closest<HTMLElement>('.picker-gallery__imports')!;
 
     fireEvent.click(copyButton);
 
@@ -724,9 +724,9 @@ describe('site app', () => {
     const { container } = await renderApp();
 
     const siteShell = await waitFor(() => {
-      const element = container.querySelector('.site-shell') as HTMLElement | null;
+      const element = container.querySelector<HTMLElement>('.site-shell');
       expect(element).toBeInstanceOf(HTMLElement);
-      return element as HTMLElement;
+      return element!;
     });
     const githubSwatch = container.querySelector('#picker-github [tabindex="0"]');
 
@@ -745,7 +745,7 @@ describe('site app', () => {
     expect(presetColorsLink).not.toBeInTheDocument();
     expect(screen.getAllByText('presetColors').length).toBeGreaterThan(0);
 
-    const sketchGroup = container.querySelector('#picker-specific-props-sketch') as HTMLElement;
+    const sketchGroup = container.querySelector<HTMLElement>('#picker-specific-props-sketch')!;
     const defaultToggle = within(sketchGroup).getAllByRole('button', { name: 'Show default' })[0];
 
     expect(sketchGroup).not.toHaveTextContent('#D0021B');
@@ -760,7 +760,7 @@ describe('site app', () => {
     setViewportWidth(390);
 
     const { container } = await renderApp();
-    const sketchGroup = container.querySelector('#picker-specific-props-sketch') as HTMLElement;
+    const sketchGroup = container.querySelector('#picker-specific-props-sketch')!;
     const propCards = sketchGroup.querySelectorAll('.api-prop-card');
 
     expect(propCards.length).toBeGreaterThan(0);
@@ -772,7 +772,7 @@ describe('site app', () => {
 
   test('does not render an API table for empty property groups', async () => {
     const { container } = await renderApp();
-    const materialGroup = container.querySelector('#picker-specific-props-material') as HTMLElement;
+    const materialGroup = container.querySelector('#picker-specific-props-material')!;
 
     expect(materialGroup).toBeInTheDocument();
     expect(materialGroup.querySelector('.api-table')).not.toBeInTheDocument();

@@ -16,7 +16,7 @@ export function InlineContent({ text }: InlineContentProps) {
       return <code key={`inline-code-${index}`}>{segment.slice(1, -1)}</code>;
     }
 
-    const linkMatch = segment.match(/^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/);
+    const linkMatch = /^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/.exec(segment);
 
     if (linkMatch) {
       const [, label, href] = linkMatch;

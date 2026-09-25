@@ -44,7 +44,7 @@ export function CircleSwatch({
         color={color}
         onClick={onClick}
         onHover={onSwatchHover as never}
-        focusStyle={{ boxShadow: `${circleStyle.boxShadow || 'none'}, 0 0 5px ${color}` }}
+        focusStyle={{ boxShadow: `${circleStyle.boxShadow ?? 'none'}, 0 0 5px ${color}` }}
       />
     </div>
   );

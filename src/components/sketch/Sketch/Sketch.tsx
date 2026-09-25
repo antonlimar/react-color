@@ -142,7 +142,7 @@ function SketchBase({
       </div>
 
       <SketchFields rgb={rgb} hsl={hsl} hex={hex} onChange={onChange} disableAlpha={disableAlpha} />
-      <SketchPresetColors colors={presetColors!} onClick={onChange} onSwatchHover={onSwatchHover} />
+      <SketchPresetColors colors={presetColors} onClick={onChange} onSwatchHover={onSwatchHover} />
     </div>
   );
 }
