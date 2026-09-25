@@ -7,10 +7,10 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@storybook-utils': path.resolve(__dirname, '.storybook'),
-      '@test': path.resolve(__dirname, 'test'),
-      '@antonlimar/react-color': path.resolve(__dirname, 'src/index.ts'),
+      '@': path.resolve(import.meta.dirname, 'src'),
+      '@storybook-utils': path.resolve(import.meta.dirname, '.storybook'),
+      '@test': path.resolve(import.meta.dirname, 'test'),
+      '@antonlimar/react-color': path.resolve(import.meta.dirname, 'src/index.ts'),
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json'],
   },

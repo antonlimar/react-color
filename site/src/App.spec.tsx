@@ -516,7 +516,10 @@ describe('site app', () => {
     const { container } = await renderApp();
     const searchInput = container.querySelector<HTMLInputElement>('#desktop-docs-search')!;
 
-    fireEvent.change(searchInput, { target: { value: 'presetColors' } });
+    await act(async () => {
+      fireEvent.change(searchInput, { target: { value: 'presetColors' } });
+      await Promise.resolve();
+    });
 
     expect(window.location.search).toBe('?q=presetColors');
     expect(
@@ -525,22 +528,29 @@ describe('site app', () => {
         .some((link) => link.getAttribute('href') === '#picker-specific-props-sketch-presetcolors'),
     ).toBe(true);
 
-    fireEvent.change(searchInput, { target: { value: 'onChangeComplete' } });
+    await act(async () => {
+      fireEvent.change(searchInput, { target: { value: 'onChangeComplete' } });
+      await Promise.resolve();
+    });
     expect(
       screen
         .getAllByRole('link', { name: /onChangeComplete/i })
         .some((link) => link.getAttribute('href') === '#on-change-complete'),
     ).toBe(true);
 
-    fireEvent.change(searchInput, { target: { value: 'Sketch' } });
+    await act(async () => {
+      fireEvent.change(searchInput, { target: { value: 'Sketch' } });
+      await Promise.resolve();
+    });
     expect(
       screen
         .getAllByRole('link', { name: /SketchPicker/i })
         .some((link) => link.getAttribute('href') === '#picker-specific-props-sketch'),
     ).toBe(true);
 
-    act(() => {
+    await act(async () => {
       fireEvent.keyDown(window, { key: 'Escape' });
+      await Promise.resolve();
     });
 
     expect(searchInput).toHaveValue('');
@@ -551,15 +561,17 @@ describe('site app', () => {
     const { container } = await renderApp();
     const searchInput = container.querySelector<HTMLInputElement>('#mobile-docs-search')!;
 
-    act(() => {
+    await act(async () => {
       fireEvent.keyDown(window, { key: '/' });
+      await Promise.resolve();
     });
 
     expect(searchInput).toHaveFocus();
 
-    act(() => {
+    await act(async () => {
       fireEvent.change(searchInput, { target: { value: 'Sketch' } });
       fireEvent.keyDown(window, { key: '/' });
+      await Promise.resolve();
     });
 
     expect(searchInput).toHaveValue('Sketch');

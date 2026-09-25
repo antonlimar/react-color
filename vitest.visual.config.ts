@@ -8,9 +8,9 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@storybook-utils': path.resolve(__dirname, '.storybook'),
-      '@test': path.resolve(__dirname, 'test'),
+      '@': path.resolve(import.meta.dirname, 'src'),
+      '@storybook-utils': path.resolve(import.meta.dirname, '.storybook'),
+      '@test': path.resolve(import.meta.dirname, 'test'),
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json'],
   },

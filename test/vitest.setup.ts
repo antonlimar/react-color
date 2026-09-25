@@ -38,3 +38,10 @@ Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
     return null;
   },
 });
+
+Object.defineProperty(window, 'scrollTo', {
+  configurable: true,
+  value() {
+    return undefined;
+  },
+});
