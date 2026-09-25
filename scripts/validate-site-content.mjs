@@ -1,7 +1,23 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import ts from 'typescript';
+import {
+  ScriptTarget,
+  SyntaxKind,
+  createSourceFile,
+  isArrayLiteralExpression,
+  isAsExpression,
+  isExportDeclaration,
+  isIdentifier,
+  isNoSubstitutionTemplateLiteral,
+  isNumericLiteral,
+  isObjectLiteralExpression,
+  isParenthesizedExpression,
+  isPropertyAssignment,
+  isSatisfiesExpression,
+  isStringLiteral,
+  isVariableStatement,
+} from 'typescript';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,11 +26,11 @@ const siteContentPath = path.join(repoRoot, 'site', 'src', 'content', 'siteConte
 const publicApiPath = path.join(repoRoot, 'src', 'index.ts');
 
 function readSourceFile(filePath) {
-  return ts.createSourceFile(filePath, fs.readFileSync(filePath, 'utf8'), ts.ScriptTarget.Latest, true);
+  return createSourceFile(filePath, fs.readFileSync(filePath, 'utf8'), ScriptTarget.Latest, true);
 }
 
 function unwrapExpression(node) {
-  if (ts.isAsExpression(node) || ts.isSatisfiesExpression(node) || ts.isParenthesizedExpression(node)) {
+  if (isAsExpression(node) || isSatisfiesExpression(node) || isParenthesizedExpression(node)) {
     return unwrapExpression(node.expression);
   }
 
@@ -22,7 +38,7 @@ function unwrapExpression(node) {
 }
 
 function getPropertyNameText(name) {
-  if (ts.isIdentifier(name) || ts.isStringLiteral(name) || ts.isNumericLiteral(name)) {
+  if (isIdentifier(name) || isStringLiteral(name) || isNumericLiteral(name)) {
     return name.text;
   }
 
@@ -32,30 +48,30 @@ function getPropertyNameText(name) {
 function literalToValue(node) {
   const expression = unwrapExpression(node);
 
-  if (ts.isStringLiteral(expression) || ts.isNoSubstitutionTemplateLiteral(expression)) {
+  if (isStringLiteral(expression) || isNoSubstitutionTemplateLiteral(expression)) {
     return expression.text;
   }
 
-  if (ts.isNumericLiteral(expression)) {
+  if (isNumericLiteral(expression)) {
     return Number(expression.text);
   }
 
-  if (expression.kind === ts.SyntaxKind.TrueKeyword) {
+  if (expression.kind === SyntaxKind.TrueKeyword) {
     return true;
   }
 
-  if (expression.kind === ts.SyntaxKind.FalseKeyword) {
+  if (expression.kind === SyntaxKind.FalseKeyword) {
     return false;
   }
 
-  if (ts.isArrayLiteralExpression(expression)) {
+  if (isArrayLiteralExpression(expression)) {
     return expression.elements.map((element) => literalToValue(element));
   }
 
-  if (ts.isObjectLiteralExpression(expression)) {
+  if (isObjectLiteralExpression(expression)) {
     return Object.fromEntries(
       expression.properties.map((property) => {
-        if (!ts.isPropertyAssignment(property)) {
+        if (!isPropertyAssignment(property)) {
           throw new Error(`Unsupported object property in ${siteContentPath}: ${property.getText()}`);
         }
 
@@ -69,18 +85,18 @@ function literalToValue(node) {
 
 function getExportedConstArray(sourceFile, exportName) {
   for (const statement of sourceFile.statements) {
-    if (!ts.isVariableStatement(statement)) {
+    if (!isVariableStatement(statement)) {
       continue;
     }
 
-    const isExported = statement.modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword) ?? false;
+    const isExported = statement.modifiers?.some((modifier) => modifier.kind === SyntaxKind.ExportKeyword) ?? false;
 
     if (!isExported) {
       continue;
     }
 
     for (const declaration of statement.declarationList.declarations) {
-      if (!ts.isIdentifier(declaration.name) || declaration.name.text !== exportName || !declaration.initializer) {
+      if (!isIdentifier(declaration.name) || declaration.name.text !== exportName || !declaration.initializer) {
         continue;
       }
 
@@ -159,11 +175,7 @@ function getPublicPickerExports(sourceFile) {
   const pickerExports = new Set();
 
   sourceFile.statements.forEach((statement) => {
-    if (
-      !ts.isExportDeclaration(statement) ||
-      !statement.moduleSpecifier ||
-      !ts.isStringLiteral(statement.moduleSpecifier)
-    ) {
+    if (!isExportDeclaration(statement) || !statement.moduleSpecifier || !isStringLiteral(statement.moduleSpecifier)) {
       return;
     }
 

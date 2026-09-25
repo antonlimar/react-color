@@ -11,9 +11,7 @@ export type EditableInputValue = string | number;
 export type EditableInputChangeValue = EditableInputValue | Record<string, EditableInputValue>;
 
 export type EditableInputChangeEvent =
-  | ChangeEvent<HTMLInputElement>
-  | KeyboardEvent<HTMLInputElement>
-  | globalThis.MouseEvent;
+  ChangeEvent<HTMLInputElement> | KeyboardEvent<HTMLInputElement> | globalThis.MouseEvent;
 
 export interface EditableInputProps {
   label?: string | null;

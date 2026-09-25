@@ -70,10 +70,7 @@ export type ColorPickerChangeEvent =
   | undefined;
 
 export type InternalColorChangeEvent =
-  | MouseEvent<HTMLElement>
-  | TouchEvent<HTMLElement>
-  | globalThis.MouseEvent
-  | globalThis.TouchEvent;
+  MouseEvent<HTMLElement> | TouchEvent<HTMLElement> | globalThis.MouseEvent | globalThis.TouchEvent;
 
 export type SwatchHoverEvent = MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement> | ColorPickerChangeEvent;
 

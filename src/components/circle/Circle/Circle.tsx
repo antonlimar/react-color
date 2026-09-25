@@ -19,7 +19,6 @@ const b = bem('circle');
 
 const CIRCLE_STYLE_SLOTS = ['card'] as const;
 
-/* eslint-disable import-x/no-named-as-default-member */
 const DEFAULT_CIRCLE_COLORS = [
   material.red['500'],
   material.pink['500'],
@@ -40,7 +39,6 @@ const DEFAULT_CIRCLE_COLORS = [
   material.brown['500'],
   material.blueGrey['500'],
 ];
-/* eslint-enable import-x/no-named-as-default-member */
 
 function CircleBase({
   width = 252,

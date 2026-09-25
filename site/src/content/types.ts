@@ -1,10 +1,5 @@
 export type SectionId =
-  | 'about'
-  | 'getting-started'
-  | 'component-api'
-  | 'developer-guides'
-  | 'create-your-own'
-  | 'acknowledgement';
+  'about' | 'getting-started' | 'component-api' | 'developer-guides' | 'create-your-own' | 'acknowledgement';
 
 export interface TextBlock {
   type: 'text';
