@@ -11,10 +11,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Single test file: `npx vitest run -c vitest.config.ts src/components/sketch/spec.tsx`
 - Single test by name: add `-t "<test name>"`; watch mode: `npm run test:watch`
 - Full lint (ESLint + Stylelint for `*.scss`): `npm run lint`; formatting: `npm run format:check`
-- Visual regression (Vitest browser mode + Playwright/Chromium, screenshots in `test/visual/__screenshots__`): `npm run test:visual`, refresh baselines with `npm run test:visual:update`
-- Public typings smoke test against the built `es/`: `npm run test:public-types`
+- Visual regression: `npm run test:visual` runs picker screenshots (Vitest browser mode + Playwright, `test/visual/pickers.visual.spec.tsx`) and then docs-site screenshots (`scripts/site-visual-tests.mjs`, pixelmatch, light/dark). Baselines live in `test/visual/__screenshots__` (site ones in `.../site`). Refresh with `npm run test:visual:update`
+- Public typings smoke test against the built `es/` (fixtures in `test/public-types`): `npm run test:public-types`; ESM consumption smoke test: `npm run test:esm-consumption`
+- Site tests: `npm run test:site` runs only `site/src/App.spec.tsx`
 - CI (`.github/workflows/ci.yml`) runs in this order: `test:unit` → `lint` → `build` → `test:public-types` → `build-storybook` → `typecheck` → `site:verify` → `ci:artifacts` → `npm pack --dry-run`. Node 24.
-- A pre-commit hook runs `lint-staged`: prettier check + `eslint --max-warnings=0` + stylelint. Warnings fail the commit.
+- A husky pre-commit hook runs `lint-staged`: `eslint --fix --max-warnings=0` on JS/TS, `stylelint` on `*.scss`, and `prettier --write` on staged files. ESLint warnings fail the commit.
 
 ## Test layout gotcha
 

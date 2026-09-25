@@ -8,36 +8,40 @@ This is a maintained fork of `react-color`, published as `@antonlimar/react-colo
 
 ## Directory Map
 
-| Path          | Purpose                                                   |
-| ------------- | --------------------------------------------------------- |
-| `src/`        | Library source code, public exports, components, helpers. |
-| `.storybook/` | Storybook configuration.                                  |
-| `site/`       | Current GitHub Pages documentation site.                  |
-| `test/`       | Tests and test helpers.                                   |
-| `scripts/`    | Build, validation, and repo tooling scripts.              |
+| Path          | Purpose                                                                          |
+| ------------- | -------------------------------------------------------------------------------- |
+| `src/`        | Library source, public exports, picker stories, and colocated unit tests.        |
+| `.storybook/` | Storybook configuration.                                                         |
+| `site/`       | Current GitHub Pages documentation site.                                         |
+| `test/`       | Shared test setup/helpers, visual tests and baselines, and public-type fixtures. |
+| `scripts/`    | Build, validation, and repo tooling scripts.                                     |
 
 Do not edit generated artifacts `es/`, `.out/`, or `site/dist/` manually.
 
 ## Main Commands
 
-| Command                   | Purpose                                               |
-| ------------------------- | ----------------------------------------------------- |
-| `npm run test:unit`       | Unit/UI tests only, via Vitest.                       |
-| `npm run eslint`          | Repository linting.                                   |
-| `npm run typecheck`       | TypeScript check without emit.                        |
-| `npm run build`           | Full ESM package build into `es/`.                    |
-| `npm run storybook`       | Dev Storybook at `http://localhost:6006/`.            |
-| `npm run build-storybook` | Static Storybook build into `.out/`.                  |
-| `npm run site:dev`        | Documentation dev server at `http://localhost:4173/`. |
-| `npm run site:build`      | Production documentation build into `site/dist/`.     |
-| `npm run site:verify`     | Validate site tests, build, and metadata.             |
+| Command                        | Purpose                                                 |
+| ------------------------------ | ------------------------------------------------------- |
+| `npm run test:unit`            | Unit/UI tests only, via Vitest.                         |
+| `npm run test:site`            | Documentation-site interaction tests.                   |
+| `npm run test:public-types`    | Build and verify the published TypeScript declarations. |
+| `npm run test:esm-consumption` | Build and smoke-check package ESM consumption.          |
+| `npm run lint`                 | ESLint and Stylelint checks.                            |
+| `npm run typecheck`            | TypeScript check without emit.                          |
+| `npm run build`                | Full ESM package build into `es/`.                      |
+| `npm run storybook`            | Dev Storybook at `http://localhost:6006/`.              |
+| `npm run build-storybook`      | Static Storybook build into `.out/`.                    |
+| `npm run site:dev`             | Documentation dev server at `http://localhost:4173/`.   |
+| `npm run site:build`           | Production documentation build into `site/dist/`.       |
+| `npm run site:verify`          | Validate site tests, build, and metadata.               |
+| `npm run ci:artifacts`         | Confirm package and Storybook builds are reproducible.  |
 
 ## Public API
 
 Entry point: [`src/index.ts`](src/index.ts).
 
 The primary supported import style is named exports from the package root.
-Do not promote default imports in new documentation or examples; if they remain in code, treat them as legacy compatibility.
+Do not promote default imports in new documentation or examples. The default export remains the Chrome picker for legacy compatibility.
 
 Named picker exports:
 `AlphaPicker`, `BlockPicker`, `CirclePicker`, `ChromePicker`, `CompactPicker`, `GithubPicker`, `HuePicker`, `MaterialPicker`, `PhotoshopPicker`, `SketchPicker`, `SliderPicker`, `SwatchesPicker`, `TwitterPicker`, `GooglePicker`.
@@ -50,6 +54,7 @@ Rules:
 - do not rename or remove these exports without a major release;
 - do not break deep imports or the `es/` publishing structure without an explicit decision;
 - treat changes to `main` / `module` / `types` / `exports` as high risk and make them only deliberately.
+- when changing the published surface or emitted package output, run the matching public-types and ESM-consumption checks.
 
 ## Current Project State
 
@@ -68,6 +73,6 @@ Rules:
 
 ## Tests
 
-- Write new and rewritten tests as `*.spec.ts` / `*.spec.tsx`.
+- Follow the colocated convention: picker/library tests use `spec.ts` / `spec.tsx`; site and cross-cutting tests use `*.spec.ts` / `*.spec.tsx`.
 - Prefer Testing Library patterns and user scenarios over implementation-detail tests.
 - Preserve behavioral checks when refactoring.
