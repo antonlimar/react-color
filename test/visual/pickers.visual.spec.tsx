@@ -41,13 +41,13 @@ const storyGroups = [
   ['twitter', composePickerStories({ default: twitterMeta, TwitterPicker })],
 ] as const;
 
-const themedVisualCases: Array<{
+const themedVisualCases: {
   groupName: string;
   storyName: string;
   screenshotName: string;
   args: VisualStoryArgs;
   frameBackground: string;
-}> = [
+}[] = [
   {
     groupName: 'alpha',
     storyName: 'AlphaPicker',
@@ -148,14 +148,14 @@ const themedVisualCases: Array<{
   },
 ];
 
-const classNameVisualCases: Array<{
+const classNameVisualCases: {
   groupName: string;
   storyName: string;
   screenshotName: string;
   args: VisualStoryArgs;
   frameBackground: string;
   stylesheet: string;
-}> = [
+}[] = [
   {
     groupName: 'sketch',
     storyName: 'SketchPicker',

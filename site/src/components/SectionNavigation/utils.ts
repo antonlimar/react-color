@@ -3,10 +3,10 @@ import type { ContentSection, ContentSubsection, PropertyGroup } from '../../con
 import { createPropertyGroupAnchorId } from '../../utils/docsSections';
 
 export interface NavSubsection extends ContentSubsection {
-  children: Array<{
+  children: {
     id: string;
     title: string;
-  }>;
+  }[];
 }
 
 export function createNavItems(section: ContentSection) {

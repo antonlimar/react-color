@@ -248,7 +248,7 @@ test('Swatch renders custom title correctly', () => {
 });
 
 test('Swatch renders with an onMouseOver handler correctly', () => {
-  renderForSnapshot(<Swatch color="#fff" title="white" onHover={() => {}} />).expectSnapshot();
+  renderForSnapshot(<Swatch color="#fff" title="white" onHover={() => undefined} />).expectSnapshot();
 });
 
 test('Swatch exposes button semantics and activates from Enter or Space', () => {

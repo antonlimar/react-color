@@ -9,10 +9,10 @@ import './Saturation.scss';
 
 type SaturationChangeHandler = NonNullable<SaturationProps['onChange']>;
 type SaturationChangeData = ReturnType<typeof calculateSaturationChange>;
-type ThrottledChange = {
+interface ThrottledChange {
   (fn: SaturationChangeHandler, data: SaturationChangeData, event: InternalColorChangeEvent): void;
   cancel(): void;
-};
+}
 
 const b = bem('saturation');
 

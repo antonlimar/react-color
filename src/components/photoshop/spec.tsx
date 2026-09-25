@@ -10,7 +10,7 @@ import { PhotoshopPointerCircle } from './PhotoshopPointerCircle';
 import { PhotoshopPreviews } from './PhotoshopPreviews';
 
 test('Photoshop renders correctly', () => {
-  renderForSnapshot(<Photoshop {...red} onAccept={() => {}} onCancel={() => {}} />).expectSnapshot();
+  renderForSnapshot(<Photoshop {...red} onAccept={() => undefined} onCancel={() => undefined} />).expectSnapshot();
 });
 
 test('Photoshop renders custom styles correctly', () => {
@@ -24,7 +24,7 @@ test('Photoshop renders custom styles correctly', () => {
 });
 
 test('PhotoshopButton renders correctly', () => {
-  renderForSnapshot(<PhotoshopButton label="accept" onClick={() => {}} />).expectSnapshot();
+  renderForSnapshot(<PhotoshopButton label="accept" onClick={() => undefined} />).expectSnapshot();
 });
 
 test('PhotoshopButton is keyboard operable', () => {
@@ -41,7 +41,7 @@ test('PhotoshopButton is keyboard operable', () => {
 });
 
 test('PhotoshopFields renders correctly', () => {
-  renderForSnapshot(<PhotoshopFields {...red} onChange={() => {}} />).expectSnapshot();
+  renderForSnapshot(<PhotoshopFields {...red} onChange={() => undefined} />).expectSnapshot();
 });
 
 test('PhotoshopPointer renders correctly', () => {

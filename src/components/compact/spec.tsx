@@ -16,7 +16,7 @@ test('Compact renders correctly', () => {
 });
 
 test('Compact with onSwatchHover renders correctly', () => {
-  renderForSnapshot(<Compact {...red} onSwatchHover={() => {}} />).expectSnapshot();
+  renderForSnapshot(<Compact {...red} onSwatchHover={() => undefined} />).expectSnapshot();
 });
 
 test('Compact onChange events correctly', () => {

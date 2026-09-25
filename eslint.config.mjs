@@ -1,13 +1,13 @@
 import js from '@eslint/js';
 import { defineConfig } from 'eslint/config';
+import eslintConfigPrettier from 'eslint-config-prettier';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import { createNodeResolver, importX } from 'eslint-plugin-import-x';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import { configs as storybookConfigs } from 'eslint-plugin-storybook';
 import globals from 'globals';
-import { configs as tseslintConfigs, parser as tseslintParser } from 'typescript-eslint';
+import { configs as tsEslintConfigs, parser as tseslintParser } from 'typescript-eslint';
 
 export default defineConfig([
   {
@@ -30,12 +30,14 @@ export default defineConfig([
     files: ['**/*.{js,jsx,ts,tsx,mjs}'],
     extends: [
       js.configs.recommended,
-      ...tseslintConfigs.recommended,
+      ...tsEslintConfigs.recommended,
+      ...tsEslintConfigs.stylistic,
       react.configs.flat.recommended,
       react.configs.flat['jsx-runtime'],
       reactHooks.configs.flat['recommended-latest'],
       importX.flatConfigs.recommended,
       importX.flatConfigs.typescript,
+      eslintConfigPrettier,
     ],
     languageOptions: {
       parser: tseslintParser,
@@ -65,8 +67,11 @@ export default defineConfig([
       },
     },
     rules: {
+      'react/prop-types': 'off',
+      'no-nested-ternary': 'error',
+      'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
       'import-x/no-unresolved': ['error', { ignore: ['^@/', '^@test/', '^@storybook-utils/'] }],
-      'import-x/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+      'import-x/consistent-type-specifier-style': 'error',
       'import-x/order': [
         'error',
         {
@@ -84,8 +89,6 @@ export default defineConfig([
       ],
       'import-x/no-cycle': 'error',
       'import-x/no-duplicates': 'error',
-      'no-nested-ternary': 'error',
-      'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
       '@typescript-eslint/no-unused-vars': ['error', { args: 'none', ignoreRestSiblings: true }],
       '@typescript-eslint/consistent-type-imports': [
         'error',
@@ -96,5 +99,4 @@ export default defineConfig([
       ],
     },
   },
-  eslintPluginPrettierRecommended,
 ]);

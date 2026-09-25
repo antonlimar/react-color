@@ -38,7 +38,7 @@ function getHeaderThemeToggle() {
 
 describe('site app', () => {
   afterEach(async () => {
-    await act(async () => {});
+    await act(async () => undefined);
   });
 
   beforeEach(() => {

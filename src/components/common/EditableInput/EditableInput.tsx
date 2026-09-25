@@ -9,10 +9,10 @@ import type {
 } from './types';
 import './EditableInput.scss';
 
-type EditableInputState = {
+interface EditableInputState {
   value: EditableInputValue;
   blurValue: EditableInputValue | null;
-};
+}
 
 const b = bem('editableInput');
 

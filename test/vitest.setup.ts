@@ -11,15 +11,21 @@ class IntersectionObserverMock implements IntersectionObserver {
     public options?: IntersectionObserverInit,
   ) {}
 
-  disconnect(): void {}
+  disconnect(): void {
+    return undefined;
+  }
 
-  observe(): void {}
+  observe(): void {
+    return undefined;
+  }
 
   takeRecords(): IntersectionObserverEntry[] {
     return [];
   }
 
-  unobserve(): void {}
+  unobserve(): void {
+    return undefined;
+  }
 }
 
 if (!globalThis.IntersectionObserver) {

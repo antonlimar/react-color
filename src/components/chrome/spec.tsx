@@ -30,11 +30,11 @@ test('Chrome onChange events correctly', () => {
 });
 
 test('ChromeFields renders correctly', () => {
-  renderForSnapshot(<ChromeFields {...red} onChange={() => {}} />).expectSnapshot();
+  renderForSnapshot(<ChromeFields {...red} onChange={() => undefined} />).expectSnapshot();
 });
 
 test('ChromeFields toggle is keyboard operable', () => {
-  renderForSnapshot(<ChromeFields {...red} onChange={() => {}} />);
+  renderForSnapshot(<ChromeFields {...red} onChange={() => undefined} />);
   const toggle = screen.getByRole('button', { name: 'Toggle color input mode' });
 
   expect(toggle).toHaveAttribute('tabindex', '0');

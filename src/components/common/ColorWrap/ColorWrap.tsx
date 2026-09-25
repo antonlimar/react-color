@@ -28,10 +28,10 @@ type ColorWrapState = ColorResult & {
   colorPropKey: string;
 };
 
-type DebouncedColorChange = {
+interface DebouncedColorChange {
   (fn: ColorChangeHandler, data: ColorResult, event: ColorPickerChangeEvent): void;
   cancel(): void;
-};
+}
 
 const DEFAULT_COLOR: Color = {
   h: 250,

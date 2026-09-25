@@ -8,9 +8,9 @@ type SnapshotRenderResult = RenderResult & {
   expectSnapshot: () => void;
 };
 
-type ValidColorChecker = {
+interface ValidColorChecker {
   simpleCheckForValidColor: <T>(data: T) => T | false;
-};
+}
 
 export function renderForSnapshot(element: ReactElement): SnapshotRenderResult {
   const view = render(element);
