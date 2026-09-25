@@ -112,6 +112,15 @@ export default defineConfig([
         project: ['./tsconfig.public-types.json'],
       },
     },
+    rules: {
+      // The published declarations are generated into `es/` by test:public-types.
+      // Lint runs before that build in a clean checkout, so this compile-only
+      // fixture cannot resolve its package imports here.
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+    },
   },
   {
     files: ['site/src/**/*.{js,jsx,ts,tsx}'],
