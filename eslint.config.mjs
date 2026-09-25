@@ -106,6 +106,14 @@ export default defineConfig([
     extends: [...tsEslintConfigs.recommendedTypeChecked, ...tsEslintConfigs.stylisticTypeChecked],
   },
   {
+    files: ['test/public-types/**/*.{ts,tsx}'],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.public-types.json'],
+      },
+    },
+  },
+  {
     files: ['site/src/**/*.{js,jsx,ts,tsx}'],
     ...refreshPlugin.configs.vite,
   },
